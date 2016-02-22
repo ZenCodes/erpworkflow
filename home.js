@@ -269,6 +269,7 @@ app.post("/search-service",urlencodedParser,function(req,res){
   var rnflag;
   var invoiceflag;
   var itemflag;
+
   if(req.query.irnno!=""){
     if((req.query.irnno).indexOf('IRN')!=-1){
       rnflag="0";
@@ -278,8 +279,10 @@ app.post("/search-service",urlencodedParser,function(req,res){
       cond={Outward_Register_Number:req.query.irnno};
       rnflag="1";
     }
-    else
-      rnflag="-1";
+    else {
+      rnflag = "-1";
+      //res.status(200).json({"rnflag":"no match"});
+    }
   }
   // console.log(rnflag);
   if(req.query.invoiceno!=""){
@@ -290,16 +293,20 @@ app.post("/search-service",urlencodedParser,function(req,res){
     cond={Product_ID:req.query.item};
     itemflag="1";
   }
-  irn={new_Inward_Register_Number:req.query.irnno};
-  invoice={Inward_Bill_Numbe:req.query.invoiceno};
-  item={Product_ID:req.query.item};
-  state={state:req.query.state};
+  //if(rnflag!="0"||rnflag!="1"){
+    //res.status(200).json({"rnflag":"no match"});
+  //}
+  //else {
+    irn = {new_Inward_Register_Number: req.query.irnno};
+    invoice = {Inward_Bill_Numbe: req.query.invoiceno};
+    item = {Product_ID: req.query.item};
+    state = {state: req.query.state};
 
-  var FnSearchItemscall = require("./app/scripts/dboperations.js");
-  FnSearchItemscall.FnSearchItems("search-service",rnflag,invoiceflag,itemflag,cond,function(returnval){
-    res.status(200).json({"itemarr":returnval.itemarr,"rnflag":returnval.rnflag});
-  });
-
+    var FnSearchItemscall = require("./app/scripts/dboperations.js");
+    FnSearchItemscall.FnSearchItems("search-service", rnflag, invoiceflag, itemflag, cond, function (returnval) {
+      res.status(200).json({"itemarr": returnval.itemarr, "rnflag": returnval.rnflag});
+    });
+  //}
 });
 
 app.post("/searchexpand-card",urlencodedParser,function(req,res){

@@ -62,7 +62,8 @@
 
   <script>
     (function() {
-      var item=[];
+      var item=[
+        {"name":"---SELECT---","measure":"","unit":""}];
       Polymer({is:"itemlist-card",
         ready:function(){
           //alert('hi');
@@ -75,6 +76,8 @@
           var arr=e.detail.response.items;
           //alert(JSON.stringify(e.detail.response));
           this.itemArray1=arr;
+          //alert(JSON.stringify(this.itemArray1));
+
         },
         outitemlistreadResponse:function(e)
         {
@@ -82,7 +85,8 @@
           var arr=e.detail.response.items;
           //alert(JSON.stringify(e.detail.response));
           this.itemArray2=arr;
-          this.itemArray=(this.itemArray1).concat(this.itemArray2);
+          this.itemArray=item.concat((this.itemArray1).concat(this.itemArray2));
+          alert(JSON.stringify(this.itemArray));
         },
         select:function(e){
           this.selectedItem=(e.target.selectedItem.textContent).trim();

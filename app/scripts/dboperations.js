@@ -699,46 +699,58 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
         itemarr.push(obj);
       }
       if(!err){
-        console.log(JSON.stringify(itemarr));
+        //console.log(JSON.stringify(itemarr));
         if(itemarr.length==0)
         {
           if(invoiceflag=="1") {
-            console.log("in invoice");
+            //console.log("in invoice");
             cond = {"Invoice_No": cond.Inward_Bill_Number};
           }
           if(itemflag=="1")
           {
-            console.log("in item");
+            //console.log("in item");
             cond={"Product_ID":cond.Product_ID};
           }
-          connection.query('SELECT distinct '+Config_columns[3]+','+Config_columns[4]+','+Config_columns[5]+' FROM '+Config_tables[1]+' WHERE ?',[cond], function(err, rows, fields) {
-            var itemarr=[];
-            rnflag="1";
-            if(!err){
-              for(var i=0;i<rows.length;i++)
-              {
-                var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","state":"","inwardregno":""};
-                obj.inwardno=rows[i].Invoice_No;
-                obj.inwarddate=rows[i].Out_Date;
-                //obj.ponumber=rows[i].PO_Number;
-                //obj.podate=rows[i].PO_Date;
-                obj.state=rows[i].state;
-                obj.inwardregno=rows[i].Outward_Register_Number;
-                itemarr.push(obj);
+          if(invoiceflag=="1"||itemflag=="1") {
+            connection.query('SELECT distinct ' + Config_columns[3] + ',' + Config_columns[4] + ',' + Config_columns[5] + ' FROM ' + Config_tables[1] + ' WHERE ?', [cond], function (err, rows, fields) {
+              var itemarr = [];
+              rnflag = "1";
+              if (!err) {
+                for (var i = 0; i < rows.length; i++) {
+                  var obj = {
+                    "inwardno": "",
+                    "inwarddate": "",
+                    "ponumber": "",
+                    "podate": "",
+                    "state": "",
+                    "inwardregno": ""
+                  };
+                  obj.inwardno = rows[i].Invoice_No;
+                  obj.inwarddate = rows[i].Out_Date;
+                  //obj.ponumber=rows[i].PO_Number;
+                  //obj.podate=rows[i].PO_Date;
+                  obj.state = rows[i].state;
+                  obj.inwardregno = rows[i].Outward_Register_Number;
+                  itemarr.push(obj);
+                }
+                //console.log(JSON.stringify(itemarr));
+                //res.status(200).json({"itemarr":itemarr,"rnflag":rnflag});
+                return callback({"itemarr": itemarr, "rnflag": rnflag});
               }
-              console.log(JSON.stringify(itemarr));
-              //res.status(200).json({"itemarr":itemarr,"rnflag":rnflag});
-              return callback({"itemarr":itemarr,"rnflag":rnflag});
-            }
-            else
-              console.log(err);
-          });
+              else
+                console.log("Item not in outward" + err);
+            });
+          }
+          else
+            return callback({"itemarr": itemarr, "rnflag": rnflag});
         }
         else {
           //res.status(200).json({"itemarr":itemarr,"rnflag":rnflag});
           return callback({"itemarr":itemarr,"rnflag":rnflag});
         }
       }
+      else
+        console.log("Item not in inward"+err);
     });
   }
   else if(rnflag=="1"){
