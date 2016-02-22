@@ -1,0 +1,43 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="dynamic-menu-card">
+  <style>
+    .card{
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+    //width: 111.5%;
+    }
+    paper-button{
+      font-size: 16px;
+      text-transform: none;
+      width: 130px;
+    }
+    paper-tab{
+      margin-left: 3%;
+    }
+  </style>
+  <template>
+    <!--Template which binds menu labels here-->
+    <div class="card">
+      <paper-button id="{{menulabel}}" label="{{menulabel}}" on-click="FnSelectMenu">{{menulabel}}</paper-button>
+    </div>
+
+  </template>
+    <!--Loading script file for the dynamic menu card-->
+  <script src="../../scripts/dynamic-menu-card.js"></script>
+
+</dom-module>

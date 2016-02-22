@@ -1,0 +1,42 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="drawermenu-card">
+  <style>
+    .card{
+      margin-top:5%;
+      padding-left:5%;
+    }
+    paper-button{
+      text-transform:none;
+
+    }
+  </style>
+
+  <template>
+    <div class="card">
+
+      <paper-button on-tap="selectedMenu" noink id="{{itemvalue}}">{{itemvalue}}</paper-button>
+
+    </div>
+  </template>
+
+  <script src="../../scripts/drawermenu-card.js">
+
+  </script>
+
+</dom-module>

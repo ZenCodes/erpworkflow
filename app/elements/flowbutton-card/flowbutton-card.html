@@ -1,0 +1,32 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="import" href="../physicqualified-service/physicqualified-service.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="flowbutton-card">
+  <template>
+    <style is="custom-style">
+      paper-button{
+        text-transform: none;
+        font-size: 16px;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 100%;
+      }
+    </style>
+
+    <div class="main">
+      <paper-button id="{{label}}" label="" on-click="click">{{label}}</paper-button>
+    </div>
+    <physicqualified-service id="pqs"></physicqualified-service>
+  </template>
+  <script src="../../scripts/flowbutton-card.js"></script>
+</dom-module>

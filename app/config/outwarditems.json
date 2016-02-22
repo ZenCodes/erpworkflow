@@ -1,0 +1,12 @@
+{"items":
+[{"name":"STEEL PIPE 1.5","measure":"Coils","unit":"Kg"},
+  {"name":"STEEL PIPE 3.0","measure":"Coils","unit":"Kg"},
+  {"name":"STEEL PIPE 4.0","measure":"Coils","unit":"Kg"},
+  {"name":"LUBRICANT 1.1","measure":"Cane","unit":"Li"},
+  {"name":"LUBRICANT 2.1","measure":"Cane","unit":"Li"},
+  {"name":"LUBRICANT 3.1","measure":"Cane","unit":"Li"},
+  {"name":"LUBRICANT 4.1","measure":"Cane","unit":"Li"},
+  {"name":"SAND 1.1","measure":"Bag","unit":"Kg"},
+  {"name":"SAND 2.1","measure":"Bag","unit":"Kg"},
+  {"name":"SAND 3.1","measure":"Bag","unit":"Kg"}
+]}

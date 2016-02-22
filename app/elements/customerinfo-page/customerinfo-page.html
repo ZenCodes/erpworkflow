@@ -1,0 +1,89 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../datepicker-card/datepicker-card.html">
+<link rel="import" href="../timepicker-card/timepicker-card.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
+<dom-module id="customerinfo-page" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:-7%;
+      }
+      paper-input{
+        text-align: left;
+        width: 35%;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+      .topbanner{
+        @apply(--layout-horizontal);
+        margin-left:55%;
+        width: 50%;
+        margin-top: -5%;
+      }
+      .datetitle{
+        @apply(--layout-horizontal);
+        margin-left: 62%;
+      }
+
+      #datetitle,#timetitle{
+        font-size: 13px;
+      //color: blue;
+      }
+      #datetitle{
+        margin-left: 30%;
+      }
+
+    </style>
+    <!--This template binding dynamic labels and error messages-->
+    <template is="dom-repeat" items="{{label}}">
+      <!--Component added for listen to the keyboard enter in this card-->
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnCustomerInfoSubmit"></iron-a11y-keys>
+    <div class="datetitle">
+      <paper-item id="timetitle" noink>{{item.Out_Time}}</paper-item>
+      <paper-item id="datetitle" noink>{{item.Out_Date}}</paper-item>
+    </div>
+    <div class="topbanner">
+      <!--<paper-input label="Out Time" value="{{outtime}}" style="font-size:15px;" id="outtime" required  error-message="Enter Outtime"></paper-input>-->
+      <timepicker-card></timepicker-card>
+      <datepicker-card></datepicker-card>
+    </div>
+    <div class="card">
+      <paper-input label="{{item.Invoice_Number}}" name="invoiceno" value="{{invoiceno}}" required  id="customer_invoiceno" error-message="{{item.Invoice_Number_error}}"></paper-input>
+      <paper-input label="{{item.Customer_Name}}" name="customername" value="{{customername}}" required  allowed-pattern="[a-zA-Z ]" id="customer_name" error-message="{{item.Customer_Name_error}}"></paper-input>
+      <paper-input label="{{item.Destination_City}}" name="city" value="{{city}}" required  id="customer_city" allowed-pattern="[a-zA-Z ]" error-message="{{item.Destination_City_error}}"></paper-input>
+      <paper-button on-click="FnCustomerInfoSubmit">Next</paper-button>
+    </div>
+    </template>
+    <!--Invoking dialog componnet to show validation message-->
+    <dialog-page id="ID_Show_Dialog"></dialog-page>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
+  </template>
+  <script src="../../scripts/customerinfo-page.js"></script>
+
+</dom-module>

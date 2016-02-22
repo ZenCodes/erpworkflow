@@ -1,0 +1,83 @@
+
+  [ {"url": "http://127.0.0.1:4000/"},
+    {"Page":[
+    {"page":["login-card","login-card"]},
+    {"Label":[{"user_name":"Employee ID","pass_word":"Password","user_name_error":"Username required","pass_word_error":"Password required"}]}
+    ]},
+    {"Page":[
+      {"page":["Vehicle Info","vehicle-page"]},
+      {"Label":[{"Invoice_date":"Invoice date","Invoice_Number":"Invoice Number","Vehicle_Number":"Vehicle Number","Vehicle_Name":"Vehicle Name",
+        "Driver_Name":"Driver Name","Driver_Number":"Driver Number","Invoice_date_error":"Error invoice date",
+        "Invoice_Number_error":"Enter invoice number","Vehicle_Number_error":"Enter vehicle number",
+        "Vehicle_Name_error":"Enter vehicle name","Driver_Name_error":"Name should contain letters only",
+        "Driver_Number_error":"Enter driver number"}]}
+    ]},
+    {"Page":[
+      {"page":["Item Detail","item-page"]},
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container"},{"tab":"Quantity Received"},{"tab":"Remarks"}],"Supplier_Name":"Supplier Name","Supplier_Name_error":"Enter supplier name"}]}
+    ]},
+    {"Page":[
+      {"page":["physicins-page","physicins-page"]},
+      {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+    ]},
+    {"Page":[
+      {"page":["physicqualify-card","physicqualify-card"]},
+      {"Label":[{"tabs":[{"tab":"Product ID"},{"tab":"Cont/Qty Received"},{"tab":"Cont Accepted"},{"tab":"Qty Accepted"},{"tab":"Remarks"}],"Qty_Received":"Qty Received","PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+    ]},
+    {"Page":[
+      {"page":["physicinsread-page","physicinsread-page"]},
+      {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+    ]},
+    {"Page":[
+      {"page":["physicqualifyread-card","physicqualifyread-card"]},
+      {"Label":[{"tabs":[{"tab":"Product ID"},{"tab":"Cont/Qty Received"},{"tab":"Cont/Qty Accepted"},{"tab":"Remarks"}],"PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+    ]},
+    {"Page":[
+      {"page":["Customer Detail","customerinfo-page"]},
+      {"Label":[{"Out_Time":"Out Time","Out_Date":"Out Date","Invoice_Number":"Invoice Number","Customer_Name":"Customer Name","Destination_City":"Destination City","Invoice_Number_error":"Enter invoice number","Customer_Name_error":"Enter customer name","Destination_City_error":"Enter destination city"}]}
+    ]},
+    {"Page":[
+      {"page":["Out Vehicle Info","vehicleinfo-page"]},
+      {"Label":[{"Driver_Name":"Driver Name","Driver_Number":"Driver Number","Owner_Name":"Owner Name","Owner_Number":"Owner Number",
+        "Vehicle_Number":"Vehicle Number","Transport_Name":"Transport Name","PAN":"PAN",
+        "Driver_Name_error":"Enter driver name","Driver_Number_error":"Enter driver number","Owner_Name_error":"Enter owner name",
+        "Owner_Number_error":"Enter owner number",
+        "Vehicle_Number_error":"Enter vehicle number","Transport_Name_error":"Enter transport name","PAN_error":"Enter PAN"}]}
+    ]}
+    ,
+    {"Page":[
+      {"page":["Out Item Detail","outwarditem-page"]},
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Quantity"},{"tab":"Weight"}]}]}
+    ]}
+    ,
+    {"Page":[
+      {"page":["Search Items","searchread-page"]},
+      {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+    ]},
+    {"Page":[
+      {"page":["searchexpand-card","searchexpand-card"]},
+      {"Label":[{"tabs":[{"tab":"Product ID"},{"tab":"Cont/Qty Received"},{"tab":"Cont/Qty Accepted"},{"tab":"Remarks"}],"PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+    ]}
+    ,
+    {"Page":[
+      {"page":["outwardsearchread-page","outwardsearchread-page"]},
+      {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+    ]} ,
+    {"Page":[
+      {"page":["outwardsearchexpand-card","outwardsearchexpand-card"]},
+      {"Label":[{"tabs":[{"tab":"Product ID"},{"tab":"Quantity"},{"tab":"Weight"}]}]}
+    ]},
+    {"Page":[
+      {"page":["Add Intent","intent-page"]},
+      {"Label":[{"tabs":[{"tab":"Item Des"},{"tab":"Specification"},{"tab":"Unit"},{"tab":"Qunatity"},{"tab":"Remarks"}],"Intent_date":"Intent date"}]}
+    ]},
+    {"Page":[
+      {"page":["View Intent","viewintent-page"]},
+      {"Label":[{"tabs":[{"tab":"Intent Register Number"},{"tab":"Intent Date"}]}]}
+    ]},
+    {"Page":[
+      {"page":["viewintentitemexpand-page","viewintentitemexpand-page"]},
+      {"Label":[{"tabs":[{"tab":"Item Des"},{"tab":"Specification"},{"tab":"Unit"},{"tab":"Qunatity"},{"tab":"Remarks"}]}]}
+    ]}
+  ]
+

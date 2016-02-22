@@ -1,0 +1,81 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+
+<link rel="import" href="../physicqualifyread-card/physicqualifyread-card.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="physicinsitemread-card">
+  <style>
+    .expandcard{
+      @apply(--layout-horizontal);
+      width: 90%;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      margin-top:2%;
+      margin-left: 5%;
+    }
+    paper-button{
+      width: 35%;
+    }
+    paper-item{
+      width: 20%;
+      margin-left: 10%;
+    }
+    paper-input{
+      width: 35%;
+      margin-top: -2%;
+      font-size: 8px;
+    }
+    paper-checkbox{
+      margin-top: 1%;
+    }
+    paper-icon-button{
+      width:15%;
+    }
+    a{
+      text-decoration: none;
+      width: 20%;
+    }
+    .collapse{
+      width:90%;
+      margin-left: 5%;
+    //border-radius: 2px;
+    //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+    }
+  </style>
+  <!--Template for the card-->
+  <template>
+
+    <div class="expandcard" id="card{{inwardregno}}">
+      <paper-button  name="inwardregno" value="{{inwardregno}}" noink>{{inwardregno}}</paper-button>
+      <paper-button  name="inwardno" value="{{inwardno}}"  noink>{{inwardno}}</paper-button>
+      <paper-button  name="inwarddate" value="{{inwarddate}}"  noink>{{inwarddate}}</paper-button>
+      <paper-icon-button id="expand" icon="{{icons}}" noink></paper-icon-button>
+      <!--<paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>-->
+    </div>
+    <!--Expand card for showing IRN card items-->
+    <!--<iron-collapse id="{{inwardregno}}">-->
+    <!--<div class="collapse">-->
+      <!--<physicqualifyread-card id="ps"></physicqualifyread-card>-->
+    <!--</div>-->
+    <!--</iron-collapse>-->
+
+  </template>
+  <!--Importing JS file-->
+  <script src="../../scripts/physicinsitemread-card.js"></script>
+
+</dom-module>

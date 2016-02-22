@@ -1,0 +1,71 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="viewintentexpanditem-page">
+  <template>
+    <style>
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: -5%;
+        text-align: center;
+        position: relative;
+      }
+      #itemdes{
+
+        width:200px;
+      }
+      #specification{
+        width:150px;
+        margin-left: 3%;
+      }
+      #qtr,#qta{
+        width:150px;
+        margin-left: 3%;
+      }
+      #itemdes,#qtr{
+        margin-left: 5%;
+      }
+      #qta{
+        margin-left: 5%;
+      }
+      .remark{
+        //width:30%;
+        height:4%;
+        margin-left: 2%;
+        margin-top: 2%;
+      }
+
+    </style>
+    <!--template for showing item info-->
+    <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
+      <div class="repeatcard">
+        <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
+        <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
+        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}</paper-item></div>
+        <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
+        <textarea class="remark" name="remark" value="{{remarks::input}}">{{remarks}}</textarea>
+      </div>
+    </form>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/viewintentexpanditem-page.js">
+
+  </script>
+
+</dom-module>

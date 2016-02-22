@@ -1,0 +1,75 @@
+<!--Component imports-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../viewintentitemexpand-page/viewintentitemexpand-page.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="viewintentitem-page">
+  <style>
+    .expandcard{
+      @apply(--layout-horizontal);
+      width: 90%;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      margin-top:2%;
+      margin-left: 5%;
+    }
+    paper-button{
+      width: 35%;
+    }
+    paper-item{
+      width: 20%;
+      margin-left: 10%;
+    }
+    paper-input{
+      width: 35%;
+      margin-top: -2%;
+      font-size: 8px;
+    }
+    paper-checkbox{
+      margin-top: 1%;
+    }
+    paper-icon-button{
+      width:15%;
+    }
+    a{
+      text-decoration: none;
+      width: 20%;
+    }
+    .collapse{
+      width:90%;
+    }
+  </style>
+  <template>
+    <!--Expand Itemcard-->
+    <div class="expandcard" id="card{{intentregno}}">
+      <paper-button  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
+      <paper-button  name="intentdate" value="{{intentdate}}"  on-click="FnExpandItemCard" noink>{{intentdate}}</paper-button>
+      <paper-icon-button id="expand" icon="{{icons}}" on-click="FnExpandItemCard" noink></paper-icon-button>
+      <paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>
+    </div>
+    <!--Expand item collapse card-->
+    <iron-collapse id="{{intentregno}}">
+      <div class="collapse">
+        <viewintentitemexpand-page id="ps"></viewintentitemexpand-page>
+      </div>
+    </iron-collapse>
+
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/viewintentitem-page.js"></script>
+
+</dom-module>

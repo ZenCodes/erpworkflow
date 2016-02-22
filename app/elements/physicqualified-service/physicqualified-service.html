@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<dom-module id="physicqualified-service">
+
+  <template>
+    <iron-ajax
+      id="physicupdateajax"
+      url="{{url}}"
+      method="post"
+      params='{{param}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="physicupdateResponse">
+    </iron-ajax>
+    <iron-ajax
+      id="oldinsertupdateajax"
+      url="{{url1}}"
+      method="post"
+      params='{{param1}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="oldinsertupdateResponse">
+    </iron-ajax>
+    <iron-ajax
+      id="flowstateupdateajax"
+      url="{{url2}}"
+      method="post"
+      params='{{param2}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="flowstateupdateResponse">
+    </iron-ajax>
+    <grn-service id="gs"></grn-service>
+  </template>
+
+  <script src="../../scripts/physicqualified-service.js"></script>
+</dom-module>

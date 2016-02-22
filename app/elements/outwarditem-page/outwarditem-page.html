@@ -1,0 +1,140 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<!--<link rel="import" href="../outwarditem-card/outwarditem-card.html">-->
+<link rel="import" href="../item-card/item-card.html">
+<link rel="import" href="../outwarditem-service/outwarditem-service.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../dialog-page/dialog-page.html">
+<dom-module id="outwarditem-page">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        width: 80%;
+        left: 5%;
+        margin-top: 2%;
+      }
+      .banner1{
+        @apply(--layout-horizontal);
+        width: 120%;
+      }
+      .banner2{
+        @apply(--layout-vertical);
+      }
+      .itemcard{
+        @apply(--layout-horizontal);
+        width: 120%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 112%;
+        margin-top: 5%;
+        height: 4%;
+      }
+      paper-button{
+        font-size: 15px;
+        text-transform: none;
+
+      }
+      paper-input{
+        text-align: left;
+        width: 30%;
+        margin-left: 10%;
+      }
+      hr{
+        width: 111.5%;
+      }
+      .additem,.save{
+        text-align: left;
+      }
+      .hr1{
+        margin-top: 5%;
+        width: 111.5%;
+      }
+      paper-icon-button{
+        margin-left: 10%;
+      }
+      .buttons{
+        margin-left:-75%;
+      }
+      .datetitle{
+        margin-left: 48%;
+      }
+      #datetitle{
+        font-size: 13px;
+        color: blue;
+      }
+      .supname{
+        margin-left: 500px;
+        width: 26%;
+      }
+      .delete{
+        margin-top:2%;
+      }
+      .additem,.save{
+        text-align: center;
+      //width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        height: 30px;
+      //margin-top: 4%;
+      }
+      item-card{
+        //width:200%;
+      }
+    </style>
+    <!--Template which binds dynamic label to this page-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+    <div class="card">
+      <!--Outward item card template-->
+      <div class="banner2">
+        <paper-tabs selected="0" noink id="ptab">
+          <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+          <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+          </template>
+        </paper-tabs>
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <div class="itemcard">
+            <!--<div><outwarditem-card id="{{item.id}}"  description="{{item.description}}" quantity="{{item.quantity}}" weight="{{item.weight}}"></outwarditem-card>-->
+            <!--</div>-->
+            <div><item-card id="{{item.id}}" description="{{item.description}}" measure="{{item.measure}}" received="{{item.received}}"></item-card>
+            </div>
+            <div class="delete"><paper-icon-button icon="icons:delete" on-click="FnDeleteItem" style="right:10px;height:40px;"></paper-icon-button></div>
+          </div>
+        </template>
+        <div layout horizontal class="buttons">
+          <paper-button on-click="FnAdditem" class="additem" id="additem" >Add Item</paper-button>
+          <paper-button on-click="FnSaveItem" class="save" id="save" >Save</paper-button>
+        </div>
+      </div>
+    </div>
+</template>
+    <!--Invoking dialog control-->
+    <dialog-page id="ID_Show_Dialog"></dialog-page>
+    <!--Calling webcomponent service to bind label info-->
+    <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
+    <!--Calling item service to make request to the server-->
+    <outwarditem-service id="itemservice"></outwarditem-service>
+  </template>
+  <script src="../../scripts/outwarditem-page.js">
+
+  </script>
+
+</dom-module>

@@ -1,0 +1,91 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../customerinfo-page/customerinfo-page.html">
+<link rel="import" href="../vehicleinfo-page/vehicleinfo-page.html">
+<link rel="import" href="../outwarditem-page/outwarditem-page.html">
+<link rel="import" href="../dynamic-card/dynamic-card.html">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="outwardslip-page">
+  <template>
+    <style is="custom-style">
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+      //height: 120%;
+        color: black;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 80%;
+        left: 10%;
+      //margin-top: 5%;
+      }
+      .contentbanner{
+        border-top: groove;
+        //border-radius: 2px;
+        //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 89.5%;
+        margin-left: 5.2%;
+        margin-top: 0%;
+        //border-style:groove;
+        //border-color:#e5efe2;
+        //height: 100%;
+        overflow: scroll;
+      }
+      paper-tabs{
+        width: 90%;
+        margin-left: 4.5%;
+      }
+      paper-button{
+        font-size: 17px;
+        text-transform: none;
+      }
+      .tabbanner{
+        margin-left: 5%;
+        margin-top:5%;
+      }
+
+    </style>
+    <!--Template for outward slip page-->
+    <div class="card">
+      <div class="tabbanner">
+        <!--Card imported for the dynamic menu shown in Security page like vehicleinfo,Item details,customer info etc..-->
+        <dynamic-card></dynamic-card>
+      </div>
+      <div class="contentbanner">
+        <!--Tag is used to change the page view according to the menu selection either vehicle info or item page for the security inward item entry-->
+        <iron-pages selected="{{page}}" attr-for-selected="data-category" on-iron-select="select">
+          <section data-category="Customer Detail">
+            <customerinfo-page id="cp"></customerinfo-page>
+          </section>
+          <section data-category="Out Vehicle Info">
+            <vehicleinfo-page id="vp"></vehicleinfo-page>
+          </section>
+          <section data-category="Out Item Detail">
+            <outwarditem-page id="ip"></outwarditem-page>
+          </section>
+        </iron-pages>
+      </div>
+    </div>
+
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/outwardslip-page.js"></script>
+
+</dom-module>

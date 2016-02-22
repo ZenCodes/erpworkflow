@@ -1,0 +1,63 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../dynamic-menu-card/dynamic-menu-card.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="dynamic-card">
+  <style>
+    .card{
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      width: 111.5%;
+
+    }
+    paper-button{
+      font-size: 17px;
+      text-transform: none;
+    }
+    paper-tab{
+      width: 105px;
+    //margin-left: 8%;
+    }
+    paper-tabs {
+    //background-color: #e5efe2;
+      --paper-tabs-selection-bar-color: white;
+    }
+
+  </style>
+  <!--Component to Bind tab info from config file according to the page view either inward or outward-->
+  <template>
+    <div class="card">
+      <paper-tabs selected="0" noink>
+        <!--template which loads dynamic menu card here which has Vehicle info,Item details-->
+        <template is="dom-repeat" items="{{menus}}" as="menu">
+          <paper-tab><dynamic-menu-card menulabel="{{menu.Menu}}"></dynamic-menu-card></paper-tab>
+        </template>
+      </paper-tabs>
+    </div>
+    <!--Component which read the security menu json file when loading security page-->
+    <iron-ajax
+      auto
+      id="menureadAjax"
+      url="{{url}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="menureadResponse">
+    </iron-ajax>
+  </template>
+  <!--Loading JS file for this component-->
+  <script src="../../scripts/dynamic-card.js"></script>
+
+</dom-module>

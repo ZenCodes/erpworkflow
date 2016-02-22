@@ -1,0 +1,35 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<dom-module id="webcomponent-service">
+  <template>
+    <!--Component to read Labels for the components from webcomponents.json file-->
+    <iron-ajax
+
+      id="webcomponentreadajax"
+      url="../../config/webcomponents.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnWebcomponentreadResponse">
+    </iron-ajax>
+    <!--Component to read Roleflags for the role from rolesconfig.json file-->
+    <iron-ajax
+      id="roleconfigreadajax"
+      url="../../config/Roleconfig.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnRoleconfigreadResponse">
+    </iron-ajax>
+
+    <iron-ajax
+      id="drawermenureadAjax"
+      url="../../config/Roleconfig.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="drawermenureadResponse">
+    </iron-ajax>
+
+  </template>
+  <!--Calling JS file for this component-->
+  <script src="../../scripts/webcomponent.js"></script>
+</dom-module>

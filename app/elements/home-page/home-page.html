@@ -1,0 +1,69 @@
+<!--Importing components-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../physicins-page/physicins-page.html">
+<link rel="import" href="../physicinsread-page/physicinsread-page.html">
+<link rel="import" href="../intent-page/intent-page.html">
+<link rel="import" href="../viewintent-page/viewintent-page.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="home-page">
+  <template>
+    <style is="custom-style">
+
+      .contentbanner{
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 5%;
+      }
+      paper-tabs{
+        width: 90%;
+        margin-left: 4.5%;
+      }
+      paper-button{
+        font-size: 17px;
+        text-transform: none;
+      }
+      .tabbanner{
+        margin-left: 5%;
+        margin-top: 5%;
+      }
+    </style>
+
+    <!--Base page for grn workflow-->
+    <div class="contentbanner">
+      <iron-pages selected="{{page}}" attr-for-selected="data-category">
+        <!--It is for forward flow-->
+        <section data-category="Inward Items">
+          <physicins-page></physicins-page>
+        </section>
+        <!--It is for backward flow ie history-->
+        <section data-category="Inward Flow">
+          <physicinsread-page></physicinsread-page>
+        </section>
+        <!--Section for showing add intent page to the corrsponding role-->
+        <!--<section data-category="Add Intent">-->
+          <!--<intent-page></intent-page>-->
+        <!--</section>-->
+        <!--Section for showing view intent page to the corrsponding role-->
+        <!--<section data-category="View Intent">-->
+          <!--<viewintent-page></viewintent-page>-->
+        <!--</section>-->
+      </iron-pages>
+    </div>
+
+  </template>
+  <!--JS file import for this page-->
+  <script src="../../scripts/home-page.js"></script>
+
+</dom-module>

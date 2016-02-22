@@ -1,0 +1,70 @@
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="outwardsearchexpanditem-card">
+  <template>
+    <style>
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-top: -1%;
+      // height:50%;
+        text-align: center;
+      }
+      paper-item{
+        width: 270px;
+        margin-left:7%;
+      //text-align: center;
+      }
+      paper-input{
+        margin-top:-2%;
+        width: 20%;
+        margin-left: -10%;
+      }
+      paper-icon-button{
+        width: 15%;
+        margin-top: 2%;
+      }
+      textarea{
+        width: 30%;
+        height:3%;
+        margin-top:2%;
+      //margin-left:5%;
+      }
+    </style>
+
+    <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
+      <div class="repeatcard">
+
+        <paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>
+        <paper-item name="qtyreceived" value="{{quantity}}">{{quantity}}</paper-item>
+        <paper-item name="qtyaccepted" value="{{weight}}">{{weight}}</paper-item>
+
+
+      </div>
+    </form>
+  </template>
+  <script>
+    Polymer({is:"outwardsearchexpanditem-card",
+      ready:function(){
+
+
+      }
+    });
+  </script>
+
+</dom-module>

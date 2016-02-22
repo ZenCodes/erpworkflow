@@ -1,0 +1,65 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="autocompleteitemlist-card">
+  <style>
+    .repeatcard{
+      @apply(--layout-vertical);
+      width: 120%;
+
+    }
+    paper-listbox{
+      width: 80%;
+      background-color: #e5efe2;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+    }
+    paper-input{
+      width: 80%;
+    //margin-top: -6%;
+    }
+  </style>
+  <template>
+  <!--template for creating autocomplete dropdown list-->
+    <div class="repeatcard">
+      <paper-input value="{{value}}" on-keydown="FnInputChanged"></paper-input>
+      <paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <paper-item>{{item.itemdes}}</paper-item>
+        </template>
+      </paper-listbox>
+
+    </div>
+    <!--Component which read and bind data from item json file and bind to the dropdown card-->
+    <iron-ajax
+      auto
+      id="itemlistreadajax"
+      url="{{url}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="itemlistreadResponse">
+    </iron-ajax>
+
+  </template>
+  <!--Importing JS file-->
+  <script src="../../scripts/autocompleteitemlist-card.js">
+
+  </script>
+
+</dom-module>

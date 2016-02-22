@@ -1,0 +1,239 @@
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+<!--Component imports-->
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../bower_components/paper-styles/demo-pages.html">
+  <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+  <link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" href="../bower_components/paper-item/paper-item.html">
+  <link rel="import" href="../bower_components/paper-card/paper-card.html">
+  <link rel="import" href="../bower_components/paper-input/paper-input.html">
+  <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+  <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+  <link rel="import" href="../bower_components/paper-button/paper-button.html">
+  <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+  <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+  <link rel="import" href="../bower_components/paper-tooltip/paper-tooltip.html">
+  <link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+
+  <link rel="import" href="home-page/home-page.html">
+  <link rel="import" href="physicins-page/physicins-page.html">
+  <link rel="import" href="grnflow-card/grnflow-card.html">
+  <link rel="import" href="physicqualify-card/physicqualify-card.html">
+  <link rel="import" href="inwardslip-page/inwardslip-page.html">
+  <link rel="import" href="drawermenu-list/drawermenu-list.html">
+  <link rel="import" href="static-service/static-service.html">
+  <link rel="import" href="viewtype-card/viewtype-card.html">
+  <link rel="import" href="flowbutton-card/flowbutton-card.html">
+  <link rel="import" href="outwardslip-page/outwardslip-page.html">
+  <link rel="import" href="searchread-page/searchread-page.html">
+  <link rel="import" href="menusearch-card/menusearch-card.html">
+  <link rel="import" href="outwardsearchread-page/outwardsearchread-page.html">
+  <link rel="import" href="intenthome-page/intenthome-page.html">
+  <!--<link rel="import" href="grn-service/grn-service.html">-->
+</head>
+
+<body unresolved>
+<!--my-app component created and included here-->
+<app-homepage></app-homepage>
+<dom-module id="app-homepage">
+  <style is="custom-style">
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    paper-drawer-panel {
+      --paper-drawer-panel-main-container: {
+      //background-color: #e6e6e6;
+        font-family: 'Lustria', serif;
+      };
+    }
+    paper-drawer-panel {
+      --paper-drawer-panel-left-drawer-container: {
+      //background-color: #e6e6e6;
+        font-family: 'Lustria', serif;
+      };
+    }
+    .maintoolbar{
+      background-color: whitesmoke;
+      //background-color: #bfbfbf;
+      color: black;
+      height: 6%;
+      text-align: top;
+    }
+    .logotoolbar{
+      background-color: white;
+      //background-color: #bfbfbf;
+      color: black;
+      height: 0%;
+      text-align: top;
+    }
+    .top1{
+      border-bottom: 2px solid;
+      background-color: white;
+      //background-color: #e6e6e6;
+      height: 6%;
+      color: black;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      border-bottom-color: whitesmoke;
+    }
+    .top2{
+      border-bottom: 2px solid;
+      border-bottom-color: whitesmoke;
+      //border-bottom: thin;
+      background-color: white;
+      //background-color: #f2f2f2;
+      height: 6%;
+      color: black;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      //border-color: rgb(229, 204, 255);
+    }
+    .top3{
+      border-bottom: 2px solid;
+      border-bottom-color: whitesmoke;
+     // border-bottom: thin;
+      background-color: white;
+      //background-color: #e6e6e6;
+      height: 4.5%;
+      color: black;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      //border-color: rgb(229, 204, 255);
+    }
+    .sidemenu{
+   // background-color: #e6e6e6;
+      //margin-top:42%
+    }
+    .bottom{
+      width: 100%;
+      margin-left: 90%;
+    }
+    .bottomicon{
+    }
+    .content{
+      width:100%;
+      //height:500%;
+      text-align: center;
+      overflow:hidden;
+      //background-color: rgb(255, 255, 255);
+      border-style: solid;
+      border-color: #e6e6e6;
+      border-bottom: none;
+    }
+    .title{
+      margin-left:-30px;
+      margin-top: -10px;
+      font-size:5px;
+    }
+    .logo{
+      margin-top: -10px;
+    }
+    .search{
+      margin-top: 0px;
+    }
+    paper-item,paper-input{
+      font-family: 'Lustria', serif;
+    }
+    #list{
+      margin-top:-2.5%;
+      margin-left: 90%;
+    }
+    #flow{
+      width:90%;
+      margin-top:-3%;
+      margin-left:-2%;
+    }
+    #flowbutton{
+      margin-top:-3%;
+    //margin-left:10%;
+    }
+  </style>
+  <template>
+    <grn-service id="gs"></grn-service>
+  <!--Paper drawer panel used for responsive UI-->
+    <paper-drawer-panel responsiveWith="300px">
+      <!--Left side drawer panel-->
+      <paper-header-panel drawer>
+
+        <!--Drawer menu dynamically change for the logged role-->
+        <div class="sidemenu">
+          Logo goes here.....
+          <drawermenu-list id="drawerlist"></drawermenu-list>
+          <menusearch-card id="searchmenu"></menusearch-card>
+        </div>
+      </paper-header-panel>
+      <paper-header-panel main>
+        <!-- Top Toolbar for label change-->
+        <paper-toolbar class="maintoolbar">
+          <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+          <div><paper-item class="title" style="font-size:15px;color: black;">Applications link....</paper-item></div>
+          <div class="flex"></div>
+          <!-- Component for the signin signout button -->
+          <paper-icon-button id="signin" icon="icons:arrow-drop-down" on-click="FnToggleSignin" style="margin-top:-10px;" ></paper-icon-button>
+          <paper-tooltip for="signin" offset="0">{{userlabel}}</paper-tooltip>
+        </paper-toolbar>
+        <!-- Top Toolbar for search and cart-->
+        <paper-toolbar class="top1">
+          <div><paper-item class="title" style="font-size:15px;">Page Title here...</paper-item></div>
+          <div class="flex"></div>
+        </paper-toolbar>
+        <paper-toolbar class="top2">
+          <div id="list">
+            <!--Component for create button in UI-->
+            <viewtype-card></viewtype-card>
+          </div>
+          <div class="flex"></div>
+
+        </paper-toolbar>
+        <paper-toolbar class="top3">
+          <!--Component for the grnflow-->
+          <div id="flow"><grnflow-card></grnflow-card></div>
+          <!--Component for the flow approve button visible to each role-->
+          <div id="flowbutton"><flowbutton-card></flowbutton-card></div>
+          <div class="flex"></div>
+        </paper-toolbar>
+        <div class="content">
+          <!-- Div to change the content area using iron pages-->
+          <iron-pages selected="{{page}}" attr-for-selected="data-category">
+            <section data-category="home-page">
+              <home-page></home-page>
+            </section>
+            <section data-category="inwardslip-page">
+              <inwardslip-page></inwardslip-page>
+            </section>
+            <section data-category="outwardslip-page">
+              <outwardslip-page></outwardslip-page>
+            </section>
+            <section data-category="Search Items">
+              <searchread-page></searchread-page>
+            </section>
+            <section data-category="OutwardSearch Items">
+              <outwardsearchread-page></outwardsearchread-page>
+            </section>
+            <section data-category="intenthome-page">
+              <intenthome-page></intenthome-page>
+            </section>
+            <!--<section data-category="Physic qualify">
+			        <physicqualify-card></physicqualify-card>
+            </section>-->
+          </iron-pages>
+        </div>
+        <div class="bottom">
+        </div>
+      </paper-header-panel>
+    </paper-drawer-panel>
+
+  </template>
+  <!--Imported script for this element-->
+  <script src="../scripts/app-homepage.js"></script>
+</dom-module>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!--Importing components-->
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../itemlist-card/itemlist-card.html">
+<link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="item-card">
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .repeatcard{
+      @apply(--layout-horizontal);
+      width: 130%;
+      overflow: scroll;
+    //margin-top:2%;
+    }
+    paper-input{
+    //width: 35%;
+    //margin-top: -2%;
+      font-size: 8px;
+    //margin-left: 10%;
+    }
+    autocompleteitemlist-card{
+    //margin-top: -2%;
+      width:17%;
+    }
+    .container{
+      margin-left:2%;
+      width: 12%;
+    }
+    .measure{
+      width: 3%;
+      margin-left:-5%;
+    }
+    .qty{
+      margin-left:3%;
+      width: 12%;
+    }
+    .unit{
+      margin-left:-3%;
+      width: 5%;
+    }
+    .cmts{
+      margin-left:3%;
+      width: 14%;
+      height:4%;
+      margin-top:2.5%;
+    }
+    .specification{
+      margin-left:1%;
+      width: 12%;
+    }
+  </style>
+  <template>
+    <paper-input name="itemdes" value="{{itemdes}}"  hidden></paper-input>
+    <div class="repeatcard">
+      <!--Imorting auto complete item list card-->
+      <autocompleteitemlist-card id="autoinput{{id}}"></autocompleteitemlist-card>
+      <paper-input id="textinput6{{id}}" class="specification" name="specification" value="{{specification}}"  required id="specification" on-change="FnInputChanged"></paper-input>
+      <paper-input id="textinput1{{id}}" class="container" name="container" value="{{container}}" allowed-pattern="[0-9]" required id="container" on-change="FnInputChanged"></paper-input>
+      <paper-input id="textinput2{{id}}" class="unit" name="unit" id="input{{id}}" value="{{unit}}"  readonly></paper-input>
+      <paper-input id="textinput3{{id}}" class="qty" name="qtyreceived" value="{{qtyreceived}}"  required id="qty" allowed-pattern="[0-9]" on-change="FnInputChanged"></paper-input>
+      <paper-input id="textinput4{{id}}" class="measure" name="measure" id="input1{{id}}" value="{{measure}}" readonly></paper-input>
+      <textarea id="textinput5{{id}}" class="cmts" value="{{comments::input}}" placeholder="Comments..."  on-change="FnInputChanged" required="true"></textarea>
+    </div>
+  </template>
+  <!--Importing JS file-->
+  <script src="../../scripts/item-card.js"></script>
+
+</dom-module>

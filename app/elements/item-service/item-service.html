@@ -1,0 +1,53 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
+<dom-module id="item-service">
+  <!--Component  will make req to the server for saving item info-->
+  <template>
+    <iron-ajax
+      id="itemwriteAjax"
+      url="{{url}}"
+      method="post"
+      params="{{params}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnItemwriteResponse">
+    </iron-ajax>
+    <!--Component will make req to the server to generae seq no and insert veh info-->
+    <iron-ajax
+      id="itemwriteAjax1"
+      url="{{url1}}"
+      params="{{params1}}"
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnSeqItemwriteResponse">
+    </iron-ajax>
+    <!--component will make req to the server to write intent items-->
+    <iron-ajax
+      id="intentitemwriteAjax"
+      url="{{intentwriteurl}}"
+      method="post"
+      params="{{intentwrite}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnIntentItemwriteResponse">
+    </iron-ajax>
+    <!--Component will make req to the server to generae seq no for intent items-->
+    <iron-ajax
+      id="intentseqitemwriteAjax"
+      url="{{intentsequrl}}"
+      params="{{intentseq}}"
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnSeqIntentItemwriteResponse">
+    </iron-ajax>
+    <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
+  </template>
+  <!--Importing js file-->
+  <script src="../../scripts/item-service.js">
+
+  </script>
+</dom-module>

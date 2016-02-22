@@ -1,0 +1,30 @@
+.card{
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+  width: 23%;
+  height: 100%;
+  left: 10%;
+  margin-top: 10%;
+  margin-left: 27%;
+  text-align: center;
+}
+.card-img{
+  margin-top: 5%;
+}
+paper-button{
+  margin-top: 10%;
+  width: 60%;
+  margin-left: -0.2%;
+}
+.input{
+  margin-left: 20%;
+  margin-top: 10%;
+  width: 60%;
+}
+.LoginImg{
+  height:90px;
+  width:90px;
+}

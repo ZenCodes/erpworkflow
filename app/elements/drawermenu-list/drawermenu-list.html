@@ -1,0 +1,49 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../drawermenu-card/drawermenu-card.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="drawermenu-list">
+  <style>
+    .card{
+
+    }
+    #sidemenu{
+    //background-color: #e6e6e6;
+      margin-top:42.5%;
+    //border-radius: 0.5px;
+    //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 5px;
+      border-color: #e6e6e6;
+    //border-style: solid;
+    // border-top: none;
+    }
+  </style>
+  <!--Template to bind items to drawer menu card according to the user login-->
+  <template>
+    <div class="card">
+      <paper-menu class="content fit" id="sidemenu">
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <drawermenu-card itemvalue="{{item}}"></drawermenu-card>
+        </template>
+      </paper-menu>
+    </div>
+    <!--Service to read drawer menu items-->
+    <webcomponent-service id="ID_webcomponent_service" itemArray="{{itemArray}}"></webcomponent-service>
+  </template>
+
+  <script src="../../scripts/drawermenu-list.js"></script>
+
+</dom-module>

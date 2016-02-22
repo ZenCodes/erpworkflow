@@ -1,0 +1,88 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<dom-module id="vehicleinfo-page" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:2%;
+      }
+      .driver{
+        @apply(--layout-horizontal);
+      }
+      .owner{
+        @apply(--layout-horizontal);
+      }
+      paper-input{
+        text-align: left;
+        width: 35%;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+      .topbanner{
+        @apply(--layout-horizontal);
+        margin-left:55%;
+        width: 50%;
+        margin-top: -5%;
+      }
+      .datetitle{
+        margin-left: 78%;
+      }
+      #datetitle{
+        font-size: 13px;
+        color: blue;
+      }
+      #driverno,#ownerphone{
+        margin-left: 5%;
+      }
+
+    </style>
+    <!--Component for listenen to keyboard enter event-->
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
+    <!--This template binding dynamic labels and error messages-->
+    <template is="dom-repeat" items="{{label}}">
+    <div class="card">
+      <div class="driver">
+        <paper-input label="{{item.Driver_Name}}" name="drivername" value="{{drivername}}" required  id="drivername" allowed-pattern="[a-zA-Z ]" error-message="{{item.Driver_Name_error}}"></paper-input>
+        <paper-input label="{{item.Driver_Number}}" name="driverno" value="{{driverno}}" required  id="driverno" error-message="{{item.Driver_Number_error}}"></paper-input>
+      </div>
+      <div class="owner">
+        <paper-input label="{{item.Owner_Name}}" name="ownername" value="{{ownername}}" required  id="ownername" allowed-pattern="[a-zA-Z ]" error-message="{{item.Owner_Name_error}}"></paper-input>
+        <paper-input label="{{item.Owner_Number}}" name="ownerphone" value="{{ownerphone}}" required  id="ownerphone" error-message="{{item.Owner_Number_error}}"></paper-input>
+      </div>
+      <paper-input label="{{item.Vehicle_Number}}" name="vehicleno" value="{{vehicleno}}" required  id="vehicleno" error-message="{{item.Vehicle_Number_error}}"></paper-input>
+      <paper-input label="{{item.Transport_Name}}" name="transportname" value="{{transportname}}" required  id="transportname" error-message="{{item.Transport_Name_error}}"></paper-input>
+      <paper-input label="{{item.PAN}}" name="panno" value="{{panno}}" required  id="panno" error-message="{{item.PAN_error}}"></paper-input>
+      <paper-button on-click="FnVehicleInfoSubmit">Next</paper-button>
+    </div>
+    </template>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
+  </template>
+  <!--JS File import-->
+  <script src="../../scripts/vehicleinfo-page.js"> </script>
+
+</dom-module>

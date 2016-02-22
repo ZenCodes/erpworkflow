@@ -1,0 +1,38 @@
+::-webkit-scrollbar {
+  display: none;
+}
+.card{
+  @apply(--layout-vertical);
+  position: relative;
+//background-color: rgb(255, 255, 255);
+//height: 120%;
+  color: black;
+//border-radius: 2px;
+//box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+  width: 80%;
+  left: 10%;
+//margin-top: 5%;
+}
+.contentbanner{
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+  width: 89.5%;
+  margin-left: 5.2%;
+  margin-top: 0%;
+  border-style:groove;
+  border-color:#e5efe2;
+  height: 100%;
+  overflow: scroll;
+}
+paper-tabs{
+  width: 90%;
+  margin-left: 4.5%;
+}
+paper-button{
+  font-size: 17px;
+  text-transform: none;
+}
+.tabbanner{
+  margin-left: 5%;
+  margin-top:5%;
+}

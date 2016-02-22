@@ -1,0 +1,48 @@
+//Import polymer platform file
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+//Import pre -defined polymer components . This will be used in the card design.
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../url-service/url-service.html">
+<link rel="stylesheet" href="../../styles/login-card.css">
+<link rel="stylesheet" href="../../styles/component.css">
+//For responsive UI
+<meta name="viewport" content="width=device-width, initial-scale=1">
+//Importing style sheet for login card
+
+<dom-module id="login-card">
+  <template>
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnLoginSubmit"></iron-a11y-keys>
+    <div class="card">
+      <div class="card-img">
+        <img src="../../images/login.png" class="LoginImg">
+      </div>
+      <form is="iron-form" id="Form_Login" method='post' action="{{url}}" on-iron-form-response="Response">
+        <template is="dom-repeat" items="{{label}}">
+        <div class="input">
+          <paper-input label="{{item.user_name}}" name="username" id="username" value="{{username}}"
+                       required error-message="{{item.user_name_error}}"></paper-input>
+          <paper-input label="{{item.pass_word}}" type="password" name="password" id="password" value="{{password}}" required error-message="{{item.pass_word_error}}"></paper-input>
+        </div>
+        <paper-button on-click="FnLoginSubmit">Login</paper-button>
+        <paper-item></paper-item>
+        </template>
+      </form>
+    </div>
+    <url-service id="urlservice"></url-service>
+    <!--Importing webcomponent-service component to bind dynamic values to labels and error messages-->
+    <webcomponent-service id="ID_WebcomponentService" label="{{label}}"></webcomponent-service>
+  </template>
+  <!--Importing Polymer JS file for this login-card component-->
+  <script src="../../scripts/login-card.js"></script>
+</dom-module>

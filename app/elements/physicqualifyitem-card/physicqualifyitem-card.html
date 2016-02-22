@@ -1,0 +1,75 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../physicqualify-service/physicqualify-service.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="physicqualifyitem-card">
+  <template>
+    <style>
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 110%;
+        margin-top: -1%;
+        text-align: center;
+      }
+      .itemdes,.ctr,.ctinput,.qtinput,.remark{
+        width:15%;
+        margin-left:2%;
+      }
+      .ctmeasure,.qtunit{
+        width:5%;
+      }
+      .itemdes,.ctr{
+        margin-top: 2%;
+      }
+      .remark{
+        height:4%;
+        margin-top:3%;
+      }
+      .save{
+        margin-top: 2%;
+      }
+
+    </style>
+    <!--card which has expanded card item template-->
+    <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="FnResponse">
+      <div class="repeatcard">
+        <paper-input name="status" value="{{status}}" hidden></paper-input>
+        <paper-input name="newstatus" value="{{newstatus}}" hidden></paper-input>
+        <paper-input name="inwardno" value="{{inwardno}}" hidden></paper-input>
+        <paper-input name="ponumber" value="{{ponumber}}" hidden></paper-input>
+        <paper-input name="podate" value="{{podate}}" hidden></paper-input>
+        <paper-input name="suppliername" value="{{suppliername}}" hidden></paper-input>
+        <paper-input name="itemdes" value="{{itemdes}}" hidden></paper-input>
+        <paper-input name="ctrreceived" value="{{ctrreceived}}" hidden></paper-input>
+        <paper-input name="qtyyreceived" value="{{qtyyreceived}}" hidden></paper-input>
+        <paper-item class="itemdes" name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>
+        <paper-item class="ctr" name="containerreceived" value="{{containerreceived}}">{{containerreceived}}</paper-item>
+        <paper-input class="ctinput" name="containeraccepted" value="{{containeraccepted}}" required id="ctr{{inwardno}}" allowed-pattern="[0-9]" ></paper-input>
+        <paper-input class="ctmeasure" name="contmeasure" value="{{contmeasure}}" readonly></paper-input>
+        <paper-input class="qtinput" name="qtyaccepted" value="{{qtyaccepted}}" required id="qty{{inwardno}}" allowed-pattern="[0-9]" ></paper-input>
+        <paper-input class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
+        <textarea class="remark" name="remark" value="{{remarks::input}}">{{remarks}}</textarea>
+        <paper-icon-button icon="icons:save" on-click="FnSaveItem" class="save"></paper-icon-button>
+      </div>
+    </form>
+    <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/physicqualifyitem-card.js"></script>
+
+</dom-module>

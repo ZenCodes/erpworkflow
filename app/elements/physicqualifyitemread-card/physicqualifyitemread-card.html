@@ -1,0 +1,69 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="physicqualifyitemread-card">
+  <template>
+    <style>
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 110%;
+        margin-top: -1%;
+        text-align: center;
+        position: relative;
+      }
+      #itemdes{
+       width:210px;
+      }
+      #itemdes{
+        margin-left: 2%;
+      }
+      #qta{
+        margin-left: 15%;
+        width: 210px;
+       }
+      #qtr{
+        margin-left: 7%;
+        width: 210px;
+       }
+      .remark{
+        width:27%;
+        height:4%;
+        margin-left: 10%;
+        margin-top: 2%;
+      }
+      paper-item{
+        width: 100%;
+      }
+
+    </style>
+    <!--template for showing item info-->
+    <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
+      <div class="repeatcard">
+        <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
+        <div id="qtr" ><paper-item name="qtyreceived" value="{{qtyreceived}}">{{qtyreceived}}</paper-item></div>
+        <div id="qta" ><paper-item name="qtyaccepted" value="{{qtyaccepted}}">{{qtyaccepted}}</paper-item></div>
+        <textarea class="remark" name="remark" value="{{remarks::input}}">{{remarks}}</textarea>
+      </div>
+    </form>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/physicqualifyitemread-card.js">
+
+  </script>
+
+</dom-module>

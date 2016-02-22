@@ -1,0 +1,74 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../physicinsitemread-card/physicinsitemread-card.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../physicqualifyread-card/physicqualifyread-card.html ">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="physicinsread-page">
+  <template>
+    <style is="custom-style">
+
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 100%;
+      //margin-top: 5%;
+        height: 4%;
+        //margin-left: 5%;
+      }
+      paper-button{
+        font-size: 15px;
+        text-transform: none;
+        width: 30%;
+      }
+      .itemcard{
+        @apply(--layout-horizontal);
+        width: 100%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        margin-top:2%;
+        //margin-left: 5%;
+      }
+    </style>
+    <!--Template which has card template-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+    <div class="card">
+
+      <paper-tabs selected="0" noink id="ptab">
+        <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+        <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+        </template>
+      </paper-tabs>
+      <!--Template which bind items under the current logged role state-->
+      <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <div class="itemcard">
+          <paper-button  name="inwardregno" value="{{item.inwardregno}}" noink>{{item.inwardregno}}</paper-button>
+          <paper-button  name="inwardno" value="{{item.inwardno}}"  noink>{{item.inwardno}}</paper-button>
+          <paper-button  name="inwarddate" value="{{item.inwarddate}}"  noink>{{item.inwarddate}}</paper-button>
+          <!--<div><physicinsitemread-card inwardregno="{{item.inwardregno}}" inwardno="{{item.inwardno}}" inwarddate="{{item.inwarddate}}"></physicinsitemread-card>-->
+          <!--</div></div>-->
+          </div>
+      </template>
+
+    </div>
+    </template>
+    <physicqualifyread-card id="ps"></physicqualifyread-card>
+    <!--Calling webcomponent service to bind label info-->
+    <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
+    <!--Binding items to the above template-->
+    <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/physicinsread-page.js"></script>
+
+</dom-module>

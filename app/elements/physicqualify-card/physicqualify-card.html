@@ -1,0 +1,143 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../physicqualifyitem-card/physicqualifyitem-card.html">
+<link rel="import" href="../datepicker-card/datepicker-card.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="physicqualify-card">
+  <template>
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 90%;
+      }
+      #card1{
+        margin-top: 0.5%;
+        //border-radius: 2px;
+        //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 100%;
+        //margin-left:-2%;
+      //height:50%;
+        background-color:white;
+        border-bottom:2px solid #e6e6e6;
+      //border-color:#dbe9d6;
+        overflow-x:hidden;
+      }
+      .topright{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: 7%;
+        margin-top: -5%;
+      }
+      .topright1{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-top: 0%;
+      }
+      .set{
+        @apply(--layout-horizontal);
+        margin-left:10%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 95%;
+        margin-left: 2%;
+        height: 3%;
+        margin-top: 5%;
+      }
+      paper-button{
+        text-transform:none;
+      }
+      #div2{
+        margin-top: 0%;
+      }
+      datepicker-card{
+        width: 30%;
+      }
+      .polbl{
+        margin-left:17%;
+      }
+      .podate{
+        font-size:12px;
+      }
+      #supplier{
+        margin-left:3%;
+      }
+      #pinput{
+        margin-left: 5%;
+      }
+    </style>
+    <!--template to show item info of currently expended card-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+    <div class="card" id="card1">
+      <template is="dom-repeat" items="{{mainArray}}" as="item">
+        <div class="polbl"><paper-item class="podate">{{lbl.PO_Date}}</paper-item></div>
+        <div class="topright">
+          <datepicker-card></datepicker-card>
+          <paper-input  name="ponumber" label="{{lbl.PO_Number}}"  value="{{pono}}" required auto-validate id="pono" error-message="{{lbl.PO_Number_error}}" on-change="FnInputChanged" readonly="{{read}}"></paper-input>
+          <paper-input  name="supplier" label="{{lbl.Supplier_Name}}" id="supplier" value="{{item.supname}}" readonly></paper-input>
+        </div>
+    </div>
+
+  <paper-tabs selected="0" noink id="ptab">
+    <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+    <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+    </template>
+  </paper-tabs>
+  <div id="div2">
+    </template>
+    <!--template which shows the no of items under expended IRN card-->
+    <template is="dom-repeat" items="{{itemArray}}" as="item">
+      <div class="repeatcard">
+        <physicqualifyitem-card inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" itemdes="{{item.itemdes}}" containerreceived="{{item.containerreceived}}" containeraccepted="{{item.containeraccepted}}" qtyreceived="{{item.qtyreceived}}" qtyaccepted="{{item.qtyaccepted}}" remarks="{{item.remarks}}" qtymeasure="{{item.qtymeasure}}" contmeasure="{{item.contmeasure}}" ctrreceived="{{item.ctrreceived}}" qtyyreceived="{{item.qtyyreceived}}"></physicqualifyitem-card>
+      </div>
+    </template>
+
+  </div>
+  </div>
+
+  </template>
+  <!--Component to read the expended IRN  no info-->
+  <iron-ajax
+    auto
+    id="physicqualifyitemreadajax"
+    url="{{url}}"
+    method="post"
+    params='{{param}}'
+    handle-as="json"
+    content-type="application/json"
+    on-response="FnPhysicqualifyitemreadResponse">
+  </iron-ajax>
+  <!--Component to read Labels for the components from webcomponents.json file-->
+  <iron-ajax
+    id="webcomponentreadajax"
+    url="../../config/webcomponents.json"
+    handle-as="json"
+    content-type="application/json"
+    on-response="FnWebcomponentreadResponse">
+  </iron-ajax>
+
+  </template>
+
+  <!--Import JS file-->
+  <script src="../../scripts/physicqualify-card.js"></script>
+
+</dom-module>

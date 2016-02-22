@@ -1,0 +1,54 @@
+//Component import
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../physicqualifyread-card/physicqualifyread-card.html">
+<dom-module id="grn-service">
+  <template>
+    <!--Component which makes req to read the items belongs to the currently logged role state-->
+    <iron-ajax
+      id="physicitemreadajax"
+      url="{{url}}"
+      params='{{param}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="physicitemreadResponse">
+    </iron-ajax>
+
+    <!--Component which make req to fetch the backward or showing history of the component which is seeing by the logged role state items-->
+    <iron-ajax
+      id="flowphysicitemreadajax"
+      url="{{url1}}"
+      params='{{param1}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="flowphysicitemreadResponse">
+    </iron-ajax>
+
+    <!--Component which make request to display the search items based on IRN,ORN,INvoice no,item des-->
+    <iron-ajax
+      id="searchitemreadajax"
+      url="{{searchurl}}"
+      params='{{searchparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="searchitemreadResponse">
+    </iron-ajax>
+
+    <!--Component which make request to display the Intent items based on INT no-->
+    <iron-ajax
+      id="intentitemreadajax"
+      url="{{intenturl}}"
+      params='{{intentparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="intentitemreadResponse">
+    </iron-ajax>
+    <!--<physicqualifyread-card id="pqrc"></physicqualifyread-card>-->
+  </template>
+
+  <script src="../../scripts/grn-service.js"></script>
+</dom-module>

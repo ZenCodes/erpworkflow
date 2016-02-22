@@ -1,0 +1,83 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+
+<dom-module id="vehicle-page" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        color: black;
+        width: 80%;
+        left: 5%;
+        margin-top:2%;
+      }
+      paper-input{
+        text-align: left;
+        width: 35%;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+      .topbanner{
+        @apply(--layout-horizontal);
+        margin-left:5%;
+        width: 50%;
+        margin-top: -5%;
+      }
+      .datetitle{
+        margin-left: 28%;
+      }
+      #datetitle{
+        font-size: 13px;
+        color: blue;
+      }
+
+    </style>
+    <!--This template binding dynamic labels and error messages-->
+
+    <template is="dom-repeat" items="{{label}}">
+
+    <!--Component added for listen to the keyboard enter in this card-->
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
+    <div class="datetitle">
+      <paper-item id="datetitle" label="Invoice date" noink>{{item.Invoice_date}}</paper-item>
+    </div>
+    <div class="topbanner">
+      <paper-input label="{{item.Invoice_Number}}" value="{{invoiceno}}"  id="invoiceno" required  error-message="{{item.Invoice_Number_error}}"></paper-input>
+      <datepicker-card></datepicker-card>
+    </div>
+    <div class="card">
+      <paper-input label="{{item.Vehicle_Number}}" name="vehicleno" value="{{vno}}" required  id="vehicleno" error-message="{{item.Vehicle_Number_error}}"></paper-input>
+      <paper-input label="{{item.Vehicle_Name}}" name="vehiclename" value="{{vname}}" required  id="vehiclename" error-message=""></paper-input>
+      <paper-input label="{{item.Driver_Name}}" name="drivername" value="{{dname}}"  pattern="[a-zA-Z ]+" id="drivername" error-message="{{item.Driver_Name_error}}"></paper-input>
+      <paper-input label="{{item.Driver_Number}}" name="driverno" value="{{dno}}" required  id="driverno" error-message="{{item.Driver_Number_error}}"></paper-input>
+      <paper-button on-click="FnVehicleInfoSubmit">Next</paper-button>
+    </div>
+    </template>
+
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
+  </template>
+  <!--JS file import for this page-->
+  <script src="../../scripts/vehicle-page.js"></script>
+
+</dom-module>

@@ -1,0 +1,166 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="import" href="../physicqualified-service/physicqualified-service.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="grnflow-card">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-horizontal);
+      }
+      div.main {
+        margin-right5%;
+        margin-left:0px;
+      }
+      ol > li {
+        display: table-cell;
+        height: 34px;
+        position: relative;
+        padding: 0px;
+        margin: 0px;
+        text-align: center;
+      //padding-left: 10px;
+        border: 1px solid #f2f2f2;
+      }
+      ol > li > div {
+        position:relative;
+        line-height: 30px; /* equal to the list item's height */
+        height:101%;
+        width: 100%;
+        background-color: #f2f2f2;
+      }
+      ol>li:hover {
+        background-color: #d68a3a;
+        cursor: pointer;
+        color: white;
+      }
+      ol {
+        display: table;
+        width: 60%;
+        padding: 0px;
+        margin: 0px;
+        position: relative;
+      }
+      ol > li > div:after, ol > li > div:before {
+        content:"";
+        display:inline-block;
+        border-width: 16px;
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        left: 100%;
+        top: -1px;
+        position: absolute;
+        z-index: 1;
+        border-color: transparent transparent transparent #c0dbb7;
+      }
+      ol > li > div:before {
+        border-width: 14px;
+        display: block;
+        border-color: transparent transparent transparent  #f2f2f2;
+        z-index: 2;
+        top:1px;
+      }
+      ol > li > #Stores:after, ol > li > #Stores:before {
+        content:"";
+        display:inline-block;
+        border-width: 16px;
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        left: 100%;
+        top: -1px;
+        position: absolute;
+        z-index: 1;
+        border-color: transparent transparent transparent #bfbfbf;
+      }
+      ol > li > #Production:after, ol > li > #Production:before {
+        content:"";
+        display:inline-block;
+        border-width: 16px;
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        left: 100%;
+        top: -1px;
+        position: absolute;
+        z-index: 1;
+        border-color: transparent transparent transparent #bfbfbf;
+      }
+      ol > li > #Quality:after, ol > li > #Quality:before {
+        content:"";
+        display:inline-block;
+        border-width: 16px;
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        left: 100%;
+        top: -1px;
+        position: absolute;
+        z-index: 1;
+        border-color: transparent transparent transparent #bfbfbf;
+      }
+      ol > li > #Purchase:after, ol > li > #Purchase:before {
+        content:"";
+        display:inline-block;
+        border-width: 16px;
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        left: 100%;
+        top: -1px;
+        position: absolute;
+        z-index: 1;
+        border-color: transparent transparent transparent #bfbfbf;
+      }
+      ol > li > #Confirm:after, ol > li > #Confirm:before {
+        content:"";
+        display:inline-block;
+        border-width: 16px;
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        left: 100%;
+        top: -1px;
+        position: absolute;
+        z-index: 1;
+        border-color: transparent transparent transparent #bfbfbf;
+      }
+      .flowbutton{
+        margin-left: 20%;
+      }
+    </style>
+
+    <div class="main">
+      <ol>
+        <li>
+          <div id="Stores1"><paper-button noink id="Stores" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Stores</paper-button></div>
+        </li>
+        <li>
+          <div id="Production1"><paper-button noink id="Production" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Production</paper-button></div>
+        </li>
+        <li>
+          <div id="Quality1"><paper-button noink id="Quality" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Quality</paper-button></div>
+        </li>
+        <li>
+          <div id="Purchase1"><paper-button noink id="Purchase" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Purchase</paper-button></div>
+        </li>
+        <li>
+          <div id="Confirm1"><paper-button  noink id="Confirm" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Confirm</paper-button></div>
+        </li>
+      </ol>
+    </div>
+
+    <grn-service ></grn-service>
+  </template>
+  <script src="../../scripts/grnflow-card.js"></script>
+</dom-module>

@@ -1,0 +1,56 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../physicinsitem-card/physicinsitem-card.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="physicins-page">
+  <template>
+    <style is="custom-style">
+
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 100%;
+      //margin-top: 5%;
+        height: 4%;
+        //margin-left: 5%;
+      }
+      paper-button{
+        font-size: 15px;
+        text-transform: none;
+      }
+    </style>
+    <!--Page for showing Inward items which has static tab and dynamic item will be shown as a card-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+    <div class="card">
+      <paper-tabs selected="0" noink id="ptab">
+        <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+        <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+        </template>
+      </paper-tabs>
+      <!--Template to bind the current state cards according to the role logged in-->
+      <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <div class="itemcard">
+          <div><physicinsitem-card inwardregno="{{item.inwardregno}}" inwardno="{{item.inwardno}}" inwarddate="{{item.inwarddate}}" ></physicinsitem-card>
+          </div></div>
+      </template>
+    </div>
+    </template>
+    <!--Calling webcomponent service to bind label info-->
+    <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
+    <!--Calling service to bind current state items-->
+    <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
+  </template>
+  <!--Importing js file-->
+  <script src="../../scripts/physicins-page.js"></script>
+</dom-module>

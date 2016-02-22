@@ -1,0 +1,53 @@
+[
+  {
+    "role": [
+      {
+        "rolename": "Security guard",
+         "RoleFlag": "0",
+         "menu" : ["Inward Items Register","Outward Items Register"]
+      },
+      {
+        "rolename": "Stores manager",
+        "RoleFlag": "1",
+        "status":"Stores",
+        "newstatus":"OldStores",
+        "updatestatus":"Production",
+        "menu" : ["GRN Flow"]
+
+      },
+      {
+        "rolename": "Production manager",
+        "RoleFlag": "2",
+        "status":"Production",
+        "newstatus":"OldProduction",
+        "updatestatus":"Quality",
+        "menu" : ["GRN Flow","Add Intent"]
+      },
+      {
+        "rolename": "Quality manager",
+        "RoleFlag": "3",
+        "status":"Quality",
+        "newstatus":"OldQuality",
+        "updatestatus":"Purchase",
+        "menu" : ["GRN Flow"]
+
+      },
+      {
+        "rolename": "Purchase manager",
+         "RoleFlag": "4",
+        "status":"Purchase",
+        "newstatus":"OldPurchase",
+        "updatestatus":"Confirm",
+        "menu" : ["GRN Flow"]
+      }
+    ]
+  },
+    {
+    "flowbutton": [
+      "Gate Accept",
+      "Physical Inspection",
+      "Quality Inspection",
+      "Confirm Purchase"
+    ]
+  }
+]

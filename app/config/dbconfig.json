@@ -1,0 +1,21 @@
+
+[{"name":"login-card","value":["OD_HR_Employee_Job_Desc","MD_HR_Department","MD_HR_Role"],"columns":[]},
+  {"name":"inwardregnoseq-service","value":["OD_Sales_Inward_Invoice","Auto_Inward_Register_Number"],"columns":["Inward_Bill_Number"]},
+  {"name":"itemsave-service","value":["Auto_Inward_Register_Number","OD_Sales_Inward_Material"],"columns":["Inward_Register_Number"]},
+  {"name":"forwardflowitem-service","value":["OD_Sales_Inward_Material"],"columns":["new_Inward_Register_Number","Inward_Bill_Number","Inward_Register_Date"]},
+  {"name":"physicqualify-card","value":["OD_Sales_Inward_Material"]},
+  {"name":"physicqualifyitem-card","value":["OD_Sales_Inward_Material"]},
+  {"name":"physicqualified-service","value":["OD_Sales_Inward_Material"]},
+  {"name":"physicinsertupdate-service","value":["OD_Sales_Inward_Material"]},
+  {"name":"flowstateupdate-service","value":["OD_Sales_Inward_Material"]},
+  {"name":"backwardflowitem-service","value":["OD_Sales_Inward_Material"],"columns":["new_Inward_Register_Number","Inward_Bill_Number","Inward_Register_Date"]},
+  {"name":"outwardseq-service","value":["Auto_Outward_Register_Number","OD_Sales_Outward_Material"],"columns":["Invoice_No"]},
+  {"name":"outwarditem-service","value":["Auto_Outward_Register_Number","OD_Sales_Outward_Material"],"columns":["Outward_Register_Number"]},
+  {"name":"search-service","value":["OD_Sales_Inward_Material","OD_Sales_Outward_Material"],"columns":["new_Inward_Register_Number","Inward_Bill_Number","Inward_Register_Date","Outward_Register_Number","Invoice_No","Out_Date"]},
+  {"name":"searchexpand-card","value":["OD_Sales_Inward_Material"]},
+  {"name":"outwardsearchexpand-card","value":["OD_Sales_Outward_Material"]},
+  {"name":"intentseq-service","value":["Auto_Intent_Register_Number"]},
+  {"name":"intentitemwrite-service","value":["Auto_Intent_Register_Number","OD_Stores_Intent_Items"],"columns":["Intent_Register_Number"]},
+  {"name":"intentitemread-service","value":["OD_Stores_Intent_Items"],"columns":["Intent_Register_Number","Intent_Date","intent"]},
+  {"name":"intentitemexpand-card","value":["OD_Stores_Intent_Items"]}
+]
