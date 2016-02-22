@@ -6,20 +6,22 @@
 Polymer({is:"menusearch-card",
   ready:function(){
   },
-  irnsearch:function(e){
+  //Method will clear the inputs when expanding menu
+  FnMenuExpand:function(e){
     this.invoice="";
+    this.irn="";
+  },
+  //Method will invoke the service to fetch the info of currently given ORN/IRN number
+  irnsearch:function(e){
     this.$.searchitem.setToggle();
     this.$.gs.searchService(this.irn,"","","");
-    this.invoice="";
-    this.irn="";
   },
+  //Method will invoke the service to fetch the info of currently given invoice number of inward/outward
   invoicesearch:function(e){
-    this.irn="";
     this.$.searchitem.setToggle();
     this.$.gs.searchService("",this.invoice,"","");
-    this.invoice="";
-    this.irn="";
   },
+  //Method will invoke the service to fetch the info of currently choosen item name
   itemsearch:function(e){
     this.$.searchitem.setToggle();
     this.$.gs.searchService("","",this.item,"");

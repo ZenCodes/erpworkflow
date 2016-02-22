@@ -675,7 +675,7 @@ exports.FnOutwardItemSave=function(pagename,response,callback) {
 
 //Function to fetch search items
 exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callback) {
-  console.log(rnflag+" "+invoiceflag+" "+itemflag);
+  //console.log(rnflag+" "+invoiceflag+" "+itemflag);
   var Config_tables=[];
   var Config_columns=[];
   for(var i=0;i<obj.length;i++){
@@ -687,6 +687,7 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
   var inflag;
   var itflag;
   if(rnflag=="0"||invoiceflag=="1"||itemflag=="1"){
+    console.log('inward');
     connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+','+Config_columns[2]+' FROM '+Config_tables[0]+' WHERE ?',[cond], function(err, rows, fields) {
       var itemarr=[];
       for(var i=0;i<rows.length;i++)
@@ -705,12 +706,12 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
         if(itemarr.length==0)
         {
           if(invoiceflag=="1") {
-            //console.log("in invoice");
+            console.log("in invoice");
             cond = {"Invoice_No": cond.Inward_Bill_Number};
           }
           if(itemflag=="1")
           {
-            //console.log("in item");
+            console.log("in item");
             cond={"Product_ID":cond.Product_ID};
           }
           if(invoiceflag=="1"||itemflag=="1") {
@@ -743,6 +744,9 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
                 else if(itemarr.length==0&&itemflag=="1")
                   //itflag="no items";
                 return callback({"itemarr": itemarr, "rnflag": rnflag,"inflag":"","itemflag":"no items"});
+                else
+                  return callback({"itemarr": itemarr, "rnflag": rnflag,"inflag":"","itemflag":""});
+
               }
               else
                 console.log("Item not in outward" + err);
@@ -761,7 +765,7 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
     });
   }
   else if(rnflag=="1"){
-    //console.log('outward');
+    console.log('outward');
     connection.query('SELECT distinct '+Config_columns[3]+','+Config_columns[4]+','+Config_columns[5]+' FROM '+Config_tables[1]+' WHERE ?',[cond], function(err, rows, fields) {
       var itemarr=[];
       if(!err){

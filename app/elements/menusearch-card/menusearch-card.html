@@ -19,13 +19,14 @@
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../searchitem-card/searchitem-card.html">
 <link rel="import" href="../itemlist-card/itemlist-card.html">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="menusearch-card">
   <style>
     .card{
     //width: 100%;
     //background-color: #dbe9d6;
-      margin-top:30%;
+      margin-top:40%;
     //overflow: hidden;
     }
     paper-menu{
@@ -71,19 +72,19 @@
               <paper-item class="menu-trigger" noink>GRN Search</paper-item>
               <paper-menu class="menu-content sublist" >
                 <paper-submenu label="IRN/ORN Number" id="irnno">
-                  <paper-item class="menu-trigger" noink>IRN/ORN Number</paper-item>
+                  <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="IRNORN">IRN/ORN Number</paper-item>
                   <paper-menu class="menu-content sublist2">
                     <paper-input label="IRN/ORN Number" value="{{irn}}"><paper-icon-button suffix icon="search" on-click="irnsearch"></paper-icon-button></paper-input>
                   </paper-menu>
                 </paper-submenu>
                 <paper-submenu label="Invoice Number" id="invoiceno">
-                  <paper-item class="menu-trigger" noink>Invoice Number</paper-item>
+                  <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="invoice">Invoice Number</paper-item>
                   <paper-menu class="menu-content sublist2">
                     <paper-input label="Invoice Number" value="{{invoice}}"><paper-icon-button suffix icon="search"  on-click="invoicesearch" ></paper-icon-button></paper-input>
                   </paper-menu>
                 </paper-submenu>
                 <paper-submenu label="Item Name" id="itemname">
-                  <paper-item class="menu-trigger" noink>Item Name</paper-item>
+                  <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="item">Item Name</paper-item>
                   <paper-menu class="menu-content sublist2">
                     <itemlist-card></itemlist-card>
                     <!--<paper-input label="Item Name" value="{{item}}"><paper-icon-button suffix icon="search" on-click="itemsearch"></paper-icon-button></paper-input>-->

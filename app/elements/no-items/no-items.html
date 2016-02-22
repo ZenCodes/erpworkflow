@@ -1,0 +1,41 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="no-items">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      h1{
+        color: red;
+        font-weight: inherit;
+
+      }
+      div{
+        margin-top: 5%;
+      }
+    </style>
+    <div>
+      <h1>{{msg}}</h1>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'no-items',
+      properties: {
+        foo: {
+          type: String,
+          value: 'no-items',
+          notify: true
+        }
+      },
+      setErrorMessage:function(msg){
+        this.msg=msg;
+      }
+    });
+  })();
+  </script>
+</dom-module>

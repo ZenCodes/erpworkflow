@@ -73,9 +73,9 @@
     {
       ///alert(irn+"  "+invoice+"   "+item+"  "+state);
       var arg={"irnno":"","invoiceno":"","item":"","state":""};
-      arg.irnno=irn;
-      arg.invoiceno=invoice;
-      arg.item=item;
+      arg.irnno=(irn.toUpperCase()).replace(/\s/g, "") ;
+      arg.invoiceno=(invoice.toUpperCase()).replace(/\s/g, "") ;
+      arg.item=item.toUpperCase();
       arg.state=state;
       this.searchparam=arg;
       this.searchurl=sessionStorage.getItem("curr_sess_url")+"search-service";
@@ -90,7 +90,9 @@
       //alert(rnflag+"  "+inflag+"  "+itemflag);
       //alert(rnflag);
       if(rnflag=="no match"){
-        alert("Please enter valid search item!");
+        document.querySelector('no-items').setErrorMessage('Please enter valid IRN/ORN number!');
+        document.querySelector('app-homepage').setPage('no-items');
+       // alert("Please enter valid search item!");
       }
       else {
         if (arr.length > 0) {
@@ -109,12 +111,22 @@
         }
         else {
           //this.$.ID_Show_Dialog.FnShowDialog("No IRN/ORN Number available","");
-          if(inflag=="no items")
-            alert("No Invoice Number available!");
-          else if(itemflag=="no items")
-            alert("No Matching Item available!");
+          if(inflag=="no items"){
+            document.querySelector('no-items').setErrorMessage('Sorry, No active Invoice in this number');
+            document.querySelector('app-homepage').setPage('no-items');
+          }
+            //alert("No Invoice Number available!");
+          else if(itemflag=="no items"){
+            document.querySelector('no-items').setErrorMessage('Please choose valid item!');
+            document.querySelector('app-homepage').setPage('no-items');
+          }
+            //alert("No Matching Item available!");
           else
-            alert("No IRN/ORN Number available!");
+          {
+            document.querySelector('no-items').setErrorMessage('Sorry, No active IRN/ORN in this number');
+            document.querySelector('app-homepage').setPage('no-items');
+          }
+            //alert("No IRN/ORN Number available!");
         }
       }
     },
