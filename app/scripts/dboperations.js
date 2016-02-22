@@ -684,6 +684,8 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
       Config_columns=obj[i].columns;
     }
   }
+  var inflag;
+  var itflag;
   if(rnflag=="0"||invoiceflag=="1"||itemflag=="1"){
     connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+','+Config_columns[2]+' FROM '+Config_tables[0]+' WHERE ?',[cond], function(err, rows, fields) {
       var itemarr=[];
@@ -735,18 +737,23 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
                 }
                 //console.log(JSON.stringify(itemarr));
                 //res.status(200).json({"itemarr":itemarr,"rnflag":rnflag});
-                return callback({"itemarr": itemarr, "rnflag": rnflag});
+                if(itemarr.length==0&&invoiceflag=="1")
+                //inflag="no items";
+                return callback({"itemarr": itemarr, "rnflag": rnflag,"inflag":"no items","itemflag":""});
+                else if(itemarr.length==0&&itemflag=="1")
+                  //itflag="no items";
+                return callback({"itemarr": itemarr, "rnflag": rnflag,"inflag":"","itemflag":"no items"});
               }
               else
                 console.log("Item not in outward" + err);
             });
           }
           else
-            return callback({"itemarr": itemarr, "rnflag": rnflag});
+            return callback({"itemarr": itemarr, "rnflag": rnflag,"inflag":"","itemflag":""});
         }
         else {
           //res.status(200).json({"itemarr":itemarr,"rnflag":rnflag});
-          return callback({"itemarr":itemarr,"rnflag":rnflag});
+          return callback({"itemarr":itemarr,"rnflag":rnflag,"inflag":"","itemflag":""});
         }
       }
       else
@@ -771,7 +778,7 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
         }
         //console.log(JSON.stringify(itemarr));
         //res.status(200).json({"itemarr":itemarr,"rnflag":rnflag});
-        return callback({"itemarr":itemarr,"rnflag":rnflag});
+        return callback({"itemarr":itemarr,"rnflag":rnflag,"inflag":"","itemflag":""});
       }
       else
         console.log(err);

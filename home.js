@@ -293,10 +293,10 @@ app.post("/search-service",urlencodedParser,function(req,res){
     cond={Product_ID:req.query.item};
     itemflag="1";
   }
-  //if(rnflag!="0"||rnflag!="1"){
-    //res.status(200).json({"rnflag":"no match"});
-  //}
-  //else {
+  if(rnflag==-1){
+    res.status(200).json({"rnflag":"no match"});
+  }
+  else {
     irn = {new_Inward_Register_Number: req.query.irnno};
     invoice = {Inward_Bill_Numbe: req.query.invoiceno};
     item = {Product_ID: req.query.item};
@@ -304,9 +304,9 @@ app.post("/search-service",urlencodedParser,function(req,res){
 
     var FnSearchItemscall = require("./app/scripts/dboperations.js");
     FnSearchItemscall.FnSearchItems("search-service", rnflag, invoiceflag, itemflag, cond, function (returnval) {
-      res.status(200).json({"itemarr": returnval.itemarr, "rnflag": returnval.rnflag});
+      res.status(200).json({"itemarr": returnval.itemarr, "rnflag": returnval.rnflag,"inflag":returnval.inflag,"itemflag":returnval.itemflag});
     });
-  //}
+  }
 });
 
 app.post("/searchexpand-card",urlencodedParser,function(req,res){

@@ -85,19 +85,37 @@
     searchitemreadResponse:function(e) {
       var arr = e.detail.response.itemarr;
       var rnflag = e.detail.response.rnflag;
-      //alert(JSON.stringify(arr));
+      var inflag = e.detail.response.inflag;
+      var itemflag = e.detail.response.itemflag;
+      //alert(rnflag+"  "+inflag+"  "+itemflag);
       //alert(rnflag);
-      if (rnflag != "1") {
-      document.querySelector('app-homepage').setPage('Search Items');
-      document.querySelector('searchread-page').itemArray = arr;
+      if(rnflag=="no match"){
+        alert("Please enter valid search item!");
       }
-      if(rnflag=="1"){
-        //Setting current page in session for fetching labels dynamically
-        localStorage.setItem("curr_sess_showpage","outwardsearchread-page");
-        //calling webcomponent service to fetch labels for current page
-        document.querySelector('webcomponent-service').callWebcomponentService();
-        document.querySelector('app-homepage').setPage('OutwardSearch Items');
-        document.querySelector('outwardsearchread-page').itemArray=arr;
+      else {
+        if (arr.length > 0) {
+          if (rnflag != "1") {
+            document.querySelector('app-homepage').setPage('Search Items');
+            document.querySelector('searchread-page').itemArray = arr;
+          }
+          if (rnflag == "1") {
+            //Setting current page in session for fetching labels dynamically
+            localStorage.setItem("curr_sess_showpage", "outwardsearchread-page");
+            //calling webcomponent service to fetch labels for current page
+            document.querySelector('webcomponent-service').callWebcomponentService();
+            document.querySelector('app-homepage').setPage('OutwardSearch Items');
+            document.querySelector('outwardsearchread-page').itemArray = arr;
+          }
+        }
+        else {
+          //this.$.ID_Show_Dialog.FnShowDialog("No IRN/ORN Number available","");
+          if(inflag=="no items")
+            alert("No Invoice Number available!");
+          else if(itemflag=="no items")
+            alert("No Matching Item available!");
+          else
+            alert("No IRN/ORN Number available!");
+        }
       }
     },
     FnIntentitemReadService:function(){
