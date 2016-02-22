@@ -16,7 +16,7 @@ Polymer({
   {
     document.querySelector('#invoiceno').validate();
     document.querySelector('#vehicleno').validate();
-    document.querySelector('#driverno').validate();
+    //document.querySelector('#driverno').validate();
     var Rt_drivernameflag=document.querySelector('#drivername').validate();
 
 

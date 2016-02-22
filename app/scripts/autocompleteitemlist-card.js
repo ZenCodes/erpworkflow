@@ -144,11 +144,10 @@
       else{
         item= e.detail.response.items;
       }
-      alert(JSON.stringify(item));
-    }/*,
+      //alert(JSON.stringify(item));
+    },
     setDefaultval:function(){
       this.value="";
-      document.querySelector('item-page').setItemdes(this.value);
-    }*/
+    }
   });
 })();

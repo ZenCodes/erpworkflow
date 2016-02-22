@@ -10,6 +10,7 @@ Polymer({is:"menusearch-card",
   FnMenuExpand:function(e){
     this.invoice="";
     this.irn="";
+    //document.querySelector('autocompleteitemlist-card').setDefaultval("");
   },
   //Method will invoke the service to fetch the info of currently given ORN/IRN number
   irnsearch:function(e){
