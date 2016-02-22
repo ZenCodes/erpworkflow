@@ -69,5 +69,11 @@ Polymer({
       this.$.flowbutton.style.visibility='visible';
     if(flag=="false")
       this.$.flowbutton.style.visibility='hidden';
+  },
+  setFlowVisibility:function(flag){
+    if(flag=="true")
+      this.$.flow.style.visibility='visible';
+    if(flag=="false")
+      this.$.flow.style.visibility='hidden';
   }
 });

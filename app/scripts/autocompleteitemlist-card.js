@@ -3,10 +3,15 @@
  */
 //JS file for the autocompleteitemlist page
 (function() {
+  var flag=0;
   this.val="";
   var item=[];
+  var temp=[];
   Polymer({is:"autocompleteitemlist-card",
     ready:function(){
+      if(sessionStorage.getItem("curr_sess_roleflag")=="manager") {
+        this.url = "../../config/items.json";
+      }
       if(localStorage.getItem("curr_sess_wardflag")!="1")
       this.url="../../config/items.json";
       if(localStorage.getItem("curr_sess_wardflag")=="1")
@@ -42,6 +47,9 @@
         if(localStorage.getItem("curr_sess_wardflag")=="2") {
           document.querySelector('intent-page').FnSetMenuinfo(this.value, this.unit, this.measure);
           //document.querySelector('outwarditem-card').FnSetInputunitmeasure(this.unit,this.measure);
+        }
+        if(sessionStorage.getItem("curr_sess_roleflag")=="manager"){
+         document.querySelector('grn-service').searchService("","",this.value,"");
         }
 
       }
@@ -125,10 +133,18 @@
     //Fetches and binding to the auto complete dropdown list dynamically
     itemlistreadResponse:function(e)
     {
-      //var arr=e.detail.response;
-      //alert(e.detail.response);
-      item=e.detail.response.items;
-      //alert(JSON.stringify(item[0].name));
+      if (sessionStorage.getItem("curr_sess_roleflag") == "manager") {
+        item=item.concat(e.detail.response.items);
+      if(flag==0) {
+          this.url="../../config/outwarditems.json";
+          //this.$.itemlistreadajax.generateRequest();
+          flag = flag + 1;
+      }
+      }
+      else{
+        item= e.detail.response.items;
+      }
+      alert(JSON.stringify(item));
     }/*,
     setDefaultval:function(){
       this.value="";

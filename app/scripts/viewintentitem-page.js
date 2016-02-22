@@ -16,7 +16,7 @@
     //Function which invokes when click on expand icon button
     FnExpandItemCard:function(){
       var n=1;
-      var x=2;
+      var x=3;
       sessionStorage.setItem("sess_curr_inwardregno",this.intentregno);
       //document.querySelector('my-app').setVisible("true");
       this.$.ps.intentexpanditemreadService(this.intentregno);
@@ -41,25 +41,22 @@
       }
       if(clrid=="true")
       {
-
-        for(var i=0;i<all.length;i++){
-
+        for(var i= 0;i<all.length;i++){
+          //alert(all.length);
           if(all[i].id==document.querySelector("#card"+this.intentregno).id){
             if(i!=0) {
-              x=1.0;
-              all[i].style.marginTop = ((i * (x)) - i) + "%";
-            }
-            if(i>3){
-              x=-0.2;
-              all[i].style.marginTop=((i*(x+(-0.5)))-i)+"%";
+              var v=all.length-i;
+              //alert();
+              if((all.length-i)>4)
+              all[i].style.marginTop=(((-i)+(all.length-i))+10)+"%";
+              else
+                all[i].style.marginTop=((-i)+(all.length-i))+"%";
             }
             all[i].style.visibility='visible';
-
           }
           else
             all[i].style.visibility='hidden';
         }
-
         clrid= document.querySelector("#card"+this.intentregno);
 
       }

@@ -18,7 +18,8 @@
 <link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../searchitem-card/searchitem-card.html">
-<link rel="import" href="../itemlist-card/itemlist-card.html">
+<link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
+<!--<link rel="import" href="../itemlist-card/itemlist-card.html">-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="menusearch-card">
@@ -59,6 +60,9 @@
     .menu-content sublist2{
       margin-top: -10%;
     }
+    #auto{
+      margin-left: 20%;
+    }
 
   </style>
 
@@ -86,7 +90,8 @@
                 <paper-submenu label="Item Name" id="itemname">
                   <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="item">Item Name</paper-item>
                   <paper-menu class="menu-content sublist2">
-                    <itemlist-card></itemlist-card>
+                   <div id="auto"> <autocompleteitemlist-card></autocompleteitemlist-card></div>
+                    <!--<itemlist-card></itemlist-card>-->
                     <!--<paper-input label="Item Name" value="{{item}}"><paper-icon-button suffix icon="search" on-click="itemsearch"></paper-icon-button></paper-input>-->
                   </paper-menu>
                 </paper-submenu>

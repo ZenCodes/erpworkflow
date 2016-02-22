@@ -12,7 +12,7 @@
         "status":"Stores",
         "newstatus":"OldStores",
         "updatestatus":"Production",
-        "menu" : ["GRN Flow"]
+        "menu" : ["GRN Flow","View Intent"]
 
       },
       {
