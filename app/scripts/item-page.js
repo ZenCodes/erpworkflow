@@ -10,6 +10,7 @@
     is: "item-page",
     ready:function()
     {
+      this.Btn_disable_flag=false;
       this.Supplier_Name="Supplier Name";
       this.Supplier_Name_error="Enter supplier name";
       this.nullflag=0;
@@ -213,6 +214,9 @@
       this.flag=1;
       this.itemflag=1;
       //alert(JSON.stringify(itemarr));
+    },
+    FnBtnDisable:function(){
+      this.Btn_disable_flag=true;
     }
   });
 })();

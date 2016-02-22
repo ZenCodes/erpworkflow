@@ -37,7 +37,9 @@
         this.no=this.no+1;
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
+        document.querySelector('item-page').FnBtnDisable();
         this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created!",e.detail.response.inwardregno);
+
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
       }
     },

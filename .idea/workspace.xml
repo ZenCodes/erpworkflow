@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/customerinfo-page/customerinfo-page.html" afterPath="$PROJECT_DIR$/app/elements/customerinfo-page/customerinfo-page.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/item-page/item-page.html" afterPath="$PROJECT_DIR$/app/elements/item-page/item-page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/vehicle-page/vehicle-page.html" afterPath="$PROJECT_DIR$/app/elements/vehicle-page/vehicle-page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/vehicleinfo-page/vehicleinfo-page.html" afterPath="$PROJECT_DIR$/app/elements/vehicleinfo-page/vehicleinfo-page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" afterPath="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/menusearch-card.js" afterPath="$PROJECT_DIR$/app/scripts/menusearch-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/vehicle-page.js" afterPath="$PROJECT_DIR$/app/scripts/vehicle-page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/item-page.js" afterPath="$PROJECT_DIR$/app/scripts/item-page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/item-service.js" afterPath="$PROJECT_DIR$/app/scripts/item-service.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,21 +25,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customerinfo-page.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/customerinfo-page/customerinfo-page.html">
+      <file leaf-file-name="item-page.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/item-page/item-page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0754716">
-              <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="54" />
+            <state vertical-scroll-proportion="-4.3584905">
+              <caret line="128" column="67" selection-start-line="128" selection-start-column="67" selection-end-line="128" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vehicleinfo-page.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/elements/vehicleinfo-page/vehicleinfo-page.html">
+      <file leaf-file-name="item-page.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/item-page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60108304">
-              <caret line="61" column="54" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+            <state vertical-scroll-proportion="-15.185185">
+              <caret line="211" column="33" selection-start-line="211" selection-start-column="33" selection-end-line="211" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="item-service.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/scripts/item-service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5275862">
+              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -76,11 +82,9 @@
         <option value="$PROJECT_DIR$/app/scripts/itemlist-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js" />
         <option value="$PROJECT_DIR$/app/elements/physicqualifyitem-card/physicqualifyitem-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/item-service.js" />
         <option value="$PROJECT_DIR$/app/elements/dynamic-menu-card/dynamic-menu-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/customerinfo-page.js" />
         <option value="$PROJECT_DIR$/app/scripts/vehicleinfo-page.js" />
-        <option value="$PROJECT_DIR$/app/scripts/item-page.js" />
         <option value="$PROJECT_DIR$/app/elements/flowbutton-card/flowbutton-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/physicqualifyread-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/grnflow-card.js" />
@@ -116,9 +120,11 @@
         <option value="$PROJECT_DIR$/app/scripts/menusearch-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/vehicle-page.js" />
         <option value="$PROJECT_DIR$/app/elements/vehicle-page/vehicle-page.html" />
-        <option value="$PROJECT_DIR$/app/elements/item-page/item-page.html" />
         <option value="$PROJECT_DIR$/app/elements/customerinfo-page/customerinfo-page.html" />
         <option value="$PROJECT_DIR$/app/elements/vehicleinfo-page/vehicleinfo-page.html" />
+        <option value="$PROJECT_DIR$/app/elements/item-page/item-page.html" />
+        <option value="$PROJECT_DIR$/app/scripts/item-page.js" />
+        <option value="$PROJECT_DIR$/app/scripts/item-service.js" />
       </list>
     </option>
   </component>
@@ -730,14 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/item-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8758621">
-          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/outwarditem-service/outwarditem-service.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24548736">
@@ -766,14 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="211" column="9" selection-start-line="211" selection-start-column="9" selection-end-line="211" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/item-page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62931037">
-          <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -970,14 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/item-page/item-page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03068592">
-          <caret line="101" column="8" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/customerinfo-page/customerinfo-page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.0754716">
@@ -990,6 +972,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60108304">
           <caret line="61" column="54" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/item-page/item-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.3584905">
+          <caret line="128" column="67" selection-start-line="128" selection-start-column="67" selection-end-line="128" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/item-page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.185185">
+          <caret line="211" column="33" selection-start-line="211" selection-start-column="33" selection-end-line="211" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/item-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5275862">
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
           <folding />
         </state>
       </provider>
