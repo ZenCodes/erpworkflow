@@ -29,6 +29,7 @@
         this.no=this.no+1;
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
+        document.querySelector('outwarditem-page').FnBtnDisable();
         this.$.ID_Show_Dialog.FnShowDialog("Outward Register Note is created!",e.detail.response.outwardregno);
         //alert("Invoice Stored: "+e.detail.response.outwardregno);
       }
@@ -38,7 +39,7 @@
     //Generating seq res and calling itemwrite servicee
     FnSeqitemwriteResponse:function(e)
     {
-      //alert(e.detail.response);
+      //alert(e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
           var obj={"outdate":"","outtime":"","customername":"","invoiceno":"","city":"","vehicleno":"","transportname":"","drivername":"","driverno":"","ownername":"","ownerphone":"","panno":"","quantity":"","unit":"","itemdes":"","weight":""};
@@ -62,8 +63,10 @@
           this.$.outwarditemwriteAjax.generateRequest();
         }
       }
-      else
+      else {
+        localStorage.setItem("curr_sess_outinvoiceflag","1");
         alert("Invoice already exist....Create new invoice...!");
+      }
 
     }
   });

@@ -132,7 +132,7 @@
             itemarr.push(obj);
           this.idd=this.itemArray.length;
           localStorage.setItem("curr_sess_unitset",this.idd);
-          //alert(JSON.stringify(itemarr));
+          //alert(obj);
           this.push('itemArray',{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''});
           //alert(JSON.stringify(this.itemArray.length));
           this.flag=0;
@@ -207,15 +207,19 @@
             obj.weight=(this.weight)+" "+(this.unit);
             if(deleteflag!=1)
               itemarr.push(obj);
-            //alert(JSON.stringify(itemarr));
+            //alert(JSON.stringify(obj));
             this.itemdes='deleted';
             this.quantity='deleted';
             this.weight='deleted';
             this.flag=1;
             this.itemflag=1;
-            this.$.itemservice.FnSeqItemwriteService(itemarr)
+            if(localStorage.getItem('curr_sess_outinvoiceflag')=="1") {
+            for(var i=0;i<itemarr.length;i++){
+              itemarr[i].invoiceno=this.invoiceno;
+            }
+            }
+            this.$.itemservice.FnSeqItemwriteService(itemarr);
           }
-
         }
         //document.querySelectorAll("paper-input").readonly=true;
         //alert(this.querySelector("item-card"));
@@ -236,6 +240,11 @@
       this.flag=1;
       this.itemflag=1;
       //alert(JSON.stringify(itemarr));
+    },
+    FnBtnDisable:function(){
+      document.querySelector('#save').style.backgroundColor='grey';
+      document.querySelector('#additem').style.backgroundColor='grey';
+      this.Btn_disable_flag=true;
     }
   });
 })();

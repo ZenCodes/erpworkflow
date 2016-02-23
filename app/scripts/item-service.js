@@ -109,6 +109,7 @@
       }
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
+        document.querySelector('intent-page').FnBtnDisable();
         this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created!",e.detail.response.intentregno);
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
       }

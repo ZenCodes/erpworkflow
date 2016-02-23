@@ -216,6 +216,8 @@
       //alert(JSON.stringify(itemarr));
     },
     FnBtnDisable:function(){
+      document.querySelector('#save').style.backgroundColor='grey';
+      document.querySelector('#additem').style.backgroundColor='grey';
       this.Btn_disable_flag=true;
     }
   });
