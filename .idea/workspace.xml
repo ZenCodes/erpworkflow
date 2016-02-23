@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/item-card/item-card.html" afterPath="$PROJECT_DIR$/app/elements/item-card/item-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/intent-page.js" afterPath="$PROJECT_DIR$/app/scripts/intent-page.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app-homepage.js" afterPath="$PROJECT_DIR$/app/scripts/app-homepage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/item-card.js" afterPath="$PROJECT_DIR$/app/scripts/item-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/item-service.js" afterPath="$PROJECT_DIR$/app/scripts/item-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/outwarditem-page.js" afterPath="$PROJECT_DIR$/app/scripts/outwarditem-page.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="item-card.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="item-card.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/item-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.444445">
-              <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.8241379">
+              <caret line="38" column="66" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -40,18 +37,28 @@
       <file leaf-file-name="item-card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/item-card/item-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.4716982">
-              <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+            <state vertical-scroll-proportion="-4.3584905">
+              <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="outwarditem-page.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="outwarditem-page.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/outwarditem-page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5862069">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            <state vertical-scroll-proportion="-1.2592592">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="21" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app-homepage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/app-homepage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.148149">
+              <caret line="37" column="46" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -107,7 +114,6 @@
         <option value="$PROJECT_DIR$/app/config/roleconfig.json" />
         <option value="$PROJECT_DIR$/app/elements/viewintentitem-page/viewintentitem-page.html" />
         <option value="$PROJECT_DIR$/app/scripts/viewintentitem-page.js" />
-        <option value="$PROJECT_DIR$/app/scripts/app-homepage.js" />
         <option value="$PROJECT_DIR$/app/scripts/drawermenu-card.js" />
         <option value="$PROJECT_DIR$/app/elements/menusearch-card/menusearch-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" />
@@ -125,8 +131,9 @@
         <option value="$PROJECT_DIR$/app/scripts/item-service.js" />
         <option value="$PROJECT_DIR$/app/scripts/intent-page.js" />
         <option value="$PROJECT_DIR$/app/elements/item-card/item-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/item-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/outwarditem-page.js" />
+        <option value="$PROJECT_DIR$/app/scripts/app-homepage.js" />
+        <option value="$PROJECT_DIR$/app/scripts/item-card.js" />
       </list>
     </option>
   </component>
@@ -879,14 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app-homepage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29310346">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/itemlist-card/itemlist-card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.245283">
@@ -1073,26 +1072,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/outwarditem-page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2592592">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="21" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/app-homepage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.148149">
+          <caret line="37" column="46" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/item-card/item-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4716982">
-          <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+        <state vertical-scroll-proportion="-4.3584905">
+          <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/item-card.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.444445">
-          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/outwarditem-page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5862069">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.8241379">
+          <caret line="38" column="66" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="66" />
           <folding />
         </state>
       </provider>

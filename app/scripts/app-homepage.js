@@ -42,12 +42,15 @@ Polymer({
     if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="manager")
     {
       if(localStorage.getItem("curr_sess_wardflag")=="2"){
+      this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');}
       else{
       localStorage.setItem("curr_sess_showpage","physicins-page");
-      this.page="home-page";}
+      this.page="home-page";
       this.$.flow.style.visibility='visible';
+      }
+
       this.$.list.style.visibility='visible';
       this.$.flowbutton.style.visibility='hidden';
       this.$.searchmenu.style.visibility='hidden';
