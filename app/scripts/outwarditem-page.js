@@ -27,7 +27,7 @@
       this.invoiceno=invoiceno;
       this.city=city;
       this.custflag=1;
-      alert(this.outdate+"  "+this.outtime+"  "+this.customername+"  "+this.invoiceno+" "+this.city);
+      //alert(this.outdate+"  "+this.outtime+"  "+this.customername+"  "+this.invoiceno+" "+this.city);
     },
     //Function receives vehicle info from vehicle info page
     FnSetVehicleinfo:function(vehicleno,transportname,drivername,driverno,ownername,ownerphone,panno)

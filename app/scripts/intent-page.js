@@ -190,7 +190,7 @@
         }
       }
       else{
-        alert("Item already saved..!Click create to enter another invoice!");
+        alert("This Intent is already saved, Please click 'Create' for new intent!");
       }
 
     },

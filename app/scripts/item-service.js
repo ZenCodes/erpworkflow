@@ -97,7 +97,7 @@
       }
       //if inward no is already exists it will revert the message
       else if(e.detail.response.returnval=="exists"){
-        alert("Invoice already exist....Create new invoice...!");
+        alert("This Intent is already saved, Please click 'Create' for new intent!");
       }
     },
     //Inward item save response received and showing reg no to the user

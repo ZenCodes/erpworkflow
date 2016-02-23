@@ -19,8 +19,8 @@
         this.querySelector("#" + txt_input1).style.marginLeft = '-12%';
         this.querySelector("#" + txt_input3).style.width = '15%';
         this.querySelector("#" + txt_input3).style.marginLeft = '3%';
-        this.querySelector("#" + txt_input5).style.width = '17%';
-        this.querySelector("#" + txt_input5).style.marginLeft = '5%';
+        this.querySelector("#" + txt_input5).style.width = '16%';
+        this.querySelector("#" + txt_input5).style.marginLeft = '4%';
         this.querySelector("#" + txt_input6).style.visibility = 'hidden';
       }
       if(localStorage.getItem("curr_sess_wardflag")=="1") {
@@ -34,6 +34,8 @@
       }
       else if(localStorage.getItem("curr_sess_wardflag")=="2") {
         //alert('hi'+this.querySelector("#" + txt_input6));
+        this.querySelector("#" + txt_input1).style.width = '8%';
+        this.querySelector("#" + txt_input6).style.width = '15%';
         this.querySelector("#" + txt_input6).style.visibility = 'visible';
       }
     },
