@@ -35,7 +35,7 @@
       else if(localStorage.getItem("curr_sess_wardflag")=="2") {
         //alert('hi'+this.querySelector("#" + txt_input6));
         this.querySelector("#" + auto_input).style.width = '20%';
-        this.querySelector("#" + txt_input1).style.width = '8%';
+        this.querySelector("#" + txt_input1).style.width = '9%';
         this.querySelector("#" + txt_input6).style.marginLeft = '0%';
         this.querySelector("#" + txt_input6).style.width = '12%';
         this.querySelector("#" + txt_input6).style.visibility = 'visible';
