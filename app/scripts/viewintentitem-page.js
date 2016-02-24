@@ -45,12 +45,17 @@
           //alert(all.length);
           if(all[i].id==document.querySelector("#card"+this.intentregno).id){
             if(i!=0) {
-              var v=all.length-i;
-              //alert();
-              if((all.length-i)>4)
-              all[i].style.marginTop=(((-i)+(all.length-i))+10)+"%";
-              else
-                all[i].style.marginTop=((-i)+(all.length-i))+"%";
+
+              if((all.length-i)>4) {
+                //alert((((-i) + (all.length - i)) + 20));
+                all[i].style.marginTop = (((-i) + (all.length - i)) + 20)+ "%";
+              }
+              else {
+
+                // var r=(((-i) + (all.length - i))+15)/3;
+                //alert((((-i) + (all.length - i))+15+r));
+                all[i].style.marginTop = (((-i) + (all.length - i))+15) + "%";
+              }
             }
             all[i].style.visibility='visible';
           }
