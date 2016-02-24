@@ -162,7 +162,7 @@ exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
     }
     else
     {
-      console.log("yes..."+error);
+      //console.log("yes..."+error);
       //res.status(200).json({'returnval': "fail"});
       return callback("fail");
     }
@@ -191,14 +191,14 @@ exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
       connection.query('INSERT into '+Config_tables[1]+' set ?',[response],function(err,result){
         if(!err)
         {
-          console.log("Inserted!"+idd);
+          //console.log("Inserted!"+idd);
           //On successful registeration generating inward reg no as response
           return callback(idd);
           //res.status(200).json({'inwardregno': idd});
         }
         else{
           //On failing insert operation error message revert
-          console.log("Not Inserted!"+idd);
+          //console.log("Not Inserted!"+idd);
           return callback("not okay");
           //res.status(200).json({'inwardregno': 'not okay'});
         }
@@ -537,7 +537,7 @@ exports.FnPhysicinsertupdate=function(pagename,response,callback){
     }
     else
     {
-      console.log("error......."+err);
+      //console.log("error......."+err);
       return callback({"flag":"not updated"});
       //res.status(200).json({"flag":"not updated"});
     }
@@ -559,7 +559,7 @@ exports.FnFlowstateupdate=function(pagename,cond1,cond2,val,retstatus,callback){
       //res.status(200).json({"flag":"updated","state":val.state});
     }
     else{
-      console.log(err);
+      //console.log(err);
       return callback({"flag":"not updated"});
       //res.status(200).json({"flag":"not updated"});
     }
@@ -617,7 +617,7 @@ console.log(cond);
   //Fetching inward bill no if it is new it will insert data otherwise it wont
   connection.query('SELECT '+ Config_columns[0] +' FROM '+ Config_tables[1] +' WHERE ?',[cond],function(error,rows) {
     if (!error) {
-      console.log(rows.length);
+      //console.log(rows.length);
       if (rows.length == 0) {
 
         connection.query('INSERT INTO ' + Config_tables[0] + ' SET ?', [dummyno], function (err, result) {
@@ -655,7 +655,7 @@ exports.FnOutwardItemSave=function(pagename,response,callback) {
       var idd="ORN"+rows[0].Outward_Register_Number;
 
       response.Outward_Register_Number=idd;
-      console.log( response.Outward_Register_Number);
+      //console.log( response.Outward_Register_Number);
       connection.query('insert into '+Config_tables[1]+' set ?',[response],function(err,result){
         if(!err)
         {
@@ -706,12 +706,12 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
         if(itemarr.length==0)
         {
           if(invoiceflag=="1") {
-            console.log("in invoice");
+
             cond = {"Invoice_No": cond.Inward_Bill_Number};
           }
           if(itemflag=="1")
           {
-            console.log("in item");
+
             cond={"Product_ID":cond.Product_ID};
           }
           if(invoiceflag=="1"||itemflag=="1") {
@@ -765,7 +765,7 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
     });
   }
   else if(rnflag=="1"){
-    console.log('outward');
+
     connection.query('SELECT distinct '+Config_columns[3]+','+Config_columns[4]+','+Config_columns[5]+' FROM '+Config_tables[1]+' WHERE ?',[cond], function(err, rows, fields) {
       var itemarr=[];
       if(!err){
@@ -913,16 +913,16 @@ exports.FnIntentItemWrite=function(pagename,response,callback) {
       var idd="INT"+rows[0].Intent_Register_Number;
 
       response.Intent_Register_Number=idd;
-      console.log( response.Intent_Register_Number);
+      //console.log( response.Intent_Register_Number);
       connection.query('insert into '+Config_tables[1]+' set ?',[response],function(err,result){
         if(!err)
         {
-          console.log("Inserted!"+idd);
+          //console.log("Inserted!"+idd);
           return callback(idd);
           //res.status(200).json({'outwardregno': idd});
         }
         else{
-          console.log("Not Inserted!"+idd+err);
+          //console.log("Not Inserted!"+idd+err);
           return callback("not okay");
           //res.status(200).json({'outwardregno': 'not okay'});
         }
@@ -942,15 +942,13 @@ exports.FnIntentItemRead=function(pagename,callback) {
     }
   }
     cond={"state":Config_columns[2]};
-
     //console.log(Config_tables[0]+"  "+Config_columns[0]+"  "+Config_columns[1]+"  "+cond);
-
-    connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ?',[cond], function(err, rows, fields) {
+    connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
       var itemarr=[];
       if(!err){
         for(var i=0;i<rows.length;i++)
         {
-          var obj={"intentregno":"","intentdate":"","state":"",};
+          var obj={"intentregno":"","intentdate":"","state":""};
           obj.intentregno=rows[i].Intent_Register_Number;
           obj.intentdate=rows[i].Intent_Date;
           obj.state=rows[i].state;
@@ -990,7 +988,7 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,callback) {
         obj.remark=rows[i].Remarks;
         itemarr.push(obj);
       }
-      console.log(itemarr);
+      //console.log(itemarr);
       return callback({"itemarr":itemarr});
       //res.status(200).json({"itemarr":itemarr});
     }
