@@ -19,7 +19,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="viewintentitem-page">
   <style>
-    .expandcard{
+    .intentexpandcard{
       @apply(--layout-horizontal);
       width: 90%;
       border-radius: 2px;
@@ -55,7 +55,7 @@
   </style>
   <template>
     <!--Expand Itemcard-->
-    <div class="expandcard" id="card{{intentregno}}">
+    <div class="intentexpandcard" id="card{{intentregno}}">
       <paper-button  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
       <paper-button  name="intentdate" value="{{intentdate}}"  on-click="FnExpandItemCard" noink>{{intentdate}}</paper-button>
       <paper-icon-button id="expand" icon="{{icons}}" on-click="FnExpandItemCard" noink></paper-icon-button>

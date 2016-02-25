@@ -16,13 +16,13 @@
     //Function which invokes when click on expand icon button
     FnExpandItemCard:function(){
       var n=1;
-      var x=3;
+      var x=-4;
       sessionStorage.setItem("sess_curr_inwardregno",this.intentregno);
       //document.querySelector('my-app').setVisible("true");
       this.$.ps.intentexpanditemreadService(this.intentregno);
       this.$.ps.callWebcomponentService();
       //this.$.sc.callWebcomponentService();
-      var all=document.querySelectorAll('.expandcard');
+      var all=document.querySelectorAll('.intentexpandcard');
       if(id=="true")
       {
         id= document.querySelector("#"+this.intentregno);
@@ -42,19 +42,15 @@
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
-          //alert(all.length);
+          
           if(all[i].id==document.querySelector("#card"+this.intentregno).id){
             if(i!=0) {
 
-              if((all.length-i)>4) {
-                //alert((((-i) + (all.length - i)) + 20));
-                all[i].style.marginTop = (((-i) + (all.length - i)) + 20)+ "%";
+              if(i!=0){
+                all[i].style.marginTop=((i*(x))-i)+"%";
               }
-              else {
-
-                // var r=(((-i) + (all.length - i))+15)/3;
-                //alert((((-i) + (all.length - i))+15+r));
-                all[i].style.marginTop = (((-i) + (all.length - i))+15) + "%";
+              if(i>10){
+                all[i].style.marginTop=((i*(x+(-.5)))-i)+"%";
               }
             }
             all[i].style.visibility='visible';
