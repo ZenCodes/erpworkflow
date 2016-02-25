@@ -49,7 +49,7 @@
         @apply(--layout-horizontal);
         width: 100%;
         margin-left: 7%;
-        margin-top: -1%;
+        margin-top: -5%;
       }
       .topright1{
         @apply(--layout-horizontal);
@@ -78,6 +78,7 @@
       }
       .polbl{
         margin-left:17%;
+        margin-top: 2%;
       }
       .podate{
         font-size:12px;
@@ -88,7 +89,7 @@
       #pinput{
         margin-left: 5%;
       }
-      #datepick,#ponbr,#suplr{
+      #datepick,#ponbr,#readsuplr{
         margin-left: 3%;
       }
     </style>
@@ -101,7 +102,7 @@
         <div class="topright">
           <div id="datepick" hidden$="{{isHidden}}"><datepicker-card></datepicker-card></div>
           <div id="ponbr" hidden$="{{isHidden}}"><paper-input name="ponumber" label="{{lbl.PO_Number}}"  value="{{pono}}" required auto-validate id="pono" error-message="{{lbl.PO_Number_error}}" on-change="FnInputChanged" readonly="{{read}}"></paper-input></div>
-          <div id="suplr"><paper-input  name="supplier" label="{{lbl.Supplier_Name}}" id="supplier" value="{{item.supname}}" readonly></paper-input></div>
+          <div id="readsuplr"><paper-input  name="supplier" label="{{lbl.Supplier_Name}}" id="supplier" value="{{item.supname}}" readonly></paper-input></div>
         </div>
     </div>
 

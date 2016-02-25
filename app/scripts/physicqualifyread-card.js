@@ -31,11 +31,14 @@ Polymer({is:"physicqualifyread-card",
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
       this.purchasetypeflag=arr[i].purchasetypeflag;
-      //alert(this.purchasetypeflag);
-      if(this.purchasetypeflag=="0")
-        this.isHidden=false;
+      if(this.purchasetypeflag=="0") {
+        document.querySelector('#readsuplr').style.paddingTop='0%';
+        this.isHidden = false;
+
+      }
       else {
-        document.querySelector('.topright').style.marginTop='4%';
+        document.querySelector('#readsuplr').style.paddingTop='6%';
+        //document.querySelector('#readsuplr').style.marginLeft='65%';
         this.isHidden = true;
       }
       obj.inwardno=arr[i].inwardno;

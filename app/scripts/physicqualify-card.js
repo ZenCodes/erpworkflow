@@ -84,10 +84,14 @@ Polymer({is:"physicqualify-card",
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
       this.purchasetypeflag=arr[i].purchasetypeflag;
 
-      if(this.purchasetypeflag=="0")
-        this.isHidden=false;
+      if(this.purchasetypeflag=="0") {
+        document.querySelector('#suplr').style.paddingTop='0%';
+        this.isHidden = false;
+
+      }
       else {
-        document.querySelector('.topright').style.marginTop='3%';
+        document.querySelector('#suplr').style.paddingTop='5%';
+        //document.querySelector('#suplr').style.marginLeft='65%';
         this.isHidden = true;
       }
       obj.inwardno=arr[i].inwardno;

@@ -304,7 +304,6 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
     if(obj[i].name==pagename){
       Config_tables=obj[i].value;
     }
-    //console.log(Config_tables);
   }
   //Query fetches item info under the specific IRN Number with desired state
   connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ?',[cond,cond1], function(err, rows) {
@@ -333,7 +332,6 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
         obj.qtyyreceived=rows[i].Qty_Received;
         itemarr.push(obj);
       }
-      //console.log(itemarr);
       //Item Response sending back to the server
       return callback(itemarr);
     }
