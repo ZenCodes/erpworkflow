@@ -109,18 +109,33 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 
 }
 
-//Method to fetch the items from master table
+//Method to fetch the item names from master table according to the logged user role
 exports.FnFetchItemlist=function(pagename,wardflag,callback) {
   var queryy="";
+  var Config_tables=[];
+  var Config_columns=[];
+  var Config_columnvalue=[];
+  //Loop which fetch table name,column names and default values from config file
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columns=obj[i].columns;
+      Config_columnvalue=obj[i].columnvalues;
+    }
+  }
+  //Condition which form the query for the currently logged role
   if(wardflag=="0"){
-  queryy="SELECT * from MD_Item where Item_Type_ID not in('FG1111','FG2222')";
+  queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
   }
+  //Condition which form the query for the currently logged role
   else if(wardflag=="1"){
-  queryy="SELECT * from MD_Item where Item_Type_ID in('FG1111','FG2222')";
+    queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
   }
+  //Condition which form the query for the currently logged role
   else if(wardflag=="2"){
-  queryy="SELECT * from MD_Item";
+    queryy="SELECT * FROM "+ Config_tables[0];
   }
+  //Query which fetches items for the corresponding role who logged in
   connection.query(queryy, function (err, rows) {
     if (!err) {
     var itemarr = [];
@@ -137,16 +152,17 @@ exports.FnFetchItemlist=function(pagename,wardflag,callback) {
       obj.purchasetypeflag = rows[i].Purchase_Type_Flag;
       itemarr.push(obj);
     }
-      //console.log("no...."+rows[0].PO_Number);
+     //  Response sending back to the server if it have the items
      if(itemarr.length>0)
        return callback(itemarr);
-      //res.status(200).json(itemarr);
+
       else
        return callback("no items");
     }
   });
 }
 
+//Function which generates the sequence no for the inward item entry
 exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
   //Fetching tables from config file
   var Config_tables=[];
@@ -206,6 +222,7 @@ exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
   });
 }
 
+//Function which register the Inward items
 exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
   //Fetching tables from config file
   var Config_tables=[];
@@ -244,7 +261,7 @@ exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
   });
 }
 
-
+//Function which fetches the forward flow items
 exports.FnForwardFlowitemFetch=function(pagename,cond,callback){
   //Fetching tables for this page
   var Config_tables=[];
