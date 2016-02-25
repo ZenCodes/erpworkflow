@@ -42,7 +42,7 @@
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
-          
+
           if(all[i].id==document.querySelector("#card"+this.intentregno).id){
             if(i!=0) {
 

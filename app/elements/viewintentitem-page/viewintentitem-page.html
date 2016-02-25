@@ -29,6 +29,7 @@
     }
     paper-button{
       width: 35%;
+
     }
     paper-item{
       width: 20%;
@@ -52,12 +53,18 @@
     .collapse{
       width:90%;
     }
+    #regno{
+      margin-left: 5%;
+    }
+    #date{
+      margin-left: 10%;
+    }
   </style>
   <template>
     <!--Expand Itemcard-->
     <div class="intentexpandcard" id="card{{intentregno}}">
-      <paper-button  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
-      <paper-button  name="intentdate" value="{{intentdate}}"  on-click="FnExpandItemCard" noink>{{intentdate}}</paper-button>
+      <paper-button id="regno"  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
+      <paper-button id="date" name="intentdate" value="{{intentdate}}"  on-click="FnExpandItemCard" noink>{{intentdate}}</paper-button>
       <paper-icon-button id="expand" icon="{{icons}}" on-click="FnExpandItemCard" noink></paper-icon-button>
       <paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>
     </div>
