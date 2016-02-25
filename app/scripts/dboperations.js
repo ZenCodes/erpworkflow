@@ -110,8 +110,18 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 }
 
 //Method to fetch the items from master table
-exports.FnFetchItemlist=function(pagename,callback) {
-  connection.query('SELECT * from MD_Item', function (err, rows) {
+exports.FnFetchItemlist=function(pagename,wardflag,callback) {
+  var queryy="";
+  if(wardflag=="0"){
+  queryy="SELECT * from MD_Item where Item_Type_ID not in('FG1111','FG2222')";
+  }
+  else if(wardflag=="1"){
+  queryy="SELECT * from MD_Item where Item_Type_ID in('FG1111','FG2222')";
+  }
+  else if(wardflag=="2"){
+  queryy="SELECT * from MD_Item";
+  }
+  connection.query(queryy, function (err, rows) {
     if (!err) {
     var itemarr = [];
     for (var i = 0; i < rows.length; i++) {

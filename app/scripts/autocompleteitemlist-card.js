@@ -11,15 +11,6 @@
   Polymer({is:"autocompleteitemlist-card",
     ready:function(){
 
-      this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
-
-      /*if(sessionStorage.getItem("curr_sess_roleflag")=="manager") {
-        this.url = "../../config/items.json";
-      }
-      if(localStorage.getItem("curr_sess_wardflag")!="1")
-      this.url="../../config/items.json";
-      if(localStorage.getItem("curr_sess_wardflag")=="1")
-      this.url="../../config/outwarditems.json";*/
       this.itemval="";
       this.unit="";
       this.measure="";
@@ -29,6 +20,16 @@
       this.purchasetype="";
       this.purchasetypeflag="";
       //Initially hiding dropdown list
+      var obj={"wardflag":""};
+      if(sessionStorage.getItem("curr_sess_roleflag")=="manager") {
+        obj.wardflag="2";
+      }
+      if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="manager")
+        obj.wardflag="0";
+      if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="manager")
+        obj.wardflag="1";
+      this.param=obj;
+      this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
       this.querySelector('paper-listbox').style.visibility='hidden';
     },
     //Funtion invokes when selecting item in dropdown

@@ -37,10 +37,12 @@ app.post('/login-card', urlencodedParser, function (req, res) {
 
 //Method to fetch the items
 app.post("/itemlist-service",urlencodedParser,function(req,res){
-  console.log('itemlist service...');
+  //console.log('itemlist service...');
+  var wardflag=req.query.wardflag;
+  console.log(wardflag);
   //cond={state:req.query.status};
   var FnFetchItemlistcall= require("./app/scripts/dboperations.js");
-  FnFetchItemlistcall.FnFetchItemlist("itemlist-service",function(returnval){
+  FnFetchItemlistcall.FnFetchItemlist("itemlist-service",wardflag,function(returnval){
       res.status(200).json({'itemarr': returnval});
   });
 
