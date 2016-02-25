@@ -194,6 +194,8 @@ app.post("/physicqualified-service",urlencodedParser,function(req,res){
 app.post("/physicinsertupdate-service",urlencodedParser,function(req,res){
   //console.log('inside'+req.query.inwardno);
   response = {
+    Purchase_Type:req.query.purchasetype,
+    Purchase_Type_Flag:req.query.purchasetypeflag,
     Inward_Bill_Number:req.query.inwardno,
     Inward_Register_Date:req.query.inwarddate,
     PO_Number:req.query.ponumber,

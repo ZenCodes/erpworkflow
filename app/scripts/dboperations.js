@@ -287,7 +287,8 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
 
       for(var i=0;i<rows.length;i++)
       {
-        var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","containerreceived":"","containeraccepted":"","contmeasure":"","qtymeasure":"","ctrreceived":"","qtyyreceived":""};
+        var obj={"purchasetypeflag":"","inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","containerreceived":"","containeraccepted":"","contmeasure":"","qtymeasure":"","ctrreceived":"","qtyyreceived":""};
+        obj.purchasetypeflag=rows[i].Purchase_Type_Flag;
         obj.inwardno=rows[i].Inward_Bill_Number;
         obj.inwarddate=rows[i].Inward_Register_Date;
         obj.ponumber=rows[i].PO_Number;
@@ -344,6 +345,8 @@ exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,news
       if((rows.length>0)&&(existflag=="false")){
         //console.log("Yes into....");
         response = {
+          Purchase_Type:rows[0].Purchase_Type,
+          Purchase_Type_Flag:rows[0].Purchase_Type_Flag,
           Inward_Bill_Number:rows[0].Inward_Bill_Number,
           Inward_Register_Date:rows[0].Inward_Register_Date,
           PO_Number:val4.PO_Number,
@@ -351,7 +354,7 @@ exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,news
           Supplier_ID:rows[0].Supplier_ID,
           Product_ID:rows[0].Product_ID,
           //Qty:rows[0].Qty,
-          GRAN_No:rows[0].GRAN_No,
+          //GRAN_No:rows[0].GRAN_No,
           Qty_Received:rows[0].Qty_Received,
           Qty_Accepted:rows[0].Qty_Accepted,
           unit:rows[0].unit,
@@ -362,7 +365,7 @@ exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,news
           new_Inward_Register_Number:rows[0].new_Inward_Register_Number,
           state:newstatus
         };
-        //console.log(response);
+        console.log(response);
         //Updating changed parameters of the current state items
         connection.query('UPDATE '+Config_tables[0]+' set ?,?,?,?,? WHERE  ? and ? and ? and ?',[val4,val5,val1,val2,val3,cond1,cond2,cond3,cond4], function(err, result){
           if(!err){
@@ -373,6 +376,7 @@ exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,news
               }
               else
               {
+                console.log('error.....'+err);
                 return callback("not updated");
                 //res.status(200).json({"flag":"not updated"});
               }
@@ -433,7 +437,9 @@ exports.FnPhysicqualifiedService=function(pagename,cond1,cond2,cond3,updatestatu
          obj.inwardno=rows[i].Inward_Bill_Number;
          obj.itemdes=rows[i].Product_ID;
          oldnewarr.push(obj);*/
-        var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
+        var obj={"purchasetype":"","purchasetypeflag":"","inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
+        obj.purchasetype=rows[i].Purchase_Type;
+        obj.purchasetypeflag=rows[i].Purchase_Type_Flag;
         obj.inwardno=rows[i].Inward_Bill_Number;
         obj.inwarddate=rows[i].Inward_Register_Date;
         obj.ponumber=rows[i].PO_Number;
@@ -462,7 +468,9 @@ exports.FnPhysicqualifiedService=function(pagename,cond1,cond2,cond3,updatestatu
     if(rows.length>0){
       for(var i=0;i<rows.length;i++)
       {
-        var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
+        var obj={"purchasetype":"","purchasetypeflag":"","inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
+        obj.purchasetype=rows[i].Purchase_Type;
+        obj.purchasetypeflag=rows[i].Purchase_Type_Flag;
         obj.inwardno=rows[i].Inward_Bill_Number;
         obj.inwarddate=rows[i].Inward_Register_Date;
         obj.ponumber=ponumber.PO_Number;

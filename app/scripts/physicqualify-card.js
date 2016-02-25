@@ -3,12 +3,15 @@
  */
 Polymer({is:"physicqualify-card",
   ready:function(){
+
     //Flag is setting to make PO read only and writable
     if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
       //localStorage.setItem("curr_sess_PONumber",this.pono);
+
       this.read = false;
     }
     if(sessionStorage.getItem("curr_sess_roleflag")!="1"){
+
       this.read = true;
     }
 
@@ -72,12 +75,21 @@ Polymer({is:"physicqualify-card",
   {
     //Response binding to the card
     var arr=e.detail.response;
+
     var commarr=[];
     var prodarr=[];
     var potempflag="";
     for(var i=0;i<arr.length;i++)
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
+      this.purchasetypeflag=arr[i].purchasetypeflag;
+
+      if(this.purchasetypeflag=="0")
+        this.isHidden=false;
+      else {
+        document.querySelector('.topright').style.marginTop='3%';
+        this.isHidden = true;
+      }
       obj.inwardno=arr[i].inwardno;
       obj.inwarddate=arr[i].inwarddate;
       obj.ponumber=arr[i].ponumber;

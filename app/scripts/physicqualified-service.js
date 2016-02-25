@@ -49,7 +49,9 @@
       this.length=rows.length;
       if(rows.length>0){
         for(var i=0;i<rows.length;i++){
-          var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
+          var obj={"purchasetype":"","purchasetypeflag":"","inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
+          obj.purchasetype=rows[i].purchasetype;
+          obj.purchasetypeflag=rows[i].purchasetypeflag;
           obj.inwardno=rows[i].inwardno;
           obj.inwarddate=rows[i].inwarddate;
           obj.ponumber=rows[i].ponumber;

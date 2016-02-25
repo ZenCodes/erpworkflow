@@ -30,6 +30,14 @@ Polymer({is:"physicqualifyread-card",
     for(var i=0;i<arr.length;i++)
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
+      this.purchasetypeflag=arr[i].purchasetypeflag;
+      //alert(this.purchasetypeflag);
+      if(this.purchasetypeflag=="0")
+        this.isHidden=false;
+      else {
+        document.querySelector('.topright').style.marginTop='4%';
+        this.isHidden = true;
+      }
       obj.inwardno=arr[i].inwardno;
       obj.inwarddate=arr[i].inwarddate;
       obj.ponumber=arr[i].ponumber;
