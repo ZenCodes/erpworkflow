@@ -35,6 +35,18 @@ app.post('/login-card', urlencodedParser, function (req, res) {
   });
 });
 
+//Method to fetch the items
+app.post("/itemlist-service",urlencodedParser,function(req,res){
+  console.log('itemlist service...');
+  //cond={state:req.query.status};
+  var FnFetchItemlistcall= require("./app/scripts/dboperations.js");
+  FnFetchItemlistcall.FnFetchItemlist("itemlist-service",function(returnval){
+      res.status(200).json({'itemarr': returnval});
+  });
+
+
+});
+
 app.post('/inwardregnoseq-service',urlencodedParser, function (req, res) {
 /*Getting data from the vehicle page*/
   response = {
@@ -65,9 +77,13 @@ app.post('/inwardregnoseq-service',urlencodedParser, function (req, res) {
 });
 app.post('/itemsave-service',urlencodedParser, function (req, res) {
   /*receiving values from item page*/
-  console.log(req.query.qtymeasure);
-  console.log(req.query.unitmeasure);
+  //console.log(req.query.qtymeasure);
+  //console.log(req.query.unitmeasure);
   response = {
+    Purchase_Type:req.query.purchasetype,
+    Purchase_Type_Flag:req.query.purchasetypeflag,
+    PO_Date:req.query.podate,
+    PO_Number:req.query.ponumber,
     Inward_Bill_Number:req.query.invoiceno,
     Inward_Register_Date:req.query.invoicedate,
     Supplier_ID:req.query.supplier,

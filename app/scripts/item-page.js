@@ -34,7 +34,7 @@
       this.vname=vname;
       this.dname=dname;
       this.dno=dno
-      //alert(this.vno+"  "+this.vname+"  "+this.dname+"  "+this.dno);
+      //alert(this.vno+"  "+this.vname+" an "+this.dname+"  "+this.dno);
     },
     FnSetIteminfo:function(container,qtyreceived,remark){
       this.flag=1;
@@ -42,10 +42,23 @@
       this.qtyreceived=qtyreceived;
       this.remark=remark;
     },
-    FnSetMenuinfo:function(itemdes,unit,measure){
+    FnSetMenuinfo:function(itemdes,unit,measure,itemid,ponumber,purchasetype,purchasetypeflag){
       //alert(itemdes+"  "+unit);
       this.unit=unit;
       this.measure=measure;
+      this.itemid=itemid;
+      //alert(ponumber);
+      this.purchasetype=purchasetype;
+      this.purchasetypeflag=purchasetypeflag;
+      if(purchasetypeflag=='1'){
+        //localStorage.setItem("curr_sess_purchasetypeflag","1");
+        this.podate=localStorage.getItem("localsess_curr_inwarddate");
+        this.ponumber=ponumber;
+      }
+      else{
+        this.podate=null;
+        this.ponumber=null;
+      }
       localStorage.setItem("curr_sess_showunitvalue",unit);
       localStorage.setItem("curr_sess_showmeasurevalue",measure);
       this.itemflag=1;
@@ -102,7 +115,11 @@
           }
         }
         if(existflag==0){
-          var obj={"invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          obj.purchasetype=this.purchasetype;
+          obj.purchasetypeflag=this.purchasetypeflag;
+          obj.podate=this.podate;
+          obj.ponumber=this.ponumber;
           obj.invoiceno=this.invoiceno;
           obj.invoicedate=this.invoicedate;
           obj.supplier=this.supname;
@@ -173,7 +190,11 @@
             }
           }
           if(existflag==0){
-            var obj={"invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            obj.purchasetype=this.purchasetype;
+            obj.purchasetypeflag=this.purchasetypeflag;
+            obj.podate=this.podate;
+            obj.ponumber=this.ponumber;
             obj.invoiceno=this.invoiceno;
             obj.invoicedate=this.invoicedate;
             obj.supplier=this.supname;

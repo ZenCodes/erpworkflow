@@ -109,6 +109,33 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 
 }
 
+//Method to fetch the items from master table
+exports.FnFetchItemlist=function(pagename,callback) {
+  connection.query('SELECT * from MD_Item', function (err, rows) {
+    if (!err) {
+    var itemarr = [];
+    for (var i = 0; i < rows.length; i++) {
+      var obj = {"itemid": "", "itemname": "", "itemdes": "","itemtype":"","container":"","uom":"","itemgroup":"","itempurchasetype":"","purchasetypeflag":""};
+      obj.itemid = rows[i].Item_ID;
+      obj.itemname = rows[i].Item_Name;
+      obj.itemdes = rows[i].Item_Description;
+      obj.itemtype = rows[i].Item_Type_ID;
+      obj.container = rows[i].Container;
+      obj.uom = rows[i].UOM;
+      obj.itemgroup = rows[i].Item_Group_ID;
+      obj.itempurchasetype = rows[i].Item_Purchase_Type_ID;
+      obj.purchasetypeflag = rows[i].Purchase_Type_Flag;
+      itemarr.push(obj);
+    }
+      //console.log("no...."+rows[0].PO_Number);
+     if(itemarr.length>0)
+       return callback(itemarr);
+      //res.status(200).json(itemarr);
+      else
+       return callback("no items");
+    }
+  });
+}
 
 exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
   //Fetching tables from config file

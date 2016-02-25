@@ -7,19 +7,27 @@
   this.val="";
   var item=[];
   var temp=[];
+
   Polymer({is:"autocompleteitemlist-card",
     ready:function(){
-      if(sessionStorage.getItem("curr_sess_roleflag")=="manager") {
+
+      this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+
+      /*if(sessionStorage.getItem("curr_sess_roleflag")=="manager") {
         this.url = "../../config/items.json";
       }
       if(localStorage.getItem("curr_sess_wardflag")!="1")
       this.url="../../config/items.json";
       if(localStorage.getItem("curr_sess_wardflag")=="1")
-      this.url="../../config/outwarditems.json";
+      this.url="../../config/outwarditems.json";*/
       this.itemval="";
       this.unit="";
       this.measure="";
       this.itemflag="false";
+      this.itemid="";
+      this.ponumber="";
+      this.purchasetype="";
+      this.purchasetypeflag="";
       //Initially hiding dropdown list
       this.querySelector('paper-listbox').style.visibility='hidden';
     },
@@ -29,15 +37,19 @@
       if(e.target.selectedItem.textContent.trim()!="No items found") {
         this.value = e.target.selectedItem.textContent.trim();
         for (var i = 0; i < item.length; i++) {
-          if (item[i].name == this.value) {
-            this.unit = item[i].unit;
-            this.measure = item[i].measure;
+          if (item[i].itemname == this.value) {
+            this.unit = item[i].uom;
+            this.measure = item[i].container;
+            this.itemid = item[i].itemid;
+            this.ponumber=item[i].itemgroup;
+            this.purchasetype = item[i].itempurchasetype;
+            this.purchasetypeflag = item[i].purchasetypeflag;
           }
         }
         //To extract the unit of the item dynamically according to the item selection in list
         if (localStorage.getItem("curr_sess_wardflag") != "1") {
         //Binding values to the item page value and unit
-        document.querySelector('item-page').FnSetMenuinfo(this.value, this.unit,this.measure);
+        document.querySelector('item-page').FnSetMenuinfo(this.value, this.unit,this.measure,this.itemid,this.ponumber,this.purchasetype,this.purchasetypeflag);
         //document.querySelector('item-card').FnSetInputunitmeasure(this.unit,this.measure);
       }
         if(localStorage.getItem("curr_sess_wardflag")=="1") {
@@ -84,13 +96,13 @@
 
           for(var i=0;i<item.length;i++)
           {
-            var subval=((item[i].name).trim()).substring(0,backsubval.length);
+            var subval=((item[i].itemname).trim()).substring(0,backsubval.length);
 
             if(subval==backsubval)
             {
 
               var obj={"itemdes":""};
-              obj.itemdes=item[i].name;
+              obj.itemdes=item[i].itemname;
               arr.push(obj);
             }
           }
@@ -109,12 +121,12 @@
         if(this.itemval.length>0)
         {
           for(var i=0;i<item.length;i++){
-            var subval=((item[i].name).trim()).substring(0,this.itemval.length);
+            var subval=((item[i].itemname).trim()).substring(0,this.itemval.length);
 
             if(subval==this.itemval)
             {
               var obj={"itemdes":""};
-              obj.itemdes=item[i].name;
+              obj.itemdes=item[i].itemname;
               arr.push(obj);
             }
           }
@@ -133,7 +145,7 @@
     //Fetches and binding to the auto complete dropdown list dynamically
     itemlistreadResponse:function(e)
     {
-      if (sessionStorage.getItem("curr_sess_roleflag") == "manager") {
+      /*if (sessionStorage.getItem("curr_sess_roleflag") == "manager") {
         item=item.concat(e.detail.response.items);
       if(flag==0) {
           this.url="../../config/outwarditems.json";
@@ -141,9 +153,9 @@
           flag = flag + 1;
       }
       }
-      else{
-        item= e.detail.response.items;
-      }
+      else{*/
+        item= e.detail.response.itemarr;
+      //}
       //alert(JSON.stringify(item));
     },
     setDefaultval:function(){
