@@ -16,6 +16,29 @@
       on-response="additemwriteResponse">
     </iron-ajax>
 
+
+    <iron-ajax
+      auto
+      id="additemreadajax"
+      url="{{readurl}}"
+      params='{{readparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="additemreadResponse">
+    </iron-ajax>
+
+    <iron-ajax
+      auto
+      id="additemgroupreadajax"
+      url="{{groupurl}}"
+      params='{{groupparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="additemgroupreadResponse">
+    </iron-ajax>
+
 <dialog-page id="dialogpage"></dialog-page>
   </template>
 

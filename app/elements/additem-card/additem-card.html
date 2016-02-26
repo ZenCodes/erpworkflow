@@ -91,9 +91,25 @@
           <paper-input label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-input label="{{item.Item_Group}}" name="itemgroup" value="{{itemgroup}}" required  id="itemgroup" error-message="{{item.Item_Group_error}}"></paper-input>
-          <paper-input label="{{item.Item_Type}}" name="itemtype" value="{{itemtype}}" required  id="itemtype" error-message="{{item.Item_Type_error}}"></paper-input>
+          <paper-dropdown-menu label="Item Type Name" on-iron-select="selecttype">
+            <paper-menu class="dropdown-content" on-select="selecttype">
+              <template is="dom-repeat" items="{{itemarr}}">
+              <paper-item>{{item.itemtypename}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <!--<paper-input label="{{item.Item_Group}}" name="itemgroup" value="{{itemgroup}}" required  id="itemgroup" error-message="{{item.Item_Group_error}}"></paper-input>
+          <paper-input label="{{item.Item_Type}}" name="itemtype" value="{{itemtype}}" required  id="itemtype" error-message="{{item.Item_Type_error}}"></paper-input>-->
         </div>
+        <div class="owner">
+          <paper-dropdown-menu label="Item Group Name">
+            <paper-menu class="dropdown-content" on-iron-select="selectgrouptype">
+              <template is="dom-repeat" items="{{itemgrouparr}}">
+                <paper-item>{{item.itemgroupname}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">
@@ -109,7 +125,7 @@
     </template>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
-  <admin-service id="adminservice"></admin-service>
+    <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}"></admin-service>
   </template>
   <!--JS File import-->
   <script src="../../scripts/additem-card.js"> </script>

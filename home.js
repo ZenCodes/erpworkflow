@@ -420,6 +420,23 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
 
 });
 
+
+app.post('/additemread-service',urlencodedParser, function (req, res) {
+console.log("yes");
+  var FnAddItemReadcall = require("./app/scripts/dboperations.js");
+  FnAddItemReadcall.FnAddItemRead("additemread-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+app.post('/additemgroupread-service',urlencodedParser, function (req, res) {
+  console.log("yes");
+  var FnAddItemgroupReadcall = require("./app/scripts/dboperations.js");
+  FnAddItemgroupReadcall.FnAddItemgroupRead("additemgroupread-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
 //Node server running port number
 app.listen(4000);
 

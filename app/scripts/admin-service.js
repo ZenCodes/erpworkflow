@@ -5,6 +5,8 @@
   Polymer({
     is: "admin-service",
     ready: function () {
+      this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
+      this.groupurl=sessionStorage.getItem("curr_sess_url")+"additemgroupread-service";
     },
     callItemWriteService:function(itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
 
@@ -30,6 +32,26 @@
       this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
+    },
+    callItemReadService:function(){
+      this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
+      this.$.additemreadajax.generateRequest();
+    },
+    additemreadResponse:function(e) {
+      var itemarray=e.detail.response.itemarr;
+      document.querySelector('additem-card').itemarr=itemarray;
+    //alert(e.detail.response);
+    },
+
+    callItemgroupReadService:function(){
+      this.groupurl=sessionStorage.getItem("curr_sess_url")+"additemgroupread-service";
+      this.$.additemgroupreadajax.generateRequest();
+    },
+    additemgroupreadResponse:function(e) {
+      var itemgrouparray=e.detail.response.itemarr;
+      document.querySelector('additem-card').itemgrouparr=itemgrouparray;
+      //alert(e.detail.response);
     }
+
   });
 })();

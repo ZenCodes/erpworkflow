@@ -1075,3 +1075,47 @@ exports.FnAddItemWrite=function(pagename,response,callback) {
     }
   });
 }
+
+
+exports.FnAddItemRead=function(pagename,callback) {
+
+  connection.query('select * from MD_Item_Type',function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"itemtypeid":"","itemtypename":""};
+        obj.itemtypeid=rows[i].Item_Type_ID;
+        obj.itemtypename=rows[i].Item_Type_Name;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+      return callback(itemarr);
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}
+exports.FnAddItemgroupRead=function(pagename,callback) {
+
+  connection.query('select * from MD_Item_Group',function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"itemgroupid":"","itemgroupname":""};
+        obj.itemgroupid=rows[i].Item_Group_ID;
+        obj.itemgroupname=rows[i].Item_Group_Name;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+      return callback(itemarr);
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}

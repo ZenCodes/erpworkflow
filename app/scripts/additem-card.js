@@ -7,10 +7,45 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
+    this.$.adminservice.callItemReadService();
+    this.$.adminservice.callItemgroupReadService();
     //Setting current page in session for fetching labels dynamically
     localStorage.setItem("curr_sess_showpage","additem-card");
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
+  },
+  selecttype:function(e){
+    var itemarray=this.itemarr;
+    //alert(itemarray);
+    this.itemtypename=(e.target.selectedItem.textContent).trim();
+    for(var i=0;i<itemarray.length;i++)
+    {
+      //alert(itemarray[i].itemtypename);
+      //alert(this.itemtypename);
+
+      if(itemarray[i].itemtypename==this.itemtypename) {
+        this.itemtype = itemarray[i].itemtypeid;
+        alert(this.itemtype);
+
+      }
+
+    }
+  },
+  selectgrouptype:function(e){
+    var itemgrouparray=this.itemgrouparr;
+    this.itemgroupname=(e.target.selectedItem.textContent).trim();
+    for(var i=0;i<itemgrouparray.length;i++)
+    {
+      //alert(itemgrouparray[i].itemgroupname);
+      //alert(this.itemgroupname);
+
+      if(itemgrouparray[i].itemgroupname==this.itemgroupname) {
+        this.itemgroup = itemgrouparray[i].itemgroupid;
+        alert(this.itemgroup);
+
+      }
+
+    }
   },
   FnAddItemInfoSubmit:function()
   {
@@ -19,8 +54,8 @@ Polymer({
     document.querySelector('#itemdes').validate();
     document.querySelector('#container').validate();
     document.querySelector('#quantity').validate();
-    document.querySelector('#itemgroup').validate();
-    document.querySelector('#itemtype').validate();
+    //document.querySelector('#itemgroup').validate();
+    //document.querySelector('#itemtype').validate();
 
   //alert(document.querySelector('#radio').selected);
     //alert(this.$.adminservice);
