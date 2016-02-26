@@ -398,6 +398,28 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
   });
 });
 
+
+app.post("/additem-service",urlencodedParser,function(req,res) {
+
+  response = {
+    Item_ID:req.query.itemid,
+    Item_Name:req.query.itemname,
+    Item_Description:req.query.itemdes,
+    Container:req.query.container,
+    UOM:req.query.quantity,
+    Item_Group_ID:req.query.itemgroup,
+    Item_Type_ID:req.query.itemtype,
+    Item_Purchase_Type_ID:req.query.purchasetype,
+    Purchase_Type_Flag:req.query.itemflag
+
+  };
+  var FnAddItemWritecall = require("./app/scripts/dboperations.js");
+  FnAddItemWritecall.FnAddItemWrite("additem-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
 //Node server running port number
 app.listen(4000);
 

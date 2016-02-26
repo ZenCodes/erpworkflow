@@ -1,0 +1,117 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<dom-module id="additem-card" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:2%;
+      }
+      .driver{
+        @apply(--layout-horizontal);
+      }
+      .owner,.type{
+        @apply(--layout-horizontal);
+      }
+      paper-input{
+        text-align: left;
+        width: 35%;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+      .topbanner{
+        @apply(--layout-horizontal);
+        margin-left:55%;
+        width: 50%;
+        margin-top: -5%;
+      }
+      .datetitle{
+        margin-left: 78%;
+      }
+      #datetitle{
+        font-size: 13px;
+        color: blue;
+      }
+      #itemdes,#quantity,#itemtype{
+        margin-left: 5%;
+      }
+      paper-input{
+        --paper-input-container-label: { color: red };
+      }
+      .type{
+        margin-top: 1%;
+      }
+      .ptype{
+
+      }
+      .radio{
+        margin-top:2%;
+      }
+
+    </style>
+    <!--Component for listenen to keyboard enter event-->
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>
+    <!--This template binding dynamic labels and error messages-->
+    <template is="dom-repeat" items="{{label}}">
+      <div class="card">
+        <paper-input label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
+        <div class="driver">
+          <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>
+          <paper-input label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input label="{{item.Container}}" name="container" value="{{container}}" required  id="container" error-message="{{item.Container_error}}"></paper-input>
+          <paper-input label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input label="{{item.Item_Group}}" name="itemgroup" value="{{itemgroup}}" required  id="itemgroup" error-message="{{item.Item_Group_error}}"></paper-input>
+          <paper-input label="{{item.Item_Type}}" name="itemtype" value="{{itemtype}}" required  id="itemtype" error-message="{{item.Item_Type_error}}"></paper-input>
+        </div>
+        <div class="type">
+          <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
+          <div class="radio">
+            <paper-radio-group selected="{{selection}}" id="radio">
+          <paper-radio-button noink name="{{item.Regular}}">{{item.Regular}}</paper-radio-button>
+          <paper-radio-button noink name="{{item.Spot}}">{{item.Spot}}</paper-radio-button>
+            </paper-radio-group>
+          </div>
+        </div>
+
+        <paper-button on-click="FnAddItemInfoSubmit">Create</paper-button>
+      </div>
+    </template>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
+  <admin-service id="adminservice"></admin-service>
+  </template>
+  <!--JS File import-->
+  <script src="../../scripts/additem-card.js"> </script>
+
+</dom-module>

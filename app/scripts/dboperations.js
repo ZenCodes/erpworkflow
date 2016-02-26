@@ -1058,3 +1058,20 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,callback) {
   });
 
 }
+
+
+exports.FnAddItemWrite=function(pagename,response,callback) {
+  connection.query('insert into MD_Item set ?',[response],function(err,result){
+    if(!err)
+    {
+      //console.log("Inserted!"+idd);
+      return callback("succ");
+      //res.status(200).json({'outwardregno': idd});
+    }
+    else{
+      //console.log("Not Inserted!"+idd+err);
+      return callback("fail");
+      //res.status(200).json({'outwardregno': 'not okay'});
+    }
+  });
+}

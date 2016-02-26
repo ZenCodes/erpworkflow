@@ -39,6 +39,11 @@ Polymer({
       sessionStorage.setItem("curr_sess_roleflag",'manager');
       window.location.href="elements/indexhome.html";
     }
+    else if(this.username=='admin'&&this.password=='admin'){
+      sessionStorage.setItem("loggeduser",this.username);
+      sessionStorage.setItem("curr_sess_roleflag",'admin');
+      window.location.href="elements/indexhome.html";
+    }
     else
       this.$.Form_Login.submit();
 

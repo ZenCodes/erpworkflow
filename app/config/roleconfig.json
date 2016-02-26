@@ -39,6 +39,11 @@
         "newstatus":"OldPurchase",
         "updatestatus":"Confirm",
         "menu" : ["GRN Flow"]
+      },
+      {
+        "rolename": "Admin",
+        "RoleFlag": "5"
+
       }
     ]
   },

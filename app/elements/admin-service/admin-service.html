@@ -1,0 +1,23 @@
+//Component import
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
+
+<dom-module id="admin-service">
+  <template>
+    <!--Component which makes req to read the items belongs to the currently logged role state-->
+    <iron-ajax
+      id="additemwriteajax"
+      url="{{url}}"
+      params='{{param}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="additemwriteResponse">
+    </iron-ajax>
+
+<dialog-page id="dialogpage"></dialog-page>
+  </template>
+
+  <script src="../../scripts/admin-service.js"></script>
+</dom-module>

@@ -1,0 +1,47 @@
+<!--Importing components-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+
+<link rel="import" href="../additem-card/additem-card.html">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="admin-page">
+  <template>
+    <style is="custom-style">
+
+      .contentbanner{
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 5%;
+      }
+
+    </style>
+
+    <!--Base page for grn workflow-->
+    <div class="contentbanner">
+      <iron-pages selected="{{page}}" attr-for-selected="data-category">
+
+        <!--Section for showing add intent page to the corrsponding role-->
+        <section data-category="additem-card">
+          <additem-card></additem-card>
+        </section>
+
+      </iron-pages>
+    </div>
+
+  </template>
+  <!--JS file import for this page-->
+  <script src="../../scripts/admin-page.js"></script>
+
+</dom-module>
