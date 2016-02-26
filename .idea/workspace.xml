@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" afterPath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" afterPath="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/additem-card.js" afterPath="$PROJECT_DIR$/app/scripts/additem-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/admin-service.js" afterPath="$PROJECT_DIR$/app/scripts/admin-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +26,8 @@
       <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70689654">
-              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.8241379">
+              <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -963,8 +958,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70689654">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.8241379">
+          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
           <folding />
         </state>
       </provider>

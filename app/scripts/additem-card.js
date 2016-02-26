@@ -25,7 +25,7 @@ Polymer({
 
       if(itemarray[i].itemtypename==this.itemtypename) {
         this.itemtype = itemarray[i].itemtypeid;
-        alert(this.itemtype);
+       // alert(this.itemtype);
 
       }
 
@@ -41,7 +41,7 @@ Polymer({
 
       if(itemgrouparray[i].itemgroupname==this.itemgroupname) {
         this.itemgroup = itemgrouparray[i].itemgroupid;
-        alert(this.itemgroup);
+       // alert(this.itemgroup);
 
       }
 
