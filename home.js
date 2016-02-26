@@ -422,7 +422,7 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
 
 
 app.post('/additemread-service',urlencodedParser, function (req, res) {
-console.log("yes");
+
   var FnAddItemReadcall = require("./app/scripts/dboperations.js");
   FnAddItemReadcall.FnAddItemRead("additemread-service",function(returnval){
     res.status(200).json({'itemarr': returnval});
@@ -430,12 +430,49 @@ console.log("yes");
 });
 
 app.post('/additemgroupread-service',urlencodedParser, function (req, res) {
-  console.log("yes");
+
   var FnAddItemgroupReadcall = require("./app/scripts/dboperations.js");
   FnAddItemgroupReadcall.FnAddItemgroupRead("additemgroupread-service",function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
+
+
+app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
+  if(req.query.itemid!="")
+  {
+    cond={"Item_ID":req.query.itemid}
+  }
+  if(req.query.itemname!="")
+  {
+    cond={"Item_Name":req.query.itemname}
+  }
+  var FnAddsearchItemcall = require("./app/scripts/dboperations.js");
+  FnAddsearchItemcall.FnAddsearchItem("addsearchitem-service",cond,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+app.post("/additemupdate-service",urlencodedParser,function(req,res) {
+    cond={"Item_ID":req.query.itemid}
+  response = {
+    Item_ID:req.query.itemid,
+    Item_Name:req.query.itemname,
+    Item_Description:req.query.itemdes,
+    Container:req.query.container,
+    UOM:req.query.quantity,
+    Item_Group_ID:req.query.itemgroup,
+    Item_Type_ID:req.query.itemtype,
+    Item_Purchase_Type_ID:req.query.purchasetype
+
+  };
+  var FnAddItemUpdatecall = require("./app/scripts/dboperations.js");
+  FnAddItemUpdatecall.FnAddItemUpdate("additemupdate-service",cond,response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
 
 //Node server running port number
 app.listen(4000);

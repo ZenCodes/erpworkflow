@@ -39,6 +39,27 @@
       on-response="additemgroupreadResponse">
     </iron-ajax>
 
+    <iron-ajax
+      id="additemsearchajax"
+      url="{{searchurl}}"
+      params='{{searchparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="additemsearchResponse">
+    </iron-ajax>
+
+
+    <iron-ajax
+      id="additemupdateajax"
+      url="{{updateurl}}"
+      params='{{updateparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="additemupdateResponse">
+    </iron-ajax>
+
 <dialog-page id="dialogpage"></dialog-page>
   </template>
 

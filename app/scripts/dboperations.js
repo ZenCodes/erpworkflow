@@ -1119,3 +1119,55 @@ exports.FnAddItemgroupRead=function(pagename,callback) {
   //console.log(Config_tables);
 
 }
+
+
+exports.FnAddsearchItem=function(pagename,cond,callback) {
+
+  connection.query('select * from MD_Item where ?',[cond],function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      if(rows.length>0){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+        obj.itemid=rows[i].Item_ID;
+        obj.itemname=rows[i].Item_Name;
+        obj.itemdes=rows[i].Item_Description;
+        obj.container=rows[i].Container;
+        obj.quantity=rows[i].UOM;
+        obj.itemgroup=rows[i].Item_Group_ID;
+        obj.itemtype=rows[i].Item_Type_ID;
+        obj.purchasetype=rows[i].Item_Purchase_Type_ID;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+        return callback(itemarr);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}
+
+
+
+exports.FnAddItemUpdate=function(pagename,cond,response,callback) {
+  connection.query('update MD_Item set ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      //console.log("Inserted!"+idd);
+      return callback("succ");
+      //res.status(200).json({'outwardregno': idd});
+    }
+    else{
+      //console.log("Not Inserted!"+idd+err);
+      return callback("fail");
+      //res.status(200).json({'outwardregno': 'not okay'});
+    }
+  });
+}

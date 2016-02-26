@@ -105,10 +105,10 @@
           <paper-input label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-dropdown-menu label="Item Type Name" on-iron-select="selecttype">
-            <paper-menu class="dropdown-content" on-select="selecttype">
+          <paper-dropdown-menu label="{{itemtype}}">
+            <paper-menu class="dropdown-content"  on-iron-select="selecttype"  attr-for-selected="value" selected="{{itemtype}}">
               <template is="dom-repeat" items="{{itemarr}}">
-              <paper-item>{{item.itemtypename}}</paper-item>
+              <paper-item value="{{item.itemtypename}}">{{item.itemtypename}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>
@@ -116,10 +116,10 @@
           <paper-input label="{{item.Item_Type}}" name="itemtype" value="{{itemtype}}" required  id="itemtype" error-message="{{item.Item_Type_error}}"></paper-input>-->
         </div>
         <div class="owner">
-          <paper-dropdown-menu label="Item Group Name">
-            <paper-menu class="dropdown-content" on-iron-select="selectgrouptype">
+          <paper-dropdown-menu label="{{itemgroup}}">
+            <paper-menu class="dropdown-content" on-iron-select="selectgrouptype" attr-for-selected="value" selected="{{itemgroup}}">
               <template is="dom-repeat" items="{{itemgrouparr}}">
-                <paper-item>{{item.itemgroupname}}</paper-item>
+                <paper-item value="{{item.itemtypename}}">{{item.itemgroupname}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>

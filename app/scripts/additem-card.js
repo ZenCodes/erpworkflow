@@ -7,7 +7,8 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
-
+    this.itemtype="Select Item Type";
+    this.itemgroup="Select Item Group";
     this.$.adminservice.callItemReadService();
     this.$.adminservice.callItemgroupReadService();
     //Setting current page in session for fetching labels dynamically
@@ -16,10 +17,12 @@ Polymer({
     this.$.ID_Webcomponent_Service.callWebcomponentService();
   },
   FnSearchItemId:function(e){
-
+    localStorage.setItem("curr_sess_searchitemflag","1");
+    this.$.adminservice.callSearchService(this.itemid,"");
   },
   FnSearchItemName:function(e){
-
+    localStorage.setItem("curr_sess_searchitemflag","1");
+    this.$.adminservice.callSearchService("",this.itemname);
   },
   selecttype:function(e){
     var itemarray=this.itemarr;
@@ -73,12 +76,29 @@ Polymer({
     this.itemflag="0";
     else
     this.itemflag="1";
-    this.$.adminservice.callItemWriteService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-  }
+    if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
+      //alert("save");
+      this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+    }
+      if(localStorage.getItem("curr_sess_searchitemflag")=="1")
+      {
+        //alert("update");
+
+        this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      }
+
+      }
   },
   FnBtnDisable:function(){
     document.querySelector('#save').style.backgroundColor='grey';
 
     this.Btn_disable_flag=true;
+  },
+  setSelectedItem:function(itemtype,itemgroup,selection){
+    this.itemtype=itemtype;
+    this.itemgroup=itemgroup;
+    this.selection=selection;
   }
+
+
 });
