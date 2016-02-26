@@ -4,7 +4,7 @@
 Polymer({
   is: "viewtype-card",
   ready:function() {
-    if (sessionStorage.getItem("loggedrole") == "Security guard"||localStorage.getItem("curr_sess_wardflag")=="2") {
+    if (sessionStorage.getItem("loggedrole") == "Security guard"||localStorage.getItem("curr_sess_wardflag")=="2"||sessionStorage.getItem("curr_sess_roleflag")=="admin") {
       this.$.create.style.visibility = 'visible';
       //this.$.list.style.visibility='hidden';
     }
@@ -32,6 +32,11 @@ Polymer({
       //document.querySelector('my-app').setPage("outwardslip-page");
       //document.querySelector('outwardslip-page').setPage("Customer Info");
     }
-    
+    if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
+      window.location.href="indexhome.html";
+
+    }
+
+
   }
 });

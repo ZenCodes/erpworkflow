@@ -28,8 +28,10 @@
     },
     additemwriteResponse:function(e){
 
-      if(e.detail.response.returnval=="succ")
+      if(e.detail.response.returnval=="succ"){
+        document.querySelector("additem-card").FnBtnDisable();
       this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+      }
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
     },

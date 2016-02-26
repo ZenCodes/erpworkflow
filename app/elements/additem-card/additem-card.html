@@ -6,6 +6,7 @@
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
@@ -25,7 +26,7 @@
         color: black;
         width: 80%;
         left: 10%;
-        margin-top:2%;
+        margin-top:-2%;
       }
       .driver{
         @apply(--layout-horizontal);
@@ -66,7 +67,9 @@
         --paper-input-container-label: { color: red };
       }
       .type{
+        color:red;
         margin-top: 1%;
+        margin-left: -2%;
       }
       .ptype{
 
@@ -74,16 +77,27 @@
       .radio{
         margin-top:2%;
       }
+      paper-dropdown-menu{
+        //background-color: red;
+      }
+      :host{
 
+        --paper-input-container-label: {
+          color:red;
+        }}
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>
     <!--This template binding dynamic labels and error messages-->
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
-        <paper-input label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
+        <paper-input label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
+          <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
+        </paper-input>
         <div class="driver">
-          <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>
+          <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
+            <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
+          </paper-input>
           <paper-input label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
         </div>
         <div class="owner">
@@ -120,7 +134,7 @@
           </div>
         </div>
 
-        <paper-button on-click="FnAddItemInfoSubmit">Create</paper-button>
+        <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddItemInfoSubmit">Save</paper-button>
       </div>
     </template>
     <!--Component included here for  calling webcomponnet service to fetch labels-->

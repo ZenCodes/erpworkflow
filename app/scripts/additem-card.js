@@ -7,12 +7,19 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
+
     this.$.adminservice.callItemReadService();
     this.$.adminservice.callItemgroupReadService();
     //Setting current page in session for fetching labels dynamically
     localStorage.setItem("curr_sess_showpage","additem-card");
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
+  },
+  FnSearchItemId:function(e){
+
+  },
+  FnSearchItemName:function(e){
+
   },
   selecttype:function(e){
     var itemarray=this.itemarr;
@@ -68,5 +75,10 @@ Polymer({
     this.itemflag="1";
     this.$.adminservice.callItemWriteService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
   }
+  },
+  FnBtnDisable:function(){
+    document.querySelector('#save').style.backgroundColor='grey';
+
+    this.Btn_disable_flag=true;
   }
 });

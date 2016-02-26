@@ -9,6 +9,7 @@ Polymer({
     /*Condition which allow to see the search page and hide the respective components in UI*/
 
     if(sessionStorage.getItem("curr_sess_roleflag")=="manager"&&sessionStorage.getItem("curr_sess_roleflag")!="admin"){
+
       localStorage.setItem("curr_sess_showpage","Search Items");
       this.page="Search Items";
       this.$.flow.style.visibility='hidden';
@@ -18,10 +19,11 @@ Polymer({
       this.$.searchmenu.style.visibility='visible';
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
+
       localStorage.setItem("curr_sess_showpage","additem-card");
       this.page="admin-page";
       this.$.flow.style.visibility='hidden';
-      this.$.list.style.visibility='hidden';
+      this.$.list.style.visibility='visible';
       this.$.flowbutton.style.visibility='hidden';
       this.$.drawerlist.style.visibility='hidden';
       this.$.searchmenu.style.visibility='hidden';
@@ -30,6 +32,7 @@ Polymer({
     //if(sessionStorage.getItem("loggedrole")=="Security guard")
     if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&sessionStorage.getItem("curr_sess_roleflag")!="manager"&&sessionStorage.getItem("curr_sess_roleflag")!="admin")
     {
+
       /*Condtion to navigate to the inward item entry page when he initially logged in or changing options in drawer menu*/
       if(localStorage.getItem("curr_sess_wardflag")!="1"){
         localStorage.setItem("curr_sess_showpage","Vehicle Info");
@@ -50,6 +53,7 @@ Polymer({
     //if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")
     if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="manager"&&sessionStorage.getItem("curr_sess_roleflag")!="admin")
     {
+
       if(localStorage.getItem("curr_sess_wardflag")=="2"){
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
@@ -83,6 +87,7 @@ Polymer({
       this.$.flowbutton.style.visibility='hidden';
   },
   setFlowVisibility:function(flag){
+
     if(flag=="true")
       this.$.flow.style.visibility='visible';
     if(flag=="false")
