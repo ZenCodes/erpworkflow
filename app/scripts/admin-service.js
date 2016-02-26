@@ -32,6 +32,9 @@
         document.querySelector("additem-card").FnBtnDisable();
       this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
       }
+     else if(e.detail.response.returnval=="duplicate entry"){
+        this.$.dialogpage.FnShowDialog("Item ID already exists!!","");
+      }
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
     },

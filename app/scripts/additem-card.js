@@ -17,10 +17,12 @@ Polymer({
     this.$.ID_Webcomponent_Service.callWebcomponentService();
   },
   FnSearchItemId:function(e){
+
     localStorage.setItem("curr_sess_searchitemflag","1");
     this.$.adminservice.callSearchService(this.itemid,"");
   },
   FnSearchItemName:function(e){
+
     localStorage.setItem("curr_sess_searchitemflag","1");
     this.$.adminservice.callSearchService("",this.itemname);
   },
@@ -77,12 +79,12 @@ Polymer({
     else
     this.itemflag="1";
     if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
-      //alert("save");
+
       this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
       if(localStorage.getItem("curr_sess_searchitemflag")=="1")
       {
-        //alert("update");
+
 
         this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
       }

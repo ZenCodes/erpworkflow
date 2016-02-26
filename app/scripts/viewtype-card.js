@@ -33,6 +33,7 @@ Polymer({
       //document.querySelector('outwardslip-page').setPage("Customer Info");
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
+      localStorage.setItem("curr_sess_searchitemflag","0");
       window.location.href="indexhome.html";
 
     }
