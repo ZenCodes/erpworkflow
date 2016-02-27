@@ -45,7 +45,7 @@ Polymer({
   itemlistreadResponse:function(e){
     //alert(JSON.stringify(e.detail.response));
     //this.itemArray= e.detail.response.itemarr;\
-
+    this.querySelector('paper-listbox').style.visibility='visible';
     var arr=[];
     var item=e.detail.response.itemarr;
     //alert(this.itemval);
@@ -54,7 +54,7 @@ Polymer({
       for(var i=0;i<item.length;i++){
         var subval=((item[i].itemname).trim()).substring(0,this.itemname.length);
 
-        if(subval==this.itemname)
+        if((subval).toLowerCase()==(this.itemname).toLowerCase())
         {
           var obj={"itemname":""};
           obj.itemname=item[i].itemname;

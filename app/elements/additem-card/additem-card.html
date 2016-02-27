@@ -107,12 +107,12 @@
     <!--This template binding dynamic labels and error messages-->
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
-        <paper-input readonly="{{read}}" label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
+        <paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
         </paper-input>
         <div class="driver">
           <div class="drop">
-         <div><paper-input style="width: 110%;" readonly="{{read}}" label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
+         <div><paper-input style="width: 110%;"  label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
             <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
           </paper-input></div>
           <div hidden$="{{isHidden}}"><paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">
@@ -161,6 +161,7 @@
       </div>
     </template>
     <iron-ajax
+
       method="post"
       params='{{param}}'
       id="itemlistreadajax"
