@@ -66,8 +66,8 @@
       <file leaf-file-name="additem-card.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8285199">
-              <caret line="164" column="76" selection-start-line="164" selection-start-column="76" selection-end-line="164" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.24548736">
+              <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
@@ -653,7 +653,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1072,8 +1072,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8285199">
-          <caret line="164" column="76" selection-start-line="164" selection-start-column="76" selection-end-line="164" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.24548736">
+          <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="4" />
           <folding>
             <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
