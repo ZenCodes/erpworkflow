@@ -4,10 +4,7 @@
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" afterPath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" afterPath="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/additem-card.js" afterPath="$PROJECT_DIR$/app/scripts/additem-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/admin-service.js" afterPath="$PROJECT_DIR$/app/scripts/admin-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app-homepage.js" afterPath="$PROJECT_DIR$/app/scripts/app-homepage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/viewtype-card.js" afterPath="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
     </list>
@@ -33,18 +30,8 @@
       <file leaf-file-name="viewtype-card.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/viewtype-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.518518">
-              <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app-homepage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/app-homepage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6666665">
-              <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+            <state vertical-scroll-proportion="-12.666667">
+              <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -53,8 +40,8 @@
       <file leaf-file-name="viewtype-card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4528303">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.1320753">
+              <caret line="35" column="87" selection-start-line="35" selection-start-column="87" selection-end-line="35" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -73,8 +60,8 @@
       <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.851852">
-              <caret line="1141" column="35" selection-start-line="1141" selection-start-column="35" selection-end-line="1141" selection-end-column="35" />
+            <state vertical-scroll-proportion="-16.37037">
+              <caret line="1160" column="45" selection-start-line="1160" selection-start-column="45" selection-end-line="1160" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -83,18 +70,20 @@
       <file leaf-file-name="additem-card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3207545">
-              <caret line="99" column="43" selection-start-line="99" selection-start-column="43" selection-end-line="99" selection-end-column="43" />
-              <folding />
+            <state vertical-scroll-proportion="-5.1320753">
+              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin-service.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin-service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5603448">
-              <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+            <state vertical-scroll-proportion="-20.222221">
+              <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -102,21 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.62963">
-              <caret line="428" column="3" selection-start-line="426" selection-start-column="55" selection-end-line="428" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.444445">
-              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.61551726">
+              <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -185,13 +164,13 @@
         <option value="$PROJECT_DIR$/app/config/webcomponents.json" />
         <option value="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" />
         <option value="$PROJECT_DIR$/home.js" />
-        <option value="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/app-homepage.js" />
-        <option value="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
-        <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/admin-service.js" />
+        <option value="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
+        <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
+        <option value="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
       </list>
     </option>
   </component>
@@ -366,6 +345,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="physicqualifyitem-card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="physicqualify-card" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -715,13 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3703704">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dbconfig.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.4150944">
@@ -775,13 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29422382">
           <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/physicqualify-card/physicqualify-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3207547">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -917,6 +904,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.029310346">
           <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -946,6 +934,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3068592">
           <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1007,22 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/viewtype-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.518518">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/autocompleteitemlist-card/autocompleteitemlist-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.264151">
-          <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/admin-service/admin-service.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.6415095">
@@ -1031,45 +1004,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html">
+    <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.4528303">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="73" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/physicqualify-card/physicqualify-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.93862814">
+          <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/autocompleteitemlist-card/autocompleteitemlist-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8867924">
+          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="30" selection-end-column="94" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3207545">
-          <caret line="99" column="43" selection-start-line="99" selection-start-column="43" selection-end-line="99" selection-end-column="43" />
-          <folding />
+        <state vertical-scroll-proportion="-5.1320753">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
+    <entry file="file://$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.851852">
-          <caret line="1141" column="35" selection-start-line="1141" selection-start-column="35" selection-end-line="1141" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.444445">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        <state vertical-scroll-proportion="-5.1320753">
+          <caret line="35" column="87" selection-start-line="35" selection-start-column="87" selection-end-line="35" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5603448">
-          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+        <state vertical-scroll-proportion="-20.222221">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.37037">
+          <caret line="1160" column="45" selection-start-line="1160" selection-start-column="45" selection-end-line="1160" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/viewtype-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61551726">
+          <caret line="135" column="5" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

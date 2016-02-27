@@ -1147,12 +1147,12 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
         obj.quantity=rows[i].UOM;
         typeid={Item_Type_ID:rows[i].Item_Type_ID};
         groupid={Item_Group_ID:rows[i].Item_Group_ID};
-        exports.FnFetchsearchItemtype(typeid,function(returnval){
+        //exports.FnFetchsearchItemtype(typeid,function(returnval){
           //console.log(returnval);
-        });
-        exports.FnFetchsearchItemgroup(groupid,function(returnval){
+        //});
+        //exports.FnFetchsearchItemgroup(groupid,function(returnval){
           //console.log(returnval);
-        });
+        //});
         obj.itemgroup=rows[i].Item_Type_ID;
         obj.itemtype=rows[i].Item_Group_ID;
         obj.purchasetype=rows[i].Item_Purchase_Type_ID;

@@ -1,4 +1,5 @@
 <!--Component import-->
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
@@ -10,6 +11,7 @@
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,10 +29,14 @@
         color: black;
         width: 80%;
         left: 10%;
-        margin-top:-2%;
+        margin-top:-8%;
       }
       .driver{
         @apply(--layout-horizontal);
+      }
+      .drop{
+        @apply(--layout-vertical);
+
       }
       .owner,.type{
         @apply(--layout-horizontal);
@@ -61,8 +67,12 @@
         font-size: 13px;
         color: blue;
       }
-      #itemdes,#quantity,#itemtype{
+      #quantity,#itemtype{
         margin-left: 5%;
+      }
+      #itemdes{
+        margin-left: 8%;
+        margin-top: 2%;
       }
       paper-input{
         --paper-input-container-label: { color: red };
@@ -86,6 +96,11 @@
         --paper-input-container-label: {
           color:red;
         }}
+      paper-listbox{
+        width: 100%;
+        background-color: whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>
@@ -96,14 +111,16 @@
           <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
         </paper-input>
         <div class="driver">
-          <paper-input readonly="{{read}}" label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
+          <div class="drop">
+         <div><paper-input style="width: 110%;" readonly="{{read}}" label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
             <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
-          </paper-input>
-          <!--<paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">-->
-            <!--<template is="dom-repeat" items="{{itemArray}}" as="name">-->
-              <!--<paper-item>{{name.itemname}}</paper-item>-->
-            <!--</template>-->
-          <!--</paper-listbox>-->
+          </paper-input></div>
+          <div hidden$="{{isHidden}}"><paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">
+            <template is="dom-repeat" items="{{itemArray}}" as="name">
+              <paper-item>{{name.itemname}}</paper-item>
+            </template>
+          </paper-listbox></div>
+          </div>
           <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
         </div>
         <div class="owner">
@@ -143,6 +160,15 @@
         <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddItemInfoSubmit">Save</paper-button>
       </div>
     </template>
+    <iron-ajax
+      method="post"
+      params='{{param}}'
+      id="itemlistreadajax"
+      url="{{url}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="itemlistreadResponse">
+    </iron-ajax>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
     <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}"></admin-service>

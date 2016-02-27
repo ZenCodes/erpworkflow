@@ -7,6 +7,7 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
+    this.isHidden=true;
     this.read=false;
     this.itemtype="Select Item Type";
     this.itemgroup="Select Item Group";
@@ -28,13 +29,62 @@ Polymer({
     this.$.adminservice.callSearchService(this.itemid,"");
   },
   FnSearchItemName:function(e){
+    this.isHidden=false;
     document.querySelector('#save').style.backgroundColor='grey';
     this.Btn_disable_flag=true;
     this.read=true;
     localStorage.setItem("curr_sess_searchitemflag","1");
     document.querySelector('viewtype-card').FnLabelChange();
+    this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+    var obj={"wardflag":""};
+    obj.wardflag="2";
+    this.param=obj;
+    this.$.itemlistreadajax.generateRequest();
+    //this.$.adminservice.callSearchService("",this.itemname);
+  },
+  itemlistreadResponse:function(e){
+    //alert(JSON.stringify(e.detail.response));
+    //this.itemArray= e.detail.response.itemarr;\
 
-    this.$.adminservice.callSearchService("",this.itemname);
+    var arr=[];
+    var item=e.detail.response.itemarr;
+    //alert(this.itemval);
+    if(this.itemname.length>0)
+    {
+      for(var i=0;i<item.length;i++){
+        var subval=((item[i].itemname).trim()).substring(0,this.itemname.length);
+
+        if(subval==this.itemname)
+        {
+          var obj={"itemname":""};
+          obj.itemname=item[i].itemname;
+          arr.push(obj);
+        }
+      }
+      if(arr.length>0)
+        this.itemArray=arr;
+      else
+      {
+        var obj={"itemname":""};
+        obj.itemname="No items found";
+        arr.push(obj);
+        this.itemArray=arr;
+      }
+    }
+
+  },
+  FnItemSelected:function(e){
+    if(e.target.selectedItem.textContent.trim()!="No items found") {
+      this.itemname = e.target.selectedItem.textContent.trim();
+      this.querySelector('paper-listbox').style.visibility='hidden';
+      this.querySelector('paper-listbox').selected=-1;
+      this.itemArray="";
+
+      if(this.itemname!="") {
+        alert(this.itemname)
+        this.$.adminservice.callSearchService("", this.itemname);
+      }
+    }
   },
   selecttype:function(e){
     var itemarray=this.itemarr;
@@ -73,19 +123,20 @@ Polymer({
     else
     this.itemflag="1";
     if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
-
+      //alert("save");
       this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
-      if(localStorage.getItem("curr_sess_searchitemflag")=="1")
-      {
-        this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-      }
-
-      }
+    if(localStorage.getItem("curr_sess_searchitemflag")=="1")
+    {
+      //alert("update");
+      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      document.querySelector("viewtype-card").FnViewlist();
+      localStorage.setItem("curr_sess_searchitemflag", "0");
+    }
+    }
   },
   FnBtnDisable:function(){
     document.querySelector('#save').style.backgroundColor='grey';
-
     this.Btn_disable_flag=true;
   },
   FnEnableFields:function(){

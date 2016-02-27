@@ -39,15 +39,17 @@ Polymer({
     if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
       //alert(localStorage.getItem("curr_sess_searchitemflag"));
       if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
-        //alert("yes");
+
         //localStorage.setItem("curr_sess_searchitemflag", "0");
         window.location.href = "indexhome.html";
       }
       else
       {
-        //alert("no");
+
         this.Label="Create";
-      document.querySelector('additem-card').FnEnableFields();
+        this.$.create.style.visibility = 'hidden';
+        //localStorage.setItem("curr_sess_searchitemflag", "0");
+        document.querySelector('additem-card').FnEnableFields();
       }
 
     }
