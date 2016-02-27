@@ -447,8 +447,20 @@ app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
   {
     cond={"Item_Name":req.query.itemname}
   }
+  var items;
+  var type;
   var FnAddsearchItemcall = require("./app/scripts/dboperations.js");
   FnAddsearchItemcall.FnAddsearchItem("addsearchitem-service",cond,function(returnval){
+     /*items=returnval;
+    var type=FnAddsearchItemcall.FnFetchsearchItemtype("addsearchitem-service",items[0].itemtype,function(returnval){
+      items[0].itemtype=returnval;
+
+      });
+    FnAddsearchItemcall.FnFetchsearchItemgroup("addsearchitem-service",items[0].itemgroup,function(returnval){
+      items[0].itemgroup=returnval;
+    });
+    console.log("hi...."+type);
+    console.log(items);*/
     res.status(200).json({'itemarr': returnval});
   });
 });

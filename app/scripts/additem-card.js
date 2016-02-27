@@ -197,7 +197,7 @@ Polymer({
     }
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
-      
+
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
@@ -212,8 +212,17 @@ Polymer({
     document.querySelector('#save').style.backgroundColor='#3d6868';
   },
   setSelectedItem:function(itemtype,itemgroup,selection){
-    this.itemtype=itemtype;
-    this.itemgroup=itemgroup;
+    //alert(JSON.stringify(this.itemarr));
+    //alert(JSON.stringify(this.itemgrouparr));
+    for(var i=0;i<this.itemarr.length;i++){
+      if(this.itemarr[i].itemtypeid==itemtype)
+        this.itemtype=this.itemarr[i].itemtypename;
+    }
+    for(var i=0;i<this.itemgrouparr.length;i++){
+      if(this.itemgrouparr[i].itemgroupid==itemgroup)
+        this.itemgroup=this.itemgrouparr[i].itemgroupname;
+    }
+
     this.selection=selection;
   }
 

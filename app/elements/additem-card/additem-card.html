@@ -97,7 +97,7 @@
           color:red;
         }}
       paper-listbox{
-        width: 100%;
+        width: 110%;
         background-color: whitesmoke;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
@@ -111,7 +111,7 @@
           <div><paper-input   label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
             <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
           </paper-input></div>
-          <div hidden$="{{isHiddenid}}"><paper-listbox id="searchid" style="width: 40%;" class="dropdown-content" on-iron-select="FnItemIdSelected">
+          <div hidden$="{{isHiddenid}}"><paper-listbox id="searchid" style="width: 35%;" class="dropdown-content" on-iron-select="FnItemIdSelected">
             <template is="dom-repeat" items="{{itemidArray}}" as="name">
               <paper-item>{{name.itemid}}</paper-item>
             </template>

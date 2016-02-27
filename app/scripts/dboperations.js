@@ -1186,18 +1186,20 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
   //console.log(Config_tables);
 }
 
-exports.FnFetchsearchItemtype=function(typeid,callback) {
-  connection.query('select * from MD_Item_Type where ?',[typeid],function(err, rows, fields) {
+exports.FnFetchsearchItemtype=function(pagename,typeid,callback) {
+  cond={"Item_Type_ID":typeid}
+
+  connection.query('select * from MD_Item_Type where ?',[cond],function(err, rows, fields) {
     if(!err){
       itemtype=rows[0].Item_Type_Name;
-      console.log(itemtype);
       return callback(itemtype);
     }
   });
 }
 
-exports.FnFetchsearchItemgroup=function(typeid,callback) {
-  connection.query('select * from MD_Item_Group where ?',[groupid],function(err, rows, fields) {
+exports.FnFetchsearchItemgroup=function(pagename,groupid,callback) {
+  cond={"Item_Group_ID":groupid}
+  connection.query('select * from MD_Item_Group where ?',[cond],function(err, rows, fields) {
     if(!err){
       itemgroup=rows[0].Item_Group_Name;
       return callback(itemgroup);
