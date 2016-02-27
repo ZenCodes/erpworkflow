@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/additem-card.js" afterPath="$PROJECT_DIR$/app/scripts/additem-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.222221">
-              <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5275862">
+              <caret line="1160" column="13" selection-start-line="1160" selection-start-column="13" selection-end-line="1160" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -90,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.029310346">
-              <caret line="89" column="40" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
+            <state vertical-scroll-proportion="-19.592592">
+              <caret line="204" column="31" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -164,12 +164,12 @@
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/app/scripts/admin-service.js" />
         <option value="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
         <option value="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/app-homepage.js" />
         <option value="$PROJECT_DIR$/app/scripts/drawermenu-card.js" />
         <option value="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
       </list>
     </option>
   </component>
@@ -653,7 +653,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1030,14 +1030,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.222221">
-          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/app-homepage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6189655">
@@ -1077,8 +1069,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029310346">
-          <caret line="89" column="40" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
+        <state vertical-scroll-proportion="-19.592592">
+          <caret line="204" column="31" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5275862">
+          <caret line="1160" column="13" selection-start-line="1160" selection-start-column="13" selection-end-line="1160" selection-end-column="13" />
           <folding />
         </state>
       </provider>
