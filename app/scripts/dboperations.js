@@ -1130,11 +1130,11 @@ exports.FnAddItemgroupRead=function(pagename,callback) {
 
 }
 
-
 exports.FnAddsearchItem=function(pagename,cond,callback) {
 
   connection.query('select * from MD_Item where ?',[cond],function(err, rows, fields) {
     var itemarr=[];
+
     if(!err){
       if(rows.length>0){
       for(var i=0;i<rows.length;i++)
@@ -1145,8 +1145,16 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
         obj.itemdes=rows[i].Item_Description;
         obj.container=rows[i].Container;
         obj.quantity=rows[i].UOM;
-        obj.itemgroup=rows[i].Item_Group_ID;
-        obj.itemtype=rows[i].Item_Type_ID;
+        typeid={Item_Type_ID:rows[i].Item_Type_ID};
+        groupid={Item_Group_ID:rows[i].Item_Group_ID};
+        exports.FnFetchsearchItemtype(typeid,function(returnval){
+          //console.log(returnval);
+        });
+        exports.FnFetchsearchItemgroup(groupid,function(returnval){
+          //console.log(returnval);
+        });
+        obj.itemgroup=rows[i].Item_Type_ID;
+        obj.itemtype=rows[i].Item_Group_ID;
         obj.purchasetype=rows[i].Item_Purchase_Type_ID;
         itemarr.push(obj);
       }
@@ -1161,10 +1169,25 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
       console.log(err);
   });
   //console.log(Config_tables);
-
 }
 
+exports.FnFetchsearchItemtype=function(typeid,callback) {
+  connection.query('select * from MD_Item_Type where ?',[typeid],function(err, rows, fields) {
+    if(!err){
+      itemtype=rows[0].Item_Type_Name;
+      return callback(itemtype);
+    }
+  });
+}
 
+exports.FnFetchsearchItemgroup=function(typeid,callback) {
+  connection.query('select * from MD_Item_Group where ?',[groupid],function(err, rows, fields) {
+    if(!err){
+      itemgroup=rows[0].Item_Group_Name;
+      return callback(itemgroup);
+    }
+  });
+}
 
 exports.FnAddItemUpdate=function(pagename,cond,response,callback) {
   connection.query('update MD_Item set ? where ?',[response,cond],function(err,result){

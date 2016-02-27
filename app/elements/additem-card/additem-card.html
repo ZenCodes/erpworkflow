@@ -15,6 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../admin-service/admin-service.html">
+<link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <dom-module id="additem-card" on-keypress="{{keypress}}">
   <template>
@@ -91,21 +92,26 @@
     <!--This template binding dynamic labels and error messages-->
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
-        <paper-input label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
+        <paper-input readonly="{{read}}" label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
         </paper-input>
         <div class="driver">
-          <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
+          <paper-input readonly="{{read}}" label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
             <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
           </paper-input>
-          <paper-input label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
+          <!--<paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">-->
+            <!--<template is="dom-repeat" items="{{itemArray}}" as="name">-->
+              <!--<paper-item>{{name.itemname}}</paper-item>-->
+            <!--</template>-->
+          <!--</paper-listbox>-->
+          <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-input label="{{item.Container}}" name="container" value="{{container}}" required  id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required  id="container" error-message="{{item.Container_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-dropdown-menu label="{{itemtype}}">
+          <paper-dropdown-menu label="{{itemtype}}" readonly="{{read}}">
             <paper-menu class="dropdown-content"  on-iron-select="selecttype"  attr-for-selected="value" selected="{{itemtype}}">
               <template is="dom-repeat" items="{{itemarr}}">
               <paper-item value="{{item.itemtypename}}">{{item.itemtypename}}</paper-item>
@@ -116,7 +122,7 @@
           <paper-input label="{{item.Item_Type}}" name="itemtype" value="{{itemtype}}" required  id="itemtype" error-message="{{item.Item_Type_error}}"></paper-input>-->
         </div>
         <div class="owner">
-          <paper-dropdown-menu label="{{itemgroup}}">
+          <paper-dropdown-menu label="{{itemgroup}}" readonly="{{read}}">
             <paper-menu class="dropdown-content" on-iron-select="selectgrouptype" attr-for-selected="value" selected="{{itemgroup}}">
               <template is="dom-repeat" items="{{itemgrouparr}}">
                 <paper-item value="{{item.itemgroupname}}">{{item.itemgroupname}}</paper-item>
@@ -127,7 +133,7 @@
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">
-            <paper-radio-group selected="{{selection}}" id="radio">
+            <paper-radio-group selected="{{selection}}" id="radio" readonly="{{read}}">
           <paper-radio-button noink name="{{item.Regular}}">{{item.Regular}}</paper-radio-button>
           <paper-radio-button noink name="{{item.Spot}}">{{item.Spot}}</paper-radio-button>
             </paper-radio-group>

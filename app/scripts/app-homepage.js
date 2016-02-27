@@ -19,7 +19,7 @@ Polymer({
       this.$.searchmenu.style.visibility='visible';
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
-
+      localStorage.setItem("curr_sess_wardflag","");
       localStorage.setItem("curr_sess_showpage","additem-card");
       this.page="admin-page";
       this.$.flow.style.visibility='hidden';

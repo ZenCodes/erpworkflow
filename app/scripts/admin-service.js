@@ -67,6 +67,7 @@
     },
     additemsearchResponse:function(e){
     var arr= e.detail.response.itemarr;
+      //alert(JSON.stringify(arr));
       document.querySelector("additem-card").itemid=arr[0].itemid;
       document.querySelector("additem-card").itemname=arr[0].itemname;
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
