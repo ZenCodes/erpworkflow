@@ -76,6 +76,14 @@ Polymer({
           obj.itemname = "No items found";
           arr.push(obj);
           this.itemArray = arr;
+          this.itemid="";
+          this.itemname="";
+          this.container="";
+          this.quantity="";
+          this.itemdes="";
+          this.itemtype="Select Item Type";
+          this.itemgroup="Select Item Group";
+          this.selection="";
         }
       }
     }
@@ -102,6 +110,14 @@ Polymer({
           obj.itemid = "No items found";
           arr.push(obj);
           this.itemidArray = arr;
+          this.itemid="";
+          this.itemname="";
+          this.container="";
+          this.quantity="";
+          this.itemdes="";
+          this.itemtype="Select Item Type";
+          this.itemgroup="Select Item Group";
+          this.selection="";
         }
       }
     }
