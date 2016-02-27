@@ -107,15 +107,25 @@
     <!--This template binding dynamic labels and error messages-->
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
-        <paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
-          <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
-        </paper-input>
+        <div class="drop">
+          <div><paper-input   label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
+            <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
+          </paper-input></div>
+          <div hidden$="{{isHiddenid}}"><paper-listbox id="searchid" style="width: 40%;" class="dropdown-content" on-iron-select="FnItemIdSelected">
+            <template is="dom-repeat" items="{{itemidArray}}" as="name">
+              <paper-item>{{name.itemid}}</paper-item>
+            </template>
+          </paper-listbox></div>
+        </div>
+        <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">-->
+          <!--<paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>-->
+        <!--</paper-input>-->
         <div class="driver">
           <div class="drop">
          <div><paper-input style="width: 110%;"  label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
             <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
           </paper-input></div>
-          <div hidden$="{{isHidden}}"><paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">
+          <div hidden$="{{isHidden}}"><paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnItemSelected">
             <template is="dom-repeat" items="{{itemArray}}" as="name">
               <paper-item>{{name.itemname}}</paper-item>
             </template>

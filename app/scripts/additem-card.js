@@ -8,6 +8,7 @@ Polymer({
   ready:function()
   {
     this.isHidden=true;
+    this.isHiddenid=true;
     this.read=false;
     this.itemtype="Select Item Type";
     this.itemgroup="Select Item Group";
@@ -20,15 +21,22 @@ Polymer({
     this.$.ID_Webcomponent_Service.callWebcomponentService();
   },
   FnSearchItemId:function(e){
+    localStorage.setItem("curr_sess_searchtypeflag","0");
+    this.isHiddenid=false;
     document.querySelector('#save').style.backgroundColor='grey';
     this.Btn_disable_flag=true;
     this.read=true;
     localStorage.setItem("curr_sess_searchitemflag","1");
     document.querySelector('viewtype-card').FnLabelChange();
-
-    this.$.adminservice.callSearchService(this.itemid,"");
+    this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+    var obj={"wardflag":""};
+    obj.wardflag="2";
+    this.param=obj;
+    this.$.itemlistreadajax.generateRequest();
+    //this.$.adminservice.callSearchService(this.itemid,"");
   },
   FnSearchItemName:function(e){
+    localStorage.setItem("curr_sess_searchtypeflag","1");
     this.isHidden=false;
     document.querySelector('#save').style.backgroundColor='grey';
     this.Btn_disable_flag=true;
@@ -45,39 +53,81 @@ Polymer({
   itemlistreadResponse:function(e){
     //alert(JSON.stringify(e.detail.response));
     //this.itemArray= e.detail.response.itemarr;\
-    this.querySelector('paper-listbox').style.visibility='visible';
-    var arr=[];
-    var item=e.detail.response.itemarr;
-    //alert(this.itemval);
-    if(this.itemname.length>0)
-    {
-      for(var i=0;i<item.length;i++){
-        var subval=((item[i].itemname).trim()).substring(0,this.itemname.length);
+    if(localStorage.getItem("curr_sess_searchtypeflag")=="1") {
 
-        if((subval).toLowerCase()==(this.itemname).toLowerCase())
-        {
-          var obj={"itemname":""};
-          obj.itemname=item[i].itemname;
+      this.querySelector('#searchname').style.visibility = 'visible';
+      var arr = [];
+      var item = e.detail.response.itemarr;
+      //alert(this.itemval);
+      if (this.itemname.length > 0) {
+        for (var i = 0; i < item.length; i++) {
+          var subval = ((item[i].itemname).trim()).substring(0, this.itemname.length);
+
+          if ((subval).toLowerCase() == (this.itemname).toLowerCase()) {
+            var obj = {"itemname": ""};
+            obj.itemname = item[i].itemname;
+            arr.push(obj);
+          }
+        }
+        if (arr.length > 0)
+          this.itemArray = arr;
+        else {
+          var obj = {"itemname": ""};
+          obj.itemname = "No items found";
           arr.push(obj);
+          this.itemArray = arr;
         }
       }
-      if(arr.length>0)
-        this.itemArray=arr;
-      else
-      {
-        var obj={"itemname":""};
-        obj.itemname="No items found";
-        arr.push(obj);
-        this.itemArray=arr;
+    }
+    if(localStorage.getItem("curr_sess_searchtypeflag")=="0") {
+
+      this.querySelector('#searchid').style.visibility = 'visible';
+      var arr = [];
+      var item = e.detail.response.itemarr;
+      //alert(this.itemval);
+      if (this.itemid.length > 0) {
+        for (var i = 0; i < item.length; i++) {
+          var subval = ((item[i].itemid).trim()).substring(0, this.itemid.length);
+
+          if ((subval).toLowerCase() == (this.itemid).toLowerCase()) {
+            var obj = {"itemid": ""};
+            obj.itemid = item[i].itemid;
+            arr.push(obj);
+          }
+        }
+        if (arr.length > 0)
+          this.itemidArray = arr;
+        else {
+          var obj = {"itemid": ""};
+          obj.itemid = "No items found";
+          arr.push(obj);
+          this.itemidArray = arr;
+        }
       }
     }
+  },
+  FnItemIdSelected:function(e){
+    if(e.target.selectedItem.textContent.trim()!="No items found") {
+      this.itemid = e.target.selectedItem.textContent.trim();
+      this.querySelector('#searchid').style.visibility='hidden';
+      this.querySelector('#searchid').selected=-1;
+      this.itemidArray="";
 
+      if(this.itemid!="") {
+        this.$.adminservice.callSearchService(this.itemid, "");
+      }
+    }
+    else   {
+      this.itemidArray="";
+      this.querySelector('#searchid').style.visibility='hidden';
+      this.querySelector('#searchid').selected=-1;
+    }
   },
   FnItemSelected:function(e){
     if(e.target.selectedItem.textContent.trim()!="No items found") {
       this.itemname = e.target.selectedItem.textContent.trim();
-      this.querySelector('paper-listbox').style.visibility='hidden';
-      this.querySelector('paper-listbox').selected=-1;
+      this.querySelector('#searchname').style.visibility='hidden';
+      this.querySelector('#searchname').selected=-1;
       this.itemArray="";
 
       if(this.itemname!="") {
@@ -86,8 +136,8 @@ Polymer({
     }
     else   {
     this.itemArray="";
-    this.querySelector('paper-listbox').style.visibility='hidden';
-    this.querySelector('paper-listbox').selected=-1;
+    this.querySelector('#searchname').style.visibility='hidden';
+    this.querySelector('#searchname').selected=-1;
     }
   },
   selecttype:function(e){
