@@ -4,18 +4,23 @@
 Polymer({
   is: "viewtype-card",
   ready:function() {
-    this.Label="Create";
-    if (sessionStorage.getItem("loggedrole") == "Security guard"||localStorage.getItem("curr_sess_wardflag")=="2"||sessionStorage.getItem("curr_sess_roleflag")=="admin") {
+    //this.Label="Create";
+    if (sessionStorage.getItem("loggedrole") == "Security guard"||localStorage.getItem("curr_sess_wardflag")=="2") {
       this.$.create.style.visibility = 'visible';
-      //this.$.list.style.visibility='hidden';
+      this.$.edit.style.visibility='hidden';
+    }
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
+      this.$.create.style.visibility = 'visible';
+      this.$.edit.style.visibility='hidden';
     }
     else {
       this.$.create.style.visibility = 'hidden';
-      //this.$.list.style.visibility='visible';
+      this.$.edit.style.visibility='hidden';
     }
   },
   FnViewlist:function(){
     this.$.create.style.visibility = 'visible';
+    this.$.edit.style.visibility = 'hidden';
   },
   create:function(){
     if(localStorage.getItem("curr_sess_wardflag")=="0"){
@@ -38,25 +43,18 @@ Polymer({
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
       //alert(localStorage.getItem("curr_sess_searchitemflag"));
-      if(localStorage.getItem("curr_sess_searchitemflag")!="1"||this.Label=="Create") {
-
-        localStorage.setItem("curr_sess_searchitemflag", "0");
+      //if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
+       localStorage.setItem("curr_sess_searchitemflag", "0");
         window.location.href = "indexhome.html";
-      }
-      else
-      {
-
-        this.Label="Create";
-        //this.$.create.style.visibility = 'hidden';
-        //localStorage.setItem("curr_sess_searchitemflag", "2");
-        document.querySelector('additem-card').FnEnableFields();
-      }
+      //}
 
     }
   },
-
-  FnLabelChange:function(){
-
-    this.Label="Edit";
+  edit:function(){
+    document.querySelector('additem-card').FnEnableFields();
+  },
+  FnEnableEdit:function(){
+    this.$.edit.style.visibility = 'visible';
+    //this.Label="Edit";
   }
 });

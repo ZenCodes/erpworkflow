@@ -27,7 +27,7 @@ Polymer({
     this.Btn_disable_flag=true;
     this.read=true;
     localStorage.setItem("curr_sess_searchitemflag","1");
-    document.querySelector('viewtype-card').FnLabelChange();
+    document.querySelector('viewtype-card').FnEnableEdit();
     this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
     var obj={"wardflag":""};
     obj.wardflag="2";
@@ -42,7 +42,7 @@ Polymer({
     this.Btn_disable_flag=true;
     this.read=true;
     localStorage.setItem("curr_sess_searchitemflag","1");
-    document.querySelector('viewtype-card').FnLabelChange();
+    document.querySelector('viewtype-card').FnEnableEdit();
     this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
     var obj={"wardflag":""};
     obj.wardflag="2";
@@ -192,10 +192,12 @@ Polymer({
     else
     this.itemflag="1";
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
+
       this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
+      
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
