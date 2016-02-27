@@ -81,14 +81,12 @@ Polymer({
       this.itemArray="";
 
       if(this.itemname!="") {
-        alert(this.itemname)
         this.$.adminservice.callSearchService("", this.itemname);
       }
     }
   },
   selecttype:function(e){
     var itemarray=this.itemarr;
-    //alert(itemarray);
     this.itemtypename=(e.target.selectedItem.textContent).trim();
     for(var i=0;i<itemarray.length;i++)
     {
@@ -122,16 +120,12 @@ Polymer({
     this.itemflag="0";
     else
     this.itemflag="1";
-    if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
-      //alert("save");
+    if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
-      //alert("update");
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-      document.querySelector("viewtype-card").FnViewlist();
-      localStorage.setItem("curr_sess_searchitemflag", "0");
     }
     }
   },
@@ -140,7 +134,6 @@ Polymer({
     this.Btn_disable_flag=true;
   },
   FnEnableFields:function(){
-    //alert("enable field");
     this.read=false;
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';
@@ -149,7 +142,6 @@ Polymer({
     this.itemtype=itemtype;
     this.itemgroup=itemgroup;
     this.selection=selection;
-    //alert(itemtype+itemgroup+selection);
   }
 
 
