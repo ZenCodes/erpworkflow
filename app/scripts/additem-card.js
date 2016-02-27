@@ -84,6 +84,11 @@ Polymer({
         this.$.adminservice.callSearchService("", this.itemname);
       }
     }
+    else   {
+    this.itemArray="";
+    this.querySelector('paper-listbox').style.visibility='hidden';
+    this.querySelector('paper-listbox').selected=-1;
+    }
   },
   selecttype:function(e){
     var itemarray=this.itemarr;
