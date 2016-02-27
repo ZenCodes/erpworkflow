@@ -38,7 +38,7 @@
   <template>
   <!--template for creating autocomplete dropdown list-->
     <div class="repeatcard">
-      <paper-input value="{{value}}" on-keydown="FnInputChanged"></paper-input>
+      <paper-input placeholder="Enter Item" value="{{value}}" on-keydown="FnInputChanged"></paper-input>
       <paper-listbox class="dropdown-content" on-iron-select="FnItemSelected">
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <paper-item>{{item.itemdes}}</paper-item>

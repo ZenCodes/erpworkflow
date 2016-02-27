@@ -5,11 +5,13 @@
 //JS file for menusearch card
 Polymer({is:"menusearch-card",
   ready:function(){
+    this.$.ID_accard.setDefaultval();
   },
   //Method will clear the inputs when expanding menu
   FnMenuExpand:function(e){
     this.invoice="";
     this.irn="";
+    this.$.ID_accard.setDefaultval();
     //document.querySelector('autocompleteitemlist-card').setDefaultval("");
   },
   //Method will invoke the service to fetch the info of currently given ORN/IRN number
