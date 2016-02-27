@@ -43,6 +43,7 @@ Polymer({is:"drawermenu-card",
       if(e.target.id=="View Intent"){
         localStorage.setItem("curr_sess_wardflag","3");
         document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('app-homepage').setVisible("false");
         document.querySelector('app-homepage').setFlowVisibility('false');
         document.querySelector('intenthome-page').setPage('View Intent');
         //document.querySelector('grn-service').FnIntentitemReadService();

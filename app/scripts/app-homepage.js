@@ -57,7 +57,8 @@ Polymer({
       if(localStorage.getItem("curr_sess_wardflag")=="2"){
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
-      document.querySelector('intenthome-page').setPage('Add Intent');}
+      document.querySelector('intenthome-page').setPage('Add Intent');
+      }
       else{
       localStorage.setItem("curr_sess_showpage","physicins-page");
       this.page="home-page";
