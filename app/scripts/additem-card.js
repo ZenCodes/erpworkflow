@@ -205,7 +205,7 @@ Polymer({
         for(var i=0;i<this.itemarr.length;i++){
           if(this.itemarr[i].itemtypename==this.itemtype) {
             //alert("hi coming");
-            this.itemtype = this.itemarr[i].itemtypeid;
+            this.itemtypee = this.itemarr[i].itemtypeid;
             //alert(this.itemtype);
           }
         }
@@ -214,11 +214,21 @@ Polymer({
       if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
         for(var i=0;i<this.itemgrouparr.length;i++){
           if(this.itemgrouparr[i].itemgroupname==this.itemgroup)
-            this.itemgroup=this.itemgrouparr[i].itemgroupid;
+            this.itemgroupp=this.itemgrouparr[i].itemgroupid;
         }
       }
-      //alert(this.itemtype+"  "+this.itemgroup);
+      if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
+      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtypee, purchasetype);
+      //alert('one');
+      else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
+      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtypee, purchasetype);
+      //alert('two');
+      else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
+      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtype, purchasetype);
+      //alert('three');
+      else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      //alert('four');
     }
     }
   },
