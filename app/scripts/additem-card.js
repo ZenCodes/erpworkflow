@@ -157,6 +157,7 @@ Polymer({
     }
   },
   selecttype:function(e){
+    //localStorage.setItem("curr_sess_itemtypechangeflag","1");
     var itemarray=this.itemarr;
     this.itemtypename=(e.target.selectedItem.textContent).trim();
     for(var i=0;i<itemarray.length;i++)
@@ -167,6 +168,7 @@ Polymer({
     }
   },
   selectgrouptype:function(e){
+    //localStorage.setItem("curr_sess_grouptypechangeflag","1");
     var itemgrouparray=this.itemgrouparr;
     this.itemgroupname=(e.target.selectedItem.textContent).trim();
     for(var i=0;i<itemgrouparray.length;i++)
@@ -197,7 +199,25 @@ Polymer({
     }
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
+      //alert("flag..."+localStorage.getItem("curr_sess_itemtypechangeflag"));
+      /*if(localStorage.getItem("curr_sess_itemtypechangeflag")!="1"){
+        //alert("hi");
+        for(var i=0;i<this.itemarr.length;i++){
+          if(this.itemarr[i].itemtypename==this.itemtype) {
+            //alert("hi coming");
+            this.itemtype = this.itemarr[i].itemtypeid;
+            //alert(this.itemtype);
+          }
+        }
+      }
 
+      if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
+        for(var i=0;i<this.itemgrouparr.length;i++){
+          if(this.itemgrouparr[i].itemgroupname==this.itemgroup)
+            this.itemgroup=this.itemgrouparr[i].itemgroupid;
+        }
+      }
+      alert(this.itemtype+"  "+this.itemgroup);*/
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
@@ -207,6 +227,8 @@ Polymer({
     this.Btn_disable_flag=true;
   },
   FnEnableFields:function(){
+    localStorage.setItem("curr_sess_itemtypechangeflag","0");
+    localStorage.setItem("curr_sess_grouptypechangeflag","0");
     this.read=false;
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';
@@ -214,15 +236,16 @@ Polymer({
   setSelectedItem:function(itemtype,itemgroup,selection){
     //alert(JSON.stringify(this.itemarr));
     //alert(JSON.stringify(this.itemgrouparr));
-    for(var i=0;i<this.itemarr.length;i++){
+    /*for(var i=0;i<this.itemarr.length;i++){
       if(this.itemarr[i].itemtypeid==itemtype)
         this.itemtype=this.itemarr[i].itemtypename;
     }
     for(var i=0;i<this.itemgrouparr.length;i++){
       if(this.itemgrouparr[i].itemgroupid==itemgroup)
         this.itemgroup=this.itemgrouparr[i].itemgroupname;
-    }
-
+    }*/
+    this.itemtype=itemtype;
+    this.itemgroup=itemgroup;
     this.selection=selection;
   }
 
