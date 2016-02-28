@@ -875,7 +875,6 @@ exports.FnSearchExpandItemFetch=function(pagename,cond,callback) {
         obj.podate=rows[i].PO_Date;
         obj.supname=rows[i].Supplier_ID;
         obj.itemdes=rows[i].Product_ID;
-        //obj.qtyordered=rows[i].Qty;
         obj.qtyreceived=(rows[i].unit+rows[i].Unit_measure)+" / "+(rows[i].Qty_Received+rows[i].Qty_measure);
         obj.qtyaccepted=(rows[i].Unit_Accepted+rows[i].Unit_measure)+" / "+(rows[i].Qty_Received+rows[i].Qty_measure);
         obj.remarks=rows[i].Remarks;
@@ -883,27 +882,23 @@ exports.FnSearchExpandItemFetch=function(pagename,cond,callback) {
         if(temp!=rows[i].state){
           temp=rows[i].state;
           n=n+1;
-          //console.log(temp+"  "+n);
         }
-        //console.log(rows[i].state);
         itemarr.push(obj);
-        //console.log(itemarr);
       }
       return callback({"itemarr":itemarr,"statecount":n,"state":temp});
-      //res.status(200).json({"itemarr":itemarr,"statecount":n,"state":temp});
     }
     else{
     }
   });
 }
 
+//Function fetches the expended outward search card item info
 exports.FnOutwardSearchExpandItemFetch=function(pagename,cond,callback) {
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
       Config_tables=obj[i].value;
     }
-    //console.log(Config_tables);
   }
   connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond], function(err, rows) {
     if(!err)
@@ -918,9 +913,7 @@ exports.FnOutwardSearchExpandItemFetch=function(pagename,cond,callback) {
         obj.weight=rows[i].Weight;        //console.log(rows[i].state);
         itemarr.push(obj);
       }
-      //console.log(itemarr);
       return callback({"itemarr":itemarr});
-      //res.status(200).json({"itemarr":itemarr});
     }
     else{
       console.log(err);
@@ -947,16 +940,15 @@ exports.FnIntentitemSeq=function(pagename,callback) {
     {
       console.log('seq generated!');
       return callback("succ");
-      //res.status(200).json({'returnval': "succ"});
     }
     else
     {
-      //res.status(200).json({'returnval': "fail"});
       return callback("fail");
     }
   });
 }
 
+//Function which write intent item info
 exports.FnIntentItemWrite=function(pagename,response,callback) {
   var Config_tables=[];
   var Config_columns=[];
@@ -965,7 +957,6 @@ exports.FnIntentItemWrite=function(pagename,response,callback) {
       Config_tables=obj[i].value;
       Config_columns=obj[i].columns;
     }
-    //console.log(Config_tables);
   }
   connection.query('SELECT '+Config_columns[0]+' FROM '+Config_tables[0]+' ORDER BY '+Config_columns[0]+' DESC LIMIT 1', function(err, rows, fields) {
     if(!err)
@@ -973,25 +964,20 @@ exports.FnIntentItemWrite=function(pagename,response,callback) {
       var idd="INT"+rows[0].Intent_Register_Number;
 
       response.Intent_Register_Number=idd;
-      //console.log( response.Intent_Register_Number);
       connection.query('insert into '+Config_tables[1]+' set ?',[response],function(err,result){
         if(!err)
         {
-          //console.log("Inserted!"+idd);
           return callback(idd);
-          //res.status(200).json({'outwardregno': idd});
         }
         else{
-          //console.log("Not Inserted!"+idd+err);
           return callback("not okay");
-          //res.status(200).json({'outwardregno': 'not okay'});
         }
       });
     }
   });
 }
 
-
+//Function which fetch the intent item info
 exports.FnIntentItemRead=function(pagename,callback) {
   var Config_tables=[];
   var Config_columns=[];
@@ -1002,7 +988,6 @@ exports.FnIntentItemRead=function(pagename,callback) {
     }
   }
     cond={"state":Config_columns[2]};
-    //console.log(Config_tables[0]+"  "+Config_columns[0]+"  "+Config_columns[1]+"  "+cond);
     connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
       var itemarr=[];
       if(!err){
@@ -1019,18 +1004,16 @@ exports.FnIntentItemRead=function(pagename,callback) {
       else
         console.log(err);
     });
-    //console.log(Config_tables);
 
 }
 
-
+//Function fetches the expanded intent item card info
 exports.FnIntentExpandItemFetch=function(pagename,cond,callback) {
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
       Config_tables=obj[i].value;
     }
-    //console.log(Config_tables);
   }
   connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond], function(err, rows) {
     if(!err)
@@ -1048,9 +1031,7 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,callback) {
         obj.remark=rows[i].Remarks;
         itemarr.push(obj);
       }
-      //console.log(itemarr);
       return callback({"itemarr":itemarr});
-      //res.status(200).json({"itemarr":itemarr});
     }
     else{
       console.log(err);
@@ -1059,24 +1040,25 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,callback) {
 
 }
 
-
+//Function to write item info added from admin page
 exports.FnAddItemWrite=function(pagename,response,callback) {
-
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
   cond={Item_ID:response.Item_ID}
-  //console.log("hi  "+cond);
-  connection.query('select * from MD_Item where ?',[cond],function(err, rows, fields) {
+  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
     if(!err) {
       if(rows.length==0) {
-        connection.query('insert into MD_Item set ?', [response], function (err, result) {
+        connection.query('INSERT INTO '+Config_tables[0]+' SET ?', [response], function (err, result) {
           if (!err) {
-            //console.log("Inserted!"+idd);
             return callback("succ");
-            //res.status(200).json({'outwardregno': idd});
           }
           else {
             console.log("Not Inserted!"+idd+err);
             return callback("fail");
-            //res.status(200).json({'outwardregno': 'not okay'});
           }
         });
       }
@@ -1086,10 +1068,15 @@ exports.FnAddItemWrite=function(pagename,response,callback) {
   });
 }
 
-
+//Function fetches itemtype info
 exports.FnAddItemRead=function(pagename,callback) {
-
-  connection.query('select * from MD_Item_Type',function(err, rows, fields) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+'',function(err, rows, fields) {
     var itemarr=[];
     if(!err){
       for(var i=0;i<rows.length;i++)
@@ -1105,12 +1092,17 @@ exports.FnAddItemRead=function(pagename,callback) {
     else
       console.log(err);
   });
-  //console.log(Config_tables);
 
 }
+//Function fetches group type info
 exports.FnAddItemgroupRead=function(pagename,callback) {
-
-  connection.query('select * from MD_Item_Group',function(err, rows, fields) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+'',function(err, rows, fields) {
     var itemarr=[];
     if(!err){
       for(var i=0;i<rows.length;i++)
@@ -1130,11 +1122,15 @@ exports.FnAddItemgroupRead=function(pagename,callback) {
 
 }
 
-var tid="";
-
+//Function fecthes searched item info
 exports.FnAddsearchItem=function(pagename,cond,callback) {
-
-  connection.query('select * from MD_Item where ?',[cond],function(err, rows, fields) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
     var itemarr=[];
 
     if(!err){
@@ -1147,33 +1143,11 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
         obj.itemdes=rows[i].Item_Description;
         obj.container=rows[i].Container;
         obj.quantity=rows[i].UOM;
-        //typeid={Item_Type_ID:rows[i].Item_Type_ID};
-        //console.log(typeid);
-        //groupid={Item_Group_ID:rows[i].Item_Group_ID};
-        //console.log(groupid);
-        //connection.query('select * from MD_Item_Type where ?',[groupid],function(err, rows, fields) {
-        //  if(!err){
-        //    console.log(rows.length);
-        //    itemtype=rows[0].Item_Type_Name;
-            //console.log(itemtype);
-            //tid=itemtype;
-            //return callback(itemtype);
-          //}
-        //});
-        //exports.FnFetchsearchItemtype(typeid,function(returnval){
-        //  console.log(returnval);
-        //  tid=returnval;
-        //});
-        //exports.FnFetchsearchItemgroup(groupid,function(returnval){
-          //console.log(returnval);
-        //});
-        //console.log(""+tid);
         obj.itemgroup=rows[i].Item_Group_ID;
         obj.itemtype=rows[i].Item_Type_ID;
         obj.purchasetype=rows[i].Item_Purchase_Type_ID;
         itemarr.push(obj);
       }
-      //console.log(JSON.stringify(itemarr));
         return callback(itemarr);
       }
       else{
@@ -1183,10 +1157,28 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
     else
       console.log(err);
   });
-  //console.log(Config_tables);
+  }
+
+//Function which updates item info
+exports.FnAddItemUpdate=function(pagename,cond,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('UPDATE '+Config_tables[0]+' SET ? WHERE ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
 }
 
-exports.FnFetchsearchItemtype=function(pagename,typeid,callback) {
+/*exports.FnFetchsearchItemtype=function(pagename,typeid,callback) {
   cond={"Item_Type_ID":typeid}
 
   connection.query('select * from MD_Item_Type where ?',[cond],function(err, rows, fields) {
@@ -1205,20 +1197,6 @@ exports.FnFetchsearchItemgroup=function(pagename,groupid,callback) {
       return callback(itemgroup);
     }
   });
-}
+}*/
 
-exports.FnAddItemUpdate=function(pagename,cond,response,callback) {
-  connection.query('update MD_Item set ? where ?',[response,cond],function(err,result){
-    if(!err)
-    {
-      //console.log("Inserted!"+idd);
-      return callback("succ");
-      //res.status(200).json({'outwardregno': idd});
-    }
-    else{
-      //console.log("Not Inserted!"+idd+err);
-      return callback("fail");
-      //res.status(200).json({'outwardregno': 'not okay'});
-    }
-  });
-}
+

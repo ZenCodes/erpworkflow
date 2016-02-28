@@ -5,7 +5,7 @@
 
 <dom-module id="admin-service">
   <template>
-    <!--Component which makes req to read the items belongs to the currently logged role state-->
+    <!--Component which makes write req to write the item info-->
     <iron-ajax
       id="additemwriteajax"
       url="{{url}}"
@@ -16,7 +16,7 @@
       on-response="additemwriteResponse">
     </iron-ajax>
 
-
+    <!--Component which makes read req to fetch the item type info-->
     <iron-ajax
       auto
       id="additemreadajax"
@@ -27,7 +27,7 @@
       content-type="application/json"
       on-response="additemreadResponse">
     </iron-ajax>
-
+    <!--Component which makes read req to fetch the group type info-->
     <iron-ajax
       auto
       id="additemgroupreadajax"
@@ -38,7 +38,7 @@
       content-type="application/json"
       on-response="additemgroupreadResponse">
     </iron-ajax>
-
+    <!--Component which makes write req to write the item info-->
     <iron-ajax
       id="additemsearchajax"
       url="{{searchurl}}"
@@ -49,7 +49,7 @@
       on-response="additemsearchResponse">
     </iron-ajax>
 
-
+    <!--Component which makes update req to update the item info-->
     <iron-ajax
       id="additemupdateajax"
       url="{{updateurl}}"
@@ -59,9 +59,9 @@
       content-type="application/json"
       on-response="additemupdateResponse">
     </iron-ajax>
-
-<dialog-page id="dialogpage"></dialog-page>
+  <!--Dialog component import-->
+  <dialog-page id="dialogpage"></dialog-page>
   </template>
-
+  <!--Importing JS file for this page-->
   <script src="../../scripts/admin-service.js"></script>
 </dom-module>

@@ -362,7 +362,6 @@ app.post('/intentseq-service',urlencodedParser, function (req, res) {
 
 //Function to store outward items
 app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
-  //console.log('intet....');
   response = {
     Intent_Register_Number:'',
     Intent_Date:req.query.intentdate,
@@ -380,25 +379,23 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     res.status(200).json({'intentregno': returnval});
   });
 });
-
+//Function to fetch intent item info
 app.post('/intentitemread-service',urlencodedParser, function (req, res) {
   var FnIntentItemReadcall = require("./app/scripts/dboperations.js");
   FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
-
+//Function fetches the expanded intent item info
 app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
-  //console.log("In physic qualify service"+req.query.status);
   cond={Intent_Register_Number:req.query.intentregno}
-
   var FnIntentExpandItemFetchcall = require("./app/scripts/dboperations.js");
   FnIntentExpandItemFetchcall.FnIntentExpandItemFetch("intentitemexpand-card",cond,function(returnval){
     res.status(200).json({"itemarr":returnval.itemarr});
   });
 });
 
-
+//Function for writing item info...req receives from admin service
 app.post("/additem-service",urlencodedParser,function(req,res) {
 
   response = {
@@ -420,7 +417,7 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
 
 });
 
-
+//Function to fetch item type info req receives from admin service
 app.post('/additemread-service',urlencodedParser, function (req, res) {
 
   var FnAddItemReadcall = require("./app/scripts/dboperations.js");
@@ -428,7 +425,7 @@ app.post('/additemread-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
-
+//Function to fetch item group  info req receives from admin service
 app.post('/additemgroupread-service',urlencodedParser, function (req, res) {
 
   var FnAddItemgroupReadcall = require("./app/scripts/dboperations.js");
@@ -437,7 +434,7 @@ app.post('/additemgroupread-service',urlencodedParser, function (req, res) {
   });
 });
 
-
+//Function to fetch the searched item info using id or name according to the search type
 app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
   if(req.query.itemid!="")
   {
@@ -451,20 +448,11 @@ app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
   var type;
   var FnAddsearchItemcall = require("./app/scripts/dboperations.js");
   FnAddsearchItemcall.FnAddsearchItem("addsearchitem-service",cond,function(returnval){
-     /*items=returnval;
-    var type=FnAddsearchItemcall.FnFetchsearchItemtype("addsearchitem-service",items[0].itemtype,function(returnval){
-      items[0].itemtype=returnval;
-
-      });
-    FnAddsearchItemcall.FnFetchsearchItemgroup("addsearchitem-service",items[0].itemgroup,function(returnval){
-      items[0].itemgroup=returnval;
-    });
-    console.log("hi...."+type);
-    console.log(items);*/
     res.status(200).json({'itemarr': returnval});
   });
 });
 
+//Function to update the item info req receives from the admin service
 app.post("/additemupdate-service",urlencodedParser,function(req,res) {
     cond={"Item_ID":req.query.itemid}
   response = {
@@ -485,7 +473,6 @@ app.post("/additemupdate-service",urlencodedParser,function(req,res) {
   });
 
 });
-
 
 //Node server running port number
 app.listen(4000);
