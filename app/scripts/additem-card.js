@@ -10,8 +10,8 @@ Polymer({
     this.isHidden=true;
     this.isHiddenid=true;
     this.read=false;
-    this.itemtype="Select Item Type";
-    this.itemgroup="Select Item Group";
+    //this.itemtype="Select Item Type";
+    //this.itemgroup="Select Item Group";
     this.$.adminservice.callItemReadService();
     this.$.adminservice.callItemgroupReadService();
     localStorage.setItem("curr_sess_searchitemflag", "0");
@@ -219,16 +219,16 @@ Polymer({
       }
       if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtypee, purchasetype);
-      //alert('one');
+
       else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtypee, purchasetype);
-      //alert('two');
+
       else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtype, purchasetype);
-      //alert('three');
+
       else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-      //alert('four');
+
     }
     }
   },

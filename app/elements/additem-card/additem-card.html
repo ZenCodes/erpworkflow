@@ -138,7 +138,7 @@
           <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-dropdown-menu style="width: 35%;" label="{{itemtype}}" disabled="{{read}}">
+          <paper-dropdown-menu style="width: 35%;" label="Select Item Type" disabled="{{read}}">
             <paper-menu class="dropdown-content"  on-iron-select="selecttype"  attr-for-selected="value" selected="{{itemtype}}">
               <template is="dom-repeat" items="{{itemarr}}">
               <paper-item value="{{item.itemtypename}}">{{item.itemtypename}}</paper-item>
@@ -149,7 +149,7 @@
           <paper-input label="{{item.Item_Type}}" name="itemtype" value="{{itemtype}}" required  id="itemtype" error-message="{{item.Item_Type_error}}"></paper-input>-->
         </div>
         <div class="owner">
-          <paper-dropdown-menu label="{{itemgroup}}" style="width: 35%;" disabled="{{read}}">
+          <paper-dropdown-menu label="Select Item Group" style="width: 35%;" disabled="{{read}}">
             <paper-menu class="dropdown-content" on-iron-select="selectgrouptype" attr-for-selected="value" selected="{{itemgroup}}">
               <template is="dom-repeat" items="{{itemgrouparr}}">
                 <paper-item value="{{item.itemgroupname}}">{{item.itemgroupname}}</paper-item>

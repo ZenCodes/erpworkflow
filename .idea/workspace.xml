@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" afterPath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/additem-card.js" afterPath="$PROJECT_DIR$/app/scripts/additem-card.js" />
     </list>
     <ignored path="grnworkflow.iws" />
@@ -23,21 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1204" column="33" selection-start-line="1204" selection-start-column="33" selection-end-line="1204" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="additem-card.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="additem-card.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6137184">
+              <caret line="147" column="39" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
               <folding>
                 <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
@@ -48,21 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8775862">
-              <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="465" column="3" selection-start-line="465" selection-start-column="3" selection-end-line="465" selection-end-column="3" />
+            <state vertical-scroll-proportion="-7.5555553">
+              <caret line="12" column="37" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -134,10 +115,10 @@
         <option value="$PROJECT_DIR$/app/elements/indexhome.html" />
         <option value="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
+        <option value="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
       </list>
     </option>
   </component>
@@ -991,6 +972,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6353791">
           <caret line="58" column="37" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,40 +1008,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#paper-dropdown-menu#0;n#div#3;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#paper-dropdown-menu#0;n#div#4;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-758.0741">
           <caret line="1204" column="33" selection-start-line="1204" selection-start-column="33" selection-end-line="1204" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8775862">
-          <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.062068965">
           <caret line="465" column="3" selection-start-line="465" selection-start-column="3" selection-end-line="465" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5555553">
+          <caret line="12" column="37" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6137184">
+          <caret line="147" column="39" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#paper-dropdown-menu#0;n#div#3;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#paper-dropdown-menu#0;n#div#4;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
