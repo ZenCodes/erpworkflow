@@ -468,6 +468,7 @@ app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
 app.post("/additemupdate-service",urlencodedParser,function(req,res) {
     cond={"Item_ID":req.query.itemid}
   response = {
+    Purchase_Type_Flag:req.query.itemflag,
     Item_ID:req.query.itemid,
     Item_Name:req.query.itemname,
     Item_Description:req.query.itemdes,

@@ -187,12 +187,14 @@ Polymer({
     document.querySelector('#container').validate();
     document.querySelector('#quantity').validate();
   var purchasetype=document.querySelector('#radio').selected;
+    //alert(purchasetype);
   if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){}
     else {
     if(document.querySelector('#radio').selected=="Regular")
     this.itemflag="0";
     else
     this.itemflag="1";
+    //alert(this.itemflag);
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
 
       this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
