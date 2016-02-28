@@ -217,7 +217,7 @@ Polymer({
             this.itemgroup=this.itemgrouparr[i].itemgroupid;
         }
       }
-      alert(this.itemtype+"  "+this.itemgroup);
+      //alert(this.itemtype+"  "+this.itemgroup);
       this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
