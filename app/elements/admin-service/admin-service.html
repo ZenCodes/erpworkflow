@@ -38,6 +38,19 @@
       content-type="application/json"
       on-response="additemgroupreadResponse">
     </iron-ajax>
+
+    <!--Component which makes read req to fetch the Supplier info-->
+    <iron-ajax
+      auto
+      id="itemsupplierreadajax"
+      url="{{supplierurl}}"
+      params='{{supplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="itemsupplierreadResponse">
+    </iron-ajax>
+
     <!--Component which makes write req to write the item info-->
     <iron-ajax
       id="additemsearchajax"

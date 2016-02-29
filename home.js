@@ -399,6 +399,7 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 app.post("/additem-service",urlencodedParser,function(req,res) {
 
   response = {
+    Item_Supplier_ID:req.query.itemsupplier,
     Item_ID:req.query.itemid,
     Item_Name:req.query.itemname,
     Item_Description:req.query.itemdes,
@@ -410,6 +411,7 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
     Purchase_Type_Flag:req.query.itemflag
 
   };
+  //console.log(response);
   var FnAddItemWritecall = require("./app/scripts/dboperations.js");
   FnAddItemWritecall.FnAddItemWrite("additem-service",response,function(returnval){
     res.status(200).json({'returnval': returnval});
@@ -434,6 +436,16 @@ app.post('/additemgroupread-service',urlencodedParser, function (req, res) {
   });
 });
 
+//Function to fetch supplier info req receives from admin service
+app.post('/itemsupplierread-service',urlencodedParser, function (req, res) {
+
+  var FnItemsupplierReadcall = require("./app/scripts/dboperations.js");
+  FnItemsupplierReadcall.FnItemsupplierRead("itemsupplierread-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
 //Function to fetch the searched item info using id or name according to the search type
 app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
   if(req.query.itemid!="")
@@ -456,6 +468,7 @@ app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
 app.post("/additemupdate-service",urlencodedParser,function(req,res) {
     cond={"Item_ID":req.query.itemid}
   response = {
+    Item_Supplier_ID:req.query.itemsupplier,
     Purchase_Type_Flag:req.query.itemflag,
     Item_ID:req.query.itemid,
     Item_Name:req.query.itemname,

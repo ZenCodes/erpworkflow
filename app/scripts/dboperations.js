@@ -1122,6 +1122,34 @@ exports.FnAddItemgroupRead=function(pagename,callback) {
 
 }
 
+//Function fetches supplier info
+exports.FnItemsupplierRead=function(pagename,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+'',function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"itemsupplierid":"","itemsuppliername":""};
+        obj.itemsupplierid=rows[i].Supplier_ID;
+        obj.itemsuppliername=rows[i].Supplier_Name;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+      return callback(itemarr);
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}
+
 //Function fecthes searched item info
 exports.FnAddsearchItem=function(pagename,cond,callback) {
   var Config_tables=[];
@@ -1137,7 +1165,8 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
       if(rows.length>0){
       for(var i=0;i<rows.length;i++)
       {
-        var obj={"itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+        var obj={"itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+        obj.itemsupplier=rows[i].Item_Supplier_ID;
         obj.itemid=rows[i].Item_ID;
         obj.itemname=rows[i].Item_Name;
         obj.itemdes=rows[i].Item_Description;

@@ -12,9 +12,10 @@ Polymer({
     this.isHiddenid=true;
     //Initially to make all the fields are in editable mode
     this.read=false;
-    //Calling services to bind info to the itemtype and itemgroup fields
+    //Calling services to bind info to the itemtype , itemgroup and supplier fields
     this.$.adminservice.callItemReadService();
     this.$.adminservice.callItemgroupReadService();
+    this.$.adminservice.callItemSupplierReadService();
     localStorage.setItem("curr_sess_searchitemflag", "0");
     //Setting current page in session for fetching labels dynamically
     localStorage.setItem("curr_sess_showpage","additem-card");
@@ -206,6 +207,19 @@ Polymer({
 
     }
   },
+  //Method invokes to fetch item supplier id of the currently selected Item group name in dropdown
+  FnSelectSupplier:function(e){
+    //Flag is used to identify the supplier name drop down change and it is later refered in update mode
+    localStorage.setItem("curr_sess_supplierchangeflag","1");
+    var itemsupplierarray=this.itemsupplierarr;
+    this.itemsuppliername=(e.target.selectedItem.textContent).trim();
+    for(var i=0;i<itemsupplierarray.length;i++)
+    {
+      if(itemsupplierarray[i].itemsuppliername==this.itemsuppliername) {
+        this.itemsupplier = itemsupplierarray[i].itemsupplierid;
+      }
+    }
+  },
   //Function invokes when performing save button click
   FnAddItemInfoSubmit:function()
   {
@@ -226,12 +240,12 @@ Polymer({
     this.itemflag="1";
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
-      this.$.adminservice.callItemWriteService(this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.adminservice.callItemWriteService(this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
-      //Whie upadting if not changing item type name it would fetch item type id
+      //While upadting if not changing item type name it would fetch item type id
       if(localStorage.getItem("curr_sess_itemtypechangeflag")!="1"){
         for(var i=0;i<this.itemarr.length;i++){
           if(this.itemarr[i].itemtypename==this.itemtype) {
@@ -239,26 +253,33 @@ Polymer({
           }
         }
       }
-      //Whie upadting if not changing item group name it would fetch item group id
+      //While upadting if not changing item group name it would fetch item group id
       if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
         for(var i=0;i<this.itemgrouparr.length;i++){
           if(this.itemgrouparr[i].itemgroupname==this.itemgroup)
             this.itemgroupp=this.itemgrouparr[i].itemgroupid;
         }
       }
+      //While upadting if not changing item supplier name it would fetch item supplier id
+      if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
+        for(var i=0;i<this.itemsupplierarr.length;i++){
+          if(this.itemsupplierarr[i].itemsuppliername==this.itemsupplier)
+            this.itemsupplierr=this.itemsupplierarr[i].itemsupplierid;
+        }
+      }
 
       //Condition will invoke and calling update service if not changing both item type and group
       if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
-      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtypee, purchasetype);
+      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtypee, purchasetype);
       //Condition will invoke and calling update service if not changing  item type
       else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
-      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtypee, purchasetype);
+      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtypee, purchasetype);
       //Condition will invoke and calling update service if not changing item  group
       else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
-      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtype, purchasetype);
+      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtype, purchasetype);
       //Condition will invoke and calling update service if  changing both item type and group
       else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
-      this.$.adminservice.callItemUpdateService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
 
     }
     }
@@ -272,12 +293,13 @@ Polymer({
   FnEnableFields:function(){
     localStorage.setItem("curr_sess_itemtypechangeflag","0");
     localStorage.setItem("curr_sess_grouptypechangeflag","0");
+    localStorage.setItem("curr_sess_supplierchangeflag","0");
     this.read=false;
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';
   },
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
-  setSelectedItem:function(itemtype,itemgroup,selection){
+  setSelectedItem:function(itemsupplier,itemtype,itemgroup,selection){
     for(var i=0;i<this.itemarr.length;i++){
       if(this.itemarr[i].itemtypeid==itemtype)
         this.itemtype=this.itemarr[i].itemtypename;
@@ -285,6 +307,10 @@ Polymer({
     for(var i=0;i<this.itemgrouparr.length;i++){
       if(this.itemgrouparr[i].itemgroupid==itemgroup)
         this.itemgroup=this.itemgrouparr[i].itemgroupname;
+    }
+    for(var i=0;i<this.itemsupplierarr.length;i++){
+      if(this.itemsupplierarr[i].itemsupplierid==itemsupplier)
+        this.itemsupplier=this.itemsupplierarr[i].itemsuppliername;
     }
     this.selection=selection;
   }

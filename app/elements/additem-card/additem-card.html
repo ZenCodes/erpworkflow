@@ -101,6 +101,12 @@
         background-color: whitesmoke;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
+      #dropgrouptype{
+        margin-left: 5%;
+      }
+      paper-dropdown-menu{
+        width: 35%;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <!--<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>-->
@@ -145,23 +151,30 @@
           <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-dropdown-menu style="width: 35%;" label="Select Item Type" disabled="{{read}}">
+          <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}">
             <paper-menu class="dropdown-content"  on-iron-select="FnSelecttype"  attr-for-selected="value" selected="{{itemtype}}">
               <template is="dom-repeat" items="{{itemarr}}">
               <paper-item value="{{item.itemtypename}}">{{item.itemtypename}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>
-        </div>
-        <div class="owner">
-          <paper-dropdown-menu label="Select Item Group" style="width: 35%;" disabled="{{read}}">
+          <paper-dropdown-menu id="dropgrouptype" label="Select Item Group" disabled="{{read}}">
             <paper-menu class="dropdown-content" on-iron-select="FnSelectGrouptype" attr-for-selected="value" selected="{{itemgroup}}">
               <template is="dom-repeat" items="{{itemgrouparr}}">
                 <paper-item value="{{item.itemgroupname}}">{{item.itemgroupname}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>
-          </div>
+        </div>
+        <div class="owner">
+          <paper-dropdown-menu id="suppliername" label="Select Supplier Name" disabled="{{read}}">
+            <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier" attr-for-selected="value" selected="{{itemsupplier}}">
+              <template is="dom-repeat" items="{{itemsupplierarr}}">
+                <paper-item value="{{item.itemsuppliername}}">{{item.itemsuppliername}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+        </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">
@@ -187,7 +200,7 @@
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
     <!--Component to call the service to bind item type and group type-->
-    <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}"></admin-service>
+    <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" itemsupplierarr="{{itemsupplierarr}}"></admin-service>
   </template>
   <!--JS File import-->
   <script src="../../scripts/additem-card.js"> </script>

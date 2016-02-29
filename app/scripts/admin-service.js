@@ -8,13 +8,15 @@
       //Setting url to fetch item type and group type info
       this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
       this.groupurl=sessionStorage.getItem("curr_sess_url")+"additemgroupread-service";
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
     },
     //Method invokes while making write req from the additem card
-    callItemWriteService:function(itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+    callItemWriteService:function(itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
 
     var obj={
-      "itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
+     "itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
     };
+      obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;
@@ -58,6 +60,15 @@
       var itemgrouparray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemgrouparr=itemgrouparray;
     },
+    //Method invokes while making req to fetch supplier info
+    callItemSupplierReadService:function(){
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
+      this.$.itemsupplierreadajax.generateRequest();
+    },
+    itemsupplierreadResponse:function(e) {
+      var itemsupplierarray=e.detail.response.itemarr;
+      document.querySelector('additem-card').itemsupplierarr=itemsupplierarray;
+    },
     //Method invokes while making req for fetch all the info of the currently selected item in listbox
     callSearchService:function(itemid,itemname){
       this.searchurl=sessionStorage.getItem("curr_sess_url")+"addsearchitem-service";
@@ -75,15 +86,16 @@
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
       document.querySelector("additem-card").container=arr[0].container;
       document.querySelector("additem-card").quantity=arr[0].quantity;
-      document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
+      document.querySelector("additem-card").setSelectedItem(arr[0].itemsupplier,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
 
     },
     //Method invokes while making update request from item card
-    callItemUpdateService:function(itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+    callItemUpdateService:function(itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
 
       var obj={
-        "itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
+        "itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
       };
+      obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;
