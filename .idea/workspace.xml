@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dbconfig.json" afterPath="$PROJECT_DIR$/app/config/dbconfig.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" afterPath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" afterPath="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/additem-card.js" afterPath="$PROJECT_DIR$/app/scripts/additem-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/admin-service.js" afterPath="$PROJECT_DIR$/app/scripts/admin-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,21 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3333334">
-              <caret line="1163" column="13" selection-start-line="1163" selection-start-column="13" selection-end-line="1163" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="additem-card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.056604">
-              <caret line="172" column="46" selection-start-line="172" selection-start-column="46" selection-end-line="172" selection-end-column="46" />
+            <state vertical-scroll-proportion="-7.5660377">
+              <caret line="171" column="60" selection-start-line="171" selection-start-column="60" selection-end-line="171" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
@@ -53,54 +37,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbconfig.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/dbconfig.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.3396225">
-              <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0">
-              <caret line="296" column="20" selection-start-line="296" selection-start-column="20" selection-end-line="296" selection-end-column="20" />
+            <state vertical-scroll-proportion="-2.5185184">
+              <caret line="159" column="22" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin-service.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="admin-service.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0">
-              <caret line="84" column="70" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.762069">
+              <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin-service.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/admin-service/admin-service.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.7169812">
-              <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6448276">
-              <caret line="413" column="4" selection-start-line="413" selection-start-column="4" selection-end-line="413" selection-end-column="4" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -171,10 +125,10 @@
         <option value="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" />
         <option value="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
         <option value="$PROJECT_DIR$/app/config/dbconfig.json" />
-        <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
         <option value="$PROJECT_DIR$/app/scripts/admin-service.js" />
         <option value="$PROJECT_DIR$/home.js" />
+        <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
       </list>
     </option>
   </component>
@@ -680,7 +634,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1011,14 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49827588">
-          <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/indexhome.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35559568">
@@ -1043,7 +989,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/admin-service/admin-service.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7169812">
+        <state vertical-scroll-proportion="0.35559568">
           <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
           <folding />
         </state>
@@ -1065,20 +1011,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
+    <entry file="file://$PROJECT_DIR$/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0">
-          <caret line="84" column="70" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.029310346">
+          <caret line="422" column="53" selection-start-line="422" selection-start-column="53" selection-end-line="422" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9413793">
+          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5185184">
+          <caret line="159" column="22" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.056604">
-          <caret line="172" column="46" selection-start-line="172" selection-start-column="46" selection-end-line="172" selection-end-column="46" />
+        <state vertical-scroll-proportion="-7.5660377">
+          <caret line="171" column="60" selection-start-line="171" selection-start-column="60" selection-end-line="171" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
@@ -1086,19 +1046,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0">
-          <caret line="296" column="20" selection-start-line="296" selection-start-column="20" selection-end-line="296" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6448276">
-          <caret line="413" column="4" selection-start-line="413" selection-start-column="4" selection-end-line="413" selection-end-column="4" />
-          <folding />
+        <state vertical-scroll-proportion="0.762069">
+          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -73,6 +73,7 @@ Polymer({
     if(localStorage.getItem("curr_sess_searchtypeflag")=="1") {
       this.querySelector('#searchname').style.visibility = 'visible';
       var arr = [];
+      arr.push({"itemname": "-----Select-----"});
       var item = e.detail.response.itemarr;
       if (this.itemname.length > 0) {
         for (var i = 0; i < item.length; i++) {
@@ -108,6 +109,7 @@ Polymer({
       //Condition will invoke if we performed item search using id
       this.querySelector('#searchid').style.visibility = 'visible';
       var arr = [];
+      arr.push({"itemid": "-----Select-----"});
       var item = e.detail.response.itemarr;
       //alert(this.itemval);
       if (this.itemid.length > 0) {
@@ -143,7 +145,7 @@ Polymer({
   //Function which invokes when selecting item type id in dropdown
   FnItemIdSelected:function(e){
     //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
-    if(e.target.selectedItem.textContent.trim()!="No items found") {
+    if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
       this.itemid = e.target.selectedItem.textContent.trim();
       //Making invisible and deselection in dropdown of item id search list box
       this.querySelector('#searchid').style.visibility='hidden';
@@ -155,6 +157,7 @@ Polymer({
       }
     }
     else   {
+      this.read=false;
       this.itemidArray="";
       this.querySelector('#searchid').style.visibility='hidden';
       this.querySelector('#searchid').selected=-1;
@@ -163,7 +166,7 @@ Polymer({
   //Function which invokes when selecting item type name in dropdown
   FnItemSelected:function(e){
     //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
-    if(e.target.selectedItem.textContent.trim()!="No items found") {
+    if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
       this.itemname = e.target.selectedItem.textContent.trim();
       //Making invisible and deselection in dropdown of item name search list box
       this.querySelector('#searchname').style.visibility='hidden';
@@ -175,6 +178,7 @@ Polymer({
       }
     }
     else   {
+      this.read=false;
     this.itemArray="";
     this.querySelector('#searchname').style.visibility='hidden';
     this.querySelector('#searchname').selected=-1;
@@ -264,7 +268,7 @@ Polymer({
       if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
         for(var i=0;i<this.itemsupplierarr.length;i++){
           if(this.itemsupplierarr[i].itemsuppliername==this.itemsupplier)
-            this.itemsupplierr=this.itemsupplierarr[i].itemsupplierid;
+            this.itemsupplier=this.itemsupplierarr[i].itemsupplierid;
         }
       }
 
