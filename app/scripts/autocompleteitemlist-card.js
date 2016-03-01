@@ -76,10 +76,12 @@
     },
     //Function invokes when item value changes in input box to show the relevent items
     FnInputChanged:function(e){
+
       //alert(e.keyCode);
       if(e.keyCode==13|| e.keyCode==40)
         this.querySelector('paper-listbox').focus();
       var arr=[];
+      arr.push({"itemdes":"-----Select-----"});
       this.querySelector('paper-listbox').style.visibility='visible';
       if(e.keyCode==8){
         this.itemflag="true";

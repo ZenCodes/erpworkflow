@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/additem-card.js" afterPath="$PROJECT_DIR$/app/scripts/additem-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" afterPath="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,37 +23,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="additem-card.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/additem-card/additem-card.html">
+      <file leaf-file-name="autocompleteitemlist-card.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5660377">
-              <caret line="171" column="60" selection-start-line="171" selection-start-column="60" selection-end-line="171" selection-end-column="60" />
-              <folding>
-                <element signature="n#style#0;n#paper-listbox#0;n#div#1;n#div#0;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#paper-input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#template#0;n#dom-module#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="additem-card.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5185184">
-              <caret line="159" column="22" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.029310346">
+              <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin-service.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.762069">
-              <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#41#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -117,7 +91,6 @@
         <option value="$PROJECT_DIR$/app/scripts/drawermenu-card.js" />
         <option value="$PROJECT_DIR$/app/elements/menusearch-card/menusearch-card.html" />
         <option value="$PROJECT_DIR$/app/elements/autocompleteitemlist-card/autocompleteitemlist-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/menusearch-card.js" />
         <option value="$PROJECT_DIR$/app/elements/indexhome.html" />
         <option value="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
@@ -129,6 +102,7 @@
         <option value="$PROJECT_DIR$/app/scripts/admin-service.js" />
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/app/scripts/additem-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js" />
       </list>
     </option>
   </component>
@@ -1019,14 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9413793">
-          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/additem-card.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5185184">
@@ -1048,11 +1014,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/admin-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.762069">
-          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.23448277">
+          <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.029310346">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
