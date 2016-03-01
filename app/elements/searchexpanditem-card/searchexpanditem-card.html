@@ -14,6 +14,7 @@
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="searchexpanditem-card">
@@ -46,24 +47,30 @@
         margin-top:2%;
       //margin-left:5%;
       }
+      .custom {
+        margin-left: 5%;
+        --paper-tooltip-background: smokewhite;
+        --paper-tooltip-text-color: black;
+        font-size: 14px;
+        width: 150px;
+
+        box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
     </style>
 
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
       <div class="repeatcard">
-
         <paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>
         <paper-item name="qtyreceived" value="{{qtyreceived}}">{{qtyreceived}}</paper-item>
         <paper-item name="qtyaccepted" value="{{qtyaccepted}}">{{qtyaccepted}}</paper-item>
-        <textarea name="remark" value="{{remarks::input}}">{{remarks}}</textarea>
-
+        <textarea name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
+        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
       </div>
     </form>
   </template>
   <script>
     Polymer({is:"searchexpanditem-card",
       ready:function(){
-
-
       }
     });
   </script>

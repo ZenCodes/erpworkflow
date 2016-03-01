@@ -13,6 +13,7 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +50,15 @@
       paper-item{
         width: 100%;
       }
+      .custom {
+        margin-left: 5%;
+        --paper-tooltip-background: smokewhite;
+        --paper-tooltip-text-color: black;
+        font-size: 14px;
+        width: 150px;
 
+        box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
     </style>
     <!--template for showing item info-->
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
@@ -57,7 +66,8 @@
         <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
         <div id="qtr" ><paper-item name="qtyreceived" value="{{qtyreceived}}">{{qtyreceived}}</paper-item></div>
         <div id="qta" ><paper-item name="qtyaccepted" value="{{qtyaccepted}}">{{qtyaccepted}}</paper-item></div>
-        <textarea class="remark" name="remark" value="{{remarks::input}}">{{remarks}}</textarea>
+        <textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
+        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
       </div>
     </form>
   </template>
