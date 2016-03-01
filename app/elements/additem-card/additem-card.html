@@ -71,6 +71,7 @@
         margin-left: 5%;
       }
       #itemdes{
+        width: 45%;
         margin-left: 8%;
         margin-top: 2%;
       }
@@ -101,7 +102,7 @@
         background-color: whitesmoke;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
-      #dropgrouptype{
+      #dropgrouptype,#optionalsuppliername{
         margin-left: 5%;
       }
       paper-dropdown-menu{
@@ -174,6 +175,13 @@
               </template>
             </paper-menu>
           </paper-dropdown-menu>
+          <paper-dropdown-menu id="optionalsuppliername" label="Select Supplier Name" disabled="{{read}}">
+            <paper-menu class="dropdown-content" on-iron-select="FnSelectOptionalSupplier" attr-for-selected="value" selected="{{itemoptionalsupplier}}">
+              <template is="dom-repeat" items="{{itemoptionalsupplierarr}}">
+                <paper-item value="{{item.itemsuppliername}}">{{item.itemsuppliername}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
         </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
@@ -200,7 +208,7 @@
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
     <!--Component to call the service to bind item type and group type-->
-    <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" itemsupplierarr="{{itemsupplierarr}}"></admin-service>
+    <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" itemsupplierarr="{{itemsupplierarr}}" itemoptionalsupplierarr="{{itemoptionalsupplierarr}}"></admin-service>
   </template>
   <!--JS File import-->
   <script src="../../scripts/additem-card.js"> </script>

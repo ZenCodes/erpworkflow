@@ -11,11 +11,12 @@
       this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
     },
     //Method invokes while making write req from the additem card
-    callItemWriteService:function(itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+    callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
 
     var obj={
-     "itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
+      "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
     };
+      obj.itemoptionalsupplier=itemoptionalsupplier,
       obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
@@ -68,6 +69,7 @@
     itemsupplierreadResponse:function(e) {
       var itemsupplierarray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemsupplierarr=itemsupplierarray;
+      document.querySelector('additem-card').itemoptionalsupplierarr=itemsupplierarray;
     },
     //Method invokes while making req for fetch all the info of the currently selected item in listbox
     callSearchService:function(itemid,itemname){
@@ -86,15 +88,16 @@
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
       document.querySelector("additem-card").container=arr[0].container;
       document.querySelector("additem-card").quantity=arr[0].quantity;
-      document.querySelector("additem-card").setSelectedItem(arr[0].itemsupplier,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
+      document.querySelector("additem-card").setSelectedItem(arr[0].itemoptionalsupplier,arr[0].itemsupplier,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
 
     },
     //Method invokes while making update request from item card
-    callItemUpdateService:function(itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+    callItemUpdateService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
 
       var obj={
-        "itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
+        "itemoptionalsupplier":"","itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
       };
+      obj.itemoptionalsupplier=itemoptionalsupplier,
       obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;

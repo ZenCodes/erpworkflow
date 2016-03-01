@@ -211,7 +211,7 @@ Polymer({
 
     }
   },
-  //Method invokes to fetch item supplier id of the currently selected Item group name in dropdown
+  //Method invokes to fetch item supplier id of the currently selected supplier name in dropdown
   FnSelectSupplier:function(e){
     //Flag is used to identify the supplier name drop down change and it is later refered in update mode
     localStorage.setItem("curr_sess_supplierchangeflag","1");
@@ -221,6 +221,19 @@ Polymer({
     {
       if(itemsupplierarray[i].itemsuppliername==this.itemsuppliername) {
         this.itemsupplier = itemsupplierarray[i].itemsupplierid;
+      }
+    }
+  },
+  //Method invokes to fetch optional item supplier id of the currently selected optional supplier name in dropdown
+  FnSelectOptionalSupplier:function(e){
+    //Flag is used to identify the optional supplier name drop down change and it is later refered in update mode
+    localStorage.setItem("curr_sess_optionalsupplierchangeflag","1");
+    var itemoptionalsupplierarray=this.itemoptionalsupplierarr;
+    this.itemoptionalsuppliername=(e.target.selectedItem.textContent).trim();
+    for(var i=0;i<itemoptionalsupplierarray.length;i++)
+    {
+      if(itemoptionalsupplierarray[i].itemsuppliername==this.itemoptionalsuppliername) {
+        this.itemoptionalsupplier = itemoptionalsupplierarray[i].itemsupplierid;
       }
     }
   },
@@ -244,47 +257,38 @@ Polymer({
     this.itemflag="1";
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
-      this.$.adminservice.callItemWriteService(this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.adminservice.callItemWriteService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
       //While upadting if not changing item type name it would fetch item type id
       if(localStorage.getItem("curr_sess_itemtypechangeflag")!="1"){
-        for(var i=0;i<this.itemarr.length;i++){
-          if(this.itemarr[i].itemtypename==this.itemtype) {
-            this.itemtypee = this.itemarr[i].itemtypeid;
-          }
-        }
+        this.itemtype=localStorage.getItem("curr_sess_ItemTypeId");
       }
       //While upadting if not changing item group name it would fetch item group id
       if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
-        for(var i=0;i<this.itemgrouparr.length;i++){
-          if(this.itemgrouparr[i].itemgroupname==this.itemgroup)
-            this.itemgroupp=this.itemgrouparr[i].itemgroupid;
-        }
+        this.itemgroup=localStorage.getItem("curr_sess_ItemTypeGroup");
       }
       //While upadting if not changing item supplier name it would fetch item supplier id
       if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
-        for(var i=0;i<this.itemsupplierarr.length;i++){
-          if(this.itemsupplierarr[i].itemsuppliername==this.itemsupplier)
-            this.itemsupplier=this.itemsupplierarr[i].itemsupplierid;
-        }
+        this.itemsupplier=localStorage.getItem("curr_sess_ItemTypeSupplier");
       }
+      //While upadting if not changing item supplier name it would fetch item supplier id
+      if(localStorage.getItem("curr_sess_optionalsupplierchangeflag")!="1"){
 
-      //Condition will invoke and calling update service if not changing both item type and group
-      if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
-      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtypee, purchasetype);
-      //Condition will invoke and calling update service if not changing  item type
-      else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="0")
-      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtypee, purchasetype);
-      //Condition will invoke and calling update service if not changing item  group
-      else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="0"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
-      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroupp, this.itemtype, purchasetype);
-      //Condition will invoke and calling update service if  changing both item type and group
-      else if(localStorage.getItem("curr_sess_grouptypechangeflag")=="1"&&localStorage.getItem("curr_sess_itemtypechangeflag")=="1")
-      this.$.adminservice.callItemUpdateService(this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-
+        this.itemoptionalsupplier=localStorage.getItem("curr_sess_ItemTypeOptionalSupplier");
+      }
+      //alert(this.itemoptionalsupplier+"  "+this.itemsupplier+"  "+this.itemtype+"  "+this.itemgroup);
+      //Calling service to update item details
+      this.$.adminservice.callItemUpdateService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      //Calling method to set dropdown values afterupdating it
+      this.setSelectedItem(this.itemoptionalsupplier,this.itemsupplier,this.itemtype,this.itemgroup,this.selection);
+      //Clearing local storage to clear itemid,group and supplier info after updating
+      localStorage.setItem("curr_sess_ItemTypeId","");
+      localStorage.setItem("curr_sess_ItemTypeGroup","");
+      localStorage.setItem("curr_sess_ItemTypeSupplier","");
+      localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
     }
     }
   },
@@ -298,12 +302,18 @@ Polymer({
     localStorage.setItem("curr_sess_itemtypechangeflag","0");
     localStorage.setItem("curr_sess_grouptypechangeflag","0");
     localStorage.setItem("curr_sess_supplierchangeflag","0");
+    localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
     this.read=false;
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';
   },
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
-  setSelectedItem:function(itemsupplier,itemtype,itemgroup,selection){
+  setSelectedItem:function(itemoptionalsupplier,itemsupplier,itemtype,itemgroup,selection){
+    //Setting itemid,group and supplier info in local storage
+    localStorage.setItem("curr_sess_ItemTypeId",itemtype);
+    localStorage.setItem("curr_sess_ItemTypeGroup",itemgroup);
+    localStorage.setItem("curr_sess_ItemTypeSupplier",itemsupplier);
+    localStorage.setItem("curr_sess_ItemTypeOptionalSupplier",itemoptionalsupplier);
     for(var i=0;i<this.itemarr.length;i++){
       if(this.itemarr[i].itemtypeid==itemtype)
         this.itemtype=this.itemarr[i].itemtypename;
@@ -315,6 +325,10 @@ Polymer({
     for(var i=0;i<this.itemsupplierarr.length;i++){
       if(this.itemsupplierarr[i].itemsupplierid==itemsupplier)
         this.itemsupplier=this.itemsupplierarr[i].itemsuppliername;
+    }
+    for(var i=0;i<this.itemoptionalsupplierarr.length;i++){
+      if(this.itemoptionalsupplierarr[i].itemsupplierid==itemoptionalsupplier)
+        this.itemoptionalsupplier=this.itemoptionalsupplierarr[i].itemsuppliername;
     }
     this.selection=selection;
   }

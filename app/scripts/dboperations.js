@@ -1165,7 +1165,8 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
       if(rows.length>0){
       for(var i=0;i<rows.length;i++)
       {
-        var obj={"itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+        var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+        obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
         obj.itemsupplier=rows[i].Item_Supplier_ID;
         obj.itemid=rows[i].Item_ID;
         obj.itemname=rows[i].Item_Name;
