@@ -18,6 +18,7 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../admin-service/admin-service.html">
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
+
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <dom-module id="additem-card">
@@ -153,14 +154,14 @@
           <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}">
-            <paper-menu class="dropdown-content"  on-iron-select="FnSelecttype"  attr-for-selected="value" selected="{{itemtype}}">
+          <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelecttype"  attr-for-selected="value" selected="{{itemtype}}" required>
               <template is="dom-repeat" items="{{itemarr}}">
               <paper-item value="{{item.itemtypename}}">{{item.itemtypename}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>
-          <paper-dropdown-menu id="dropgrouptype" label="Select Item Group" disabled="{{read}}">
+          <paper-dropdown-menu id="dropgrouptype" label="Select Item Group" disabled="{{read}}" required>
             <paper-menu class="dropdown-content" on-iron-select="FnSelectGrouptype" attr-for-selected="value" selected="{{itemgroup}}">
               <template is="dom-repeat" items="{{itemgrouparr}}">
                 <paper-item value="{{item.itemgroupname}}">{{item.itemgroupname}}</paper-item>
@@ -169,7 +170,7 @@
           </paper-dropdown-menu>
         </div>
         <div class="owner">
-          <paper-dropdown-menu id="suppliername" label="Select Supplier Name" disabled="{{read}}">
+          <paper-dropdown-menu id="suppliername" label="Select Supplier Name" disabled="{{read}}" required>
             <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier" attr-for-selected="value" selected="{{itemsupplier}}">
               <template is="dom-repeat" items="{{itemsupplierarr}}">
                 <paper-item value="{{item.itemsuppliername}}">{{item.itemsuppliername}}</paper-item>

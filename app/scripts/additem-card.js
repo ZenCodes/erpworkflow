@@ -7,6 +7,16 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
+    this.itemid="";
+    this.itemname="";
+    this.container="";
+    this.quantity="";
+    this.itemdes="";
+    this.itemtype="";
+    this.itemgroup="";
+    this.itemsupplier="";
+    this.itemoptionalsupplier="";
+    this.selection="";
     //Initially hiding paperlistbox of itemtype and itemgroup fields
     this.isHidden=true;
     this.isHiddenid=true;
@@ -247,9 +257,15 @@ Polymer({
     document.querySelector('#itemdes').validate();
     document.querySelector('#container').validate();
     document.querySelector('#quantity').validate();
+    document.querySelector('#dropitemtype').validate();
+    document.querySelector('#dropgrouptype').validate();
+    document.querySelector('#suppliername').validate();
+
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
-  if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){}
+
+  if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){
+  }
     else {
     //Setting flags according to the purchase type selection if type is regular then flag is 0 ,if spot flag is 1
     for(var i=0;i<this.purchasearr.length;i++)
