@@ -4,6 +4,7 @@
 Polymer({
   is: "viewtype-card",
   ready:function() {
+    this.read=false;
     //this.Label="Create";
     if (sessionStorage.getItem("loggedrole") == "Security guard"||localStorage.getItem("curr_sess_wardflag")=="2") {
       this.$.create.style.visibility = 'visible';
@@ -52,10 +53,12 @@ Polymer({
   },
   edit:function(){
     document.querySelector('additem-card').FnEnableFields();
+    this.$.edit.style.visibility = 'hidden';
   },
   FnEnableEdit:function(flag){
-    if(flag==true)
-    this.$.edit.style.visibility = 'visible';
+    if(flag==true) {
+      this.$.edit.style.visibility = 'visible';
+    }
     else
     this.$.edit.style.visibility = 'hidden';
     //this.Label="Edit";

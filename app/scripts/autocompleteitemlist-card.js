@@ -101,7 +101,7 @@
           {
             var subval=((item[i].itemname).trim()).substring(0,backsubval.length);
 
-            if(subval==backsubval)
+            if((subval).toUpperCase()==(backsubval).toUpperCase())
             {
 
               var obj={"itemdes":""};
@@ -110,7 +110,7 @@
             }
           }
           this.itemArray=arr;
-          //alert(JSON.stringify(this.itemArray));
+
         }
       }
       if(e.keyCode!=8&& e.keyCode!=16&& e.keyCode!=13 && e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=37&&e.keyCode!=39){
@@ -126,7 +126,7 @@
           for(var i=0;i<item.length;i++){
             var subval=((item[i].itemname).trim()).substring(0,this.itemval.length);
 
-            if(subval==this.itemval)
+            if((subval).toUpperCase()==(this.itemval).toUpperCase())
             {
               var obj={"itemdes":""};
               obj.itemdes=item[i].itemname;
@@ -142,6 +142,7 @@
             arr.push(obj);
             this.itemArray=arr;
           }
+
         }
       }
     },
