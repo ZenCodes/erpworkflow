@@ -17,6 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../admin-service/admin-service.html">
+<link rel="import" href="../itemsummary-page/itemsummary-page.html">
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <dom-module id="additem-card">
@@ -71,7 +72,7 @@
         margin-left: 5%;
       }
       #itemdes{
-        width: 45%;
+        //width: 45%;
         margin-left: 8%;
         margin-top: 2%;
       }
@@ -205,10 +206,12 @@
       content-type="application/json"
       on-response="itemlistreadResponse">
     </iron-ajax>
+    <!--Including dialog component here-->
+    <itemsummary-page id="ID_Dialogpage"></itemsummary-page>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
     <!--Component to call the service to bind item type and group type-->
-    <admin-service id="adminservice" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" itemsupplierarr="{{itemsupplierarr}}" itemoptionalsupplierarr="{{itemoptionalsupplierarr}}"></admin-service>
+    <admin-service id="adminservice" purchasearr="{{purchasearr}}" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" itemsupplierarr="{{itemsupplierarr}}" itemoptionalsupplierarr="{{itemoptionalsupplierarr}}"></admin-service>
   </template>
   <!--JS File import-->
   <script src="../../scripts/additem-card.js"> </script>

@@ -1067,7 +1067,32 @@ exports.FnAddItemWrite=function(pagename,response,callback) {
     }
   });
 }
+//Function fetches itemtype info
+exports.FnAddItemPurchasetype=function(pagename,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+'',function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"purchasetypeid":"","purchasetypename":""};
+        obj.purchasetypeid=rows[i].Purchase_Type_ID;
+        obj.purchasetypename=rows[i].Purchase_Type_Name;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+      return callback(itemarr);
+    }
+    else
+      console.log(err);
+  });
 
+}
 //Function fetches itemtype info
 exports.FnAddItemRead=function(pagename,callback) {
   var Config_tables=[];

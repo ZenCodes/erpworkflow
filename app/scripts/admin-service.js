@@ -35,6 +35,7 @@
     additemwriteResponse:function(e){
       if(e.detail.response.returnval=="succ"){
         document.querySelector("additem-card").FnBtnDisable();
+        document.querySelector("additem-card").FnClear();
       this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
       }
      else if(e.detail.response.returnval=="duplicate entry"){
@@ -42,6 +43,15 @@
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
+    },
+    //Method invokes while making req to fetch purhase type info
+    callItemPurchasetypeReadService:function(){
+      this.purchasetypeurl=sessionStorage.getItem("curr_sess_url")+"additempurchasetype-service";
+      this.$.purchasetypereadajax.generateRequest();
+    },
+    purchasetypereadResponse:function(e) {
+      var itemarray=e.detail.response.itemarr;
+      document.querySelector('additem-card').purchasearr=itemarray;
     },
     //Method invokes while making req to fetch item type info
     callItemReadService:function(){
@@ -118,6 +128,7 @@
 
       if(e.detail.response.returnval=="succ"){
         document.querySelector("additem-card").FnBtnDisable();
+        document.querySelector("additem-card").FnClear();
         this.$.dialogpage.FnShowDialog("Item updated successfully!!","");
       }
       else

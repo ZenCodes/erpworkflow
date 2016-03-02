@@ -13,6 +13,7 @@ Polymer({
     //Initially to make all the fields are in editable mode
     this.read=false;
     //Calling services to bind info to the itemtype , itemgroup and supplier fields
+    this.$.adminservice.callItemPurchasetypeReadService();
     this.$.adminservice.callItemReadService();
     this.$.adminservice.callItemgroupReadService();
     this.$.adminservice.callItemSupplierReadService();
@@ -251,13 +252,14 @@ Polymer({
   if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){}
     else {
     //Setting flags according to the purchase type selection if type is regular then flag is 0 ,if spot flag is 1
-    if(document.querySelector('#radio').selected=="Regular")
-    this.itemflag="0";
-    else
-    this.itemflag="1";
+    for(var i=0;i<this.purchasearr.length;i++)
+    if(document.querySelector('#radio').selected==this.purchasearr[i].purchasetypename)
+    this.itemflag=this.purchasearr[i].purchasetypeid;
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
-      this.$.adminservice.callItemWriteService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+       this.$.ID_Dialogpage.FnShowDialog(this.itemarr,this.itemgrouparr,this.itemsupplierarr,this.itemoptionalsupplierarr,this.purchasearr,this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+        //if(localStorage.getItem("curr_sess_itemsummaryflag")=="1")
+        //this.$.adminservice.callItemWriteService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
@@ -281,16 +283,33 @@ Polymer({
       }
       //alert(this.itemoptionalsupplier+"  "+this.itemsupplier+"  "+this.itemtype+"  "+this.itemgroup);
       //Calling service to update item details
-      this.$.adminservice.callItemUpdateService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.ID_Dialogpage.FnShowDialog(this.itemarr,this.itemgrouparr,this.itemsupplierarr,this.itemoptionalsupplierarr,this.purchasearr,this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      //this.$.adminservice.callItemUpdateService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
       //Calling method to set dropdown values afterupdating it
-      this.setSelectedItem(this.itemoptionalsupplier,this.itemsupplier,this.itemtype,this.itemgroup,this.selection);
+      //this.setSelectedItem(this.itemoptionalsupplier,this.itemsupplier,this.itemtype,this.itemgroup,this.selection);
       //Clearing local storage to clear itemid,group and supplier info after updating
       localStorage.setItem("curr_sess_ItemTypeId","");
       localStorage.setItem("curr_sess_ItemTypeGroup","");
       localStorage.setItem("curr_sess_ItemTypeSupplier","");
       localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
+      //this.read=true;
+
     }
     }
+
+  },
+  //Clearing fields after save / edit
+  FnClear:function(){
+    this.itemid="";
+    this.itemname="";
+    this.container="";
+    this.quantity="";
+    this.itemdes="";
+    this.itemtype="Select Item Type";
+    this.itemgroup="Select Item Group";
+    this.itemsupplier="Select Supplier Name";
+    this.itemoptionalsupplier="Select Supplier Name";
+    this.selection="";
   },
   //Function to diable Save button,once after search or save
   FnBtnDisable:function(){
@@ -330,6 +349,10 @@ Polymer({
       if(this.itemoptionalsupplierarr[i].itemsupplierid==itemoptionalsupplier)
         this.itemoptionalsupplier=this.itemoptionalsupplierarr[i].itemsuppliername;
     }
-    this.selection=selection;
+    for(var i=0;i<this.purchasearr.length;i++){
+      if(this.purchasearr[i].purchasetypeid==selection)
+        this.selection=this.purchasearr[i].purchasetypename;
+    }
+    //this.selection=selection;
   }
 });

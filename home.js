@@ -408,8 +408,8 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
     UOM:req.query.quantity,
     Item_Group_ID:req.query.itemgroup,
     Item_Type_ID:req.query.itemtype,
-    Item_Purchase_Type_ID:req.query.purchasetype,
-    Purchase_Type_Flag:req.query.itemflag
+    Item_Purchase_Type_ID:req.query.itemflag
+    //Purchase_Type_Flag:req.query.itemflag
 
   };
   //console.log(response);
@@ -420,6 +420,14 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
 
 });
 
+//Function to fetch item type info req receives from admin service
+app.post('/additempurchasetype-service',urlencodedParser, function (req, res) {
+
+  var FnAddItemPurchasetypecall = require("./app/scripts/dboperations.js");
+  FnAddItemPurchasetypecall.FnAddItemPurchasetype("additempurchasetype-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 //Function to fetch item type info req receives from admin service
 app.post('/additemread-service',urlencodedParser, function (req, res) {
 
@@ -471,7 +479,7 @@ app.post("/additemupdate-service",urlencodedParser,function(req,res) {
   response = {
     Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
     Item_Supplier_ID:req.query.itemsupplier,
-    Purchase_Type_Flag:req.query.itemflag,
+    //Purchase_Type_Flag:req.query.itemflag,
     Item_ID:req.query.itemid,
     Item_Name:req.query.itemname,
     Item_Description:req.query.itemdes,
@@ -479,7 +487,7 @@ app.post("/additemupdate-service",urlencodedParser,function(req,res) {
     UOM:req.query.quantity,
     Item_Group_ID:req.query.itemgroup,
     Item_Type_ID:req.query.itemtype,
-    Item_Purchase_Type_ID:req.query.purchasetype
+    Item_Purchase_Type_ID:req.query.itemflag
 
   };
   var FnAddItemUpdatecall = require("./app/scripts/dboperations.js");

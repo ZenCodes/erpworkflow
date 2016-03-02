@@ -15,7 +15,17 @@
       content-type="application/json"
       on-response="additemwriteResponse">
     </iron-ajax>
-
+    <!--Component which makes read req to fetch the purchase type info-->
+    <iron-ajax
+      auto
+      id="purchasetypereadajax"
+      url="{{purchasetypeurl}}"
+      params='{{purchasetypeparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="purchasetypereadResponse">
+    </iron-ajax>
     <!--Component which makes read req to fetch the item type info-->
     <iron-ajax
       auto

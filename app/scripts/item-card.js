@@ -14,19 +14,19 @@
       var txt_input6="textinput6"+localStorage.getItem("curr_sess_unitset");
       //It would hide remarks and adjust the style properties of the item card components when reusing this card for the outward mode
       if(localStorage.getItem("curr_sess_wardflag")=="0") {
-        this.querySelector("#" + auto_input).style.width = '20%';
-        this.querySelector("#" + txt_input1).style.width = '15%';
+        this.querySelector("#" + auto_input).style.width = '25%';
+        this.querySelector("#" + txt_input1).style.width = '12%';
         this.querySelector("#" + txt_input1).style.marginLeft = '-12%';
-        this.querySelector("#" + txt_input3).style.width = '15%';
-        this.querySelector("#" + txt_input3).style.marginLeft = '3%';
+        this.querySelector("#" + txt_input3).style.width = '14%';
+        this.querySelector("#" + txt_input3).style.marginLeft = '2%';
         this.querySelector("#" + txt_input5).style.width = '16%';
-        this.querySelector("#" + txt_input5).style.marginLeft = '4%';
+        this.querySelector("#" + txt_input5).style.marginLeft = '2.5%';
         this.querySelector("#" + txt_input6).style.visibility = 'hidden';
       }
       if(localStorage.getItem("curr_sess_wardflag")=="1") {
-        this.querySelector("#" + auto_input).style.width = '25%';
+        this.querySelector("#" + auto_input).style.width = '27%';
         this.querySelector("#" + txt_input1).style.width = '19%';
-        this.querySelector("#" + txt_input1).style.marginLeft = '-7%';
+        this.querySelector("#" + txt_input1).style.marginLeft = '-10%';
         this.querySelector("#" + txt_input3).style.width = '19%';
         this.querySelector("#" + txt_input3).style.marginLeft = '5%';
         this.querySelector("#" + txt_input5).style.visibility = 'hidden';

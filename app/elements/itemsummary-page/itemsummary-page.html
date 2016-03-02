@@ -1,0 +1,66 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="stylesheet" href="../../bower_components/paper-styles/demo.css">
+
+<dom-module id="itemsummary-page">
+  <template>
+    <style>
+      paper-button{
+        //margin-left: 40%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      //background-color: #bfbfbf;
+      }
+      p{
+        text-align: left;
+        font-size: 15px;
+        //font-weight: bold;
+        font-family: 'Lustria', serif;
+      }
+      paper-dialog{
+        width:30%;
+        height: 70%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      paper-dialog.colored {
+
+        border: 2px solid;
+        border-color: darkslategrey;
+        background-color: whitesmoke;
+        color: black;
+
+      }
+      .no{
+        text-align: center;
+      }
+      .btn{
+        margin-left: 30%;
+        @apply(--layout-horizontal);
+      }
+    </style>
+    <paper-dialog id="Fn_Open_dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+      <p>{{val1}}</p>
+      <p>{{val2}}</p>
+      <p>{{val3}}</p>
+      <p>{{val4}}</p>
+      <p>{{val5}}</p>
+      <p>{{val6}}</p>
+      <p>{{val7}}</p>
+      <p>{{val8}}</p>
+      <p>{{val9}}</p>
+      <p>{{val10}}</p>
+     <div class="btn"><paper-button dialog-confirm autofocus on-click="FnSummaryOk">Ok</paper-button>
+      <paper-button dialog-dismiss on-click="FnSummaryCancel">Cancel</paper-button>
+      </div>
+    </paper-dialog>
+  </template>
+  <script src="../../scripts/itemsummary-page.js">  </script>
+</dom-module>
