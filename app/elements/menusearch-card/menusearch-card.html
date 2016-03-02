@@ -33,6 +33,7 @@
     paper-menu{
     //background-color: #dbe9d6;
       overflow:hidden;
+      margin-left: 5%;
     }
     paper-button{
       text-transform:none;
@@ -48,7 +49,7 @@
     }
 
     .sublist2 paper-input {
-      padding-left: 50px;
+      padding-left: 30px;
     }
     paper-input{
       width:75%;
@@ -61,20 +62,23 @@
       margin-top: -10%;
     }
     #auto{
-      margin-left: 20%;
+      margin-left: 10%;
     }
+    .search{
 
+    }
   </style>
 
   <template>
     <div class="card">
+      <paper-item class="search" noink>GRN Search</paper-item>
       <paper-menu attr-for-item-title="label" >
         <!--<paper-submenu label="grnflow">-->
           <!--<paper-item class="menu-trigger" noink>GRN Flow</paper-item>-->
           <!--<paper-menu class="menu-content sublist">-->
-            <paper-submenu label="Search">
-              <paper-item class="menu-trigger" noink>GRN Search</paper-item>
-              <paper-menu class="menu-content sublist" >
+            <!--<paper-submenu label="Search">-->
+              <!--<paper-item class="menu-trigger" noink>GRN Search</paper-item>-->
+              <!--<paper-menu class="menu-content sublist" >-->
                 <paper-submenu label="IRN/ORN Number" id="irnno">
                   <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="IRNORN">IRN/ORN Number</paper-item>
                   <paper-menu class="menu-content sublist2">
@@ -95,8 +99,8 @@
                     <!--<paper-input label="Item Name" value="{{item}}"><paper-icon-button suffix icon="search" on-click="itemsearch"></paper-icon-button></paper-input>-->
                   </paper-menu>
                 </paper-submenu>
-              </paper-menu>
-            </paper-submenu>
+              <!--</paper-menu>-->
+            <!--</paper-submenu>-->
           <!--</paper-menu>-->
         <!--</paper-submenu>-->
       </paper-menu>
