@@ -90,7 +90,12 @@ Polymer({is:"physicqualify-card",
 
       }
       else {
-        document.querySelector('#suplr').style.paddingTop='8%';
+        if(arr.length>1)
+        document.querySelector('#suplr').style.paddingTop='10%';
+        else
+        document.querySelector('#suplr').style.paddingTop='6%';
+        //else
+        //document.querySelector('#suplr').style.paddingTop='8%';
         //document.querySelector('#suplr').style.marginLeft='65%';
         this.isHidden = true;
       }
