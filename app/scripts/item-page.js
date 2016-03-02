@@ -42,14 +42,15 @@
       this.qtyreceived=qtyreceived;
       this.remark=remark;
     },
-    FnSetMenuinfo:function(itemdes,unit,measure,itemid,ponumber,purchasetype,purchasetypeflag){
+    FnSetMenuinfo:function(itemdes,unit,measure,itemid,ponumber,purchasetypeflag){
       //alert(itemdes+"  "+unit);
       this.unit=unit;
       this.measure=measure;
       this.itemid=itemid;
       //alert(ponumber);
-      this.purchasetype=purchasetype;
+      //this.purchasetype=purchasetype;
       this.purchasetypeflag=purchasetypeflag;
+
       if(purchasetypeflag=='1'){
         //localStorage.setItem("curr_sess_purchasetypeflag","1");
         this.podate=localStorage.getItem("localsess_curr_inwarddate");
@@ -116,7 +117,7 @@
         }
         if(existflag==0){
           var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
-          obj.purchasetype=this.purchasetype;
+          //obj.purchasetype=this.purchasetype;
           obj.purchasetypeflag=this.purchasetypeflag;
           obj.podate=this.podate;
           obj.ponumber=this.ponumber;
@@ -191,7 +192,7 @@
           }
           if(existflag==0){
             var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
-            obj.purchasetype=this.purchasetype;
+            //obj.purchasetype=this.purchasetype;
             obj.purchasetypeflag=this.purchasetypeflag;
             obj.podate=this.podate;
             obj.ponumber=this.ponumber;

@@ -43,14 +43,14 @@
             this.measure = item[i].container;
             this.itemid = item[i].itemid;
             this.ponumber=item[i].itemgroup;
-            this.purchasetype = item[i].itempurchasetype;
+            //this.purchasetype = item[i].itempurchasetype;
             this.purchasetypeflag = item[i].purchasetypeflag;
           }
         }
         //To extract the unit of the item dynamically according to the item selection in list
         if (localStorage.getItem("curr_sess_wardflag") != "1") {
         //Binding values to the item page value and unit
-        document.querySelector('item-page').FnSetMenuinfo(this.value, this.unit,this.measure,this.itemid,this.ponumber,this.purchasetype,this.purchasetypeflag);
+        document.querySelector('item-page').FnSetMenuinfo(this.value, this.unit,this.measure,this.itemid,this.ponumber,this.purchasetypeflag);
         //document.querySelector('item-card').FnSetInputunitmeasure(this.unit,this.measure);
       }
         if(localStorage.getItem("curr_sess_wardflag")=="1") {

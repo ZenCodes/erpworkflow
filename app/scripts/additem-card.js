@@ -33,6 +33,7 @@ Polymer({
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
   },
+  //Following functions are used to monitor the input field change
   FnItemIdChange:function(e){
     localStorage.setItem("curr_sess_itemidflag","1");
   },

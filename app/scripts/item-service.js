@@ -51,7 +51,7 @@
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
           var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
-          obj.purchasetype=this.items[i].purchasetype;
+          //obj.purchasetype=this.items[i].purchasetype;
           obj.purchasetypeflag=this.items[i].purchasetypeflag;
           obj.podate=this.items[i].podate;
           obj.ponumber=this.items[i].ponumber;
