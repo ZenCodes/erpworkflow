@@ -46,7 +46,7 @@ Polymer({
     this.read=true;
     //The flag is used to ensure that currently in search mode and visible Edit button
     localStorage.setItem("curr_sess_searchitemflag","1");
-    document.querySelector('viewtype-card').FnEnableEdit();
+    document.querySelector('viewtype-card').FnEnableEdit(true);
     //Url for invoking itemlistservice to fetch all the items and check with currently searching item and display the details accordingly
     this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
     //The itemlist service component is reused here,there the wardflag has to be 2 ,so that here is it is used
@@ -69,7 +69,7 @@ Polymer({
     this.read=true;
     //The flag is used to ensure that currently in search mode and visible Edit button
     localStorage.setItem("curr_sess_searchitemflag","1");
-    document.querySelector('viewtype-card').FnEnableEdit();
+    document.querySelector('viewtype-card').FnEnableEdit(true);
     //Url for invoking itemlistservice to fetch all the items and check with currently searching item and display the details accordingly
     this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
     //The itemlist service component is reused here,there the wardflag has to be 2 ,so that here is it is used
@@ -271,6 +271,28 @@ Polymer({
     for(var i=0;i<this.purchasearr.length;i++)
     if(document.querySelector('#radio').selected==this.purchasearr[i].purchasetypename)
     this.itemflag=this.purchasearr[i].purchasetypeid;
+
+    //While upadting if not changing item type name it would fetch item type id
+    if(localStorage.getItem("curr_sess_itemtypechangeflag")!="1"){
+
+      this.itemtype=localStorage.getItem("curr_sess_ItemTypeId");
+    }
+    //While upadting if not changing item group name it would fetch item group id
+    if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
+
+      this.itemgroup=localStorage.getItem("curr_sess_ItemTypeGroup");
+    }
+    //While upadting if not changing item supplier name it would fetch item supplier id
+    if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
+
+      this.itemsupplier=localStorage.getItem("curr_sess_ItemTypeSupplier");
+    }
+    //While upadting if not changing item supplier name it would fetch item supplier id
+    if(localStorage.getItem("curr_sess_optionalsupplierchangeflag")!="1"){
+
+      this.itemoptionalsupplier=localStorage.getItem("curr_sess_ItemTypeOptionalSupplier");
+    }
+
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
@@ -281,24 +303,8 @@ Polymer({
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1")
     {
-      //While upadting if not changing item type name it would fetch item type id
-      if(localStorage.getItem("curr_sess_itemtypechangeflag")!="1"){
-        this.itemtype=localStorage.getItem("curr_sess_ItemTypeId");
-      }
-      //While upadting if not changing item group name it would fetch item group id
-      if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
-        this.itemgroup=localStorage.getItem("curr_sess_ItemTypeGroup");
-      }
-      //While upadting if not changing item supplier name it would fetch item supplier id
-      if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
-        this.itemsupplier=localStorage.getItem("curr_sess_ItemTypeSupplier");
-      }
-      //While upadting if not changing item supplier name it would fetch item supplier id
-      if(localStorage.getItem("curr_sess_optionalsupplierchangeflag")!="1"){
 
-        this.itemoptionalsupplier=localStorage.getItem("curr_sess_ItemTypeOptionalSupplier");
-      }
-      //alert(this.itemoptionalsupplier+"  "+this.itemsupplier+"  "+this.itemtype+"  "+this.itemgroup);
+
       //Calling dialog ensure  the update item details
       this.$.ID_Dialogpage.FnShowDialog(this.itemarr,this.itemgrouparr,this.itemsupplierarr,this.itemoptionalsupplierarr,this.purchasearr,this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
       //this.$.adminservice.callItemUpdateService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
@@ -310,14 +316,14 @@ Polymer({
 
     }
     }
-
-  },
-  //Clearing fields after save / edit
-  FnClear:function(){
     localStorage.setItem("curr_sess_ItemTypeId","");
     localStorage.setItem("curr_sess_ItemTypeGroup","");
     localStorage.setItem("curr_sess_ItemTypeSupplier","");
     localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
+  },
+  //Clearing fields after save / edit
+  FnClear:function(){
+
     this.itemid="";
     this.itemname="";
     this.container="";
@@ -347,6 +353,7 @@ Polymer({
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
   setSelectedItem:function(itemoptionalsupplier,itemsupplier,itemtype,itemgroup,selection){
     //Setting itemid,group and supplier info in local storage
+
     localStorage.setItem("curr_sess_ItemTypeId",itemtype);
     localStorage.setItem("curr_sess_ItemTypeGroup",itemgroup);
     localStorage.setItem("curr_sess_ItemTypeSupplier",itemsupplier);

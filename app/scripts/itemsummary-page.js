@@ -9,10 +9,7 @@
     },
     //Method will invoke to toggle the dialog control
     FnShowDialog:function(itemarr,itemgrouparr,itemsupplierarr,itemoptionalsupplierarr,purchasearr,itemoptionalsupplier,itemsupplier,itemflag, itemid, itemname, itemdes, container, quantity, itemgroup, itemtype, purchasetype){
-      //var summary="Item ID:  "+itemid+"\n                                   " +
-      //  "Item Name:  "+itemname+"\n"+" Item Description:  "+itemdes+"\n Container:  "+
-      //  container+"\n Quantity:  "+quantity+"\n Item Type:  "+itemtype+"\n Item Group:  "+itemgroup+"\n Supplier1:  "+
-      //  itemsupplier+"\n Supplier2:  "+itemoptionalsupplier+"\n Purchase Type:  "+ purchasetype;
+
       this.itemoptionalsupplier=itemoptionalsupplier,
       this.itemsupplier=itemsupplier;
       this.itemflag=itemflag;
@@ -46,16 +43,28 @@
           purchasetype=purchasearr[i].purchasetypename;
       }
 
-      this.val1="Item ID:  "+itemid;
-      this.val2="Item Name:  "+itemname;
-      this.val3="Item Description:  "+itemdes;
-      this.val4="Container:  "+container;
-      this.val5="Quantity:  "+quantity;
-      this.val6="Item Type:  "+itemtype;
-      this.val7="Item Group:  "+itemgroup;
-      this.val8="Supplier1:  "+itemsupplier;
-      this.val9="Supplier2:  "+itemoptionalsupplier;
-      this.val10="Purchase Type:  "+ purchasetype;
+      this.itemoptionalsupplierr=itemoptionalsupplier,
+      this.itemsupplierr=itemsupplier;
+      this.itemflagg=itemflag;
+      this.itemidd=itemid;
+      this.itemnamee=itemname;
+      this.itemdess=itemdes;
+      this.containerr=container;
+      this.quantityy=quantity;
+      this.itemgroupp=itemgroup;
+      this.itemtypee=itemtype;
+      this.purchasetypee=purchasetype;
+
+      this.val1="Item ID";
+      this.val2="Item Name";
+      this.val3="Item Description";
+      this.val4="Container";
+      this.val5="Quantity";
+      this.val6="Item Type";
+      this.val7="Item Group";
+      this.val8="Supplier1";
+      this.val9="Supplier2";
+      this.val10="Purchase Type";
       this.$.Fn_Open_dialog.open();
     },
     FnSummaryOk:function(){
@@ -66,7 +75,13 @@
       document.querySelector('admin-service').callItemUpdateService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.purchasetype);
     },
     FnSummaryCancel:function(){
-      localStorage.setItem("curr_sess_itemsummaryflag","0");
+      //alert(this.itemsupplier);
+      document.querySelector('additem-card').setSelectedItem(this.itemoptionalsupplier,this.itemsupplier,this.itemtype,this.itemgroup,this.purchasetype);
+      localStorage.setItem("curr_sess_itemtypechangeflag","0");
+      localStorage.setItem("curr_sess_grouptypechangeflag","0");
+      localStorage.setItem("curr_sess_supplierchangeflag","0");
+      localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
+      //localStorage.setItem("curr_sess_itemsummaryflag","0");
     }
   });
 })();

@@ -41,8 +41,13 @@
         "menu" : ["GRN Flow"]
       },
       {
-        "rolename": "Admin",
+        "rolename": "Admin admin",
         "RoleFlag": "5"
+
+      },
+      {
+        "rolename": "Admin manager",
+        "RoleFlag": "6"
 
       }
     ]

@@ -34,12 +34,13 @@
     //Response receiving after making write request
     additemwriteResponse:function(e){
       if(e.detail.response.returnval=="succ"){
-        document.querySelector("additem-card").FnBtnDisable();
-        document.querySelector("additem-card").FnClear();
-      this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+        //document.querySelector("additem-card").FnBtnDisable();
+        //document.querySelector("additem-card").FnClear();
+        this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+
       }
      else if(e.detail.response.returnval=="duplicate entry"){
-        this.$.dialogpage.FnShowDialog("Item ID already exists!!","");
+        this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
@@ -127,9 +128,11 @@
     additemupdateResponse:function(e){
 
       if(e.detail.response.returnval=="succ"){
-        document.querySelector("additem-card").FnBtnDisable();
-        document.querySelector("additem-card").FnClear();
+        //document.querySelector("additem-card").FnBtnDisable();
+        //document.querySelector("additem-card").FnClear();
+        //document.querySelector("viewtype-card").FnEnableEdit();
         this.$.dialogpage.FnShowDialog("Item updated successfully!!","");
+       // window.location.href = "indexhome.html";
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to update the item!!","");

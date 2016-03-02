@@ -53,8 +53,11 @@ Polymer({
   edit:function(){
     document.querySelector('additem-card').FnEnableFields();
   },
-  FnEnableEdit:function(){
+  FnEnableEdit:function(flag){
+    if(flag==true)
     this.$.edit.style.visibility = 'visible';
+    else
+    this.$.edit.style.visibility = 'hidden';
     //this.Label="Edit";
   }
 });
