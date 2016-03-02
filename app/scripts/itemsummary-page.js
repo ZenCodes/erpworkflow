@@ -9,7 +9,6 @@
     },
     //Method will invoke to toggle the dialog control
     FnShowDialog:function(itemarr,itemgrouparr,itemsupplierarr,itemoptionalsupplierarr,purchasearr,itemoptionalsupplier,itemsupplier,itemflag, itemid, itemname, itemdes, container, quantity, itemgroup, itemtype, purchasetype){
-
       this.itemoptionalsupplier=itemoptionalsupplier,
       this.itemsupplier=itemsupplier;
       this.itemflag=itemflag;
@@ -41,6 +40,39 @@
       for(var i=0;i<purchasearr.length;i++){
         if(purchasearr[i].purchasetypeid==purchasetype)
           purchasetype=purchasearr[i].purchasetypename;
+      }
+      if(localStorage.getItem("curr_sess_searchitemflag")!="0") {
+        if (localStorage.getItem("curr_sess_itemtypechangeflag") == "1") {
+          this.color6 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_grouptypechangeflag") == "1") {
+          this.color7 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_supplierchangeflag") == "1") {
+          this.color8 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_optionalsupplierchangeflag") == "1") {
+          this.color9 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_itempurchasetypeflag") == "1") {
+          this.color10 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_itemidflag") == "1") {
+          this.color1 = "color:red";
+
+        }
+        if (localStorage.getItem("curr_sess_itemnameflag") == "1") {
+          this.color2 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_itemdesflag") == "1") {
+          this.color3 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_itemcontainerflag") == "1") {
+          this.color4 = "color:red";
+        }
+        if (localStorage.getItem("curr_sess_itemquantityflag") == "1") {
+          this.color5 = "color:red";
+        }
       }
 
       this.itemoptionalsupplierr=itemoptionalsupplier,
@@ -81,6 +113,12 @@
       localStorage.setItem("curr_sess_grouptypechangeflag","0");
       localStorage.setItem("curr_sess_supplierchangeflag","0");
       localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
+      localStorage.setItem("curr_sess_itemidflag","0");
+      localStorage.setItem("curr_sess_itemnameflag","0");
+      localStorage.setItem("curr_sess_itemdesflag","0");
+      localStorage.setItem("curr_sess_itemcontainerflag","0");
+      localStorage.setItem("curr_sess_itemquantityflag","0");
+      localStorage.setItem("curr_sess_itempurchasetypeflag","0");
       //localStorage.setItem("curr_sess_itemsummaryflag","0");
     }
   });

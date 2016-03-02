@@ -120,7 +120,7 @@
       <div class="card">
         <div class="drop">
           <div>
-            <paper-input   label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  id="itemid"  error-message="{{item.Item_Id_error}}">
+            <paper-input   label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required  on-change="FnItemIdChange" id="itemid"  error-message="{{item.Item_Id_error}}">
             <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
             </paper-input>
           </div>
@@ -135,7 +135,7 @@
         <div class="driver">
         <div class="drop">
          <div>
-           <paper-input style="width: 110%;"  label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required  id="itemname"  error-message="{{item.Item_Name_error}}">
+           <paper-input style="width: 110%;"  label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required on-change="FnItemNameChange" id="itemname"  error-message="{{item.Item_Name_error}}">
            <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
            </paper-input>
          </div>
@@ -147,11 +147,11 @@
             </paper-listbox>
           </div>
         </div>
-          <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  on-change="FnDesChange" id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required  id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required  id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
         </div>
         <div class="owner">
           <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>
@@ -188,7 +188,7 @@
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">
-          <paper-radio-group selected="{{selection}}" id="radio" >
+          <paper-radio-group selected="{{selection}}" id="radio" on-iron-change="FnSelectPurchaseType" >
             <paper-radio-button noink name="{{item.Regular}}" disabled="{{read}}">{{item.Regular}}</paper-radio-button>
             <paper-radio-button noink name="{{item.Spot}}" disabled="{{read}}">{{item.Spot}}</paper-radio-button>
           </paper-radio-group>

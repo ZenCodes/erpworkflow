@@ -33,6 +33,24 @@ Polymer({
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
   },
+  FnItemIdChange:function(e){
+    localStorage.setItem("curr_sess_itemidflag","1");
+  },
+  FnItemNameChange:function(e){
+    localStorage.setItem("curr_sess_itemnameflag","1");
+  },
+  FnDesChange:function(e){
+    localStorage.setItem("curr_sess_itemdesflag","1");
+  },
+  FnContainerChange:function(e){
+    localStorage.setItem("curr_sess_itemcontainerflag","1");
+  },
+  FnQuantityChange:function(e){
+    localStorage.setItem("curr_sess_itemquantityflag","1");
+  },
+  FnSelectPurchaseType:function(){
+    localStorage.setItem("curr_sess_itempurchasetypeflag","1");
+  },
   //Function which invokes when performing search using Item ID
   FnSearchItemId:function(e){
     //The flag is used to ensure the search is performed by using item id
@@ -346,6 +364,13 @@ Polymer({
     localStorage.setItem("curr_sess_grouptypechangeflag","0");
     localStorage.setItem("curr_sess_supplierchangeflag","0");
     localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
+    localStorage.setItem("curr_sess_itemidflag","0");
+    localStorage.setItem("curr_sess_itemnameflag","0");
+    localStorage.setItem("curr_sess_itemdesflag","0");
+    localStorage.setItem("curr_sess_itemcontainerflag","0");
+    localStorage.setItem("curr_sess_itemquantityflag","0");
+    localStorage.setItem("curr_sess_itempurchasetypeflag","0");
+
     this.read=false;
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';
