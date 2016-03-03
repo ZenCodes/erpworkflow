@@ -34,7 +34,7 @@ Polymer({
   //Function which invokes for keyboard enter of the login card
   FnLoginSubmit:function()
   {
-    if(this.username=='manager'&&this.password=='manager'){
+   /* if(this.username=='manager'&&this.password=='manager'){
       sessionStorage.setItem("loggeduser",this.username);
       sessionStorage.setItem("curr_sess_roleflag",'manager');
       window.location.href="elements/indexhome.html";
@@ -44,7 +44,7 @@ Polymer({
       sessionStorage.setItem("curr_sess_roleflag",'admin');
       window.location.href="elements/indexhome.html";
     }
-    else
+    else*/
       this.$.Form_Login.submit();
 
    // this.$.Form_Login.submit();

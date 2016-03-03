@@ -21,12 +21,12 @@
       this.purchasetypeflag="";
       //Initially hiding dropdown list
       var obj={"wardflag":""};
-      if(sessionStorage.getItem("curr_sess_roleflag")=="manager") {
+      if(sessionStorage.getItem("curr_sess_roleflag")=="5") {
         obj.wardflag="2";
       }
-      if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="manager")
+      if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
         obj.wardflag="0";
-      if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="manager")
+      if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
         obj.wardflag="1";
       this.param=obj;
       this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
@@ -61,7 +61,7 @@
           document.querySelector('intent-page').FnSetMenuinfo(this.value, this.unit, this.measure);
           //document.querySelector('outwarditem-card').FnSetInputunitmeasure(this.unit,this.measure);
         }
-        if(sessionStorage.getItem("curr_sess_roleflag")=="manager"){
+        if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
          document.querySelector('grn-service').searchService("","",this.value,"");
         }
 

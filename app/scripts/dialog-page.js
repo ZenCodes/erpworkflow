@@ -22,7 +22,7 @@
     },
   FnClickOk:function(){
   if(this.retflag!="duplicate entry") {
-    if (sessionStorage.getItem("curr_sess_roleflag") == "admin") {
+    if (sessionStorage.getItem("curr_sess_roleflag") == "6") {
       window.location.href = "indexhome.html";
     }
   }

@@ -40,15 +40,14 @@
         "updatestatus":"Confirm",
         "menu" : ["GRN Flow"]
       },
-      {
-        "rolename": "Admin admin",
-        "RoleFlag": "5"
 
-      },
       {
         "rolename": "Admin manager",
+        "RoleFlag": "5"
+      },
+      {
+        "rolename": "Admin admin",
         "RoleFlag": "6"
-
       }
     ]
   },

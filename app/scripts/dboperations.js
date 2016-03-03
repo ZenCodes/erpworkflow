@@ -747,7 +747,7 @@ exports.FnSearchItems=function(pagename,rnflag,invoiceflag,itemflag,cond,callbac
   var inflag;
   var itflag;
   if(rnflag=="0"||invoiceflag=="1"||itemflag=="1"){
-    console.log('inward');
+    //console.log('inward');
     connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+','+Config_columns[2]+' FROM '+Config_tables[0]+' WHERE ?',[cond], function(err, rows, fields) {
       var itemarr=[];
       for(var i=0;i<rows.length;i++)

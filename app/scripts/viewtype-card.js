@@ -10,7 +10,7 @@ Polymer({
       this.$.create.style.visibility = 'visible';
       this.$.edit.style.visibility='hidden';
     }
-    else if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
       this.$.create.style.visibility = 'visible';
       this.$.edit.style.visibility='hidden';
     }
@@ -42,7 +42,7 @@ Polymer({
       //document.querySelector('my-app').setPage("outwardslip-page");
       //document.querySelector('outwardslip-page').setPage("Customer Info");
     }
-    if(sessionStorage.getItem("curr_sess_roleflag")=="admin"){
+    if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
       //alert(localStorage.getItem("curr_sess_searchitemflag"));
       //if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
        localStorage.setItem("curr_sess_searchitemflag", "0");
