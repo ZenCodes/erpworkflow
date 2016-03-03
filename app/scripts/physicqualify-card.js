@@ -85,18 +85,13 @@ Polymer({is:"physicqualify-card",
       this.purchasetypeflag=arr[i].purchasetypeflag;
 
       if(this.purchasetypeflag=="0") {
-        document.querySelector('#suplr').style.paddingTop='0%';
+
+        document.querySelector('#supplier').style.paddingTop='-5%';
         this.isHidden = false;
 
       }
       else {
-        if(arr.length>1)
-        document.querySelector('#suplr').style.paddingTop='10%';
-        else
-        document.querySelector('#suplr').style.paddingTop='6%';
-        //else
-        //document.querySelector('#suplr').style.paddingTop='8%';
-        //document.querySelector('#suplr').style.marginLeft='65%';
+        //document.querySelector('#supplier').style.paddingTop='12%';
         this.isHidden = true;
       }
       obj.inwardno=arr[i].inwardno;

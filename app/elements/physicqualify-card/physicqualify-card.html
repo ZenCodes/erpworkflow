@@ -71,6 +71,7 @@
       }
       datepicker-card{
         width: 30%;
+
       }
       .polbl{
         margin-left:19%;
@@ -81,6 +82,7 @@
       }
       #supplier{
         margin-left:3%;
+
       }
       #pinput{
         margin-left: 5%;
@@ -89,18 +91,24 @@
         margin-left: 3%;
       }
       #pono{
+
         --paper-input-container-label: { color: red };
+      }
+      .physiccard{
+        margin-top: 5%;
       }
     </style>
     <!--template to show item info of currently expended card-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card" id="card1">
       <template is="dom-repeat" items="{{mainArray}}" as="item">
+        <div class="physiccard">
         <div class="polbl" hidden$="{{isHidden}}"><paper-item class="podate">{{lbl.PO_Date}}</paper-item></div>
         <div class="topright">
           <div id="datepick" hidden$="{{isHidden}}"><datepicker-card></datepicker-card></div>
           <div id="ponbr" hidden$="{{isHidden}}"><paper-input name="ponumber" label="{{lbl.PO_Number}}"  value="{{pono}}" required auto-validate id="pono" error-message="{{lbl.PO_Number_error}}" on-change="FnInputChanged" readonly="{{read}}"></paper-input></div>
           <div id="suplr"><paper-input  name="supplier" label="{{lbl.Supplier_Name}}" id="supplier" value="{{item.supname}}" readonly></paper-input></div>
+        </div>
         </div>
     </div>
 
