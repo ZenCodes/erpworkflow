@@ -18,6 +18,7 @@
 <link rel="import" href="../item-service/item-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
+<link rel="import" href="../supplier-list/supplier-list.html">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="item-page">
@@ -107,7 +108,8 @@
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
       <div class="banner1">
-        <paper-input class="supname" name="supname" label="{{lbl.Supplier_Name}}" value="{{supname}}" allowed-pattern="[a-zA-Z ]" required id="supname" error-message="{{lbl.Supplier_Name_error}}" on-keydown="FnInputChanged" ></paper-input>
+        <supplier-list id="supplierlist"></supplier-list>
+        <!--<paper-input class="supname" name="supname" label="{{lbl.Supplier_Name}}" value="{{supname}}" allowed-pattern="[a-zA-Z ]" required id="supname" error-message="{{lbl.Supplier_Name_error}}" on-keydown="FnInputChanged" ></paper-input>-->
       </div>
       <div class="banner2">
         <paper-tabs selected="0" noink id="ptab">

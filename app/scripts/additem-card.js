@@ -17,6 +17,7 @@ Polymer({
     this.itemsupplier="";
     this.itemoptionalsupplier="";
     this.selection="";
+
     //Initially hiding paperlistbox of itemtype and itemgroup fields
     this.isHidden=true;
     this.isHiddenid=true;
@@ -32,6 +33,7 @@ Polymer({
     localStorage.setItem("curr_sess_showpage","additem-card");
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
+
   },
   //Following functions are used to monitor the input field change
   FnItemIdChange:function(e){
@@ -63,6 +65,8 @@ Polymer({
     this.Btn_disable_flag=true;
     //After clicking search icon Making all the fields as non editable
     this.read=true;
+    document.querySelector('supplier-list').FnEnableFields(true);
+    document.querySelector("supplier-list").setDefaultValue("","");
     //The flag is used to ensure that currently in search mode and visible Edit button
     localStorage.setItem("curr_sess_searchitemflag","1");
     document.querySelector('viewtype-card').FnEnableEdit(true);
@@ -86,6 +90,8 @@ Polymer({
     this.Btn_disable_flag=true;
     //After clicking search icon Making all the fields as non editable
     this.read=true;
+    document.querySelector('supplier-list').FnEnableFields(true);
+    document.querySelector("supplier-list").setDefaultValue("","");
     //The flag is used to ensure that currently in search mode and visible Edit button
     localStorage.setItem("curr_sess_searchitemflag","1");
     document.querySelector('viewtype-card').FnEnableEdit(true);
@@ -242,30 +248,18 @@ Polymer({
     }
   },
   //Method invokes to fetch item supplier id of the currently selected supplier name in dropdown
-  FnSelectSupplier:function(e){
+  FnSelectSupplier:function(supplierid,suppliername){
     //Flag is used to identify the supplier name drop down change and it is later refered in update mode
     localStorage.setItem("curr_sess_supplierchangeflag","1");
-    var itemsupplierarray=this.itemsupplierarr;
-    this.itemsuppliername=(e.target.selectedItem.textContent).trim();
-    for(var i=0;i<itemsupplierarray.length;i++)
-    {
-      if(itemsupplierarray[i].itemsuppliername==this.itemsuppliername) {
-        this.itemsupplier = itemsupplierarray[i].itemsupplierid;
-      }
-    }
+    this.itemsuppliername=suppliername;
+    this.itemsupplier=supplierid;
   },
   //Method invokes to fetch optional item supplier id of the currently selected optional supplier name in dropdown
-  FnSelectOptionalSupplier:function(e){
+  FnSelectOptionalSupplier:function(supplierid,suppliername){
     //Flag is used to identify the optional supplier name drop down change and it is later refered in update mode
     localStorage.setItem("curr_sess_optionalsupplierchangeflag","1");
-    var itemoptionalsupplierarray=this.itemoptionalsupplierarr;
-    this.itemoptionalsuppliername=(e.target.selectedItem.textContent).trim();
-    for(var i=0;i<itemoptionalsupplierarray.length;i++)
-    {
-      if(itemoptionalsupplierarray[i].itemsuppliername==this.itemoptionalsuppliername) {
-        this.itemoptionalsupplier = itemoptionalsupplierarray[i].itemsupplierid;
-      }
-    }
+    this.itemoptionalsuppliername=suppliername;
+    this.itemoptionalsupplier=supplierid;
   },
   //Function invokes when performing save button click
   FnAddItemInfoSubmit:function()
@@ -278,8 +272,7 @@ Polymer({
     document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
-    document.querySelector('#suppliername').validate();
-
+    document.querySelector('supplier-list').FnValidate();
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
 
@@ -315,24 +308,14 @@ Polymer({
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
-       this.$.ID_Dialogpage.FnShowDialog(this.itemarr,this.itemgrouparr,this.itemsupplierarr,this.itemoptionalsupplierarr,this.purchasearr,this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-        //if(localStorage.getItem("curr_sess_itemsummaryflag")=="1")
-        //this.$.adminservice.callItemWriteService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemoptionalsupplier, this.itemsupplier, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
-    if(localStorage.getItem("curr_sess_searchitemflag")=="1")
-    {
+    if(localStorage.getItem("curr_sess_searchitemflag")=="1") {
 
 
       //Calling dialog ensure  the update item details
-      this.$.ID_Dialogpage.FnShowDialog(this.itemarr,this.itemgrouparr,this.itemsupplierarr,this.itemoptionalsupplierarr,this.purchasearr,this.itemoptionalsupplier,this.itemsupplier,this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-      //this.$.adminservice.callItemUpdateService(this.itemoptionalsupplier,this.itemsupplier,this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
-      //Calling method to set dropdown values afterupdating it
-      //this.setSelectedItem(this.itemoptionalsupplier,this.itemsupplier,this.itemtype,this.itemgroup,this.selection);
-      //Clearing local storage to clear itemid,group and supplier info after updating
-
-      //this.read=true;
-
+      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemoptionalsupplier, this.itemsupplier, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
     localStorage.setItem("curr_sess_ItemTypeId","");
@@ -343,16 +326,10 @@ Polymer({
   //Clearing fields after save / edit
   FnClear:function(){
 
-    this.itemid="";
-    this.itemname="";
-    this.container="";
-    this.quantity="";
-    this.itemdes="";
-    this.itemtype="";
-    this.itemgroup="";
-    this.itemsupplier="";
-    this.itemoptionalsupplier="";
-    this.selection="";
+    localStorage.setItem("curr_sess_ItemTypeId","");
+    localStorage.setItem("curr_sess_ItemTypeGroup","");
+    localStorage.setItem("curr_sess_ItemTypeSupplier","");
+    localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
   },
   //Function to diable Save button,once after search or save
   FnBtnDisable:function(){
@@ -373,13 +350,13 @@ Polymer({
     localStorage.setItem("curr_sess_itempurchasetypeflag","0");
 
     this.read=false;
+    document.querySelector('supplier-list').FnEnableFields(false);
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';
   },
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
   setSelectedItem:function(itemoptionalsupplier,itemsupplier,itemtype,itemgroup,selection){
     //Setting itemid,group and supplier info in local storage
-
     localStorage.setItem("curr_sess_ItemTypeId",itemtype);
     localStorage.setItem("curr_sess_ItemTypeGroup",itemgroup);
     localStorage.setItem("curr_sess_ItemTypeSupplier",itemsupplier);
@@ -397,13 +374,19 @@ Polymer({
         this.itemsupplier=this.itemsupplierarr[i].itemsuppliername;
     }
     for(var i=0;i<this.itemoptionalsupplierarr.length;i++){
-      if(this.itemoptionalsupplierarr[i].itemsupplierid==itemoptionalsupplier)
-        this.itemoptionalsupplier=this.itemoptionalsupplierarr[i].itemsuppliername;
+      if(this.itemoptionalsupplierarr[i].itemsupplierid==itemoptionalsupplier) {
+        this.itemoptionalsupplier = this.itemoptionalsupplierarr[i].itemsuppliername;
+      }
     }
     for(var i=0;i<this.purchasearr.length;i++){
       if(this.purchasearr[i].purchasetypeid==selection)
         this.selection=this.purchasearr[i].purchasetypename;
     }
+    //alert(this.itemsupplier+" "+this.itemoptionalsupplier);
+    if(itemoptionalsupplier=="")
+      document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,"");
+    else
+    document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,this.itemoptionalsupplier);
     //this.selection=selection;
   }
 });

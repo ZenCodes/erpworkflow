@@ -18,6 +18,7 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../admin-service/admin-service.html">
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
+<link rel="import" href="../supplier-list/supplier-list.html">
 
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
@@ -110,6 +111,9 @@
       paper-dropdown-menu{
         width: 35%;
       }
+      #supplier{
+        width: 100%;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <!--<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>-->
@@ -170,26 +174,13 @@
           </paper-dropdown-menu>
         </div>
         <div class="owner">
-          <paper-dropdown-menu id="suppliername" label="Select Supplier Name" disabled="{{read}}" required>
-            <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier" attr-for-selected="value" selected="{{itemsupplier}}">
-              <template is="dom-repeat" items="{{itemsupplierarr}}">
-                <paper-item value="{{item.itemsuppliername}}">{{item.itemsuppliername}}</paper-item>
-              </template>
-            </paper-menu>
-          </paper-dropdown-menu>
-          <paper-dropdown-menu id="optionalsuppliername" label="Select Supplier Name" disabled="{{read}}">
-            <paper-menu class="dropdown-content" on-iron-select="FnSelectOptionalSupplier" attr-for-selected="value" selected="{{itemoptionalsupplier}}">
-              <template is="dom-repeat" items="{{itemoptionalsupplierarr}}">
-                <paper-item value="{{item.itemsuppliername}}">{{item.itemsuppliername}}</paper-item>
-              </template>
-            </paper-menu>
-          </paper-dropdown-menu>
+          <supplier-list id="supplier"></supplier-list>
         </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">
-          <paper-radio-group selected="{{selection}}" id="radio" on-iron-change="FnSelectPurchaseType" >
-            <paper-radio-button noink name="{{item.Regular}}" disabled="{{read}}">{{item.Regular}}</paper-radio-button>
+          <paper-radio-group selected="{{selection}}" id="radio" on-iron-change="FnSelectPurchaseType">
+            <paper-radio-button noink name="{{item.Regular}}" disabled="{{read}}" >{{item.Regular}}</paper-radio-button>
             <paper-radio-button noink name="{{item.Spot}}" disabled="{{read}}">{{item.Spot}}</paper-radio-button>
           </paper-radio-group>
           </div>

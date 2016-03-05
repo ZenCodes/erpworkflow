@@ -7,10 +7,10 @@
   this.val="";
   var item=[];
   var temp=[];
-
+  var suplrid="";
   Polymer({is:"autocompleteitemlist-card",
     ready:function(){
-
+      this.supplierid="";
       this.itemval="";
       this.unit="";
       this.measure="";
@@ -20,17 +20,32 @@
       this.purchasetype="";
       this.purchasetypeflag="";
       //Initially hiding dropdown list
-      var obj={"wardflag":""};
-      if(sessionStorage.getItem("curr_sess_roleflag")=="5") {
+      var obj={"wardflag":"","itemid":""};
+      if(sessionStorage.getItem("curr_sess_roleflag")=="5"||localStorage.getItem("curr_sess_wardflag")=="2") {
         obj.wardflag="2";
       }
-      if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
-        obj.wardflag="0";
+      if(localStorage.getItem("curr_sess_wardflag")=="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5") {
+        obj.wardflag = "0";
+        obj.itemid = suplrid;
+      }
       if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
         obj.wardflag="1";
       this.param=obj;
       this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
       this.querySelector('paper-listbox').style.visibility='hidden';
+    },
+    //Method to fetch item under the specific suppllier name
+    FnFetchSpecificItem:function(supplierid,suppliername){
+      //supplierid set to a global variable to load the items under supplier name when adding items
+      suplrid=supplierid;
+      var obj={"wardflag":"","itemid":""};
+      if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5") {
+        obj.wardflag = "0";
+        obj.itemid = supplierid;
+        this.param=obj;
+        this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+        this.$.itemlistreadajax.generateRequest();
+      }
     },
     //Funtion invokes when selecting item in dropdown
     FnItemSelected:function(e){
@@ -64,7 +79,6 @@
         if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
          document.querySelector('grn-service').searchService("","",this.value,"");
         }
-
       }
       else{
         alert("Please choose valid item...");
@@ -76,8 +90,7 @@
     },
     //Function invokes when item value changes in input box to show the relevent items
     FnInputChanged:function(e){
-
-      //alert(e.keyCode);
+     //alert(e.keyCode);
       if(e.keyCode==13|| e.keyCode==40)
         this.querySelector('paper-listbox').focus();
       var arr=[];
@@ -96,21 +109,17 @@
         if(len>1){
           this.querySelector('paper-listbox').style.visibility='visible';
           var backsubval=(((this.value).substring(0,(len-1))).trim()).toUpperCase();
-
           for(var i=0;i<item.length;i++)
           {
             var subval=((item[i].itemname).trim()).substring(0,backsubval.length);
-
             if((subval).toUpperCase()==(backsubval).toUpperCase())
             {
-
               var obj={"itemdes":""};
               obj.itemdes=item[i].itemname;
               arr.push(obj);
             }
           }
           this.itemArray=arr;
-
         }
       }
       if(e.keyCode!=8&& e.keyCode!=16&& e.keyCode!=13 && e.keyCode!=38&&e.keyCode!=40&&e.keyCode!=37&&e.keyCode!=39){
@@ -120,12 +129,10 @@
         }
         else
         this.itemval = this.itemval +String.fromCharCode((e.keyCode));
-        //alert(this.itemval);
         if(this.itemval.length>0)
         {
           for(var i=0;i<item.length;i++){
             var subval=((item[i].itemname).trim()).substring(0,this.itemval.length);
-
             if((subval).toUpperCase()==(this.itemval).toUpperCase())
             {
               var obj={"itemdes":""};
@@ -142,25 +149,14 @@
             arr.push(obj);
             this.itemArray=arr;
           }
-
         }
       }
     },
     //Fetches and binding to the auto complete dropdown list dynamically
     itemlistreadResponse:function(e)
     {
-      /*if (sessionStorage.getItem("curr_sess_roleflag") == "manager") {
-        item=item.concat(e.detail.response.items);
-      if(flag==0) {
-          this.url="../../config/outwarditems.json";
-          //this.$.itemlistreadajax.generateRequest();
-          flag = flag + 1;
-      }
-      }
-      else{*/
         item= e.detail.response.itemarr;
-      //}
-      //alert(JSON.stringify(item));
+        //alert(JSON.stringify(item));
     },
     setDefaultval:function(){
       this.value="";

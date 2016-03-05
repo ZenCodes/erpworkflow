@@ -18,7 +18,7 @@
   {"name":"intentitemwrite-service","value":["Auto_Intent_Register_Number","OD_Stores_Intent_Items"],"columns":["Intent_Register_Number"]},
   {"name":"intentitemread-service","value":["OD_Stores_Intent_Items"],"columns":["Intent_Register_Number","Intent_Date","intent"]},
   {"name":"intentitemexpand-card","value":["OD_Stores_Intent_Items"]},
-  {"name":"itemlist-service","value":["MD_Item"],"columns":["Item_Type_ID"],"columnvalues":["FG1111","FG2222"]},
+  {"name":"itemlist-service","value":["MD_Item"],"columns":["Item_Type_ID","Item_Supplier_ID"],"columnvalues":["FG1111","FG2222"]},
   {"name":"additem-service","value":["MD_Item"]},
   {"name":"additempurchasetype-service","value":["MD_Purchase_Type"]},
   {"name":"additemread-service","value":["MD_Item_Type"]},

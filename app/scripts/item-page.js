@@ -10,6 +10,7 @@
     is: "item-page",
     ready:function()
     {
+
       this.Btn_disable_flag=false;
       this.Supplier_Name="Supplier Name";
       this.Supplier_Name_error="Enter supplier name";
@@ -22,8 +23,10 @@
       this.itemArray=[{id:this.idd,description:'',received:'',unit:'',remark:'','measure':''}];
       this.splice('itemArray',1,1);
     },
-    FnInputChanged:function(){
+    FnInputChanged:function(supplierid,suppliername){
       //alert('yes');
+      this.supid=supplierid;
+      this.supname=suppliername;
       this.nullflag=1;
     },
     FnSetVehicleinfo:function(invoiceno,vno,vname,dname,dno)
@@ -86,7 +89,8 @@
       if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived=="")
       {
         if(this.nullflag==0){
-          document.querySelector('#supname').validate();
+
+          //document.querySelector('#supname').validate();
         }
         else {
           if(this.itemdes==null)
@@ -135,8 +139,11 @@
           this.idd=this.itemArray.length;
           localStorage.setItem("curr_sess_unitset",this.idd);
           //alert(JSON.stringify(itemarr));
-          if(localStorage.getItem("curr_sess_saveflag")=="false")
-          this.push('itemArray',{id:this.idd,description:'',received:'',unit:'',remark:'','measure':''});
+          if(localStorage.getItem("curr_sess_saveflag")=="false") {
+            this.push('itemArray', {id: this.idd, description: '', received: '', unit: '', remark: '', 'measure': ''});
+          }
+          //To Fetch item under supplier whenever we go for add item
+          document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supid,this.supname);
           //alert(JSON.stringify(this.itemArray.length));
           this.flag=0;
           this.itemflag=0;
@@ -161,7 +168,7 @@
         if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived=="")
         {
           if(this.nullflag==0){
-            document.querySelector('#supname').validate();
+            //document.querySelector('#supname').validate();
           }
           else {
             if(this.itemdes==null)

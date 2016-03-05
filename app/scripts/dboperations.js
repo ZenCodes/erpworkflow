@@ -110,7 +110,7 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 }
 
 //Method to fetch the item names from master table according to the logged user role
-exports.FnFetchItemlist=function(pagename,wardflag,callback) {
+exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
   var queryy="";
   var Config_tables=[];
   var Config_columns=[];
@@ -125,7 +125,8 @@ exports.FnFetchItemlist=function(pagename,wardflag,callback) {
   }
   //Condition which form the query for the currently logged role
   if(wardflag=="0"){
-  queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
+  queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[1]+"='"+itemid+"' AND "+Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
+
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="1"){
