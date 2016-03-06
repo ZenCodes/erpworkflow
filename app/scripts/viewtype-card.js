@@ -45,6 +45,7 @@ Polymer({
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
       //alert(localStorage.getItem("curr_sess_searchitemflag"));
       //if(localStorage.getItem("curr_sess_searchitemflag")!="1") {
+      document.querySelector('additem-card').FnClear();
        localStorage.setItem("curr_sess_searchitemflag", "0");
         window.location.href = "indexhome.html";
       //}

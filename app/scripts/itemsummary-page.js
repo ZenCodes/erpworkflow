@@ -122,6 +122,7 @@
       localStorage.setItem("curr_sess_itemcontainerflag","0");
       localStorage.setItem("curr_sess_itemquantityflag","0");
       localStorage.setItem("curr_sess_itempurchasetypeflag","0");
+
     }
   });
 })();
