@@ -276,7 +276,7 @@ Polymer({
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
 
-  if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){
+  if(this.itemsupplier==""||this.itemsupplier==null||this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
   }
     else {
     //Setting flags according to the purchase type selection if type is regular then flag is 0 ,if spot flag is 1

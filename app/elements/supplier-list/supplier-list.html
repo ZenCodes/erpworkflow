@@ -47,7 +47,7 @@
     <!--template for creating autocomplete dropdown list-->
     <div class="repeatcard">
       <div class="sup" id="sup1">
-      <paper-input label="Enter Supplier Name" id="supplier" value="{{value}}" on-keydown="FnInputChanged" readonly="{{read}}" required></paper-input>
+      <paper-input label="Enter Supplier Name" id="supplier" value="{{value}}" on-keydown="FnInputChanged" readonly="{{read}}" required error-message="Enter supplier name"></paper-input>
       <paper-listbox id="pl1" class="dropdown-content" on-iron-select="FnItemSelected">
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <paper-item>{{item.itemdes}}</paper-item>
