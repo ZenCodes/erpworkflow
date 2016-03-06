@@ -68,9 +68,9 @@
         <paper-input name="qtyyreceived" value="{{qtyyreceived}}" hidden></paper-input>
         <paper-item class="itemdes" name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>
         <paper-item class="ctr" name="containerreceived" value="{{containerreceived}}">{{containerreceived}}</paper-item>
-        <paper-input class="ctinput" name="containeraccepted" value="{{containeraccepted}}" required id="ctr{{inwardno}}" allowed-pattern="[0-9]" ></paper-input>
+        <paper-input class="ctinput" name="containeraccepted" value="{{containeraccepted}}" required id="ctr{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
         <paper-input class="ctmeasure" name="contmeasure" value="{{contmeasure}}" readonly></paper-input>
-        <paper-input class="qtinput" name="qtyaccepted" value="{{qtyaccepted}}" required id="qty{{inwardno}}" allowed-pattern="[0-9]" ></paper-input>
+        <paper-input class="qtinput" name="qtyaccepted" value="{{qtyaccepted}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
         <paper-input class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
         <textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
         <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
