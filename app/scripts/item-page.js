@@ -10,7 +10,6 @@
     is: "item-page",
     ready:function()
     {
-
       this.Btn_disable_flag=false;
       this.Supplier_Name="Supplier Name";
       this.Supplier_Name_error="Enter supplier name";
@@ -53,7 +52,6 @@
       //alert(ponumber);
       //this.purchasetype=purchasetype;
       this.purchasetypeflag=purchasetypeflag;
-
       if(purchasetypeflag=='1'){
         //localStorage.setItem("curr_sess_purchasetypeflag","1");
         this.podate=localStorage.getItem("localsess_curr_inwarddate");
@@ -89,7 +87,7 @@
       if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived=="")
       {
         if(this.nullflag==0){
-
+          document.querySelector('supplier-list').FnValidate();
           //document.querySelector('#supname').validate();
         }
         else {
@@ -168,6 +166,7 @@
         if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived=="")
         {
           if(this.nullflag==0){
+            document.querySelector('supplier-list').FnValidate();
             //document.querySelector('#supname').validate();
           }
           else {

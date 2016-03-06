@@ -24,9 +24,12 @@
       if(sessionStorage.getItem("curr_sess_roleflag")=="5"||localStorage.getItem("curr_sess_wardflag")=="2") {
         obj.wardflag="2";
       }
-      if(localStorage.getItem("curr_sess_wardflag")=="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5") {
-        obj.wardflag = "0";
-        obj.itemid = suplrid;
+      if(suplrid==""||suplrid==null){}
+      else {
+        if (localStorage.getItem("curr_sess_wardflag") == "0" && sessionStorage.getItem("curr_sess_roleflag") != "5") {
+          obj.wardflag = "0";
+          obj.itemid = suplrid;
+        }
       }
       if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
         obj.wardflag="1";
