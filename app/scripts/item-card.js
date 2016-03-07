@@ -67,6 +67,13 @@
       if(localStorage.getItem("curr_sess_wardflag")=="2") {
         document.querySelector('intent-page').FnSetIteminfo(this.specification,this.weight,this.qty,this.remark);
       }
+    },
+    FnsetValue:function(){
+      this.container="";
+      this.unit="";
+      this.qtyreceived="";
+      this.measure="";
+
     }
   });
 })();

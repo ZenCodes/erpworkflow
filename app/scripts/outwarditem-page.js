@@ -18,6 +18,17 @@
       this.itemArray=[{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''}];
       this.splice('itemArray',1,1);
     },
+    FnRefreshPage:function(){
+      this.flag=0;
+      this.itemflag=0;
+      this.idd=0;
+      this.custflag=0;
+      localStorage.setItem("curr_sess_unitset",this.idd);
+      itemarr.splice(0,(itemarr.length)+1);
+      this.splice('itemArray',1,(this.itemArray.length)+1);
+      document.querySelector('item-card').FnsetValue();
+      document.querySelector('autocompleteitemlist-card').FnsetValue();
+    },
     //Function receives customer info from customer info page
     FnSetCustomerinfo:function(outdate,outtime,customername,invoiceno,city)
     {
@@ -134,7 +145,7 @@
           localStorage.setItem("curr_sess_unitset",this.idd);
           //alert(obj);
           this.push('itemArray',{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''});
-          //alert(JSON.stringify(this.itemArray.length));
+          //alert(JSON.stringify(itemarr));
           this.flag=0;
           this.itemflag=0;
         }
@@ -207,7 +218,7 @@
             obj.weight=(this.weight)+" "+(this.unit);
             if(deleteflag!=1)
               itemarr.push(obj);
-            //alert(JSON.stringify(obj));
+            //alert(JSON.stringify(itemarr));
             this.itemdes='deleted';
             this.quantity='deleted';
             this.weight='deleted';

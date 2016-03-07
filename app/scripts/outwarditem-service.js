@@ -28,9 +28,15 @@
       if(e.detail.response.inwardregno!='not okay')
         this.no=this.no+1;
       if(this.no==this.length){
-        localStorage.setItem("curr_sess_saveflag","true");
-        document.querySelector('outwarditem-page').FnBtnDisable();
+        //localStorage.setItem("curr_sess_saveflag","true");
+        //document.querySelector('outwarditem-page').FnBtnDisable();
         this.$.ID_Show_Dialog.FnShowDialog("Outward Register Note is created!",e.detail.response.outwardregno);
+        document.querySelector('outwarditem-page').FnRefreshPage();
+        this.no=0;
+        this.length=0;
+        document.querySelector('item-card').FnsetValue();
+        document.querySelector('autocompleteitemlist-card').FnsetValue();
+        //document.querySelector('outwarditem-page').FnBtnDisable();
         //alert("Invoice Stored: "+e.detail.response.outwardregno);
       }
       //else

@@ -163,6 +163,9 @@
     },
     setDefaultval:function(){
       this.value="";
+    },
+    FnsetValue:function(){
+      this.value="";
     }
   });
 })();
