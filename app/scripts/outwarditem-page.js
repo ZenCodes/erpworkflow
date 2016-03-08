@@ -177,13 +177,15 @@
         if(this.itemdes=='deleted'||this.quantity=='deleted'){
           deleteflag=1;
         }
-        if(this.itemdes==null||this.quantity==null||this.weight==null)
+        if(this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
         {
-          if(this.itemdes==null)
+          if(this.invoiceno==null||this.invoiceno=="")
+            document.querySelector('#invoiceno').validate();
+          else if(this.itemdes==null||this.itemdes=="")
             this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
-          else if(this.quantity==null)
+          else if(this.quantity==null||this.quantity=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter quantity unit!","");
-          else if(this.weight==null)
+          else if(this.weight==null||this.weight=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter weight unit!","");
           //alert("All fields must want to be filled");
         }
@@ -243,6 +245,7 @@
         //alert(this.querySelector("item-card"));
       }
       else{
+
         alert("Item already saved..!Click create to enter another invoice!");
       }
 
