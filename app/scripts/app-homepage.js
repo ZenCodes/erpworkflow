@@ -41,7 +41,7 @@ Polymer({
       /*Condtion to navigate to the outward item entry page when he initially logged in or changing options in drawer menu*/
       else
       {
-        localStorage.setItem("curr_sess_showpage","Customer Detail");
+        localStorage.setItem("curr_sess_showpage","Out Vehicle Info");
         this.page="outwardslip-page";
       }
       /*For security flow states are not necessary,which was hided from him*/

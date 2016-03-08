@@ -14,15 +14,20 @@
       this.itemflag=0;
       this.idd=0;
       this.custflag=0;
+      //this.invoiceflag=0;
       localStorage.setItem("curr_sess_unitset",this.idd);
       this.itemArray=[{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''}];
       this.splice('itemArray',1,1);
+    },
+    FnInputChanged:function(){
+      this.custflag=1;
     },
     FnRefreshPage:function(){
       this.flag=0;
       this.itemflag=0;
       this.idd=0;
       this.custflag=0;
+      this.invoiceno="";
       localStorage.setItem("curr_sess_unitset",this.idd);
       itemarr.splice(0,(itemarr.length)+1);
       this.splice('itemArray',1,(this.itemArray.length)+1);
@@ -30,14 +35,14 @@
       document.querySelector('autocompleteitemlist-card').FnsetValue();
     },
     //Function receives customer info from customer info page
-    FnSetCustomerinfo:function(outdate,outtime,customername,invoiceno,city)
+    FnSetCustomerinfo:function(outdate,outtime,customername,city)
     {
       this.outdate=outdate;
       this.outtime=outtime;
       this.customername=customername;
-      this.invoiceno=invoiceno;
+      //this.invoiceno=invoiceno;
       this.city=city;
-      this.custflag=1;
+      //this.custflag=1;
       //alert(this.outdate+"  "+this.outtime+"  "+this.customername+"  "+this.invoiceno+" "+this.city);
     },
     //Function receives vehicle info from vehicle info page
@@ -89,17 +94,19 @@
       var deleteflag=0;
       //alert(this.outdate+"  "+this.outtime+"  "+this.customername+"  "+this.invoiceno+"  "+this.city);
       //alert(this.vehicleno+"  "+this.transportname+"  "+this.drivername+"  "+this.driverno+"  "+this.ownername+"  "+this.ownerphone+"  "+this.panno);
-      //alert(this.quantity+"  "+this.itemdes+"  "+this.unit+"  "+this.weight);
+      //alert(this.invoiceno+"  "+this.quantity+"  "+this.itemdes+"  "+this.unit+"  "+this.weight);
       if(this.itemdes=='deleted'||this.quantity=='deleted'){
         deleteflag=1;
       }
-      if(this.itemdes==null||this.quantity==null||this.weight==null)
+      if(this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
       {
-        if(this.itemdes==null)
+        if(this.invoiceno==null||this.invoiceno=="")
+          document.querySelector('#invoiceno').validate();
+        else if(this.itemdes==null||this.itemdes=="")
           this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
-        else if(this.quantity==null)
+        else if(this.quantity==null||this.quantity=="")
           this.$.ID_Show_Dialog.FnShowDialog("Enter quantity unit!","");
-        else if(this.weight==null)
+        else if(this.weight==null||this.weight=="")
           this.$.ID_Show_Dialog.FnShowDialog("Enter weight unit!","");
         //alert("All fields must want to be filled");
       }

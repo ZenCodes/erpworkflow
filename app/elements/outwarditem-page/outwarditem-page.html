@@ -99,10 +99,17 @@
       item-card{
         //width:200%;
       }
+      #invoiceno{
+        margin-left: 0%;
+      }
+      paper-input{
+        --paper-input-container-label: { color: red };
+      }
     </style>
     <!--Template which binds dynamic label to this page-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
+      <paper-input label="Invoice Number" name="invoiceno" value="{{invoiceno}}" required  id="invoiceno" on-click="FnInputChanged" error-message="Enter Invoice Number"></paper-input>
       <!--Outward item card template-->
       <div class="banner2">
         <paper-tabs selected="0" noink id="ptab">

@@ -10,10 +10,10 @@ Polymer({
     localStorage.setItem("curr_sess_saveflag","false");
     if(sessionStorage.getItem("curr_sess_roleflag")=="0")
     {
-      localStorage.setItem("curr_sess_showpage","Customer Detail");
+      localStorage.setItem("curr_sess_showpage","Out Vehicle Info");
 
       //document.querySelector("webcomponent-service").callWebcomponentService();
-      this.page="Customer Detail";
+      this.page="Out Vehicle Info";
     }
   },
   setPage:function(page)

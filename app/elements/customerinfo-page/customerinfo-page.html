@@ -24,7 +24,7 @@
         color: black;
         width: 80%;
         left: 10%;
-        margin-top:-4%;
+        margin-top:0%;
       }
       paper-input{
         text-align: left;
@@ -75,7 +75,7 @@
       <datepicker-card></datepicker-card>
     </div>
     <div class="card">
-      <paper-input label="{{item.Invoice_Number}}" name="invoiceno" value="{{invoiceno}}" required  id="customer_invoiceno" error-message="{{item.Invoice_Number_error}}"></paper-input>
+
       <paper-input label="{{item.Customer_Name}}" name="customername" value="{{customername}}" required  allowed-pattern="[a-zA-Z ]" id="customer_name" error-message="{{item.Customer_Name_error}}"></paper-input>
       <paper-input label="{{item.Destination_City}}" name="city" value="{{city}}" required  id="customer_city" allowed-pattern="[a-zA-Z ]" error-message="{{item.Destination_City_error}}"></paper-input>
       <paper-button on-click="FnCustomerInfoSubmit">Next</paper-button>

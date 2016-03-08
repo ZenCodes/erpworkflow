@@ -50,20 +50,6 @@
         }
       }
 
-
-      /*alert(this.flowenableflag);
-       var buttongroup=this.querySelectorAll('paper-button');
-       for(var i=0;i<buttongroup.length;i++)
-       {
-       if(i<=this.flowenableflag)
-       this.querySelector("#"+buttongroup[i].id).disabled=false;
-
-       else{
-       this.querySelector("#"+buttongroup[i].id).disabled=true;
-       this.querySelector("#"+buttongroup[i].id).style.backgroundColor="transparent";
-       }
-       }*/
-
       if (sessionStorage.getItem("curr_sess_roleflag") == "1") {
         this.querySelector("#" + this.idval[0] + "1").id = this.idval[0];
         this.querySelector("#" + this.idval[0]).style.backgroundColor = '#bfbfbf';

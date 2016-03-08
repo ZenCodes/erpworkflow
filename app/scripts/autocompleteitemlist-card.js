@@ -63,6 +63,7 @@
             this.ponumber=item[i].itemgroup;
             //this.purchasetype = item[i].itempurchasetype;
             this.purchasetypeflag = item[i].purchasetypeflag;
+            //alert(this.purchasetypeflag);
           }
         }
         //To extract the unit of the item dynamically according to the item selection in list

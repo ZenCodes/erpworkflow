@@ -31,7 +31,7 @@ Polymer({
     }
     else{
       document.querySelector('outwarditem-page').FnSetVehicleinfo(this.vehicleno,this.transportname,this.drivername,this.driverno,this.ownername,this.ownerphone,this.panno);
-      document.querySelector('outwardslip-page').setPage('Out Item Detail');
+      document.querySelector('outwardslip-page').setPage('Customer Detail');
     }
   }
 });

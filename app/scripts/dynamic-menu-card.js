@@ -29,12 +29,15 @@
       }
       //Setting page views in Outwardslip page according to the tab selection made in the Outwardslip page
       else if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag")=="1"&&value=="Vehicle Info")
-        //document.querySelector("outwardslip-page").setPage("Out Vehicle Info");
-        document.querySelector("customerinfo-page").FnCustomerInfoSubmit();
+        document.querySelector("outwardslip-page").setPage("Out Vehicle Info");
+        //document.querySelector("customerinfo-page").FnCustomerInfoSubmit();
+       // document.querySelector("vehicleinfo-page").FnVehicleInfoSubmit();
       else if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag")=="1"&&value=="Customer Detail")
-        document.querySelector("outwardslip-page").setPage(this.menulabel);
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag")=="1"&&value=="Item Detail"){
         document.querySelector("vehicleinfo-page").FnVehicleInfoSubmit();
+      //document.querySelector("outwardslip-page").setPage(this.menulabel);
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag")=="1"&&value=="Item Detail"){
+        document.querySelector("customerinfo-page").FnCustomerInfoSubmit();
+        //document.querySelector("vehicleinfo-page").FnVehicleInfoSubmit();
         //document.querySelector("outwardslip-page").setPage("Out Item Detail");
 
       }
