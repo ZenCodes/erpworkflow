@@ -61,13 +61,50 @@
       paper-input{
         --paper-input-container-label: { color: red };
       }
+      #vehicleno,#panno{
+        margin-left: 5%;
+      }
+      .topbanner{
+        @apply(--layout-horizontal);
+        margin-left:40%;
+        width: 50%;
+        margin-top: -5%;
+      }
+      .datetitle{
+        @apply(--layout-horizontal);
+        margin-left: 45%;
+      }
 
+      #datetitle,#timetitle{
+        font-size: 13px;
+        color: black;
+      }
+      #datetitle{
+        margin-left: 20%;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
     <!--This template binding dynamic labels and error messages-->
     <template is="dom-repeat" items="{{label}}">
+      <div class="datetitle">
+        <paper-item id="timetitle" noink>{{item.Out_Time}}</paper-item>
+        <paper-item id="datetitle" noink>{{item.Out_Date}}</paper-item>
+      </div>
+      <div class="topbanner">
+        <!--<paper-input label="Out Time" value="{{outtime}}" style="font-size:15px;" id="outtime" required  error-message="Enter Outtime"></paper-input>-->
+        <timepicker-card></timepicker-card>
+        <datepicker-card></datepicker-card>
+      </div>
     <div class="card">
+      <div class="driver">
+        <paper-input label="{{item.Destination_City}}" name="city" value="{{city}}" required  id="destcity" allowed-pattern="[a-zA-Z ]" error-message="{{item.Destination_City_error}}"></paper-input>
+        <paper-input label="{{item.Vehicle_Number}}" name="vehicleno" value="{{vehicleno}}" required  id="vehicleno" error-message="{{item.Vehicle_Number_error}}"></paper-input>
+       </div>
+      <div class="driver">
+        <paper-input label="{{item.Transport_Name}}" name="transportname" value="{{transportname}}" required  id="transportname" error-message="{{item.Transport_Name_error}}"></paper-input>
+        <paper-input label="{{item.PAN}}" name="panno" value="{{panno}}" required  id="panno" error-message="{{item.PAN_error}}"></paper-input>
+      </div>
       <div class="driver">
         <paper-input label="{{item.Driver_Name}}" name="drivername" value="{{drivername}}" required  id="drivername" allowed-pattern="[a-zA-Z ]" error-message="{{item.Driver_Name_error}}"></paper-input>
         <paper-input label="{{item.Driver_Number}}" name="driverno" value="{{driverno}}" required  id="driverno" error-message="{{item.Driver_Number_error}}"></paper-input>
@@ -76,9 +113,8 @@
         <paper-input label="{{item.Owner_Name}}" name="ownername" value="{{ownername}}" required  id="ownername" allowed-pattern="[a-zA-Z ]" error-message="{{item.Owner_Name_error}}"></paper-input>
         <paper-input label="{{item.Owner_Number}}" name="ownerphone" value="{{ownerphone}}" required  id="ownerphone" error-message="{{item.Owner_Number_error}}"></paper-input>
       </div>
-      <paper-input label="{{item.Vehicle_Number}}" name="vehicleno" value="{{vehicleno}}" required  id="vehicleno" error-message="{{item.Vehicle_Number_error}}"></paper-input>
-      <paper-input label="{{item.Transport_Name}}" name="transportname" value="{{transportname}}" required  id="transportname" error-message="{{item.Transport_Name_error}}"></paper-input>
-      <paper-input label="{{item.PAN}}" name="panno" value="{{panno}}" required  id="panno" error-message="{{item.PAN_error}}"></paper-input>
+
+
       <paper-button on-click="FnVehicleInfoSubmit">Next</paper-button>
     </div>
     </template>

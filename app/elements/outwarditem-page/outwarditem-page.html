@@ -18,6 +18,8 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="import" href="../dialog-page/dialog-page.html">
+<link rel="import" href="../datepicker-card/datepicker-card.html">
+<link rel="import" href="../timepicker-card/timepicker-card.html">
 <dom-module id="outwarditem-page">
   <template>
     <style is="custom-style">
@@ -105,13 +107,20 @@
       paper-input{
         --paper-input-container-label: { color: red };
       }
+      .outcard{
+        @apply(--layout-horizontal);
+      }
     </style>
     <!--Template which binds dynamic label to this page-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
-      <paper-input label="Invoice Number" name="invoiceno" value="{{invoiceno}}" required  id="invoiceno" on-click="FnInputChanged" error-message="Enter Invoice Number"></paper-input>
+      <div class="outcard">
+      <paper-input label="{{lbl.Invoice_Number}}" name="invoiceno" value="{{invoiceno}}" required  id="invoiceno" on-click="FnInputChanged" error-message="{{lbl.Invoice_Number_error}}"></paper-input>
+      <paper-input label="{{lbl.Customer_Name}}" name="customername" value="{{customername}}" required  allowed-pattern="[a-zA-Z ]" id="customername" error-message="{{lbl.Customer_Name_error}}"></paper-input>
+      </div>
       <!--Outward item card template-->
       <div class="banner2">
+
         <paper-tabs selected="0" noink id="ptab">
           <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
           <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
@@ -132,7 +141,7 @@
         </div>
       </div>
     </div>
-</template>
+    </template>
     <!--Invoking dialog control-->
     <dialog-page id="ID_Show_Dialog"></dialog-page>
     <!--Calling webcomponent service to bind label info-->

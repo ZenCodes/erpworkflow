@@ -25,13 +25,14 @@ Polymer({
     document.querySelector('#vehicleno').validate()
     document.querySelector('#transportname').validate()
     document.querySelector('#panno').validate()
+    document.querySelector('#destcity').validate()
 
     if(this.panno==null||this.panno==""){
       //alert("All fields should be filled out");
     }
     else{
-      document.querySelector('outwarditem-page').FnSetVehicleinfo(this.vehicleno,this.transportname,this.drivername,this.driverno,this.ownername,this.ownerphone,this.panno);
-      document.querySelector('outwardslip-page').setPage('Customer Detail');
+      document.querySelector('outwarditem-page').FnSetVehicleinfo(localStorage.getItem("localsess_curr_inwarddate"),localStorage.getItem("curr_sess_outwardtime"),this.city,this.vehicleno,this.transportname,this.drivername,this.driverno,this.ownername,this.ownerphone,this.panno);
+      document.querySelector('outwardslip-page').setPage('Out Item Detail');
     }
   }
 });

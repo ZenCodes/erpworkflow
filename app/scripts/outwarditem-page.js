@@ -28,6 +28,7 @@
       this.idd=0;
       this.custflag=0;
       this.invoiceno="";
+      this.customername="";
       localStorage.setItem("curr_sess_unitset",this.idd);
       itemarr.splice(0,(itemarr.length)+1);
       this.splice('itemArray',1,(this.itemArray.length)+1);
@@ -46,8 +47,11 @@
       //alert(this.outdate+"  "+this.outtime+"  "+this.customername+"  "+this.invoiceno+" "+this.city);
     },
     //Function receives vehicle info from vehicle info page
-    FnSetVehicleinfo:function(vehicleno,transportname,drivername,driverno,ownername,ownerphone,panno)
+    FnSetVehicleinfo:function(outdate,outtime,city,vehicleno,transportname,drivername,driverno,ownername,ownerphone,panno)
     {
+      this.outdate=outdate;
+      this.outtime=outtime;
+      this.city=city;
       this.vehicleno=vehicleno;
       this.transportname=transportname;
       this.drivername=drivername;
@@ -98,10 +102,13 @@
       if(this.itemdes=='deleted'||this.quantity=='deleted'){
         deleteflag=1;
       }
-      if(this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+      if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
       {
-        if(this.invoiceno==null||this.invoiceno=="")
+        if(this.invoiceno==null||this.invoiceno=="") {
           document.querySelector('#invoiceno').validate();
+        }
+        else if(this.customername==""||this.customername==null)
+          document.querySelector('#customername').validate();
         else if(this.itemdes==null||this.itemdes=="")
           this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
         else if(this.quantity==null||this.quantity=="")
@@ -152,7 +159,7 @@
           localStorage.setItem("curr_sess_unitset",this.idd);
           //alert(obj);
           this.push('itemArray',{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''});
-          //alert(JSON.stringify(itemarr));
+          alert(JSON.stringify(itemarr));
           this.flag=0;
           this.itemflag=0;
         }
@@ -177,10 +184,12 @@
         if(this.itemdes=='deleted'||this.quantity=='deleted'){
           deleteflag=1;
         }
-        if(this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+        if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
         {
           if(this.invoiceno==null||this.invoiceno=="")
             document.querySelector('#invoiceno').validate();
+          else if(this.customername==""||this.customername==null)
+            document.querySelector('#customername').validate();
           else if(this.itemdes==null||this.itemdes=="")
             this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
           else if(this.quantity==null||this.quantity=="")
@@ -227,7 +236,7 @@
             obj.weight=(this.weight)+" "+(this.unit);
             if(deleteflag!=1)
               itemarr.push(obj);
-            //alert(JSON.stringify(itemarr));
+            alert(JSON.stringify(itemarr));
             this.itemdes='deleted';
             this.quantity='deleted';
             this.weight='deleted';

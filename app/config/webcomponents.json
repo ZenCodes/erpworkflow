@@ -42,12 +42,14 @@
         "Vehicle_Number":"Vehicle Number","Transport_Name":"Transport Name","PAN":"PAN",
         "Driver_Name_error":"Enter driver name","Driver_Number_error":"Enter driver number","Owner_Name_error":"Enter owner name",
         "Owner_Number_error":"Enter owner number",
-        "Vehicle_Number_error":"Enter vehicle number","Transport_Name_error":"Enter transport name","PAN_error":"Enter PAN"}]}
+        "Vehicle_Number_error":"Enter vehicle number","Transport_Name_error":"Enter transport name",
+        "PAN_error":"Enter PAN","Out_Time":"Out Time","Out_Date":"Out Date",
+        "Destination_City":"Destination City","Destination_City_error":"Enter destination city"}]}
     ]}
     ,
     {"Page":[
       {"page":["Out Item Detail","outwarditem-page"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container"},{"tab":"Quantity"}]}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container"},{"tab":"Quantity"}],"Invoice_Number":"Invoice Number","Customer_Name":"Customer Name","Invoice_Number_error":"Enter invoice number","Customer_Name_error":"Enter customer name"}]}
     ]}
     ,
     {"Page":[
