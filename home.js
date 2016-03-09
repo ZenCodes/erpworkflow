@@ -81,6 +81,10 @@ app.post('/itemsave-service',urlencodedParser, function (req, res) {
   /*receiving values from item page*/
   //console.log(req.query.qtymeasure);
   //console.log(req.query.unitmeasure);
+  if(req.query.ponumber=="others")
+  statevalue='Purchase';
+  else
+  statevalue='Stores';
   response = {
     //Purchase_Type:req.query.purchasetype,
     Purchase_Type:req.query.purchasetypeflag,
@@ -98,7 +102,7 @@ app.post('/itemsave-service',urlencodedParser, function (req, res) {
     Unit_measure:req.query.unitmeasure,
     Remarks:req.query.remark,
     new_Inward_Register_Number:'',
-    state: 'Stores'
+    state: statevalue
   };
   //importing js file to invoke the function
   var FnRegisterInwardItemDetailcall = require("./app/scripts/dboperations.js");

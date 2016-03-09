@@ -17,10 +17,28 @@
       this.flag=0;
       this.itemflag=0;
       this.idd=0;
+      this.isHidden=true;
       localStorage.setItem("curr_sess_unitset",this.idd);
       /*Dynamic array for creating rows of item card*/
       this.itemArray=[{id:this.idd,description:'',received:'',unit:'',remark:'','measure':''}];
       this.splice('itemArray',1,1);
+    },
+    FnSetCustomInputValue:function(itemdes,container,qtyreceived,remark,unit,measure,itemid,ponumber,purchasetypeflag){
+      this.flag=1;
+      this.itemflag=1;
+      this.container=container;
+      this.qtyreceived=qtyreceived;
+      this.remark=remark;
+      this.unit=unit;
+      this.measure=measure;
+      this.itemid=itemid;
+      this.purchasetypeflag=purchasetypeflag;
+      this.podate=localStorage.getItem("localsess_curr_inwarddate");
+      this.ponumber=ponumber;
+      this.itemdes=itemdes;
+    },
+    FnOthersInputChanged:function(){
+      this.nullflag=1;
     },
     FnInputChanged:function(supplierid,suppliername){
       //alert('yes');
@@ -141,6 +159,8 @@
             this.push('itemArray', {id: this.idd, description: '', received: '', unit: '', remark: '', 'measure': ''});
           }
           //To Fetch item under supplier whenever we go for add item
+          if(localStorage.getItem("curr_sess_othersupplierflag")==true) {}
+          else
           document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supid,this.supname);
           //alert(JSON.stringify(this.itemArray.length));
           this.flag=0;
@@ -247,6 +267,9 @@
       document.querySelector('#save').style.backgroundColor='grey';
       document.querySelector('#additem').style.backgroundColor='grey';
       this.Btn_disable_flag=true;
+    },
+    FnEnableHide:function(){
+      this.isHidden=false;
     }
   });
 })();

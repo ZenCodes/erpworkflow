@@ -101,6 +101,7 @@
       }
       #supname{
         --paper-input-container-label: { color: red };
+        margin-left: 10%;
       }
     </style>
     <!--Card for displaying item page-->
@@ -109,13 +110,13 @@
     <div class="card">
       <div class="banner1">
         <supplier-list id="supplierlist"></supplier-list>
-        <!--<paper-input class="supname" name="supname" label="{{lbl.Supplier_Name}}" value="{{supname}}" allowed-pattern="[a-zA-Z ]" required id="supname" error-message="{{lbl.Supplier_Name_error}}" on-keydown="FnInputChanged" ></paper-input>-->
+        <paper-input hidden="{{isHidden}}" class="supname" name="supname" label="{{lbl.Supplier_Name}}" value="{{supname}}" allowed-pattern="[a-zA-Z ]" required id="supname" error-message="{{lbl.Supplier_Name_error}}" on-change="FnOthersInputChanged" ></paper-input>
       </div>
       <div class="banner2">
         <paper-tabs selected="0" noink id="ptab">
           //Dynamically generating tabs from config file
           <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
-          <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>
+          <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
           </template>
         </paper-tabs>
         <!--Dynamically creating card when click on additem-->
@@ -131,7 +132,6 @@
           <paper-button disabled="{{Btn_disable_flag}}" on-click="FnSaveItem" class="save" id="save" >Save</paper-button>
         </div>
       </div>
-
     </div>
     </template>
     <!--Calling webcomponent service to bind label info-->

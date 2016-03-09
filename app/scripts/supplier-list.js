@@ -43,8 +43,15 @@
     },
     //Funtion invokes when selecting item in dropdown
     FnItemSelected:function(e){
+      if(e.target.selectedItem.textContent.trim()=="Others"){
+        localStorage.setItem("curr_sess_othersupplierflag","true");
+        document.querySelector('item-page').FnEnableHide();
+        this.read=true;
+        document.querySelector('item-card').FnChangeField();
+
+      }
       //Condition to bind when no item found
-      if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
+      if(e.target.selectedItem.textContent.trim()!="-----Select-----"||e.target.selectedItem.textContent.trim()!="Others") {
         this.value = e.target.selectedItem.textContent.trim();
         for (var i = 0; i < item.length; i++) {
           if (item[i].itemsuppliername == this.value) {
@@ -124,6 +131,8 @@
                 arr.push(obj);
               }
             }
+            if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag") == "0")
+            arr.push({"itemdes":"Others"});
             this.itemArray = arr;
 
           }
@@ -146,8 +155,11 @@
                 arr.push(obj);
               }
             }
-            if (arr.length > 0)
+            if (arr.length > 0) {
+              if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag") == "0")
+              arr.push({"itemdes":"Others"});
               this.itemArray = arr;
+            }
             else {
               var obj = {"itemdes": ""};
               obj.itemdes = "No items found";

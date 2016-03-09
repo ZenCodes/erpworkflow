@@ -72,9 +72,9 @@
       <autocompleteitemlist-card id="autoinput{{id}}"></autocompleteitemlist-card>
       <paper-input id="textinput6{{id}}" class="specification" name="specification" value="{{specification}}"  required id="specification" on-change="FnInputChanged"></paper-input>
       <paper-input id="textinput1{{id}}" class="container" name="container" value="{{container}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" required id="container" on-change="FnInputChanged"></paper-input>
-      <paper-input id="textinput2{{id}}" class="unit" name="unit" id="input{{id}}" value="{{unit}}"  readonly></paper-input>
+      <paper-input id="textinput2{{id}}" class="unit" name="unit" id="input{{id}}" value="{{unit}}"  readonly="{{containerunit}}"></paper-input>
       <paper-input id="textinput3{{id}}" class="qty" name="qtyreceived" value="{{qtyreceived}}"  required id="qty" allowed-pattern="[/^\d+(.\d{1,4})?$/]" on-change="FnInputChanged"></paper-input>
-      <paper-input id="textinput4{{id}}" class="measure" name="measure" id="input1{{id}}" value="{{measure}}" readonly></paper-input>
+      <paper-input id="textinput4{{id}}" class="measure" name="measure" id="input1{{id}}" value="{{measure}}" readonly="{{qtymeasure}}"></paper-input>
       <textarea id="textinput5{{id}}" class="cmts" value="{{comments::input}}" placeholder="Comments..."  on-change="FnInputChanged" required="true"></textarea>
     </div>
   </template>
