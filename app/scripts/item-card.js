@@ -22,15 +22,16 @@
       if(localStorage.getItem("curr_sess_wardflag")=="0") {
         if( localStorage.getItem("curr_sess_othersupplierflag")=="true"){
           this.FnChangeField();
+          this.querySelector("#" + txt_input6).style.width = '30%';
         }
         else {
-          this.querySelector("#" + auto_input).style.width = '25%';
+          this.querySelector("#" + auto_input).style.width = '23%';
           this.querySelector("#" + txt_input1).style.width = '12%';
           this.querySelector("#" + txt_input1).style.marginLeft = '-12%';
           this.querySelector("#" + txt_input3).style.width = '14%';
           this.querySelector("#" + txt_input3).style.marginLeft = '2%';
           this.querySelector("#" + txt_input5).style.width = '16%';
-          this.querySelector("#" + txt_input5).style.marginLeft = '2.5%';
+          this.querySelector("#" + txt_input5).style.marginLeft = '4.5%';
           this.querySelector("#" + txt_input6).style.visibility = 'hidden';
         }
       }
@@ -64,9 +65,10 @@
       this.querySelector("#" + auto_input).style.visibility = 'hidden';
       //this.querySelector("#" + txt_input1).style.width = '9%';
 
+      this.querySelector("#" + txt_input6).style.width = '24%';
       this.querySelector("#" + txt_input6).style.visibility = 'visible';
       this.querySelector("#" + txt_input6).style.marginLeft = '-25%';
-      this.querySelector("#" + txt_input6).style.width = '30%';
+
       this.querySelector("#" + txt_input1).style.visibility = 'visible';
       this.querySelector("#" + txt_input1).style.marginLeft = '2%';
       this.querySelector("#" + txt_input1).style.width = '8%';
@@ -79,9 +81,9 @@
       this.querySelector("#" + txt_input4).style.marginLeft = '1%';
       this.querySelector("#" + txt_input4).style.width = '5%';
       this.querySelector("#" + txt_input5).style.visibility = 'visible';
-      this.querySelector("#" + txt_input4).style.width = '5%';
+      this.querySelector("#" + txt_input5).style.width = '16%';
 
-      this.querySelector("#" + txt_input5).style.marginLeft = '4%';
+      this.querySelector("#" + txt_input5).style.marginLeft = '3.5%';
       //this.querySelector("#" + txt_input5).style.width = '5%';
 
       this.containerunit=false;

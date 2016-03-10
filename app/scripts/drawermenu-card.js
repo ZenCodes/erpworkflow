@@ -51,6 +51,18 @@ Polymer({is:"drawermenu-card",
         //document.querySelector('home-page').setPage('View Intent');
       }
     }
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
+      if(e.target.id=="Add Item"){
+        localStorage.setItem("curr_sess_wardflag","");
+        document.querySelector('app-homepage').setPage('admin-page');
+        document.querySelector('admin-page').setPage('additem-card');
+      }
+      if(e.target.id=="Add Supplier"){
+        localStorage.setItem("curr_sess_wardflag","4");
+        document.querySelector('app-homepage').setPage('admin-page');
+        document.querySelector('admin-page').setPage('addsupplier-card');
+      }
+    }
     //else if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")
       //document.querySelector('my-app').setPage("home-page");
   }

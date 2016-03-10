@@ -88,6 +88,18 @@
         "Item_Id_error":"Enter Item ID","Item_Name_error":"Enter Item Name","Item_Description_error":"Enter Item Description","Container_error":"Enter Container",
         "Quantity_error":"Enter Quantity",
         "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type"}]}
+    ]},
+    {"Page":[
+      {"page":["addsupplier-card","addsupplier-card"]},
+      {"Label":[{"Supplier_ID":"Supplier ID","Supplier_Name":"Supplier Name","Landmark":"Landmark","Location":"Location",
+        "City":"City","District":"District","State":"State",
+        "Country":"Country","Pincode":"Pincode",
+        "Phone_Number":"Phone Number","Mobile_Number":"Mobile Number",
+        "Email_ID":"Email ID","Supplier_ID_error":"Enter Supplier ID","Supplier_Name_error":"Enter Supplier Name","Landmark_error":"Enter Landmark","Location_error":"Enter Location",
+        "City_error":"Enter City","District_error":"Enter District","State_error":"Enter State",
+        "Country_error":"Enter Country","Pincode_error":"Enter Pincode",
+        "Phone_Number_error":"Enter Phone Number","Mobile_Number_error":"Enter Mobile Number",
+        "Email_ID_error":"Enter Email ID"}]}
     ]}
 
   ]

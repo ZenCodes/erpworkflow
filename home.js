@@ -502,6 +502,31 @@ app.post("/additemupdate-service",urlencodedParser,function(req,res) {
 
 });
 
+//Function to update the supplier info req receives from the admin service
+app.post("/addsupplier-service",urlencodedParser,function(req,res) {
+
+  response = {
+   Supplier_ID:req.query.supplierid,
+   Supplier_Name:req.query.suppliername,
+    LandMark:req.query.landmark,
+    Location:req.query.location,
+    City:req.query.city,
+    District:req.query.district,
+    State:req.query.state,
+    Country:req.query.country,
+    Pincode:req.query.pincode,
+    Phone:req.query.phoneno,
+    Mobile:req.query.mobileno,
+    Email:req.query.emailid
+
+  };
+  var FnAddSuppliercall = require("./app/scripts/dboperations.js");
+  FnAddSuppliercall.FnAddSupplier("addsupplier-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
 //Node server running port number
 app.listen(4000);
 

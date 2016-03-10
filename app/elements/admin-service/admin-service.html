@@ -82,6 +82,16 @@
       content-type="application/json"
       on-response="additemupdateResponse">
     </iron-ajax>
+    <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="addsupplierajax"
+      url="{{supplierurl}}"
+      params='{{supplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="addsupplierResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

@@ -25,6 +25,7 @@
   {"name":"additemgroupread-service","value":["MD_Item_Group"]},
   {"name":"addsearchitem-service","value":["MD_Item"]},
   {"name":"additemupdate-service","value":["MD_Item"]},
-  {"name":"itemsupplierread-service","value":["MD_Purchase_Supplier"]}
+  {"name":"itemsupplierread-service","value":["MD_Purchase_Supplier"]},
+  {"name":"addsupplier-service","value":["MD_Purchase_Supplier"]}
 
   ]

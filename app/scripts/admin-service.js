@@ -136,6 +136,35 @@
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to update the item!!","");
+    },
+    addsupplierService:function(supplierid,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
+
+      var obj={
+        "supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""
+      };
+      obj.supplierid=supplierid,
+      obj.suppliername=suppliername;
+      obj.landmark=landmark;
+      obj.location=location;
+      obj.city=city;
+      obj.district=district;
+      obj.state=state;
+      obj.country=country;
+      obj.pincode=pincode;
+      obj.phoneno=phoneno;
+      obj.mobileno=mobileno;
+      obj.emailid=emailid;
+
+      this.supplierparam=obj;
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
+      this.$.addsupplierajax.generateRequest();
+    },
+    addsupplierResponse:function(e){
+      if(e.detail.response.returnval=="succ"){
+          this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+      }
+      else
+        this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     }
 
   });

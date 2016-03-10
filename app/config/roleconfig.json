@@ -47,7 +47,8 @@
       },
       {
         "rolename": "Admin admin",
-        "RoleFlag": "6"
+        "RoleFlag": "6",
+        "menu" : ["Add Item","Add Supplier"]
       }
     ]
   },

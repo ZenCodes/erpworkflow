@@ -19,6 +19,7 @@
       this.idd=0;
       this.isHidden=true;
       localStorage.setItem("curr_sess_unitset",this.idd);
+      localStorage.setItem("curr_sess_othersupplierflag","false");
       /*Dynamic array for creating rows of item card*/
       this.itemArray=[{id:this.idd,description:'',received:'',unit:'',remark:'','measure':''}];
       this.splice('itemArray',1,1);
@@ -32,7 +33,7 @@
       this.unit=unit;
       this.measure=measure;
       this.itemid=itemid;
-      this.purchasetypeflag=purchasetypeflag;
+      this.purchasetypeflag=1;
       this.podate=localStorage.getItem("localsess_curr_inwarddate");
       this.ponumber=ponumber;
       this.itemdes=itemdes;

@@ -16,7 +16,7 @@
       this.current_page=localStorage.getItem("curr_sess_showpage");
       //alert(this.current_page);
       var arr = e.detail.response;
-      //alert(arr.length);
+      //alert(JSON.stringify(arr));
       var labelvalue=[];
       var errorlabelvalue=[];
       //Binding labels to login-card
@@ -64,6 +64,7 @@
         if (arr[0].role[i].RoleFlag == sessrole) {
           //Binding response to the drawer menulist card
           document.querySelector('drawermenu-list').itemArray = arr[0].role[i].menu;
+
         }
       }
     }

@@ -1,0 +1,95 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<dom-module id="addsupplier-card" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:2%;
+      }
+      .driver{
+        @apply(--layout-horizontal);
+      }
+      .owner{
+        @apply(--layout-horizontal);
+      }
+      paper-input{
+        text-align: left;
+        width: 35%;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+
+      paper-input{
+        --paper-input-container-label: { color: red };
+      }
+      #suppliername,#location,#district,#country,#phoneno,#emailid{
+        margin-left: 5%;
+      }
+
+    </style>
+    <!--Component for listenen to keyboard enter event-->
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
+    <!--This template binding dynamic labels and error messages-->
+    <template is="dom-repeat" items="{{label}}">
+
+      <div class="card">
+        <div class="driver">
+          <paper-input label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}"></paper-input>
+          <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}"></paper-input>
+        </div>
+        <div class="driver">
+          <paper-input label="{{item.Landmark}}" name="landmark" value="{{landmark}}" required  id="landmark" error-message="{{item.Landmark_error}}"></paper-input>
+          <paper-input label="{{item.Location}}" name="location" value="{{location}}" required  id="location" error-message="{{item.Location_error}}"></paper-input>
+        </div>
+        <div class="driver">
+          <paper-input label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[a-zA-Z ]" error-message="{{item.City_error}}"></paper-input>
+          <paper-input label="{{item.District}}" name="district" value="{{district}}" required  id="district" error-message="{{item.District_error}}"></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input label="{{item.State}}" name="state" value="{{state}}" required  id="state" allowed-pattern="[a-zA-Z ]" error-message="{{item.State_error}}"></paper-input>
+          <paper-input label="{{item.Country}}" name="country" value="{{country}}" required  id="country" error-message="{{item.Country_error}}"></paper-input>
+        </div>
+
+        <div class="owner">
+          <paper-input label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="" error-message="{{item.Pincode_error}}"></paper-input>
+          <paper-input label="{{item.Phone_Number}}" name="phoneno" value="{{phoneno}}" required  id="phoneno" error-message="{{item.Phone_Number_error}}"></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="" error-message="{{item.Mobile_Number_error}}"></paper-input>
+          <paper-input label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input>
+        </div>
+        <paper-button on-click="FnSupplierInfoSubmit">Save</paper-button>
+      </div>
+    </template>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
+
+  </template>
+  <!--JS File import-->
+  <script src="../../scripts/addsupplier-card.js"> </script>
+
+</dom-module>

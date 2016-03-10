@@ -7,6 +7,7 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
+
     this.itemid="";
     this.itemname="";
     this.container="";
