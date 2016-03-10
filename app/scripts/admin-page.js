@@ -7,7 +7,7 @@ Polymer({
   is: "admin-page",
   ready:function()
   {
-   // alert(localStorage.getItem("curr_sess_showpage"));
+    localStorage.setItem("curr_sess_showpage","additem-card");
     //if(localStorage.getItem("curr_sess_showpage")=="additem-card")
     this.page="additem-card";
     //if(localStorage.getItem("curr_sess_showpage")=="addsupplier-card")

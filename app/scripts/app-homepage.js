@@ -25,6 +25,7 @@ Polymer({
       }
       if(localStorage.getItem("curr_sess_wardflag")=="4") {
         //localStorage.setItem("curr_sess_showpage", "addsupplier-card");
+        document.querySelector("admin-page").setPage("addsupplier-card");
         this.page = "admin-page";
       }
       this.$.flow.style.visibility='hidden';
