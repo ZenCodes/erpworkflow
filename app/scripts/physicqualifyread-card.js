@@ -31,10 +31,9 @@ Polymer({is:"physicqualifyread-card",
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
       this.purchasetypeflag=arr[i].purchasetypeflag;
-      if(this.purchasetypeflag=="0") {
+      if(this.purchasetypeflag!="1") {
         document.querySelector('#readsuplr').style.paddingTop='0%';
         this.isHidden = false;
-
       }
       else {
         document.querySelector('#readsuplr').style.paddingTop='6%';

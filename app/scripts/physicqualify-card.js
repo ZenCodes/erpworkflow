@@ -84,7 +84,7 @@ Polymer({is:"physicqualify-card",
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
       this.purchasetypeflag=arr[i].purchasetypeflag;
 
-      if(this.purchasetypeflag=="0") {
+      if(this.purchasetypeflag!="1") {
 
         document.querySelector('#supplier').style.paddingTop='-5%';
         this.isHidden = false;
