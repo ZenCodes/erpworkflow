@@ -20,14 +20,15 @@ Polymer({
       //alert(localStorage.getItem("curr_sess_wardflag"));
       if(localStorage.getItem("curr_sess_wardflag")=="") {
         //localStorage.setItem("curr_sess_wardflag", "");
-        //localStorage.setItem("curr_sess_showpage", "additem-card");
-        this.page = "admin-page";
+        localStorage.setItem("curr_sess_showpage", "additem-card");
+        //this.page = "admin-page";
       }
       if(localStorage.getItem("curr_sess_wardflag")=="4") {
         //localStorage.setItem("curr_sess_showpage", "addsupplier-card");
         document.querySelector("admin-page").setPage("addsupplier-card");
-        this.page = "admin-page";
+
       }
+      this.page = "admin-page";
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='visible';
       this.$.flowbutton.style.visibility='hidden';
