@@ -161,10 +161,13 @@
     },
     addsupplierResponse:function(e){
       if(e.detail.response.returnval=="succ"){
-          this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+		  alert("Supplier Added!");
+		  document.querySelector('addsupplier-card').FnBtnDisable();
+          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
       }
       else
-        this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
+      	  alert("Unable to add supplier!");
+       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     }
 
   });

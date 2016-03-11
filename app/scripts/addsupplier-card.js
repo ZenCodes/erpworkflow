@@ -6,6 +6,9 @@
 
   Polymer({
     is: 'addsupplier-card',
+    ready:function(){
+		this.Btn_disable_flag=false;
+	},
 
    FnSupplierInfoSubmit:function(){
      document.querySelector('#supplierid').validate();
@@ -21,6 +24,10 @@
      if(this.emailid==null||this.emailid==""){}
      else
      document.querySelector('admin-service').addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+    },
+    FnBtnDisable:function(){
+	    document.querySelector('#save').style.backgroundColor='grey';
+	    this.Btn_disable_flag=true;
     }
   });
 })();

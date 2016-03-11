@@ -19,6 +19,7 @@
       this.dialogmsg=dialogmsg;
       //this.displayvalue=dialogmsg+"!  "+regno;
       this.$.Fn_Open_dialog.open();
+
     },
   FnClickOk:function(){
   if(this.retflag!="duplicate entry") {
@@ -27,6 +28,11 @@
     }
   }
 
+  },
+  FnShownewDialog:function(dialogmsg,regno){
+	  this.regno = regno;
+	  this.dialogmsg=dialogmsg;
+	  this.$.Fn_Open_dialog.open();
   }
   });
 })();

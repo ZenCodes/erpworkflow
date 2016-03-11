@@ -82,7 +82,7 @@
           <paper-input label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="" error-message="{{item.Mobile_Number_error}}"></paper-input>
           <paper-input label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input>
         </div>
-        <paper-button on-click="FnSupplierInfoSubmit">Save</paper-button>
+        <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Save</paper-button>
       </div>
     </template>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
