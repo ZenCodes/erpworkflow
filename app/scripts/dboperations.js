@@ -1058,7 +1058,7 @@ exports.FnAddItemWrite=function(pagename,response,callback) {
             return callback("succ");
           }
           else {
-            console.log("Not Inserted!"+idd+err);
+            console.log("Not Inserted!"+err);
             return callback("fail");
           }
         });
@@ -1251,6 +1251,26 @@ exports.FnAddSupplier=function(pagename,response,callback) {
     }
   });
 }
+
+//Function which addpayment info
+exports.FnAddPayment=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO '+Config_tables[0]+' SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
+}
+
 /*exports.FnFetchsearchItemtype=function(pagename,typeid,callback) {
   cond={"Item_Type_ID":typeid}
 

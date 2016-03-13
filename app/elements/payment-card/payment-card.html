@@ -1,39 +1,97 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
-
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <dom-module id="payment-card">
   <template>
-    <style>
-      :host {
-        display: block;
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:0%;
       }
+      paper-dropdown-menu,paper-input{
+      width: 35%;
+      text-align:left;
+      }
+      paper-dropdown-menu{
+      margin-left: -65%;
+      }
+	  paper-button{
+	        text-align: center;
+	        width: 35%;
+	        border-radius: 2px;
+	        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+	        background-color: #3d6868;
+	        color: white;
+	        margin-top: 4%;
+      }
+      .type{
+      		  @apply(--layout-horizontal);
+	          color:red;
+	          margin-top: 1%;
+	          margin-left: -2%;
+      }
+      .radio{
+	          margin-top:0%;
+      }
+      :host{
+	          --paper-input-container-label: {
+	            color:red;
+      }}
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
-  </template>
-  <script>
-  (function() {
-    'use strict';
 
-    Polymer({
-      is: 'payment-card',
-
-      properties: {
-        foo: {
-          type: String,
-          value: 'payment-card',
-          notify: true
-        }
-      }
-    });
-  })();
-  </script>
+    <template is="dom-repeat" items="{{label}}">
+      <div class="card">
+          <div>
+          <paper-dropdown-menu id="droppaymentmode" label="Select payment Type" required>
+          <paper-listbox id="paymentmode" class="dropdown-content" on-iron-select="FnModeSelected">
+          	  <paper-item>-----Select-----</paper-item>
+              <paper-item>DD</paper-item>
+              <paper-item>Checque</paper-item>
+              <paper-item>A/C Transfer</paper-item>
+          </paper-listbox>
+          </paper-dropdown-menu>
+          </div>
+          <paper-input label="{{item.Bank_Name}}" name="bankname" value="{{bankname}}" required id="bankname" error-message="{{item.Bank_Name_error}}"></paper-input>
+          <paper-input label="{{item.Account_Number}}" name="accno" value="{{accountno}}" required id="accno" error-message="{{item.Account_Number}}"></paper-input>
+          <paper-input label="{{item.Bank_Address}}" name="address" value="{{address}}" required id="address" error-message="{{Bank_Address_error}}"></paper-input>
+        <div class="type">
+          <paper-item class="paymentterms" value="{{item.Payment_Terms}}">{{item.Payment_Terms}}</paper-item>
+          <div class="radio">
+          <paper-radio-group selected="{{selection}}" id="radio">
+            <paper-radio-button noink name="{{item.Term1}}" >{{item.Term1}}</paper-radio-button>
+            <paper-radio-button noink name="{{item.Term2}}" >{{item.Term2}}</paper-radio-button>
+          </paper-radio-group>
+          </div>
+        </div>
+        <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddPaymentInfoSubmit">Save</paper-button>
+      </div>
+    </template>
+    <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
+    </template>
+  <!--JS File import-->
+  <script src="../../scripts/payment-card.js"> </script>
 </dom-module>

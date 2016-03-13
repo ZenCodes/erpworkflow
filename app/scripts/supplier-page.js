@@ -1,28 +1,28 @@
 /**
- * Created by praba on 2/11/2016.
+ * Created by praba on 2/12/2016.
  */
 
-//JS page for the supplier-page element
-
+//JS file for the supplier-page
 Polymer({
   is: "supplier-page",
   ready:function()
   {
 
-    if(sessionStorage.getItem("curr_sess_roleflag")=="6")
-    {
+    localStorage.setItem("curr_sess_showpage","Add Supplier");
+    //if(localStorage.getItem("curr_sess_showpage")=="additem-card")
+    this.page="Add Supplier";
+    //if(localStorage.getItem("curr_sess_showpage")=="addsupplier-card")
+    //this.page="addsupplier-card";
 
-      localStorage.setItem("curr_sess_showpage","Add Supplier");
-      this.page="Add Supplier";
-    }
   },
-  /*Method used to change the page view for the security inward slip entry either from vehicle page to item page or vice versa*/
+  //Method to change the page view in base page ie home page
   setPage:function(page)
   {
+
     //Setting current page in local storage to fetch the labels dynamically
     localStorage.setItem("curr_sess_showpage",page);
     //Calling web component service to fetch label and errro label info from config file
     document.querySelector("webcomponent-service").callWebcomponentService();
-    this.page=page;
+    this.page = page;
   }
 });

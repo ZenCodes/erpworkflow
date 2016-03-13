@@ -402,7 +402,7 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 
 //Function for writing item info...req receives from admin service
 app.post("/additem-service",urlencodedParser,function(req,res) {
-
+console.log(req.query.itemid);
   response = {
     Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
     Item_Supplier_ID:req.query.itemsupplier,
@@ -522,6 +522,25 @@ app.post("/addsupplier-service",urlencodedParser,function(req,res) {
   };
   var FnAddSuppliercall = require("./app/scripts/dboperations.js");
   FnAddSuppliercall.FnAddSupplier("addsupplier-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+//Function to update the supplier info req receives from the admin service
+app.post("/addpayment-service",urlencodedParser,function(req,res) {
+
+  response = {
+   Supplier_ID:req.query.supplierid,
+   Account_No:req.query.accno,
+   Bank_Name:req.query.bankname,
+   Payment_Type:req.query.mode,
+   Payment_Term:req.query.paymentterm,
+   Bank_Address:req.query.address
+
+  };
+  var FnAddPaymentcall = require("./app/scripts/dboperations.js");
+  FnAddPaymentcall.FnAddPayment("addpayment-service",response,function(returnval){
     res.status(200).json({'returnval': returnval});
   });
 

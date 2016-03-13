@@ -41,6 +41,14 @@
         //document.querySelector("outwardslip-page").setPage("Out Item Detail");
 
       }
+       else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&value=="Add Payment")
+       	document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
+        //document.querySelector("supplier-page").setPage(this.menulabel);
+       else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&value=="Add Item")
+        document.querySelector("payment-card").FnAddPaymentInfoSubmit();
+        //document.querySelector("supplier-page").setPage(this.menulabel);
+       else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&value=="Add Supplier")
+        document.querySelector("supplier-page").setPage(this.menulabel);
     }
   });
 })();

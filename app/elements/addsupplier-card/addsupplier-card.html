@@ -10,6 +10,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <dom-module id="addsupplier-card" on-keypress="{{keypress}}">
   <template>
@@ -85,6 +86,7 @@
         <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Save</paper-button>
       </div>
     </template>
+    <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
 

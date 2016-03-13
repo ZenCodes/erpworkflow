@@ -53,7 +53,8 @@
     purchasetypereadResponse:function(e) {
       var itemarray=e.detail.response.itemarr;
       document.querySelector('additem-card').purchasearr=itemarray;
-    },
+ 	  document.querySelector('supplieradditem-card').purchasearr=itemarray;
+ },
     //Method invokes while making req to fetch item type info
     callItemReadService:function(){
       this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
@@ -62,6 +63,7 @@
     additemreadResponse:function(e) {
       var itemarray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemarr=itemarray;
+      document.querySelector('supplieradditem-card').itemarr=itemarray;
     },
     //Method invokes while making req to fetch group type info
     callItemgroupReadService:function(){
@@ -71,6 +73,7 @@
     additemgroupreadResponse:function(e) {
       var itemgrouparray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemgrouparr=itemgrouparray;
+      document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
     },
     //Method invokes while making req to fetch supplier info
     callItemSupplierReadService:function(){
@@ -136,7 +139,7 @@
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to update the item!!","");
-    },
+    }/*,
     addsupplierService:function(supplierid,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
 
       var obj={
@@ -168,7 +171,7 @@
       else
       	  alert("Unable to add supplier!");
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
-    }
+    }*/
 
   });
 })();

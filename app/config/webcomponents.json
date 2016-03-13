@@ -90,7 +90,7 @@
         "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type"}]}
     ]},
     {"Page":[
-      {"page":["addsupplier-card","addsupplier-card"]},
+      {"page":["Add Supplier","addsupplier-card"]},
       {"Label":[{"Supplier_ID":"Supplier ID","Supplier_Name":"Supplier Name","Landmark":"Landmark","Location":"Location",
         "City":"City","District":"District","State":"State",
         "Country":"Country","Pincode":"Pincode",
@@ -100,7 +100,26 @@
         "Country_error":"Enter Country","Pincode_error":"Enter Pincode",
         "Phone_Number_error":"Enter Phone Number","Mobile_Number_error":"Enter Mobile Number",
         "Email_ID_error":"Enter Email ID"}]}
+    ]},
+    {"Page":[
+          {"page":["Add Payment","payment-card"]},
+          {"Label":[{"Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
+            "Payment_Terms":"Payment Terms","Term1":"30 days","Term2":"60 days",
+            "Bank_Name_error":"Enter Bank Name","Account_Number_error":"Enter Account Number",
+            "Bank_Address_error":"Enter Bank Address"
+      }]}
+      ]},
+    {"Page":[
+      {"page":["Add Item","supplieradditem-card"]},
+      {"Label":[{"Item_Id":"Item ID","Item_Name":"Item Name","Item_Description":"Item Description",
+       "Container":"Container","Quantity":"Quantity",
+       "Supplier":"Supplier Name",
+        "Item_Group":"Item Group","Item_Type":"Item Type","Purchase_Type":"Purchase Type","Spot":"Spot","Regular":"Regular",
+        "Item_Id_error":"Enter Item ID","Item_Name_error":"Enter Item Name",
+        "Item_Description_error":"Enter Item Description","Container_error":"Enter Container",
+        "Quantity_error":"Enter Quantity",
+        "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type",
+        "Supplier_error":"Enter Supplier Name"}]}
     ]}
-
   ]
 

@@ -22,8 +22,11 @@
      document.querySelector('#emailid').validate();
      document.querySelector('#landmark').validate();
      if(this.emailid==null||this.emailid==""){}
-     else
-     document.querySelector('admin-service').addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+     else{
+	 document.querySelector("supplieradditem-card").FnSetValue(this.suppliername);
+     this.$.adminsupplierservice.addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+     document.querySelector("supplier-page").setPage("Add Payment");
+	}
     },
     FnBtnDisable:function(){
 	    document.querySelector('#save').style.backgroundColor='grey';

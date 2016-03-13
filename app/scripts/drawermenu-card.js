@@ -59,8 +59,9 @@ Polymer({is:"drawermenu-card",
       }
       if(e.target.id=="Add Supplier"){
         localStorage.setItem("curr_sess_wardflag","4");
-        document.querySelector('app-homepage').setPage('admin-page');
-        document.querySelector('admin-page').setPage('addsupplier-card');
+        //document.querySelector('app-homepage').setPage('supplier-page');
+        window.location.href="../elements/indexhome.html";
+        //document.querySelector('supplier-page').setPage('addsupplier-card');
       }
     }
     //else if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")

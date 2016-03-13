@@ -9,9 +9,13 @@ Polymer({is:"dynamic-card",
     if(sessionStorage.getItem("curr_sess_roleflag")=="0"){
       //Reading labels according to the inward or outward page view
       if(localStorage.getItem("curr_sess_wardflag")!="1")
-      this.url="../../config/secmenu.json";
-    if(localStorage.getItem("curr_sess_wardflag")=="1")
+        this.url="../../config/secmenu.json";
+      if(localStorage.getItem("curr_sess_wardflag")=="1")
         this.url="../../config/outwardmenu.json";
+    }
+    if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
+	  if(localStorage.getItem("curr_sess_wardflag")=="4")
+        this.url="../../config/suppliermenu.json";
     }
 
   },

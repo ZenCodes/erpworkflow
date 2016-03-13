@@ -1,0 +1,43 @@
+//Component import
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
+
+<dom-module id="adminsupplier-service">
+  <template>
+    <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="addsupplierajax"
+      url="{{supplierurl}}"
+      params='{{supplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="addsupplierResponse">
+    </iron-ajax>
+     <!--Component which makes update req to update the supplier info-->
+	    <iron-ajax
+	      id="addpaymentajax"
+	      url="{{paymenturl}}"
+	      params='{{paymentparam}}'
+	      method="post"
+	      handle-as="json"
+	      content-type="application/json"
+	      on-response="addpaymentResponse">
+    </iron-ajax>
+     <!--Component which makes update req to update the supplier info-->
+	    <iron-ajax
+	      id="additemajax"
+	      url="{{itemurl}}"
+	      params='{{itemparam}}'
+	      method="post"
+	      handle-as="json"
+	      content-type="application/json"
+	      on-response="additemResponse">
+    </iron-ajax>
+  <!--Dialog component import-->
+  <dialog-page id="dialogpage"></dialog-page>
+  </template>
+  <!--Importing JS file for this page-->
+  <script src="../../scripts/adminsupplier-service.js"></script>
+</dom-module>
