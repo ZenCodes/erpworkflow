@@ -24,6 +24,10 @@
         left: 10%;
         margin-top:-2%;
       }
+      .drop{
+       width: 100%;
+	   @apply(--layout-vertical);
+      }
       .driver{
         @apply(--layout-horizontal);
       }
@@ -51,9 +55,19 @@
         margin-left: 5%;
       }
       paper-listbox{
-      width: 100%;
+      //width: 100%;
       }
-
+	  paper-listbox{
+        width: 70%;
+        background-color: whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      #supplierid,#suppliername{
+      width: 70%;
+      }
+      #suppliername,#searchname{
+      margin-left:-20%;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
@@ -62,6 +76,7 @@
 
       <div class="card">
         <div class="driver">
+        <div class="drop">
           <paper-input readonly="{{read}}" label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchSupplierId"></paper-icon-button>
           </paper-input>
@@ -72,6 +87,8 @@
 		   </template>
 		   </paper-listbox>
           </div>
+          </div>
+          <div class="drop">
           <paper-input readonly="{{read}}" label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
           </paper-input>
@@ -81,6 +98,7 @@
 		    <paper-item>{{name.itemname}}</paper-item>
 		    </template>
 		    </paper-listbox>
+          </div>
           </div>
         </div>
         <div class="driver">
