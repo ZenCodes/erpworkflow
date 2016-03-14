@@ -72,5 +72,9 @@ FnAddItemSubmit:function(){
 },
 FnSetValue:function(suppliername){
 	this.supplier=suppliername;
+},
+FnBtnDisable:function(){
+	document.querySelector('#save').style.backgroundColor='grey';
+	this.Btn_disable_flag=true;
 }
 });

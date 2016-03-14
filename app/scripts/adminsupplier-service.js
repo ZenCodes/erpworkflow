@@ -11,6 +11,67 @@
     ready: function () {
 
     },
+    callSearchService:function(supplierid,suppliername){
+	  this.supplierreadurl=sessionStorage.getItem("curr_sess_url")+"readsupplierinfo-service";
+      var obj={"supplierid":"","suppliername":""};
+      obj.supplierid=supplierid;
+      obj.suppliername=suppliername;
+      this.supplierreadparam=obj;
+      this.$.readsupplierajax.generateRequest();
+	},
+	readsupplierResponse:function(e){
+		var arr= e.detail.response.itemarr;
+		//alert(JSON.stringify(arr));
+
+		document.querySelector("addsupplier-card").supplierid=arr[0].supplierid;
+		document.querySelector("addsupplier-card").suppliername=arr[0].suppliername;
+		document.querySelector("addsupplier-card").landmark=arr[0].landmark;
+		document.querySelector("addsupplier-card").location=arr[0].location;
+        document.querySelector("addsupplier-card").city=arr[0].city;
+        document.querySelector("addsupplier-card").district=arr[0].district;
+        document.querySelector("addsupplier-card").state=arr[0].state;
+        document.querySelector("addsupplier-card").country=arr[0].country;
+        document.querySelector("addsupplier-card").pincode=arr[0].pincode;
+        document.querySelector("addsupplier-card").phoneno=arr[0].phoneno;
+        document.querySelector("addsupplier-card").mobileno=arr[0].mobileno;
+        document.querySelector("addsupplier-card").emailid=arr[0].emailid;
+	},
+	callPaymentService:function(supid,supname){
+		this.paymentreadurl=sessionStorage.getItem("curr_sess_url")+"readpaymentinfo-service";
+		      var obj={"supplierid":"","suppliername":""};
+		      obj.supplierid=supid;
+		      obj.suppliername=supname;
+		      this.paymentreadparam=obj;
+      this.$.readpaymentajax.generateRequest();
+	},
+	readpaymentResponse:function(e){
+		var arr= e.detail.response.itemarr;
+	    document.querySelector("payment-card").paymenttype=arr[0].paymenttype;
+	    document.querySelector("payment-card").bankname=arr[0].bankname;
+	    document.querySelector("payment-card").accountno=arr[0].accountno;
+	    document.querySelector("payment-card").address=arr[0].address;
+	    document.querySelector("payment-card").selection=arr[0].paymentterm;
+	    document.querySelector("payment-card"). setSelectType(arr[0].paymenttype,arr[0].paymentterm);
+
+	},
+    callItemService:function(supplierid){
+	this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
+		      var obj={"supplierid":""};
+		      obj.supplierid=supplierid;
+		      this.itemreadparam=obj;
+      this.$.readitemajax.generateRequest();
+    },
+    readitemResponse:function(e){
+			var arr= e.detail.response.itemarr;
+			//alert(JSON.stringify(arr));
+		    document.querySelector("supplieritem-card").itemArray=arr;
+		    /*document.querySelector("payment-card").bankname=arr[0].bankname;
+		    document.querySelector("payment-card").accountno=arr[0].accountno;
+		    document.querySelector("payment-card").address=arr[0].address;
+		    document.querySelector("payment-card").selection=arr[0].paymentterm;
+		    document.querySelector("payment-card"). setSelectType(arr[0].paymenttype,arr[0].paymentterm);*/
+
+	},
     addsupplierService:function(supplieridd,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
 
       obj1={
@@ -88,16 +149,25 @@
 		      obj3.purchasetype=purchasetype;
 		      obj3.itemflag=itemflag;
 			  this.supplierparam=obj1;
+
+			  if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
               this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
 		      this.$.addsupplierajax.generateRequest();
+		  	  }
+		  	  else
+		  	  {
+				this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
+				this.itemparam=obj3;
+        		this.$.additemajax.generateRequest();
+			  }
 
 	},
 	additemResponse:function(e){
 		//this.$.addpaymentajax.generateRequest();
       if(e.detail.response.returnval=="succ"){
-		  alert("Supplier Added!");
-		  //document.querySelector('addsupplier-card').FnBtnDisable();
-          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+		  //alert("Supplier Added!");
+		  //document.querySelector('supplieradditem-card').FnBtnDisable();
+          this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
       }
       else
       	  alert("Unable to add suppliers!");

@@ -27,6 +27,9 @@
   {"name":"additemupdate-service","value":["MD_Item"]},
   {"name":"itemsupplierread-service","value":["MD_Purchase_Supplier"]},
   {"name":"addsupplier-service","value":["MD_Purchase_Supplier"]},
-  {"name":"addpayment-service","value":["MD_Supplier_Payment"]}
+  {"name":"addpayment-service","value":["MD_Supplier_Payment"]},
+  {"name":"readsupplierinfo-service","value":["MD_Purchase_Supplier","MD_Supplier_Payment","MD_Item"]},
+  {"name":"readpaymentinfo-service","value":["MD_Supplier_Payment"]},
+  {"name":"readiteminfo-service","value":["MD_Item"]}
 
   ]

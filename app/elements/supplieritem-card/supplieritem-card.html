@@ -1,0 +1,59 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="supplieritem-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+	          @apply(--layout-vertical);
+	          position: relative;
+	          color: black;
+	          width: 80%;
+	          left: 10%;
+	          margin-top:0%;
+      }
+      .innercard{
+      @apply(--layout-horizontal);
+      }
+      paper-button{
+	  	        text-align: center;
+	  	        width: 35%;
+	  	        border-radius: 2px;
+	  	        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+	  	        background-color: #3d6868;
+	  	        color: white;
+	  	        margin-top: 4%;
+      }
+      .create{
+      margin-left:35%;
+      margin-bottom: 2%;
+      }
+    </style>
+    <div class="card">
+
+    <div class="create">
+    <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateSupplier">Create</paper-button>
+    </div>
+
+	<template is="dom-repeat" items="{{itemArray}}" as="name">
+		<div class="innercard">
+		 <iron-icon icon="icons:star-border"></iron-icon>
+	     <paper-item>{{name.itemname}}</paper-item>
+	    </div>
+    </template>
+
+	</div>
+
+    <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
+  </template>
+  <script src="../../scripts/supplieritem-card.js">
+
+  </script>
+</dom-module>

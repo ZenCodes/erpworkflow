@@ -546,6 +546,54 @@ app.post("/addpayment-service",urlencodedParser,function(req,res) {
 
 });
 
+
+//Function to fetch the searched item info using id or name according to the search type
+app.post('/readsupplierinfo-service',urlencodedParser, function (req, res) {
+  if(req.query.supplierid!="")
+  {
+    cond={"Supplier_ID":req.query.supplierid}
+  }
+  if(req.query.suppliername!="")
+  {
+    cond={"Supplier_Name":req.query.suppliername}
+  }
+  var items;
+  var type;
+  var Fnreadsupplierinfocall = require("./app/scripts/dboperations.js");
+  Fnreadsupplierinfocall.Fnreadsupplier("readsupplierinfo-service",cond,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+//Function to fetch the searched item info using id or name according to the search type
+app.post('/readpaymentinfo-service',urlencodedParser, function (req, res) {
+  if(req.query.supplierid!="")
+  {
+    cond={"Supplier_ID":req.query.supplierid}
+  }
+
+  var items;
+  var type;
+  var Fnreadpaymentinfocall = require("./app/scripts/dboperations.js");
+  Fnreadpaymentinfocall.Fnreadpayment("readpaymentinfo-service",cond,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+//Function to fetch the searched item info using id or name according to the search type
+app.post('/readiteminfo-service',urlencodedParser, function (req, res) {
+  if(req.query.supplierid!="")
+  {
+    cond={"Item_Supplier_ID":req.query.supplierid}
+  }
+  var items;
+  var type;
+  var Fnreaditeminfocall = require("./app/scripts/dboperations.js");
+  Fnreaditeminfocall.Fnreaditeminfo("readiteminfo-service",cond,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
 //Node server running port number
 app.listen(4000);
 

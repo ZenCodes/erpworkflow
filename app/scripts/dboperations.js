@@ -1271,6 +1271,127 @@ exports.FnAddPayment=function(pagename,response,callback) {
   });
 }
 
+
+//Function fecthes searched item info
+exports.Fnreadsupplier=function(pagename,cond,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""};
+
+        obj.supplierid=rows[i].Supplier_ID;
+        obj.suppliername=rows[i].Supplier_Name;
+        obj.landmark=rows[i].LandMark;
+        obj.city=rows[i].City;
+        obj.location=rows[i].Location;
+        obj.district=rows[i].District;
+        obj.state=rows[i].State;
+        obj.country=rows[i].Country;
+        obj.pincode=rows[i].Pincode;
+        obj.phoneno=rows[i].Phone;
+        obj.mobileno=rows[i].Mobile;
+        obj.emailid=rows[i].Email;
+        itemarr.push(obj);
+      }
+        return callback(itemarr);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+  }
+
+//Function fecthes searched item info
+exports.Fnreadpayment=function(pagename,cond,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"paymenttype":"","bankname":"","accountno":"","address":"","paymentterm":""};
+
+        obj.paymenttype=rows[i].Payment_Type;
+        obj.bankname=rows[i].Bank_Name;
+        obj.accountno=rows[i].Account_No;
+        obj.address=rows[i].Bank_Address;
+        obj.paymenttrem=rows[i].Payment_Term;
+        itemarr.push(obj);
+      }
+        return callback(itemarr);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+  }
+
+  //Function fecthes searched item info
+  exports.Fnreaditeminfo=function(pagename,cond,callback) {
+    //console.log(pagename+"  "+JSON.stringify(cond));
+    var Config_tables=[];
+    for(var i=0;i<obj.length;i++){
+      if(obj[i].name==pagename){
+        Config_tables=obj[i].value;
+      }
+    }
+    connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+      var itemarr=[];
+
+     if(!err){
+	         if(rows.length>0){
+	         for(var i=0;i<rows.length;i++)
+	         {
+	           var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+	           obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
+	           obj.itemsupplier=rows[i].Item_Supplier_ID;
+	           obj.itemid=rows[i].Item_ID;
+	           obj.itemname=rows[i].Item_Name;
+	           obj.itemdes=rows[i].Item_Description;
+	           obj.container=rows[i].Container;
+	           obj.quantity=rows[i].UOM;
+	           obj.itemgroup=rows[i].Item_Group_ID;
+	           obj.itemtype=rows[i].Item_Type_ID;
+	           obj.purchasetype=rows[i].Item_Purchase_Type_ID;
+	           itemarr.push(obj);
+	         }
+	           return callback(itemarr);
+	         }
+	         else{
+	           return callback("no item");
+	         }
+	       }
+	       else
+      		console.log(err);
+    });
+  }
+
+
 /*exports.FnFetchsearchItemtype=function(pagename,typeid,callback) {
   cond={"Item_Type_ID":typeid}
 

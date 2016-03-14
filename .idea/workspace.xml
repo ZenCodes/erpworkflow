@@ -2,27 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/supplieritem-card.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/suppliermenu.json" afterPath="$PROJECT_DIR$/app/config/suppliermenu.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/webcomponents.json" afterPath="$PROJECT_DIR$/app/config/webcomponents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/dbconfig.json" afterPath="$PROJECT_DIR$/app/config/dbconfig.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" afterPath="$PROJECT_DIR$/app/elements/additem-card/additem-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/admin-page/admin-page.html" afterPath="$PROJECT_DIR$/app/elements/admin-page/admin-page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" afterPath="$PROJECT_DIR$/app/elements/admin-service/admin-service.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/indexhome.html" afterPath="$PROJECT_DIR$/app/elements/indexhome.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html" afterPath="$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html" afterPath="$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/elements.html" afterPath="$PROJECT_DIR$/app/elements/elements.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/payment-card/payment-card.html" afterPath="$PROJECT_DIR$/app/elements/payment-card/payment-card.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/supplier-page/supplier-page.html" afterPath="$PROJECT_DIR$/app/elements/supplier-page/supplier-page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/supplieradditem-card/supplieradditem-card.html" afterPath="$PROJECT_DIR$/app/elements/supplieradditem-card/supplieradditem-card.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/addsupplier-card.js" afterPath="$PROJECT_DIR$/app/scripts/addsupplier-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/admin-service.js" afterPath="$PROJECT_DIR$/app/scripts/admin-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app-homepage.js" afterPath="$PROJECT_DIR$/app/scripts/app-homepage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/drawermenu-card.js" afterPath="$PROJECT_DIR$/app/scripts/drawermenu-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dynamic-card.js" afterPath="$PROJECT_DIR$/app/scripts/dynamic-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" afterPath="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" afterPath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/payment-card.js" afterPath="$PROJECT_DIR$/app/scripts/payment-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/supplier-page.js" afterPath="$PROJECT_DIR$/app/scripts/supplier-page.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/supplieradditem-card.js" afterPath="$PROJECT_DIR$/app/scripts/supplieradditem-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/webcomponent.js" afterPath="$PROJECT_DIR$/app/scripts/webcomponent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,9 +40,31 @@
       <file leaf-file-name="adminsupplier-service.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/adminsupplier-service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.58965516">
+              <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="supplieritem-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/supplieritem-card/supplieritem-card.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.056604">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="supplieritem-card.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/supplieritem-card.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.9259257">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#41#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,8 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/elements/viewtype-card/viewtype-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/physicqualify-card/physicqualify-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/physicqualify-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/physicqualifyread-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/login-card.js" />
@@ -122,6 +136,8 @@
         <option value="$PROJECT_DIR$/app/config/suppliermenu.json.js" />
         <option value="$PROJECT_DIR$/app/scripts/payment-card.js" />
         <option value="$PROJECT_DIR$/app/config/suppliermenu.json" />
+        <option value="$PROJECT_DIR$/app/elements/supplieritem-card/supplieritem-card.html" />
+        <option value="$PROJECT_DIR$/app/scripts/supplieritem-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
       </list>
     </option>
@@ -188,8 +204,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -272,12 +286,58 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="supplieritem-card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="searchitem-card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -405,27 +465,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/scripts/physicqualify-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029310346">
-          <caret line="100" column="7" selection-start-line="100" selection-start-column="7" selection-end-line="100" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/physicins-page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/intent-page.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.029310346">
@@ -752,14 +791,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47833934">
           <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/searchitem-card/searchitem-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.93862814">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/supplieritem-card/supplieritem-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.056604">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/supplieritem-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.9259257">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/adminsupplier-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.58965516">
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding />
         </state>
       </provider>

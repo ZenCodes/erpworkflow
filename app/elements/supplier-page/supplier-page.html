@@ -16,6 +16,7 @@
 <link rel="import" href="../payment-card/payment-card.html">
 <link rel="import" href="../addsupplier-card/addsupplier-card.html">
 <link rel="import" href="../dynamic-card/dynamic-card.html">
+<link rel="import" href="../supplieritem-card/supplieritem-card.html">
 
 <!--<link rel="stylesheet" href="../../styles/inwardslip-page.css">-->
 
@@ -31,6 +32,7 @@
       color: black;
       width: 100%;
       left: 0%;
+      margin-top:-3%;
     }
     .contentbanner{
       border-top: groove;
@@ -78,7 +80,9 @@
 		        <section data-category="Add Payment">
 		          <payment-card></payment-card>
 		        </section>
-
+				<section data-category="Show Item">
+					<supplieritem-card></supplieritem-card>
+		        </section>
      		 </iron-pages>
       </div>
     </div>

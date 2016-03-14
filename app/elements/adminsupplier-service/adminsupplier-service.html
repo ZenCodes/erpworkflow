@@ -26,7 +26,7 @@
 	      on-response="addpaymentResponse">
     </iron-ajax>
      <!--Component which makes update req to update the supplier info-->
-	    <iron-ajax
+	<iron-ajax
 	      id="additemajax"
 	      url="{{itemurl}}"
 	      params='{{itemparam}}'
@@ -34,6 +34,33 @@
 	      handle-as="json"
 	      content-type="application/json"
 	      on-response="additemResponse">
+    </iron-ajax>
+     <iron-ajax
+	      id="readsupplierajax"
+	      url="{{supplierreadurl}}"
+	      params='{{supplierreadparam}}'
+	      method="post"
+	      handle-as="json"
+	      content-type="application/json"
+	      on-response="readsupplierResponse">
+    </iron-ajax>
+     <iron-ajax
+		      id="readpaymentajax"
+		      url="{{paymentreadurl}}"
+		      params='{{paymentreadparam}}'
+		      method="post"
+		      handle-as="json"
+		      content-type="application/json"
+		      on-response="readpaymentResponse">
+    </iron-ajax>
+     <iron-ajax
+			      id="readitemajax"
+			      url="{{itemreadurl}}"
+			      params='{{itemreadparam}}'
+			      method="post"
+			      handle-as="json"
+			      content-type="application/json"
+			      on-response="readitemResponse">
     </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>

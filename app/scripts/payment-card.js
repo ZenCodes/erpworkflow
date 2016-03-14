@@ -7,7 +7,9 @@ Polymer({
   is: "payment-card",
   ready:function()
   {
+    this.read=false;
 	this.mode="";
+	this.supid="";
   },
   FnModeSelected:function(e){
 	if(e.target.selectedItem.textContent.trim()!="-----Select-----")
@@ -23,8 +25,25 @@ Polymer({
 	 if(this.mode==""||this.address==null||this.address==""||this.bankname==null||this.bankname==""||this.accountno==null||this.accountno==""){
 	 }
 	 else{
+		 if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
 	 this.$.adminsupplierservice.addpaymentService(this.accountno,this.bankname,this.address,this.mode,paymentterm);
 	 document.querySelector('supplier-page').setPage('Add Item');
+ 		}
+ 		else
+ 		{
+		document.querySelector('supplier-page').setPage('Show Item');
+		document.querySelector('supplieritem-card').FnFetchItemInfo(this.supid);
+		}
 	}
+  },
+  FnFetchPaymentInfo:function(supplierid,suppliername){
+	this.supid=supplierid;
+	this.$.adminsupplierservice.callPaymentService(supplierid,suppliername);
+  },
+  setSelectType:function(mode,term){
+	  this.read=true;
+	  this.paymenttype=mode;
+	  document.querySelector('#radio').selected=term;
+	  //this.term=term;
   }
 });
