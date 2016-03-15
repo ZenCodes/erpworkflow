@@ -33,6 +33,7 @@
 		 if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
      this.$.adminsupplierservice.addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
      document.querySelector("supplier-page").setPage("Add Payment");
+     	//document.querySelector("payment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
  		}
  		else{
 			document.querySelector("supplier-page").setPage("Add Payment");

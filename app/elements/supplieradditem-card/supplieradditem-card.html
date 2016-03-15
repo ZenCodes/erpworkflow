@@ -20,6 +20,7 @@
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
 <link rel="import" href="../supplier-list/supplier-list.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
+<link rel="import" href="../itemsearch-card/itemsearch-card.html">
 
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
@@ -71,9 +72,9 @@
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
         <div class="input">
-
-            <paper-input   label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
-            <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>
+			<itemsearch-card></itemsearch-card>
+            <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
+            <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>-->
 
         </div>
 		<div class="input">

@@ -48,7 +48,7 @@
         margin-top: 4%;
       }
 
-      #suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno{
+      #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno{
         --paper-input-container-label: { color: red };
       }
       #suppliername,#location,#district,#country,#phoneno,#emailid{
@@ -77,7 +77,7 @@
       <div class="card">
         <div class="driver">
         <div class="drop">
-          <paper-input readonly="{{read}}" label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
+          <paper-input label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchSupplierId"></paper-icon-button>
           </paper-input>
           <div hidden$="{{isHiddenid}}">
@@ -89,7 +89,7 @@
           </div>
           </div>
           <div class="drop">
-          <paper-input readonly="{{read}}" label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}">
+          <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
           </paper-input>
           <div hidden$="{{isHidden}}">

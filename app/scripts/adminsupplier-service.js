@@ -116,16 +116,21 @@
 		      obj2.mode=mode;
 		      obj2.paymentterm=paymentterm;
 		      obj2.address=address;
+  this.supplierparam=obj1;
 
+			  if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
+              this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
+		      this.$.addsupplierajax.generateRequest();
+		  	  }
 
 	},
 	addpaymentResponse:function(e){
 
 	if(e.detail.response.returnval=="succ"){
-		//alert("payment Added!");
-		this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
-		this.itemparam=obj3;
-        this.$.additemajax.generateRequest();
+		alert("payment Added!");
+		//this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
+		//this.itemparam=obj3;
+        //this.$.additemajax.generateRequest();
     	  //document.querySelector('addsupplier-card').FnBtnDisable();
 	      //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
 	      }

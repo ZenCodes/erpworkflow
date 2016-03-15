@@ -76,5 +76,27 @@ FnSetValue:function(suppliername){
 FnBtnDisable:function(){
 	document.querySelector('#save').style.backgroundColor='grey';
 	this.Btn_disable_flag=true;
+},
+FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,itemgroup,selection){
+	//this.itemid=itemid;
+	//this.itemname=itemname;
+	this.itemdes=itemdes;
+	this.container=container;
+	this.quantity=quantity;
+	for(var i=0;i<this.itemarr.length;i++){
+	   if(this.itemarr[i].itemtypeid==itemtype)
+	      this.itemtype=this.itemarr[i].itemtypename;
+	}
+	for(var i=0;i<this.itemgrouparr.length;i++){
+	   if(this.itemgrouparr[i].itemgroupid==itemgroup)
+	      this.itemgroup=this.itemgrouparr[i].itemgroupname;
+    }
+    for(var i=0;i<this.purchasearr.length;i++){
+	   if(this.purchasearr[i].purchasetypeid==selection)
+	      this.selection=this.purchasearr[i].purchasetypename;
+    }
+	//this.itemtype=itemtype;
+	//this.grouptype=grouptype;
+	//this.purchasetype=purchasetype;
 }
 });

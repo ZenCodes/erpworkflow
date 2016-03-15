@@ -389,5 +389,11 @@ Polymer({
     else
     document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,this.itemoptionalsupplier);
     //this.selection=selection;
+  },
+  FnSetValue:function(suppliername,supplierid){
+	//alert(suppliername+"  "+supplierid);
+	 //this.itemsupplier=suppliername;
+	 //alert(document.querySelector('supplier-list'));
+	 //this.$.supplier.setDefaultValue(suppliername);
   }
 });

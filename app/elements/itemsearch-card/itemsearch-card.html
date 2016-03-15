@@ -1,0 +1,99 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<link rel="import" href="../itemsummary-page/itemsummary-page.html">
+<link rel="import" href="../supplier-list/supplier-list.html">
+
+<link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+
+
+
+<dom-module id="itemsearch-card">
+  <template>
+    <style>
+      .drop{
+	     @apply(--layout-vertical);
+      }
+      .card{
+      	 margin-left:8%;
+	  	 @apply(--layout-horizontal);
+      }
+      :host {
+        display: block;
+      }
+      paper-input{
+	    text-align: left;
+	    width: 135%;
+      }
+      paper-listbox{
+	          width: 130%;
+	          background-color: whitesmoke;
+	          box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      #itemname{
+      margin-left:55%;
+      }
+    </style>
+      <div class="card">
+	         <div class="drop">
+	           <div>
+	             <paper-input  label="Enter Item ID" name="itemid" value="{{itemid}}" required  on-change="FnItemIdChange" id="itemid"  error-message="Enter item id">
+	             <paper-icon-button suffix icon="search" on-click="FnSearchItemId"></paper-icon-button>
+	             </paper-input>
+	           </div>
+	           <div hidden$="{{isHiddenid}}">
+	           <paper-listbox id="searchid" class="dropdown-content" on-iron-select="FnItemIdSelected">
+	             <template is="dom-repeat" items="{{itemidArray}}" as="name">
+	               <paper-item>{{name.itemid}}</paper-item>
+	             </template>
+	           </paper-listbox>
+	           </div>
+	         </div>
+
+	         <div class="drop">
+	          <div>
+	            <paper-input label="Enter Item Name" name="itemname" value="{{itemname}}" required on-change="FnItemNameChange" id="itemname"  error-message="Enter item name">
+	            <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
+	            </paper-input>
+	          </div>
+	           <div hidden$="{{isHidden}}">
+	             <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnItemSelected">
+	             <template is="dom-repeat" items="{{itemArray}}" as="name">
+	               <paper-item>{{name.itemname}}</paper-item>
+	             </template>
+	             </paper-listbox>
+         	 </div>
+         	 </div>
+     </div>
+
+<!--Component to fetch item info to the dropdown-->
+    <iron-ajax
+      method="post"
+      params='{{param}}'
+      id="itemlistreadajax"
+      url="{{url}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="itemlistreadResponse">
+    </iron-ajax>
+  <admin-service id="adminservice"></admin-service>
+  </template>
+  <script src="../../scripts/itemsearch-card.js"></script>
+</dom-module>
