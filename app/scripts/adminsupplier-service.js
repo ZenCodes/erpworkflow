@@ -22,7 +22,6 @@
 	readsupplierResponse:function(e){
 		var arr= e.detail.response.itemarr;
 		//alert(JSON.stringify(arr));
-
 		document.querySelector("addsupplier-card").supplierid=arr[0].supplierid;
 		document.querySelector("addsupplier-card").suppliername=arr[0].suppliername;
 		document.querySelector("addsupplier-card").landmark=arr[0].landmark;

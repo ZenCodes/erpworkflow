@@ -11,13 +11,18 @@
 		this.isHidden=true;
 		this.isHiddenid=true;
 	},
+	FnItemIdChange:function(){
+	document.querySelector('supplieradditem-card').FnSetItemId(this.itemid);
+	},
+	FnItemNameChange:function(){
+	document.querySelector('supplieradditem-card').FnSetItemName(this.itemname);
+	},
     //Function which invokes when performing search using Item ID
 	  FnSearchItemId:function(e){
 	    //The flag is used to ensure the search is performed by using item id
 	    localStorage.setItem("curr_sess_searchtypeflag","0");
 	    //When performing search using itemid making listbox visible with items
 	    this.isHiddenid=false;
-
 	    //Url for invoking itemlistservice to fetch all the items and check with currently searching item and display the details accordingly
 	    this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
 	    //The itemlist service component is reused here,there the wardflag has to be 2 ,so that here is it is used

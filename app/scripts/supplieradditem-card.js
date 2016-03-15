@@ -5,9 +5,11 @@
 //JS file for the supplier-page
 Polymer({
   is: "supplieradditem-card",
+
   ready:function()
   {
-
+  this.itemid="";
+  this.itemname="";
    //Initially to make all the fields are in editable mode
    this.read=false;
    //Calling services to bind info to the itemtype , itemgroup and supplier fields
@@ -67,7 +69,9 @@ FnAddItemSubmit:function(){
 	}
 	else
 	{
-		this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
+	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
+	alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
+	this.$.adminservice.callItemWriteService("",this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,purchasetype);
 	}
 },
 FnSetValue:function(suppliername){
@@ -78,8 +82,8 @@ FnBtnDisable:function(){
 	this.Btn_disable_flag=true;
 },
 FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,itemgroup,selection){
-	//this.itemid=itemid;
-	//this.itemname=itemname;
+	this.itemid=itemid;
+	this.itemname=itemname;
 	this.itemdes=itemdes;
 	this.container=container;
 	this.quantity=quantity;
@@ -95,8 +99,11 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 	   if(this.purchasearr[i].purchasetypeid==selection)
 	      this.selection=this.purchasearr[i].purchasetypename;
     }
-	//this.itemtype=itemtype;
-	//this.grouptype=grouptype;
-	//this.purchasetype=purchasetype;
+},
+FnSetItemId:function(itemid){
+	this.itemid=itemid;
+},
+FnSetItemName:function(itemname){
+	this.itemname=itemname;
 }
 });

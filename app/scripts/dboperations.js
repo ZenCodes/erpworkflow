@@ -1063,11 +1063,45 @@ exports.FnAddItemWrite=function(pagename,response,callback) {
           }
         });
       }
-      else
+      else{
         return callback("duplicate entry");
+	  }
     }
   });
 }
+
+
+//Function to write item info added from admin page
+exports.FnAddItemWriteSupplier=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  cond={Item_ID:response.Item_ID}
+  cond1={Item_Supplier_ID:response.Item_Supplier_ID}
+  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? AND ?',[cond,cond1],function(err, rows, fields) {
+    if(!err) {
+      if(rows.length==0) {
+        connection.query('INSERT INTO '+Config_tables[0]+' SET ?', [response], function (err, result) {
+          if (!err) {
+            return callback("succ");
+          }
+          else {
+            console.log("Not Inserted!"+err);
+            return callback("fail");
+          }
+        });
+      }
+      else{
+        return callback("duplicate entry");
+	  }
+    }
+  });
+}
+
+
 //Function fetches itemtype info
 exports.FnAddItemPurchasetype=function(pagename,callback) {
   var Config_tables=[];

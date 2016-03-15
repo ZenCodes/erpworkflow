@@ -65,8 +65,11 @@
       #supplierid,#suppliername{
       width: 70%;
       }
-      #suppliername,#searchname{
+      #supplierid,#searchid{
       margin-left:-20%;
+      }
+      #suppliername{
+      margin-left: -1%;
       }
     </style>
     <!--Component for listenen to keyboard enter event-->
@@ -76,6 +79,20 @@
 
       <div class="card">
         <div class="driver">
+
+        <div class="drop">
+		   <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}">
+		   <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
+		   </paper-input>
+		   <div hidden$="{{isHidden}}">
+		   <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnSupplierNameSelected">
+		   <template is="dom-repeat" items="{{itemArray}}" as="name">
+		   <paper-item>{{name.itemname}}</paper-item>
+		   </template>
+		   </paper-listbox>
+		   </div>
+        </div>
+
         <div class="drop">
           <paper-input label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchSupplierId"></paper-icon-button>
@@ -87,23 +104,12 @@
 		   </template>
 		   </paper-listbox>
           </div>
-          </div>
-          <div class="drop">
-          <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}">
-          <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
-          </paper-input>
-          <div hidden$="{{isHidden}}">
-		    <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnSupplierNameSelected">
-		    <template is="dom-repeat" items="{{itemArray}}" as="name">
-		    <paper-item>{{name.itemname}}</paper-item>
-		    </template>
-		    </paper-listbox>
-          </div>
-          </div>
+        </div>
+
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.Landmark}}" name="landmark" value="{{landmark}}" required  id="landmark" error-message="{{item.Landmark_error}}"></paper-input>
-          <paper-input readonly="{{read}}" abel="{{item.Location}}" name="location" value="{{location}}" required  id="location" error-message="{{item.Location_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" error-message="{{item.Location_error}}"></paper-input>
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[a-zA-Z ]" error-message="{{item.City_error}}"></paper-input>

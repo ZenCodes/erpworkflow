@@ -2,6 +2,8 @@
  * Created by praba on 2/26/2016.
  */
 (function() {
+	var supobj;
+	var flag=0;
   Polymer({
     is: "admin-service",
     ready: function () {
@@ -12,10 +14,13 @@
     },
     //Method invokes while making write req from the additem card
     callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+		//alert("yes");
 
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
     };
+     supobj={
+      "itemoptionalsupplier" :"","itemsupplier" :""};
       obj.itemoptionalsupplier=itemoptionalsupplier,
       obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
@@ -27,6 +32,8 @@
       obj.itemgroup=itemgroup;
       obj.itemtype=itemtype;
       obj.purchasetype=purchasetype;
+      supobj.itemsupplier=itemsupplier;
+      supobj.itemid=itemid;
       this.param=obj;
       this.url=sessionStorage.getItem("curr_sess_url")+"additem-service";
       this.$.additemwriteajax.generateRequest();
@@ -34,17 +41,37 @@
     //Response receiving after making write request
     additemwriteResponse:function(e){
       if(e.detail.response.returnval=="succ"){
+		  //alert("new item");
         //document.querySelector("additem-card").FnBtnDisable();
         //document.querySelector("additem-card").FnClear();
-        this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
-
+        //this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+        flag=1;
+        this.writesupplierparam=supobj;
+		this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
+        this.$.additemwritesupplierajax.generateRequest();
       }
      else if(e.detail.response.returnval=="duplicate entry"){
-        this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
+		 //alert("old item");
+		   this.writesupplierparam=supobj;
+		   this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
+           this.$.additemwritesupplierajax.generateRequest();
+        //this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
     },
+
+    additemwritesupplierResponse:function(e){
+		if(e.detail.response.returnval=="succ"){
+		if(flag==1)
+		this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+		else
+		this.$.dialogpage.FnShowDialog("Item id already exists,now it it is mapped with this new supplier!!","");
+		}
+		else if(e.detail.response.returnval=="duplicate entry"){
+		this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
+		}
+	},
     //Method invokes while making req to fetch purhase type info
     callItemPurchasetypeReadService:function(){
       this.purchasetypeurl=sessionStorage.getItem("curr_sess_url")+"additempurchasetype-service";
