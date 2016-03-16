@@ -1386,7 +1386,7 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
   }
 
   //Function fecthes searched item info
-  exports.Fnreaditeminfo=function(pagename,cond,callback) {
+  exports.Fnreaditeminfo=function(pagename,cond,id,callback) {
     //console.log(pagename+"  "+JSON.stringify(cond));
     var Config_tables=[];
     for(var i=0;i<obj.length;i++){
@@ -1394,7 +1394,10 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
         Config_tables=obj[i].value;
       }
     }
-    connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+    var querry="SELECT distinct Item_Name FROM MD_Item m JOIN OD_Item o USING (Item_ID) WHERE o.Item_Supplier_ID ='"+id+"'";
+    //console.log(querry);
+    //connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+	connection.query(querry,function(err, rows, fields) {
       var itemarr=[];
 
      if(!err){
@@ -1413,7 +1416,9 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
 	           obj.itemtype=rows[i].Item_Type_ID;
 	           obj.purchasetype=rows[i].Item_Purchase_Type_ID;
 	           itemarr.push(obj);
+
 	         }
+	         //console.log(JSON.stringify(itemarr));
 	           return callback(itemarr);
 	         }
 	         else{

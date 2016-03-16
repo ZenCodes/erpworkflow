@@ -16,7 +16,7 @@ var supid="";
 	//alert(supname);
 	this.$.adminsupplierservice.callItemService(supplierid);
 	},
-	FnCreateSupplier:function(){
+	FnCreateItemSupplier:function(){
 	document.querySelector('supplier-page').setPage('Add Item');
 	//document.querySelector('app-homepage').setPage('admin-page');
 	//document.querySelector('admin-page').setPage('additem-card');

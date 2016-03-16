@@ -25,7 +25,7 @@
       }
       paper-button{
 	  	        text-align: center;
-	  	        width: 35%;
+	  	        width: 12%;
 	  	        border-radius: 2px;
 	  	        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
 	  	        background-color: #3d6868;
@@ -33,15 +33,12 @@
 	  	        margin-top: 4%;
       }
       .create{
-      margin-left:35%;
-      margin-bottom: 2%;
+      margin-left:-70%;
+      margin-top: -2%;
       }
     </style>
     <div class="card">
 
-    <div class="create">
-    <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateSupplier">Create</paper-button>
-    </div>
 
 	<template is="dom-repeat" items="{{itemArray}}" as="name">
 		<div class="innercard">
@@ -49,6 +46,10 @@
 	     <paper-item>{{name.itemname}}</paper-item>
 	    </div>
     </template>
+
+	    <div class="create">
+	    <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateItemSupplier">Add Item</paper-button>
+    </div>
 
 	</div>
 

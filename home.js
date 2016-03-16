@@ -606,7 +606,7 @@ app.post('/readiteminfo-service',urlencodedParser, function (req, res) {
   var items;
   var type;
   var Fnreaditeminfocall = require("./app/scripts/dboperations.js");
-  Fnreaditeminfocall.Fnreaditeminfo("readiteminfo-service",cond,function(returnval){
+  Fnreaditeminfocall.Fnreaditeminfo("readiteminfo-service",cond,req.query.supplierid,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
