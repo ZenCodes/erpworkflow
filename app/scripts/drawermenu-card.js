@@ -54,8 +54,9 @@ Polymer({is:"drawermenu-card",
     else if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
       if(e.target.id=="Add Item"){
         localStorage.setItem("curr_sess_wardflag","");
-        document.querySelector('app-homepage').setPage('admin-page');
-        document.querySelector('admin-page').setPage('additem-card');
+        window.location.href="../elements/indexhome.html";
+        //document.querySelector('app-homepage').setPage('admin-page');
+        //document.querySelector('admin-page').setPage('additem-card');
       }
       if(e.target.id=="Add Supplier"){
         localStorage.setItem("curr_sess_wardflag","4");

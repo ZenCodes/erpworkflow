@@ -24,7 +24,8 @@
   FnClickOk:function(){
   if(this.retflag!="duplicate entry") {
     if (sessionStorage.getItem("curr_sess_roleflag") == "6") {
-      window.location.href = "indexhome.html";
+	  document.querySelector('admin-page').setPage('supplier-detail');
+      //window.location.href = "indexhome.html";
     }
   }
 

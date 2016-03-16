@@ -2,8 +2,9 @@
  * Created by praba on 2/26/2016.
  */
 (function() {
-	var supobj;
+	var suparr=[];
 	var flag=0;
+	var arrlength=0;
   Polymer({
     is: "admin-service",
     ready: function () {
@@ -19,8 +20,7 @@
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
     };
-     supobj={
-      "itemoptionalsupplier" :"","itemsupplier" :""};
+     supobj={"itemsupplier" :""};
       obj.itemoptionalsupplier=itemoptionalsupplier,
       obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
@@ -32,44 +32,73 @@
       obj.itemgroup=itemgroup;
       obj.itemtype=itemtype;
       obj.purchasetype=purchasetype;
-      supobj.itemsupplier=itemsupplier;
-      supobj.itemid=itemid;
+
+      if(localStorage.getItem("curr_sess_additemsupplierwrite")=="1"){
+      supobj.supplierid=itemoptionalsupplier;
+      suparr.push(supobj);
+      this.callItemWriteSupplierService(itemid,suparr);
+  	  }
       this.param=obj;
       this.url=sessionStorage.getItem("curr_sess_url")+"additem-service";
       this.$.additemwriteajax.generateRequest();
     },
     //Response receiving after making write request
     additemwriteResponse:function(e){
+
       if(e.detail.response.returnval=="succ"){
-		  //alert("new item");
+		//alert("Item saved successfully!!");
+		//document.querySelector('admin-page').setPage('supplier-detail');
+		this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+		//alert("new item");
         //document.querySelector("additem-card").FnBtnDisable();
         //document.querySelector("additem-card").FnClear();
         //this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
-        flag=1;
+        /*flag=1;
         this.writesupplierparam=supobj;
 		this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
-        this.$.additemwritesupplierajax.generateRequest();
+        this.$.additemwritesupplierajax.generateRequest();*/
       }
      else if(e.detail.response.returnval=="duplicate entry"){
 		 //alert("old item");
-		   this.writesupplierparam=supobj;
+		  /* this.writesupplierparam=supobj;
 		   this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
-           this.$.additemwritesupplierajax.generateRequest();
-        //this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
+           this.$.additemwritesupplierajax.generateRequest();*/
+        if(localStorage.getItem("curr_sess_supplieritemsearchflag")!="1")
+        this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
     },
+	callItemWriteSupplierService:function(itemid,itemArray){
+		//alert(itemArray);
+		//alert(JSON.stringify(itemArray));
+		var arr=itemArray;
+		arrlength=arr.length;
+		for(var i=0;i<arr.length;i++){
+			var obj={"itemid":"","supplierid":""};
+			obj.itemid=itemid;
+			obj.supplierid=arr[i].supplierid;
 
+		this.writesupplierparam=obj;
+		this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
+        this.$.additemwritesupplierajax.generateRequest();
+        }
+	},
     additemwritesupplierResponse:function(e){
+		//alert(e.detail.response.returnval);
 		if(e.detail.response.returnval=="succ"){
-		if(flag==1)
-		this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
-		else
-		this.$.dialogpage.FnShowDialog("Item id already exists,now it it is mapped with this new supplier!!","");
+		flag=flag+1;
+		if(arrlength==flag){
+		alert("Supplier Added successfully!!");
+		window.location.href = "indexhome.html";
+	    }
+		//this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+		//else
+		//this.$.dialogpage.FnShowDialog("Failed to add the items!!","");
 		}
 		else if(e.detail.response.returnval=="duplicate entry"){
 		this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
+
 		}
 	},
     //Method invokes while making req to fetch purhase type info

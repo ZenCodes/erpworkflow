@@ -1,0 +1,47 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../supplier-list/supplier-list.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../itemsummary-page/itemsummary-page.html">
+
+<dom-module id="supplier-detail">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+		@apply(--layout-vertical);
+		margin-left: 5%;
+      }
+      paper-button{
+	          text-align: center;
+	          width: 15%;
+	          border-radius: 2px;
+	          box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+	          background-color: #3d6868;
+	          color: white;
+	          margin-top: 4%;
+	          font-size:12px;
+      }
+      .btn{
+      @apply(--layout-horizontal);
+      }
+    </style>
+    <div class="card">
+    <div class="list">
+    <template is="dom-repeat" items="{{supArray}}" as="item">
+    <supplier-list id="{{item.id}}" supname="{{item.supnmae}}"></supplier-list>
+    </template>
+    </div>
+    <div class="btn">
+    <paper-button disabled="{{Btn_disable_flag}}" id="add" on-click="FnAddSupplier">Add Supplier</paper-button>
+    <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnSaveSupplier">Save</paper-button>
+    </div>
+    </div>
+     <!--Including dialog component here-->
+    <itemsummary-page id="ID_Dialogpage"></itemsummary-page>
+  </template>
+  <script src="../../scripts/supplier-detail.js"></script>
+</dom-module>

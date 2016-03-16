@@ -10,6 +10,7 @@
 	ready:function(){
 		this.isHidden=true;
 		this.isHiddenid=true;
+		localStorage.setItem("curr_sess_supplieritemsearchflag","0");
 	},
 	FnItemIdChange:function(){
 	document.querySelector('supplieradditem-card').FnSetItemId(this.itemid);
@@ -123,6 +124,7 @@
   },
   //Function which invokes when selecting item type id in dropdown
   FnItemIdSelected:function(e){
+	localStorage.setItem("curr_sess_supplieritemsearchflag","1");
     //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
     if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
       this.itemid = e.target.selectedItem.textContent.trim();
@@ -144,6 +146,7 @@
   },
   //Function which invokes when selecting item type name in dropdown
   FnItemSelected:function(e){
+    localStorage.setItem("curr_sess_supplieritemsearchflag","1");
     //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
     if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
       this.itemname = e.target.selectedItem.textContent.trim();

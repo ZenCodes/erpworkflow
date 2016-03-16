@@ -15,10 +15,11 @@
   Polymer({is:"supplier-list",
     ready:function(){
       //The card consist of two fields to enter supplier info,if it is in inward page it has to show only one supplier name,so to hide and make visible in additem card here used isHidden attribute
-      if(sessionStorage.getItem("curr_sess_roleflag")=="0")
+      if(sessionStorage.getItem("curr_sess_roleflag")=="0"||(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""))
       this.isHidden=true;
       else
       this.isHidden=false;
+
       //Initially making all fields are editable
       this.read = false;
 
@@ -65,8 +66,13 @@
           document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supplierid,this.suppliername);
           this.read=true;
         }
-        else
-        document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
+        //else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="")
+		//  document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
+		else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""){
+		  document.querySelector('supplier-detail').FnSelectSupplier(this.supplierid,this.suppliername);
+		}
+       // else
+       // document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
        }
       else{
         alert("Please choose valid item...");
@@ -250,7 +256,6 @@
       this.optionalvalue=supplier2;
     },
     FnValidate:function(){
-
       this.$.supplier.validate();
     }
   });

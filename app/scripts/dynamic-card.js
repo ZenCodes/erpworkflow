@@ -16,6 +16,8 @@ Polymer({is:"dynamic-card",
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
 	  if(localStorage.getItem("curr_sess_wardflag")=="4")
         this.url="../../config/suppliermenu.json";
+         if(localStorage.getItem("curr_sess_wardflag")=="")
+        this.url="../../config/itemmenu.json";
     }
 
   },

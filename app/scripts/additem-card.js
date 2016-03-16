@@ -251,20 +251,21 @@ Polymer({
   //Method invokes to fetch item supplier id of the currently selected supplier name in dropdown
   FnSelectSupplier:function(supplierid,suppliername){
     //Flag is used to identify the supplier name drop down change and it is later refered in update mode
-    localStorage.setItem("curr_sess_supplierchangeflag","1");
+/*    localStorage.setItem("curr_sess_supplierchangeflag","1");
     this.itemsuppliername=suppliername;
-    this.itemsupplier=supplierid;
+    this.itemsupplier=supplierid;*/
   },
   //Method invokes to fetch optional item supplier id of the currently selected optional supplier name in dropdown
   FnSelectOptionalSupplier:function(supplierid,suppliername){
     //Flag is used to identify the optional supplier name drop down change and it is later refered in update mode
-    localStorage.setItem("curr_sess_optionalsupplierchangeflag","1");
+   /* localStorage.setItem("curr_sess_optionalsupplierchangeflag","1");
     this.itemoptionalsuppliername=suppliername;
-    this.itemoptionalsupplier=supplierid;
+    this.itemoptionalsupplier=supplierid;*/
   },
   //Function invokes when performing save button click
   FnAddItemInfoSubmit:function()
   {
+
     //Fields mandatory validation performing here
     document.querySelector('#itemid').validate();
     document.querySelector('#itemname').validate();
@@ -277,7 +278,7 @@ Polymer({
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
 
-  if(this.itemsupplier==""||this.itemsupplier==null||this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
+  if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
   }
     else {
     //Setting flags according to the purchase type selection if type is regular then flag is 0 ,if spot flag is 1
@@ -296,7 +297,7 @@ Polymer({
       this.itemgroup=localStorage.getItem("curr_sess_ItemTypeGroup");
     }
     //While upadting if not changing item supplier name it would fetch item supplier id
-    if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
+    /*if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
 
       this.itemsupplier=localStorage.getItem("curr_sess_ItemTypeSupplier");
     }
@@ -304,33 +305,33 @@ Polymer({
     if(localStorage.getItem("curr_sess_optionalsupplierchangeflag")!="1"){
 
       this.itemoptionalsupplier=localStorage.getItem("curr_sess_ItemTypeOptionalSupplier");
-    }
+    }*/
 
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
+      document.querySelector('supplier-detail').FnSetItemid(this.itemid);
       this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemoptionalsupplier, this.itemsupplier, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1") {
-
-
       //Calling dialog ensure  the update item details
+      document.querySelector('supplier-detail').FnSetItemid(this.itemid);
       this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemoptionalsupplier, this.itemsupplier, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
     localStorage.setItem("curr_sess_ItemTypeId","");
     localStorage.setItem("curr_sess_ItemTypeGroup","");
-    localStorage.setItem("curr_sess_ItemTypeSupplier","");
-    localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
+    //localStorage.setItem("curr_sess_ItemTypeSupplier","");
+    //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
   },
   //Clearing fields after save / edit
   FnClear:function(){
 
     localStorage.setItem("curr_sess_ItemTypeId","");
     localStorage.setItem("curr_sess_ItemTypeGroup","");
-    localStorage.setItem("curr_sess_ItemTypeSupplier","");
-    localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
+    //localStorage.setItem("curr_sess_ItemTypeSupplier","");
+    //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
   },
   //Function to diable Save button,once after search or save
   FnBtnDisable:function(){
@@ -360,8 +361,8 @@ Polymer({
     //Setting itemid,group and supplier info in local storage
     localStorage.setItem("curr_sess_ItemTypeId",itemtype);
     localStorage.setItem("curr_sess_ItemTypeGroup",itemgroup);
-    localStorage.setItem("curr_sess_ItemTypeSupplier",itemsupplier);
-    localStorage.setItem("curr_sess_ItemTypeOptionalSupplier",itemoptionalsupplier);
+    //localStorage.setItem("curr_sess_ItemTypeSupplier",itemsupplier);
+    //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier",itemoptionalsupplier);
     for(var i=0;i<this.itemarr.length;i++){
       if(this.itemarr[i].itemtypeid==itemtype)
         this.itemtype=this.itemarr[i].itemtypename;
@@ -370,7 +371,7 @@ Polymer({
       if(this.itemgrouparr[i].itemgroupid==itemgroup)
         this.itemgroup=this.itemgrouparr[i].itemgroupname;
     }
-    for(var i=0;i<this.itemsupplierarr.length;i++){
+    /*for(var i=0;i<this.itemsupplierarr.length;i++){
       if(this.itemsupplierarr[i].itemsupplierid==itemsupplier)
         this.itemsupplier=this.itemsupplierarr[i].itemsuppliername;
     }
@@ -378,16 +379,16 @@ Polymer({
       if(this.itemoptionalsupplierarr[i].itemsupplierid==itemoptionalsupplier) {
         this.itemoptionalsupplier = this.itemoptionalsupplierarr[i].itemsuppliername;
       }
-    }
+    }*/
     for(var i=0;i<this.purchasearr.length;i++){
       if(this.purchasearr[i].purchasetypeid==selection)
         this.selection=this.purchasearr[i].purchasetypename;
     }
     //alert(this.itemsupplier+" "+this.itemoptionalsupplier);
-    if(itemoptionalsupplier=="")
+    /*if(itemoptionalsupplier=="")
       document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,"");
     else
-    document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,this.itemoptionalsupplier);
+    document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,this.itemoptionalsupplier);*/
     //this.selection=selection;
   },
   FnSetValue:function(suppliername,supplierid){

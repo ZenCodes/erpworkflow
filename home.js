@@ -404,8 +404,8 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 app.post("/additem-service",urlencodedParser,function(req,res) {
 console.log(req.query.itemid);
   response = {
-    Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
-    Item_Supplier_ID:req.query.itemsupplier,
+    //Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
+    //Item_Supplier_ID:req.query.itemsupplier,
     Item_ID:req.query.itemid,
     Item_Name:req.query.itemname,
     Item_Description:req.query.itemdes,
@@ -430,7 +430,7 @@ console.log(req.query.itemid);
 app.post("/additemsupplier-service",urlencodedParser,function(req,res) {
 
   response = {
-    Item_Supplier_ID:req.query.itemsupplier,
+    Item_Supplier_ID:req.query.supplierid,
     Item_ID:req.query.itemid
 
   };
