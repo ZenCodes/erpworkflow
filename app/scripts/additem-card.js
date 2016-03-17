@@ -274,7 +274,7 @@ Polymer({
     document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
-    document.querySelector('supplier-list').FnValidate();
+    //document.querySelector('supplier-list').FnValidate();
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
 

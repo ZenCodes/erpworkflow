@@ -121,5 +121,11 @@
         "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type",
         "Supplier_error":"Enter Supplier Name"}]}
     ]}
+    ,
+        {"Page":[
+              {"page":["itemsearch-card","itemsearch-card"]},
+              {"Label":[{"Item_Name":"Enter Item Name","Item_ID":"Enter Item ID","Item_Name_error":"Enter Item Name",
+                "Item_ID_error":"Enter Item ID"}]}
+      ]}
   ]
 
