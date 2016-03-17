@@ -126,7 +126,7 @@
 	addpaymentResponse:function(e){
 
 	if(e.detail.response.returnval=="succ"){
-		alert("payment Added!");
+		alert("Supplier Added successfully!!");
 		//this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
 		//this.itemparam=obj3;
         //this.$.additemajax.generateRequest();
