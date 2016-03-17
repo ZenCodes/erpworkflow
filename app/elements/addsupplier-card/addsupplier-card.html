@@ -71,6 +71,11 @@
       #suppliername{
       margin-left: -1%;
       }
+      #supplierid{
+      //margin-top:5%;
+      //height:3%;
+      //background-color: whitesmoke;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
@@ -81,7 +86,7 @@
         <div class="driver">
 
         <div class="drop">
-		   <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  id="suppliername" error-message="{{item.Supplier_Name_error}}">
+		   <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  on-change="FnInputChange" id="suppliername" error-message="{{item.Supplier_Name_error}}">
 		   <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
 		   </paper-input>
 		   <div hidden$="{{isHidden}}">
@@ -94,7 +99,7 @@
         </div>
 
         <div class="drop">
-          <paper-input label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
+          <paper-input readonly="{{IDread}}" label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
           <paper-icon-button suffix icon="search" on-click="FnSearchSupplierId"></paper-icon-button>
           </paper-input>
           <div hidden$="{{isHiddenid}}">

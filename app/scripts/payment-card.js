@@ -47,7 +47,7 @@ Polymer({
   setSelectType:function(mode,term){
 	  this.read=true;
 	  this.paymenttype=mode;
-	  document.querySelector('#radio').selected=term;
+	  this.selected=term;
 	  //this.term=term;
   }
 });

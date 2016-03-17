@@ -16,6 +16,7 @@ Polymer({
     if(logflag!="invalid")
     {
       //alert(logflag);
+
       localStorage.setItem("curr_sess_wardflag","0");
       sessionStorage.setItem("loggeduser",this.username);
       sessionStorage.setItem("loggedrole",logflag);

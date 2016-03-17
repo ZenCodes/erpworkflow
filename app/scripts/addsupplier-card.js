@@ -12,10 +12,13 @@
 		 //Initially hiding paperlistbox of itemtype and itemgroup fields
 		    this.isHidden=true;
     		this.isHiddenid=true;
+    		this.IDread=true;
     		localStorage.setItem("curr_sess_searchtypeflag", "nothing");
-
 	},
-
+	FnInputChange:function(){
+	this.IDread=true;
+	this.supplierid=(this.suppliername).substring(0,4);
+	},
    FnSupplierInfoSubmit:function(){
      document.querySelector('#supplierid').validate();
      document.querySelector('#suppliername').validate();
@@ -24,15 +27,15 @@
      document.querySelector('#state').validate();
      document.querySelector('#country').validate();
      document.querySelector('#pincode').validate();
-     document.querySelector('#phoneno').validate();
-     document.querySelector('#emailid').validate();
-     document.querySelector('#landmark').validate();
-     if(this.emailid==null||this.emailid==""){}
+     //document.querySelector('#phoneno').validate();
+     //document.querySelector('#emailid').validate();
+     //document.querySelector('#landmark').validate();
+     if(this.supplierid==""||this.supplierid==null||this.suppliername==""||this.suppliername==null||this.location==""||this.location==null||this.city==null||this.city==""||this.district==""||this.district==null||this.state==null||this.state==""||this.country==null||this.country==""||this.pincode==""||this.pincode==null||this.mobileno==null||this.mobileno==""){}
      else{
 		 document.querySelector("supplieradditem-card").FnSetValue(this.supplierid,this.suppliername);
 		 if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-     this.$.adminsupplierservice.addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
-     document.querySelector("supplier-page").setPage("Add Payment");
+         this.$.adminsupplierservice.addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+         document.querySelector("supplier-page").setPage("Add Payment");
      	//document.querySelector("payment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
  		}
  		else{

@@ -47,11 +47,30 @@
 	          background-color: whitesmoke;
 	          box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
-      #itemname{
+      #itemid{
+      margin-left:55%;
+      }
+      #searchid{
       margin-left:55%;
       }
     </style>
       <div class="card">
+
+      		<div class="drop">
+	  	          <div>
+	  	            <paper-input label="Enter Item Name" name="itemname" value="{{itemname}}" required on-change="FnItemNameChange" id="itemname"  error-message="Enter item name">
+	  	            <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
+	  	            </paper-input>
+	  	          </div>
+	  	           <div hidden$="{{isHidden}}">
+	  	             <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnItemSelected">
+	  	             <template is="dom-repeat" items="{{itemArray}}" as="name">
+	  	               <paper-item>{{name.itemname}}</paper-item>
+	  	             </template>
+	  	             </paper-listbox>
+	           	 </div>
+         	 </div>
+
 	         <div class="drop">
 	           <div>
 	             <paper-input  label="Enter Item ID" name="itemid" value="{{itemid}}" required  on-change="FnItemIdChange" id="itemid"  error-message="Enter item id">
@@ -67,20 +86,7 @@
 	           </div>
 	         </div>
 
-	         <div class="drop">
-	          <div>
-	            <paper-input label="Enter Item Name" name="itemname" value="{{itemname}}" required on-change="FnItemNameChange" id="itemname"  error-message="Enter item name">
-	            <paper-icon-button suffix icon="search" on-click="FnSearchItemName"></paper-icon-button>
-	            </paper-input>
-	          </div>
-	           <div hidden$="{{isHidden}}">
-	             <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnItemSelected">
-	             <template is="dom-repeat" items="{{itemArray}}" as="name">
-	               <paper-item>{{name.itemname}}</paper-item>
-	             </template>
-	             </paper-listbox>
-         	 </div>
-         	 </div>
+
      </div>
 
 <!--Component to fetch item info to the dropdown-->

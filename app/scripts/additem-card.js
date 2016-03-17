@@ -311,13 +311,13 @@ Polymer({
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
       document.querySelector('supplier-detail').FnSetItemid(this.itemid);
-      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemoptionalsupplier, this.itemsupplier, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1") {
       //Calling dialog ensure  the update item details
       document.querySelector('supplier-detail').FnSetItemid(this.itemid);
-      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemoptionalsupplier, this.itemsupplier, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
     localStorage.setItem("curr_sess_ItemTypeId","");
@@ -342,8 +342,8 @@ Polymer({
   FnEnableFields:function(){
     localStorage.setItem("curr_sess_itemtypechangeflag","0");
     localStorage.setItem("curr_sess_grouptypechangeflag","0");
-    localStorage.setItem("curr_sess_supplierchangeflag","0");
-    localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
+    //localStorage.setItem("curr_sess_supplierchangeflag","0");
+    //localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
     localStorage.setItem("curr_sess_itemidflag","0");
     localStorage.setItem("curr_sess_itemnameflag","0");
     localStorage.setItem("curr_sess_itemdesflag","0");
@@ -357,7 +357,7 @@ Polymer({
     document.querySelector('#save').style.backgroundColor='#3d6868';
   },
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
-  setSelectedItem:function(itemoptionalsupplier,itemsupplier,itemtype,itemgroup,selection){
+  setSelectedItem:function(itemtype,itemgroup,selection){
     //Setting itemid,group and supplier info in local storage
     localStorage.setItem("curr_sess_ItemTypeId",itemtype);
     localStorage.setItem("curr_sess_ItemTypeGroup",itemgroup);

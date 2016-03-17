@@ -402,7 +402,7 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 
 //Function for writing item info...req receives from admin service
 app.post("/additem-service",urlencodedParser,function(req,res) {
-console.log(req.query.itemid);
+//console.log(req.query.itemid);
   response = {
     //Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
     //Item_Supplier_ID:req.query.itemsupplier,
@@ -499,8 +499,8 @@ app.post('/addsearchitem-service',urlencodedParser, function (req, res) {
 app.post("/additemupdate-service",urlencodedParser,function(req,res) {
     cond={"Item_ID":req.query.itemid}
   response = {
-    Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
-    Item_Supplier_ID:req.query.itemsupplier,
+    //Item_Optional_Supplier_ID:req.query.itemoptionalsupplier,
+    //Item_Supplier_ID:req.query.itemsupplier,
     //Purchase_Type_Flag:req.query.itemflag,
     Item_ID:req.query.itemid,
     Item_Name:req.query.itemname,

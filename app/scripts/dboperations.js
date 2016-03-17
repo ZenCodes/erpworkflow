@@ -1226,8 +1226,8 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
       for(var i=0;i<rows.length;i++)
       {
         var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
-        obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
-        obj.itemsupplier=rows[i].Item_Supplier_ID;
+        //obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
+        //obj.itemsupplier=rows[i].Item_Supplier_ID;
         obj.itemid=rows[i].Item_ID;
         obj.itemname=rows[i].Item_Name;
         obj.itemdes=rows[i].Item_Description;
@@ -1371,7 +1371,7 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
         obj.bankname=rows[i].Bank_Name;
         obj.accountno=rows[i].Account_No;
         obj.address=rows[i].Bank_Address;
-        obj.paymenttrem=rows[i].Payment_Term;
+        obj.paymentterm=rows[i].Payment_Term;
         itemarr.push(obj);
       }
         return callback(itemarr);
@@ -1405,8 +1405,8 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
 	         for(var i=0;i<rows.length;i++)
 	         {
 	           var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
-	           obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
-	           obj.itemsupplier=rows[i].Item_Supplier_ID;
+	           //obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
+	           //obj.itemsupplier=rows[i].Item_Supplier_ID;
 	           obj.itemid=rows[i].Item_ID;
 	           obj.itemname=rows[i].Item_Name;
 	           obj.itemdes=rows[i].Item_Description;

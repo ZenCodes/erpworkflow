@@ -21,8 +21,8 @@
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
     };
      supobj={"itemsupplier" :""};
-      obj.itemoptionalsupplier=itemoptionalsupplier,
-      obj.itemsupplier=itemsupplier;
+      //obj.itemoptionalsupplier=itemoptionalsupplier,
+      //obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;
@@ -89,7 +89,7 @@
 		if(e.detail.response.returnval=="succ"){
 		flag=flag+1;
 		if(arrlength==flag){
-		alert("Supplier Added successfully!!");
+		alert("Item Added with supplier successfully!!");
 		window.location.href = "indexhome.html";
 	    }
 		//this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
@@ -110,7 +110,7 @@
       var itemarray=e.detail.response.itemarr;
       document.querySelector('additem-card').purchasearr=itemarray;
  	  document.querySelector('supplieradditem-card').purchasearr=itemarray;
- },
+ 	},
     //Method invokes while making req to fetch item type info
     callItemReadService:function(){
       this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
@@ -165,7 +165,7 @@
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
       document.querySelector("additem-card").container=arr[0].container;
       document.querySelector("additem-card").quantity=arr[0].quantity;
-      document.querySelector("additem-card").setSelectedItem(arr[0].itemoptionalsupplier,arr[0].itemsupplier,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
+      document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
 	  }
     },
     //Method invokes while making update request from item card
@@ -174,8 +174,8 @@
       var obj={
         "itemoptionalsupplier":"","itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
       };
-      obj.itemoptionalsupplier=itemoptionalsupplier,
-      obj.itemsupplier=itemsupplier;
+      //obj.itemoptionalsupplier=itemoptionalsupplier,
+      //obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;

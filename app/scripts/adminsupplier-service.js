@@ -49,7 +49,7 @@
 	    document.querySelector("payment-card").bankname=arr[0].bankname;
 	    document.querySelector("payment-card").accountno=arr[0].accountno;
 	    document.querySelector("payment-card").address=arr[0].address;
-	    document.querySelector("payment-card").selection=arr[0].paymentterm;
+	    document.querySelector("payment-card").term=arr[0].paymentterm;
 	    document.querySelector("payment-card"). setSelectType(arr[0].paymenttype,arr[0].paymentterm);
 
 	},
@@ -115,7 +115,7 @@
 		      obj2.mode=mode;
 		      obj2.paymentterm=paymentterm;
 		      obj2.address=address;
-  this.supplierparam=obj1;
+  			  this.supplierparam=obj1;
 
 			  if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
               this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
