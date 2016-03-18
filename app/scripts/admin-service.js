@@ -20,7 +20,7 @@
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
     };
-     supobj={"itemsupplier" :""};
+     supobj={"supplierid" :""};
       //obj.itemoptionalsupplier=itemoptionalsupplier,
       //obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
@@ -32,10 +32,20 @@
       obj.itemgroup=itemgroup;
       obj.itemtype=itemtype;
       obj.purchasetype=purchasetype;
-
+		//alert(localStorage.getItem("curr_sess_additemsupplierwrite"));
       if(localStorage.getItem("curr_sess_additemsupplierwrite")=="1"){
       supobj.supplierid=itemoptionalsupplier;
-      suparr.push(supobj);
+      if(suparr.length>0){
+      for(var i=0;i<suparr.length;i++){
+		  //alert(supobj.supplierid+"  "+suparr[i].supplierid);
+		  if((supobj.supplierid)!=(suparr[i].supplierid))
+		  suparr.push(supobj);
+	  }
+  	  }
+  	  else
+  	  {
+		suparr.push(supobj);
+	  }
       this.callItemWriteSupplierService(itemid,suparr);
   	  }
       this.param=obj;
@@ -71,7 +81,7 @@
     },
 	callItemWriteSupplierService:function(itemid,itemArray){
 		//alert(itemArray);
-		//alert(JSON.stringify(itemArray));
+		alert(JSON.stringify(itemArray));
 		var arr=itemArray;
 		arrlength=arr.length;
 		for(var i=0;i<arr.length;i++){
@@ -90,7 +100,9 @@
 		flag=flag+1;
 		if(arrlength==flag){
 		alert("Item Added with supplier successfully!!");
-		window.location.href = "indexhome.html";
+		document.querySelector('supplieradditem-card').FnSetClearFields();
+		document.querySelector('itemsearch-card').FnSetClearFields();
+		//window.location.href = "indexhome.html";
 	    }
 		//this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
 		//else

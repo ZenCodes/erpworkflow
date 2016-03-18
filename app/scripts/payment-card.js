@@ -38,6 +38,7 @@ Polymer({
 		}
 	}
   },
+
   FnFetchPaymentInfo:function(supplierid,suppliername){
 	this.supid=supplierid;
 	this.supname=suppliername;

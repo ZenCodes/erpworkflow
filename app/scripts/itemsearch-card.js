@@ -12,6 +12,10 @@
 		this.isHiddenid=true;
 		localStorage.setItem("curr_sess_supplieritemsearchflag","0");
 	},
+	FnSetClearFields:function(){
+	this.itemid="";
+	this.itemname="";
+    },
 	FnItemIdChange:function(){
 	document.querySelector('supplieradditem-card').FnSetItemId(this.itemid);
 	},

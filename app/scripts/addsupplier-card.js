@@ -160,6 +160,7 @@
 		      //if selected item id is not null invoking service to fetch item info
 		      if(this.suppliername!="") {
 		        this.$.adminsupplierservice.callSearchService("", this.suppliername);
+
 		      }
 		    }
 		    else   {

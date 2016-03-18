@@ -43,8 +43,10 @@
       else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
        	document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
         //document.querySelector("supplier-page").setPage(this.menulabel);
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Item Detail")
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")
         document.querySelector("payment-card").FnAddPaymentInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")!="nothing"&&value=="Item Detail")
+        document.querySelector("supplier-page").setPage("Show Item");
         //document.querySelector("supplier-page").setPage(this.menulabel);
       else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Supplier Detail")
         document.querySelector("supplier-page").setPage("Add Supplier");

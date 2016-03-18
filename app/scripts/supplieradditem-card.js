@@ -110,5 +110,15 @@ FnSetItemId:function(itemid){
 },
 FnSetItemName:function(itemname){
 	this.itemname=itemname;
+},
+FnSetClearFields:function(){
+	this.itemid="";
+	this.itemname="";
+	this.itemdes="";
+	this.container="";
+	this.quantity="";
+	this.itemtype="";
+	this.itemgroup="";
+	this.selection="";
 }
 });

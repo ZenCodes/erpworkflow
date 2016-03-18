@@ -34,6 +34,8 @@
         document.querySelector("addsupplier-card").phoneno=arr[0].phoneno;
         document.querySelector("addsupplier-card").mobileno=arr[0].mobileno;
         document.querySelector("addsupplier-card").emailid=arr[0].emailid;
+        //To call show item card when click item detail tab after add supplier page
+        document.querySelector("supplieritem-card").FnFetchItemInfo(arr[0].supplierid,arr[0].suppliername);
 	},
 	callPaymentService:function(supid,supname){
 		this.paymentreadurl=sessionStorage.getItem("curr_sess_url")+"readpaymentinfo-service";
