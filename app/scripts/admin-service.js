@@ -5,6 +5,7 @@
 	var suparr=[];
 	var flag=0;
 	var arrlength=0;
+  var supobj;
   Polymer({
     is: "admin-service",
     ready: function () {
@@ -81,7 +82,7 @@
     },
 	callItemWriteSupplierService:function(itemid,itemArray){
 		//alert(itemArray);
-		alert(JSON.stringify(itemArray));
+		//alert(JSON.stringify(itemArray));
 		var arr=itemArray;
 		arrlength=arr.length;
 		for(var i=0;i<arr.length;i++){
@@ -100,9 +101,12 @@
 		flag=flag+1;
 		if(arrlength==flag){
 		alert("Item Added with supplier successfully!!");
+    //alert(supobj.supplierid);
+    document.querySelector('supplier-page').setPage('Show Item');
+    document.querySelector('supplieritem-card').FnFetchItemInfo(supobj.supplierid,"");
 		document.querySelector('supplieradditem-card').FnSetClearFields();
 		document.querySelector('itemsearch-card').FnSetClearFields();
-		//window.location.href = "indexhome.html";
+		    //window.location.href = "indexhome.html";
 	    }
 		//this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
 		//else
