@@ -13,7 +13,7 @@ var supid="";
 	FnFetchItemInfo:function(supplierid,suppliername){
 		supname=suppliername;
 		supid=supplierid;
-	//alert(supname);
+	
 	this.$.adminsupplierservice.callItemService(supplierid);
 	},
 	FnCreateItemSupplier:function(){

@@ -97,6 +97,8 @@
 	},
     additemwritesupplierResponse:function(e){
 		//alert(e.detail.response.returnval);
+    //alert(arrlength+"  "+flag);
+
 		if(e.detail.response.returnval=="succ"){
 		flag=flag+1;
 		if(arrlength==flag){
@@ -106,14 +108,16 @@
     document.querySelector('supplieritem-card').FnFetchItemInfo(supobj.supplierid,"");
 		document.querySelector('supplieradditem-card').FnSetClearFields();
 		document.querySelector('itemsearch-card').FnSetClearFields();
-		    //window.location.href = "indexhome.html";
+		flag=0;
+        //window.location.href = "indexhome.html";
 	    }
 		//this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
 		//else
 		//this.$.dialogpage.FnShowDialog("Failed to add the items!!","");
 		}
 		else if(e.detail.response.returnval=="duplicate entry"){
-		this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
+      alert("Item already exists!!");
+		//this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
 
 		}
 	},
