@@ -73,13 +73,16 @@ FnAddItemSubmit:function(){
 	{
 	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
 	//alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
-	localStorage.setItem("curr_sess_additemsupplierwrite","1");
+
+  localStorage.setItem("curr_sess_additemsupplierwrite","1");
 	this.$.adminservice.callItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,purchasetype);
 	}
 },
 FnSetValue:function(supplierid,suppliername){
 	this.supplierid=supplierid;
 	this.supplier=suppliername;
+ // this.supplierid=localStorage.getItem("curr_sess_supplieradditemtab_supplierid");
+ // this.suppliern=localStorage.getItem("curr_sess_supplieradditemtab_suppliername");
 },
 FnBtnDisable:function(){
 	document.querySelector('#save').style.backgroundColor='grey';
