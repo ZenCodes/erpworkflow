@@ -19,6 +19,7 @@
 	   document.querySelector('#emailid').validate();
 	},
 	FnInputChange:function(){
+	localStorage.setItem("curr_sess_searchtypeflag","nothing");
 	this.IDread=true;
 	this.supplierid=(this.suppliername).substring(0,4);
 	},

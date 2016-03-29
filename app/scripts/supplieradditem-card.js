@@ -54,7 +54,7 @@ FnAddItemSubmit:function(){
     document.querySelector('#itemid').validate();
     document.querySelector('#itemname').validate();
     document.querySelector('#itemdes').validate();
-    document.querySelector('#container').validate();
+    //document.querySelector('#container').validate();
     document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
