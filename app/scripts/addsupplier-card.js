@@ -15,11 +15,15 @@
     		this.IDread=true;
     		localStorage.setItem("curr_sess_searchtypeflag", "nothing");
 	},
+	FnEmailChange:function(){
+	   document.querySelector('#emailid').validate();
+	},
 	FnInputChange:function(){
 	this.IDread=true;
 	this.supplierid=(this.suppliername).substring(0,4);
 	},
    FnSupplierInfoSubmit:function(){
+     document.querySelector('#emailid').validate();   	
      document.querySelector('#supplierid').validate();
      document.querySelector('#suppliername').validate();
      document.querySelector('#location').validate();
@@ -27,8 +31,8 @@
      document.querySelector('#state').validate();
      document.querySelector('#country').validate();
      document.querySelector('#pincode').validate();
-     //document.querySelector('#phoneno').validate();
-     //document.querySelector('#emailid').validate();
+     document.querySelector('#city').validate();
+     document.querySelector('#mobileno').validate();
      //document.querySelector('#landmark').validate();
      if(this.supplierid==""||this.supplierid==null||this.suppliername==""||this.suppliername==null||this.location==""||this.location==null||this.city==null||this.city==""||this.district==""||this.district==null||this.state==null||this.state==""||this.country==null||this.country==""||this.pincode==""||this.pincode==null||this.mobileno==null||this.mobileno==""){}
      else{
@@ -139,7 +143,7 @@
 		this.querySelector('#searchid').selected=-1;
 		this.itemidArray="";
 		//if selected item id is not null invoking service to fetch item info
-		if(this.supplieritemid!="") {
+		if(this.supplieritemid!=""||this.supplierid!="-----Select-----") {
 		    this.$.adminsupplierservice.callSearchService(this.supplierid, "");
 		}
 		}
@@ -159,13 +163,17 @@
 		      this.querySelector('#searchname').selected=-1;
 		      this.itemArray="";
 		      //if selected item id is not null invoking service to fetch item info
-		      if(this.suppliername!="") {
+		      if(this.suppliername!=""||this.suppliername!="-----Select-----") {
+
 		        this.$.adminsupplierservice.callSearchService("", this.suppliername);
 
 		      }
 		    }
 		    else   {
-		      this.read=false;
+		    	//alert("hi")
+		    this.read=false;
+		    this.suppliername="";
+		    this.supplierid="";
 		    this.itemArray="";
 		    this.querySelector('#searchname').style.visibility='hidden';
 		    this.querySelector('#searchname').selected=-1;

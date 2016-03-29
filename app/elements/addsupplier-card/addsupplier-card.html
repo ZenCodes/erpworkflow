@@ -13,6 +13,7 @@
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
+ <link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
 
 <dom-module id="addsupplier-card" on-keypress="{{keypress}}">
   <template>
@@ -36,7 +37,7 @@
       .owner{
         @apply(--layout-horizontal);
       }
-      paper-input,gold-zip-input{
+      paper-input,gold-email-input{
         text-align: left;
         width: 35%;
       }
@@ -134,8 +135,11 @@
         </div>
         <div class="owner">
           <paper-input readonly="{{read}}" label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="[0-9 ]" error-message="{{item.Mobile_Number_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input>
+          <!-- <paper-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input> -->
+          <gold-email-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
         </div>
+        
+       <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
         <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>
       </div>
     </template>
