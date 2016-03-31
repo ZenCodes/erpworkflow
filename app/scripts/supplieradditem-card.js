@@ -11,6 +11,8 @@ Polymer({
   this.itemid="";
   this.itemname="";
   this.supplierid="";
+  this.storesid="";
+  this.storesarr="";
   localStorage.setItem("curr_sess_additemsupplierwrite","0");
    //Initially to make all the fields are in editable mode
    this.read=false;
@@ -67,16 +69,15 @@ FnAddItemSubmit:function(){
     this.itemflag=this.purchasearr[i].purchasetypeid;
 	}
 	if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
-
 	}
 	else
 	{
 	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
 	//alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
-
   localStorage.setItem("curr_sess_additemsupplierwrite","1");
-	this.$.adminservice.callItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,purchasetype);
+	this.$.adminservice.callItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
 	}
+  document.querySelector('stores-card').FnClear();
 },
 FnSetValue:function(supplierid,suppliername){
 	this.supplierid=supplierid;
@@ -106,7 +107,12 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 	   if(this.purchasearr[i].purchasetypeid==selection)
 	      this.selection=this.purchasearr[i].purchasetypename;
     }
+  
 },
+ FnSetStoresInfo:function(storesarr,storesid){    
+    this.storesarr=storesarr;
+    this.storesid=storesid;    
+  },
 FnSetItemId:function(itemid){
 
 	this.itemid=itemid;
@@ -123,5 +129,6 @@ FnSetClearFields:function(){
 	this.itemtype="";
 	this.itemgroup="";
 	this.selection="";
+
 }
 });

@@ -413,6 +413,7 @@ app.post("/additem-service",urlencodedParser,function(req,res) {
     UOM:req.query.quantity,
     Item_Group_ID:req.query.itemgroup,
     Item_Type_ID:req.query.itemtype,
+    Store_Location_ID:req.query.storeslocation,
     Item_Purchase_Type_ID:req.query.itemflag
     //Purchase_Type_Flag:req.query.itemflag
 
@@ -509,6 +510,7 @@ app.post("/additemupdate-service",urlencodedParser,function(req,res) {
     UOM:req.query.quantity,
     Item_Group_ID:req.query.itemgroup,
     Item_Type_ID:req.query.itemtype,
+    Store_Location_ID:req.query.storeslocation,
     Item_Purchase_Type_ID:req.query.itemflag
 
   };
@@ -607,6 +609,14 @@ app.post('/readiteminfo-service',urlencodedParser, function (req, res) {
   var type;
   var Fnreaditeminfocall = require("./app/scripts/dboperations.js");
   Fnreaditeminfocall.Fnreaditeminfo("readiteminfo-service",cond,req.query.supplierid,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+//Function to fetch the searched item info using id or name according to the search type
+app.post('/itemstoresread-service',urlencodedParser, function (req, res) {
+  var Fnitemstoresreadcall = require("./app/scripts/dboperations.js");
+  Fnitemstoresreadcall.Fnitemstoresread("itemstoresread-service",function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });

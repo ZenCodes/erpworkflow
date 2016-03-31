@@ -21,6 +21,7 @@
 <link rel="import" href="../supplier-list/supplier-list.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../itemsearch-card/itemsearch-card.html">
+<link rel="import" href="../stores-card/stores-card.html">
 
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
@@ -66,6 +67,10 @@
 	  	        margin-top: 4%;
 	  	        margin-left:5%;
       }
+      .storescard{
+        margin-left:5%;        
+      }
+      
     </style>
 
     <!--Template to show card for entering item info-->
@@ -105,7 +110,9 @@
             </paper-menu>
           </paper-dropdown-menu>
         </div>
-
+        <div class="storescard">
+          <stores-card id="storescard"></stores-card>
+        </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">

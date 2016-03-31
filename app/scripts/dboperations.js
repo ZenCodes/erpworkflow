@@ -1225,7 +1225,7 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
       if(rows.length>0){
       for(var i=0;i<rows.length;i++)
       {
-        var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+        var obj={"storeslocation":"","itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
         //obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
         //obj.itemsupplier=rows[i].Item_Supplier_ID;
         obj.itemid=rows[i].Item_ID;
@@ -1236,6 +1236,7 @@ exports.FnAddsearchItem=function(pagename,cond,callback) {
         obj.itemgroup=rows[i].Item_Group_ID;
         obj.itemtype=rows[i].Item_Type_ID;
         obj.purchasetype=rows[i].Item_Purchase_Type_ID;
+        obj.storeslocation=rows[i].Store_Location_ID;
         itemarr.push(obj);
       }
         return callback(itemarr);
@@ -1430,26 +1431,29 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
     });
   }
 
-
-/*exports.FnFetchsearchItemtype=function(pagename,typeid,callback) {
-  cond={"Item_Type_ID":typeid}
-
-  connection.query('select * from MD_Item_Type where ?',[cond],function(err, rows, fields) {
-    if(!err){
-      itemtype=rows[0].Item_Type_Name;
-      return callback(itemtype);
+//Function fecthes searched item info
+exports.Fnitemstoresread=function(pagename,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
     }
-  });
-}
-
-exports.FnFetchsearchItemgroup=function(pagename,groupid,callback) {
-  cond={"Item_Group_ID":groupid}
-  connection.query('select * from MD_Item_Group where ?',[cond],function(err, rows, fields) {
+  }
+  connection.query('SELECT * FROM '+Config_tables[0],function(err, rows, fields) {
+    var itemarr=[];
     if(!err){
-      itemgroup=rows[0].Item_Group_Name;
-      return callback(itemgroup);
+      if(rows.length>0){
+        return callback(rows);
+      }
+      else{
+        return callback("no item");
+      }
     }
+    else
+      console.log(err);
   });
-}*/
+  }
+
 
 

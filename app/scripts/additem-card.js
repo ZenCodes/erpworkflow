@@ -18,7 +18,8 @@ Polymer({
     this.itemsupplier="";
     this.itemoptionalsupplier="";
     this.selection="";
-
+    this.storesarr="";
+    this.storesid="";
     //Initially hiding paperlistbox of itemtype and itemgroup fields
     this.isHidden=true;
     this.isHiddenid=true;
@@ -91,6 +92,7 @@ Polymer({
     this.Btn_disable_flag=true;
     //After clicking search icon Making all the fields as non editable
     this.read=true;
+    document.querySelector('stores-card').FnEnableFields(true);
     document.querySelector('supplier-list').FnEnableFields(true);
     document.querySelector("supplier-list").setDefaultValue("","");
     //The flag is used to ensure that currently in search mode and visible Edit button
@@ -311,19 +313,23 @@ Polymer({
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
       document.querySelector('supplier-detail').FnSetItemid(this.itemid);
-      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.ID_Dialogpage.FnShowDialog(this.storesid,this.storesarr,this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1") {
       //Calling dialog ensure  the update item details
       document.querySelector('supplier-detail').FnSetItemid(this.itemid);
-      this.$.ID_Dialogpage.FnShowDialog(this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
+      this.$.ID_Dialogpage.FnShowDialog(this.storesid,this.storesarr,this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }
     localStorage.setItem("curr_sess_ItemTypeId","");
     localStorage.setItem("curr_sess_ItemTypeGroup","");
     //localStorage.setItem("curr_sess_ItemTypeSupplier","");
     //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
+  },
+  FnSetStoresInfo:function(storesarr,storesid){    
+    this.storesarr=storesarr;
+    this.storesid=storesid;    
   },
   //Clearing fields after save / edit
   FnClear:function(){
@@ -340,6 +346,7 @@ Polymer({
   },
   //Function which enable all fields in editable mode while click on edit
   FnEnableFields:function(){
+    localStorage.setItem("curr_sess_storeschangeflag","0");
     localStorage.setItem("curr_sess_itemtypechangeflag","0");
     localStorage.setItem("curr_sess_grouptypechangeflag","0");
     //localStorage.setItem("curr_sess_supplierchangeflag","0");
@@ -352,6 +359,7 @@ Polymer({
     localStorage.setItem("curr_sess_itempurchasetypeflag","0");
 
     this.read=false;
+    document.querySelector('stores-card').FnEnableFields(false);
     document.querySelector('supplier-list').FnEnableFields(false);
     this.Btn_disable_flag=false;
     document.querySelector('#save').style.backgroundColor='#3d6868';

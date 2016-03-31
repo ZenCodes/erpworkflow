@@ -15,11 +15,11 @@
       this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
     },
     //Method invokes while making write req from the additem card
-    callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+    callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
 		//alert("yes");
 
     var obj={
-      "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
+      "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
     };
      supobj={"supplierid" :""};
       //obj.itemoptionalsupplier=itemoptionalsupplier,
@@ -32,6 +32,7 @@
       obj.quantity=quantity;
       obj.itemgroup=itemgroup;
       obj.itemtype=itemtype;
+      obj.storeslocation=storeslocation;
       obj.purchasetype=purchasetype;
 		//alert(localStorage.getItem("curr_sess_additemsupplierwrite"));
       if(localStorage.getItem("curr_sess_additemsupplierwrite")=="1"){
@@ -172,27 +173,28 @@
     },
     additemsearchResponse:function(e){
 		//alert(localStorage.getItem("curr_sess_wardflag"));
-      var arr= e.detail.response.itemarr;
-      //alert(JSON.stringify(arr));
-      if(localStorage.getItem("curr_sess_wardflag")=="4"){
+    var arr= e.detail.response.itemarr;    
+    if(localStorage.getItem("curr_sess_wardflag")=="4"){
 	  document.querySelector("itemsearch-card").itemid=arr[0].itemid;
-      document.querySelector("itemsearch-card").itemname=arr[0].itemname;
+    document.querySelector("itemsearch-card").itemname=arr[0].itemname;
  	  document.querySelector("supplieradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
-	  }
+	  document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
+    }
 	 if(localStorage.getItem("curr_sess_wardflag")==""){
       document.querySelector("additem-card").itemid=arr[0].itemid;
       document.querySelector("additem-card").itemname=arr[0].itemname;
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
       document.querySelector("additem-card").container=arr[0].container;
       document.querySelector("additem-card").quantity=arr[0].quantity;
+      document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
       document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
 	  }
     },
     //Method invokes while making update request from item card
-    callItemUpdateService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,purchasetype){
+    callItemUpdateService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
 
       var obj={
-        "itemoptionalsupplier":"","itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""
+        "itemoptionalsupplier":"","itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
       };
       //obj.itemoptionalsupplier=itemoptionalsupplier,
       //obj.itemsupplier=itemsupplier;
@@ -204,6 +206,7 @@
       obj.quantity=quantity;
       obj.itemgroup=itemgroup;
       obj.itemtype=itemtype;
+      obj.storeslocation=storeslocation;
       obj.purchasetype=purchasetype;
 
       this.updateparam=obj;

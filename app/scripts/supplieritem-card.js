@@ -16,7 +16,7 @@ var supid="";
 	
 	this.$.adminsupplierservice.callItemService(supplierid);
 	},
-	FnCreateItemSupplier:function(){
+	FnCreateItemSupplier:function(){	
 	document.querySelector('supplier-page').setPage('Add Item');
 	}
   });
