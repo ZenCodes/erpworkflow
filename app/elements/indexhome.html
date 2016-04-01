@@ -40,6 +40,7 @@
   <link rel="import" href="intenthome-page/intenthome-page.html">
   <link rel="import" href="no-items/no-items.html">
   <link rel="import" href="supplier-page/supplier-page.html">
+  <link rel="import" href="intentflow-card/intentflow-card.html">
 </head>
 
 <body unresolved>
@@ -150,10 +151,13 @@
       margin-top:-2.5%;
       margin-left: 80%;
     }
-    #flow{
+    #flow,#intentflow{
       width:90%;
       margin-top:-3%;
       margin-left:-2%;
+    }
+    #intentflow{
+      margin-left: -87%;
     }
     #flowbutton{
       margin-top:-3%;
@@ -200,6 +204,7 @@
         <paper-toolbar class="top3">
           <!--Component for the grnflow-->
           <div id="flow"><grnflow-card></grnflow-card></div>
+          <div id="intentflow"><intentflow-card></intentflow-card></div>
           <!--Component for the flow approve button visible to each role-->
           <div id="flowbutton"><flowbutton-card></flowbutton-card></div>
           <div class="flex"></div>
@@ -229,10 +234,10 @@
               <no-items></no-items>
             </section>
             <section data-category="admin-page">
-			   <admin-page></admin-page>
+			        <admin-page></admin-page>
             </section>
             <section data-category="supplier-page">
-				<supplier-page></supplier-page>
+				      <supplier-page></supplier-page>
             </section>
           </iron-pages>
         </div>
