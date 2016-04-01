@@ -21,7 +21,14 @@
       this.purchasetypeflag="";
       //Initially hiding dropdown list
       var obj={"wardflag":"","itemid":""};
-      if(sessionStorage.getItem("curr_sess_roleflag")=="5"||localStorage.getItem("curr_sess_wardflag")=="2") {
+
+      if(localStorage.getItem("curr_sess_wardflag") == "2") {
+       //alert("one");
+        obj.wardflag="3";
+        obj.itemid = sessionStorage.getItem("loggeduser");
+      }
+      if(sessionStorage.getItem("curr_sess_roleflag")=="5") {
+       //alert("two");
         obj.wardflag="2";
       }
       if(suplrid==""||suplrid==null){}
@@ -34,6 +41,7 @@
       if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
         obj.wardflag="1";
       this.param=obj;
+      //alert(JSON.stringify(obj));
       this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
       this.querySelector('paper-listbox').style.visibility='hidden';
     },

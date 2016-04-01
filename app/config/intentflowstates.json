@@ -1,0 +1,6 @@
+[{
+	"internal":["Created","Approved","Supplied","Accepted"]
+},
+{
+	"external":["Created","Approved","PO Created","Procurement Accepted"]
+}]

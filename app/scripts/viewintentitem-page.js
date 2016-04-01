@@ -17,6 +17,7 @@
     FnExpandItemCard:function(){
       var n=1;
       var x=-4;
+      //alert(this.intentregno);
       sessionStorage.setItem("sess_curr_inwardregno",this.intentregno);
       //document.querySelector('my-app').setVisible("true");
       this.$.ps.intentexpanditemreadService(this.intentregno);

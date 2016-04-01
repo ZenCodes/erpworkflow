@@ -132,6 +132,9 @@
     },
     FnIntentitemReadService:function(){
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
+      var arg={"loggeduser":""};
+      arg.loggeduser=sessionStorage.getItem("loggeduser");
+      this.intentparam=arg;
       this.$.intentitemreadajax.generateRequest();
     },
     intentitemreadResponse:function(e){

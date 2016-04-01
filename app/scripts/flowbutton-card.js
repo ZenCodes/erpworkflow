@@ -15,6 +15,8 @@ Polymer({
       this.label='Quality Inspection';
     else if(sessionStorage.getItem("curr_sess_roleflag")=="4")
       this.label='Confirm purchase';
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="9")
+      this.label='Approve';
   },
   click:function(){
 
@@ -38,11 +40,16 @@ Polymer({
         this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
       }
     }
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+    //alert(sessionStorage.getItem("sess_curr_inwardregno")); 
+     this.$.ints.FnIntentStateUpdate();  
+    }
     else
     {
       document.querySelector('physicinsitem-card').setToggle();
       this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
     }
+
 
   }
 });

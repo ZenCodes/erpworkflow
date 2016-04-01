@@ -112,6 +112,7 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 //Method to fetch the item names from master table according to the logged user role
 exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
   var queryy="";
+  var loggeduser=itemid;
   var Config_tables=[];
   var Config_columns=[];
   var Config_columnvalue=[];
@@ -123,6 +124,7 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       Config_columnvalue=obj[i].columnvalues;
     }
   }
+  //console.log(wardflag+"  "+loggeduser);
   //Condition which form the query for the currently logged role
   if(wardflag=="0"){
   queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[1]+"='"+itemid+"' AND "+Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
@@ -135,6 +137,12 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
   //Condition which form the query for the currently logged role
   else if(wardflag=="2"){
     queryy="SELECT * FROM "+ Config_tables[0];
+  }
+  else if(wardflag=="3")
+  {
+    //console.log("inside");
+    queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"'))";
+    //console.log(queryy);
   }
   //Query which fetches items for the corresponding role who logged in
   connection.query(queryy, function (err, rows) {
@@ -160,6 +168,8 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       else
        return callback("no items");
     }
+    else
+      console.log(err);
   });
 }
 
@@ -950,8 +960,8 @@ exports.FnIntentitemSeq=function(pagename,callback) {
 }
 
 //Function which write intent item info
-exports.FnIntentItemWrite=function(pagename,response,callback) {
-  var Config_tables=[];
+exports.FnIntentItemWrite=function(pagename,response,loggeduser,itemdes,callback) {
+ var Config_tables=[];
   var Config_columns=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
@@ -959,11 +969,28 @@ exports.FnIntentItemWrite=function(pagename,response,callback) {
       Config_columns=obj[i].columns;
     }
   }
+var query="SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID =  '"+loggeduser+"' AND department_ID = (SELECT DISTINCT department_ID FROM MD_Item m JOIN OD_Intent_Item_Type o USING ( Item_Type_ID ) WHERE m.Item_Name =  '"+itemdes+"' ) ";
+  
+  connection.query(query,function(err,rows,result){
+   
+   if(rows.length==1){
+     response.state='external';     
+   }
+   else{
+     response.state='internal';     
+   }
+    
+  //console.log(response.state+"  "+response.PO_Number);
   connection.query('SELECT '+Config_columns[0]+' FROM '+Config_tables[0]+' ORDER BY '+Config_columns[0]+' DESC LIMIT 1', function(err, rows, fields) {
     if(!err)
     {
+      //console.log(response.state);
       var idd="INT"+rows[0].Intent_Register_Number;
-
+      if(response.state=='external'){
+      response.PO_Number='PO'+rows[0].Intent_Register_Number;
+      }
+      else
+        response.PO_Number='NO PO';
       response.Intent_Register_Number=idd;
       connection.query('insert into '+Config_tables[1]+' set ?',[response],function(err,result){
         if(!err)
@@ -976,10 +1003,11 @@ exports.FnIntentItemWrite=function(pagename,response,callback) {
       });
     }
   });
+});
 }
 
 //Function which fetch the intent item info
-exports.FnIntentItemRead=function(pagename,callback) {
+exports.FnIntentItemRead=function(pagename,loggeduser,callback) {
   var Config_tables=[];
   var Config_columns=[];
   for(var i=0;i<obj.length;i++) {
@@ -988,8 +1016,10 @@ exports.FnIntentItemRead=function(pagename,callback) {
       Config_columns = obj[i].columns;
     }
   }
-    cond={"state":Config_columns[2]};
-    connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
+    var queryy="select distinct store.Intent_Register_Number,store.Intent_Date from MD_Item item join OD_Stores_Intent_Items store on(store.Product_ID=item.Item_Name) and Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') )";
+    cond={"state":'Created'};
+    //connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
+      connection.query(queryy,[cond], function(err, rows, fields) {
       var itemarr=[];
       if(!err){
         for(var i=0;i<rows.length;i++)
@@ -1036,6 +1066,31 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,callback) {
     }
     else{
       console.log(err);
+    }
+  });
+
+}
+
+//Function to promote intent
+exports.FnIntentStateUpdate=function(pagename,cond,updatecolumn,updaterolecolumn,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+  console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn));
+  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ?',[updatecolumn,updaterolecolumn,cond], function(err, rows) {
+    if(!err)
+    {
+      //console.log('updated');
+       return callback({"returnval":"succ"});
+     
+    }
+    else{
+      //console.log(err);
+      return callback({"returnval":"fail"});
     }
   });
 

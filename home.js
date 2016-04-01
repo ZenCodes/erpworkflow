@@ -45,8 +45,6 @@ app.post("/itemlist-service",urlencodedParser,function(req,res){
   FnFetchItemlistcall.FnFetchItemlist("itemlist-service",wardflag,itemid,function(returnval){
       res.status(200).json({'itemarr': returnval});
   });
-
-
 });
 
 app.post('/inwardregnoseq-service',urlencodedParser, function (req, res) {
@@ -367,6 +365,9 @@ app.post('/intentseq-service',urlencodedParser, function (req, res) {
 
 //Function to store outward items
 app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
+
+   var loggeduser=req.query.loggeduser;
+  var itemdes=req.query.itemdes;
   response = {
     Intent_Register_Number:'',
     Intent_Date:req.query.intentdate,
@@ -377,17 +378,21 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     Quantity:req.query.qtyreceived,
     Quantity_Measure:req.query.qtymeasure,
     Remarks:req.query.remark,
-    state:'intent'
+    state:'',
+    PO_Number:'',
+    Intent_Created_By:req.query.loggedrole,
+    Intent_State:'Created'
   };
   var FnIntentItemWritecall = require("./app/scripts/dboperations.js");
-  FnIntentItemWritecall.FnIntentItemWrite("intentitemwrite-service",response,function(returnval){
+  FnIntentItemWritecall.FnIntentItemWrite("intentitemwrite-service",response,loggeduser,itemdes,function(returnval){
     res.status(200).json({'intentregno': returnval});
   });
 });
 //Function to fetch intent item info
 app.post('/intentitemread-service',urlencodedParser, function (req, res) {
+  var loggeduser=req.query.loggeduser;
   var FnIntentItemReadcall = require("./app/scripts/dboperations.js");
-  FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",function(returnval){
+  FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",loggeduser,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
@@ -399,6 +404,19 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
     res.status(200).json({"itemarr":returnval.itemarr});
   });
 });
+
+//Function to promote intent state to the next level
+app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
+  //console.log(req.query.intentregno);
+  cond={Intent_Register_Number:req.query.intentregno}
+  updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
+  updatecolumn={Intent_State:'Approved'};
+  var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
+  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,updatecolumn,updaterolecolumn,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
 
 //Function for writing item info...req receives from admin service
 app.post("/additem-service",urlencodedParser,function(req,res) {
@@ -620,6 +638,7 @@ app.post('/itemstoresread-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
+
 
 //Node server running port number
 app.listen(4000);

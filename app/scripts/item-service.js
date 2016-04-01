@@ -37,7 +37,7 @@
         this.no=this.no+1;
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
-        document.querySelector('item-page').FnBtnDisable();
+        document.querySelector('item-page').FnBtnDisable();        
         this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created!",e.detail.response.inwardregno);
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
       }
@@ -82,9 +82,12 @@
     //alert(JSON.stringify(itemarr));
     },
     FnSeqIntentItemwriteResponse:function(e){
+      //alert(sessionStorage.getItem("loggeduser"));
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"loggedrole":"","loggeduser":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          obj.loggedrole=sessionStorage.getItem("loggedrole");
+          obj.loggeduser=sessionStorage.getItem("loggeduser");
           obj.intentdate=this.items[i].invoicedate;
           obj.specification=this.items[i].specification;
           obj.itemdes=this.items[i].itemdes;
@@ -113,6 +116,7 @@
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
         document.querySelector('intent-page').FnBtnDisable();
+        document.querySelector('intentflow-card').setStateCreate();
         this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created!",e.detail.response.intentregno);
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
       }

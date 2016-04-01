@@ -9,7 +9,9 @@
 Polymer({
   is: "intenthome-page",
   ready:function()
-  {
+  {    
+    localStorage.setItem("curr_sess_showpage", "Add Intent");
+    this.page="Add Intent";
   },
   //Method to change the page view in base page ie home page
   setPage:function(page)

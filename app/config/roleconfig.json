@@ -13,7 +13,6 @@
         "newstatus":"OldStores",
         "updatestatus":"Production",
         "menu" : ["GRN Flow","View Intent"]
-
       },
       {
         "rolename": "Production manager",
@@ -30,7 +29,6 @@
         "newstatus":"OldQuality",
         "updatestatus":"Purchase",
         "menu" : ["GRN Flow"]
-
       },
       {
         "rolename": "Purchase manager",
@@ -49,6 +47,21 @@
         "rolename": "Admin admin",
         "RoleFlag": "6",
         "menu" : ["Add Item","Add Supplier"]
+      },
+      {
+        "rolename": "Maintenance manager",
+        "RoleFlag": "7",
+        "menu" : ["Add Intent"]
+      },
+      {
+        "rolename": "Office admin",
+        "RoleFlag": "8",
+        "menu" : ["Add Intent"]
+      },
+      {
+        "rolename": "Ceo ceo",
+        "RoleFlag": "9",
+        "menu" : ["Add Intent","View Intent"]
       }
     ]
   },

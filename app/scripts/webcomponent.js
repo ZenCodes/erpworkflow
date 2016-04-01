@@ -66,9 +66,9 @@
       var sessrole=sessionStorage.getItem("curr_sess_roleflag");
       for(var i=0;i<arr[0].role.length;i++) {
         if (arr[0].role[i].RoleFlag == sessrole) {
+          //alert(JSON.stringify(arr[0].role[i].menu));
           //Binding response to the drawer menulist card
           document.querySelector('drawermenu-list').itemArray = arr[0].role[i].menu;
-
         }
       }
     }
