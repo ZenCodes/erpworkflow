@@ -166,16 +166,24 @@
       intentstate=state;
       this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupplyitemread-service";
       var arg={"loggeduser":"","intentstate":"","state":""};
-      arg.loggeduser=sessionStorage.getItem("loggeduser");
+      arg.loggeduser=sessionStorage.getItem("loggeduser");      
       arg.intentstate=state;
+      if(sessionStorage.getItem("loggedrole")=="Stores manager")
       arg.state="internal";
+      if(sessionStorage.getItem("loggedrole")=="Purchase manager")
+      arg.state="external";
       this.intentsupplyparam=arg;
-      //alert(JSON.stringify(arg));
+      //(JSON.stringify(arg));
       this.$.intentsupplyitemreadajax.generateRequest();
     },
     intentsupplyitemreadResponse:function(e){
-      //alert(JSON.stringify(e.detail.response));
+      alert(JSON.stringify(e.detail.response));
+      if(sessionStorage.getItem("loggedrole")=="Stores manager")
       document.querySelector('viewintenthome-page').supplyitemArray=e.detail.response.itemarr;
+      if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="Approved")
+      document.querySelector('viewintenthome-page').poitemArray=e.detail.response.itemarr;
+      if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="POCreated")
+      document.querySelector('viewintenthome-page').acceptitemArray=e.detail.response.itemarr;
     }
   });
 })();

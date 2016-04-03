@@ -9,7 +9,7 @@
       :host {
         display: block;
       }
-      #created,#approved,#supplied,#accepted{
+      #created,#approved,#supplied,#accepted,#POCreated{
       @apply(--layout-horizontal);
       width: 95%;
       border-radius: 2px;
@@ -85,6 +85,27 @@
       </div>
       </div>
     </iron-collapse>
+     <div id="POCreated" on-click="expand">Create PO</div>
+    <iron-collapse id="POCreatedcollapse">
+      <div class="collapse">
+      <paper-button id="promote" on-click="FnPOCreate">Create PO</paper-button>
+         <div class="card">
+        <paper-tabs selected="0" noink id="ptab">
+          <!-- <template is="dom-repeat" items="{{label.tabs}}" as="tabs"> -->
+            <paper-tab><paper-button>Intent Register Number</paper-button></paper-tab>
+            <paper-tab><paper-button>Intent Date</paper-button></paper-tab>
+          <!-- </template> -->
+        </paper-tabs>
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{poitemArray}}" as="item">
+          <div class="itemcard">
+            <div><viewintentitem-page intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></viewintentitem-page>
+            </div>
+          </div>
+        </template>
+      </div>
+      </div>
+    </iron-collapse>
     <div id="Accepted" on-click="expand">Intent Accept</div>
     <iron-collapse id="Acceptedcollapse">
       <div class="collapse">
@@ -145,8 +166,18 @@
                 }
                 break;
           case "Accepted":
+                if(sessionStorage.getItem("loggedrole")=="Purchase manager"){
+                this.$.gs.FnIntentsupplyitemReadService("POCreated");
+                }
+                else{
                 this.$.gs.FnIntentitemReadService("Supplied");
-                break;               
+                }
+                break;             
+          case "POCreated":
+                if(sessionStorage.getItem("loggedrole")=="Purchase manager"){
+                this.$.gs.FnIntentsupplyitemReadService("Approved");
+                }
+                break;                  
         }
         // alert("hi");
         id=e.target.id+"collapse";
@@ -168,19 +199,22 @@
         }      
       },
       FnApprove:function(e){
-        this.$.intentservice.FnIntentStateUpdate(e.target.id);
+        this.$.intentservice.FnIntentStateUpdate("Approved");
       },
       FnSupply:function(e){
         if(sessionStorage.getItem("loggedrole")=="Stores manager"){
           //alert("yes");
-        this.$.intentservice.FnIntentStateUpdate(e.target.id);
+        this.$.intentservice.FnIntentStateUpdate("Supplied");
         }
         else{
           alert("not authorized");
         }
       },
-      FnAccept:function(e){
-        this.$.intentservice.FnIntentStateUpdate(e.target.id);
+      FnAccept:function(e){        
+        this.$.intentservice.FnIntentStateUpdate("Accepted");
+      },
+      FnPOCreate:function(e){
+        this.$.intentservice.FnIntentStateUpdate("POCreated");
       }
 
       /*expandcreate:function(){

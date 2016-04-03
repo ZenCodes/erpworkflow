@@ -411,7 +411,14 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   //console.log(req.query.intentregno);
   cond={Intent_Register_Number:req.query.intentregno}
+  if(req.query.updatestate=="Approved")
   updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
+  if(req.query.updatestate=="Supplied")
+  updaterolecolumn={Intent_Supplied_By:req.query.loggedrole};
+  if(req.query.updatestate=="POCreated")
+  updaterolecolumn={PO_Created_By:req.query.loggedrole};
+  if(req.query.updatestate=="Accepted")
+  updaterolecolumn={Intent_Accepted_By:req.query.loggedrole};
   updatecolumn={Intent_State:req.query.updatestate};
   var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
   Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,updatecolumn,updaterolecolumn,function(returnval){

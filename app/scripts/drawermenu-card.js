@@ -18,6 +18,15 @@ Polymer({is:"drawermenu-card",
         //document.querySelector('my-app').setPage("outwardslip-page");
       }
     }
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+      if(e.target.id=="View Intent"){
+       localStorage.setItem("curr_sess_wardflag","3");
+        document.querySelector('app-homepage').setPage('viewintenthome-page');
+        document.querySelector('app-homepage').setVisible("false");
+        document.querySelector('viewtype-card').FnViewlist();
+        document.querySelector('app-homepage').setFlowVisibility('false');
+      }
+    }
     //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
     else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
       if(e.target.id=="GRN Flow"){

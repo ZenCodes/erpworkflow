@@ -29,20 +29,20 @@
       ready:function(){
       },
       FnIntentStateUpdate:function(updatestate){
-        this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";
+        this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
         var obj={"intentregno":"","loggedrole":"","updatestate":""};
         obj.loggedrole=sessionStorage.getItem("loggedrole");
         obj.intentregno=sessionStorage.getItem("sess_curr_inwardregno");
         obj.updatestate=updatestate;
         this.intentupdateparam=obj;
-        //alert(JSON.stringify(obj));
+        alert(JSON.stringify(obj));
         this.$.intentstateupdateajax.generateRequest();
       } ,
       intentstateupdateResponse:function(e){
         //alert(JSON.stringify(e.detail.response));
         if(e.detail.response.returnval=="succ"){
-          //alert("done");
-          document.querySelector('intentflow-card').setStateTransition();
+          alert("done");
+          //document.querySelector('intentflow-card').setStateTransition();
         }
         else
         {
