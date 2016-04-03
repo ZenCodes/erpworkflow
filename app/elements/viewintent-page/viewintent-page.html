@@ -10,6 +10,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../viewintentitem-page/viewintentitem-page.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
@@ -43,15 +44,25 @@
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <div class="itemcard">
             <div><viewintentitem-page intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></viewintentitem-page>
-            </div></div>
+            </div>
+          </div>
         </template>
-
       </div>
     </template>
+      <iron-ajax
+      auto
+      id="intentitemreadajax"
+      url="{{intenturl}}"
+      params='{{intentparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="intentitemreadResponse">
+    </iron-ajax>
     <!--Calling webcomponent service to bind label info-->
     <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
     <!--Binding items to the above template-->
-    <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
+    <!-- <grn-service id="gs" itemArray="{{itemArray}}"></grn-service> -->
   </template>
   <!--JS file import-->
   <script src="../../scripts/viewintent-page.js"></script>

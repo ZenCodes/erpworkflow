@@ -31,12 +31,19 @@ Polymer({is:"drawermenu-card",
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');
-        document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+        // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
         document.querySelector('intenthome-page').setPage('Add Intent');
+      }
+      if(e.target.id=="View Intent"){
+       localStorage.setItem("curr_sess_wardflag","3");
+        document.querySelector('app-homepage').setPage('viewintenthome-page');
+        document.querySelector('app-homepage').setVisible("false");
+        document.querySelector('viewtype-card').FnViewlist();
+        document.querySelector('app-homepage').setFlowVisibility('false');
       }
     }
     //Roleflag 1 is for the role who may do GRN Flow and Intent items
-    else if(sessionStorage.getItem("curr_sess_roleflag")=="1"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
       if(e.target.id=="GRN Flow"){
         localStorage.setItem("curr_sess_wardflag","");
         window.location.href="../elements/indexhome.html";
@@ -44,10 +51,10 @@ Polymer({is:"drawermenu-card",
       if(e.target.id=="View Intent"){
         //alert("yes");
         localStorage.setItem("curr_sess_wardflag","3");
-        document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('app-homepage').setPage('viewintenthome-page');
         document.querySelector('app-homepage').setVisible("true");
         document.querySelector('app-homepage').setFlowVisibility('false');
-        document.querySelector('intenthome-page').setPage('View Intent');
+        //document.querySelector('intenthome-page').setPage('View Intent');
         //document.querySelector('grn-service').FnIntentitemReadService();
         //localStorage.setItem("curr_sess_showpage","Add Intent");
         //document.querySelector('home-page').setPage('View Intent');
@@ -69,13 +76,13 @@ Polymer({is:"drawermenu-card",
     }
     else if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
          //localStorage.setItem("curr_sess_showpage","Add Intent");
-        localStorage.setItem("curr_sess_wardflag","2");
-        document.querySelector('app-homepage').setPage('intenthome-page');
+        localStorage.setItem("curr_sess_wardflag","3");
+        document.querySelector('app-homepage').setPage('viewintenthome-page');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');
-        document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
-        document.querySelector('intenthome-page').setPage('Add Intent');
+        // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+        //document.querySelector('intenthome-page').setPage('Add Intent');
     }
 
     //else if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")

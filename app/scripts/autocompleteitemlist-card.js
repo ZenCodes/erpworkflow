@@ -58,8 +58,9 @@
         this.$.itemlistreadajax.generateRequest();
       }
     },
-    //Funtion invokes when selecting item in dropdown
+    //Funtion invokes when selecting item 0in dropdown
     FnItemSelected:function(e){
+      
       //Condition to bind when no item found
       if(e.target.selectedItem.textContent.trim()!="No items found") {
         this.value = e.target.selectedItem.textContent.trim();

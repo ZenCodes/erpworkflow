@@ -1,0 +1,201 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../viewintent-page/viewintent-page.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../intent-service/intent-service.html">
+<dom-module id="viewintenthome-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #created,#approved,#supplied,#accepted{
+      @apply(--layout-horizontal);
+      width: 95%;
+      border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      margin-top:3%;
+      margin-left: 2%;
+      font-size: 16px;
+      height:5%;
+      }
+      .collapse{
+        text-align: left;
+        margin-left: 2%;
+      }
+      paper-button{
+        text-transform: none;
+      }
+      #promote{
+        margin-left: 90%;
+        border-radius: 2px;
+        //margin-top: 1%;
+        height: 4%;
+        //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: whitesmoke;
+      }
+    </style>
+    
+    <div id="Created" on-click="expand">Intent Create</div>
+     <iron-collapse id="Createdcollapse">
+      <div class="collapse" >
+        hi
+      </div>
+    </iron-collapse>
+    <div id="Approved" on-click="expand">Intent Approve</div>
+    <iron-collapse id="Approvedcollapse">
+      <div class="collapse">
+      <paper-button id="promote" on-click="FnApprove">Approve</paper-button>    
+      <div class="card">
+        <paper-tabs selected="0" noink id="ptab">
+          <!-- <template is="dom-repeat" items="{{label.tabs}}" as="tabs"> -->
+            <paper-tab><paper-button>Intent Register Number</paper-button></paper-tab>
+            <paper-tab><paper-button>Intent Date</paper-button></paper-tab>
+          <!-- </template> -->
+        </paper-tabs>
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <div class="itemcard">
+            <div><viewintentitem-page intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></viewintentitem-page>
+            </div>
+          </div>
+        </template>
+      </div>
+    
+      </div>
+    </iron-collapse>
+    <div id="Supplied" on-click="expand">Intent Supply</div>
+    <iron-collapse id="Suppliedcollapse">
+      <div class="collapse">
+      <paper-button id="promote" on-click="FnSupply">Supply</paper-button>
+         <div class="card">
+        <paper-tabs selected="0" noink id="ptab">
+          <!-- <template is="dom-repeat" items="{{label.tabs}}" as="tabs"> -->
+            <paper-tab><paper-button>Intent Register Number</paper-button></paper-tab>
+            <paper-tab><paper-button>Intent Date</paper-button></paper-tab>
+          <!-- </template> -->
+        </paper-tabs>
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{supplyitemArray}}" as="item">
+          <div class="itemcard">
+            <div><viewintentitem-page intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></viewintentitem-page>
+            </div>
+          </div>
+        </template>
+      </div>
+      </div>
+    </iron-collapse>
+    <div id="Accepted" on-click="expand">Intent Accept</div>
+    <iron-collapse id="Acceptedcollapse">
+      <div class="collapse">
+        <paper-button id="promote" on-click="FnAccept">Accept</paper-button>
+         <div class="card">
+        <paper-tabs selected="0" noink id="ptab">
+          <!-- <template is="dom-repeat" items="{{label.tabs}}" as="tabs"> -->
+            <paper-tab><paper-button>Intent Register Number</paper-button></paper-tab>
+            <paper-tab><paper-button>Intent Date</paper-button></paper-tab>
+          <!-- </template> -->
+        </paper-tabs>
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{acceptitemArray}}" as="item">
+          <div class="itemcard">
+            <div><viewintentitem-page intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></viewintentitem-page>
+            </div>
+          </div>
+        </template>
+      </div>
+      </div>
+    </iron-collapse>  
+    <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
+    <intent-service id="intentservice"></intent-service>
+    <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var collapseid='true';
+    var id;
+    Polymer({
+      is: 'viewintenthome-page',
+      properties: {
+        foo: {
+          type: String,
+          value: 'viewintenthome-page',
+          notify: true
+        }
+      },
+      ready:function(){
+      localStorage.setItem("curr_sess_showpage","viewintenthome-page");
+      //calling webcomponent service to fetch labels for current page
+      this.$.ID_Webcomponent_Service.callWebcomponentService();
+      },
+      expand:function(e){
+        
+        switch(e.target.id){
+          case "Created":
+                this.$.gs.FnIntentitemReadService("");
+                break;
+          case "Approved":
+                this.$.gs.FnIntentitemReadService("Created");
+                break;
+          case "Supplied":
+                //alert(sessionStorage.getItem("loggedrole"));
+                if(sessionStorage.getItem("loggedrole")=="Stores manager"){
+                this.$.gs.FnIntentsupplyitemReadService("Approved");
+                }
+                break;
+          case "Accepted":
+                this.$.gs.FnIntentitemReadService("Supplied");
+                break;               
+        }
+        // alert("hi");
+        id=e.target.id+"collapse";
+        if(collapseid=='true'){
+          collapseid=id;
+          document.querySelector('#'+id).toggle();
+        }
+        else{
+          if(collapseid==id){
+            document.querySelector('#'+id).toggle();
+            collapseid='true';
+          }
+          else{
+          document.querySelector('#'+collapseid).toggle();
+          document.querySelector('#'+id).toggle();
+          collapseid=id;
+          }
+          //alert(e.target.id);
+        }      
+      },
+      FnApprove:function(e){
+        this.$.intentservice.FnIntentStateUpdate(e.target.id);
+      },
+      FnSupply:function(e){
+        if(sessionStorage.getItem("loggedrole")=="Stores manager"){
+          //alert("yes");
+        this.$.intentservice.FnIntentStateUpdate(e.target.id);
+        }
+        else{
+          alert("not authorized");
+        }
+      },
+      FnAccept:function(e){
+        this.$.intentservice.FnIntentStateUpdate(e.target.id);
+      }
+
+      /*expandcreate:function(){
+        this.$.createdcollapse.toggle();
+      },
+      expandapprove:function(){
+        this.$.approvedcollapse.toggle();
+      },
+      expandsupply:function(){
+        this.$.suppliedcollapse.toggle();
+      },
+      expandaccept:function(){
+        this.$.acceptedcollapse.toggle();
+      }*/
+    });
+  })();
+  </script>
+</dom-module>

@@ -6,7 +6,7 @@ Polymer({
   ready: function() {
     //this.page='home-page';
     this.userlabel="Signout";
-    this.$.intentflow.style.visibility='hidden';
+    //this.$.intentflow.style.visibility='hidden';
     
     /*Condition which allow to see the search page and hide the respective components in UI*/
     if(sessionStorage.getItem("curr_sess_roleflag")=="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"){
@@ -66,7 +66,7 @@ Polymer({
       //alert("oldintent");
       if(localStorage.getItem("curr_sess_wardflag")=="2"){
       this.$.flow.style.visibility='hidden';    
-      this.$.intentflow.style.visibility='visible';  
+      // this.$.intentflow.style.visibility='visible';  
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
       }
@@ -83,7 +83,7 @@ Polymer({
     if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
       //alert("new intent");
       localStorage.setItem("curr_sess_wardflag","2");
-      this.$.intentflow.style.visibility='visible'; 
+      // this.$.intentflow.style.visibility='visible'; 
       //this.$.intentflow.style.marginLeft='-5%';  
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
@@ -118,9 +118,9 @@ Polymer({
       this.$.flow.style.visibility='hidden';
   },
   FnSetIntentFlowVisibility:function(flag){
-    if(flag=="true")
+   /* if(flag=="true")
       this.$.intentflow.style.visibility='visible';
     if(flag=="false")
-      this.$.intentflow.style.visibility='hidden';
+      this.$.intentflow.style.visibility='hidden';*/
   }
 });

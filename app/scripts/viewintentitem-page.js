@@ -10,6 +10,7 @@
   //var n=1;
   Polymer({is:"viewintentitem-page",
     ready:function(){
+      //alert("call");
       this.icons="icons:arrow-drop-down";
       //this.$.osc.outwardsearchreadService(this.inwardregno);
     },

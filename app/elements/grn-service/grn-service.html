@@ -49,6 +49,16 @@
       on-response="intentitemreadResponse">
     </iron-ajax>
     <!--<physicqualifyread-card id="pqrc"></physicqualifyread-card>-->
+    <!--Component which make request to display the Intent items based on INT no-->
+    <iron-ajax
+      id="intentsupplyitemreadajax"
+      url="{{intentsupplyurl}}"
+      params='{{intentsupplyparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="intentsupplyitemreadResponse">
+    </iron-ajax>
   </template>
 
   <script src="../../scripts/grn-service.js"></script>

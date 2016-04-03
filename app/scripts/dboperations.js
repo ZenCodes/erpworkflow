@@ -987,11 +987,19 @@ var query="SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID =  '"+
       //console.log(response.state);
       var idd="INT"+rows[0].Intent_Register_Number;
       if(response.state=='external'){
-      response.PO_Number='PO'+rows[0].Intent_Register_Number;
+      response.Intent_State='external_Created';
       }
       else
-        response.PO_Number='NO PO';
-      response.Intent_Register_Number=idd;
+        response.Intent_State='Internal_Created';
+        response.Intent_Register_Number=idd;
+        //console.log(response.Product_ID);
+      var queryy1="SELECT Item_Type_ID from MD_Item where Item_Name='"+response.Product_ID+"'"; 
+      connection.query(queryy1,function(err,rows,result){ 
+        //console.log(JSON.stringify(rows));
+      if(rows.length>0){
+        for(var i=0;i<rows.length;i++)
+      response.Item_Type_ID=rows[i].Item_Type_ID;    
+        //console.log(response.Item_Type_ID);
       connection.query('insert into '+Config_tables[1]+' set ?',[response],function(err,result){
         if(!err)
         {
@@ -1002,12 +1010,16 @@ var query="SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID =  '"+
         }
       });
     }
+    else
+      console.log(err);
+    });
+    }
   });
 });
 }
 
 //Function which fetch the intent item info
-exports.FnIntentItemRead=function(pagename,loggeduser,callback) {
+exports.FnIntentItemRead=function(pagename,loggeduser,state,callback) {
   var Config_tables=[];
   var Config_columns=[];
   for(var i=0;i<obj.length;i++) {
@@ -1016,10 +1028,51 @@ exports.FnIntentItemRead=function(pagename,loggeduser,callback) {
       Config_columns = obj[i].columns;
     }
   }
-    var queryy="select distinct store.Intent_Register_Number,store.Intent_Date from MD_Item item join OD_Stores_Intent_Items store on(store.Product_ID=item.Item_Name) and Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') )";
-    cond={"state":'Created'};
+   // var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') )";
+    
+    var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal') and Intent_State='"+state+"'";
+    //cond={"state":state};
     //connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
-      connection.query(queryy,[cond], function(err, rows, fields) {
+      connection.query(queryy,function(err, rows, fields) {
+      var itemarr=[];
+      if(!err){
+        for(var i=0;i<rows.length;i++)
+        {
+          var obj={"intentregno":"","intentdate":"","state":""};
+          obj.intentregno=rows[i].Intent_Register_Number;
+          obj.intentdate=rows[i].Intent_Date;
+          obj.state=rows[i].state;
+          itemarr.push(obj);
+        }
+        return callback(itemarr);
+      }
+      else
+        console.log(err);
+    });
+
+}
+
+
+//Function which fetch the intent item info
+exports.FnIntentSupplyItemRead=function(pagename,loggeduser,intentstate,state,callback) {
+  /*var Config_tables=[];
+  var Config_columns=[];
+  for(var i=0;i<obj.length;i++) {
+    if (obj[i].name == pagename) {
+      Config_tables = obj[i].value;
+      Config_columns = obj[i].columns;
+    }
+  }*/
+   // var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') )";
+    
+    //var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal') and Intent_State='"+state+"' and state='"+state+"'";
+      
+      var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Intent_State='"+intentstate+"' and state='"+state+"'";
+
+      console.log(queryy);
+    //cond={"state":state};
+    //connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
+      connection.query(queryy,function(err, rows, fields) {
       var itemarr=[];
       if(!err){
         for(var i=0;i<rows.length;i++)

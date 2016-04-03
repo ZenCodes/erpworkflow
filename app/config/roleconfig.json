@@ -20,7 +20,7 @@
         "status":"Production",
         "newstatus":"OldProduction",
         "updatestatus":"Quality",
-        "menu" : ["GRN Flow","Add Intent"]
+        "menu" : ["GRN Flow","Add Intent","View Intent"]
       },
       {
         "rolename": "Quality manager",
@@ -36,7 +36,7 @@
         "status":"Purchase",
         "newstatus":"OldPurchase",
         "updatestatus":"Confirm",
-        "menu" : ["GRN Flow"]
+        "menu" : ["GRN Flow","View Intent"]
       },
 
       {

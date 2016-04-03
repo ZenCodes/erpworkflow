@@ -73,7 +73,7 @@
       }
     },
     FnIntentItemwriteService:function(itemarr){
-      //alert(JSON.stringify(itemarr));
+      alert(JSON.stringify(itemarr));
       this.items=[];
       this.items=itemarr;
       this.length=this.items.length;
@@ -116,7 +116,7 @@
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
         document.querySelector('intent-page').FnBtnDisable();
-        document.querySelector('intentflow-card').setStateCreate();
+        //document.querySelector('intentflow-card').setStateCreate();
         this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created!",e.detail.response.intentregno);
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
       }

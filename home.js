@@ -381,7 +381,8 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     state:'',
     PO_Number:'',
     Intent_Created_By:req.query.loggedrole,
-    Intent_State:'Created'
+    Intent_State:'',
+    Item_Type_ID:''
   };
   var FnIntentItemWritecall = require("./app/scripts/dboperations.js");
   FnIntentItemWritecall.FnIntentItemWrite("intentitemwrite-service",response,loggeduser,itemdes,function(returnval){
@@ -391,8 +392,9 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
 //Function to fetch intent item info
 app.post('/intentitemread-service',urlencodedParser, function (req, res) {
   var loggeduser=req.query.loggeduser;
+  var state=req.query.state;
   var FnIntentItemReadcall = require("./app/scripts/dboperations.js");
-  FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",loggeduser,function(returnval){
+  FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",loggeduser,state,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
@@ -410,13 +412,23 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   //console.log(req.query.intentregno);
   cond={Intent_Register_Number:req.query.intentregno}
   updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
-  updatecolumn={Intent_State:'Approved'};
+  updatecolumn={Intent_State:req.query.updatestate};
   var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
   Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,updatecolumn,updaterolecolumn,function(returnval){
     res.status(200).json(returnval);
   });
 });
 
+//Function to fetch intent item info
+app.post('/intentsupplyitemread-service',urlencodedParser, function (req, res) {
+  var loggeduser=req.query.loggeduser;
+  var intentstate=req.query.intentstate;
+  var state=req.query.state;
+  var FnIntentSupplyItemReadcall = require("./app/scripts/dboperations.js");
+  FnIntentSupplyItemReadcall.FnIntentSupplyItemRead("intentsupplyitemread-service",loggeduser,intentstate,state,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 
 //Function for writing item info...req receives from admin service
 app.post("/additem-service",urlencodedParser,function(req,res) {

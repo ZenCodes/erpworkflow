@@ -3,6 +3,7 @@
  */
 //JS file for grn service
 (function() {
+  var intentstate;
   Polymer({
     is: "grn-service",
     ready:function()
@@ -130,16 +131,51 @@
         }
       }
     },
-    FnIntentitemReadService:function(){
+    FnIntentitemReadService:function(state){
+      intentstate=state;
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
-      var arg={"loggeduser":""};
+      var arg={"loggeduser":"","state":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
+      arg.state=state;
       this.intentparam=arg;
+      //alert(JSON.stringify(arg));
       this.$.intentitemreadajax.generateRequest();
     },
     intentitemreadResponse:function(e){
       //alert(JSON.stringify(e.detail.response));
-      document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
+      if(intentstate=="Created"){
+      // alert('hi');
+      // alert(JSON.stringify(e.detail.response));
+      document.querySelector('viewintenthome-page').itemArray=e.detail.response.itemarr;
+      }
+      if(intentstate=="Approved"){
+      // alert('hii');
+      // alert(JSON.stringify(e.detail.response));
+      document.querySelector('viewintenthome-page').supplyitemArray=e.detail.response.itemarr;
+      }
+      if(intentstate=="Supplied")
+      {
+      // alert('hiii');
+      // alert(JSON.stringify(e.detail.response));
+      document.querySelector('viewintenthome-page').acceptitemArray=e.detail.response.itemarr;
+      }
+      //alert(JSON.stringify(document.querySelector('viewintenthome-page').itemArray));
+    },
+    FnIntentsupplyitemReadService:function(state){
+      //alert(state);
+      intentstate=state;
+      this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupplyitemread-service";
+      var arg={"loggeduser":"","intentstate":"","state":""};
+      arg.loggeduser=sessionStorage.getItem("loggeduser");
+      arg.intentstate=state;
+      arg.state="internal";
+      this.intentsupplyparam=arg;
+      //alert(JSON.stringify(arg));
+      this.$.intentsupplyitemreadajax.generateRequest();
+    },
+    intentsupplyitemreadResponse:function(e){
+      //alert(JSON.stringify(e.detail.response));
+      document.querySelector('viewintenthome-page').supplyitemArray=e.detail.response.itemarr;
     }
   });
 })();
