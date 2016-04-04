@@ -142,7 +142,7 @@
       this.$.intentitemreadajax.generateRequest();
     },
     intentitemreadResponse:function(e){
-      //alert(JSON.stringify(e.detail.response));
+      alert(JSON.stringify(e.detail.response));
       if(intentstate=="Created"){
       // alert('hi');
       // alert(JSON.stringify(e.detail.response));
@@ -177,7 +177,7 @@
       this.$.intentsupplyitemreadajax.generateRequest();
     },
     intentsupplyitemreadResponse:function(e){
-      alert(JSON.stringify(e.detail.response));
+      //alert(JSON.stringify(e.detail.response));
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
       document.querySelector('viewintenthome-page').supplyitemArray=e.detail.response.itemarr;
       if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="Approved")

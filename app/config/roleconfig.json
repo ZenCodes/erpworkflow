@@ -12,7 +12,7 @@
         "status":"Stores",
         "newstatus":"OldStores",
         "updatestatus":"Production",
-        "menu" : ["GRN Flow","View Intent"]
+        "menu" : ["GRN Flow","Add Intent","View Intent"]
       },
       {
         "rolename": "Production manager",

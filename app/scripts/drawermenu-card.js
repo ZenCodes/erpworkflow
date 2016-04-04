@@ -57,6 +57,16 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","");
         window.location.href="../elements/indexhome.html";
       }
+       if(e.target.id=="Add Intent"){
+        //localStorage.setItem("curr_sess_showpage","Add Intent");
+        localStorage.setItem("curr_sess_wardflag","2");
+        document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('app-homepage').setVisible("false");
+        document.querySelector('viewtype-card').FnViewlist();
+        document.querySelector('app-homepage').setFlowVisibility('false');
+        // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+        document.querySelector('intenthome-page').setPage('Add Intent');
+      }
       if(e.target.id=="View Intent"){
         //alert("yes");
         localStorage.setItem("curr_sess_wardflag","3");
