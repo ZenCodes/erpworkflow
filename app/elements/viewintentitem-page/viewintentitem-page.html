@@ -62,14 +62,29 @@
   </style>
   <template>
     <!--Expand Itemcard-->
-    <div class="intentexpandcard" id="card{{intentregno}}">
-      <paper-button id="regno"  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
+    <div class="intentexpandcard" id="card{{itemno}}">
+     <!-- <div class="repeatcard"> -->
+     <paper-button id="intentregno"  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
+     <paper-button id="itemdes"  name="itemdes" value="{{itemdes}}" on-click="FnExpandItemCard" noink>{{itemdes}}</paper-button>
+     <paper-button id="quantity"  name="quantity" value="{{quantity}}" on-click="FnExpandItemCard" noink>{{quantity}}</paper-button>
+     <paper-button id="unit"  name="unit" value="{{unit}}" on-click="FnExpandItemCard" noink>{{unit}}</paper-button>
+     <paper-button id="intentstate"  name="intentstate" value="{{intentstate}}" on-click="FnExpandItemCard" noink>{{intentstate}}</paper-button>
+     <paper-button id="itemlocation"  name="itemlocation" value="{{itemlocation}}" on-click="FnExpandItemCard" noink>{{itemlocation}}</paper-button>
+
+        <!--<div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
+        <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
+        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}</paper-item></div>
+        <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
+        <textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
+        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>-->
+      <!-- </div> -->
+      <!--<paper-button id="regno"  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
       <paper-button id="date" name="intentdate" value="{{intentdate}}"  on-click="FnExpandItemCard" noink>{{intentdate}}</paper-button>
       <paper-icon-button id="expand" icon="{{icons}}" on-click="FnExpandItemCard" noink></paper-icon-button>
-      <paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>
+      <paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>-->
     </div>
     <!--Expand item collapse card-->
-    <iron-collapse id="{{intentregno}}">
+    <iron-collapse id="{{itemno}}">
       <div class="collapse">
         <viewintentitemexpand-page id="ps"></viewintentitemexpand-page>
       </div>

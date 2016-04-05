@@ -30,12 +30,13 @@
       },
       FnIntentStateUpdate:function(updatestate){
         this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
-        var obj={"intentregno":"","loggedrole":"","updatestate":""};
+        var obj={"itemdes":"","intentregno":"","loggedrole":"","updatestate":""};
         obj.loggedrole=sessionStorage.getItem("loggedrole");
-        obj.intentregno=sessionStorage.getItem("sess_curr_inwardregno");
+        obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+        obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
         obj.updatestate=updatestate;
         this.intentupdateparam=obj;
-        alert(JSON.stringify(obj));
+        //alert(JSON.stringify(obj));
         this.$.intentstateupdateajax.generateRequest();
       } ,
       intentstateupdateResponse:function(e){

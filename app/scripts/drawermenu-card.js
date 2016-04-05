@@ -21,7 +21,8 @@ Polymer({is:"drawermenu-card",
     else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
-        document.querySelector('app-homepage').setPage('viewintenthome-page');
+          document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');
@@ -45,7 +46,8 @@ Polymer({is:"drawermenu-card",
       }
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
-        document.querySelector('app-homepage').setPage('viewintenthome-page');
+          document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');
@@ -70,7 +72,8 @@ Polymer({is:"drawermenu-card",
       if(e.target.id=="View Intent"){
         //alert("yes");
         localStorage.setItem("curr_sess_wardflag","3");
-        document.querySelector('app-homepage').setPage('viewintenthome-page');
+          document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("true");
         document.querySelector('app-homepage').setFlowVisibility('false');
         //document.querySelector('intenthome-page').setPage('View Intent');
@@ -96,7 +99,8 @@ Polymer({is:"drawermenu-card",
     else if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
          //localStorage.setItem("curr_sess_showpage","Add Intent");
         localStorage.setItem("curr_sess_wardflag","3");
-        document.querySelector('app-homepage').setPage('viewintenthome-page');
+        document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');

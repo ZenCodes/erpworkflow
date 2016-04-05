@@ -13,7 +13,7 @@ Polymer({
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
     //Setting state for reading the items under current INT no
-    //this.$.gs.FnIntentitemReadService();
+    this.$.gs.FnIntentitemReadService();
   },
   setState:function(){
     //Setting current page in session for fetching labels dynamically
@@ -21,8 +21,8 @@ Polymer({
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
     //Setting state for reading the items under current INT no
-   // this.$.gs.FnIntentitemReadService();
-  },
+    this.$.gs.FnIntentitemReadService();
+  }/*,
    FnIntentitemReadService:function(){
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":""};
@@ -34,6 +34,6 @@ Polymer({
     intentitemreadResponse:function(e){
       //alert(JSON.stringify(e.detail.response));
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
-      alert(JSON.stringify(document.querySelector('viewintent-page').itemArray));
-    }
+      //alert(JSON.stringify(document.querySelector('viewintent-page').itemArray));
+    }*/
 });

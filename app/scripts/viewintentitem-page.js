@@ -19,33 +19,35 @@
       var n=1;
       var x=-4;
       //alert(this.intentregno);
-      sessionStorage.setItem("sess_curr_inwardregno",this.intentregno);
+      sessionStorage.setItem("sess_curr_inwardregno",this.itemno);
+      sessionStorage.setItem("sess_curr_intentregno",this.intentregno);
+      sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
       //document.querySelector('my-app').setVisible("true");
-      this.$.ps.intentexpanditemreadService(this.intentregno);
+      this.$.ps.intentexpanditemreadService(this.itemdes,this.intentregno);
       this.$.ps.callWebcomponentService();
       //this.$.sc.callWebcomponentService();
       var all=document.querySelectorAll('.intentexpandcard');
       if(id=="true")
       {
-        id= document.querySelector("#"+this.intentregno);
+        id= document.querySelector("#"+this.itemno);
         //alert(id);
         id.toggle();
       }
       else
       {
-        if(id!=document.querySelector("#"+this.intentregno))
+        if(id!=document.querySelector("#"+this.itemno))
         {
           id.opened=false;
         }
 
-        id= document.querySelector("#"+this.intentregno);
+        id= document.querySelector("#"+this.itemno);
         id.toggle();
       }
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
 
-          if(all[i].id==document.querySelector("#card"+this.intentregno).id){
+          if(all[i].id==document.querySelector("#card"+this.itemno).id){
             if(i!=0) {
 
               if(i!=0){
@@ -60,23 +62,23 @@
           else
             all[i].style.visibility='hidden';
         }
-        clrid= document.querySelector("#card"+this.intentregno);
+        clrid= document.querySelector("#card"+this.itemno);
 
       }
       else
       {
-        if(clrid!=document.querySelector("#card"+this.intentregno))
+        if(clrid!=document.querySelector("#card"+this.itemno))
         {
           //document.querySelector('my-app').setVisible("true");
           for(var i=0;i<all.length;i++){
-            if(all[i].id==document.querySelector("#card"+this.intentregno).id){
+            if(all[i].id==document.querySelector("#card"+this.itemno).id){
               all[i].style.visibility='visible';
             }
             else
               all[i].style.visibility='hidden';
           }
 
-          clrid= document.querySelector("#card"+this.intentregno);
+          clrid= document.querySelector("#card"+this.itemno);
         }
         else
         {

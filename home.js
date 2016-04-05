@@ -401,8 +401,9 @@ app.post('/intentitemread-service',urlencodedParser, function (req, res) {
 //Function fetches the expanded intent item info
 app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
   cond={Intent_Register_Number:req.query.intentregno}
+  cond1={Product_ID:req.query.itemdes}
   var FnIntentExpandItemFetchcall = require("./app/scripts/dboperations.js");
-  FnIntentExpandItemFetchcall.FnIntentExpandItemFetch("intentitemexpand-card",cond,function(returnval){
+  FnIntentExpandItemFetchcall.FnIntentExpandItemFetch("intentitemexpand-card",cond,cond1,function(returnval){
     res.status(200).json({"itemarr":returnval.itemarr});
   });
 });
@@ -411,6 +412,9 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   //console.log(req.query.intentregno);
   cond={Intent_Register_Number:req.query.intentregno}
+  cond1={Product_ID:req.query.itemdes}
+  //updatecolumn={Intent_State:req.query.updatestate};
+  //updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
   if(req.query.updatestate=="Approved")
   updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
   if(req.query.updatestate=="Supplied")
@@ -421,7 +425,7 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   updaterolecolumn={Intent_Accepted_By:req.query.loggedrole};
   updatecolumn={Intent_State:req.query.updatestate};
   var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
-  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,updatecolumn,updaterolecolumn,function(returnval){
+  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,updatecolumn,updaterolecolumn,function(returnval){
     res.status(200).json(returnval);
   });
 });

@@ -131,19 +131,28 @@
         }
       }
     },
-    FnIntentitemReadService:function(state){
-      intentstate=state;
+    FnIntentitemReadService:function(){
+      //intentstate=state;
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":"","state":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
-      arg.state=state;
+     // arg.state=state;
       this.intentparam=arg;
-      //alert(JSON.stringify(arg));
-      this.$.intentitemreadajax.generateRequest();
+     
+      if((sessionStorage.getItem("loggedrole")=="Stores manager")||(sessionStorage.getItem("loggedrole")=="Purchase manager")){
+      alert("yes");
+      this.FnIntentsupplyitemReadService();
+      }
+      else
+      {
+        alert("No");
+        this.$.intentitemreadajax.generateRequest();        
+      }
     },
     intentitemreadResponse:function(e){
-      alert(JSON.stringify(e.detail.response));
-      if(intentstate=="Created"){
+      //alert(JSON.stringify(e.detail.response));
+      document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
+      /*if(intentstate=="Created"){
       // alert('hi');
       // alert(JSON.stringify(e.detail.response));
       document.querySelector('viewintenthome-page').itemArray=e.detail.response.itemarr;
@@ -158,32 +167,42 @@
       // alert('hiii');
       // alert(JSON.stringify(e.detail.response));
       document.querySelector('viewintenthome-page').acceptitemArray=e.detail.response.itemarr;
-      }
+      }*/
       //alert(JSON.stringify(document.querySelector('viewintenthome-page').itemArray));
     },
-    FnIntentsupplyitemReadService:function(state){
-      //alert(state);
-      intentstate=state;
+    FnIntentsupplyitemReadService:function(){
+      //alert("coming...");
+      //intentstate=state;
       this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupplyitemread-service";
       var arg={"loggeduser":"","intentstate":"","state":""};
-      arg.loggeduser=sessionStorage.getItem("loggeduser");      
-      arg.intentstate=state;
+      arg.loggeduser=sessionStorage.getItem("loggeduser");   
+      
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
+      {      
+      arg.intentstate="Approved";
       arg.state="internal";
-      if(sessionStorage.getItem("loggedrole")=="Purchase manager")
+      }
+      if(sessionStorage.getItem("loggedrole")=="Purchase manager"){
+      intentstate="Approved";
+      arg.intentstate="Approved";
       arg.state="external";
+      }
       this.intentsupplyparam=arg;
       //(JSON.stringify(arg));
       this.$.intentsupplyitemreadajax.generateRequest();
     },
     intentsupplyitemreadResponse:function(e){
-      //alert(JSON.stringify(e.detail.response));
+      alert(JSON.stringify(e.detail.response));
+      alert(sessionStorage.getItem("loggedrole"));
+      alert(intentstate);
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
-      document.querySelector('viewintenthome-page').supplyitemArray=e.detail.response.itemarr;
+      document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="Approved")
-      document.querySelector('viewintenthome-page').poitemArray=e.detail.response.itemarr;
+      {
+      document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
+      }
       if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="POCreated")
-      document.querySelector('viewintenthome-page').acceptitemArray=e.detail.response.itemarr;
+      document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
     }
   });
 })();

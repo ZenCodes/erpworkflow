@@ -116,11 +116,12 @@ Polymer({
       this.$.flow.style.visibility='visible';
     if(flag=="false")
       this.$.flow.style.visibility='hidden';
-  },
-  FnSetIntentFlowVisibility:function(flag){
+  }
+  // },
+  // FnSetIntentFlowVisibility:function(flag){
    /* if(flag=="true")
       this.$.intentflow.style.visibility='visible';
     if(flag=="false")
       this.$.intentflow.style.visibility='hidden';*/
-  }
+  // }
 });
