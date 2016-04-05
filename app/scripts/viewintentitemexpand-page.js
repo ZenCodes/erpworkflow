@@ -7,8 +7,10 @@
 Polymer({is:"viewintentitemexpand-page",
   ready:function(){
     this.hide=true;
-    this.promotestate=["Created","Approved","PO Created","Accepted"];
+    this.promotestate=["Created","Approved","POCreated","Accepted"];
     this.promotebtn=["Approve","Create PO","Accept"];
+    this.inpromotestate=["Created","Approved","Supplied","Accepted"];
+    this.inpromotebtn=["Approve","Supply","Accept"];
     this.intentexpandurl=sessionStorage.getItem("curr_sess_url")+"intentitemexpand-card";
   },
   //fetches item info under the INT corresponding to the user loggedin role
@@ -22,7 +24,6 @@ Polymer({is:"viewintentitemexpand-page",
     this.intentexpandparam=arg;
     this.intentexpandurl=sessionStorage.getItem("curr_sess_url")+"intentitemexpand-card";
     this.$.intentexpanditemreadajax.generateRequest();
-
   },
   //Response binding to the card
   FnIntentexpanditemreadResponse:function(e)
@@ -41,7 +42,10 @@ Polymer({is:"viewintentitemexpand-page",
       obj.specification=arr[i].specification;
       obj.remarks=arr[i].remark;
       obj.intentstate=arr[i].intentstate;
+      this.poreq=arr[i].state;      
+      this.createdby=arr[i].createdby;
       //alert(obj.intentstate);
+      if(this.poreq=='Yes'){
       for(var j=0;j<(this.promotestate).length;j++){  
       //alert(obj.intentstate); 
       //alert(this.promotestate[j]);     
@@ -51,8 +55,19 @@ Polymer({is:"viewintentitemexpand-page",
             this.hide=false;
         }
       }
-      this.poreq=arr[i].state;      
-      this.createdby=arr[i].createdby;
+      }
+      if(this.poreq=='No'){
+      for(var j=0;j<(this.promotestate).length;j++){  
+      //alert(obj.intentstate); 
+      //alert(this.promotestate[j]);     
+        if(obj.intentstate==this.inpromotestate[j]){
+          this.promote=this.inpromotebtn[j]; 
+          if(this.promote=="Supply")
+            this.hide=true;
+        }
+      }
+      }
+      
       prodarr.push(obj);
     }
 
@@ -81,30 +96,30 @@ Polymer({is:"viewintentitemexpand-page",
     }
   },
   FnPromoteState:function(e){
-  //alert(this.promote);
   if(this.promote=="Create PO"){
   if(this.pono==null||this.pono=="")
     this.$.pono.validate();
   else
-  {
+  {    
     for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){
-      this.$.intentservice.FnIntentStateUpdate(this.promotestate[i+1]);
+      this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);
       //alert(this.promotestate[i+1]);
     }
     }
   }
   }
+  else{
   for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){
-      this.$.intentservice.FnIntentStateUpdate(this.promotestate[i+1]);
+      this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);
+      //alert(this.promotestate[i+1]);
+    }
+    else if(this.promote==this.inpromotebtn[i]){
+      this.$.intentservice.FnIntentStateUpdate(this.pono,this.inpromotestate[i+1]);
       //alert(this.promotestate[i+1]);
     }
   }
-  },
-  FnSetPOEditable:function(read,hide){
-    this.read=read;
-    this.hide=hide;
   }
-
+  }
 });

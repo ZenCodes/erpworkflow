@@ -68,5 +68,9 @@ Polymer({
     else
     this.$.edit.style.visibility = 'hidden';
     //this.Label="Edit";
+  },
+  FnHideBtns:function(){
+    this.$.create.style.visibility = 'hidden';
+    this.$.edit.style.visibility = 'hidden';
   }
 });

@@ -392,9 +392,10 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
 //Function to fetch intent item info
 app.post('/intentitemread-service',urlencodedParser, function (req, res) {
   var loggeduser=req.query.loggeduser;
+  var loggedrole=req.query.loggedrole;
   var state=req.query.state;
   var FnIntentItemReadcall = require("./app/scripts/dboperations.js");
-  FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",loggeduser,state,function(returnval){
+  FnIntentItemReadcall.FnIntentItemRead("intentitemread-service",loggeduser,loggedrole,state,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
@@ -413,6 +414,7 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   //console.log(req.query.intentregno);
   cond={Intent_Register_Number:req.query.intentregno}
   cond1={Product_ID:req.query.itemdes}
+  ponumber={PO_Number:req.query.pono}
   //updatecolumn={Intent_State:req.query.updatestate};
   //updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
   if(req.query.updatestate=="Approved")
@@ -425,7 +427,7 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   updaterolecolumn={Intent_Accepted_By:req.query.loggedrole};
   updatecolumn={Intent_State:req.query.updatestate};
   var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
-  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,updatecolumn,updaterolecolumn,function(returnval){
+  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,ponumber,updatecolumn,updaterolecolumn,function(returnval){
     res.status(200).json(returnval);
   });
 });

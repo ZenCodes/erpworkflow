@@ -51,7 +51,7 @@
       {
         "rolename": "Maintenance manager",
         "RoleFlag": "7",
-        "menu" : ["Add Intent"]
+        "menu" : ["Add Intent","View Intent"]
       },
       {
         "rolename": "Office admin",

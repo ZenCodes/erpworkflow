@@ -134,23 +134,24 @@
     FnIntentitemReadService:function(){
       //intentstate=state;
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
-      var arg={"loggeduser":"","state":""};
+      var arg={"loggeduser":"","state":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
+      arg.loggedrole=sessionStorage.getItem("loggedrole");
      // arg.state=state;
       this.intentparam=arg;
      
-      if((sessionStorage.getItem("loggedrole")=="Stores manager")||(sessionStorage.getItem("loggedrole")=="Purchase manager")){
-      alert("yes");
+      /*if((sessionStorage.getItem("loggedrole")=="Stores manager")||(sessionStorage.getItem("loggedrole")=="Purchase manager")){
+      //alert("yes");
       this.FnIntentsupplyitemReadService();
       }
       else
-      {
-        alert("No");
+      {*/
+        //alert("No");
         this.$.intentitemreadajax.generateRequest();        
-      }
+     // }
     },
     intentitemreadResponse:function(e){
-      //alert(JSON.stringify(e.detail.response));
+      alert(JSON.stringify(e.detail.response));
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       /*if(intentstate=="Created"){
       // alert('hi');
@@ -184,7 +185,7 @@
       }
       if(sessionStorage.getItem("loggedrole")=="Purchase manager"){
       intentstate="Approved";
-      arg.intentstate="Approved";
+      //arg.intentstate="Approved";
       arg.state="external";
       }
       this.intentsupplyparam=arg;
@@ -192,17 +193,17 @@
       this.$.intentsupplyitemreadajax.generateRequest();
     },
     intentsupplyitemreadResponse:function(e){
-      alert(JSON.stringify(e.detail.response));
-      alert(sessionStorage.getItem("loggedrole"));
-      alert(intentstate);
+      //alert(JSON.stringify(e.detail.response));
+      //alert(sessionStorage.getItem("loggedrole"));
+      //alert(intentstate);
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
-      if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="Approved")
+      if(sessionStorage.getItem("loggedrole")=="Purchase manager")
       {
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       }
-      if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="POCreated")
-      document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
+      //if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="POCreated")
+      //document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
     }
   });
 })();

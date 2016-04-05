@@ -21,10 +21,10 @@ Polymer({is:"drawermenu-card",
     else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
-          document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
-        document.querySelector('viewtype-card').FnViewlist();
+        document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
       }
     }
@@ -49,7 +49,7 @@ Polymer({is:"drawermenu-card",
           document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
-        document.querySelector('viewtype-card').FnViewlist();
+        document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
       }
     }
@@ -72,10 +72,11 @@ Polymer({is:"drawermenu-card",
       if(e.target.id=="View Intent"){
         //alert("yes");
         localStorage.setItem("curr_sess_wardflag","3");
-          document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("true");
         document.querySelector('app-homepage').setFlowVisibility('false');
+        document.querySelector('viewtype-card').FnHideBtns();
         //document.querySelector('intenthome-page').setPage('View Intent');
         //document.querySelector('grn-service').FnIntentitemReadService();
         //localStorage.setItem("curr_sess_showpage","Add Intent");
@@ -102,7 +103,7 @@ Polymer({is:"drawermenu-card",
         document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
-        document.querySelector('viewtype-card').FnViewlist();
+        document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
         //document.querySelector('intenthome-page').setPage('Add Intent');

@@ -1,5 +1,6 @@
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../grn-service/grn-service.html">
 <dom-module id="intent-service">
   <template>
     <style>
@@ -18,7 +19,7 @@
       content-type="application/json"
       on-response="intentstateupdateResponse">
     </iron-ajax>
-
+    <grn-service id="gs"></grn-service>
   </template>
   <script>
   (function() {
@@ -28,13 +29,15 @@
       is: 'intent-service',
       ready:function(){
       },
-      FnIntentStateUpdate:function(updatestate){
+      FnIntentStateUpdate:function(pono,updatestate){
+        alert(updatestate);
         this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
-        var obj={"itemdes":"","intentregno":"","loggedrole":"","updatestate":""};
+        var obj={"pono":"","itemdes":"","intentregno":"","loggedrole":"","updatestate":""};
         obj.loggedrole=sessionStorage.getItem("loggedrole");
         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
         obj.updatestate=updatestate;
+        obj.pono=pono;
         this.intentupdateparam=obj;
         //alert(JSON.stringify(obj));
         this.$.intentstateupdateajax.generateRequest();
@@ -43,7 +46,12 @@
         //alert(JSON.stringify(e.detail.response));
         if(e.detail.response.returnval=="succ"){
           alert("done");
-          //document.querySelector('intentflow-card').setStateTransition();
+          this.$.gs.FnIntentitemReadService();
+          document.querySelector('viewintentitem-page').setToggle();
+          //this.$.gs.FnIntentitemReadService();
+          //document.querySelector('app-homepage').setPage('intenthome-page');
+          //document.querySelector('intenthome-page').setPage('View Intent');
+          //document.querySelector('viewintent-page').setState();
         }
         else
         {
