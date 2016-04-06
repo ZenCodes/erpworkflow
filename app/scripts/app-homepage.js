@@ -64,11 +64,16 @@ Polymer({
     if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"&&sessionStorage.getItem("curr_sess_roleflag")!="7"&&sessionStorage.getItem("curr_sess_roleflag")!="8"&&sessionStorage.getItem("curr_sess_roleflag")!="9")
     {
       //alert("oldintent");
-      if(localStorage.getItem("curr_sess_wardflag")=="2"){
+      if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
       this.$.flow.style.visibility='hidden';    
       // this.$.intentflow.style.visibility='visible';  
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
+      }
+      else if(localStorage.getItem("curr_sess_wardflag")=="3"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="1"){
+        this.$.flow.style.visibility='hidden';   
+      document.querySelector('app-homepage').setPage('intenthome-page');
+      document.querySelector('intenthome-page').setPage('View Intent');
       }
       else{
       localStorage.setItem("curr_sess_showpage","physicins-page");
@@ -82,11 +87,18 @@ Polymer({
 
     if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
       //alert("new intent");
-      localStorage.setItem("curr_sess_wardflag","2");
+      
       // this.$.intentflow.style.visibility='visible'; 
       //this.$.intentflow.style.marginLeft='-5%';  
+      if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
+    }
+      else
+      {
+      document.querySelector('app-homepage').setPage('intenthome-page');
+      document.querySelector('intenthome-page').setPage('View Intent');
+    }
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='hidden';
       this.$.flowbutton.style.visibility='hidden';

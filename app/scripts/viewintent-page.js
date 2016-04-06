@@ -8,6 +8,7 @@ Polymer({
   is: "viewintent-page",
   ready:function()
   {    
+    
     //Setting current page in session for fetching labels dynamically
     localStorage.setItem("curr_sess_showpage","viewintent-page");
     //calling webcomponent service to fetch labels for current page
@@ -22,7 +23,17 @@ Polymer({
     this.$.ID_Webcomponent_Service.callWebcomponentService();
     //Setting state for reading the items under current INT no
     this.$.gs.FnIntentitemReadService();
-  }/*,
+  },
+  FnRefreshService:function(){
+    //alert("hi");
+       //Setting current page in session for fetching labels dynamically
+    localStorage.setItem("curr_sess_showpage","viewintent-page");
+    //calling webcomponent service to fetch labels for current page
+    this.$.ID_Webcomponent_Service.callWebcomponentService();
+    //Setting state for reading the items under current INT no
+    this.$.gs.FnIntentitemReadService();
+  }
+  /*,
    FnIntentitemReadService:function(){
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":""};
