@@ -30,7 +30,7 @@
       ready:function(){
       },
       FnIntentStateUpdate:function(pono,updatestate){
-        alert(updatestate);
+        //alert(updatestate);
         this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
         var obj={"pono":"","itemdes":"","intentregno":"","loggedrole":"","updatestate":""};
         obj.loggedrole=sessionStorage.getItem("loggedrole");

@@ -151,7 +151,7 @@
      // }
     },
     intentitemreadResponse:function(e){
-      alert(JSON.stringify(e.detail.response));
+      //alert(JSON.stringify(e.detail.response));
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       /*if(intentstate=="Created"){
       // alert('hi');

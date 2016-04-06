@@ -1044,15 +1044,16 @@ exports.FnIntentItemRead=function(pagename,loggeduser,loggedrole,state,callback)
     //console.log(rows[n]);
     //var queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State='Created' and os.Item_Type_ID=(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal'))";      
      
-     console.log(loggedrole);
+      //console.log(loggedrole);
       if(loggedrole=="Purchase manager")
         queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','POCreated') and os.state='external'"; 
       else if(loggedrole=="Stores manager")  
-        queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved') and os.state='internal'"; 
+        //queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where (os.Intent_State in('Approved','Supplied') and os.state='internal')"; 
+        queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')) or (os.Intent_State in('Approved') and os.state='internal')";
       else
         queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Created','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal'))";
       
-      console.log(queryy);
+      //console.log(queryy);
 
       connection.query(queryy,function(err, rows, fields) {
     
@@ -1129,7 +1130,7 @@ exports.FnIntentSupplyItemRead=function(pagename,loggeduser,intentstate,state,ca
           obj.itemlocation=rows[i].Store_Location_Name;
           itemarr.push(obj);
         }
-        console.log(JSON.stringify(itemarr));
+        //console.log(JSON.stringify(itemarr));
        return callback(itemarr);
       }
       else
