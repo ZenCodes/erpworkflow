@@ -19,21 +19,23 @@
       this.dialogmsg=dialogmsg;
       //this.displayvalue=dialogmsg+"!  "+regno;
       this.$.Fn_Open_dialog.open();
-
     },
-  FnClickOk:function(){
-  if(this.retflag!="duplicate entry") {
-    if (sessionStorage.getItem("curr_sess_roleflag") == "6") {
-	  document.querySelector('admin-page').setPage('supplier-detail');
-      //window.location.href = "indexhome.html";
-    }
-  }
-
-  },
-  FnShownewDialog:function(dialogmsg,regno){
+   FnClickOk:function(){
+      if(this.retflag!="duplicate entry") {
+        if (sessionStorage.getItem("curr_sess_roleflag") == "6") {
+	      document.querySelector('admin-page').setPage('supplier-detail');
+        //window.location.href = "indexhome.html";
+        }
+        if (localStorage.getItem("curr_sess_wardflag") == "2") {
+        //document.querySelector('admin-page').setPage('supplier-detail');
+        window.location.href = "indexhome.html";
+        }
+      }
+   },
+   FnShownewDialog:function(dialogmsg,regno){
 	  this.regno = regno;
 	  this.dialogmsg=dialogmsg;
 	  this.$.Fn_Open_dialog.open();
-  }
-  });
+   }
+   });
 })();

@@ -70,7 +70,15 @@
         margin-top: 5%;
       }
       paper-button{
+        text-align: center;      
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        height: 30px;
+        margin-top: 1%;
         text-transform:none;
+        margin-left: 3%;
       }
       #div2{
         width: 100%;
@@ -102,14 +110,16 @@
       paper-tabs{
         margin-top: 0%;
       }
-      #pono{
-        margin-top: -2%;
+      paper-input{
+        margin-left: 2%;
       }
     </style>
     <!--Expanded card template-->
     <div class="card">
-    <paper-item>Created By:</paper-item><paper-item name="createdby" value="{{createdby}}">{{createdby}}</paper-item>
-    <paper-item>PO Request:</paper-item><paper-item name="poreq" value="{{poreq}}">{{poreq}}</paper-item>
+    <!-- <paper-item>Created By:</paper-item> -->
+    <paper-input label="Created By" name="createdby" value="{{createdby}}" readonly>{{createdby}}</paper-input>
+    <!-- <paper-item>PO Request:</paper-item> -->
+    <paper-input label="PO Request" name="poreq" value="{{poreq}}" readonly>{{poreq}}</paper-input>
     <paper-input id="pono" name="pono" value="{{pono}}" label="PO Number" readonly="{{read}}" hidden$="{{hide}}" required></paper-input>
     <paper-button id="promote"  name="promote" value="{{promote}}" on-click="FnPromoteState" noink>{{promote}}</paper-button>
     </div>
