@@ -124,15 +124,16 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       Config_columnvalue=obj[i].columnvalues;
     }
   }
-  //console.log(wardflag+"  "+loggeduser);
+  console.log(wardflag+"  "+itemid);
   //Condition which form the query for the currently logged role
   if(wardflag=="0"){
-  queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[1]+"='"+itemid+"' AND "+Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
-
+  queryy="SELECT mi.Item_ID,mi.Item_Name,mi.Item_Description,mi.Item_Type_ID,mi.Container,mi.UOM,mi.Item_Group_ID,mi.Item_Purchase_Type_ID,oi.Item_Supplier_ID from MD_Item mi join OD_Item oi on(mi.Item_ID=oi.Item_ID) and oi.Item_Supplier_ID='"+itemid+"' and mi.Item_Type_ID not in('FG')";
+  //queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[1]+"='"+itemid+"' AND "+Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"')";
+  console.log(queryy);
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="1"){
-    queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" IN('"+Config_columnvalue[0]+"','"+Config_columnvalue[1]+"')";
+    queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" IN('"+Config_columnvalue[0]+"')";
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="2"){
@@ -161,6 +162,7 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       obj.purchasetypeflag = rows[i].Item_Purchase_Type_ID;
       itemarr.push(obj);
     }
+    console.log(JSON.stringify(itemarr));
      //  Response sending back to the server if it have the items
      if(itemarr.length>0)
        return callback(itemarr);
@@ -1604,6 +1606,30 @@ exports.Fnitemstoresread=function(pagename,callback) {
     }
   }
   connection.query('SELECT * FROM '+Config_tables[0],function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      if(rows.length>0){
+        return callback(rows);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+  }
+
+//Function fecthes the role info of the intent items
+exports.Fnintentroleread=function(pagename,intentno,callback) {
+  console.log(JSON.stringify(intentno));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM  OD_Stores_Intent_Items where ?',[intentno],function(err, rows, fields) {
     var itemarr=[];
     if(!err){
       if(rows.length>0){

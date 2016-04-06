@@ -47,6 +47,7 @@
     },
     //Method to fetch item under the specific suppllier name
     FnFetchSpecificItem:function(supplierid,suppliername){
+      //alert(supplierid);
       //supplierid set to a global variable to load the items under supplier name when adding items
       suplrid=supplierid;
       var obj={"wardflag":"","itemid":""};
@@ -169,7 +170,7 @@
     itemlistreadResponse:function(e)
     {
         item= e.detail.response.itemarr;
-        //alert(JSON.stringify(item));
+        alert(JSON.stringify(item));
     },
     setDefaultval:function(){
       this.value="";
