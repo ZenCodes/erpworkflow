@@ -124,12 +124,12 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       Config_columnvalue=obj[i].columnvalues;
     }
   }
-  console.log(wardflag+"  "+itemid);
+ // console.log(wardflag+"  "+itemid);
   //Condition which form the query for the currently logged role
   if(wardflag=="0"){
   queryy="SELECT mi.Item_ID,mi.Item_Name,mi.Item_Description,mi.Item_Type_ID,mi.Container,mi.UOM,mi.Item_Group_ID,mi.Item_Purchase_Type_ID,oi.Item_Supplier_ID from MD_Item mi join OD_Item oi on(mi.Item_ID=oi.Item_ID) and oi.Item_Supplier_ID='"+itemid+"' and mi.Item_Type_ID not in('FG')";
   //queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[1]+"='"+itemid+"' AND "+Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"')";
-  console.log(queryy);
+  //console.log(queryy);
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="1"){
@@ -162,7 +162,7 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       obj.purchasetypeflag = rows[i].Item_Purchase_Type_ID;
       itemarr.push(obj);
     }
-    console.log(JSON.stringify(itemarr));
+    //console.log(JSON.stringify(itemarr));
      //  Response sending back to the server if it have the items
      if(itemarr.length>0)
        return callback(itemarr);

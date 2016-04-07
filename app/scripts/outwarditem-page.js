@@ -159,7 +159,7 @@
           localStorage.setItem("curr_sess_unitset",this.idd);
           //alert(obj);
           this.push('itemArray',{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''});
-          alert(JSON.stringify(itemarr));
+          //alert(JSON.stringify(itemarr));
           this.flag=0;
           this.itemflag=0;
         }
@@ -236,7 +236,7 @@
             obj.weight=(this.weight)+" "+(this.unit);
             if(deleteflag!=1)
               itemarr.push(obj);
-            alert(JSON.stringify(itemarr));
+            //alert(JSON.stringify(itemarr));
             this.itemdes='deleted';
             this.quantity='deleted';
             this.weight='deleted';
