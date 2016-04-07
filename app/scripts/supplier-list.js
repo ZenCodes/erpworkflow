@@ -42,6 +42,13 @@
     FnEnableFields:function(enableflag){
     this.read=enableflag;
     },
+    FnSpecificSupplierReadService:function(itemid){
+      //alert(itemname);      
+      var obj={"itemid":""};
+      obj.itemid=itemid;
+      this.supplierparam=obj;
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
+    },
     //Funtion invokes when selecting item in dropdown
     FnItemSelected:function(e){
       if(e.target.selectedItem.textContent.trim()=="Others"){

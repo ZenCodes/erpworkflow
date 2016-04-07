@@ -58,7 +58,7 @@ Polymer({
     }
   },
   edit:function(){
-    document.querySelector('additem-card').FnEnableFields();
+    document.querySelector('additem-card').FnEnableFields();    
     this.$.edit.style.visibility = 'hidden';
   },
   FnEnableEdit:function(flag){

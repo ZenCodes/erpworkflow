@@ -15,6 +15,7 @@
 		this.push('supArray', {id: this.idd, supname: ''});
 	 },
 	 FnSaveSupplier:function(){
+	 	localStorage.setItem("curr_sess_writesupplierfromadditem","1");
 		document.querySelector('admin-service').callItemWriteSupplierService(itemid,itemArray);
 	 },
 	 FnSelectSupplier:function(supplierid,suppliername){

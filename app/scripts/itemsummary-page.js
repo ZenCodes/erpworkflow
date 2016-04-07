@@ -9,8 +9,8 @@
     },
     //Method will invoke to toggle the dialog control
     FnShowDialog:function(stores,storesarr,itemarr,itemgrouparr,itemsupplierarr,itemoptionalsupplierarr,purchasearr,itemflag, itemid, itemname, itemdes, container, quantity, itemgroup, itemtype, purchasetype){
-      alert(stores);
-      alert(JSON.stringify(storesarr));
+      //alert(stores);
+      //alert(JSON.stringify(storesarr));
       //this.itemoptionalsupplier=itemoptionalsupplier,
       //this.itemsupplier=itemsupplier;
       this.itemflag=itemflag;

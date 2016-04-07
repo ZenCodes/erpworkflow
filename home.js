@@ -513,9 +513,9 @@ app.post('/additemgroupread-service',urlencodedParser, function (req, res) {
 
 //Function to fetch supplier info req receives from admin service
 app.post('/itemsupplierread-service',urlencodedParser, function (req, res) {
-
+  var itemid=req.query.itemid;
   var FnItemsupplierReadcall = require("./app/scripts/dboperations.js");
-  FnItemsupplierReadcall.FnItemsupplierRead("itemsupplierread-service",function(returnval){
+  FnItemsupplierReadcall.FnItemsupplierRead("itemsupplierread-service",itemid,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });

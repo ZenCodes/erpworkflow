@@ -83,6 +83,7 @@ Polymer({
   },
   //Function which invokes when performing search using Item Name
   FnSearchItemName:function(e){
+    
     //The flag is used to ensure the search is performed by using item name
     localStorage.setItem("curr_sess_searchtypeflag","1");
     //When performing search using itemname making listbox visible with items
@@ -204,9 +205,11 @@ Polymer({
   },
   //Function which invokes when selecting item type name in dropdown
   FnItemSelected:function(e){
+    
     //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
     if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
       this.itemname = e.target.selectedItem.textContent.trim();
+
       //Making invisible and deselection in dropdown of item name search list box
       this.querySelector('#searchname').style.visibility='hidden';
       this.querySelector('#searchname').selected=-1;

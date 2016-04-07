@@ -1190,7 +1190,7 @@ exports.FnIntentStateUpdate=function(pagename,cond,cond1,ponumber,updatecolumn,u
     }
   }
 
-  console.log(JSON.stringify(ponumber)+" "+JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(cond)+" "+JSON.stringify(cond1));
+  //console.log(JSON.stringify(ponumber)+" "+JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(cond)+" "+JSON.stringify(cond1));
   connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,ponumber,cond,cond1], function(err, rows) {
     if(!err)
     {
@@ -1348,14 +1348,16 @@ exports.FnAddItemgroupRead=function(pagename,callback) {
 }
 
 //Function fetches supplier info
-exports.FnItemsupplierRead=function(pagename,callback) {
+exports.FnItemsupplierRead=function(pagename,itemid,callback) {
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
       Config_tables=obj[i].value;
     }
   }
-  connection.query('SELECT * FROM '+Config_tables[0]+'',function(err, rows, fields) {
+  var queryy="SELECT * FROM "+Config_tables[0]+" where Supplier_ID not in(SELECT Item_Supplier_ID from OD_Item where Item_ID='"+itemid+"')";
+  //console.log(queryy);
+  connection.query(queryy,function(err, rows, fields) {
     var itemarr=[];
     if(!err){
       for(var i=0;i<rows.length;i++)
