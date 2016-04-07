@@ -21,7 +21,7 @@
     },
     //Method to toggle supplier names readonly or non editable
     FnEnableFields:function(enableflag){
-    this.read=enableflag;
+    this.read=enableflag;    
     },
     FnSetDefaultValue:function(storesid){
       for(var i=0;i<item.length;i++){
@@ -46,7 +46,13 @@
         this.querySelector('#storeslist').style.visibility = 'hidden';
         this.querySelector('#storeslist').selected=-1;
         this.itemArray="";
-      }    
+      } 
+      else
+      {
+        this.querySelector('#storeslist').style.visibility = 'hidden';
+        this.querySelector('#storeslist').selected=-1; 
+        this.itemArray="";
+      }   
     },
     
     //Function invokes when item value changes in input box to show the relevent items

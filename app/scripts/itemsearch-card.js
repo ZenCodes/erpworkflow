@@ -8,6 +8,7 @@
     is: 'itemsearch-card',
 
 	ready:function(){
+    this.read=false;
 		this.isHidden=true;
 		this.isHiddenid=true;
 		localStorage.setItem("curr_sess_supplieritemsearchflag","0");
@@ -24,6 +25,7 @@
 	},
     //Function which invokes when performing search using Item ID
 	  FnSearchItemId:function(e){
+      document.querySelector(supplieradditem-card).FnSetEnableDisableFields(ture);
 	    //The flag is used to ensure the search is performed by using item id
 	    localStorage.setItem("curr_sess_searchtypeflag","0");
 	    //When performing search using itemid making listbox visible with items
@@ -39,7 +41,9 @@
 	  },
 	  //Function which invokes when performing search using Item Name
 	  FnSearchItemName:function(e){
-	    //The flag is used to ensure the search is performed by using item name
+      this.read=true;
+	    document.querySelector('supplieradditem-card').FnSetEnableDisableFields(true);
+      //The flag is used to ensure the search is performed by using item name
 	    localStorage.setItem("curr_sess_searchtypeflag","1");
 	    //When performing search using itemname making listbox visible with items
 	    this.isHidden=false;

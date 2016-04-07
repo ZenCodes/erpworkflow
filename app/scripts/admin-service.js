@@ -117,7 +117,7 @@
 		//this.$.dialogpage.FnShowDialog("Failed to add the items!!","");
 		}
 		else if(e.detail.response.returnval=="duplicate entry"){
-      alert("Item already exists!!");
+      alert("Item already exists against this supplier!!");
 		//this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
 
 		}

@@ -116,9 +116,12 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 FnSetItemId:function(itemid){
 
 	this.itemid=itemid;
+
 },
 FnSetItemName:function(itemname){
+
 	this.itemname=itemname;
+
 },
 FnSetClearFields:function(){
 	this.itemid="";
@@ -130,5 +133,9 @@ FnSetClearFields:function(){
 	this.itemgroup="";
 	this.selection="";
 
+},
+FnSetEnableDisableFields:function(flag){
+  document.querySelector("stores-card"). FnEnableFields(flag);
+  this.read=flag;
 }
 });

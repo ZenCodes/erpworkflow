@@ -104,8 +104,10 @@
 		  //document.querySelector('addsupplier-card').FnBtnDisable();
           //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
       }
-      else
-      	  alert("Unable to add supplier!");
+      else{
+      	  alert("Supplier ID already exists!..Create new supplier...");
+      	  window.location.href="../elements/indexhome.html";
+      }
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
     addpaymentService:function(accno,bankname,address,mode,paymentterm){
