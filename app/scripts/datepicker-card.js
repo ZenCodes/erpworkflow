@@ -10,7 +10,11 @@ Polymer({
     localStorage.setItem("localsess_curr_inwarddate",this.showdate);
   },
   FnShowDialog:function(){
+  
+  
     this.date=new Date();
+    if(((localStorage.getItem("curr_sess_showpage")=="physicins-page")||(localStorage.getItem("curr_sess_showpage")=="physicinsread-page"))&&(sessionStorage.getItem("curr_sess_roleflag")=="1"||sessionStorage.getItem("curr_sess_roleflag")=="2"||sessionStorage.getItem("curr_sess_roleflag")=="3"||sessionStorage.getItem("curr_sess_roleflag")=="4")){}
+      else
     this.$.dialog.toggle();
   },
   FnDismissDialog:function(e){
