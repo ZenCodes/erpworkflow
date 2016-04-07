@@ -32,12 +32,12 @@
     <div class="card">
     <div class="list">
     <template is="dom-repeat" items="{{supArray}}" as="item">
-    <supplier-list id="{{item.id}}" supname="{{item.supnmae}}"></supplier-list>
+    <supplier-list id="{{item.id}}" supname="{{item.supname}}"></supplier-list>
     </template>
     </div>
     <div class="btn">
     <paper-button disabled="{{Btn_disable_flag}}" id="add" on-click="FnAddSupplier">Add Supplier</paper-button>
-    <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnSaveSupplier">Save</paper-button>
+    <paper-button disabled="{{Btn_disable_flag}}" id="saveitem" on-click="FnSaveSupplier">Save</paper-button>
     </div>
     </div>
      <!--Including dialog component here-->

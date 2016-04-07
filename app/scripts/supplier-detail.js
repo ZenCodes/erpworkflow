@@ -17,6 +17,7 @@
 	 FnSaveSupplier:function(){
 	 	localStorage.setItem("curr_sess_writesupplierfromadditem","1");
 		document.querySelector('admin-service').callItemWriteSupplierService(itemid,itemArray);
+		this.FnBtnDisable();
 	 },
 	 FnSelectSupplier:function(supplierid,suppliername){
 		 var obj={"supplierid":"","suppliername":""};
@@ -28,6 +29,11 @@
 	 FnSetItemid:function(iitemid){
 		 itemid=iitemid;
 		 //alert(itemid);
-	 }
+	 },
+	  FnBtnDisable:function(){	  	
+      document.querySelector('#saveitem').style.backgroundColor='grey';
+      document.querySelector('#add').style.backgroundColor='grey';
+      this.Btn_disable_flag=true;
+    }
     });
   })();
