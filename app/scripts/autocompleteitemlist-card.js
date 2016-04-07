@@ -170,7 +170,7 @@
     itemlistreadResponse:function(e)
     {
         item= e.detail.response.itemarr;
-        alert(JSON.stringify(item));
+        // alert(JSON.stringify(item));
     },
     setDefaultval:function(){
       this.value="";
