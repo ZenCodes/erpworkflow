@@ -74,11 +74,13 @@
       this.querySelector("#" + txt_input1).style.width = '8%';
       this.querySelector("#" + txt_input2).style.visibility = 'visible';
       this.querySelector("#" + txt_input2).style.marginLeft = '1%';
+      this.querySelector("#" + txt_input2).label="unit";
       this.querySelector("#" + txt_input3).style.visibility = 'visible';
       this.querySelector("#" + txt_input3).style.marginLeft = '3%';
       this.querySelector("#" + txt_input3).style.width = '8%';
       this.querySelector("#" + txt_input4).style.visibility = 'visible';
       this.querySelector("#" + txt_input4).style.marginLeft = '1%';
+      this.querySelector("#" + txt_input4).label="measure";
       this.querySelector("#" + txt_input4).style.width = '5%';
       this.querySelector("#" + txt_input5).style.visibility = 'visible';
       this.querySelector("#" + txt_input5).style.width = '16%';
