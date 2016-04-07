@@ -49,7 +49,7 @@
 	           //document.querySelector("supplier-page").setPage(this.menulabel);
 	    else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""&&value=="Supplier Detail")
       {
-        alert(localStorage.getItem("curr_sess_searchtypeflag"));
+        //alert(localStorage.getItem("curr_sess_searchtypeflag"));
         if(localStorage.getItem("curr_sess_searchtypeflag")!="1")
         document.querySelector("additem-card").FnAddItemInfoSubmit();
       }

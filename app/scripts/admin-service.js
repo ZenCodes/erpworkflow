@@ -104,9 +104,10 @@
 		flag=flag+1;
 		if(arrlength==flag){
 		alert("Item Added with supplier successfully!!");
-    if(localStorage.getItem("curr_sess_writesupplierfromadditem")){
+    //alert(localStorage.getItem("curr_sess_writesupplierfromadditem"));
+    /*if(localStorage.getItem("curr_sess_writesupplierfromadditem")=="1"){
          window.location.href="../elements/indexhome.html";
-    }
+    }*/
     //alert(supobj.supplierid);
     document.querySelector('supplier-page').setPage('Show Item');
     document.querySelector('supplieritem-card').FnFetchItemInfo(supobj.supplierid,"");
