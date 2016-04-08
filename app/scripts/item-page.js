@@ -248,7 +248,7 @@
             this.remark='deleted';
             this.flag=1;
             this.itemflag=1;
-            this.$.itemservice.FnItemwriteService(this.invoiceno,this.invoicedate,this.vno,this.vname,this.dname,this.dno,itemarr)
+            this.$.itemservice.FnItemwriteService(this.invoiceno,this.invoicedate,this.vno,this.vname,this.dname,this.dno,itemarr);
           }
 
         }
