@@ -44,6 +44,26 @@
       content-type="application/json"
       on-response="FnSeqIntentItemwriteResponse">
     </iron-ajax>
+    <!-- Fetch role info for the intent items -->
+     <iron-ajax
+      id="intentRolereadAjax"
+      url="{{intentrolereadurl}}"
+      params="{{intentroleread}}"
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnIntentRolereadResponse">
+    </iron-ajax>
+    <!-- Fetch role info for the intent items -->
+     <iron-ajax
+      id="promoteRolereadAjax"
+      url="{{promoterolereadurl}}"
+      params="{{promoteroleread}}"
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPromoteRolereadResponse">
+    </iron-ajax>
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
   </template>
   <!--Importing js file-->

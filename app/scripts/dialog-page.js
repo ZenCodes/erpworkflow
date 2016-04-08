@@ -27,8 +27,9 @@
         //window.location.href = "indexhome.html";
         }
         if (localStorage.getItem("curr_sess_wardflag") == "2") {
+          
         //document.querySelector('admin-page').setPage('supplier-detail');
-        window.location.href = "indexhome.html";
+        //window.location.href = "indexhome.html";
         }
       }
    },

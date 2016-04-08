@@ -666,10 +666,21 @@ app.post('/itemstoresread-service',urlencodedParser, function (req, res) {
 
 //Function to fetch the role info for the intent items while creating intent
 app.post('/intentroleread-service',urlencodedParser, function (req, res) {
-  var intentno={Intent_Register_Number:req.query.intentno};
+  var intentno=req.query.intentno;
   console.log(intentno);
   var Fnintentrolereadcall = require("./app/scripts/dboperations.js");
   Fnintentrolereadcall.Fnintentroleread("intentroleread-service",intentno,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
+//Function to fetch the role info for the intent items while creating intent
+app.post('/promoteroleread-service',urlencodedParser, function (req, res) {
+  var intentno={Intent_Register_Number:req.query.intentno};
+  console.log(intentno);
+  var Fnpromoterolereadcall = require("./app/scripts/dboperations.js");
+  Fnpromoterolereadcall.Fnpromoteroleread("promoteroleread-service",intentno,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });

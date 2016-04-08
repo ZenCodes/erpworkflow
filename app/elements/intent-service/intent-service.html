@@ -1,6 +1,7 @@
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
 <dom-module id="intent-service">
   <template>
     <style>
@@ -19,18 +20,36 @@
       content-type="application/json"
       on-response="intentstateupdateResponse">
     </iron-ajax>
+
+    <!-- Fetch role info for the intent items -->
+    <iron-ajax
+      id="promoteRolereadAjax"
+      url="{{promoterolereadurl}}"
+      params="{{promoteroleread}}"
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPromoteRolereadResponse">
+    </iron-ajax>
+
+
     <grn-service id="gs"></grn-service>
+
+    <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
   </template>
   <script>
   (function() {
     'use strict';
-
+    var intentno;
+    var promotestate;
     Polymer({
       is: 'intent-service',
       ready:function(){
       },
       FnIntentStateUpdate:function(pono,updatestate){
         //alert(updatestate);
+        intentno=sessionStorage.getItem("sess_curr_intentregno");
+        promotestate=updatestate;
         this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
         var obj={"pono":"","itemdes":"","intentregno":"","loggedrole":"","updatestate":""};
         obj.loggedrole=sessionStorage.getItem("loggedrole");
@@ -46,6 +65,39 @@
         //alert(JSON.stringify(e.detail.response));
         if(e.detail.response.returnval=="succ"){
           alert("done");
+          this.promoterolereadurl=sessionStorage.getItem("curr_sess_url")+"promoteroleread-service";
+          var obj={"intentno":""};
+          obj.intentno=intentno;
+          this.promoteroleread=obj;
+          this.$.promoteRolereadAjax.generateRequest();
+        }
+        else
+        {
+          alert("not done");
+        }
+      },
+      FnPromoteRolereadResponse:function(e){  
+          var pstate;             
+
+          var arr=e.detail.response.itemarr;
+          //alert("Inward Register Note is created! Sent for the Approval with  "+arr[0].Intent_PO);
+          if(arr[0].state=="external"){
+          if(promotestate=="Approved") 
+           pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_PO;       
+          else if(promotestate=="POCreated")          
+           pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_Accept;
+          else if(promotestate=="Accepted")          
+           pstate="Item Accepted!";
+          }
+          if(arr[0].state=="internal"){
+          if(promotestate=="Approved")          
+            pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_Supply;
+          else if(promotestate=="Supplied")          
+            pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_Accept;
+          else if(promotestate=="Accepted")          
+            pstate="Item Accepted!";
+          }
+          this.$.ID_Show_Dialog.FnShowDialog(pstate,"");
           this.$.gs.FnIntentitemReadService();
           document.querySelector('viewintentitem-page').setToggle();
           //document.querySelector('drawermenu-card').FnSetRefereshPage();
@@ -54,12 +106,7 @@
           //document.querySelector('app-homepage').setPage('intenthome-page');
           //document.querySelector('intenthome-page').setPage('View Intent');
           //document.querySelector('viewintent-page').setState();
-        }
-        else
-        {
-          alert("not done");
-        }
-      }   
+      }         
     });
   })();
   </script>

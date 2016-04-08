@@ -185,7 +185,7 @@
             //alert(JSON.stringify(itemarr));
             this.flag=0;
             this.itemflag=0;
-            this.$.itemservice.FnIntentItemwriteService(itemarr)
+            this.$.itemservice.FnIntentItemwriteService(itemarr);
           }
         }
       }

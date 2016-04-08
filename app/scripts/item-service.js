@@ -4,7 +4,7 @@
 /*JS page for item-service component*/
 
 (function() {
-
+var intentregno;
   Polymer({
     is: "item-service",
     ready:function()
@@ -38,7 +38,8 @@
       if(this.no==this.length){
         localStorage.setItem("curr_sess_saveflag","true");
         document.querySelector('item-page').FnBtnDisable();        
-        this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created!",e.detail.response.inwardregno);
+        
+
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
       }
     },
@@ -73,7 +74,7 @@
       }
     },
     FnIntentItemwriteService:function(itemarr){
-      alert(JSON.stringify(itemarr));
+      //alert(JSON.stringify(itemarr));
       this.items=[];
       this.items=itemarr;
       this.length=this.items.length;
@@ -117,9 +118,40 @@
         localStorage.setItem("curr_sess_saveflag","true");
         document.querySelector('intent-page').FnBtnDisable();
         //document.querySelector('intentflow-card').setStateCreate();
-        this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created!",e.detail.response.intentregno);
+        //this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created!",e.detail.response.intentregno);
         //alert("Invoice Stored: "+e.detail.response.inwardregno);
+        this.FnIntentRolereadService(e.detail.response.intentregno);
       }
+    },
+    FnIntentRolereadService:function(intentno){
+      intentregno=intentno;
+      //alert(intentno);
+      this.intentrolereadurl=sessionStorage.getItem("curr_sess_url")+"intentroleread-service";
+      var obj={"intentno":""};
+      obj.intentno=intentno;
+      this.intentroleread=obj;
+      this.$.intentRolereadAjax.generateRequest();
+    },
+    FnIntentRolereadResponse:function(e){
+      if(e.detail.response.itemarr=="succ")
+      {
+      this.promoterolereadurl=sessionStorage.getItem("curr_sess_url")+"promoteroleread-service";
+      var obj={"intentno":""};
+      obj.intentno=intentregno;
+      this.promoteroleread=obj;
+      this.$.promoteRolereadAjax.generateRequest();
+      }
+      else
+      alert("fail");
+      //alert(e.detail.response.itemarr);
+      //alert(JSON.stringify(e.detail.response.itemarr));
+    },
+    FnPromoteRolereadResponse:function(e){
+      var arr=e.detail.response.itemarr;
+      // for(var i=0;i<arr.length;i++){
+        // alert("Intent goes for approval with...."+arr[i].Intent_Approver+"  manager!");
+      // }
+      this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created! Sent for the Approval with  "+arr[0].Intent_Approver,intentregno);
     }
   });
 })();
