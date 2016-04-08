@@ -16,7 +16,7 @@ Polymer({
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='hidden';
       this.$.flowbutton.style.visibility='hidden';
-      this.$.drawerlist.style.visibility='hidden';
+      this.$.drawerlist.style.visibility='visible';
       this.$.searchmenu.style.visibility='visible';
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
