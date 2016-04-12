@@ -6,6 +6,7 @@ Polymer({
   ready: function() {
     //this.page='home-page';
     this.userlabel="Signout";
+
     //this.$.intentflow.style.visibility='hidden';
     
     /*Condition which allow to see the search page and hide the respective components in UI*/
@@ -20,7 +21,7 @@ Polymer({
       this.$.searchmenu.style.visibility='visible';
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
-      //alert("item");
+      
       //alert(localStorage.getItem("curr_sess_wardflag"));
       if(localStorage.getItem("curr_sess_wardflag")=="") {
         //localStorage.setItem("curr_sess_wardflag", "");
@@ -86,25 +87,26 @@ Polymer({
     }
 
     if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
-      //alert("new intent");
-      
-      // this.$.intentflow.style.visibility='visible'; 
-      //this.$.intentflow.style.marginLeft='-5%';  
       if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
-    }
+      }
       else
       {
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('View Intent');
-    }
+      }
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='hidden';
       this.$.flowbutton.style.visibility='hidden';
       this.$.drawerlist.style.visibility='visible';
       this.$.searchmenu.style.visibility='hidden';
     }
+    if(sessionStorage.getItem("curr_sess_roleflag")=="10"||sessionStorage.getItem("curr_sess_roleflag")=="11"){
+      this.$.flow.style.visibility='hidden';
+      document.querySelector('app-homepage').setPage('outwardreport-card');
+    }
+
   },
   /*when user click signout button it will clear the user session*/
   FnToggleSignin:function(){

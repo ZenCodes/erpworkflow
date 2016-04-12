@@ -685,6 +685,25 @@ app.post('/promoteroleread-service',urlencodedParser, function (req, res) {
   });
 });
 
+//Function to fetch the outward items to generate report based on the date
+app.post('/outwarditemfetch',urlencodedParser, function (req, res) {
+  var outdate={"Out_Date":req.query.outdate};
+  console.log(outdate);
+  var Fnoutwarditemfetchcall = require("./app/scripts/dboperations.js");
+  Fnoutwarditemfetchcall.Fnoutwarditemfetch("outwarditemfetch",outdate,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+//Function to fetch the outward items to generate report based on the from and to date
+app.post('/outwarditemfromtofetch',urlencodedParser, function (req, res) {
+  var fromdate=req.query.fromdate;
+  var todate=req.query.todate;
+  var Fnoutwarditemfromtofetchcall = require("./app/scripts/dboperations.js");
+  Fnoutwarditemfromtofetchcall.Fnoutwarditemfromtofetch("outwarditemfromtofetch",fromdate,todate,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 
 //Node server running port number
 app.listen(4000);

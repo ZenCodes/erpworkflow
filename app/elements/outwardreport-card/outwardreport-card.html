@@ -1,0 +1,129 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="..\..\bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
+<link rel="import" href="..\..\bower_components/iron-label/iron-label.html">
+<link rel="import" href="..\..\bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="..\..\bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="../fromtopicker-card/fromtopicker-card.html">
+<link rel="import" href="../report-service/report-service.html">
+<dom-module id="outwardreport-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      iron-label{
+        width: 33%;
+        margin-left: 0%;
+        margin-top: 1%;
+      }
+      .card{
+        @apply(--layout-vertical);
+
+      }
+      .itemcard,.icon{
+        @apply(--layout-horizontal);
+      }
+      .icon{
+        width: 30%;
+        margin-top: 2%;
+        margin-left: 3%;
+      }
+      #forward{
+        margin-left: 5%;
+      }
+      paper-fab{
+        --paper-fab-background: var(--paper-grey-500);
+        --paper-fab-keyboard-focus-background: var(--paper-grey-900);
+      }
+      .topcard{
+        @apply(--layout-horizontal);
+        margin-top: -2%
+      }
+      .input{
+        @apply(--layout-horizontal);
+        margin-left: 50%;
+      }
+
+      #from,#to{
+        margin-left: 5%;
+        width:35%;
+      }
+      .tabcard{
+        margin-top: 3%;
+        width:90%;
+        margin-left: 5%;
+      }
+      .label{      
+        @apply(--layout-horizontal);
+        //width:50%;
+        margin-left: 65%;
+      }
+      
+      #quantity{
+        margin-left: -3%;
+      }
+      #description,#customer,#city{
+        margin-left: -5%;
+      }
+    </style>
+    <div class="card">
+     <!-- <div class="label"> -->
+       <!-- <iron-label value="From date">From Date</iron-label>  -->
+       <!-- <iron-label value="To date">To Date</iron-label> -->
+      <!-- </div> -->
+    <div class="topcard">     
+      <!-- <div class="icon"> -->
+      <!-- <paper-fab id="back" mini icon="arrow-back" on-click="backward"></paper-fab> -->
+      <!-- <paper-fab id="forward" mini icon="arrow-forward" on-click="forward"></paper-fab> -->
+      <!-- <iron-icon icon="icons:arrow-back"></iron-icon> -->
+      <!-- <iron-icon icon="icons:arrow-forward"></iron-icon> -->
+      <!-- </div>       -->
+      <div class="input">
+      <fromtopicker-card></fromtopicker-card>
+      <!-- <paper-input id="from" label="From date" name="from" value="{{fromdate}}"></paper-input> -->
+      <!-- <paper-input id="to" label="To date" name="to" value="{{todate}}"></paper-input> -->
+      </div>
+    </div>
+      <div class="tabcard">
+        <paper-tabs selected="0" no-bar>
+          <paper-tab>Invoice Number</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Item Description</paper-tab><paper-tab>Container/Quantity</paper-tab>
+        </paper-tabs>
+      </div>
+      
+          <template is="dom-repeat" items="{{itemarr}}">
+            <div class="itemcard">
+              <iron-label value="{{item.Invoice_No}}">{{item.Invoice_No}}</iron-label>
+              <iron-label id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</iron-label>
+              <iron-label id="city" value="{{item.City}}">{{item.City}}</iron-label>
+              <iron-label id="description" value="{{item.Product_ID}}">{{item.Product_ID}}</iron-label>
+              <iron-label id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</iron-label>              
+            </div>
+          </template>
+      
+    </div>
+    <report-service id="reportservice" itemarr="{{itemarr}}"></report-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'outwardreport-card',
+     ready:function(){
+        this.$.reportservice.callOutwardService("current");
+     },
+     forward:function(){
+        this.$.reportservice.callOutwardService("forward");
+     },
+     backward:function(){
+      //alert('back');
+        this.$.reportservice.callOutwardService("backward");
+     }
+    });
+  })();
+  </script>
+</dom-module>

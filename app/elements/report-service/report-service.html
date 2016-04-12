@@ -1,0 +1,29 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="report-service">
+  <template>
+     <!--Component to fetch the outward report based on the date-->
+    <iron-ajax
+      id="outwarditemfetchajax"
+      url="{{outwardurl}}"
+      params='{{outwardparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="outwardResponse">
+    </iron-ajax>
+      <!--Component to fetch the outward report based on the From/To date-->
+    <iron-ajax
+      id="outwarditemfromtofetchajax"
+      url="{{outwardfromtourl}}"
+      params='{{outwardfromtoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="outwardfromtoResponse">
+    </iron-ajax>
+  </template>
+  <script src="../../scripts/report-service.js"></script>
+</dom-module>

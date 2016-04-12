@@ -62,6 +62,14 @@
         "rolename": "Ceo ceo",
         "RoleFlag": "9",
         "menu" : ["Add Intent","View Intent"]
+      },
+      {
+        "rolename": "Sales manager",
+        "RoleFlag": "10"
+      },
+      {
+        "rolename": "Logistics manager",
+        "RoleFlag": "11"
       }
     ]
   },

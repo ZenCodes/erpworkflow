@@ -82,6 +82,7 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
                 if(!err){
                   if(rows.length>0){
                     rolename=rows[0].Role_Name;
+                    //console.log(rolename);
                     //Return logged user's rolename to the login card if it is a valid user
                     return callback(rolename);
                   }
@@ -1711,6 +1712,47 @@ console.log(err);
 
 }
 
+//Function fecthes outward items
+exports.Fnoutwarditemfetch=function(pagename,outdate,callback) {
+  //console.log(JSON.stringify(intentno));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
 
+connection.query('SELECT *  from OD_Sales_Outward_Material where ?',[outdate],function(err,rows,fields) {
+if(!err){
+  //console.log(rows);
+return callback(rows); 
+}
+else
+console.log(err);
+});
 
+}
+
+//Function fecthes outward items based on date range
+exports.Fnoutwarditemfromtofetch=function(pagename,fromdate,todate,callback) {
+  //console.log(JSON.stringify(intentno));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+var queryy="SELECT *  from OD_Sales_Outward_Material where Out_Date between '"+fromdate+"' and '"+todate+"'";
+console.log(queryy);
+connection.query(queryy,function(err,rows,fields) {
+if(!err){
+  //console.log(rows);
+return callback(rows); 
+}
+else
+console.log(err);
+});
+
+}
 
