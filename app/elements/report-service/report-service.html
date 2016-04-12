@@ -1,6 +1,7 @@
 
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../dialog-page/dialog-page.html">
 
 <dom-module id="report-service">
   <template>
@@ -24,6 +25,7 @@
       content-type="application/json"
       on-response="outwardfromtoResponse">
     </iron-ajax>
+    <dialog-page id="ID_Show_Dialog"></dialog-page>
   </template>
   <script src="../../scripts/report-service.js"></script>
 </dom-module>
