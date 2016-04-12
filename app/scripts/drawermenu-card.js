@@ -20,6 +20,10 @@ Polymer({is:"drawermenu-card",
       }
     }
     else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+      if(e.target.id=="GRN Flow"){
+        localStorage.setItem("curr_sess_wardflag","");
+        window.location.href="../elements/indexhome.html";
+      }
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");

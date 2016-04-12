@@ -19,7 +19,7 @@
         return month + "/" + day + "/" + year;
       },
       callOutwardService:function(dayval){
-        alert(todayTime);
+        //alert(todayTime);
         var flag=true;
         var obj={"outdate":""};
         if(dayval=="current"){ 
