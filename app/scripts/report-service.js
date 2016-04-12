@@ -27,8 +27,10 @@
         if(dayval=="forward"){
         if(todayTime=="") 
         todayTime = new Date();
+        if((todayTime.getDate()+1)<=(new Date().getDate())){              
         todayTime.setDate(todayTime.getDate() + 1);
         document.querySelector('fromtopicker-card').FnSetToDate(this.FnGetFormattedDate(todayTime));
+        }
         }
         if(dayval=="backward"){
         if(todayTime=="") 
