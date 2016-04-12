@@ -41,7 +41,7 @@ Polymer({
           //alert("You can add only recent entries within 60 days!");
         else{
           this.fromshowdate = moment(this.$.frompicker.date).format('L');
-          localStorage.setItem("curr_sess_fromdate",this.fromshowdate);
+          localStorage.setItem("curr_sess_todaydate",this.fromshowdate);          
           document.querySelector('report-service').FnFromToDateChange(this.fromshowdate,this.toshowdate);          
         }
       }
@@ -65,7 +65,7 @@ Polymer({
           //alert("You can add only recent entries within 60 days!");
         else{
           this.toshowdate = moment(this.$.topicker.date).format('L');
-          localStorage.setItem("curr_sess_todate",this.toshowdate); 
+          localStorage.setItem("curr_sess_todaydate",this.toshowdate); 
           document.querySelector('report-service').FnFromToDateChange(this.fromshowdate,this.toshowdate);            
         }
       }

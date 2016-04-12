@@ -19,6 +19,7 @@
         return month + "/" + day + "/" + year;
       },
       callOutwardService:function(dayval){
+        alert(todayTime);
         var flag=true;
         var obj={"outdate":""};
         if(dayval=="current"){ 
@@ -55,9 +56,9 @@
         if((e.detail.response.itemarr).length==0)
           this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
-
       },
       FnFromToDateChange:function(fromdate,todate){
+        todayTime=new Date(localStorage.getItem("curr_sess_todaydate"));
         var obj={"fromdate":"","todate":""};
         obj.fromdate=fromdate;
         obj.todate=todate;
@@ -69,6 +70,9 @@
         if((e.detail.response.itemarr).length==0)
           this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
+      },
+      FnSetTodayTime:function(){
+        //todayTime=localStorage.getItem("curr_sess_todaydate");
       }
     });
   })();
