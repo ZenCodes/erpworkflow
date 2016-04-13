@@ -706,6 +706,16 @@ app.post('/outwarditemfromtofetch',urlencodedParser, function (req, res) {
   });
 });
 
+//Function to fetch the intent items to create PO
+app.post('/intentpoitemread-service',urlencodedParser, function (req, res) {
+  var intentno=req.query.intentregno;
+  
+  var Fnintentpoitemreadcall = require("./app/scripts/dboperations.js");
+  Fnintentpoitemreadcall.Fnintentpoitemread("intentpoitemread-service",intentno,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
 //Node server running port number
 app.listen(4000);
 

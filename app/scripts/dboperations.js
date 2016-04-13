@@ -1744,7 +1744,7 @@ exports.Fnoutwarditemfromtofetch=function(pagename,fromdate,todate,callback) {
   }
 
 var queryy="SELECT *  from OD_Sales_Outward_Material where Out_Date between '"+fromdate+"' and '"+todate+"'";
-console.log(queryy);
+//console.log(queryy);
 connection.query(queryy,function(err,rows,fields) {
 if(!err){
   //console.log(rows);
@@ -1756,3 +1756,29 @@ console.log(err);
 
 }
 
+//Function fecthes intent items based on intentno to create po
+exports.Fnintentpoitemread=function(pagename,intentno,callback) {
+  //console.log(JSON.stringify(intentno));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+var queryy="select si.Product_ID,od.Item_ID,od.Item_Supplier_ID,ps.Supplier_Name from OD_Stores_Intent_Items si "+ 
+"join MD_Item md on(si.Product_ID=md.Item_Name) join OD_Item od on(md.Item_ID=od.Item_ID) join MD_Purchase_Supplier ps "+
+"on(od.Item_Supplier_ID=ps.Supplier_ID) where si.Intent_Register_Number='"+intentno+"'";
+
+//console.log(queryy);
+
+connection.query(queryy,function(err,rows,fields) {
+if(!err){
+  //console.log(rows);
+return callback(rows); 
+}
+else
+console.log(err);
+});
+
+}

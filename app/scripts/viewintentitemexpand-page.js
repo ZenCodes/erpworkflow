@@ -103,8 +103,8 @@ Polymer({is:"viewintentitemexpand-page",
   {    
     for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){
-      this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);
-      //alert(this.promotestate[i+1]);
+      this.$.intentservice.FnIntentPoItemRead();
+     // this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);      
     }
     }
   }
@@ -121,5 +121,8 @@ Polymer({is:"viewintentitemexpand-page",
     }
   }
   }
+  },
+  FnToggleDialog:function(){
+    this.$.Fn_PoItem_dialog.toggle();
   }
 });

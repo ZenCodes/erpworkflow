@@ -32,6 +32,16 @@
       on-response="FnPromoteRolereadResponse">
     </iron-ajax>
 
+    <!--Component which make request to display the Intent items based on INT no-->
+    <iron-ajax
+      id="intentpoitemajax"
+      url="{{intentpourl}}"
+      params='{{intentpoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnintentpoitemResponse">
+    </iron-ajax>
 
     <grn-service id="gs"></grn-service>
 
@@ -40,11 +50,54 @@
   <script>
   (function() {
     'use strict';
+    var productid="";
     var intentno;
     var promotestate;
+
     Polymer({
       is: 'intent-service',
       ready:function(){
+      },
+      FnIntentPoItemRead:function(){
+         var obj={"intentregno":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         this.intentpourl=sessionStorage.getItem("curr_sess_url")+"intentpoitemread-service";
+         this.intentpoparam=obj;
+         this.$.intentpoitemajax.generateRequest();      
+      },
+      FnintentpoitemResponse:function(e){
+        var suppliernamearr=[];
+        var obj={"itemdes":""};
+        //alert(JSON.stringify(e.detail.respon.se.itemarr));
+        var poitemarr=[];
+        var supplier=[];
+        poitemarr=e.detail.response.itemarr;
+        for(var i=0;i<poitemarr.length;i++){
+          if(productid=="")
+          {            
+            productid=poitemarr[i].Product_ID;
+            obj.itemdes=productid;
+            supplier.push({"name":poitemarr[i].Supplier_Name});
+          }
+          else{           
+            if(poitemarr[i].Product_ID==productid){                            
+             // obj.suppliername[supplier.length]={"name":poitemarr[i].Supplier_Name};
+
+              supplier.push({"name":poitemarr[i].Supplier_Name});
+            }
+            else{              
+                productid=poitemarr[i].Product_ID;
+                obj.itemdes=productid;
+                supplier.push({"name":poitemarr[i].Supplier_Name}); 
+            }
+          }
+          obj.suppliername=supplier;
+          suppliernamearr.push(obj);
+          //alert(JSON.stringify(obj));
+        }
+        document.querySelector('viewintentitemexpand-page').suppliernamearr=suppliernamearr;
+        document.querySelector('viewintentitemexpand-page').FnToggleDialog();
+        //alert(JSON.stringify(suppliernamearr));
       },
       FnIntentStateUpdate:function(pono,updatestate){
         //alert(updatestate);
