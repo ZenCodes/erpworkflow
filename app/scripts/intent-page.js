@@ -18,16 +18,28 @@
       this.idd=0;
       localStorage.setItem("curr_sess_unitset",this.idd);
       /*Dynamic array for creating rows of item card*/
-      this.itemArray=[{id:this.idd,description:'',specification:'',received:'',unit:'',remark:'','measure':''}];
+      this.itemArray=[{id:this.idd,description:'',specification:'',received:'',unit:'',remark:'','measure':'','duedate':''}];
       this.splice('itemArray',1,1);
     },
     FnInputChanged:function(){
       //alert('yes');
       //this.nullflag=1;
     },
+    FnGetFormattedDate:function(todayTime) {
+      //alert(todayTime);        
+        var month = todayTime .getMonth() + 1;
+        if(month<10)
+          month="0"+month;
+        var day = todayTime .getDate();
+        if(day<10)
+          day="0"+day;
+        var year = todayTime .getFullYear();
+        return month + "/" + day + "/" + year;
+      },
     FnSetIteminfo:function(specification,container,qtyreceived,remark){
       this.flag=1;
-      this.invoicedate=localStorage.getItem("localsess_curr_inwarddate");
+      //this.invoicedate=localStorage.getItem("localsess_curr_inwarddate");
+      this.invoicedate=this.FnGetFormattedDate(new Date());
       this.specification=specification;
       this.container=container;
       this.qtyreceived=qtyreceived;
@@ -98,7 +110,8 @@
         }
         if(existflag==0){
           //alert('okay');
-          var obj={"invoicedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          obj.duedate=localStorage.getItem("localsess_curr_inwarddate");
           obj.invoicedate=this.invoicedate;
           obj.itemdes=this.itemdes;
           obj.specification=this.specification;
@@ -112,7 +125,7 @@
           this.idd=this.itemArray.length;
           localStorage.setItem("curr_sess_unitset",this.idd);
           //alert(JSON.stringify(itemarr));
-          this.push('itemArray',{id:this.idd,description:'',specification:'',received:'',unit:'',remark:'','measure':''});
+          this.push('itemArray',{id:this.idd,description:'',specification:'',received:'',unit:'',remark:'','measure':'','duedate':''});
           //alert(JSON.stringify(this.itemArray.length));
           this.flag=0;
           this.itemflag=0;
@@ -170,7 +183,8 @@
             }
           }
           if(existflag==0){
-            var obj={"invoicedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            var obj={"invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            obj.duedate=localStorage.getItem("localsess_curr_inwarddate");
             obj.specification=this.specification;
             obj.invoicedate=this.invoicedate;
             //obj.supplier=this.supname;

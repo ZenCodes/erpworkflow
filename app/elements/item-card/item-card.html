@@ -16,6 +16,7 @@
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../itemlist-card/itemlist-card.html">
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
+<link rel="import" href="../datepicker-card/datepicker-card.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="item-card">
   <style>
@@ -36,33 +37,36 @@
     }
     autocompleteitemlist-card{
     //margin-top: -2%;
-      width:17%;
+      width:14%;
     }
     .container{
       margin-left:2%;
-      width: 12%;
+      width: 9%;
     }
     .measure{
       width: 3%;
       margin-left:-3%;
     }
     .qty{
-      margin-left:3%;
-      width: 12%;
+      margin-left:2%;
+      width: 9%;
     }
     .unit{
       margin-left:-3%;
       width: 5%;
     }
     .cmts{
-      margin-left:2%;
-      width: 13%;
+      margin-left:0%;
+      width: 12%;
       height:4%;
       margin-top:2.5%;
     }
     .specification{
       margin-left:1%;
       width: 12%;
+    }
+    datepicker-card{
+      margin-left: -1%;
     }
   </style>
   <template>
@@ -76,6 +80,7 @@
       <paper-input id="textinput2{{id}}" class="unit" name="unit" id="input{{id}}" value="{{unit}}"  readonly="{{containerunit}}" on-change="FnInputChanged"></paper-input>
       <paper-input id="textinput3{{id}}" class="qty" name="qtyreceived" value="{{qtyreceived}}"  required id="qty" allowed-pattern="[/^\d+(.\d{1,4})?$/]" on-change="FnInputChanged"></paper-input>
       <paper-input id="textinput4{{id}}" class="measure" name="measure" id="input1{{id}}" value="{{measure}}" readonly="{{qtymeasure}}" on-change="FnInputChanged"></paper-input>
+      <datepicker-card id="dateinput{{id}}"></datepicker-card>
       <textarea id="textinput5{{id}}" class="cmts" value="{{comments::input}}" placeholder="Comments..."  on-change="FnInputChanged" required="true"></textarea>
     </div>
   </template>

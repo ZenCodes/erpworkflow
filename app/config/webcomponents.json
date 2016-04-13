@@ -71,7 +71,7 @@
     ]},
     {"Page":[
       {"page":["Add Intent","intent-page"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Container"},{"tab":"Quantity"},{"tab":"Remarks"}],"Intent_date":"Intent date"}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Container"},{"tab":"Quantity"},{"tab":"Due Date"},{"tab":"Remarks"}],"Intent_date":"Intent date"}]}
     ]},
     {"Page":[
       {"page":["View Intent","viewintent-page"]},

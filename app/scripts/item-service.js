@@ -86,9 +86,10 @@ var intentregno;
       //alert(sessionStorage.getItem("loggeduser"));
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"loggedrole":"","loggeduser":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           obj.loggedrole=sessionStorage.getItem("loggedrole");
           obj.loggeduser=sessionStorage.getItem("loggeduser");
+          obj.duedate=this.items[i].duedate;
           obj.intentdate=this.items[i].invoicedate;
           obj.specification=this.items[i].specification;
           obj.itemdes=this.items[i].itemdes;

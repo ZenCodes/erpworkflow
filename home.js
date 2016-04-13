@@ -370,6 +370,7 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
   var itemdes=req.query.itemdes;
   response = {
     Intent_Register_Number:'',
+    Due_Date:req.query.duedate,
     Intent_Date:req.query.intentdate,
     Product_ID:req.query.itemdes,
     Specification:req.query.specification,

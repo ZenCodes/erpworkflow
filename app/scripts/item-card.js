@@ -17,25 +17,29 @@
       var txt_input6="textinput6"+localStorage.getItem("curr_sess_unitset");
       var txt_input2="textinput2"+localStorage.getItem("curr_sess_unitset");
       var txt_input4="textinput4"+localStorage.getItem("curr_sess_unitset");
+      var date_input="dateinput"+localStorage.getItem("curr_sess_unitset");
 
       //It would hide remarks and adjust the style properties of the item card components when reusing this card for the outward mode
       if(localStorage.getItem("curr_sess_wardflag")=="0") {
+        // alert("0");
         if( localStorage.getItem("curr_sess_othersupplierflag")=="true"){
           this.FnChangeField();
           this.querySelector("#" + txt_input6).style.width = '30%';
         }
         else {
-          this.querySelector("#" + auto_input).style.width = '23%';
+          this.querySelector("#" + auto_input).style.width = '25%';
           this.querySelector("#" + txt_input1).style.width = '12%';
-          this.querySelector("#" + txt_input1).style.marginLeft = '-12%';
+          this.querySelector("#" + txt_input1).style.marginLeft = '-14%';
           this.querySelector("#" + txt_input3).style.width = '14%';
           this.querySelector("#" + txt_input3).style.marginLeft = '2%';
           this.querySelector("#" + txt_input5).style.width = '16%';
-          this.querySelector("#" + txt_input5).style.marginLeft = '4.5%';
+          this.querySelector("#" + txt_input5).style.marginLeft = '-9%';
           this.querySelector("#" + txt_input6).style.visibility = 'hidden';
+          this.querySelector("#" + date_input).style.visibility = 'hidden';          
         }
       }
       if(localStorage.getItem("curr_sess_wardflag")=="1") {
+        // alert("1");
         this.querySelector("#" + auto_input).style.width = '27%';
         this.querySelector("#" + txt_input1).style.width = '19%';
         this.querySelector("#" + txt_input1).style.marginLeft = '-10%';
@@ -43,18 +47,22 @@
         this.querySelector("#" + txt_input3).style.marginLeft = '5%';
         this.querySelector("#" + txt_input5).style.visibility = 'hidden';
         this.querySelector("#" + txt_input6).style.visibility = 'hidden';
+        this.querySelector("#" + date_input).style.visibility = 'hidden';
       }
       else if(localStorage.getItem("curr_sess_wardflag")=="2") {
+        // alert("2");
         //alert('hi'+this.querySelector("#" + txt_input6));
         this.querySelector("#" + auto_input).style.width = '20%';
         this.querySelector("#" + txt_input1).style.width = '9%';
-        this.querySelector("#" + txt_input6).style.marginLeft = '0%';
-        this.querySelector("#" + txt_input6).style.width = '12%';
+        this.querySelector("#" + txt_input6).style.marginLeft = '-2%';
+        this.querySelector("#" + txt_input6).style.width = '9%';
         this.querySelector("#" + txt_input6).style.visibility = 'visible';
+        this.querySelector("#" + date_input).style.visibility = 'visible';
       }
 
     },
     FnChangeField:function(){
+      //alert('yes');
       var auto_input="autoinput"+localStorage.getItem("curr_sess_unitset");
       var txt_input1="textinput1"+localStorage.getItem("curr_sess_unitset");
       var txt_input3="textinput3"+localStorage.getItem("curr_sess_unitset");
@@ -62,10 +70,12 @@
       var txt_input6="textinput6"+localStorage.getItem("curr_sess_unitset");
       var txt_input2="textinput2"+localStorage.getItem("curr_sess_unitset");
       var txt_input4="textinput4"+localStorage.getItem("curr_sess_unitset");
+      var date_input="dateinput"+localStorage.getItem("curr_sess_unitset");
       this.querySelector("#" + auto_input).style.visibility = 'hidden';
+      this.querySelector("#" + date_input).style.visibility = 'hidden';
       //this.querySelector("#" + txt_input1).style.width = '9%';
 
-      this.querySelector("#" + txt_input6).style.width = '24%';
+      this.querySelector("#" + txt_input6).style.width = '22%';
       this.querySelector("#" + txt_input6).style.visibility = 'visible';
       this.querySelector("#" + txt_input6).style.marginLeft = '-25%';
 
@@ -85,7 +95,7 @@
       this.querySelector("#" + txt_input5).style.visibility = 'visible';
       this.querySelector("#" + txt_input5).style.width = '16%';
 
-      this.querySelector("#" + txt_input5).style.marginLeft = '3.5%';
+      this.querySelector("#" + txt_input5).style.marginLeft = '-10%';
       //this.querySelector("#" + txt_input5).style.width = '5%';
 
       this.containerunit=false;

@@ -26,8 +26,8 @@
         @apply(--layout-vertical);
         position: relative;
       //background-color: rgb(255, 255, 255);
-        width: 80%;
-        left: 5%;
+        width: 85%;
+        left: 3%;
         margin-top: -5%;
       }
       .banner1{
@@ -85,7 +85,7 @@
         width: 26%;
       }
       .delete{
-        margin-top:2%;
+        margin-top:2.5%;
 
       }
       .additem,.save{
@@ -107,10 +107,10 @@
     <!--Template which binds dynamic label to this card-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
       <div class="card">
-        <div class="datetitle"><paper-item id="datetitle" label="Intent date" noink>{{lbl.Intent_date}}</paper-item></div>
-        <div class="banner1">
-          <datepicker-card></datepicker-card>
-        </div>
+        <!-- <div class="datetitle"><paper-item id="datetitle" label="Intent date" noink>{{lbl.Intent_date}}</paper-item></div> -->
+        <!-- <div class="banner1"> -->
+          <!-- <datepicker-card></datepicker-card> -->
+        <!-- </div> -->
         <div class="banner2">
           <paper-tabs selected="0" noink id="ptab">
             //Dynamically generating tabs from config file
@@ -123,7 +123,7 @@
             <div class="itemcard">
               <div><item-card id="{{item.id}}" description="{{item.description}}" specification="{{item.specification}}" measure="{{item.measure}}" received="{{item.received}}"  remark="{{item.remark}}"></item-card>
               </div>
-              <div class="delete"><paper-icon-button icon="icons:delete" on-click="FnDeleteItem" style="right:10px;height:40px;"></paper-icon-button></div>
+              <div class="delete"><paper-icon-button icon="icons:delete" on-click="FnDeleteItem" style="right:35px;height:40px;"></paper-icon-button></div>
             </div>
           </template>
           <div layout horizontal class="buttons">
