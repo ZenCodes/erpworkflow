@@ -47,13 +47,14 @@
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
   </template>
+  <script src="//ajax.googleapis.com/ajax/libs/dojo/1.6.3/dojo/dojo.xd.js"></script>
   <script>
   (function() {
     'use strict';
     var productid="";
     var intentno;
     var promotestate;
-
+    
     Polymer({
       is: 'intent-service',
       ready:function(){
@@ -66,11 +67,13 @@
          this.$.intentpoitemajax.generateRequest();      
       },
       FnintentpoitemResponse:function(e){
-        var suppliernamearr=[];
+        var suppliernamearr=[];    
         var obj={"itemdes":""};
         //alert(JSON.stringify(e.detail.respon.se.itemarr));
         var poitemarr=[];
         var supplier=[];
+        var finalarr=[];
+        var flag=0;
         poitemarr=e.detail.response.itemarr;
         for(var i=0;i<poitemarr.length;i++){
           if(productid=="")
@@ -82,7 +85,7 @@
           else{           
             if(poitemarr[i].Product_ID==productid){                            
              // obj.suppliername[supplier.length]={"name":poitemarr[i].Supplier_Name};
-
+              flag=1;
               supplier.push({"name":poitemarr[i].Supplier_Name});
             }
             else{              
@@ -93,12 +96,26 @@
           }
           obj.suppliername=supplier;
           suppliernamearr.push(obj);
-          //alert(JSON.stringify(obj));
+          //alert(JSON.stringify(suppliernamearr));
         }
-        document.querySelector('viewintentitemexpand-page').suppliernamearr=suppliernamearr;
+ 
+        var newarr = [];
+        var unique = {};
+ 
+        dojo.forEach(suppliernamearr, function(item) {
+          if (!unique[item.age]) {
+          newarr.push(item);
+          unique[item.age] = item;
+          }
+        });
+
+        // alert(JSON.stringify(newarr));
+        
+        document.querySelector('viewintentitemexpand-page').suppliernamearr=newarr;
         document.querySelector('viewintentitemexpand-page').FnToggleDialog();
         //alert(JSON.stringify(suppliernamearr));
       },
+   
       FnIntentStateUpdate:function(pono,updatestate){
         //alert(updatestate);
         intentno=sessionStorage.getItem("sess_curr_intentregno");
