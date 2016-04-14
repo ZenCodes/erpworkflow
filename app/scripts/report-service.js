@@ -54,7 +54,8 @@
       outwardResponse:function(e){
         //alert(JSON.stringify(e.detail.response.itemarr));
         if((e.detail.response.itemarr).length==0)
-          this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
+          alert("No Items Found!");
+          //this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
       },
       FnFromToDateChange:function(fromdate,todate){
@@ -68,7 +69,8 @@
       },
       outwardfromtoResponse:function(e){
         if((e.detail.response.itemarr).length==0)
-          this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
+          alert("No Items Found!");
+          //this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
       },
       FnSetTodayTime:function(){

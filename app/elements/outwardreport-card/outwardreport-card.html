@@ -54,8 +54,8 @@
       }
       .tabcard{
         margin-top: 3%;
-        width:90%;
-        margin-left: 5%;
+        width:100%;
+        margin-left: 0%;
       }
       .label{      
         @apply(--layout-horizontal);
@@ -63,11 +63,23 @@
         margin-left: 65%;
       }
       
-      #quantity{
+      /*#quantity{
         margin-left: -3%;
       }
       #description,#customer,#city{
         margin-left: -5%;
+      }*/
+      #invoice{
+        margin-left: 5%;
+      }
+      paper-item{
+        width:20%;
+      }
+      hr{
+        color: #000;
+        background-color: #000;
+        height: 1px;
+        width: 90%;
       }
     </style>
     <div class="card">
@@ -93,14 +105,14 @@
           <paper-tab>Invoice Number</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Item Description</paper-tab><paper-tab>Container/Quantity</paper-tab>
         </paper-tabs>
       </div>
-      
+      <hr/>
           <template is="dom-repeat" items="{{itemarr}}">
             <div class="itemcard">
-              <iron-label value="{{item.Invoice_No}}">{{item.Invoice_No}}</iron-label>
-              <iron-label id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</iron-label>
-              <iron-label id="city" value="{{item.City}}">{{item.City}}</iron-label>
-              <iron-label id="description" value="{{item.Product_ID}}">{{item.Product_ID}}</iron-label>
-              <iron-label id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</iron-label>              
+              <paper-item id="invoice" value="{{item.Invoice_No}}">{{item.Invoice_No}}</paper-item>
+              <paper-item id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</paper-item>
+              <paper-item id="city" value="{{item.City}}">{{item.City}}</paper-item>
+              <paper-item id="description" value="{{item.Product_ID}}">{{item.Product_ID}}</paper-item>
+              <paper-item id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</paper-item>              
             </div>
           </template>
       
