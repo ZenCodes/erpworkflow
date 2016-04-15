@@ -83,11 +83,12 @@
         width: 95%;
       }
       #description{
-        margin-left: -3%;
-        width:27%;
+        margin-left: 0%;
+        width:30%;
       }
       #quantity{
         margin-left: 2%;
+        width:30%;
       }
       .itemcard:nth-child(odd) {
        /* color 'em red */
@@ -96,6 +97,9 @@
       .itemcard:nth-child(even) {
         background-color: white; 
       
+      }
+      #customer,#date,#invoice{
+        margin-left: 3%;
       }
       .itemcard{
         width: 96%;
@@ -122,18 +126,22 @@
     </div>
       <div class="tabcard">
         <paper-tabs selected="0" no-bar>
-          <paper-tab>Invoice Number</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Item Description</paper-tab><paper-tab>Container/Quantity</paper-tab><paper-tab>Date</paper-tab>
+          <paper-tab>Item Description</paper-tab><paper-tab>Container/Quantity</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Invoice Number</paper-tab><paper-tab>Date</paper-tab>
         </paper-tabs>
       </div>
       <hr/>
           <template is="dom-repeat" items="{{itemarr}}">
             <div class="itemcard">
-              <paper-item id="invoice" value="{{item.Invoice_No}}">{{item.Invoice_No}}</paper-item>
-              <paper-item id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</paper-item>
-              <paper-item id="city" value="{{item.City}}">{{item.City}}</paper-item>
+              
               <paper-item id="description" value="{{item.Product_ID}}">{{item.Product_ID}}</paper-item>
               <paper-item id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</paper-item> 
-              <paper-item id="date" value="{{item.Out_Date}}">{{item.Out_Date}}</paper-item>              
+
+              <paper-item id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</paper-item>
+              <paper-item id="city" value="{{item.City}}">{{item.City}}</paper-item>
+             
+              <paper-item id="invoice" value="{{item.Invoice_No}}">{{item.Invoice_No}}</paper-item>
+              <paper-item id="date" value="{{item.Out_Date}}">{{item.Out_Date}}</paper-item> 
+
             </div>
           </template>
       
