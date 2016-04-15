@@ -32,19 +32,19 @@
       },
       {
         "rolename": "Purchase manager",
-         "RoleFlag": "4",
+        "RoleFlag": "4",
         "status":"Purchase",
         "newstatus":"OldPurchase",
         "updatestatus":"Confirm",
         "menu" : ["GRN Flow","View Intent"]
       },
       {
-        "rolename": "Admin manager",
+        "rolename": "Administration manager",
         "RoleFlag": "5",
         "menu" : ["View Intent"]
       },
       {
-        "rolename": "Admin admin",
+        "rolename": "Administration admin",
         "RoleFlag": "6",
         "menu" : ["Add Item","Add Supplier"]
       },
