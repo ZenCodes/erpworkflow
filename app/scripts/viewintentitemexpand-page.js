@@ -6,7 +6,8 @@
  */
 Polymer({is:"viewintentitemexpand-page",
   ready:function(){
-    this.hide=true;
+    this.poraiseflag=0;
+    this.hidesupplier=true;
     this.promotestate=["Created","Approved","POCreated","Accepted"];
     this.promotebtn=["Approve","Create PO","Accept"];
     this.inpromotestate=["Created","Approved","Supplied","Accepted"];
@@ -96,33 +97,46 @@ Polymer({is:"viewintentitemexpand-page",
     }
   },
   FnPromoteState:function(e){
-  if(this.promote=="Create PO"){
-  if(this.pono==null||this.pono=="")
-    this.$.pono.validate();
-  else
-  {    
+  if(this.promote=="Create PO"&&this.poraiseflag==0){
+  //if(this.pono==null||this.pono=="")
+    //this.$.pono.validate();
+  //else
+  //{    
     for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){
       this.$.intentservice.FnIntentPoItemRead();
      // this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);      
-    }
+    //}
     }
   }
+  }
+  else if(this.promote=="Create PO"&&this.poraiseflag==1){
+    for(var i=0;i<(this.promotebtn).length;i++){
+      if(this.promote==this.promotebtn[i])
+        this.$.intentservice.FnIntentStateUpdate(this.promotestate[i+1]);
+    }
   }
   else{
   for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){
-      this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);
+      this.$.intentservice.FnIntentStateUpdate(this.promotestate[i+1]);
       //alert(this.promotestate[i+1]);
     }
     else if(this.promote==this.inpromotebtn[i]){
-      this.$.intentservice.FnIntentStateUpdate(this.pono,this.inpromotestate[i+1]);
+      this.$.intentservice.FnIntentStateUpdate(this.inpromotestate[i+1]);
       //alert(this.promotestate[i+1]);
     }
   }
   }
   },
-  FnToggleDialog:function(){
-    this.$.Fn_PoItem_dialog.toggle();
+  FnShowSupplierDiv:function(){
+    this.hidesupplier=false;    
+  },
+  FnSelectSupplier:function(e){
+      var selectedsupplier=e.target.selectedItem.textContent.trim();
+      this.$.intentservice.FnCreatePO(selectedsupplier);      
+  },
+  FnSetPoRaiseFlag:function(){
+    this.poraiseflag=1;
   }
 });

@@ -415,7 +415,7 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   //console.log(req.query.intentregno);
   cond={Intent_Register_Number:req.query.intentregno}
   cond1={Product_ID:req.query.itemdes}
-  ponumber={PO_Number:req.query.pono}
+  //ponumber={PO_Number:req.query.pono}
   //updatecolumn={Intent_State:req.query.updatestate};
   //updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
   if(req.query.updatestate=="Approved")
@@ -428,7 +428,7 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   updaterolecolumn={Intent_Accepted_By:req.query.loggedrole};
   updatecolumn={Intent_State:req.query.updatestate};
   var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
-  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,ponumber,updatecolumn,updaterolecolumn,function(returnval){
+  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,updatecolumn,updaterolecolumn,function(returnval){
     res.status(200).json(returnval);
   });
 });
@@ -709,12 +709,43 @@ app.post('/outwarditemfromtofetch',urlencodedParser, function (req, res) {
 //Function to fetch the intent items to create PO
 app.post('/intentpoitemread-service',urlencodedParser, function (req, res) {
   var intentno=req.query.intentregno;
+  var itemdes=req.query.itemdes;
+  
+  var Fnintentpoitemreadcall = require("./app/scripts/dboperations.js");
+  Fnintentpoitemreadcall.Fnintentpoitemread("intentpoitemread-service",intentno,itemdes,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
+//Function to create po for item in an intent
+app.post('/itempocreate-service',urlencodedParser, function (req, res) {
+  var supplier=req.query.supplier;
+  var intentno=req.query.intentregno;
+  var itemdes=req.query.itemdes;
+
+  var response={
+    Supplier_Name:req.query.supplier,
+    Intent_Register_Number:req.query.intentregno,
+    Product_ID:req.query.itemdes,
+    PO_Number:''
+  };
+  
+  var Fnitempocreatecall = require("./app/scripts/dboperations.js");
+  Fnitempocreatecall.Fnitempocreate("itempocreate-service",response,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
+/*app.post('/intentpoitemread-service',urlencodedParser, function (req, res) {
+  var intentno=req.query.intentregno;
   
   var Fnintentpoitemreadcall = require("./app/scripts/dboperations.js");
   Fnintentpoitemreadcall.Fnintentpoitemread("intentpoitemread-service",intentno,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
-});
+});*/
 
 //Node server running port number
 app.listen(4000);

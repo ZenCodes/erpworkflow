@@ -1,0 +1,37 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_componentsiron-icons/iron-icons.html">
+<link rel="import" href="..\..\bower_componentspaper-icon-button.html">
+
+<dom-module id="intentviewtype-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>
+      <paper-icon-button noink icon="menu" title="Intent View" on-click="FnShowIntentView"></paper-icon-button>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'intentviewtype-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'intentviewtype-card',
+          notify: true
+        }
+      },
+      FnShowIntentView:function(){
+        alert('intentview');
+      }
+    });
+  })();
+  </script>
+</dom-module>

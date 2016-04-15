@@ -75,7 +75,7 @@
     ]},
     {"Page":[
       {"page":["View Intent","viewintent-page"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Intent Register No"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Status"},{"tab":"Intent Location"}]}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Intent Register No"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Status"},{"tab":"Item Location"}]}]}
     ]},
     {"Page":[
       {"page":["viewintentitemexpand-page","viewintentitemexpand-page"]},
@@ -126,6 +126,10 @@
               {"page":["itemsearch-card","itemsearch-card"]},
               {"Label":[{"Item_Name":"Enter Item Name","Item_ID":"Enter Item ID","Item_Name_error":"Enter Item Name",
                 "Item_ID_error":"Enter Item ID"}]}
-      ]}
+      ]},
+        {"Page":[
+      {"page":["Intent View","intentview-card"]},
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Intent Register No"}]}]}
+    ]},
   ]
 

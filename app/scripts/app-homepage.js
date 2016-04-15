@@ -7,7 +7,9 @@ Polymer({
     //this.page='home-page';
     this.userlabel="Signout";
 
-    //this.$.intentflow.style.visibility='hidden';
+    this.$.intentview.style.visibility='hidden';
+    if(sessionStorage.getItem("curr_sess_roleflag")=="4")
+      this.$.intentview.style.visibility='visible';
     
     /*Condition which allow to see the search page and hide the respective components in UI*/
     if(sessionStorage.getItem("curr_sess_roleflag")=="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"){

@@ -14,7 +14,7 @@
 
 <link rel="import" href="../intent-page/intent-page.html">
 <link rel="import" href="../viewintent-page/viewintent-page.html">
-
+<link rel="import" href="../intentview-card/intentview-card.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="intenthome-page">
   <template>
@@ -46,9 +46,13 @@
         <section data-category="Add Intent">
           <intent-page></intent-page>
         </section>
-        <!--Section for showing view intent page to the corrsponding role-->
+        <!--Section for showing view intent item page to the corrsponding role-->
         <section data-category="View Intent">
           <viewintent-page></viewintent-page>
+        </section>
+        <!--Section for showing intent view page to the corrsponding role-->
+        <section data-category="Intent View">
+          <intentview-card></intentview-card>
         </section>
       </iron-pages>
     </div>

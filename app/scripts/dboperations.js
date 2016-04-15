@@ -66,23 +66,28 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
   connection.query('SELECT * FROM '+ Config_tables[0] +' WHERE ? and ? ',[username,password], function(err, rows) {
     if(!err)
     {
+      console.log(rows);
       if(rows.length>0)
       {
          var depid={'Department_ID':rows[0].Department_ID};
          var roleid=rows[0].Role_ID;
+         console.log(depid);
          //Fetching Department of the logged user and identifying the role
          connection.query('SELECT * FROM '+ Config_tables[1] +' WHERE ? ',[depid], function(err, rows) {
           if(!err){
+            console.log(rows);
             if(rows.length>0)
             {
               var depname=rows[0].Department_Name;
               var Role_Name=depname+" "+roleid;
               var cond={"Role_Name":Role_Name};
+              console.log(cond);
               connection.query('SELECT * FROM '+ Config_tables[2] +' WHERE ? ',[cond], function(err, rows) {
+                console.log(rows);
                 if(!err){
                   if(rows.length>0){
                     rolename=rows[0].Role_Name;
-                    //console.log(rolename);
+                    console.log(rolename);
                     //Return logged user's rolename to the login card if it is a valid user
                     return callback(rolename);
                   }
@@ -1183,7 +1188,7 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,cond1,callback) {
 }
 
 //Function to promote intent
-exports.FnIntentStateUpdate=function(pagename,cond,cond1,ponumber,updatecolumn,updaterolecolumn,callback) {
+exports.FnIntentStateUpdate=function(pagename,cond,cond1,updatecolumn,updaterolecolumn,callback) {
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
@@ -1191,8 +1196,10 @@ exports.FnIntentStateUpdate=function(pagename,cond,cond1,ponumber,updatecolumn,u
     }
   }
 
+  //console.log(updaterolecolumn);
+
   //console.log(JSON.stringify(ponumber)+" "+JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(cond)+" "+JSON.stringify(cond1));
-  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,ponumber,cond,cond1], function(err, rows) {
+  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,cond,cond1], function(err, rows) {
     if(!err)
     {
       //console.log('updated');
@@ -1757,7 +1764,7 @@ console.log(err);
 }
 
 //Function fecthes intent items based on intentno to create po
-exports.Fnintentpoitemread=function(pagename,intentno,callback) {
+exports.Fnintentpoitemread=function(pagename,intentno,itemdes,callback) {
   //console.log(JSON.stringify(intentno));
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -1766,9 +1773,13 @@ exports.Fnintentpoitemread=function(pagename,intentno,callback) {
     }
   }
 
+// var queryy="select si.Product_ID,od.Item_ID,od.Item_Supplier_ID,ps.Supplier_Name from OD_Stores_Intent_Items si "+ 
+// "join MD_Item md on(si.Product_ID=md.Item_Name) join OD_Item od on(md.Item_ID=od.Item_ID) join MD_Purchase_Supplier ps "+
+// "on(od.Item_Supplier_ID=ps.Supplier_ID) where si.Intent_Register_Number='"+intentno+"'";
+
 var queryy="select si.Product_ID,od.Item_ID,od.Item_Supplier_ID,ps.Supplier_Name from OD_Stores_Intent_Items si "+ 
 "join MD_Item md on(si.Product_ID=md.Item_Name) join OD_Item od on(md.Item_ID=od.Item_ID) join MD_Purchase_Supplier ps "+
-"on(od.Item_Supplier_ID=ps.Supplier_ID) where si.Intent_Register_Number='"+intentno+"'";
+"on(od.Item_Supplier_ID=ps.Supplier_ID) where si.Intent_Register_Number='"+intentno+"' and si.Product_ID='"+itemdes+"'";
 
 //console.log(queryy);
 
@@ -1782,3 +1793,41 @@ console.log(err);
 });
 
 }
+
+//Function to create poforan item in an intent
+exports.Fnitempocreate=function(pagename,response,callback) {
+  //console.log(JSON.stringify(intentno));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+ dummyno = {
+              dummy_column : 1
+          };
+  //Generating inward sequence no
+  connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
+  if(!err)
+    {
+     console.log('seq generated!');
+     connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
+      if(!err){
+        response.PO_Number=rows[0].PO_Number;
+        connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
+        if(!err){
+        //console.log(rows);
+        return callback('succ'); 
+        }
+        else
+        return callback('fail'); 
+        });
+      }
+      else
+        console.log(err);
+     });
+    }
+  });
+}
+

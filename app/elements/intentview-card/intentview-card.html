@@ -10,18 +10,14 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../viewintentitem-page/viewintentitem-page.html">
+<link rel="import" href="../intentviewitem-card/intentviewitem-card.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
-<link rel="import" href="../intentviewtype-card/intentviewtype-card.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<dom-module id="viewintent-page">
+<dom-module id="intentview-card">
   <template>
     <style is="custom-style">
-    .card{
-      margin-top: 2%;
-    }
+
       paper-tabs{
         background-color: #e6e6e6;
         width: 90%;
@@ -34,12 +30,7 @@
         font-size: 15px;
         text-transform: none;
       }
-      .intentview{
-        margin-left: 90%;
-        margin-top: -6%;
-      }
     </style>
-    
     <!--Template which has card template-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
       <div class="card">
@@ -51,19 +42,18 @@
         <!--Template which bind items under the current logged role state-->
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <div class="itemcard">
-            <div><viewintentitem-page itemno="{{item.itemno}}" intentregno="{{item.intentregno}}" itemid="{{item.itemid}}" itemlocation="{{item.itemlocation}}" intentdate="{{item.intentdate}}" itemdes="{{item.itemdes}}" quantity="{{item.quantity}}" unit="{{item.unit}}" intentstate="{{item.intentstate}}"></viewintentitem-page>
-            </div>
-          </div>
+            <div><intentviewitem-card intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></intentviewitem-card>
+            </div></div>
         </template>
+
       </div>
     </template>
-
     <!--Calling webcomponent service to bind label info-->
     <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
     <!--Binding items to the above template-->
     <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
   </template>
   <!--JS file import-->
-  <script src="../../scripts/viewintent-page.js"></script>
+  <script src="../../scripts/intentview-card.js"></script>
 
 </dom-module>

@@ -1,0 +1,66 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="stylesheet" href="../../bower_components/paper-styles/demo.css">
+
+<dom-module id="poitemdialog-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <paper-dialog id="Fn_PoItem_dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+    <div class="dialogdiv">
+    <template is="dom-repeat" items="{{suppliernamearr}}" as="out">
+    <div class="innerdialog">
+    <paper-item>{{out.itemdes}}</paper-item>   
+    <paper-dropdown-menu label="Select">
+    <paper-menu class="dropdown-content">
+      <template is="dom-repeat" items="{{out.suppliername}}">
+        <paper-item value="{{item.name}}">{{item.name}}</paper-item>
+      </template>
+    </paper-menu>
+    </paper-dropdown-menu>
+    </div>  
+    </template>
+    </div>
+    <paper-button dialog-dismiss autofocus on-click="FnClickOk">OK</paper-button>
+    </paper-dialog>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'poitemdialog-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'poitemdialog-card',
+          notify: true
+        }
+      },
+      
+  FnToggleDialog:function(){   
+      //this.$.Fn_PoItem_dialog.toggle();
+      document.querySelector('Fn_PoItem_dialog').open();
+  },
+  FnClickOk:function(){
+    document.querySelector('Fn_PoItem_dialog').open();
+    //this.$.Fn_PoItem_dialog.close();
+  }
+    });
+  })();
+  </script>
+</dom-module>
