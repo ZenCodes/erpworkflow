@@ -29,7 +29,7 @@
     </style>
     <!--component which invokes the predefined date picker control-->
     <div class="card">
-    <paper-fab disabled="{{backward}}" id="back" mini icon="arrow-back" on-click="FnBackward"></paper-fab>
+    <!-- <paper-fab disabled="{{backward}}" id="back" mini icon="arrow-back" on-click="FnBackward"></paper-fab> -->
     <div class="div1">
       <paper-input class="btn" Label="From date" on-click="FnShowFromDialog" raised value="{{fromshowdate}}"></paper-input>
       <paper-dialog id="fromdialog" class="paper-date-picker-dialog" modal on-iron-overlay-closed="FnDismissFromDialog">
@@ -40,7 +40,7 @@
         </div>
       </paper-dialog>
     </div>
-    <paper-fab disabled="{{forward}}" id="forward" mini icon="arrow-forward" on-click="FnForward"></paper-fab>
+    <!-- <paper-fab disabled="{{forward}}" id="forward" mini icon="arrow-forward" on-click="FnForward"></paper-fab> -->
     <div class="div2">
       <paper-input class="btn" label="To date" on-click="FnShowToDialog" raised value="{{toshowdate}}"></paper-input>
       <paper-dialog id="todialog" class="paper-date-picker-dialog" modal on-iron-overlay-closed="FnDismissToDialog">

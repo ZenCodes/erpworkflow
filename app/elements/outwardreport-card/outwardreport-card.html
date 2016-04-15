@@ -45,7 +45,7 @@
       }
       .input{
         @apply(--layout-horizontal);
-        margin-left: 50%;
+        margin-left: 55%;
       }
 
       #from,#to{
@@ -74,12 +74,32 @@
       }
       paper-item{
         width:20%;
+        font-size: 14px;
       }
       hr{
         color: #000;
         background-color: #000;
         height: 1px;
-        width: 90%;
+        width: 95%;
+      }
+      #description{
+        margin-left: -3%;
+        width:27%;
+      }
+      #quantity{
+        margin-left: 2%;
+      }
+      .itemcard:nth-child(odd) {
+       /* color 'em red */
+       background-color: #f1f1f1;
+      }
+      .itemcard:nth-child(even) {
+        background-color: white; 
+      
+      }
+      .itemcard{
+        width: 96%;
+        margin-left: 2%;
       }
     </style>
     <div class="card">
@@ -102,7 +122,7 @@
     </div>
       <div class="tabcard">
         <paper-tabs selected="0" no-bar>
-          <paper-tab>Invoice Number</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Item Description</paper-tab><paper-tab>Container/Quantity</paper-tab>
+          <paper-tab>Invoice Number</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Item Description</paper-tab><paper-tab>Container/Quantity</paper-tab><paper-tab>Date</paper-tab>
         </paper-tabs>
       </div>
       <hr/>
@@ -112,7 +132,8 @@
               <paper-item id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</paper-item>
               <paper-item id="city" value="{{item.City}}">{{item.City}}</paper-item>
               <paper-item id="description" value="{{item.Product_ID}}">{{item.Product_ID}}</paper-item>
-              <paper-item id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</paper-item>              
+              <paper-item id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</paper-item> 
+              <paper-item id="date" value="{{item.Out_Date}}">{{item.Out_Date}}</paper-item>              
             </div>
           </template>
       
