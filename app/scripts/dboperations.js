@@ -1953,9 +1953,9 @@ exports.FnIntentviewPocreate=function(pagename,response,callback) {
       {
          //Generating inward sequence no
   connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
-  if(!err)
+    if(!err)
     {
-     console.log('seq generated!');     
+    // console.log('seq generated!');     
      connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
       if(!err){
         response.PO_Number=rows[0].PO_Number;
@@ -1979,7 +1979,6 @@ exports.FnIntentviewPocreate=function(pagename,response,callback) {
  
 }
 
-
 //Function to promote intent
 exports.FnViewintentpromte=function(pagename,updatecolumn,updaterolecolumn,intentno,callback) {
   var Config_tables=[];
@@ -1989,18 +1988,16 @@ exports.FnViewintentpromte=function(pagename,updatecolumn,updaterolecolumn,inten
     }
   }
 
-  //console.log(updaterolecolumn);
-
-  console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
+  //console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
   connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? ',[updatecolumn,updaterolecolumn,intentno], function(err, rows) {
     if(!err)
     {
-      console.log('updated');
+      //console.log('updated');
        return callback({"returnval":"succ"});
      
     }
     else{
-      console.log(err);
+      //console.log(err);
       return callback({"returnval":"fail"});
     }
   });

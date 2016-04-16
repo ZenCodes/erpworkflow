@@ -283,10 +283,11 @@
         //alert(e.detail.response.itemarr);
       },
       FnviewintentpromteResponse:function(e){
-        if(e.detail.response.itemarr=='succ')
+        //alert(e.detail.response.itemarr);
+        if(JSON.stringify(e.detail.response.itemarr=='succ'))
           alert("Po created!");
         else
-          alert('PO created!');
+          alert('PO is not created!');
       }
 
     });
