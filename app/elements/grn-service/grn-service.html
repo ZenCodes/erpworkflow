@@ -48,6 +48,17 @@
       content-type="application/json"
       on-response="intentitemreadResponse">
     </iron-ajax>
+
+     <!--Component which make request to display the view Intent items based on INT no-->
+    <iron-ajax
+      id="intentviewitemreadajax"
+      url="{{intentviewurl}}"
+      params='{{intentviewparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="intentviewitemreadResponse">
+    </iron-ajax>
     <!--<physicqualifyread-card id="pqrc"></physicqualifyread-card>-->
     <!--Component which make request to display the Intent items based on INT no-->
     <iron-ajax

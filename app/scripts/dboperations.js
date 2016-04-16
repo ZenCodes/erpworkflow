@@ -1831,3 +1831,178 @@ exports.Fnitempocreate=function(pagename,response,callback) {
   });
 }
 
+//Function which fetch the intent item info
+exports.FnIntentViewItemRead=function(pagename,loggeduser,loggedrole,callback) {
+  var queryy;
+  var Config_tables=[];
+  var Config_columns=[];
+  for(var i=0;i<obj.length;i++) {
+    if (obj[i].name == pagename) {
+      Config_tables = obj[i].value;
+      Config_columns = obj[i].columns;
+    }
+  }
+   
+    var itemarr=[];
+
+      if(loggedrole=="Purchase manager")
+        //queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved') and os.state='external' order by os.Intent_Register_Number DESC"; 
+      queryy="SELECT distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Intent_State in('Approved') and state='external' order by Intent_Register_Number DESC"; 
+   
+      connection.query(queryy,function(err, rows, fields) {
+    
+      if(!err){
+        //console.log('coming..');
+        for(var i=0;i<rows.length;i++)
+        {
+          var obj={"Itemno":"","intentregno":"","intentdate":"","state":"","itemdes":"","quantity":"","unit":"","intentstate":"","itemid":"","itemlocation":""};
+          obj.itemno=rows[i].Intent_Register_Number+rows[i].Item_ID;
+          obj.intentregno=rows[i].Intent_Register_Number;
+          obj.intentdate=rows[i].Intent_Date;
+          obj.itemdes=rows[i].Product_ID;
+          obj.unit=rows[i].unit+" "+rows[i].Unit_Measure;
+          obj.quantity=rows[i].Quantity+" "+rows[i].Quantity_Measure;
+          obj.intentstate=rows[i].Intent_State;
+          obj.state=rows[i].state;
+          obj.itemid=rows[i].Item_ID;
+          obj.itemlocation=rows[i].Store_Location_Name;
+          itemarr.push(obj);
+        }
+        //console.log(JSON.stringify(itemarr));
+       return callback(itemarr);
+      }
+      else
+        console.log(err);
+    });
+    //}
+    //return callback(itemarr);
+  //}); 
+}
+
+//Function fetches the expanded intent item card info
+exports.FnIntentviewExpandItemFetch=function(pagename,cond,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM OD_Stores_Intent_Items WHERE ? ',[cond], function(err, rows) {
+    if(!err)
+    {
+      var itemarr=[];
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"intentstate":"","specification":"","itemdes":"","quantity":"","qtymeasure":"","unit":"","unitmeasure":"","remark":"","createdby":"","state":""};
+        obj.itemdes=rows[i].Product_ID;
+        obj.specification=rows[i].Specification;
+        obj.quantity=rows[i].Quantity;
+        obj.qtymeasure=rows[i].Quantity_Measure;
+        obj.unit=rows[i].unit;
+        obj.unitmeasure=rows[i].Unit_Measure;
+        obj.remark=rows[i].Remarks;
+        obj.intentstate=rows[i].Intent_State;
+        if(rows[i].state=='internal')
+        obj.state='No';
+        if(rows[i].state=='external')
+        obj.state='Yes';
+        obj.createdby=rows[i].Intent_Created_By;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+      return callback({"itemarr":itemarr});
+    }
+    else{
+      console.log(err);
+    }
+  });
+
+}
+
+
+//Function to create poforan item in an intent
+exports.FnIntentviewPocreate=function(pagename,response,callback) {
+  //console.log(JSON.stringify(intentno));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+ dummyno = {
+              dummy_column : 1
+          };
+
+  var queryy="SELECT PO_Number FROM OD_Purchase_Order WHERE Intent_Register_Number='"+response.Intent_Register_Number+"' and Supplier_Name='"+response.Supplier_Name+"'";
+
+  connection.query(queryy,function(err,rows,result){
+     if(!err){
+      if(rows.length>0)
+      {
+        response.PO_Number=rows[0].PO_Number;
+         connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
+        if(!err){
+        //console.log(rows);
+        return callback('succ'); 
+        }
+        else
+        return callback('fail'); 
+        });
+      }
+      else
+      {
+         //Generating inward sequence no
+  connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
+  if(!err)
+    {
+     console.log('seq generated!');     
+     connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
+      if(!err){
+        response.PO_Number=rows[0].PO_Number;
+        connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
+        if(!err){
+        //console.log(rows);
+        return callback('succ'); 
+        }
+        else
+        return callback('fail'); 
+        });
+      }
+      else
+        console.log(err);
+     });
+    }
+  });
+      }
+     } 
+  });
+ 
+}
+
+
+//Function to promote intent
+exports.FnViewintentpromte=function(pagename,updatecolumn,updaterolecolumn,intentno,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+  //console.log(updaterolecolumn);
+
+  console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
+  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? ',[updatecolumn,updaterolecolumn,intentno], function(err, rows) {
+    if(!err)
+    {
+      console.log('updated');
+       return callback({"returnval":"succ"});
+     
+    }
+    else{
+      console.log(err);
+      return callback({"returnval":"fail"});
+    }
+  });
+
+}

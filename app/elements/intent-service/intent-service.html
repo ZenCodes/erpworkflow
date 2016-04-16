@@ -103,6 +103,26 @@
       on-response="FnitempocreateResponse">
     </iron-ajax>
 
+     <iron-ajax
+      id="viewintentpocreateajax"
+      url="{{viewintentpocreateurl}}"
+      params='{{viewintentpocreateparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnviewintentpocreateResponse">
+    </iron-ajax>
+
+
+     <iron-ajax
+      id="viewintentpromteajax"
+      url="{{viewintentpromteurl}}"
+      params='{{viewintentpromteparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnviewintentpromteResponse">
+    </iron-ajax>
 
     <grn-service id="gs"></grn-service>
 
@@ -115,7 +135,8 @@
     var productid="";
     var intentno;
     var promotestate;
-    
+    var no=0;
+    var arrlength=0;
     Polymer({
       is: 'intent-service',
       ready:function(){
@@ -136,9 +157,7 @@
         if(this.flag==1)
           alert('Po raised against the supplier'+selecteditem);
         else
-          alert('Go with another supplier');
-
-        
+          alert('Go with another supplier');      
 
       },
       FnIntentPoItemRead:function(){
@@ -150,67 +169,8 @@
          this.$.intentpoitemajax.generateRequest();      
       },
       FnintentpoitemResponse:function(e){
-        //var suppliernamearr=[];    
-        
-        alert(JSON.stringify(e.detail.response.itemarr));
-        
-        //this.hidesupplier=false;
         document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
         document.querySelector('viewintentitemexpand-page').FnShowSupplierDiv();
-        //document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
-
-        /*var poitemarr=[];
-        var supplier=[];
-        var finalarr=[];
-        
-        poitemarr=e.detail.response.itemarr;
-        //alert(JSON.stringify(poitemarr));
-        for(var i=0;i<poitemarr.length;i++){
-          var obj={"itemdes":""};
-          if(productid=="")
-          {            
-            productid=poitemarr[i].Product_ID;
-            obj.itemdes=productid;
-            suppliernamearr.push(obj);
-            //alert(JSON.stringify(suppliernamearr));
-            supplier.push({"name":poitemarr[i].Supplier_Name});
-          }
-          else{           
-            if(poitemarr[i].Product_ID==productid){                            
-             // obj.suppliername[supplier.length]={"name":poitemarr[i].Supplier_Name};              
-              supplier.push({"name":poitemarr[i].Supplier_Name});
-            }
-            else{   
-              supplier=[];           
-              productid=poitemarr[i].Product_ID;
-              obj.itemdes=productid;
-              suppliernamearr.push(obj);
-              //alert(JSON.stringify(suppliernamearr));
-              supplier.push({"name":poitemarr[i].Supplier_Name}); 
-            }
-          }
-          
-          obj.suppliername=supplier;          
-          //alert(JSON.stringify(obj));
-        }        
-        
-        /*var newarr = [];
-        var unique = {};
- 
-        dojo.forEach(suppliernamearr, function(item) {
-          if (!unique[item.age]) {
-          newarr.push(item);
-          unique[item.age] = item;
-          }
-        });*/
-
-        /*this.suppliernamearr=suppliernamearr;
-        this.$.Fn_PoItem_dialog.toggle();*/
-        //alert(document.querySelector('poitemdialog-card'));
-        
-        //document.querySelector('viewintentitemexpand-page').FnToggleDialog();
-        //document.querySelector('viewintentitemexpand-page').suppliernamearr=newarr;
-        //alert(JSON.stringify(document.querySelector('viewintentitemexpand-page').suppliernamearr));
       },
    
       FnIntentStateUpdate:function(updatestate){
@@ -245,7 +205,6 @@
       },
       FnPromoteRolereadResponse:function(e){  
           var pstate;             
-
           var arr=e.detail.response.itemarr;
           //alert("Inward Register Note is created! Sent for the Approval with  "+arr[0].Intent_PO);
           if(arr[0].state=="external"){
@@ -289,7 +248,47 @@
           document.querySelector('viewintentitemexpand-page').FnSetPoRaiseFlag();
         else
           alert('Unable to craete PO!');
-      }         
+      },
+      FnIntentViewPoCreateService:function(poarray){
+        //alert(JSON.stringify(poarray));
+        arrlength=poarray.length;
+        for(var i=0;i<poarray.length;i++){
+          var obj={"itemdes":"","supplier":"","intentregno":""};
+          obj.itemdes=poarray[i].itemdes;
+          obj.supplier=poarray[i].supplier;
+          obj.intentregno=poarray[i].intentregno;
+          this.viewintentpocreateparam=obj;
+          this.viewintentpocreateurl=sessionStorage.getItem("curr_sess_url")+"viewintentpocreate-service";
+          this.$.viewintentpocreateajax.generateRequest();
+        }
+
+      },
+      FnviewintentpocreateResponse:function(e){
+        if(e.detail.response.itemarr=='succ')
+        {
+          no=no+1;
+          if(no==arrlength){
+            var obj={"intentregno":"","loggedrole":"","updatestate":""};
+            obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+            obj.loggedrole='Purchase manager';
+            obj.updatestate='POCreated';
+            this.viewintentpromteparam=obj;
+            this.viewintentpromteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromte-service";
+            this.$.viewintentpromteajax.generateRequest();
+          }
+        }
+        else{
+        alert('failed to create po!');
+        }
+        //alert(e.detail.response.itemarr);
+      },
+      FnviewintentpromteResponse:function(e){
+        if(e.detail.response.itemarr=='succ')
+          alert("Po created!");
+        else
+          alert('PO created!');
+      }
+
     });
   })();
   </script>

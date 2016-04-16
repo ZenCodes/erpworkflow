@@ -1,39 +1,107 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="intentviewexpanditem-card">
   <template>
     <style>
-      :host {
-        display: block;
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: -5%;
+        text-align: center;
+        position: relative;
+      }
+      #itemdes{
+
+        width:300px;
+      }
+      #specification{
+        width:160px;
+        margin-left: 3%;
+      }
+      #qtr,#qta{
+        width:160px;
+        margin-left: 4%;
+      }
+      #itemdes,#qtr{
+        margin-left: 5%;
+      }
+      #qta{
+        margin-left: 5%;
+      }
+      .remark{
+        //width:30%;
+        height:4%;
+        margin-left: 0%;
+        margin-top: 2%;
+      }
+      .custom {
+        margin-left: 5%;
+        --paper-tooltip-background: #dce775;
+        --paper-tooltip-text-color: black;
+        //font-size: 14px;
+        width: 150px;
+        --paper-tooltip-border-color: crimson;
+        //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+    <!--template for showing item info-->
+    <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
+      <div class="repeatcard">
+        <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
+        <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
+        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}</paper-item></div>
+        <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
+        <!--<textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
+        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>-->
+        <div class="supplierdiv" hidden$="{{hidesupplier}}">
+      <paper-dropdown-menu label="Select">
+       <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">
+        <template is="dom-repeat" items="{{suppliernamearr}}">
+        <paper-item value="{{item.Supplier_Name}}" >{{item.Supplier_Name}}</paper-item>
+        </template>
+       </paper-menu>
+    </paper-dropdown-menu>
+          
+        </div>
+         <paper-button id="promote"  name="promote" value="Create PO" on-click="FnCreatePo" noink>Create PO</paper-button>
+      </div>
+    </form>
+
+
+ <!--Component which make request to display the Intent items based on INT no-->
+    <iron-ajax
+      id="intentpoitemajax"
+      url="{{intentpourl}}"
+      params='{{intentpoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnintentpoitemResponse">
+    </iron-ajax>
+
+
+
   </template>
-  <script>
-  (function() {
-    'use strict';
+  <!--JS file import-->
+  <script src="../../scripts/intentviewexpanditem-card.js">
 
-    Polymer({
-      is: 'intentviewexpanditem-card',
-
-      properties: {
-        foo: {
-          type: String,
-          value: 'intentviewexpanditem-card',
-          notify: true
-        }
-      }
-    });
-  })();
   </script>
+
 </dom-module>

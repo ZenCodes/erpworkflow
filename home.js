@@ -738,6 +738,60 @@ app.post('/itempocreate-service',urlencodedParser, function (req, res) {
 });
 
 
+//Function to fetch intent item info
+app.post('/intentviewitemread-service',urlencodedParser, function (req, res) {
+  var loggeduser=req.query.loggeduser;
+  var loggedrole=req.query.loggedrole;
+  
+  var FnIntentViewItemReadcall = require("./app/scripts/dboperations.js");
+  FnIntentViewItemReadcall.FnIntentViewItemRead("intentViewitemread-service",loggeduser,loggedrole,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+//Function fetches the expanded intent view item info
+app.post("/intentviewitemexpand-card",urlencodedParser,function(req,res){
+  cond={Intent_Register_Number:req.query.intentregno}
+  
+  var FnIntentviewExpandItemFetchcall = require("./app/scripts/dboperations.js");
+  FnIntentviewExpandItemFetchcall.FnIntentviewExpandItemFetch("intentviewitemexpand-card",cond,function(returnval){
+    res.status(200).json({"itemarr":returnval.itemarr});
+  });
+});
+
+//Function fetches the expanded intent view item info
+app.post("/viewintentpocreate-service",urlencodedParser,function(req,res){
+  var supplier=req.query.supplier;
+  var intentno=req.query.intentregno;
+  var itemdes=req.query.itemdes;
+
+  var response={
+    Supplier_Name:req.query.supplier,
+    Intent_Register_Number:req.query.intentregno,
+    Product_ID:req.query.itemdes,
+    PO_Number:''
+  };
+  
+  var FnIntentviewPocreatecall = require("./app/scripts/dboperations.js");
+  FnIntentviewPocreatecall.FnIntentviewPocreate("viewintentpocreate-service",response,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
+
+
+//Function fetches the expanded intent view item promote
+app.post("/viewintentpromte-service",urlencodedParser,function(req,res){
+
+  var intentno={Intent_Register_Number:req.query.intentregno};
+  updaterolecolumn={PO_Created_By:req.query.loggedrole};
+  updatecolumn={Intent_State:req.query.updatestate};
+
+  var FnViewintentpromtecall = require("./app/scripts/dboperations.js");
+  FnViewintentpromtecall.FnViewintentpromte("viewintentpromte-service",updatecolumn,updaterolecolumn,intentno,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
+
 /*app.post('/intentpoitemread-service',urlencodedParser, function (req, res) {
   var intentno=req.query.intentregno;
   

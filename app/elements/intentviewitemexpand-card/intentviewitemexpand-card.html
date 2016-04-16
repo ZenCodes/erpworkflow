@@ -1,39 +1,145 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+<!--Compponent import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../intentviewexpanditem-card/intentviewexpanditem-card.html">
+<link rel="import" href="../intent-service/intent-service.html">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="intentviewitemexpand-card">
   <template>
     <style>
-      :host {
-        display: block;
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 90%;
+
+      }
+
+      #card1{
+        //border-bottom: groove;
+        margin-top: 0.5%;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 100%;
+      //margin-left:10%;
+      //height:50%;
+        background-color:white;
+      //border:2px solid #bcd6b3;
+        border-bottom:2px solid #e6e6e6;
+      //border-color:#dbe9d6;
+        overflow-x:hidden;
+      }
+
+      .topright{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: 7%;
+        margin-top: -5%;
+      }
+      .topright1{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-top: 0%;
+      }
+      .set{
+        @apply(--layout-horizontal);
+        margin-left:10%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 92%;
+        margin-left: 8%;
+        height: 3%;
+        margin-top: 5%;
+      }
+      paper-button{
+        text-transform:none;
+      }
+      #div2{
+        width: 100%;
+        margin-top: 1%;
+        border-bottom:2px solid #e6e6e6;
+        margin-left:6%;
+      }
+      datepicker-card{
+        width: 30%;
+      }
+      .polbl{
+        margin-left:17%;
+      }
+      .podate{
+        font-size:12px;
+      }
+      #supplier{
+        margin-left:3%;
+      }
+      #pinput{
+        margin-left: 5%;
       }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+    <!--Expanded card template-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+
+      <paper-tabs selected="0" noink id="ptab">
+        <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+          <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>
+        </template>
+      </paper-tabs>
+      <paper-button id="promote"  name="promote" value="Raise PO" on-click="FnPromoteState" noink>Raise PO</paper-button>
+      <div id="div2">
+
+    <template is="dom-repeat" items="{{itemArray}}" as="item">
+      <div class="repeatcard">
+        <intentviewexpanditem-card  itemdes="{{item.itemdes}}" specification="{{item.specification}}" unit="{{item.unit}}" quantity="{{item.quantity}}" remarks="{{item.remarks}}"></intentviewexpanditem-card>
+      </div>
+    </template>
+
+    </div>
+    </div>
+
   </template>
-  <script>
-  (function() {
-    'use strict';
+  <!--Component which reads currently expanding card-->
+  <iron-ajax
+    auto
+    id="intentviewexpanditemreadajax"
+    url="{{intentviewexpandurl}}"
+    method="post"
+    params='{{intentviewexpandparam}}'
+    handle-as="json"
+    content-type="application/json"
+    on-response="FnIntentviewexpanditemreadResponse">
+  </iron-ajax>
 
-    Polymer({
-      is: 'intentviewitemexpand-card',
+  <!--Component to read Labels for the components from webcomponents.json file-->
+  <iron-ajax
+    auto
+    id="webcomponentreadajax"
+    url="../../config/webcomponents.json"
+    handle-as="json"
+    content-type="application/json"
+    on-response="FnWebcomponentreadResponse">
+  </iron-ajax>
 
-      properties: {
-        foo: {
-          type: String,
-          value: 'intentviewitemexpand-card',
-          notify: true
-        }
-      }
-    });
-  })();
-  </script>
+  <intent-service id="intentservice"></intent-service>
+  </template>
+  <!--Importing JS file-->
+  <script src="../../scripts/intentviewitemexpand-card.js"></script>
+
 </dom-module>

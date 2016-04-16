@@ -204,6 +204,18 @@
       }
       //if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="POCreated")
       //document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
+    },
+    FnIntentViewitemReadService:function(){
+      this.intentviewurl=sessionStorage.getItem("curr_sess_url")+"intentviewitemread-service";
+      var arg={"loggeduser":"","loggedrole":""};
+      arg.loggeduser=sessionStorage.getItem("loggeduser");
+      arg.loggedrole=sessionStorage.getItem("loggedrole");     
+      this.intentviewparam=arg;
+      this.$.intentviewitemreadajax.generateRequest();        
+    },
+    intentviewitemreadResponse:function(e){
+      //alert(JSON.stringify(e.detail.response));
+      document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;
     }
   });
 })();

@@ -7,7 +7,7 @@ Polymer({
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
     //Setting state for reading the items under current INT no
-    this.$.gs.FnIntentitemReadService();
+    this.$.gs.FnIntentViewitemReadService();
   },
   setState:function(){
     //Setting current page in session for fetching labels dynamically
@@ -15,6 +15,6 @@ Polymer({
     //calling webcomponent service to fetch labels for current page
     this.$.ID_Webcomponent_Service.callWebcomponentService();
     //Setting state for reading the items under current INT no
-    this.$.gs.FnIntentitemReadService();
+    this.$.gs.FnIntentViewitemReadService();
   }
 });
