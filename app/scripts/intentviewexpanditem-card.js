@@ -11,11 +11,19 @@ Polymer({is:"intentviewexpanditem-card",
   ready:function(){
   	this.no=65;
   	this.hidesupplier=true;
+  	this.hideadd=false;
   	this.poraiseflag=0;
     //Setting url to make request
   },
   FnCreatePo:function(){  	
   	this.hidesupplier=false;
+  	this.hideadd=true;
+  	this.querySelector('#specification').style.marginLeft='30px';
+  	this.querySelector('#qta').style.marginLeft='0px';
+  	this.querySelector('#qtr').style.marginLeft='0px';
+  	this.querySelector('#due').style.marginLeft='0px';
+  	this.querySelector('#supplier').style.marginLeft='0px';
+  	this.querySelector('#supplier').style.marginTop='-2%';
   	if(this.poraiseflag==0){
   	sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
   		 var obj={"intentregno":"","itemdes":""};

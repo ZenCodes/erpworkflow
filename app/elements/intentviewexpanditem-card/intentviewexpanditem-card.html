@@ -29,21 +29,21 @@
       }
       #itemdes{
 
-        width:300px;
+        width:250px;
       }
       #specification{
         width:160px;
-        margin-left: 3%;
+        margin-left: 0%;
       }
       #qtr,#qta{
         width:160px;
-        margin-left: 4%;
+        margin-left: -4%;
       }
-      #itemdes,#qtr{
+      #itemdes{
         margin-left: 5%;
       }
       #qta{
-        margin-left: 5%;
+        margin-left: -4%;
       }
       .remark{
         //width:30%;
@@ -60,6 +60,16 @@
         --paper-tooltip-border-color: crimson;
         //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
+      paper-button{
+        text-transform: none;
+      }
+      .supplierdiv{
+        margin-left: 100px;
+      }
+      #status{
+        margin-left:-5%;
+      }
+
     </style>
     <!--template for showing item info-->
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
@@ -68,19 +78,18 @@
         <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
         <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}</paper-item></div>
         <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
-        <!--<textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
-        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>-->
-        <div class="supplierdiv" hidden$="{{hidesupplier}}">
-      <paper-dropdown-menu label="Select">
-       <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">
+        <div id="status" ><paper-item name="status" value="{{intentstatus}}">{{intentstatus}}</paper-item></div>
+        <div id="due" ><paper-item name="due" value="{{duedate}}">{{duedate}}</paper-item></div>       
+        <paper-button id="promote" readonly="{{disabled}}" hidden$="{{hideadd}}" name="promote" value="Add" on-click="FnCreatePo" noink>Add</paper-button>
+        <div class="supplierdiv" hidden$="{{hidesupplier}}" id="supplier">
+        <paper-dropdown-menu label="Select">
+        <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">
         <template is="dom-repeat" items="{{suppliernamearr}}">
-        <paper-item value="{{item.Supplier_Name}}" >{{item.Supplier_Name}}</paper-item>
+        <paper-item value="{{item.Supplier_Name}}">{{item.Supplier_Name}}</paper-item>
         </template>
-       </paper-menu>
-    </paper-dropdown-menu>
-          
+        </paper-menu>
+        </paper-dropdown-menu>         
         </div>
-         <paper-button id="promote"  name="promote" value="Create PO" on-click="FnCreatePo" noink>Create PO</paper-button>
       </div>
     </form>
 

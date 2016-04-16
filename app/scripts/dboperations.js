@@ -1893,7 +1893,8 @@ exports.FnIntentviewExpandItemFetch=function(pagename,cond,callback) {
       var itemarr=[];
       for(var i=0;i<rows.length;i++)
       {
-        var obj={"intentstate":"","specification":"","itemdes":"","quantity":"","qtymeasure":"","unit":"","unitmeasure":"","remark":"","createdby":"","state":""};
+        var obj={"duedate":"","intentstate":"","specification":"","itemdes":"","quantity":"","qtymeasure":"","unit":"","unitmeasure":"","remark":"","createdby":"","state":""};
+        obj.duedate=rows[i].Due_Date;
         obj.itemdes=rows[i].Product_ID;
         obj.specification=rows[i].Specification;
         obj.quantity=rows[i].Quantity;

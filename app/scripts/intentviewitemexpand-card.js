@@ -6,6 +6,7 @@
  */
  (function(){
   var poarray;
+
 Polymer({is:"intentviewitemexpand-card",
   ready:function(){
     this.intentviewexpandurl=sessionStorage.getItem("curr_sess_url")+"intentviewitemexpand-card";
@@ -30,12 +31,15 @@ Polymer({is:"intentviewitemexpand-card",
     var potempflag="";
     for(var i=0;i<arr.length;i++)
     {
-      var obj={"itemdes":"","quantity":"","qtymeasure":"","remarks":"","unit":"","unitmeasure":"","specification":""};
+      var obj={"disableflag":"","intentstate":"","itemdes":"","quantity":"","qtymeasure":"","duedate":"","unit":"","unitmeasure":"","specification":""};
       obj.itemdes=arr[i].itemdes;
       obj.quantity=arr[i].quantity+" "+arr[i].unitmeasure;
       obj.unit=arr[i].unit+"  "+arr[i].qtymeasure;
       obj.specification=arr[i].specification;
-      obj.remarks=arr[i].remark;
+      obj.duedate=arr[i].duedate;
+      obj.intentstate=arr[i].intentstate;
+      if(obj.intentstate!='Approved')
+        obj.disableflag=true;
       prodarr.push(obj);
     }
     this.itemArray=prodarr;
