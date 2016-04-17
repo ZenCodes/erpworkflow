@@ -133,7 +133,7 @@
     ]},
     {"Page":[
       {"page":["intentviewitemexpand-card","intentviewitemexpand-card"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Container"},{"tab":"Qunatity"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Supplier"}]}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Container"},{"tab":"Quantity"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Supplier"}]}]}
     ]}
   ]
 
