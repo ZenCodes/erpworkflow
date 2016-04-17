@@ -66,28 +66,28 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
   connection.query('SELECT * FROM '+ Config_tables[0] +' WHERE ? and ? ',[username,password], function(err, rows) {
     if(!err)
     {
-      console.log(rows);
+     // console.log(rows);
       if(rows.length>0)
       {
          var depid={'Department_ID':rows[0].Department_ID};
          var roleid=rows[0].Role_ID;
-         console.log(depid);
+       //  console.log(depid);
          //Fetching Department of the logged user and identifying the role
          connection.query('SELECT * FROM '+ Config_tables[1] +' WHERE ? ',[depid], function(err, rows) {
           if(!err){
-            console.log(rows);
+         //   console.log(rows);
             if(rows.length>0)
             {
               var depname=rows[0].Department_Name;
               var Role_Name=depname+" "+roleid;
               var cond={"Role_Name":Role_Name};
-              console.log(cond);
+           //   console.log(cond);
               connection.query('SELECT * FROM '+ Config_tables[2] +' WHERE ? ',[cond], function(err, rows) {
-                console.log(rows);
+             //   console.log(rows);
                 if(!err){
                   if(rows.length>0){
                     rolename=rows[0].Role_Name;
-                    console.log(rolename);
+                    //console.log(rolename);
                     //Return logged user's rolename to the login card if it is a valid user
                     return callback(rolename);
                   }
@@ -1931,6 +1931,13 @@ exports.FnIntentviewPocreate=function(pagename,response,callback) {
       Config_tables=obj[i].value;
     }
   }
+
+  var intentno={Intent_Register_Number:response.Intent_Register_Number};
+  var itemdes={Product_ID:response.Product_ID};
+  var updaterolecolumn={PO_Created_By:'Purchase manager'};
+  var updatecolumn={Intent_State:'POCreated'};
+  console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
+
  dummyno = {
               dummy_column : 1
           };
@@ -1945,10 +1952,23 @@ exports.FnIntentviewPocreate=function(pagename,response,callback) {
          connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
         if(!err){
         //console.log(rows);
-        return callback('succ'); 
+        //return callback('succ'); 
+        console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
+  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,intentno,itemdes], function(err, rows) {
+    if(!err)
+    {
+      //console.log('updated');
+       return callback({"returnval":"succ"});
+     
+    }
+    else{
+      //console.log(err);
+      return callback({"returnval":"fail"});
+    }
+  });
         }
         else
-        return callback('fail'); 
+        return callback({"returnval":"fail"}); 
         });
       }
       else
@@ -1957,17 +1977,29 @@ exports.FnIntentviewPocreate=function(pagename,response,callback) {
   connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
     if(!err)
     {
-    // console.log('seq generated!');     
+     //console.log('seq generated!');     
      connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
       if(!err){
         response.PO_Number=rows[0].PO_Number;
         connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
         if(!err){
         //console.log(rows);
-        return callback('succ'); 
+        //return callback('succ'); 
+        connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,intentno,itemdes], function(err, rows) {
+    if(!err)
+    {
+      //console.log('updated');
+       return callback({"returnval":"succ"});
+     
+    }
+    else{
+      //console.log(err);
+      return callback({"returnval":"fail"});
+    }
+  });
         }
         else
-        return callback('fail'); 
+        return callback({"returnval":"fail"}); 
         });
       }
       else

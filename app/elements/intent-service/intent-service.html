@@ -264,9 +264,10 @@
 
       },
       FnviewintentpocreateResponse:function(e){
-        if(e.detail.response.itemarr=='succ')
+        if(JSON.stringify(e.detail.response.itemarr=='succ'))
         {
-          no=no+1;
+          alert('PO Created!');
+          /*no=no+1;
           if(no==arrlength){
             var obj={"intentregno":"","loggedrole":"","updatestate":""};
             obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -275,10 +276,10 @@
             this.viewintentpromteparam=obj;
             this.viewintentpromteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromte-service";
             this.$.viewintentpromteajax.generateRequest();
-          }
+          }*/
         }
         else{
-        alert('failed to create po!');
+        alert('Failed to create po!');
         }
         //alert(e.detail.response.itemarr);
       },
