@@ -80,7 +80,7 @@
         <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
         <div id="status" ><paper-item name="status" value="{{intentstatus}}">{{intentstatus}}</paper-item></div>
         <div id="due" ><paper-item name="due" value="{{duedate}}">{{duedate}}</paper-item></div>       
-        <paper-button id="promote" readonly="{{disabled}}" hidden$="{{hideadd}}" name="promote" value="Add" on-click="FnCreatePo" noink>Add</paper-button>
+        <paper-button id="promote" disabled="{{disableflag}}" hidden$="{{hideadd}}" name="promote" value="Add" on-click="FnCreatePo" noink>Add</paper-button>
         <div class="supplierdiv" hidden$="{{hidesupplier}}" id="supplier">
         <paper-dropdown-menu label="Select">
         <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">

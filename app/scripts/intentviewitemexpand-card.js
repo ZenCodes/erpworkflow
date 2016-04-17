@@ -40,6 +40,8 @@ Polymer({is:"intentviewitemexpand-card",
       obj.intentstate=arr[i].intentstate;
       if(obj.intentstate!='Approved')
         obj.disableflag=true;
+      else
+        obj.disableflag=false;
       prodarr.push(obj);
     }
     this.itemArray=prodarr;
