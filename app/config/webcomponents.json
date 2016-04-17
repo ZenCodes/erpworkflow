@@ -75,7 +75,7 @@
     ]},
     {"Page":[
       {"page":["View Intent","viewintent-page"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Intent Register No"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Status"},{"tab":"Item Location"}]}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Item Location"},{"tab":"Intent Register No"}]}]}
     ]},
     {"Page":[
       {"page":["viewintentitemexpand-page","viewintentitemexpand-page"]},
