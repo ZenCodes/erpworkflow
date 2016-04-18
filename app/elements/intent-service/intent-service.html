@@ -280,40 +280,48 @@
       },
       FnviewintentpocreateResponse:function(e){
         var temparr=[];
+        var group='65';
         var ponumber=parseInt(e.detail.response.itemarr.returnval)+1;
-
+        largestpono=ponumber;
+        var temppo;
         for(var i=0;i<poarray.length;i++){
-          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
+          var obj={"itemdes":"","supplier":"","intentregno":"","ponumber":""};
           obj.itemdes=poarray[i].itemdes;
           obj.supplier=poarray[i].supplier;
           obj.intentregno=poarray[i].intentregno;
           if(i==0){
             //alert('first');
-           obj.ponumber=parseInt(ponumber);
+           obj.ponumber=ponumber+String.fromCharCode(group);
            temparr.push(obj);
            //ponumber=parseInt(ponumber)+1;
          }
          else
          {
           for(var j=0;j<temparr.length;j++){
+            //alert(poarray[i].supplier+"  "+temparr[j].supplier);
             if(poarray[i].supplier!=temparr[j].supplier){
               //alert('sec uneq');
-              ponumber=parseInt(ponumber)+1;
-              obj.ponumber=ponumber;
+              //ponumber=parseInt(ponumber)+1;
+              group=parseInt(group)+1;
+              temppo=ponumber+String.fromCharCode(group);
+              //alert(temppo);
+              obj.ponumber=temppo;
             }
             else{
               //alert('sec eq');
-              obj.ponumber=ponumber;
+              //alert(temparr[j].ponumber);
+              obj.ponumber=temparr[j].ponumber;
+              break;
             }
           }
               temparr.push(obj);
         }
         }
-        
-        for(var i=0;i<temparr.length;i++){
+        //alert(JSON.stringify(temparr));
+        /*for(var i=0;i<temparr.length;i++){
           if(parseInt(temparr[i].ponumber)>parseInt(largestpono))
             largestpono=parseInt(temparr[i].ponumber);
-        }
+        }*/
         this.FnViewIntentPromoteService(temparr);
         //alert(JSON.stringify(temparr));
 
