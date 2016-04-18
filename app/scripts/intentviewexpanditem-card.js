@@ -27,7 +27,7 @@ Polymer({is:"intentviewexpanditem-card",
   	if(this.poraiseflag==0){
   	sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
   		 var obj={"intentregno":"","itemdes":""};
-         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.intentregno=sessionStorage.getItem("sess_curr_inwardregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.intentpourl=sessionStorage.getItem("curr_sess_url")+"intentpoitemread-service";
          this.intentpoparam=obj;

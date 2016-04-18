@@ -1848,7 +1848,7 @@ exports.FnIntentViewItemRead=function(pagename,loggeduser,loggedrole,callback) {
 
       if(loggedrole=="Purchase manager")
         //queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved') and os.state='external' order by os.Intent_Register_Number DESC"; 
-      queryy="SELECT distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Intent_State in('Approved') and state='external' order by Intent_Register_Number DESC"; 
+      queryy="SELECT distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Intent_State in('Approved','POCreated') and state='external' order by Intent_Register_Number DESC"; 
    
       connection.query(queryy,function(err, rows, fields) {
     
@@ -2027,7 +2027,8 @@ exports.Fnupdateposeq=function(pagename,ponumber,callback) {
     }
   }
 
-  var queryy="ALTER TABLE Auto_PO_Number AUTO_INCREMENT="+parseInt(ponumber);
+  var queryy="UPDATE Auto_PO_Number SET PO_Number="+parseInt(ponumber);
+  console.log(queryy);
   connection.query(queryy,function(err,rows,result){
     if(!err)
       return callback("succ");
