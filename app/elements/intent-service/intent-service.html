@@ -115,13 +115,23 @@
 
 
      <iron-ajax
-      id="viewintentpromteajax"
-      url="{{viewintentpromteurl}}"
-      params='{{viewintentpromteparam}}'
+      id="viewintentpromoteajax"
+      url="{{viewintentpromoteurl}}"
+      params='{{viewintentpromoteparam}}'
       method="post"
       handle-as="json"
       content-type="application/json"
-      on-response="FnviewintentpromteResponse">
+      on-response="FnviewintentpromoteResponse">
+    </iron-ajax>
+
+      <iron-ajax
+      id="posequpdateajax"
+      url="{{posequpdateurl}}"
+      params='{{posequpdateparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnposequpdateResponse">
     </iron-ajax>
 
     <grn-service id="gs"></grn-service>
@@ -137,6 +147,8 @@
     var promotestate;
     var no=0;
     var arrlength=0;
+    var poarray=[];
+    var largestpono=0;
     Polymer({
       is: 'intent-service',
       ready:function(){
@@ -249,10 +261,11 @@
         else
           alert('Unable to craete PO!');
       },
-      FnIntentViewPoCreateService:function(poarray){
-        //alert(JSON.stringify(poarray));
+      FnIntentViewPoCreateService:function(poarr){
+              //alert(JSON.stringify(poarray));
+        poarray=poarr;
         arrlength=poarray.length;
-        for(var i=0;i<poarray.length;i++){
+        /*for(var i=0;i<poarray.length;i++){
           var obj={"itemdes":"","supplier":"","intentregno":""};
           obj.itemdes=poarray[i].itemdes;
           obj.supplier=poarray[i].supplier;
@@ -260,35 +273,100 @@
           this.viewintentpocreateparam=obj;
           this.viewintentpocreateurl=sessionStorage.getItem("curr_sess_url")+"viewintentpocreate-service";
           this.$.viewintentpocreateajax.generateRequest();
-        }
+        }*/
+        this.viewintentpocreateurl=sessionStorage.getItem("curr_sess_url")+"viewintentpocreate-service";
+        this.$.viewintentpocreateajax.generateRequest();
 
       },
       FnviewintentpocreateResponse:function(e){
+        var temparr=[];
+        var ponumber=parseInt(e.detail.response.itemarr.returnval)+1;
+
+        for(var i=0;i<poarray.length;i++){
+          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
+          obj.itemdes=poarray[i].itemdes;
+          obj.supplier=poarray[i].supplier;
+          obj.intentregno=poarray[i].intentregno;
+          if(i==0){
+            //alert('first');
+           obj.ponumber=parseInt(ponumber);
+           temparr.push(obj);
+           //ponumber=parseInt(ponumber)+1;
+         }
+         else
+         {
+          for(var j=0;j<temparr.length;j++){
+            if(poarray[i].supplier!=temparr[j].supplier){
+              //alert('sec uneq');
+              ponumber=parseInt(ponumber)+1;
+              obj.ponumber=ponumber;
+            }
+            else{
+              //alert('sec eq');
+              obj.ponumber=ponumber;
+            }
+          }
+              temparr.push(obj);
+        }
+        }
+        
+        for(var i=0;i<temparr.length;i++){
+          if(parseInt(temparr[i].ponumber)>parseInt(largestpono))
+            largestpono=parseInt(temparr[i].ponumber);
+        }
+        this.FnViewIntentPromoteService(temparr);
+        //alert(JSON.stringify(temparr));
+
+         /*for(var i=0;i<temparr.length;i++){
+          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
+          obj.itemdes=temparr[i].itemdes;
+          obj.supplier=temparr[i].supplier;
+          obj.intentregno=temparr[i].intentregno;
+          obj.ponumber=temparr[i].ponumber;
+          this.viewintentpromteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromote-service";
+          this.viewintentpromteparam=obj;
+          this.$.viewintentpromteajax.generateRequest();
+         }*/
+     
+      },
+      FnViewIntentPromoteService:function(temparr){
+        //alert(JSON.stringify(temparr));
+         for(var i=0;i<temparr.length;i++){
+          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
+          obj.itemdes=temparr[i].itemdes;
+          obj.supplier=temparr[i].supplier;
+          obj.intentregno=temparr[i].intentregno;
+          obj.ponumber=temparr[i].ponumber;
+          //alert(JSON.stringify(obj));
+         this.viewintentpromoteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromote-service";
+         this.viewintentpromoteparam=obj;
+         //alert(this.$.viewintentpromteajax);
+         this.$.viewintentpromoteajax.generateRequest();
+         }
+      },
+      FnviewintentpromoteResponse:function(e){
+        //alert(e.detail.response.itemarr);
         if(JSON.stringify(e.detail.response.itemarr=='succ'))
         {
-          alert('PO Created!');
-          /*no=no+1;
-          if(no==arrlength){
-            var obj={"intentregno":"","loggedrole":"","updatestate":""};
-            obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
-            obj.loggedrole='Purchase manager';
-            obj.updatestate='POCreated';
-            this.viewintentpromteparam=obj;
-            this.viewintentpromteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromte-service";
-            this.$.viewintentpromteajax.generateRequest();
-          }*/
+          no=no+1;
+        if(arrlength==no){
+          //alert(largestpono);
+          alert("Po created!");
+          /*var obj={"ponumber":largestpono};
+         this.posequpdateurl=sessionStorage.getItem("curr_sess_url")+"posequpdate-service";
+         this.posequpdateparam=obj;         
+         this.$.posequpdateajax.generateRequest();  */      
         }
-        else{
-        alert('Failed to create po!');
         }
-        //alert(e.detail.response.itemarr);
+        else
+          alert('PO is not created succ!');
       },
-      FnviewintentpromteResponse:function(e){
-        //alert(e.detail.response.itemarr);
-        if(JSON.stringify(e.detail.response.itemarr=='succ'))
+      FnposequpdateResponse:function(e){
+        if(JSON.stringify(e.detail.response.itemarr)=='succ')
           alert("Po created!");
         else
           alert('PO is not created!');
+
       }
 
     });

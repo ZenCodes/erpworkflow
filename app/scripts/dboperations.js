@@ -1923,8 +1923,7 @@ exports.FnIntentviewExpandItemFetch=function(pagename,cond,callback) {
 
 
 //Function to create poforan item in an intent
-exports.FnIntentviewPocreate=function(pagename,response,callback) {
-  //console.log(JSON.stringify(intentno));
+exports.FnIntentviewPocreate=function(pagename,callback) {
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
@@ -1932,89 +1931,56 @@ exports.FnIntentviewPocreate=function(pagename,response,callback) {
     }
   }
 
-  var intentno={Intent_Register_Number:response.Intent_Register_Number};
-  var itemdes={Product_ID:response.Product_ID};
-  var updaterolecolumn={PO_Created_By:'Purchase manager'};
-  var updatecolumn={Intent_State:'POCreated'};
-  console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
-
- dummyno = {
-              dummy_column : 1
-          };
-
-  var queryy="SELECT PO_Number FROM OD_Purchase_Order WHERE Intent_Register_Number='"+response.Intent_Register_Number+"' and Supplier_Name='"+response.Supplier_Name+"'";
-
-  connection.query(queryy,function(err,rows,result){
-     if(!err){
-      if(rows.length>0)
-      {
-        response.PO_Number=rows[0].PO_Number;
-         connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
-        if(!err){
-        //console.log(rows);
-        //return callback('succ'); 
-        console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
-  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,intentno,itemdes], function(err, rows) {
-    if(!err)
-    {
-      //console.log('updated');
-       return callback({"returnval":"succ"});
-     
-    }
-    else{
-      //console.log(err);
-      return callback({"returnval":"fail"});
-    }
-  });
+  //connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
+   //if(!err){
+    connection.query('SELECT PO_Number from Auto_PO_Number order by PO_Number desc',function(err,rows,result){
+        if(rows.length>0){
+          console.log(rows[0].PO_Number);
+          return callback({'returnval':rows[0].PO_Number});
         }
-        else
-        return callback({"returnval":"fail"}); 
-        });
+    });    
+   //} 
+  //});
+
+  /*var queryy="SELECT PO_Number FROM OD_Purchase_Order WHERE Intent_Register_Number='"+response.Intent_Register_Number+"' and Supplier_Name='"+response.Supplier_Name+"'";
+   connection.query(queryy,function(err,rows,result){
+    if(!err){
+      console.log(rows.length);
+      if(rows.length>0){
+        console.log("old supplier");
+
+          connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
+            if(!err){
+                response.PO_Number=rows[0].PO_Number;
+                return callback({'returnval':response.PO_Number});
+            }
+          });       
       }
-      else
-      {
-         //Generating inward sequence no
-  connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
-    if(!err)
-    {
-     //console.log('seq generated!');     
-     connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
-      if(!err){
-        response.PO_Number=rows[0].PO_Number;
-        connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
-        if(!err){
-        //console.log(rows);
-        //return callback('succ'); 
-        connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,intentno,itemdes], function(err, rows) {
-    if(!err)
-    {
-      //console.log('updated');
-       return callback({"returnval":"succ"});
-     
-    }
-    else{
-      //console.log(err);
-      return callback({"returnval":"fail"});
-    }
-  });
+      else{
+        console.log("new supplier");
+        connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
+            console.log('seq generated!'+result.affectedRows);
+            if(result.affectedRows==1){     
+            connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
+            if(!err){
+                response.PO_Number=parseInt(rows[0].PO_Number)+1;
+                console.log(response.PO_Number);
+                return callback({'returnval':response.PO_Number});
+            }
+            });
+            }
+        });
+        
         }
-        else
-        return callback({"returnval":"fail"}); 
-        });
-      }
-      else
-        console.log(err);
-     });
     }
-  });
-      }
-     } 
-  });
- 
-}
+    else
+      console.log(err);
+   });*/
+ }
 
 //Function to promote intent
-exports.FnViewintentpromte=function(pagename,updatecolumn,updaterolecolumn,intentno,callback) {
+exports.FnViewintentpromote=function(pagename,response,intentno,itemdes,updaterolecolumn,updatecolumn,oldcolumn,callback) {
+
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
@@ -2022,8 +1988,21 @@ exports.FnViewintentpromte=function(pagename,updatecolumn,updaterolecolumn,inten
     }
   }
 
+    connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
+        if(!err){
+          connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,intentno,itemdes], function(err, rows) {
+          
+          if(!err){
+            return callback("succ");
+          }
+          else
+            return callback("fail"); 
+          });          
+        }       
+    });
+
   //console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
-  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? ',[updatecolumn,updaterolecolumn,intentno], function(err, rows) {
+  /*connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? ',[updatecolumn,updaterolecolumn,intentno], function(err, rows) {
     if(!err)
     {
       //console.log('updated');
@@ -2034,6 +2013,28 @@ exports.FnViewintentpromte=function(pagename,updatecolumn,updaterolecolumn,inten
       //console.log(err);
       return callback({"returnval":"fail"});
     }
-  });
+  });*/
 
+}
+
+//Function ponumber update
+exports.Fnupdateposeq=function(pagename,ponumber,callback) {
+
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+  var queryy="ALTER TABLE Auto_PO_Number AUTO_INCREMENT="+parseInt(ponumber);
+  connection.query(queryy,function(err,rows,result){
+    if(!err)
+      return callback("succ");
+    else
+    {
+      console.log(err);
+      return callback("fail");
+    }
+  });
 }

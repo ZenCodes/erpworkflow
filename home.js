@@ -761,33 +761,39 @@ app.post("/intentviewitemexpand-card",urlencodedParser,function(req,res){
 
 //Function fetches the expanded intent view item info
 app.post("/viewintentpocreate-service",urlencodedParser,function(req,res){
-  var supplier=req.query.supplier;
-  var intentno=req.query.intentregno;
-  var itemdes=req.query.itemdes;
-
-  var response={
-    Supplier_Name:req.query.supplier,
-    Intent_Register_Number:req.query.intentregno,
-    Product_ID:req.query.itemdes,
-    PO_Number:''
-  };
-  
+ 
   var FnIntentviewPocreatecall = require("./app/scripts/dboperations.js");
-  FnIntentviewPocreatecall.FnIntentviewPocreate("viewintentpocreate-service",response,function(returnval){
+  FnIntentviewPocreatecall.FnIntentviewPocreate("viewintentpocreate-service",function(returnval){
     res.status(200).json({"itemarr":returnval});
   });
 });
 
 
 //Function fetches the expanded intent view item promote
-app.post("/viewintentpromte-service",urlencodedParser,function(req,res){
+app.post("/viewintentpromote-service",urlencodedParser,function(req,res){
+//console.log('promote');
+  intentno={Intent_Register_Number:req.query.intentregno};
+  itemdes={Product_ID:req.query.itemdes};
+  updaterolecolumn={PO_Created_By:'Purchase manager'};
+  updatecolumn={Intent_State:'POCreated'};
+  oldcolumn={Intent_State:'Approved'};
+   var response={
+    Supplier_Name:req.query.supplier,
+    Intent_Register_Number:req.query.intentregno,
+    Product_ID:req.query.itemdes,
+    PO_Number:req.query.ponumber
+   };
 
-  var intentno={Intent_Register_Number:req.query.intentregno};
-  updaterolecolumn={PO_Created_By:req.query.loggedrole};
-  updatecolumn={Intent_State:req.query.updatestate};
+  var FnViewintentpromotecall = require("./app/scripts/dboperations.js");
+  FnViewintentpromotecall.FnViewintentpromote("viewintentpromote-service",response,intentno,itemdes,updaterolecolumn,updatecolumn,oldcolumn,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
 
-  var FnViewintentpromtecall = require("./app/scripts/dboperations.js");
-  FnViewintentpromtecall.FnViewintentpromte("viewintentpromte-service",updatecolumn,updaterolecolumn,intentno,function(returnval){
+app.post("/posequpdate-service",urlencodedParser,function(req,res){
+  ponumber=req.query.ponumber;
+  var Fnupdateposeqcall = require("./app/scripts/dboperations.js");
+  Fnupdateposeqcall.Fnupdateposeq("posequpdate-service",ponumber,function(returnval){
     res.status(200).json({"itemarr":returnval});
   });
 });
