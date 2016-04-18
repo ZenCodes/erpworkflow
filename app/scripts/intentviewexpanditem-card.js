@@ -45,7 +45,7 @@ Polymer({is:"intentviewexpanditem-card",
   	this.repeatflag=0;
   	//alert(e.target.selectedItem.textContent.trim());
   	var obj={"itemdes":"","supplier":"","intentregno":""};
-  	obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+  	obj.intentregno=sessionStorage.getItem("sess_curr_inwardregno");
   	obj.itemdes=this.itemdes;
   	obj.supplier=e.target.selectedItem.textContent.trim();
    

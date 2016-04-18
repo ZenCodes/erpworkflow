@@ -330,7 +330,7 @@
      
       },
       FnViewIntentPromoteService:function(temparr){
-        //alert(JSON.stringify(temparr));
+         alert(JSON.stringify(temparr));
          for(var i=0;i<temparr.length;i++){
           var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
           obj.itemdes=temparr[i].itemdes;
@@ -351,11 +351,11 @@
           no=no+1;
         if(arrlength==no){
           //alert(largestpono);
-          alert("Po created!");
-          /*var obj={"ponumber":largestpono};
+          //alert("Po created!");
+         var obj={"ponumber":largestpono};
          this.posequpdateurl=sessionStorage.getItem("curr_sess_url")+"posequpdate-service";
          this.posequpdateparam=obj;         
-         this.$.posequpdateajax.generateRequest();  */      
+         this.$.posequpdateajax.generateRequest();        
         }
         }
         else
