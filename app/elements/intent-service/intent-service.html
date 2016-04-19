@@ -188,7 +188,7 @@
       },
    
       FnIntentStateUpdate:function(updatestate){
-        //alert(updatestate);
+        alert(updatestate);
         intentno=sessionStorage.getItem("sess_curr_intentregno");
         //alert(intentno);
         promotestate=updatestate;
@@ -204,7 +204,7 @@
         this.$.intentstateupdateajax.generateRequest();
       } ,
       intentstateupdateResponse:function(e){
-        //alert(JSON.stringify(e.detail.response));
+        alert(JSON.stringify(e.detail.response));
         if(e.detail.response.returnval=="succ"){
           alert("done");
           this.promoterolereadurl=sessionStorage.getItem("curr_sess_url")+"promoteroleread-service";
