@@ -243,10 +243,6 @@
           document.querySelector('viewintentitem-page').setToggle();
           //document.querySelector('drawermenu-card').FnSetRefereshPage();
           window.location.href="../elements/indexhome.html";
-          //this.$.gs.FnIntentitemReadService();
-          //document.querySelector('app-homepage').setPage('intenthome-page');
-          //document.querySelector('intenthome-page').setPage('View Intent');
-          //document.querySelector('viewintent-page').setState();
       },
       FnCreatePO:function(supplier){
         var obj={"supplier":"","itemdes":"","intentregno":""};
@@ -268,15 +264,7 @@
               //alert(JSON.stringify(poarray));
         poarray=poarr;
         arrlength=poarray.length;
-        /*for(var i=0;i<poarray.length;i++){
-          var obj={"itemdes":"","supplier":"","intentregno":""};
-          obj.itemdes=poarray[i].itemdes;
-          obj.supplier=poarray[i].supplier;
-          obj.intentregno=poarray[i].intentregno;
-          this.viewintentpocreateparam=obj;
-          this.viewintentpocreateurl=sessionStorage.getItem("curr_sess_url")+"viewintentpocreate-service";
-          this.$.viewintentpocreateajax.generateRequest();
-        }*/
+ 
         this.viewintentpocreateurl=sessionStorage.getItem("curr_sess_url")+"viewintentpocreate-service";
         this.$.viewintentpocreateajax.generateRequest();
 

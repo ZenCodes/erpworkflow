@@ -153,6 +153,9 @@ var intentregno;
       // for(var i=0;i<arr.length;i++){
         // alert("Intent goes for approval with...."+arr[i].Intent_Approver+"  manager!");
       // }
+      if(localStorage.getItem("curr_sess_spotorderflag")=='true')
+      this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created! Sent for the Approval with  "+"Purchase Department",intentregno);
+      else
       this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created! Sent for the Approval with  "+arr[0].Intent_Approver,intentregno);
     }
   });

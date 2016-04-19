@@ -110,16 +110,10 @@ Polymer({is:"viewintentitemexpand-page",
   },
   FnPromoteState:function(e){
   if(this.promote=="Create PO"&&this.poraiseflag==0){
-  //if(this.pono==null||this.pono=="")
-    //this.$.pono.validate();
-  //else
-  //{    
+  
     for(var i=0;i<(this.promotebtn).length;i++){
-    if(this.promote==this.promotebtn[i]){
-      //alert('po create');
+    if(this.promote==this.promotebtn[i]){      
       this.$.intentservice.FnIntentPoItemRead();
-     // this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);      
-    //}
     }
   }
   }
