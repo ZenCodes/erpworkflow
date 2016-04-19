@@ -16,10 +16,29 @@
       this.flag=0;
       this.itemflag=0;
       this.idd=0;
+      this.hidespotorder=true;
+      localStorage.setItem("curr_sess_spotorderflag",'');
+      if(sessionStorage.getItem("curr_sess_roleflag")=="1"||sessionStorage.getItem("curr_sess_roleflag")=="2")
+      {
+        this.hidespotorder=false;
+      }
+
       localStorage.setItem("curr_sess_unitset",this.idd);
       /*Dynamic array for creating rows of item card*/
       this.itemArray=[{id:this.idd,description:'',specification:'',received:'',unit:'',remark:'','measure':'','duedate':''}];
       this.splice('itemArray',1,1);
+    },
+    FnChangeSpot:function(e){
+      var spotorder=document.querySelector("#spotorder");
+      if(spotorder.checked==true){
+        localStorage.setItem("curr_sess_spotorderflag",'true');
+        document.querySelector('autocompleteitemlist-card').FnFetchSpotItems(true);
+        
+      }
+      else{
+        localStorage.setItem("curr_sess_spotorderflag",'');
+        document.querySelector('autocompleteitemlist-card').FnFetchSpotItems(false);        
+      }
     },
     FnInputChanged:function(){
       //alert('yes');
@@ -56,6 +75,11 @@
     },
     FnAddItem:function(e)
     {
+
+      if(localStorage.getItem("curr_sess_spotorderflag")=='true')      
+      {
+          document.querySelector('autocompleteitemlist-card').FnFetchSpotItems(true);
+      }
       //alert(e.model.index);
       //this.$.supname.validate();
       if(this.flag!=1)
@@ -110,7 +134,11 @@
         }
         if(existflag==0){
           //alert('okay');
-          var obj={"invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          if(localStorage.getItem("curr_sess_spotorderflag")=='true')
+          obj.state='spot';
+          else
+          obj.state=''; 
           obj.duedate=localStorage.getItem("localsess_curr_inwarddate");
           obj.invoicedate=this.invoicedate;
           obj.itemdes=this.itemdes;
@@ -183,7 +211,11 @@
             }
           }
           if(existflag==0){
-            var obj={"invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            var obj={"state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            if(localStorage.getItem("curr_sess_spotorderflag")=='true')
+            obj.state='spot';
+            else
+            obj.state='';
             obj.duedate=localStorage.getItem("localsess_curr_inwarddate");
             obj.specification=this.specification;
             obj.invoicedate=this.invoicedate;

@@ -181,13 +181,16 @@
          this.$.intentpoitemajax.generateRequest();      
       },
       FnintentpoitemResponse:function(e){
+        //alert(JSON.stringify(e.detail.response.itemarr));
         document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
+        //alert(document.querySelector('viewintentitemexpand-page').suppliernamearr);
         document.querySelector('viewintentitemexpand-page').FnShowSupplierDiv();
       },
    
       FnIntentStateUpdate:function(updatestate){
         //alert(updatestate);
         intentno=sessionStorage.getItem("sess_curr_intentregno");
+        //alert(intentno);
         promotestate=updatestate;
         this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
         var obj={"itemdes":"","intentregno":"","loggedrole":"","updatestate":""};

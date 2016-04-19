@@ -130,7 +130,7 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
       Config_columnvalue=obj[i].columnvalues;
     }
   }
- // console.log(wardflag+"  "+itemid);
+ // console.log(wardflag+"  "+itemid)
   //Condition which form the query for the currently logged role
   if(wardflag=="0"){
   queryy="SELECT mi.Item_ID,mi.Item_Name,mi.Item_Description,mi.Item_Type_ID,mi.Container,mi.UOM,mi.Item_Group_ID,mi.Item_Purchase_Type_ID,oi.Item_Supplier_ID from MD_Item mi join OD_Item oi on(mi.Item_ID=oi.Item_ID) and oi.Item_Supplier_ID='"+itemid+"' and mi.Item_Type_ID not in('FG')";
@@ -150,6 +150,9 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
     //console.log("inside");
     queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"'))";
     //console.log(queryy);
+  }
+  else if(wardflag=="4"){
+    queryy="SELECT * FROM MD_Item WHERE Item_Purchase_Type_Id='1'";
   }
   //Query which fetches items for the corresponding role who logged in
   connection.query(queryy, function (err, rows) {
@@ -980,12 +983,13 @@ exports.FnIntentItemWrite=function(pagename,response,loggeduser,itemdes,callback
 var query="SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID =  '"+loggeduser+"' AND department_ID = (SELECT DISTINCT department_ID FROM MD_Item m JOIN OD_Intent_Item_Type o USING ( Item_Type_ID ) WHERE m.Item_Name =  '"+itemdes+"' ) ";
   
   connection.query(query,function(err,rows,result){
-   
+   if(response.state!='spot'){
    if(rows.length==1){
      response.state='external';     
    }
    else{
      response.state='internal';     
+   }
    }
     
   //console.log(response.state+"  "+response.PO_Number);
@@ -995,10 +999,12 @@ var query="SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID =  '"+
       //console.log(response.state);
       var idd="INT"+rows[0].Intent_Register_Number;
       if(response.state=='external'){
-      response.Intent_State='Created';
-      }
-      else
         response.Intent_State='Created';
+      }
+      else if(response.state=='internal')
+        response.Intent_State='Created';
+      else if(response.state=='spot')
+        response.Intent_State='SpotCreated';
         response.Intent_Register_Number=idd;
         //console.log(response.Product_ID);
       var queryy1="SELECT Item_Type_ID from MD_Item where Item_Name='"+response.Product_ID+"'"; 
@@ -1037,24 +1043,12 @@ exports.FnIntentItemRead=function(pagename,loggeduser,loggedrole,state,callback)
       Config_columns = obj[i].columns;
     }
   }
-   // var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') )";
-    
-//var queryy="select distinct Intent_Register_Number,Intent_Date from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal') and Intent_State='"+state+"'";
-    //cond={"Intent_State":'Created'};
-    //connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
+   
     var itemarr=[];
-    //var itemidarr=[];
-    //var queryy1="select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')";
-    
-    //connection.query(queryy1,function(err, rows, fields) {
-  
-    //for(var n=0;n<rows.length;n++){
-    //console.log(rows[n]);
-    //var queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State='Created' and os.Item_Type_ID=(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal'))";      
-     
-      //console.log(loggedrole);
+   
       if(loggedrole=="Purchase manager")
-        queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','POCreated') and os.state='external' order by os.Intent_Register_Number DESC"; 
+        //queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','POCreated') and os.state='external' order by os.Intent_Register_Number DESC"; 
+        queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where (os.Intent_State in('Approved','POCreated') and os.state='external') or (os.Intent_State in('SpotCreated') and os.state='spot') order by os.Intent_Register_Number DESC";
       else if(loggedrole=="Stores manager")  
         //queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where (os.Intent_State in('Approved','Supplied') and os.state='internal')"; 
         queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')) or (os.Intent_State in('Approved') and os.state='internal') order by os.Intent_Register_Number DESC";
@@ -1171,10 +1165,11 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,cond1,callback) {
         obj.unitmeasure=rows[i].Unit_Measure;
         obj.remark=rows[i].Remarks;
         obj.intentstate=rows[i].Intent_State;
-        if(rows[i].state=='internal')
+        obj.state=rows[i].state;
+        /*if(rows[i].state=='internal')
         obj.state='No';
         if(rows[i].state=='external')
-        obj.state='Yes';
+        obj.state='Yes';*/
         obj.createdby=rows[i].Intent_Created_By;
         itemarr.push(obj);
       }
@@ -1774,10 +1769,6 @@ exports.Fnintentpoitemread=function(pagename,intentno,itemdes,callback) {
     }
   }
 
-// var queryy="select si.Product_ID,od.Item_ID,od.Item_Supplier_ID,ps.Supplier_Name from OD_Stores_Intent_Items si "+ 
-// "join MD_Item md on(si.Product_ID=md.Item_Name) join OD_Item od on(md.Item_ID=od.Item_ID) join MD_Purchase_Supplier ps "+
-// "on(od.Item_Supplier_ID=ps.Supplier_ID) where si.Intent_Register_Number='"+intentno+"'";
-
 var queryy="select si.Product_ID,od.Item_ID,od.Item_Supplier_ID,ps.Supplier_Name from OD_Stores_Intent_Items si "+ 
 "join MD_Item md on(si.Product_ID=md.Item_Name) join OD_Item od on(md.Item_ID=od.Item_ID) join MD_Purchase_Supplier ps "+
 "on(od.Item_Supplier_ID=ps.Supplier_ID) where si.Intent_Register_Number='"+intentno+"' and si.Product_ID='"+itemdes+"'";
@@ -1942,40 +1933,7 @@ exports.FnIntentviewPocreate=function(pagename,callback) {
    //} 
   //});
 
-  /*var queryy="SELECT PO_Number FROM OD_Purchase_Order WHERE Intent_Register_Number='"+response.Intent_Register_Number+"' and Supplier_Name='"+response.Supplier_Name+"'";
-   connection.query(queryy,function(err,rows,result){
-    if(!err){
-      console.log(rows.length);
-      if(rows.length>0){
-        console.log("old supplier");
-
-          connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
-            if(!err){
-                response.PO_Number=rows[0].PO_Number;
-                return callback({'returnval':response.PO_Number});
-            }
-          });       
-      }
-      else{
-        console.log("new supplier");
-        connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
-            console.log('seq generated!'+result.affectedRows);
-            if(result.affectedRows==1){     
-            connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
-            if(!err){
-                response.PO_Number=parseInt(rows[0].PO_Number)+1;
-                console.log(response.PO_Number);
-                return callback({'returnval':response.PO_Number});
-            }
-            });
-            }
-        });
-        
-        }
-    }
-    else
-      console.log(err);
-   });*/
+ 
  }
 
 //Function to promote intent
@@ -2000,20 +1958,6 @@ exports.FnViewintentpromote=function(pagename,response,intentno,itemdes,updatero
           });          
         }       
     });
-
-  //console.log(JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(intentno));
-  /*connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? ',[updatecolumn,updaterolecolumn,intentno], function(err, rows) {
-    if(!err)
-    {
-      //console.log('updated');
-       return callback({"returnval":"succ"});
-     
-    }
-    else{
-      //console.log(err);
-      return callback({"returnval":"fail"});
-    }
-  });*/
 
 }
 

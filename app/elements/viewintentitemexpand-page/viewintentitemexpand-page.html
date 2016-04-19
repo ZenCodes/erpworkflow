@@ -136,7 +136,7 @@
     <!-- <paper-item>Created By:</paper-item> -->
     <paper-input label="Created By" name="createdby" value="{{createdby}}" readonly>{{createdby}}</paper-input>
     <div class="supplierdiv" hidden$="{{hidesupplier}}">
-      <paper-dropdown-menu label="Select">
+    <paper-dropdown-menu label="Select">
        <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">
         <template is="dom-repeat" items="{{suppliernamearr}}">
         <paper-item value="{{item.Supplier_Name}}" >{{item.Supplier_Name}}</paper-item>

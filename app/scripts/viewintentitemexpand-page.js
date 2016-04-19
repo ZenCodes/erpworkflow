@@ -12,6 +12,8 @@ Polymer({is:"viewintentitemexpand-page",
     this.promotebtn=["Approve","Create PO","Accept"];
     this.inpromotestate=["Created","Approved","Supplied","Accepted"];
     this.inpromotebtn=["Approve","Supply","Accept"];
+    this.spotpromotestate=["SpotCreated","SpotApproved"];
+    this.spotpromotebtn=["Approve"];
     this.intentexpandurl=sessionStorage.getItem("curr_sess_url")+"intentitemexpand-card";
   },
   //fetches item info under the INT corresponding to the user loggedin role
@@ -43,32 +45,42 @@ Polymer({is:"viewintentitemexpand-page",
       obj.specification=arr[i].specification;
       obj.remarks=arr[i].remark;
       obj.intentstate=arr[i].intentstate;
-      this.poreq=arr[i].state;      
+      obj.state=arr[i].state;      
       this.createdby=arr[i].createdby;
       //alert(obj.intentstate);
-      if(this.poreq=='Yes'){
+      if(obj.state=='external'){
       for(var j=0;j<(this.promotestate).length;j++){  
       //alert(obj.intentstate); 
       //alert(this.promotestate[j]);     
         if(obj.intentstate==this.promotestate[j]){
           this.promote=this.promotebtn[j]; 
-          if(this.promote=="Create PO")
-            this.hide=false;
+          //if(this.promote=="Create PO")
+            //this.hidesupplier=false;
         }
       }
       }
-      if(this.poreq=='No'){
+      if(obj.state=='internal'){
       for(var j=0;j<(this.promotestate).length;j++){  
       //alert(obj.intentstate); 
       //alert(this.promotestate[j]);     
         if(obj.intentstate==this.inpromotestate[j]){
           this.promote=this.inpromotebtn[j]; 
-          if(this.promote=="Supply")
-            this.hide=true;
+          //if(this.promote=="Supply")
+            //this.hidesupplier=true;
         }
       }
       }
-      
+      if(obj.state=='spot'){
+      for(var j=0;j<(this.promotestate).length;j++){  
+      //alert(obj.intentstate); 
+      //alert(this.promotestate[j]);     
+        if(obj.intentstate==this.spotpromotestate[j]){
+          this.promote=this.spotpromotebtn[j]; 
+          //if(this.promote=="Supply")
+            //this.hide=true;
+        }
+      }
+      }
       prodarr.push(obj);
     }
 
@@ -104,6 +116,7 @@ Polymer({is:"viewintentitemexpand-page",
   //{    
     for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){
+      //alert('po create');
       this.$.intentservice.FnIntentPoItemRead();
      // this.$.intentservice.FnIntentStateUpdate(this.pono,this.promotestate[i+1]);      
     //}
@@ -126,6 +139,10 @@ Polymer({is:"viewintentitemexpand-page",
       this.$.intentservice.FnIntentStateUpdate(this.inpromotestate[i+1]);
       //alert(this.promotestate[i+1]);
     }
+    else if(this.promote==this.spotpromotebtn[i]){
+      this.$.intentservice.FnIntentStateUpdate(this.spotpromotestate[i+1]);
+      //alert(this.promotestate[i+1]);
+    }
   }
   }
   },
@@ -133,6 +150,7 @@ Polymer({is:"viewintentitemexpand-page",
     this.hidesupplier=false;    
   },
   FnSelectSupplier:function(e){
+
       var selectedsupplier=e.target.selectedItem.textContent.trim();
       this.$.intentservice.FnCreatePO(selectedsupplier);      
   },

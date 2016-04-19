@@ -21,7 +21,8 @@
       this.purchasetypeflag="";
       //Initially hiding dropdown list
       var obj={"wardflag":"","itemid":""};
-
+      //alert(localStorage.getItem("curr_sess_wardflag")+"  "+sessionStorage.getItem("curr_sess_roleflag"));
+     
       if(localStorage.getItem("curr_sess_wardflag") == "2") {
        //alert("one");
         obj.wardflag="3";
@@ -40,7 +41,7 @@
       }
       if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
         obj.wardflag="1";
-      this.param=obj;
+        this.param=obj;
       //alert(JSON.stringify(obj));
       this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
       this.querySelector('paper-listbox').style.visibility='hidden';
@@ -58,6 +59,24 @@
         this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
         this.$.itemlistreadajax.generateRequest();
       }
+    },
+    FnFetchSpotItems:function(flag){
+      if(flag==true){
+       var obj={"wardflag":""};     
+      
+        obj.wardflag = "4";
+        this.param=obj;
+        this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+        this.$.itemlistreadajax.generateRequest();
+      
+      }
+      else{
+        obj.wardflag="3";
+        obj.itemid = sessionStorage.getItem("loggeduser"); 
+        this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+        this.$.itemlistreadajax.generateRequest();
+      }
+
     },
     //Funtion invokes when selecting item 0in dropdown
     FnItemSelected:function(e){
@@ -170,7 +189,7 @@
     itemlistreadResponse:function(e)
     {
         item= e.detail.response.itemarr;
-        // alert(JSON.stringify(item));
+        //alert(JSON.stringify(item));
     },
     setDefaultval:function(){
       this.value="";

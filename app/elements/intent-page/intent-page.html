@@ -12,6 +12,7 @@
 <link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../item-card/item-card.html">
 <link rel="import" href="../datepicker-card/datepicker-card.html">
 <link rel="import" href="../item-service/item-service.html">
@@ -108,12 +109,12 @@
     <template is="dom-repeat" items="{{label}}" as="lbl">
       <div class="card">
         <!-- <div class="datetitle"><paper-item id="datetitle" label="Intent date" noink>{{lbl.Intent_date}}</paper-item></div> -->
-        <!-- <div class="banner1"> -->
-          <!-- <datepicker-card></datepicker-card> -->
-        <!-- </div> -->
+        <div class="banner1"> 
+          <paper-checkbox hidden$="{{hidespotorder}}" on-change="FnChangeSpot" id="spotorder" noink>Spot Order</paper-checkbox>
+        </div>
         <div class="banner2">
           <paper-tabs selected="0" noink id="ptab">
-            //Dynamically generating tabs from config file
+            <!-- Dynamically generating tabs from config file -->
             <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
               <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>
             </template>

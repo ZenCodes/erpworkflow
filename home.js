@@ -379,7 +379,7 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     Quantity:req.query.qtyreceived,
     Quantity_Measure:req.query.qtymeasure,
     Remarks:req.query.remark,
-    state:'',
+    state:req.query.state,
     PO_Number:'',
     Intent_Created_By:req.query.loggedrole,
     Intent_State:'',
