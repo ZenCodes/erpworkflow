@@ -28,38 +28,19 @@
         position: relative;
       }
       #itemdes{
-
-        width:250px;
+        width:280px;
       }
       #specification{
-        width:160px;
+        width:140px;
         margin-left: 0%;
       }
-      #qtr,#qta{
+      #qtr{
         width:160px;
-        margin-left: -4%;
+        margin-left: -1%;
       }
       #itemdes{
-        margin-left: 5%;
-      }
-      #qta{
-        margin-left: -4%;
-      }
-      .remark{
-        //width:30%;
-        height:4%;
-        margin-left: 0%;
-        margin-top: 2%;
-      }
-      .custom {
-        margin-left: 5%;
-        --paper-tooltip-background: #dce775;
-        --paper-tooltip-text-color: black;
-        //font-size: 14px;
-        width: 150px;
-        --paper-tooltip-border-color: crimson;
-        //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
-      }
+        margin-left: 8%;
+      }   
       paper-button{
         text-transform: none;
       }
@@ -67,7 +48,15 @@
         margin-left: 100px;
       }
       #status{
-        margin-left:-5%;
+        width:160px;
+        margin-left:1%;
+      }  
+      #due{
+        width:160px;
+        margin-left: 1%;
+      }   
+      #promot{
+        margin-left: 0%;
       }
 
     </style>
@@ -76,11 +65,11 @@
       <div class="repeatcard">
         <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
         <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
-        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}</paper-item></div>
-        <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
+        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}/{{unit}}</paper-item></div>
+        <!-- <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div> -->
         <div id="status" ><paper-item name="status" value="{{intentstatus}}">{{intentstatus}}</paper-item></div>
         <div id="due" ><paper-item name="due" value="{{duedate}}">{{duedate}}</paper-item></div>       
-        <paper-button id="promote" disabled="{{disableflag}}" hidden$="{{hideadd}}" name="promote" value="Add" on-click="FnCreatePo" noink>Add</paper-button>
+        <div id="promot" ><paper-button id="promote" disabled="{{disableflag}}" hidden$="{{hideadd}}" name="promote" value="Add" on-click="FnCreatePo" noink>Add</paper-button></div>
         <div class="supplierdiv" hidden$="{{hidesupplier}}" id="supplier">
         <paper-dropdown-menu label="Select">
         <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">

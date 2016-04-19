@@ -18,11 +18,10 @@ Polymer({is:"intentviewexpanditem-card",
   FnCreatePo:function(){  	
   	this.hidesupplier=false;
   	this.hideadd=true;
-  	this.querySelector('#specification').style.marginLeft='30px';
-  	this.querySelector('#qta').style.marginLeft='0px';
-  	this.querySelector('#qtr').style.marginLeft='0px';
-  	this.querySelector('#due').style.marginLeft='0px';
-  	this.querySelector('#supplier').style.marginLeft='0px';
+  	this.querySelector('#specification').style.marginLeft='30px';  	
+  	this.querySelector('#qtr').style.marginLeft='20px';
+  	this.querySelector('#due').style.marginLeft='20px';
+  	this.querySelector('#supplier').style.marginLeft='-5px';
   	this.querySelector('#supplier').style.marginTop='-2%';
   	if(this.poraiseflag==0){
   	sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
