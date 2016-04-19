@@ -7,9 +7,11 @@ Polymer({
     //this.page='home-page';
     this.userlabel="Signout";
 
+
     this.$.intentview.style.visibility='hidden';
-    if(sessionStorage.getItem("curr_sess_roleflag")=="4")
+    if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="3"){
       this.$.intentview.style.visibility='visible';
+    }
     
     /*Condition which allow to see the search page and hide the respective components in UI*/
     if(sessionStorage.getItem("curr_sess_roleflag")=="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"){
@@ -132,12 +134,11 @@ Polymer({
       this.$.flow.style.visibility='visible';
     if(flag=="false")
       this.$.flow.style.visibility='hidden';
-  }
-  // },
-  // FnSetIntentFlowVisibility:function(flag){
-   /* if(flag=="true")
-      this.$.intentflow.style.visibility='visible';
+  },  
+  FnSetIntentFlowVisibility:function(flag){
+    if(flag=="true")
+      this.$.intentview.style.visibility='visible';
     if(flag=="false")
-      this.$.intentflow.style.visibility='hidden';*/
-  // }
+      this.$.intentview.style.visibility='hidden';
+  }
 });

@@ -33,6 +33,7 @@ Polymer({is:"drawermenu-card",
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
+        document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
       }
     }
     //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
