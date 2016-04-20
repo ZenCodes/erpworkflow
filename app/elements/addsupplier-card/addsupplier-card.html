@@ -116,16 +116,16 @@
 
         </div>
         <div class="driver">
-          <paper-input readonly="{{read}}" label="{{item.Landmark}}" name="landmark" value="{{landmark}}" required  id="landmark" allowed-pattern="[a-zA-Z ]" error-message="{{item.Landmark_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Landmark}}" name="landmark" value="{{landmark}}" required  id="landmark" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Landmark_error}}"></paper-input>
           <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" allowed-pattern="[a-zA-Z ]" error-message="{{item.Location_error}}"></paper-input>
         </div>
         <div class="driver">
-          <paper-input readonly="{{read}}" label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[a-zA-Z ]" error-message="{{item.City_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.District}}" name="district" value="{{district}}" required  id="district" allowed-pattern="[a-zA-Z ]" error-message="{{item.District_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.City_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.District}}" name="district" value="{{district}}" required  id="district" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.District_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-input readonly="{{read}}" label="{{item.State}}" name="state" value="{{state}}" required  id="state" allowed-pattern="[a-zA-Z ]" error-message="{{item.State_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Country}}" name="country" value="{{country}}" required  id="country" allowed-pattern="[a-zA-Z ]" error-message="{{item.Country_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.State}}" name="state" value="{{state}}" required  id="state" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.State_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Country}}" name="country" value="{{country}}" required  id="country" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Country_error}}"></paper-input>
         </div>
 
         <div class="owner">

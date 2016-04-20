@@ -25,6 +25,9 @@
         if ((arr[i].Page[0].page[0]) == this.current_page) {
 
           labelvalue = arr[i].Page[1].Label;
+          //alert(arr[i].Page[2].title);
+          if(this.current_page!='login-card')
+          document.querySelector('app-homepage').setPageTitle(arr[i].Page[2].title);
           /*Binding Labels and error message to the respective card*/
           document.querySelector(arr[i].Page[0].page[1]).label = labelvalue;
 

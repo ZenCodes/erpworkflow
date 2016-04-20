@@ -140,5 +140,8 @@ Polymer({
       this.$.intentview.style.visibility='visible';
     if(flag=="false")
       this.$.intentview.style.visibility='hidden';
+  },
+  setPageTitle:function(title){
+    this.pagetitle=title;
   }
 });

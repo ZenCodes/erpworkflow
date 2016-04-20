@@ -168,6 +168,13 @@
       margin-top:-3%;
     //margin-left:10%;
     }
+    .pagetitle{
+      font-size: 24px;
+      font-family: "Arial";
+      margin-top: -7%;
+      margin-left: -10%;
+      color: grey;
+    }
   </style>
   <template>
     <grn-service id="gs"></grn-service>
@@ -195,7 +202,7 @@
         </paper-toolbar>
         <!-- Top Toolbar for search and cart-->
         <paper-toolbar class="top1">
-          <div><paper-item class="title" style="font-size:15px;">Page Title here...</paper-item></div>
+          <div><paper-item class="pagetitle">{{pagetitle}}</paper-item></div>
           <div class="flex"></div>
         </paper-toolbar>
         <paper-toolbar class="top2">

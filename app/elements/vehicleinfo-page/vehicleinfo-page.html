@@ -61,6 +61,9 @@
       paper-input{
         --paper-input-container-label: { color: red };
       }
+      #panno{
+        --paper-input-container-label: { color: grey };
+      }
       #vehicleno,#panno{
         margin-left: 5%;
       }
@@ -98,19 +101,20 @@
       </div>
     <div class="card">
       <div class="driver">
-        <paper-input label="{{item.Destination_City}}" name="city" value="{{city}}" required  id="destcity" allowed-pattern="[a-zA-Z ]" error-message="{{item.Destination_City_error}}"></paper-input>
+        <paper-input label="{{item.Destination_City}}" name="city" value="{{city}}" required  id="destcity" 
+        allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Destination_City_error}}"></paper-input>
         <paper-input label="{{item.Vehicle_Number}}" name="vehicleno" value="{{vehicleno}}" required  id="vehicleno" error-message="{{item.Vehicle_Number_error}}"></paper-input>
        </div>
       <div class="driver">
-        <paper-input label="{{item.Transport_Name}}" name="transportname" value="{{transportname}}" required  id="transportname" error-message="{{item.Transport_Name_error}}"></paper-input>
-        <paper-input label="{{item.PAN}}" name="panno" value="{{panno}}" required  id="panno" error-message="{{item.PAN_error}}"></paper-input>
+        <paper-input label="{{item.Transport_Name}}" name="transportname" value="{{transportname}}" required  id="transportname" error-message="{{item.Transport_Name_error}}" allowed-pattern="[ A-Za-z_@./#&+-]"></paper-input>
+        <paper-input label="{{item.PAN}}" name="panno" value="{{panno}}"  id="panno" error-message="{{item.PAN_error}}"></paper-input>
       </div>
       <div class="driver">
-        <paper-input label="{{item.Driver_Name}}" name="drivername" value="{{drivername}}" required  id="drivername" allowed-pattern="[a-zA-Z ]" error-message="{{item.Driver_Name_error}}"></paper-input>
+        <paper-input label="{{item.Driver_Name}}" name="drivername" value="{{drivername}}" required  id="drivername" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Driver_Name_error}}"></paper-input>
         <paper-input label="{{item.Driver_Number}}" name="driverno" value="{{driverno}}" required  id="driverno" error-message="{{item.Driver_Number_error}}"></paper-input>
       </div>
       <div class="owner">
-        <paper-input label="{{item.Owner_Name}}" name="ownername" value="{{ownername}}" required  id="ownername" allowed-pattern="[a-zA-Z ]" error-message="{{item.Owner_Name_error}}"></paper-input>
+        <paper-input label="{{item.Owner_Name}}" name="ownername" value="{{ownername}}" required  id="ownername" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Owner_Name_error}}"></paper-input>
         <paper-input label="{{item.Owner_Number}}" name="ownerphone" value="{{ownerphone}}" required  id="ownerphone" error-message="{{item.Owner_Number_error}}"></paper-input>
       </div>
 

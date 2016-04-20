@@ -24,10 +24,10 @@ Polymer({
     document.querySelector('#ownerphone').validate()
     document.querySelector('#vehicleno').validate()
     document.querySelector('#transportname').validate()
-    document.querySelector('#panno').validate()
+    //document.querySelector('#panno').validate()
     document.querySelector('#destcity').validate()
 
-    if(this.panno==null||this.panno==""){
+    if(this.city==null||this.city==""||this.vehicleno==null||this.vehicleno==""||this.transportname==null||this.transportname==""||this.drivername==null||this.drivername==""||this.driverno==null||this.driverno==""||this.ownername==null||this.ownername==""||this.ownerphone==null||this.ownerphone==""){
       //alert("All fields should be filled out");
     }
     else{

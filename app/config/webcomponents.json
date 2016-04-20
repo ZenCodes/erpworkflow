@@ -3,6 +3,7 @@
     {"Page":[
     {"page":["login-card","login-card"]},
     {"Label":[{"user_name":"Employee ID","pass_word":"Password","user_name_error":"Username required","pass_word_error":"Password required"}]}
+    ,{"title":["Login Card"]}
     ]},
     {"Page":[
       {"page":["Vehicle Info","vehicle-page"]},
@@ -10,31 +11,38 @@
         "Driver_Name":"Driver Name","Driver_Number":"Driver Number","Invoice_date_error":"Error invoice date",
         "Invoice_Number_error":"Enter invoice number","Vehicle_Number_error":"Enter vehicle number",
         "Vehicle_Name_error":"Enter vehicle name","Driver_Name_error":"Name should contain letters only",
-        "Driver_Number_error":"Enter driver number"}]}
+        "Driver_Number_error":"Enter driver number"}]},
+      {"title":["Inward Items Register"]}
     ]},
     {"Page":[
       {"page":["Item Detail","item-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container"},{"tab":"Quantity Received"},{"tab":"Remarks"}],"Supplier_Name":"Supplier Name","Supplier_Name_error":"Enter supplier name"}]}
+      ,{"title":["Inward Items Register"]}
     ]},
     {"Page":[
       {"page":["physicins-page","physicins-page"]},
       {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+       ,{"title":["GRN Flow"]}
     ]},
     {"Page":[
       {"page":["physicqualify-card","physicqualify-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Cont/Qty Received"},{"tab":"Cont Accepted"},{"tab":"Qty Accepted"},{"tab":"Remarks"}],"Qty_Received":"Qty Received","PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+      ,{"title":["GRN Flow"]}
     ]},
     {"Page":[
       {"page":["physicinsread-page","physicinsread-page"]},
       {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+      ,{"title":["GRN Flow"]}
     ]},
     {"Page":[
       {"page":["physicqualifyread-card","physicqualifyread-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Cont/Qty Received"},{"tab":"Cont/Qty Accepted"},{"tab":"Remarks"}],"PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+      ,{"title":["GRN Flow"]}
     ]},
     {"Page":[
       {"page":["Customer Detail","customerinfo-page"]},
       {"Label":[{"Out_Time":"Out Time","Out_Date":"Out Date","Invoice_Number":"Invoice Number","Customer_Name":"Customer Name","Destination_City":"Destination City","Invoice_Number_error":"Enter invoice number","Customer_Name_error":"Enter customer name","Destination_City_error":"Enter destination city"}]}
+      ,{"title":["Outward Items Register"]}
     ]},
     {"Page":[
       {"page":["Out Vehicle Info","vehicleinfo-page"]},
@@ -45,41 +53,50 @@
         "Vehicle_Number_error":"Enter vehicle number","Transport_Name_error":"Enter transport name",
         "PAN_error":"Enter PAN","Out_Time":"Out Time","Out_Date":"Out Date",
         "Destination_City":"Destination City","Destination_City_error":"Enter destination city"}]}
+        ,{"title":["Outward Items Register"]}
     ]}
     ,
     {"Page":[
       {"page":["Out Item Detail","outwarditem-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container"},{"tab":"Quantity"}],"Invoice_Number":"Invoice Number","Customer_Name":"Customer Name","Invoice_Number_error":"Enter invoice number","Customer_Name_error":"Enter customer name"}]}
+      ,{"title":["Outward Items Register"]}
     ]}
     ,
     {"Page":[
       {"page":["Search Items","searchread-page"]},
       {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+      ,{"title":["Search Page"]}
     ]},
     {"Page":[
       {"page":["searchexpand-card","searchexpand-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Cont/Qty Received"},{"tab":"Cont/Qty Accepted"},{"tab":"Remarks"}],"PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+      ,{"title":["Search Page"]}
     ]}
     ,
     {"Page":[
       {"page":["outwardsearchread-page","outwardsearchread-page"]},
       {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+      ,{"title":["Search Page"]}
     ]} ,
     {"Page":[
       {"page":["outwardsearchexpand-card","outwardsearchexpand-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container"},{"tab":"Quantity"}]}]}
+      ,{"title":["Search Page"]}
     ]},
     {"Page":[
       {"page":["Add Intent","intent-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Container"},{"tab":"Quantity"},{"tab":"Due Date"},{"tab":"Remarks"}],"Intent_date":"Intent date"}]}
+       ,{"title":["Add Intent Page"]}
     ]},
     {"Page":[
       {"page":["View Intent","viewintent-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Item Location"},{"tab":"Intent Register No"}]}]}
+      ,{"title":["View Intent Page"]}
     ]},
     {"Page":[
       {"page":["viewintentitemexpand-page","viewintentitemexpand-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Container"},{"tab":"Qunatity"},{"tab":"Remarks"}]}]}
+      ,{"title":["View Intent Page"]}
     ]},
     {"Page":[
       {"page":["additem-card","additem-card"]},
@@ -88,6 +105,7 @@
         "Item_Id_error":"Enter Item ID","Item_Name_error":"Enter Item Name","Item_Description_error":"Enter Item Description","Container_error":"Enter Container",
         "Quantity_error":"Enter Quantity",
         "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type"}]}
+        ,{"title":["Add Item Page"]}
     ]},
     {"Page":[
       {"page":["Add Supplier","addsupplier-card"]},
@@ -100,6 +118,7 @@
         "Country_error":"Enter Country","Pincode_error":"Enter Pincode",
         "Phone_Number_error":"Enter Phone Number","Mobile_Number_error":"Enter Mobile Number",
         "Email_ID_error":"Enter Email ID"}]}
+        ,{"title":["Add Supplier Page"]}
     ]},
     {"Page":[
           {"page":["Add Payment","payment-card"]},
@@ -108,6 +127,7 @@
             "Bank_Name_error":"Enter Bank Name","Account_Number_error":"Enter Account Number",
             "Bank_Address_error":"Enter Bank Address"
       }]}
+      ,{"title":["Add Supplier Page"]}
       ]},
     {"Page":[
       {"page":["Add Item","supplieradditem-card"]},
@@ -120,20 +140,24 @@
         "Quantity_error":"Enter Quantity",
         "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type",
         "Supplier_error":"Enter Supplier Name"}]}
+      ,{"title":["Add Supplier Page"]}
     ]}
     ,
         {"Page":[
               {"page":["itemsearch-card","itemsearch-card"]},
               {"Label":[{"Item_Name":"Enter Item Name","Item_ID":"Enter Item ID","Item_Name_error":"Enter Item Name",
                 "Item_ID_error":"Enter Item ID"}]}
+              ,{"title":["Search Page"]}
       ]},
         {"Page":[
       {"page":["Intent View","intentview-card"]},
       {"Label":[{"tabs":[{"tab":"Intent Register No"},{"tab":"Intent Date"}]}]}
+      ,{"title":["Intent View Page"]}
     ]},
     {"Page":[
       {"page":["intentviewitemexpand-card","intentviewitemexpand-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Cont/Qty"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Supplier"}]}]}
     ]}
+    ,{"title":["Intent View Page"]}
   ]
 
