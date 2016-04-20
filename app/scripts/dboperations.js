@@ -117,6 +117,7 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 
 //Method to fetch the item names from master table according to the logged user role
 exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
+
   var queryy="";
   var loggeduser=itemid;
   var Config_tables=[];
@@ -133,25 +134,30 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
  // console.log(wardflag+"  "+itemid)
   //Condition which form the query for the currently logged role
   if(wardflag=="0"){
+    //console.log("0");
   queryy="SELECT mi.Item_ID,mi.Item_Name,mi.Item_Description,mi.Item_Type_ID,mi.Container,mi.UOM,mi.Item_Group_ID,mi.Item_Purchase_Type_ID,oi.Item_Supplier_ID from MD_Item mi join OD_Item oi on(mi.Item_ID=oi.Item_ID) and oi.Item_Supplier_ID='"+itemid+"' and mi.Item_Type_ID not in('FG')";
   //queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[1]+"='"+itemid+"' AND "+Config_columns[0] +" NOT IN('"+Config_columnvalue[0]+"')";
   //console.log(queryy);
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="1"){
+    //console.log("1");
     queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" IN('"+Config_columnvalue[0]+"')";
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="2"){
+    //console.log("2");
     queryy="SELECT * FROM "+ Config_tables[0];
   }
   else if(wardflag=="3")
   {
+    //console.log("3");
     //console.log("inside");
-    queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"'))";
+    queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and Item_Purchase_Type_ID='0'";
     //console.log(queryy);
   }
   else if(wardflag=="4"){
+    //console.log("4");
     queryy="SELECT * FROM MD_Item WHERE Item_Purchase_Type_Id='1'";
   }
   //Query which fetches items for the corresponding role who logged in

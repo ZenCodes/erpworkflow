@@ -23,7 +23,7 @@
       var obj={"wardflag":"","itemid":""};
       //alert(localStorage.getItem("curr_sess_wardflag")+"  "+sessionStorage.getItem("curr_sess_roleflag"));
      
-      if(localStorage.getItem("curr_sess_wardflag") == "2") {
+      if(localStorage.getItem("curr_sess_wardflag") == "2"&&localStorage.getItem("curr_sess_spotorderflag")!='true') {
        //alert("one");
         obj.wardflag="3";
         obj.itemid = sessionStorage.getItem("loggeduser");
@@ -62,8 +62,8 @@
     },
     FnFetchSpotItems:function(flag){
       if(flag==true){
+        
        var obj={"wardflag":""};     
-      
         obj.wardflag = "4";
         this.param=obj;
         this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";

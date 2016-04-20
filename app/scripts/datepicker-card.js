@@ -16,12 +16,13 @@ Polymer({
     this.$.dialog.toggle();
   },
   FnDismissDialog:function(e){
+
     if (e.detail.confirmed) {
       var pickdate=moment(this.$.picker.date).format('L');
       var dd1=new Date();
       var dd2=new Date(pickdate);
       var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));
-
+      if(localStorage.getItem("curr_sess_showpage")!="Add Intent"){
       if(days>0)
       {
         if(days>60)
@@ -36,7 +37,14 @@ Polymer({
       else
         this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
         //alert("Date shouldn't exceed the run date!");
-    }
+      }
+      else{
+        if(days>0)
+          this.$.ID_Show_Dialog.FnShowDialog("Due date should be future date!","");
+        else
+        this.showdate = moment(this.$.picker.date).format('L');
+      }
+  }
   }
 
 });
