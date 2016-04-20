@@ -102,7 +102,8 @@
       if(this.itemdes=='deleted'||this.quantity=='deleted'){
         deleteflag=1;
       }
-      if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+      //if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+      if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
       {
         if(this.invoiceno==null||this.invoiceno=="") {
           document.querySelector('#invoiceno').validate();
@@ -111,15 +112,15 @@
           document.querySelector('#customername').validate();
         else if(this.itemdes==null||this.itemdes=="")
           this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
-        else if(this.quantity==null||this.quantity=="")
-          this.$.ID_Show_Dialog.FnShowDialog("Enter quantity unit!","");
+        // else if(this.quantity==null||this.quantity=="")
+          // this.$.ID_Show_Dialog.FnShowDialog("Enter quantity unit!","");
         else if(this.weight==null||this.weight=="")
           this.$.ID_Show_Dialog.FnShowDialog("Enter weight unit!","");
         //alert("All fields must want to be filled");
       }
-      else if(this.quantity<=0){
-        this.$.ID_Show_Dialog.FnShowDialog("Quantity unit should be greater than 0!","");
-      }
+      // else if(this.quantity<=0){
+        // this.$.ID_Show_Dialog.FnShowDialog("Quantity unit should be greater than 0!","");
+      // }
       else if(this.weight<=0){
         this.$.ID_Show_Dialog.FnShowDialog("Weight should be greater than 0!","");
       }
@@ -184,7 +185,8 @@
         if(this.itemdes=='deleted'||this.quantity=='deleted'){
           deleteflag=1;
         }
-        if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+        //if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+        if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
         {
           if(this.invoiceno==null||this.invoiceno=="")
             document.querySelector('#invoiceno').validate();
@@ -192,15 +194,15 @@
             document.querySelector('#customername').validate();
           else if(this.itemdes==null||this.itemdes=="")
             this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
-          else if(this.quantity==null||this.quantity=="")
-            this.$.ID_Show_Dialog.FnShowDialog("Enter quantity unit!","");
+          // else if(this.quantity==null||this.quantity=="")
+            // this.$.ID_Show_Dialog.FnShowDialog("Enter quantity unit!","");
           else if(this.weight==null||this.weight=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter weight unit!","");
           //alert("All fields must want to be filled");
         }
-        else if(this.quantity<=0){
-          this.$.ID_Show_Dialog.FnShowDialog("Quantity unit should be greater than 0!","");
-        }
+        // else if(this.quantity<=0){
+          // this.$.ID_Show_Dialog.FnShowDialog("Quantity unit should be greater than 0!","");
+        // }
         else if(this.weight<=0){
           this.$.ID_Show_Dialog.FnShowDialog("Weight should be greater than 0!","");
         }

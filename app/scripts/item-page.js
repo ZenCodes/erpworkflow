@@ -102,7 +102,8 @@
         deleteflag=1;
       }
 
-      if(this.container==null||this.container==""||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.unit==null||this.unit==""||this.measure==null||this.measure=="")
+      //if(this.container==null||this.container==""||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.unit==null||this.unit==""||this.measure==null||this.measure=="")
+      if(this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.unit==null||this.unit==""||this.measure==null||this.measure=="")
       {
         if(this.nullflag==0){
           document.querySelector('supplier-list').FnValidate();
@@ -111,8 +112,8 @@
         else {
           if(this.itemdes==null)
             this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
-          else if(this.container==null||this.container=="")
-            this.$.ID_Show_Dialog.FnShowDialog("Enter received container unit!","");
+          // else if(this.container==null||this.container=="")
+            // this.$.ID_Show_Dialog.FnShowDialog("Enter received container unit!","");
           else if(this.unit==null||this.unit=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter unit value for container!","");
           else if(this.qtyreceived==null||this.qtyreceived=="")
@@ -122,9 +123,9 @@
           //alert("All fields must want to be filled");
         }
       }
-      else if(this.container<=0){
-        this.$.ID_Show_Dialog.FnShowDialog("Received container unit should be greater than 0!","");
-      }
+      // else if(this.container<=0){
+        // this.$.ID_Show_Dialog.FnShowDialog("Received container unit should be greater than 0!","");
+      // }
       else if(this.qtyreceived<=0){
         this.$.ID_Show_Dialog.FnShowDialog("Received quantity unit should be greater than 0!","");
       }
@@ -188,7 +189,8 @@
         if(this.itemdes=='deleted'||this.qtyreceived=='deleted'){
           deleteflag=1;
         }
-        if(this.container==null||this.container==""||this.itemdes==null||this.qtyreceived==null||this.qtyreceived==""||this.nullflag==0||this.unit==""||this.unit==null||this.measure==null||this.measure=="")
+        //if(this.container==null||this.container==""||this.itemdes==null||this.qtyreceived==null||this.qtyreceived==""||this.nullflag==0||this.unit==""||this.unit==null||this.measure==null||this.measure=="")
+        if(this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.unit==null||this.unit==""||this.measure==null||this.measure=="")
         {
           if(this.nullflag==0){
             document.querySelector('supplier-list').FnValidate();
@@ -197,8 +199,8 @@
           else {
             if(this.itemdes==null)
               this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
-            else if(this.container==null||this.container=="")
-              this.$.ID_Show_Dialog.FnShowDialog("Enter received container unit!","");
+            // else if(this.container==null||this.container=="")
+              // this.$.ID_Show_Dialog.FnShowDialog("Enter received container unit!","");
             else if(this.unit==null||this.unit=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter unit value for container!","");
             else if(this.qtyreceived==null||this.qtyreceived=="")
@@ -208,9 +210,9 @@
             //alert("All fields must want to be filled");
           }
         }
-        else if(this.container<=0){
-          this.$.ID_Show_Dialog.FnShowDialog("Received container unit should be greater than 0!","");
-        }
+        // else if(this.container<=0){
+          // this.$.ID_Show_Dialog.FnShowDialog("Received container unit should be greater than 0!","");
+        // }
         else if(this.qtyreceived<=0){
           this.$.ID_Show_Dialog.FnShowDialog("Received quantity unit should be greater than 0!","");
         }

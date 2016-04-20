@@ -96,7 +96,8 @@
         deleteflag=1;
       }
 
-      if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.specification==0||this.specification=="")
+      //if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.specification==0||this.specification=="")
+      if(this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.specification==0||this.specification=="")
       {
         //if(this.nullflag==0){
         //alert('what?');
@@ -107,16 +108,16 @@
             this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
           else if(this.specification==null||this.specification=="")
             this.$.ID_Show_Dialog.FnShowDialog("Specification should not be empty!","");
-          else if(this.container==null)
-            this.$.ID_Show_Dialog.FnShowDialog("Unit should not be empty!","");
+          // else if(this.container==null)
+            // this.$.ID_Show_Dialog.FnShowDialog("Unit should not be empty!","");
           else if(this.qtyreceived==null||this.qtyreceived=="")
             this.$.ID_Show_Dialog.FnShowDialog("Quantity shouldn't be empty!","");
           //alert("All fields must want to be filled");
         //}
       }
-      else if(this.container<=0){
-        this.$.ID_Show_Dialog.FnShowDialog("Unit should be greater than 0!","");
-      }
+      // else if(this.container<=0){
+        // this.$.ID_Show_Dialog.FnShowDialog("Unit should be greater than 0!","");
+      // }
       else if(this.qtyreceived<=0){
         this.$.ID_Show_Dialog.FnShowDialog("Quantity unit should be greater than 0!","");
       }
@@ -176,7 +177,8 @@
         if(this.itemdes=='deleted'||this.qtyreceived=='deleted'){
           deleteflag=1;
         }
-        if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.specification==null||this.specification=="")
+        //if(this.container==null||this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.specification==null||this.specification=="")
+        if(this.itemdes==null||this.qtyreceived==null||this.nullflag==0||this.qtyreceived==""||this.specification==0||this.specification=="")
         {
           /*if(this.nullflag==0){
             document.querySelector('#supname').validate();
@@ -186,16 +188,16 @@
               this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
             else if(this.specification==null||this.specification=="")
               this.$.ID_Show_Dialog.FnShowDialog("Specification should not be empty!","");
-            else if(this.container==null)
-              this.$.ID_Show_Dialog.FnShowDialog("Unit should not be empty!","");
+            // else if(this.container==null)
+              // this.$.ID_Show_Dialog.FnShowDialog("Unit should not be empty!","");
             else if(this.qtyreceived==null||this.qtyreceived=="")
               this.$.ID_Show_Dialog.FnShowDialog("Quantity shouldn't be empty!","");
             //alert("All fields must want to be filled");
           //}
         }
-        else if(this.container<=0){
-          this.$.ID_Show_Dialog.FnShowDialog("Unit should be greater than 0!","");
-        }
+        // else if(this.container<=0){
+          // this.$.ID_Show_Dialog.FnShowDialog("Unit should be greater than 0!","");
+        // }
         else if(this.qtyreceived<=0){
           this.$.ID_Show_Dialog.FnShowDialog("Quantity unit should be greater than 0!","");
         }
