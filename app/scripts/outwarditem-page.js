@@ -20,7 +20,7 @@
       this.splice('itemArray',1,1);
     },
     FnInputChanged:function(supplierid,suppliername){
-      alert(supplierid);
+      //alert(supplierid);
       this.custflag=1;
         this.supid=supplierid;
       this.supname=suppliername;

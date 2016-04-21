@@ -53,7 +53,7 @@
       suplrid=supplierid;
       var obj={"wardflag":"","itemid":""};
       if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5") {
-        alert("inward specific");
+        // alert("inward specific");
         obj.wardflag = "0";
         obj.itemid = supplierid;
         this.param=obj;
@@ -61,7 +61,7 @@
         this.$.itemlistreadajax.generateRequest();
       }
       if(localStorage.getItem("curr_sess_wardflag")=="1") {
-        alert("outward specific");
+        // alert("outward specific");
         obj.wardflag = "1";
         obj.itemid = supplierid;
         this.param=obj;
