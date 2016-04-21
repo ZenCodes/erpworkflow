@@ -199,7 +199,7 @@
     }
 	 if(localStorage.getItem("curr_sess_wardflag")==""){
       document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
-      document.querySelector('customer-list').FnSpecificSupplierReadService(arr[0].itemid);
+      //document.querySelector('customer-list').FnSpecificSupplierReadService(arr[0].itemid);
       document.querySelector("additem-card").itemid=arr[0].itemid;
       document.querySelector("additem-card").itemname=arr[0].itemname;
       document.querySelector("additem-card").itemdes=arr[0].itemdes;

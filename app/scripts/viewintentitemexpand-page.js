@@ -18,7 +18,7 @@ Polymer({is:"viewintentitemexpand-page",
   },
   //fetches item info under the INT corresponding to the user loggedin role
   intentexpanditemreadService:function(itemdes,intentregno){
-    //alert(intentregno);
+    alert(intentregno);
     this.itemdes=itemdes;
     this.intentregno=intentregno;
     var arg={"itemdes":"","intentregno":""};
@@ -109,8 +109,9 @@ Polymer({is:"viewintentitemexpand-page",
     }
   },
   FnPromoteState:function(e){
-  if(this.promote=="Create PO"&&this.poraiseflag==0){
   
+  if(this.promote=="Create PO"&&this.poraiseflag==0){
+  //alert('show supplier');
     for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){      
       this.$.intentservice.FnIntentPoItemRead();
@@ -118,6 +119,7 @@ Polymer({is:"viewintentitemexpand-page",
   }
   }
   else if(this.promote=="Create PO"&&this.poraiseflag==1){
+    //alert('raise po');
     for(var i=0;i<(this.promotebtn).length;i++){
       if(this.promote==this.promotebtn[i])
         this.$.intentservice.FnIntentStateUpdate(this.promotestate[i+1]);
@@ -141,6 +143,7 @@ Polymer({is:"viewintentitemexpand-page",
   }
   },
   FnShowSupplierDiv:function(){
+    //alert("hi");
     this.hidesupplier=false;    
   },
   FnSelectSupplier:function(e){

@@ -1802,18 +1802,49 @@ exports.Fnitempocreate=function(pagename,response,callback) {
       Config_tables=obj[i].value;
     }
   }
+  var ponumber='';
 
- dummyno = {
-              dummy_column : 1
-          };
+ // dummyno = {
+              // dummy_column : 1
+          // };
+
+  connection.query('SELECT PO_Number FROM Auto_PO_Number',function(err,rows,result){
+  if(!err)
+    {
+     //console.log('seq generated!');
+     ponumber=parseInt(rows[0].PO_Number)+1;
+     //connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
+      //if(!err){
+        response.PO_Number=ponumber+String.fromCharCode('65');
+        var pono={PO_Number:ponumber};
+        connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
+        if(!err){
+        //console.log(rows);
+        connection.query('UPDATE Auto_PO_Number set ?',[pono],function(err,rows,result){
+        if(!err)
+        return callback('succ'); 
+        else
+        return callback('fail'); 
+        });
+        }
+       
+        });
+      //}
+      //else
+        //console.log(err);
+     //});
+    }
+  });
+
+
   //Generating inward sequence no
-  connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
+  /*connection.query('INSERT INTO Auto_PO_Number set ?',[dummyno],function(err,result){
   if(!err)
     {
      console.log('seq generated!');
      connection.query('SELECT PO_Number FROM Auto_PO_Number order by PO_Number desc',function(err,rows,result){
       if(!err){
-        response.PO_Number=rows[0].PO_Number;
+        response.PO_Number=rows[0].PO_Number+String.fromCharCode('65');
         connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
         if(!err){
         //console.log(rows);
@@ -1827,7 +1858,7 @@ exports.Fnitempocreate=function(pagename,response,callback) {
         console.log(err);
      });
     }
-  });
+  });*/
 }
 
 //Function which fetch the intent item info
