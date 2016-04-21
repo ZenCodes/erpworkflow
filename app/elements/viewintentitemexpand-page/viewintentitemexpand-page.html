@@ -147,7 +147,7 @@
     <!-- <paper-item>PO Request:</paper-item> -->
     <!--<paper-input label="PO Request" name="poreq" value="{{poreq}}" readonly>{{poreq}}</paper-input>
     <paper-input id="pono" name="pono" value="{{pono}}" label="PO Number" readonly="{{read}}" hidden$="{{hide}}" required></paper-input>-->
-    <paper-button id="promote"  name="promote" value="{{promote}}" on-click="FnPromoteState" noink>{{promote}}</paper-button>
+    <paper-button id="promote"  name="promote" value="{{promote}}" on-click="FnPromoteState">{{promote}}</paper-button>
     </div>     
 
     <!--<paper-dialog id="Fn_PoItem_dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
@@ -200,6 +200,18 @@
     content-type="application/json"
     on-response="FnIntentexpanditemreadResponse">
   </iron-ajax>
+
+   <!--Component which make request to display the Intent items based on INT no-->
+    <iron-ajax
+    
+      id="intentpoitemajax"
+      url="{{intentpourl}}"
+      params='{{intentpoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnintentpoitemResponse">
+    </iron-ajax>
 
   <!--Component to read Labels for the components from webcomponents.json file-->
   <iron-ajax

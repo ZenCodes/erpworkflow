@@ -18,7 +18,7 @@ Polymer({is:"viewintentitemexpand-page",
   },
   //fetches item info under the INT corresponding to the user loggedin role
   intentexpanditemreadService:function(itemdes,intentregno){
-    alert(intentregno);
+    //alert(intentregno);
     this.itemdes=itemdes;
     this.intentregno=intentregno;
     var arg={"itemdes":"","intentregno":""};
@@ -109,12 +109,15 @@ Polymer({is:"viewintentitemexpand-page",
     }
   },
   FnPromoteState:function(e){
+
+    //alert(this.promote+" "+this.poraiseflag);
   
   if(this.promote=="Create PO"&&this.poraiseflag==0){
   //alert('show supplier');
     for(var i=0;i<(this.promotebtn).length;i++){
     if(this.promote==this.promotebtn[i]){      
-      this.$.intentservice.FnIntentPoItemRead();
+      //this.$.intentservice.FnIntentPoItemRead();
+      this.FnIntentPoItemRead();
     }
   }
   }
@@ -142,16 +145,34 @@ Polymer({is:"viewintentitemexpand-page",
   }
   }
   },
+   FnIntentPoItemRead:function(){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
+         this.intentpourl=sessionStorage.getItem("curr_sess_url")+"intentpoitemread-service";
+         this.intentpoparam=obj;
+         this.$.intentpoitemajax.generateRequest();      
+      },
+      FnintentpoitemResponse:function(e){
+        this.suppliernamearr=e.detail.response.itemarr;
+        this.hidesupplier=false;
+        // alert(JSON.stringify(e.detail.response.itemarr));
+        //document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
+        //alert(document.querySelector('viewintentitemexpand-page').suppliernamearr);
+        //document.querySelector('viewintentitemexpand-page').FnShowSupplierDiv();
+      },
   FnShowSupplierDiv:function(){
     //alert("hi");
     this.hidesupplier=false;    
   },
   FnSelectSupplier:function(e){
-
+      this.poraiseflag=1;
       var selectedsupplier=e.target.selectedItem.textContent.trim();
+      alert(selectedsupplier);
       this.$.intentservice.FnCreatePO(selectedsupplier);      
   },
   FnSetPoRaiseFlag:function(){
+
     this.poraiseflag=1;
   }
 });

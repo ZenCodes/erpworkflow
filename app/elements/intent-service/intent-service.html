@@ -83,6 +83,7 @@
 
     <!--Component which make request to display the Intent items based on INT no-->
     <iron-ajax
+
       id="intentpoitemajax"
       url="{{intentpourl}}"
       params='{{intentpoparam}}'
@@ -181,7 +182,7 @@
          this.$.intentpoitemajax.generateRequest();      
       },
       FnintentpoitemResponse:function(e){
-        //alert(JSON.stringify(e.detail.response.itemarr));
+        // alert(JSON.stringify(e.detail.response.itemarr));
         document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
         //alert(document.querySelector('viewintentitemexpand-page').suppliernamearr);
         document.querySelector('viewintentitemexpand-page').FnShowSupplierDiv();
@@ -237,6 +238,10 @@
             pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_Accept;
           else if(promotestate=="Accepted")          
             pstate="Item Accepted!";
+          }
+
+          if(arr[0].state=="spot"){
+            pstate="Item Approved!";
           }
           this.$.ID_Show_Dialog.FnShowDialog(pstate,"");
           this.$.gs.FnIntentitemReadService();
@@ -359,7 +364,7 @@
           alert('PO is not created succ!');
       },
       FnposequpdateResponse:function(e){
-        alert(JSON.stringify(e.detail.response.itemarr));
+        //alert(JSON.stringify(e.detail.response.itemarr));
         if(e.detail.response.itemarr=='succ')
           alert("Po created!");
         else
