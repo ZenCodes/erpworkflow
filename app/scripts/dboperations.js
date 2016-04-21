@@ -142,7 +142,8 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
   //Condition which form the query for the currently logged role
   else if(wardflag=="1"){
     //console.log("1");
-    queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" IN('"+Config_columnvalue[0]+"')";
+    queryy="SELECT mi.Item_ID,mi.Item_Name,mi.Item_Description,mi.Item_Type_ID,mi.Container,mi.UOM,mi.Item_Group_ID,mi.Item_Purchase_Type_ID,oi.Item_Customer_ID from MD_Item mi join OD_Item oi on(mi.Item_ID=oi.Item_ID) and oi.Item_Customer_ID='"+itemid+"' and mi.Item_Type_ID  in('FG')";
+    //queryy="SELECT * FROM "+ Config_tables[0] +" WHERE "+ Config_columns[0] +" IN('"+Config_columnvalue[0]+"')";
   }
   //Condition which form the query for the currently logged role
   else if(wardflag=="2"){

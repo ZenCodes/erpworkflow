@@ -39,8 +39,8 @@
           obj.itemid = suplrid;
         }
       }
-      if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
-        obj.wardflag="1";
+      //if(localStorage.getItem("curr_sess_wardflag")=="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5")
+        //obj.wardflag="1";
         this.param=obj;
       //alert(JSON.stringify(obj));
       this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
@@ -53,7 +53,16 @@
       suplrid=supplierid;
       var obj={"wardflag":"","itemid":""};
       if(localStorage.getItem("curr_sess_wardflag")!="1"&&sessionStorage.getItem("curr_sess_roleflag")!="5") {
+        alert("inward specific");
         obj.wardflag = "0";
+        obj.itemid = supplierid;
+        this.param=obj;
+        this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+        this.$.itemlistreadajax.generateRequest();
+      }
+      if(localStorage.getItem("curr_sess_wardflag")=="1") {
+        alert("outward specific");
+        obj.wardflag = "1";
         obj.itemid = supplierid;
         this.param=obj;
         this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";

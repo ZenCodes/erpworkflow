@@ -845,6 +845,7 @@ app.post("/addcustomerpayment-service",urlencodedParser,function(req,res) {
 
 //Function to fetch supplier info req receives from admin service
 app.post('/itemcustomerread-service',urlencodedParser, function (req, res) {
+  //console.log("In");
   var itemid=req.query.itemid;
   var FnItemcustomerReadcall = require("./app/scripts/dboperations.js");
   FnItemcustomerReadcall.FnItemcustomerRead("itemcustomerread-service",itemid,function(returnval){

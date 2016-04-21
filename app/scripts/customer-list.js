@@ -22,6 +22,13 @@
       //Initially hiding dropdown boxes while not search for supplier names
       this.querySelector('#pl1').style.visibility='hidden';
       },
+    FnSpecificSupplierReadService:function(itemid){
+      //alert(itemname);      
+      var obj={"itemid":""};
+      obj.itemid=itemid;
+      this.supplierparam=obj;
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemcustomerread-service";
+    },
       //Funtion invokes when selecting item in dropdown
     FnItemSelected:function(e){
       /*if(e.target.selectedItem.textContent.trim()=="Others"){
@@ -36,22 +43,22 @@
 
         this.value = e.target.selectedItem.textContent.trim();
         for (var i = 0; i < item.length; i++) {
-          if (item[i].itemcustomername == this.value) {
-            this.customerid = item[i].itemcustomerid;
-            this.customername = item[i].itemcustomername;
+          if (item[i].itemsuppliername == this.value) {
+            this.supplierid = item[i].itemsupplierid;
+            this.suppliername = item[i].itemsuppliername;
           }
         }
         //Binding values to the respective cards where the supplier name field have been used
         if(sessionStorage.getItem("curr_sess_roleflag")=="0"){
-          document.querySelector('outwarditem-page').FnInputChanged(this.customerid,this.customername);
-          document.querySelector('autocompleteitemlist-card').FnFetchSpecificCustomerItem(this.customerid,this.customername);
+          document.querySelector('outwarditem-page').FnInputChanged(this.supplierid,this.suppliername);
+          document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supplierid,this.suppliername);
           this.read=true;
         }
         //else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="")
 		//  document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
 		else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""){
       if(e.target.selectedItem.textContent.trim()!="-----Select-----")
-		  document.querySelector('supplier-detail').FnSelectSupplier(this.customerid,this.customername);
+		  document.querySelector('supplier-detail').FnSelectSupplier(this.supplierid,this.suppliername);
       else
       alert("Please choose valid Customer...");
 		}
@@ -91,12 +98,12 @@
             var backsubval = (((this.value).substring(0, (len - 1))).trim()).toUpperCase();
 
             for (var i = 0; i < item.length; i++) {
-              var subval = ((item[i].itemcustomername).trim()).substring(0, backsubval.length);
+              var subval = ((item[i].itemsuppliername).trim()).substring(0, backsubval.length);
               //alert(subval);
               if ((subval).toUpperCase() == (backsubval).toUpperCase()) {
 
                 var obj = {"itemdes": ""};
-                obj.itemdes = item[i].itemcustomername;
+                obj.itemdes = item[i].itemsuppliername;
                 arr.push(obj);
               }
             }
@@ -116,11 +123,11 @@
           //alert(this.itemval);
           if (this.itemval.length > 0) {
             for (var i = 0; i < item.length; i++) {
-              var subval = ((item[i].itemcustomername).trim()).substring(0, this.itemval.length);
+              var subval = ((item[i].itemsuppliername).trim()).substring(0, this.itemval.length);
 
               if ((subval).toUpperCase() == (this.itemval).toUpperCase()) {
                 var obj = {"itemdes": ""};
-                obj.itemdes = item[i].itemcustomername;
+                obj.itemdes = item[i].itemsuppliername;
                 arr.push(obj);
               }
             }
@@ -143,7 +150,7 @@
     //Fetches and binding to the auto complete dropdown list dynamically
     itemcustomerreadResponse:function(e) {
        item=e.detail.response.itemarr;
-       alert(JSON.stringify(item));       
+       //alert(JSON.stringify(item));       
     }
     });
   })();

@@ -19,8 +19,13 @@
       this.itemArray=[{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''}];
       this.splice('itemArray',1,1);
     },
-    FnInputChanged:function(){
+    FnInputChanged:function(supplierid,suppliername){
+      alert(supplierid);
       this.custflag=1;
+        this.supid=supplierid;
+      this.supname=suppliername;
+      this.nullflag=1;
+  
     },
     FnRefreshPage:function(){
       this.flag=0;
@@ -103,13 +108,13 @@
         deleteflag=1;
       }
       //if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
-      if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+      if(this.itemdes==null||this.itemdes==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
       {
         if(this.invoiceno==null||this.invoiceno=="") {
           document.querySelector('#invoiceno').validate();
         }
-        else if(this.customername==""||this.customername==null)
-          document.querySelector('#customername').validate();
+        //else if(this.customername==""||this.customername==null)
+          //document.querySelector('#customername').validate();
         else if(this.itemdes==null||this.itemdes=="")
           this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
         // else if(this.quantity==null||this.quantity=="")
@@ -160,6 +165,7 @@
           localStorage.setItem("curr_sess_unitset",this.idd);
           //alert(obj);
           this.push('itemArray',{id:this.idd,description:'',quantity:'',unit:'',measure:'',weight:''});
+          document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supid,this.supname);
           //alert(JSON.stringify(itemarr));
           this.flag=0;
           this.itemflag=0;
@@ -186,12 +192,12 @@
           deleteflag=1;
         }
         //if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.quantity==null||this.quantity==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
-        if(this.customername==""||this.customername==null||this.itemdes==null||this.itemdes==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
+        if(this.itemdes==null||this.itemdes==""||this.weight==null||this.weight==""||this.invoiceno==null||this.invoiceno=="")
         {
           if(this.invoiceno==null||this.invoiceno=="")
             document.querySelector('#invoiceno').validate();
-          else if(this.customername==""||this.customername==null)
-            document.querySelector('#customername').validate();
+          //else if(this.customername==""||this.customername==null)
+            //document.querySelector('#customername').validate();
           else if(this.itemdes==null||this.itemdes=="")
             this.$.ID_Show_Dialog.FnShowDialog("Choose atleast one item!!","");
           // else if(this.quantity==null||this.quantity=="")
