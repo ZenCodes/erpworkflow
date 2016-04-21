@@ -135,6 +135,16 @@
       on-response="FnposequpdateResponse">
     </iron-ajax>
 
+    <iron-ajax
+      id="intenttypelistajax"
+      url="{{intenttypelisturl}}"
+      params='{{intenttypelistparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnintenttypelistResponse">
+    </iron-ajax>
+
     <grn-service id="gs"></grn-service>
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
@@ -172,6 +182,17 @@
         else
           alert('Go with another supplier');      
 
+      },
+      FnIntentTypeListService:function(){
+          var obj={"loggeduser":""};
+         obj.loggeduser=sessionStorage.getItem("loggeduser");        
+         this.intenttypelisturl=sessionStorage.getItem("curr_sess_url")+"intenttypelist-service";
+         this.intenttypelistparam=obj;
+         this.$.intenttypelistajax.generateRequest(); 
+      },
+      FnintenttypelistResponse:function(e){
+        //alert(JSON.stringify(e.detail.response.itemarr));
+        document.querySelector('intent-page').FnSetIntentType(e.detail.response.itemarr);
       },
       FnIntentPoItemRead:function(){
          var obj={"intentregno":"","itemdes":""};

@@ -22,11 +22,19 @@
       {
         this.hidespotorder=false;
       }
+      this.$.intentservice.FnIntentTypeListService();
 
       localStorage.setItem("curr_sess_unitset",this.idd);
       /*Dynamic array for creating rows of item card*/
       this.itemArray=[{id:this.idd,description:'',specification:'',received:'',unit:'',remark:'','measure':'','duedate':''}];
       this.splice('itemArray',1,1);
+    },
+    FnSetIntentType:function(intentarr){
+      this.itemtypearr=intentarr;
+    },
+    FnSelectItemType:function(e){
+      var selectedtype=e.target.selectedItem.textContent.trim();
+      document.querySelector('autocompleteitemlist-card').FnFetchSpecificTypeItem(selectedtype);
     },
     FnChangeSpot:function(e){
       var spotorder=document.querySelector("#spotorder");

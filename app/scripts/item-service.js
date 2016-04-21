@@ -154,9 +154,9 @@ var intentregno;
         // alert("Intent goes for approval with...."+arr[i].Intent_Approver+"  manager!");
       // }
       if(localStorage.getItem("curr_sess_spotorderflag")=='true')
-      this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created! Sent for the Approval with  "+"Purchase Department",intentregno);
+      this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created! Sent for the Approval with  "+"Purchase Department",intentregno);
       else
-      this.$.ID_Show_Dialog.FnShowDialog("Inward Register Note is created! Sent for the Approval with  "+arr[0].Intent_Approver,intentregno);
+      this.$.ID_Show_Dialog.FnShowDialog("Intent Register Note is created! Sent for the Approval with  "+arr[0].Intent_Approver,intentregno);
     }
   });
 })();

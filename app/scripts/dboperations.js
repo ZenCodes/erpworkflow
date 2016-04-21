@@ -115,6 +115,19 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 
 }
 
+
+//Method to fetch the item names from master table according to the logged user role
+exports.FnFetchIntenttypelist=function(pagename,loggeduser,callback) {
+var queryy="SELECT Item_Type_Name from MD_Item_Type where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"'))";
+connection.query(queryy, function (err, rows) {
+if(!err){
+  return callback(rows);
+}
+else
+  return callback('fail');
+});
+}
+
 //Method to fetch the item names from master table according to the logged user role
 exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
 
@@ -154,7 +167,9 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
   {
     //console.log("3");
     //console.log("inside");
-    queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and Item_Purchase_Type_ID='0'";
+    queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID from MD_Item_Type where Item_Type_Name='"+itemid+"') and Item_Purchase_Type_ID='0'";
+    console.log(queryy); 
+    //queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and Item_Purchase_Type_ID='0'";
     //console.log(queryy);
   }
   else if(wardflag=="4"){

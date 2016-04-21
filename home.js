@@ -47,6 +47,19 @@ app.post("/itemlist-service",urlencodedParser,function(req,res){
   });
 });
 
+//Method to fetch the items
+app.post("/intenttypelist-service",urlencodedParser,function(req,res){
+  //console.log('itemlist service...');
+  //var wardflag=req.query.wardflag;
+  var loggeduser=req.query.loggeduser;
+  //cond={state:req.query.status};
+  var FnFetchIntenttypelistcall= require("./app/scripts/dboperations.js");
+  FnFetchIntenttypelistcall.FnFetchIntenttypelist("intenttypelist-service",loggeduser,function(returnval){
+      res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
 app.post('/inwardregnoseq-service',urlencodedParser, function (req, res) {
 /*Getting data from the vehicle page*/
   response = {

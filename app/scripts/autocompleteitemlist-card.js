@@ -23,11 +23,11 @@
       var obj={"wardflag":"","itemid":""};
       //alert(localStorage.getItem("curr_sess_wardflag")+"  "+sessionStorage.getItem("curr_sess_roleflag"));
      
-      if(localStorage.getItem("curr_sess_wardflag") == "2"&&localStorage.getItem("curr_sess_spotorderflag")!='true') {
+      /*if(localStorage.getItem("curr_sess_wardflag") == "2"&&localStorage.getItem("curr_sess_spotorderflag")!='true') {
        //alert("one");
         obj.wardflag="3";
         obj.itemid = sessionStorage.getItem("loggeduser");
-      }
+      }*/
       if(sessionStorage.getItem("curr_sess_roleflag")=="5") {
        //alert("two");
         obj.wardflag="2";
@@ -45,6 +45,17 @@
       //alert(JSON.stringify(obj));
       this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
       this.querySelector('paper-listbox').style.visibility='hidden';
+    },
+    FnFetchSpecificTypeItem:function(itemtype){
+      var obj={"wardflag":"","itemid":""};
+      if(localStorage.getItem("curr_sess_wardflag") == "2"&&localStorage.getItem("curr_sess_spotorderflag")!='true') {
+       //alert("one");
+        obj.wardflag="3";
+        obj.itemid = itemtype;
+        this.param=obj;
+        this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
+        this.$.itemlistreadajax.generateRequest();
+      }
     },
     //Method to fetch item under the specific suppllier name
     FnFetchSpecificItem:function(supplierid,suppliername){
@@ -79,12 +90,12 @@
         this.$.itemlistreadajax.generateRequest();
       
       }
-      else{
+      /*else{
         obj.wardflag="3";
         obj.itemid = sessionStorage.getItem("loggeduser"); 
         this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
         this.$.itemlistreadajax.generateRequest();
-      }
+      }*/
 
     },
     //Funtion invokes when selecting item 0in dropdown
