@@ -45,6 +45,9 @@
         if(localStorage.getItem("curr_sess_wardflag") == "4"){
         document.querySelector('supplieradditem-card').FnSetStoresInfo(item,storesid);
         }
+        if(localStorage.getItem("curr_sess_wardflag") == "6"){
+        document.querySelector('customeradditem-card').FnSetStoresInfo(item,storesid);
+        }
         this.querySelector('#storeslist').style.visibility = 'hidden';
         this.querySelector('#storeslist').selected=-1;
         this.itemArray="";

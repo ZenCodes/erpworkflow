@@ -157,7 +157,43 @@
     {"Page":[
       {"page":["intentviewitemexpand-card","intentviewitemexpand-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Cont/Qty"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Supplier"}]}]}
-    ]}
     ,{"title":["Intent View Page"]}
+    ]},
+    {"Page":[
+      {"page":["Add Customer","addcustomer-card"]},
+      {"Label":[{"Supplier_ID":"Customer ID","Supplier_Name":"Customer Name","Landmark":"Landmark","Location":"Location",
+        "City":"City","District":"District","State":"State",
+        "Country":"Country","Pincode":"Pincode",
+        "Phone_Number":"Phone Number","Mobile_Number":"Mobile Number",
+        "Email_ID":"Email ID","Supplier_ID_error":"Enter Customer ID","Supplier_Name_error":"Enter Customer Name","Landmark_error":"Enter Landmark","Location_error":"Enter Location",
+        "City_error":"Enter City","District_error":"Enter District","State_error":"Enter State",
+        "Country_error":"Enter Country","Pincode_error":"Enter Pincode",
+        "Phone_Number_error":"Enter Phone Number","Mobile_Number_error":"Enter Mobile Number",
+        "Email_ID_error":"Enter Email ID"}]}
+        ,{"title":["Add Customer Page"]}
+    ]},
+    {"Page":[
+          {"page":["Add Payment","customerpayment-card"]},
+          {"Label":[{"Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
+            "Payment_Terms":"Payment Terms","Term1":"30 days","Term2":"60 days",
+            "Bank_Name_error":"Enter Bank Name","Account_Number_error":"Enter Account Number",
+            "Bank_Address_error":"Enter Bank Address"
+      }]}
+      ,{"title":["Add Customer Page"]}
+      ]},
+    {"Page":[
+      {"page":["Add Item","customeradditem-card"]},
+      {"Label":[{"Item_Id":"Item ID","Item_Name":"Item Name","Item_Description":"Item Description",
+       "Container":"Container","Quantity":"Quantity",
+       "Supplier":"Supplier Name",
+        "Item_Group":"Item Group","Item_Type":"Item Type","Purchase_Type":"Purchase Type","Spot":"Spot","Regular":"Regular",
+        "Item_Id_error":"Enter Item ID","Item_Name_error":"Enter Item Name",
+        "Item_Description_error":"Enter Item Description","Container_error":"Enter Container",
+        "Quantity_error":"Enter Quantity",
+        "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type",
+        "Supplier_error":"Enter Supplier Name"}]}
+      ,{"title":["Add Customer Page"]}
+    ]}
+    
   ]
 

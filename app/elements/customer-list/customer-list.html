@@ -1,0 +1,76 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="customer-list">
+  <style>
+    .repeatcard{
+      @apply(--layout-horizontal);
+      width:100%;
+
+    }
+    paper-listbox{
+      width: 135%;
+      background-color: #e5efe2;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+    }
+    paper-input{
+      width: 135%;
+      text-align: left;
+      --paper-input-container-label: { color: red };
+      //color: red ;
+    }
+    .cus{
+      @apply(--layout-vertical);
+    }
+    #sup2{
+      margin-left: 14%;
+    }
+  </style>
+  <template>
+    <!--template for creating autocomplete dropdown list-->
+    <div class="repeatcard">
+      <div class="cus" id="cus1">
+      <paper-input label="Enter Customer Name" id="customer" value="{{value}}" on-keydown="FnInputChanged" readonly="{{read}}" required error-message="Enter customer name"></paper-input>
+      <paper-listbox id="pl1" class="dropdown-content" on-iron-select="FnItemSelected">
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <paper-item>{{item.itemdes}}</paper-item>
+        </template>
+      </paper-listbox>
+      </div>
+
+    </div>
+    <!--Component which read and bind data from item json file and bind to the dropdown card-->
+    <iron-ajax 
+    auto            
+      params='{{customerparam}}'
+      id="itemcustomerreadajax"
+      url="{{customerurl}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="itemcustomerreadResponse">
+    </iron-ajax>
+
+  </template>
+  <!--Importing JS file-->
+  <script src="../../scripts/customer-list.js">
+
+  </script>
+
+</dom-module>

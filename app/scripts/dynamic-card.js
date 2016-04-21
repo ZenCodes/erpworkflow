@@ -19,6 +19,11 @@ Polymer({is:"dynamic-card",
          if(localStorage.getItem("curr_sess_wardflag")=="")
         this.url="../../config/itemmenu.json";
     }
+    if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
+    if(localStorage.getItem("curr_sess_wardflag")=="6")
+        this.url="../../config/customermenu.json";      
+    }
+
 
   },
   /*which receives the menu response of security menu json file,bind it to the dynamic card*/

@@ -19,9 +19,11 @@
     },
 	FnItemIdChange:function(){
 	document.querySelector('supplieradditem-card').FnSetItemId(this.itemid);
+  document.querySelector('customeradditem-card').FnSetItemId(this.itemid);
 	},
 	FnItemNameChange:function(){
 	document.querySelector('supplieradditem-card').FnSetItemName(this.itemname);
+  document.querySelector('customeradditem-card').FnSetItemName(this.itemname);
 	},
     //Function which invokes when performing search using Item ID
 	  FnSearchItemId:function(e){
@@ -43,6 +45,7 @@
 	  FnSearchItemName:function(e){
       this.read=true;
 	    document.querySelector('supplieradditem-card').FnSetEnableDisableFields(true);
+      document.querySelector('customeradditem-card').FnSetEnableDisableFields(true);
       //The flag is used to ensure the search is performed by using item name
 	    localStorage.setItem("curr_sess_searchtypeflag","1");
 	    //When performing search using itemname making listbox visible with items

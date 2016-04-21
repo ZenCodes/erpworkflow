@@ -155,6 +155,17 @@ Polymer({is:"drawermenu-card",
       }
     }
 
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
+      if(e.target.id=="Outward Items Report"){
+        localStorage.setItem("curr_sess_wardflag","5");
+        window.location.href="../elements/indexhome.html";
+      }
+      if(e.target.id=="Add Customer"){
+        localStorage.setItem("curr_sess_wardflag","6");        
+        window.location.href="../elements/indexhome.html";
+      }
+    }
+
     //else if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")
       //document.querySelector('my-app').setPage("home-page");
   }

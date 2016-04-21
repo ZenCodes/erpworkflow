@@ -1989,3 +1989,197 @@ exports.Fnupdateposeq=function(pagename,ponumber,callback) {
     }
   });
 }
+
+
+//Function which updates supplier info
+exports.FnAddCustomer=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Sales_Customer_Detail SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
+}
+
+//Function which addpayment info
+exports.FnAddcustomerPayment=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Customer_Payment SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
+}
+
+//Function fetches supplier info
+exports.FnItemcustomerRead=function(pagename,itemid,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="SELECT * FROM MD_Sales_Customer_Detail where Customer_ID not in(SELECT Item_Customer_ID from OD_Item where Item_ID='"+itemid+"')";
+  //console.log(queryy);
+  connection.query(queryy,function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"itemsupplierid":"","itemsuppliername":""};
+        obj.itemsupplierid=rows[i].Customer_ID;
+        obj.itemsuppliername=rows[i].Customer_Name;
+        itemarr.push(obj);
+      }
+      //console.log(JSON.stringify(itemarr));
+      return callback(itemarr);
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}
+
+//Function fecthes searched item info
+exports.Fnreadcustomer=function(pagename,cond,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Sales_Customer_Detail WHERE ?',[cond],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""};
+
+        obj.supplierid=rows[i].Customer_ID;
+        obj.suppliername=rows[i].Customer_Name;
+        obj.landmark=rows[i].LandMark;
+        obj.city=rows[i].City;
+        obj.location=rows[i].Location;
+        obj.district=rows[i].District;
+        obj.state=rows[i].State;
+        obj.country=rows[i].Country;
+        obj.pincode=rows[i].Pincode;
+        obj.phoneno=rows[i].Phone;
+        obj.mobileno=rows[i].Mobile;
+        obj.emailid=rows[i].Email;
+        itemarr.push(obj);
+      }
+        return callback(itemarr);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+  }
+
+
+  //Function fecthes searched item info
+exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Customer_Payment WHERE ?',[cond],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+      for(var i=0;i<rows.length;i++)
+      {
+        var obj={"paymenttype":"","bankname":"","accountno":"","address":"","paymentterm":""};
+
+        obj.paymenttype=rows[i].Payment_Type;
+        obj.bankname=rows[i].Bank_Name;
+        obj.accountno=rows[i].Account_No;
+        obj.address=rows[i].Bank_Address;
+        obj.paymentterm=rows[i].Payment_Term;
+        itemarr.push(obj);
+      }
+        return callback(itemarr);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+  }
+
+  //Function fecthes searched item info
+  exports.Fnreadcustomeriteminfo=function(pagename,cond,id,callback) {
+    //console.log(pagename+"  "+JSON.stringify(cond));
+    var Config_tables=[];
+    for(var i=0;i<obj.length;i++){
+      if(obj[i].name==pagename){
+        Config_tables=obj[i].value;
+      }
+    }
+    var querry="SELECT distinct Item_Name FROM MD_Item m JOIN OD_Item o USING (Item_ID) WHERE o.Item_Customer_ID ='"+id+"'";
+    //console.log(querry);
+    //connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+  connection.query(querry,function(err, rows, fields) {
+      var itemarr=[];
+
+     if(!err){
+           if(rows.length>0){
+           for(var i=0;i<rows.length;i++)
+           {
+             var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+             //obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
+             //obj.itemsupplier=rows[i].Item_Supplier_ID;
+             obj.itemid=rows[i].Item_ID;
+             obj.itemname=rows[i].Item_Name;
+             obj.itemdes=rows[i].Item_Description;
+             obj.container=rows[i].Container;
+             obj.quantity=rows[i].UOM;
+             obj.itemgroup=rows[i].Item_Group_ID;
+             obj.itemtype=rows[i].Item_Type_ID;
+             obj.purchasetype=rows[i].Item_Purchase_Type_ID;
+             itemarr.push(obj);
+
+           }
+           //console.log(JSON.stringify(itemarr));
+             return callback(itemarr);
+           }
+           else{
+             return callback("no item");
+           }
+         }
+         else
+          console.log(err);
+    });
+  }

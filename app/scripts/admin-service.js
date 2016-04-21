@@ -16,7 +16,7 @@
     },
     //Method invokes while making write req from the additem card
     callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-		//alert("yes");
+		alert("yes");
 
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
@@ -133,8 +133,9 @@
     },
     purchasetypereadResponse:function(e) {
       var itemarray=e.detail.response.itemarr;
-      document.querySelector('additem-card').purchasearr=itemarray;
+    document.querySelector('additem-card').purchasearr=itemarray;
  	  document.querySelector('supplieradditem-card').purchasearr=itemarray;
+    document.querySelector('customeradditem-card').purchasearr=itemarray;
  	},
     //Method invokes while making req to fetch item type info
     callItemReadService:function(){
@@ -145,6 +146,7 @@
       var itemarray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemarr=itemarray;
       document.querySelector('supplieradditem-card').itemarr=itemarray;
+      document.querySelector('customeradditem-card').itemarr=itemarray;
     },
     //Method invokes while making req to fetch group type info
     callItemgroupReadService:function(){
@@ -155,6 +157,7 @@
       var itemgrouparray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemgrouparr=itemgrouparray;
       document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
+      document.querySelector('customeradditem-card').itemgrouparr=itemgrouparray;
     },
     //Method invokes while making req to fetch supplier info
     callItemSupplierReadService:function(){
@@ -183,10 +186,20 @@
 	  document.querySelector("itemsearch-card").itemid=arr[0].itemid;
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
  	  document.querySelector("supplieradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
-	  document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
+    document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
+    }
+    if(localStorage.getItem("curr_sess_wardflag")=="6"){
+    //alert('yes');
+    //document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
+    //alert(arr[0].itemid);
+    document.querySelector("itemsearch-card").itemid=arr[0].itemid;
+    document.querySelector("itemsearch-card").itemname=arr[0].itemname;
+    document.querySelector("customeradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
+    document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }
 	 if(localStorage.getItem("curr_sess_wardflag")==""){
       document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
+      document.querySelector('customer-list').FnSpecificSupplierReadService(arr[0].itemid);
       document.querySelector("additem-card").itemid=arr[0].itemid;
       document.querySelector("additem-card").itemname=arr[0].itemname;
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
@@ -231,39 +244,7 @@
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to update the item!!","");
-    }/*,
-    addsupplierService:function(supplierid,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
-
-      var obj={
-        "supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""
-      };
-      obj.supplierid=supplierid,
-      obj.suppliername=suppliername;
-      obj.landmark=landmark;
-      obj.location=location;
-      obj.city=city;
-      obj.district=district;
-      obj.state=state;
-      obj.country=country;
-      obj.pincode=pincode;
-      obj.phoneno=phoneno;
-      obj.mobileno=mobileno;
-      obj.emailid=emailid;
-
-      this.supplierparam=obj;
-      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
-      this.$.addsupplierajax.generateRequest();
-    },
-    addsupplierResponse:function(e){
-      if(e.detail.response.returnval=="succ"){
-		  alert("Supplier Added!");
-		  document.querySelector('addsupplier-card').FnBtnDisable();
-          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
-      }
-      else
-      	  alert("Unable to add supplier!");
-       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
-    }*/
+    }
 
   });
 })();

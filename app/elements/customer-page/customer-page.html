@@ -1,0 +1,94 @@
+<!--Components import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+
+<link rel="import" href="../customeradditem-card/customeradditem-card.html">
+<link rel="import" href="../customerpayment-card/customerpayment-card.html">
+<link rel="import" href="../addcustomer-card/addcustomer-card.html">
+<link rel="import" href="../dynamic-card/dynamic-card.html">
+<link rel="import" href="../customeritem-card/customeritem-card.html">
+
+<!--<link rel="stylesheet" href="../../styles/inwardslip-page.css">-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="customer-page">
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .card{
+      @apply(--layout-vertical);
+      position: relative;
+      color: black;
+      width: 100%;
+      left: 0%;
+      margin-top:-3%;
+    }
+    .contentbanner{
+      border-top: groove;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      width: 89.5%;
+      margin-left: 5.2%;
+      margin-top: 0%;
+      //border-style:groove;
+      //border-color:#e5efe2;
+      //height: 100%;
+      overflow: scroll;
+    }
+    paper-tabs{
+      width: 90%;
+      margin-left: 4.5%;
+    }
+    paper-button{
+      font-size: 17px;
+      text-transform: none;
+    }
+    .tabbanner{
+      margin-left: 5%;
+      margin-top:5%;
+    }
+
+  </style>
+  <template>
+      <div class="card">
+      <div class="tabbanner">
+        <!--Card imported for the dynamic menu -->
+        <dynamic-card></dynamic-card>
+      </div>
+      <div class="contentbanner">
+        <!--Tag is used to change the page view according to the menu selection either vehicle info or item page for the security inward item entry-->
+          <iron-pages selected="{{page}}" attr-for-selected="data-category">
+
+            <!--Section for showing add intent page to the corrsponding role-->
+            <section data-category="Add Customer">
+              <addcustomer-card></addcustomer-card>
+            </section>
+            <section data-category="Add Item">
+            <!--<additem-card></additem-card>-->
+              <customeradditem-card></customeradditem-card>
+            </section>
+            <section data-category="Add Payment">
+              <customerpayment-card></customerpayment-card>
+            </section>
+            <section data-category="Show Item">
+              <customeritem-card></customeritem-card>
+            </section>
+         </iron-pages>
+      </div>
+    </div>
+  </template>
+  <!--JS file imported for this inwardslip page-->
+  <script src="../../scripts/customer-page.js"></script>
+
+</dom-module>

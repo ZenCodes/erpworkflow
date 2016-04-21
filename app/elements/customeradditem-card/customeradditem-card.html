@@ -1,0 +1,147 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../customer-service/customer-service.html">
+<link rel="import" href="../itemsummary-page/itemsummary-page.html">
+<link rel="import" href="../customer-list/customer-list.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<link rel="import" href="../itemsearch-card/itemsearch-card.html">
+<link rel="import" href="../stores-card/stores-card.html">
+
+<link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<dom-module id="customeradditem-card">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+        color: black;
+        width: 80%;
+        left: 5%;
+        margin-top:0%;
+      }
+      paper-input{
+      text-align:left;
+      width:35%;
+      margin-left:5%;
+      }
+   .input,.type,.drop{
+   @apply(--layout-horizontal);
+   }
+   :host{
+    --paper-input-container-label: {
+    color:red;
+      }}
+      paper-dropdown-menu{
+      margin-left:5%;
+      width:35%;
+      }
+      .type{
+      color:red;
+      margin-left:3%;
+      margin-top:2%;
+      }
+      paper-button{
+              text-align: center;
+              width: 35%;
+              border-radius: 2px;
+              box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+              background-color: #3d6868;
+              color: white;
+              margin-top: 4%;
+              margin-left:5%;
+      }
+      .storescard{
+        margin-left:5%;        
+      }
+      
+    </style>
+
+    <!--Template to show card for entering item info-->
+    <template is="dom-repeat" items="{{label}}">
+      <div class="card">
+        <div class="input">
+      <itemsearch-card></itemsearch-card>
+            <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
+            <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>-->
+
+        </div>
+    <div class="input">
+
+          <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  on-change="FnDesChange" id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
+          <paper-input readonly="true" label="{{item.Supplier}}" name="supplier" value="{{supplier}}" required id="supplier" error-message="{{item.Supplier_error}}"></paper-input>
+
+        </div>
+        <div class="input">
+
+          <paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
+
+        </div>
+        <div class="drop">
+          <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelecttype"  attr-for-selected="value" selected="{{itemtype}}" required>
+              <template is="dom-repeat" items="{{itemarr}}">
+              <paper-item value="{{item.itemtypename}}">{{item.itemtypename}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-dropdown-menu id="dropgrouptype" label="Select Item Group" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content" on-iron-select="FnSelectGrouptype" attr-for-selected="value" selected="{{itemgroup}}">
+              <template is="dom-repeat" items="{{itemgrouparr}}">
+                <paper-item value="{{item.itemgroupname}}">{{item.itemgroupname}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+        </div>
+        <div class="storescard">
+          <stores-card id="storescard"></stores-card>
+        </div>
+        <div class="type">
+          <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
+          <div class="radio">
+          <paper-radio-group selected="{{selection}}" id="radio" on-iron-change="FnSelectPurchaseType">
+            <paper-radio-button noink name="{{item.Regular}}" disabled="{{read}}" >{{item.Regular}}</paper-radio-button>
+            <paper-radio-button noink name="{{item.Spot}}" disabled="{{read}}">{{item.Spot}}</paper-radio-button>
+          </paper-radio-group>
+          </div>
+        </div>
+        <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddItemSubmit">Save</paper-button>
+      </div>
+    </template>
+    <!--Component to fetch item info to the dropdown-->
+    <iron-ajax
+      method="post"
+      params='{{param}}'
+      id="itemlistreadajax"
+      url="{{url}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="itemlistreadResponse">
+    </iron-ajax>
+
+  <customer-service id="customerservice"></customer-service>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
+    <!--Component to call the service to bind item type and group type-->
+    <admin-service id="adminservice" purchasearr="{{purchasearr}}" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" ></admin-service>
+  </template>
+  <!--JS File import-->
+  <script src="../../scripts/customeradditem-card.js"> </script>
+</dom-module>

@@ -65,7 +65,8 @@
       },
       {
         "rolename": "Sales manager",
-        "RoleFlag": "10"
+        "RoleFlag": "10",
+        "menu" : ["Outward Items Report","Add Customer"]
       },
       {
         "rolename": "Logistics manager",

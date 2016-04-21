@@ -53,6 +53,30 @@
         if(localStorage.getItem("curr_sess_searchtypeflag")!="1")
         document.querySelector("additem-card").FnAddItemInfoSubmit();
       }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Payment Detail")
+        document.querySelector("addcustomer-card").FnSupplierInfoSubmit();
+        //document.querySelector("supplier-page").setPage(this.menulabel);
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")
+        document.querySelector("customerpayment-card").FnAddPaymentInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&localStorage.getItem("curr_sess_searchtypeflag")!="nothing"&&value=="Item Detail")
+        {        
+        document.querySelector("customer-page").setPage("Show Item"); 
+        }
+        //document.querySelector("supplier-page").setPage(this.menulabel);
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Supplier Detail")
+        document.querySelector("customer-page").setPage("Add Customer");
+      /*else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Customer Detail")
+      {              
+        document.querySelector("customer-page").setPage("Add Customer");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Payment Detail")
+      {              
+        document.querySelector("customer-page").setPage("Add Payment");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Item Detail")
+      {              
+        document.querySelector("customer-page").setPage("Add Item");
+      }*/
     }
   });
 })();

@@ -1,0 +1,97 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../customer-service/customer-service.html">
+
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<dom-module id="customerpayment-card">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:0%;
+      }
+      paper-dropdown-menu,paper-input{
+      width: 35%;
+      text-align:left;
+      }
+      paper-dropdown-menu{
+      margin-left: -65%;
+      }
+    paper-button{
+          text-align: center;
+          width: 35%;
+          border-radius: 2px;
+          box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+          background-color: #3d6868;
+          color: white;
+          margin-top: 4%;
+      }
+      .type{
+            @apply(--layout-horizontal);
+            color:red;
+            margin-top: 1%;
+            margin-left: -2%;
+      }
+      .radio{
+            margin-top:0%;
+      }
+      :host{
+            --paper-input-container-label: {
+              color:red;
+      }}
+    </style>
+
+    <template is="dom-repeat" items="{{label}}">
+      <div class="card">
+          <div>
+          <paper-dropdown-menu disabled="{{read}}" id="droppaymentmode" label="Select payment Type" required>
+          <paper-listbox id="paymentmode" attr-for-selected="value" class="dropdown-content" on-iron-select="FnModeSelected" selected="{{paymenttype}}">
+              <paper-item>-----Select-----</paper-item>
+              <paper-item value="DD">DD</paper-item>
+              <paper-item value="Checque">Checque</paper-item>
+              <paper-item value="A/C Transfer">A/C Transfer</paper-item>
+          </paper-listbox>
+          </paper-dropdown-menu>
+          </div>
+          <paper-input readonly="{{read}}" label="{{item.Bank_Name}}" name="bankname" value="{{bankname}}" required id="bankname" error-message="{{item.Bank_Name_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Account_Number}}" name="accno" value="{{accountno}}" required id="accno" error-message="{{item.Account_Number}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Bank_Address}}" name="address" value="{{address}}" required id="address" error-message="{{Bank_Address_error}}"></paper-input>
+        <div class="type">
+          <paper-item class="paymentterms" value="{{item.Payment_Terms}}">{{item.Payment_Terms}}</paper-item>
+          <div class="radio">
+          <paper-radio-group selected="{{term}}" id="radio">
+            <paper-radio-button disabled="{{read}}"  noink name="{{item.Term1}}" >{{item.Term1}}</paper-radio-button>
+            <paper-radio-button disabled="{{read}}"  noink name="{{item.Term2}}" >{{item.Term2}}</paper-radio-button>
+          </paper-radio-group>
+          </div>
+        </div>
+        <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddPaymentInfoSubmit">Next</paper-button>
+      </div>
+    </template>
+    <customer-service id="customerservice"></customer-service>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
+    </template>
+  <!--JS File import-->
+  <script src="../../scripts/customerpayment-card.js"> </script>
+</dom-module>

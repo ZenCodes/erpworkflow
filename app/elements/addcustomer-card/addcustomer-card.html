@@ -1,0 +1,164 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../customer-service/customer-service.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
+ <link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
+
+<dom-module id="addcustomer-card" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      //background-color: rgb(255, 255, 255);
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:-2%;
+      }
+      .drop{
+       width: 100%;
+     @apply(--layout-vertical);
+      }
+      .driver{
+        @apply(--layout-horizontal);
+      }
+      .owner{
+        @apply(--layout-horizontal);
+      }
+      paper-input,gold-email-input{
+        text-align: left;
+        width: 35%;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+
+      #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno{
+        --paper-input-container-label: { color: red };
+      }
+      #suppliername,#location,#district,#country,#phoneno,#emailid{
+        margin-left: 5%;
+      }
+      paper-listbox{
+      //width: 100%;
+      }
+    paper-listbox{
+        width: 70%;
+        background-color: whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      #supplierid,#suppliername{
+      width: 70%;
+      }
+      #supplierid,#searchid{
+      margin-left:-20%;
+      }
+      #suppliername{
+      margin-left: -1%;
+      }
+      #supplierid{
+      //margin-top:5%;
+      //height:3%;
+      //background-color: whitesmoke;
+      }
+    </style>
+    <!--Component for listenen to keyboard enter event-->
+    <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
+    <!--This template binding dynamic labels and error messages-->
+    <template is="dom-repeat" items="{{label}}">
+
+      <div class="card">
+        <div class="driver">
+
+        <div class="drop">
+       <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  on-change="FnInputChange" id="suppliername" error-message="{{item.Supplier_Name_error}}">
+       <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
+       </paper-input>
+       <div hidden$="{{isHidden}}">
+       <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnSupplierNameSelected">
+       <template is="dom-repeat" items="{{itemArray}}" as="name">
+       <paper-item>{{name.itemname}}</paper-item>
+       </template>
+       </paper-listbox>
+       </div>
+        </div>
+
+        <div class="drop">
+          <paper-input readonly="{{IDread}}" label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
+          <paper-icon-button suffix icon="search" on-click="FnSearchSupplierId"></paper-icon-button>
+          </paper-input>
+          <div hidden$="{{isHiddenid}}">
+       <paper-listbox id="searchid" class="dropdown-content" on-iron-select="FnSupplierIdSelected">
+       <template is="dom-repeat" items="{{itemidArray}}" as="name">
+       <paper-item>{{name.itemid}}</paper-item>
+       </template>
+       </paper-listbox>
+          </div>
+        </div>
+
+        </div>
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.Landmark}}" name="landmark" value="{{landmark}}" required  id="landmark" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Landmark_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" allowed-pattern="[a-zA-Z ]" error-message="{{item.Location_error}}"></paper-input>
+        </div>
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.City_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.District}}" name="district" value="{{district}}" required  id="district" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.District_error}}"></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.State}}" name="state" value="{{state}}" required  id="state" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.State_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Country}}" name="country" value="{{country}}" required  id="country" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Country_error}}"></paper-input>
+        </div>
+
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="[0-9 ]" error-message="{{item.Pincode_error}}"></paper-input>
+          <!--<gold-zip-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" error-message="{{item.Pincode_error}}"></gold-zip-input>-->
+          <paper-input readonly="{{read}}" label="{{item.Phone_Number}}" name="phoneno" value="{{phoneno}}" required  id="phoneno" error-message="{{item.Phone_Number_error}}"></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="[0-9 ]" error-message="{{item.Mobile_Number_error}}"></paper-input>
+          <!-- <paper-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input> -->
+          <gold-email-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
+        </div>
+        
+       <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
+        <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>
+      </div>
+    </template>
+    <!--Component to fetch item info to the dropdown-->
+ <iron-ajax
+        method="post"
+        params='{{supplierparam}}'
+        id="supplierlistreadajax"
+        url="{{supplierurl}}"
+        handle-as="json"
+        content-type="application/json"
+        on-response="supplierlistreadResponse">
+    </iron-ajax>
+    <customer-service id="customerservice"></customer-service>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
+
+  </template>
+  <!--JS File import-->
+  <script src="../../scripts/addcustomer-card.js"> </script>
+
+</dom-module>

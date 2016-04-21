@@ -13,6 +13,25 @@ Polymer({
       this.$.intentview.style.visibility='visible';
     }
     
+    if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
+      //alert("sales");
+      if(localStorage.getItem("curr_sess_wardflag")=="5") {
+        //localStorage.setItem("curr_sess_wardflag", "");
+        document.querySelector('app-homepage').setPage('outwardreport-card');
+        this.page = "outwardreport-card";
+      }
+      if(localStorage.getItem("curr_sess_wardflag")=="6") {
+        localStorage.setItem("curr_sess_showpage", "Add Customer");
+        //document.querySelector("supplier-page").setPage("Add Supplier");
+        this.page = "customer-page";
+      }
+      this.$.flow.style.visibility='hidden';
+      this.$.list.style.visibility='visible';
+      this.$.flowbutton.style.visibility='hidden';
+      this.$.drawerlist.style.visibility='visible';
+      this.$.searchmenu.style.visibility='hidden';
+    }
+
     /*Condition which allow to see the search page and hide the respective components in UI*/
     if(sessionStorage.getItem("curr_sess_roleflag")=="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"){
      //alert("search");
@@ -66,7 +85,7 @@ Polymer({
     }
     /*Condtion to navigate to the grn flow page according to the role(role flags of the managers),who logged in*/
     //if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")
-    if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"&&sessionStorage.getItem("curr_sess_roleflag")!="7"&&sessionStorage.getItem("curr_sess_roleflag")!="8"&&sessionStorage.getItem("curr_sess_roleflag")!="9")
+    if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"&&sessionStorage.getItem("curr_sess_roleflag")!="7"&&sessionStorage.getItem("curr_sess_roleflag")!="8"&&sessionStorage.getItem("curr_sess_roleflag")!="9"&&sessionStorage.getItem("curr_sess_roleflag")!="10")
     {
       //alert("oldintent");
       if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
@@ -106,7 +125,7 @@ Polymer({
       this.$.drawerlist.style.visibility='visible';
       this.$.searchmenu.style.visibility='hidden';
     }
-    if(sessionStorage.getItem("curr_sess_roleflag")=="10"||sessionStorage.getItem("curr_sess_roleflag")=="11"){
+    if(sessionStorage.getItem("curr_sess_roleflag")=="11"){
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('outwardreport-card');
     }
