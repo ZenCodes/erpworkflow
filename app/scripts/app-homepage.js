@@ -9,6 +9,7 @@ Polymer({
 
 
     this.$.intentview.style.visibility='hidden';
+    this.$.promotebutton.style.visibility='hidden';
     if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="3"){
       this.$.intentview.style.visibility='visible';
     }
@@ -162,5 +163,11 @@ Polymer({
   },
   setPageTitle:function(title){
     this.pagetitle=title;
+  },
+  FnSetPromoteVisibility:function(flag){
+    if(flag=="true")
+      this.$.promotebutton.style.visibility='visible';
+    if(flag=="false")
+      this.$.promotebutton.style.visibility='hidden';
   }
 });

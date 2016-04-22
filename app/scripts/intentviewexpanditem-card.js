@@ -49,7 +49,7 @@ Polymer({is:"intentviewexpanditem-card",
   	obj.supplier=e.target.selectedItem.textContent.trim();
    
   	poarr.push(obj);
-  	document.querySelector('intentviewitemexpand-card').FnPOArrayInfo(poarr);
+  	document.querySelector('promotebutton-card').FnPOArrayInfo(poarr);
   	//alert(JSON.stringify(poarr));
   }
 

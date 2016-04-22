@@ -43,7 +43,7 @@
   <link rel="import" href="outwardreport-card/outwardreport-card.html">
   <link rel="import" href="intentviewtype-card/intentviewtype-card.html">
   <link rel="import" href="customer-page/customer-page.html">
-  
+  <link rel="import" href="promotebutton-card/promotebutton-card.html">  
   
   <!-- <link rel="import" href="viewintenthome-page/viewintenthome-page.html"> -->
   <!-- <link rel="import" href="intentflow-card/intentflow-card.html"> -->
@@ -176,6 +176,10 @@
       margin-left: -10%;
       color: grey;
     }
+    #promotebutton{
+      margin-left: -11%;
+      margin-top: -3%;
+    }
   </style>
   <template>
     <grn-service id="gs"></grn-service>
@@ -224,6 +228,7 @@
           <!-- <div id="intentflow"><intentflow-card></intentflow-card></div> -->
           <!--Component for the flow approve button visible to each role-->
           <div id="flowbutton"><flowbutton-card></flowbutton-card></div>
+          <div id="promotebutton"><promotebutton-card></promotebutton-card></div>
           <div class="flex"></div>
         </paper-toolbar>
         <div class="content">

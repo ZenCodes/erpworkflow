@@ -99,7 +99,7 @@
     </style>
     <!--Expanded card template-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
-    <paper-button id="promote"  name="promote" value="Create PO" on-click="FnPromoteState" noink>Create PO</paper-button> 
+    <!-- <paper-button id="promote"  name="promote" value="Create PO" on-click="FnPromoteState" noink>Create PO</paper-button>  -->
       <paper-tabs selected="0" noink id="ptab">
         <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
           <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>

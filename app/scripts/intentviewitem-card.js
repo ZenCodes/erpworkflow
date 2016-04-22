@@ -17,6 +17,7 @@
     FnExpandItemCard:function(){
       var n=1;
       var x=-4;
+
       sessionStorage.setItem("sess_curr_inwardregno",this.intentregno);
       //document.querySelector('my-app').setVisible("true");
       this.$.ps.intentviewexpanditemreadService(this.intentregno);
@@ -25,6 +26,7 @@
       var all=document.querySelectorAll('.intentviewexpandcard');
       if(id=="true")
       {
+        document.querySelector('app-homepage').FnSetPromoteVisibility('true');
         id= document.querySelector("#"+this.intentregno);
         //alert(id);
         id.toggle();
@@ -35,14 +37,15 @@
         {
           id.opened=false;
         }
-
+        document.querySelector('app-homepage').FnSetPromoteVisibility('false');
         id= document.querySelector("#"+this.intentregno);
         id.toggle();
       }
       if(clrid=="true")
       {
-        for(var i= 0;i<all.length;i++){
 
+        for(var i= 0;i<all.length;i++){
+          document.querySelector('app-homepage').FnSetPromoteVisibility('true');
           if(all[i].id==document.querySelector("#viewcard"+this.intentregno).id){
             if(i!=0) {
 
@@ -67,6 +70,7 @@
         {
           //document.querySelector('my-app').setVisible("true");
           for(var i=0;i<all.length;i++){
+            document.querySelector('app-homepage').FnSetPromoteVisibility('true');
             if(all[i].id==document.querySelector("#viewcard"+this.intentregno).id){
               all[i].style.visibility='visible';
             }
@@ -78,7 +82,7 @@
         }
         else
         {
-
+          document.querySelector('app-homepage').FnSetPromoteVisibility('false');
           for(var i=0;i<all.length;i++){
             if(i!=0)
               all[i].style.marginTop=(n)+"%";
