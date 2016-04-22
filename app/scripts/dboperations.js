@@ -161,14 +161,19 @@ exports.FnFetchItemlist=function(pagename,wardflag,itemid,callback) {
   //Condition which form the query for the currently logged role
   else if(wardflag=="2"){
     //console.log("2");
-    queryy="SELECT * FROM "+ Config_tables[0];
-  }
+    if(itemid=="all")
+    queryy="SELECT * FROM MD_Item";
+    else if(itemid=="sale")
+    queryy="SELECT * from MD_Item where Item_Type_ID in('FG')";  
+    else if(itemid=="purchase")
+    queryy="SELECT * from MD_Item where Item_Type_ID not in('FG')";
+    }
   else if(wardflag=="3")
   {
     //console.log("3");
     //console.log("inside");
     queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID from MD_Item_Type where Item_Type_Name='"+itemid+"') and Item_Purchase_Type_ID='0'";
-    console.log(queryy); 
+    //console.log(queryy); 
     //queryy="SELECT * from MD_Item where Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Department_ID=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"') or Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and Item_Purchase_Type_ID='0'";
     //console.log(queryy);
   }

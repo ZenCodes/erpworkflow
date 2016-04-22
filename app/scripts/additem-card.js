@@ -75,8 +75,9 @@ Polymer({
     //Url for invoking itemlistservice to fetch all the items and check with currently searching item and display the details accordingly
     this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
     //The itemlist service component is reused here,there the wardflag has to be 2 ,so that here is it is used
-    var obj={"wardflag":""};
+    var obj={"wardflag":"","itemid":""};
     obj.wardflag="2";
+    obj.itemid="all";
     this.param=obj;
     this.$.itemlistreadajax.generateRequest();
 
@@ -102,9 +103,10 @@ Polymer({
     //Url for invoking itemlistservice to fetch all the items and check with currently searching item and display the details accordingly
     this.url = sessionStorage.getItem("curr_sess_url")+"itemlist-service";
     //The itemlist service component is reused here,there the wardflag has to be 2 ,so that here is it is used
-    var obj={"wardflag":""};
+    var obj={"wardflag":"","itemid":""};
     obj.wardflag="2";
-    this.param=obj;
+    obj.itemid="all";
+    this.param=obj; var obj={"wardflag":""};
     this.$.itemlistreadajax.generateRequest();
   },
   itemlistreadResponse:function(e){
