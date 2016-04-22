@@ -120,7 +120,7 @@
         <!-- <div class="datetitle"><paper-item id="datetitle" label="Intent date" noink>{{lbl.Intent_date}}</paper-item></div> -->
         <div class="filter">
         <div class="itemtype">
-          <paper-dropdown-menu label="Select Item Type">
+          <paper-dropdown-menu label="Select Item Type" disabled="{{typedisable}}">
             <paper-menu class="dropdown-content" on-iron-select="FnSelectItemType">
             <template is="dom-repeat" items="{{itemtypearr}}">
               <paper-item value="{{item.Item_Type_Name}}" >{{item.Item_Type_Name}}</paper-item>
@@ -129,7 +129,7 @@
           </paper-dropdown-menu>
         </div>
         <div class="banner1"> 
-          <paper-checkbox hidden$="{{hidespotorder}}" on-change="FnChangeSpot" id="spotorder" noink>Spot Order</paper-checkbox>
+          <paper-checkbox hidden$="{{hidespotorder}}" disabled="{{spotdisable}}" on-change="FnChangeSpot" id="spotorder" noink>Spot Order</paper-checkbox>
         </div>
         </div>
         <div class="banner2">

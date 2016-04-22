@@ -17,6 +17,8 @@
       this.itemflag=0;
       this.idd=0;
       this.hidespotorder=true;
+      this.spotdisable=false;
+      this.typedisable=false;
       localStorage.setItem("curr_sess_spotorderflag",'');
       if(sessionStorage.getItem("curr_sess_roleflag")=="1"||sessionStorage.getItem("curr_sess_roleflag")=="2")
       {
@@ -33,17 +35,20 @@
       this.itemtypearr=intentarr;
     },
     FnSelectItemType:function(e){
+      this.spotdisable=true;      
       var selectedtype=e.target.selectedItem.textContent.trim();
       document.querySelector('autocompleteitemlist-card').FnFetchSpecificTypeItem(selectedtype);
     },
-    FnChangeSpot:function(e){
+    FnChangeSpot:function(e){      
       var spotorder=document.querySelector("#spotorder");
       if(spotorder.checked==true){
+        this.typedisable=true;
         localStorage.setItem("curr_sess_spotorderflag",'true');
         document.querySelector('autocompleteitemlist-card').FnFetchSpotItems(true);
         
       }
       else{
+        this.typedisable=false;
         localStorage.setItem("curr_sess_spotorderflag",'');
         document.querySelector('autocompleteitemlist-card').FnFetchSpotItems(false);        
       }
@@ -83,7 +88,7 @@
     },
     FnAddItem:function(e)
     {
-
+      this.typedisable=true;
       if(localStorage.getItem("curr_sess_spotorderflag")=='true')      
       {
           document.querySelector('autocompleteitemlist-card').FnFetchSpotItems(true);
