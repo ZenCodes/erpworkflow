@@ -2231,6 +2231,9 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
         Config_tables=obj[i].value;
       }
     }
+       
+    //console.log(id); 
+    //if(id!=""||id!=" ")  { 
     var querry="SELECT distinct Item_Name FROM MD_Item m JOIN OD_Item o USING (Item_ID) WHERE o.Item_Customer_ID ='"+id+"'";
     //console.log(querry);
     //connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
@@ -2241,7 +2244,7 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
            if(rows.length>0){
            for(var i=0;i<rows.length;i++)
            {
-             var obj={"itemoptionalsupplier":"","itemsupplier":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
+             var obj={"itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","purchasetype":""};
              //obj.itemoptionalsupplier=rows[i].Item_Optional_Supplier_ID;
              //obj.itemsupplier=rows[i].Item_Supplier_ID;
              obj.itemid=rows[i].Item_ID;
@@ -2255,7 +2258,7 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
              itemarr.push(obj);
 
            }
-           //console.log(JSON.stringify(itemarr));
+           console.log(JSON.stringify(itemarr));
              return callback(itemarr);
            }
            else{
@@ -2265,4 +2268,7 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
          else
           console.log(err);
     });
+//}
+//else
+//return callback("no item");
   }

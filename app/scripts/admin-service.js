@@ -270,7 +270,7 @@
       obj.itemtype=itemtype;
       obj.storeslocation=storeslocation;
       obj.purchasetype=purchasetype;
-      alert(JSON.stringify(obj));
+      //alert(JSON.stringify(obj));
       if(localStorage.getItem("curr_sess_additemcustomerwrite")=="1"){
       supobj.supplierid=itemoptionalsupplier;
       if(suparr.length>0){

@@ -22,7 +22,7 @@ Polymer({
 	 document.querySelector('#bankname').validate();
 	 document.querySelector('#accno').validate();
 	 document.querySelector('#address').validate();
-	 var paymentterm=document.querySelector('#radio').selected;
+	 var paymentterm=this.querySelector('#radio').selected;
 	 if(this.mode==""||this.address==null||this.address==""||this.bankname==null||this.bankname==""||this.accountno==null||this.accountno==""){
 	 }
 	 else{
