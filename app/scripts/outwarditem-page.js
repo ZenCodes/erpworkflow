@@ -22,8 +22,8 @@
     FnInputChanged:function(supplierid,suppliername){
       //alert(supplierid);
       this.custflag=1;
-        this.supid=supplierid;
-      this.supname=suppliername;
+      this.supid=supplierid;
+      this.customername=suppliername;
       this.nullflag=1;
   
     },
@@ -255,6 +255,7 @@
               itemarr[i].invoiceno=this.invoiceno;
             }
             }
+            alert(JSON.stringify(obj));
             this.$.itemservice.FnSeqItemwriteService(itemarr);
           }
         }

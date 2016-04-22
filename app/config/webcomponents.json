@@ -185,7 +185,7 @@
       {"page":["Add Item","customeradditem-card"]},
       {"Label":[{"Item_Id":"Item ID","Item_Name":"Item Name","Item_Description":"Item Description",
        "Container":"Container","Quantity":"Quantity",
-       "Supplier":"Supplier Name",
+       "Supplier":"Customer Name",
         "Item_Group":"Item Group","Item_Type":"Item Type","Purchase_Type":"Purchase Type","Spot":"Spot","Regular":"Regular",
         "Item_Id_error":"Enter Item ID","Item_Name_error":"Enter Item Name",
         "Item_Description_error":"Enter Item Description","Container_error":"Enter Container",
