@@ -386,8 +386,10 @@
       },
       FnposequpdateResponse:function(e){
         //alert(JSON.stringify(e.detail.response.itemarr));
-        if(e.detail.response.itemarr=='succ')
+        if(e.detail.response.itemarr=='succ'){
           alert("Po created!");
+          window.location.href="../elements/indexhome.html";
+        }
         else
           alert('PO not created!');
       }

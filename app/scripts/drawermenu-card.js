@@ -28,12 +28,14 @@ Polymer({is:"drawermenu-card",
        localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         document.querySelector('viewintent-page').FnRefreshService();
-        document.querySelector('app-homepage').setPage('intenthome-page');
+        window.location.href="../elements/indexhome.html";
+        /*document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');        
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
         document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+        window.location.href="../elements/indexhome.html";*/
       }
     }
     //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
@@ -43,25 +45,28 @@ Polymer({is:"drawermenu-card",
         window.location.href="../elements/indexhome.html";
       }
       if(e.target.id=="Add Intent"){
+
         //localStorage.setItem("curr_sess_showpage","Add Intent");
         localStorage.setItem("curr_sess_wardflag","2");
         sessionStorage.setItem("curr_sess_intentrefreshflag","0");
-        document.querySelector('app-homepage').setPage('intenthome-page');
+        /*document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
-        document.querySelector('intenthome-page').setPage('Add Intent');
+        document.querySelector('intenthome-page').setPage('Add Intent');*/
+        window.location.href="../elements/indexhome.html";
       }
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
-        document.querySelector('viewintent-page').FnRefreshService();
+       /* document.querySelector('viewintent-page').FnRefreshService();
         document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');        
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
-        document.querySelector('app-homepage').setFlowVisibility('false');
+        document.querySelector('app-homepage').setFlowVisibility('false');*/
+        window.location.href="../elements/indexhome.html";
       }
     }
     //Roleflag 1 is for the role who may do GRN Flow and Intent items
@@ -74,24 +79,27 @@ Polymer({is:"drawermenu-card",
         //localStorage.setItem("curr_sess_showpage","Add Intent");
         localStorage.setItem("curr_sess_wardflag","2");
         sessionStorage.setItem("curr_sess_intentrefreshflag","0");
-        document.querySelector('app-homepage').setPage('intenthome-page');
+        /*document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnViewlist();
         document.querySelector('app-homepage').setFlowVisibility('false');
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
-        document.querySelector('intenthome-page').setPage('Add Intent');
+        document.querySelector('intenthome-page').setPage('Add Intent');*/
+        window.location.href="../elements/indexhome.html";
       }
       if(e.target.id=="View Intent"){
         //alert("yes");
         localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");
-        document.querySelector('viewintent-page').FnRefreshService();
+        /*document.querySelector('viewintent-page').FnRefreshService();
         document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');
         
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
-        document.querySelector('app-homepage').setFlowVisibility('false');
+        document.querySelector('app-homepage').setFlowVisibility('false');*/
+
+        window.location.href="../elements/indexhome.html";
         //document.querySelector('intenthome-page').setPage('View Intent');
         //document.querySelector('grn-service').FnIntentitemReadService();
         //localStorage.setItem("curr_sess_showpage","Add Intent");
@@ -124,6 +132,8 @@ Polymer({is:"drawermenu-card",
         document.querySelector('app-homepage').setFlowVisibility('false');
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
         document.querySelector('intenthome-page').setPage('Add Intent');
+
+        //window.location.href="../elements/indexhome.html";
       }
       if(e.target.id=="View Intent"){
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");
@@ -135,6 +145,8 @@ Polymer({is:"drawermenu-card",
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
+
+        //window.location.href="../elements/indexhome.html";
       }
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
         //document.querySelector('intenthome-page').setPage('Add Intent');
@@ -152,6 +164,8 @@ Polymer({is:"drawermenu-card",
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
+
+       // window.location.href="../elements/indexhome.html";
       }
     }
 

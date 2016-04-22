@@ -6,13 +6,9 @@ Polymer({
   ready: function() {
     //this.page='home-page';
     this.userlabel="Signout";
-
-
     this.$.intentview.style.visibility='hidden';
     this.$.promotebutton.style.visibility='hidden';
-    if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="3"){
-      this.$.intentview.style.visibility='visible';
-    }
+
     
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
       //alert("sales");
@@ -129,6 +125,20 @@ Polymer({
     if(sessionStorage.getItem("curr_sess_roleflag")=="11"){
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('outwardreport-card');
+    }
+    if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+      if(localStorage.getItem("curr_sess_wardflag")=="3"&&localStorage.getItem("curr_sess_intenttoggleflag")=="0"){
+      this.$.intentview.style.visibility='visible';
+      this.$.flow.style.visibility='hidden';
+      document.querySelector('app-homepage').setPage('intenthome-page');
+      document.querySelector('intenthome-page').setPage('Intent View');
+      }
+      if(localStorage.getItem("curr_sess_wardflag")=="3"&&localStorage.getItem("curr_sess_intenttoggleflag")=="1"){
+      this.$.intentview.style.visibility='visible';
+      this.$.flow.style.visibility='hidden';
+      document.querySelector('app-homepage').setPage('intenthome-page');
+      document.querySelector('intenthome-page').setPage('View Intent');
+      }
     }
 
   },
