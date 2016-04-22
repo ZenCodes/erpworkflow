@@ -72,7 +72,7 @@ FnAddItemSubmit:function(){
 	}
   //alert(this.itemflag);
   //alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
-	if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
+	if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){
 	}
 	else
 	{

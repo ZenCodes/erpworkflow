@@ -252,7 +252,7 @@
     },
       //Method invokes while making write req from the additem card
     callCustomerItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-    alert("yes");
+    //alert("yes");
 
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
@@ -332,7 +332,7 @@
     }
   },
     additemwritecustomerResponse:function(e){
-    alert(e.detail.response.returnval);
+    //alert(e.detail.response.returnval);
     //alert(arrlength+"  "+flag);
 
     if(e.detail.response.returnval=="succ"){
