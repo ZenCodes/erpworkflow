@@ -5,18 +5,35 @@
     Polymer({
       is: 'supplier-detail',
 	 ready:function(){
+	 this.hidecustomer=true;
+	 this.hidesupplier=false;
 	 this.idd=0;
 	 localStorage.setItem("curr_sess_unitset",this.idd);
+	 localStorage.setItem("curr_sess_addsupplierforitem","0");
+	 localStorage.setItem("curr_sess_addcustomerforitem","0");
 	 /*Dynamic array for creating rows of item card*/
 	 this.supArray=[{id:this.idd,supname:''}];
      this.splice('supArray',1,1);
+	 },
+	 FnChooseSupplier:function(e){
+	 	localStorage.setItem("curr_sess_addsupplierforitem","1");
+		this.hidecustomer=true;
+	 	this.hidesupplier=false;
+	 },
+	 FnChooseCustomer:function(e){
+	 	localStorage.setItem("curr_sess_addcustomerforitem","1");
+		this.hidecustomer=false;
+	 	this.hidesupplier=true;
 	 },
      FnAddSupplier:function(){
 		this.push('supArray', {id: this.idd, supname: ''});
 	 },
 	 FnSaveSupplier:function(){
-	 	localStorage.setItem("curr_sess_writesupplierfromadditem","1");
+	 	//localStorage.setItem("curr_sess_writesupplierfromadditem","1");
+	 	if(localStorage.getItem("curr_sess_addsupplierforitem")=="1")
 		document.querySelector('admin-service').callItemWriteSupplierService(itemid,itemArray);
+		if(localStorage.getItem("curr_sess_addcustomerforitem")=="1")
+		document.querySelector('admin-service').callItemWriteCustomerService(itemid,itemArray);	
 		this.FnBtnDisable();
 	 },
 	 FnSelectSupplier:function(supplierid,suppliername){
@@ -25,6 +42,12 @@
 		 obj.suppliername=suppliername;
 		 itemArray.push(obj);
 		 //alert(JSON.stringify(itemArray));
+	 },
+	 FnSelectCustomer:function(cusid,cusname){
+	     var obj={"supplierid":"","suppliername":""};
+		 obj.supplierid=cusid;
+		 obj.suppliername=cusname;
+	 	 itemArray.push(obj);
 	 },
 	 FnSetItemid:function(iitemid){
 		 itemid=iitemid;

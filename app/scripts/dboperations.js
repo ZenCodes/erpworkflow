@@ -1293,6 +1293,37 @@ exports.FnAddItemWriteSupplier=function(pagename,response,callback) {
 }
 
 
+//Function to write item info added from admin page
+exports.FnAddItemWriteCustomer=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  cond={Item_ID:response.Item_ID}
+  cond1={Item_Customer_ID:response.Item_Customer_ID}
+  connection.query('SELECT * FROM OD_Item WHERE ? AND ?',[cond,cond1],function(err, rows, fields) {
+    if(!err) {
+      if(rows.length==0) {
+        connection.query('INSERT INTO OD_Item SET ?', [response], function (err, result) {
+          if (!err) {
+            return callback("succ");
+          }
+          else {
+            console.log("Not Inserted!"+err);
+            return callback("fail");
+          }
+        });
+      }
+      else{
+        return callback("duplicate entry");
+    }
+    }
+  });
+}
+
+
 //Function fetches itemtype info
 exports.FnAddItemPurchasetype=function(pagename,callback) {
   var Config_tables=[];

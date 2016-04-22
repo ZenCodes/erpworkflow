@@ -58,7 +58,7 @@
 		//  document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
 		else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""){
       if(e.target.selectedItem.textContent.trim()!="-----Select-----")
-		  document.querySelector('supplier-detail').FnSelectSupplier(this.supplierid,this.suppliername);
+		  document.querySelector('supplier-detail').FnSelectCustomer(this.supplierid,this.suppliername);
       else
       alert("Please choose valid Customer...");
 		}

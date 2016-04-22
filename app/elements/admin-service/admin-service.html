@@ -101,6 +101,27 @@
       content-type="application/json"
       on-response="addsupplierResponse">
     </iron-ajax>-->
+
+     <!--Component which makes write req to write the item info-->
+    <iron-ajax
+      id="addcustomeritemwriteajax"
+      url="{{customerurl}}"
+      params='{{customerparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="addcustomeritemwriteResponse">
+    </iron-ajax>
+    <iron-ajax
+        id="additemwritecustomerajax"
+        url="{{writecustomerurl}}"
+        params='{{writecustomerparam}}'
+        method="post"
+        handle-as="json"
+        content-type="application/json"
+        on-response="additemwritecustomerResponse">
+    </iron-ajax>
+
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

@@ -180,7 +180,7 @@
           this.$.dialogpage.FnShowDialog("Customer Added successfully!!","");
       }
       else
-          alert("Unable to add suppliers!");
+          alert("Unable to add customer!");
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     }
 

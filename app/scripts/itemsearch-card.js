@@ -176,6 +176,10 @@
     this.querySelector('#searchname').style.visibility='hidden';
     this.querySelector('#searchname').selected=-1;
     }
+  },
+  FnSetItemId:function(itemid){
+    //alert(itemid);
+    this.itemid=itemid;
   }
   });
 })();

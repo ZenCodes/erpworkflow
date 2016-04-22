@@ -500,6 +500,23 @@ app.post("/additemsupplier-service",urlencodedParser,function(req,res) {
 
 });
 
+
+//Function for writing item info...req receives from admin service
+app.post("/additemcustomer-service",urlencodedParser,function(req,res) {
+
+  response = {
+    Item_Customer_ID:req.query.supplierid,
+    Item_ID:req.query.itemid
+
+  };
+  console.log(response);
+  var FnAddItemCustomerWritecall = require("./app/scripts/dboperations.js");
+  FnAddItemCustomerWritecall.FnAddItemWriteCustomer("additemcustomer-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
 //Function to fetch item type info req receives from admin service
 app.post('/additempurchasetype-service',urlencodedParser, function (req, res) {
 

@@ -13,7 +13,7 @@ Polymer({
   this.supplierid="";
   this.storesid="";
   this.storesarr="";
-  localStorage.setItem("curr_sess_additemsupplierwrite","0");
+  localStorage.setItem("curr_sess_additemcustomerwrite","0");
    //Initially to make all the fields are in editable mode
    this.read=false;
    //Calling services to bind info to the itemtype , itemgroup and supplier fields
@@ -63,23 +63,23 @@ FnAddItemSubmit:function(){
     document.querySelector('#dropgrouptype').validate();
     document.querySelector('#supplier').validate();
 	//Fetching selected radio button value
-	var purchasetype=document.querySelector('#radio').selected;
+	var purchasetype=this.querySelector('#radio').selected;
   //alert(purchasetype);
   //alert(JSON.stringify(this.purchasearr));
 	for(var i=0;i<this.purchasearr.length;i++){
-    if(document.querySelector('#radio').selected==this.purchasearr[i].purchasetypename)
+    if(this.querySelector('#radio').selected==this.purchasearr[i].purchasetypename)
     this.itemflag=this.purchasearr[i].purchasetypeid;
 	}
   //alert(this.itemflag);
-  alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
+  //alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
 	if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
 	}
 	else
 	{
 	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
-	alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
-  localStorage.setItem("curr_sess_additemsupplierwrite","1");
-	this.$.adminservice.callItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
+	//alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
+  localStorage.setItem("curr_sess_additemcustomerwrite","1");
+	this.$.adminservice.callCustomerItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
 	}
   document.querySelector('stores-card').FnClear();
 },

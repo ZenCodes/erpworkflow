@@ -4,6 +4,7 @@
 <link rel="import" href="../supplier-list/supplier-list.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
+<link rel="import" href="../customer-list/customer-list.html">
 
 <dom-module id="supplier-detail">
   <template>
@@ -28,15 +29,29 @@
       .btn{
       @apply(--layout-horizontal);
       }
+      .choice{
+        margin-left: -70%;
+      }
     </style>
     <div class="card">
-    <div class="list">
+    <div class="choice">
+      <paper-radio-group>
+      <paper-radio-button name="Add Supplier" on-click="FnChooseSupplier">Add Supplier</paper-radio-button>
+      <paper-radio-button name="Add Customer" on-click="FnChooseCustomer">Add Customer</paper-radio-button>      
+      </paper-radio-group>
+    </div>
+    <div class="list" hidden$="{{hidesupplier}}">
     <template is="dom-repeat" items="{{supArray}}" as="item">
     <supplier-list id="{{item.id}}" supname="{{item.supname}}"></supplier-list>
     </template>
     </div>
+    <div class="cuslist" hidden$="{{hidecustomer}}">
+    <template is="dom-repeat" items="{{supArray}}" as="item">
+    <customer-list id="{{item.id}}" supname="{{item.supname}}"></customer-list>
+    </template>
+    </div>
     <div class="btn">
-    <paper-button disabled="{{Btn_disable_flag}}" id="add" on-click="FnAddSupplier">Add Supplier</paper-button>
+    <paper-button disabled="{{Btn_disable_flag}}" id="add" on-click="FnAddSupplier">Add</paper-button>
     <paper-button disabled="{{Btn_disable_flag}}" id="saveitem" on-click="FnSaveSupplier">Save</paper-button>
     </div>
     </div>

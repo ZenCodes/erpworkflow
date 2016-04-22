@@ -16,7 +16,7 @@
     },
     //Method invokes while making write req from the additem card
     callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-		alert("yes");
+		//alert("yes");
 
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
@@ -181,7 +181,9 @@
     additemsearchResponse:function(e){
 		//alert(localStorage.getItem("curr_sess_wardflag"));
     var arr= e.detail.response.itemarr;    
+    //alert(JSON.stringify(arr));
     if(localStorage.getItem("curr_sess_wardflag")=="4"){
+    //alert('4');
     //document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
 	  document.querySelector("itemsearch-card").itemid=arr[0].itemid;
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
@@ -189,17 +191,20 @@
     document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }
     if(localStorage.getItem("curr_sess_wardflag")=="6"){
+    //alert('6');
     //alert('yes');
     //document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
     //alert(arr[0].itemid);
-    document.querySelector("itemsearch-card").itemid=arr[0].itemid;
+    //alert("item.."+document.querySelector("itemsearch-card"));
+    document.querySelector("itemsearch-card").FnSetItemId(arr[0].itemid);
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
     document.querySelector("customeradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
     document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }
 	 if(localStorage.getItem("curr_sess_wardflag")==""){
+    //alert('empty');
       document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
-      //document.querySelector('customer-list').FnSpecificSupplierReadService(arr[0].itemid);
+      document.querySelector('customer-list').FnSpecificSupplierReadService(arr[0].itemid);
       document.querySelector("additem-card").itemid=arr[0].itemid;
       document.querySelector("additem-card").itemname=arr[0].itemname;
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
@@ -244,7 +249,118 @@
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to update the item!!","");
+    },
+      //Method invokes while making write req from the additem card
+    callCustomerItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
+    alert("yes");
+
+    var obj={
+      "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
+    };
+     supobj={"supplierid" :""};
+      //obj.itemoptionalsupplier=itemoptionalsupplier,
+      //obj.itemsupplier=itemsupplier;
+      obj.itemflag=itemflag;
+      obj.itemid=itemid;
+      obj.itemname=itemname;
+      obj.itemdes=itemdes;
+      obj.container=container;
+      obj.quantity=quantity;
+      obj.itemgroup=itemgroup;
+      obj.itemtype=itemtype;
+      obj.storeslocation=storeslocation;
+      obj.purchasetype=purchasetype;
+      alert(JSON.stringify(obj));
+      if(localStorage.getItem("curr_sess_additemcustomerwrite")=="1"){
+      supobj.supplierid=itemoptionalsupplier;
+      if(suparr.length>0){
+      for(var i=0;i<suparr.length;i++){
+      //alert(supobj.supplierid+"  "+suparr[i].supplierid);
+      if((supobj.supplierid)!=(suparr[i].supplierid))
+      suparr.push(supobj);
     }
+      }
+      else
+      {
+    suparr.push(supobj);
+    }
+      this.callItemWriteCustomerService(itemid,suparr);
+      }
+      this.customerparam=obj;
+      this.customerurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
+      this.$.addcustomeritemwriteajax.generateRequest();
+    },
+    //Response receiving after making write request
+    addcustomeritemwriteResponse:function(e){
+
+      if(e.detail.response.returnval=="succ"){
+    //alert("Item saved successfully!!");
+    //document.querySelector('admin-page').setPage('supplier-detail');
+    this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+    //alert("new item");
+        //document.querySelector("additem-card").FnBtnDisable();
+        //document.querySelector("additem-card").FnClear();
+        //this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
+        /*flag=1;
+        this.writesupplierparam=supobj;
+    this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
+        this.$.additemwritesupplierajax.generateRequest();*/
+      }
+     else if(e.detail.response.returnval=="duplicate entry"){
+     //alert("old item");
+      /* this.writesupplierparam=supobj;
+       this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
+           this.$.additemwritesupplierajax.generateRequest();*/
+        if(localStorage.getItem("curr_sess_supplieritemsearchflag")!="1")
+        this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
+      }
+      else
+        this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
+    },
+  callItemWriteCustomerService:function(itemid,itemArray){
+    //alert(itemid);
+    //alert(JSON.stringify(itemArray));
+    var arr=itemArray;
+    arrlength=arr.length;
+    for(var i=0;i<arr.length;i++){
+      var obj={"itemid":"","supplierid":""};
+      obj.itemid=itemid;
+      obj.supplierid=arr[i].supplierid;
+      this.writecustomerparam=obj;
+      this.writecustomerurl=sessionStorage.getItem("curr_sess_url")+"additemcustomer-service";
+      this.$.additemwritecustomerajax.generateRequest();
+    }
+  },
+    additemwritecustomerResponse:function(e){
+    alert(e.detail.response.returnval);
+    //alert(arrlength+"  "+flag);
+
+    if(e.detail.response.returnval=="succ"){
+    flag=flag+1;
+    if(arrlength==flag){
+    alert("Item Added with customer successfully!!");
+    //alert(localStorage.getItem("curr_sess_writesupplierfromadditem"));
+    /*if(localStorage.getItem("curr_sess_writesupplierfromadditem")=="1"){
+         window.location.href="../elements/indexhome.html";
+    }*/
+    //alert(supobj.supplierid);
+    document.querySelector('customer-page').setPage('Show Item');
+    document.querySelector('customeritem-card').FnFetchItemInfo(supobj.supplierid,"");
+    document.querySelector('customeradditem-card').FnSetClearFields();
+    document.querySelector('itemsearch-card').FnSetClearFields();
+    flag=0;
+        //window.location.href = "indexhome.html";
+      }
+    //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+    //else
+    //this.$.dialogpage.FnShowDialog("Failed to add the items!!","");
+    }
+    else if(e.detail.response.returnval=="duplicate entry"){
+      alert("Item already exists against this customer!!");
+    //this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
+
+    }
+  }
 
   });
 })();

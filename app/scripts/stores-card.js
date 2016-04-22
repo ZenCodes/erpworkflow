@@ -24,6 +24,7 @@
     this.read=enableflag;    
     },
     FnSetDefaultValue:function(storesid){
+      //alert(storesid);
       for(var i=0;i<item.length;i++){
         if(item[i].Store_Location_ID==storesid){
           this.value=item[i].Store_Location_Name;
