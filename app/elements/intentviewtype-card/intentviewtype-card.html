@@ -18,7 +18,7 @@
   (function() {
     'use strict';
     var toggleflag=0;
-    localStorage.setItem("curr_sess_intenttoggleflag","1"); 
+    //localStorage.setItem("curr_sess_intenttoggleflag","0"); 
     Polymer({
       is: 'intentviewtype-card',
       ready:function(){
@@ -26,13 +26,13 @@
       },
       FnShowIntentView:function(){
         if(toggleflag==0){
-        localStorage.setItem("curr_sess_intenttoggleflag","0"); 
+        localStorage.setItem("curr_sess_intenttoggleflag","1"); 
         document.querySelector('intenthome-page').setPage('Intent View');
         toggleflag=1;
         //window.location.href="../elements/indexhome.html";
         }
         else if(toggleflag==1){
-        localStorage.setItem("curr_sess_intenttoggleflag","1");
+        localStorage.setItem("curr_sess_intenttoggleflag","0");
         document.querySelector('intenthome-page').setPage('View Intent');
         toggleflag=0; 
         //window.location.href="../elements/indexhome.html";
