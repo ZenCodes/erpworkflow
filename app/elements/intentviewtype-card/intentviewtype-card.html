@@ -1,17 +1,19 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-<link rel="import" href="..\..\bower_componentsiron-icons/iron-icons.html">
-<link rel="import" href="..\..\bower_componentspaper-icon-button.html">
-
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <dom-module id="intentviewtype-card">
   <template>
     <style>
       :host {
         display: block;
       }
+ 
     </style>
     <div>
-      <paper-icon-button noink icon="menu" title="Intent View" on-click="FnShowIntentView"></paper-icon-button>
+    <paper-button noink ><iron-icon icon="menu" title="Intent View" on-click="FnShowIntentView"></iron-icon></paper-button>
+      <!-- <paper-icon-button noink icon="menu" title="Intent View" on-click="FnShowIntentView"></paper-icon-button> -->
     </div>
   </template>
   <script>
