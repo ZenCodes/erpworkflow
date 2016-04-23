@@ -170,11 +170,11 @@
     //margin-left:10%;
     }
     .pagetitle{
-      font-size: 24px;
+      font-size: 23px;
       font-family: "Arial";
       margin-top: -7%;
       margin-left: -10%;
-      color: grey;
+      color: black;
     }
     #promotebutton{
       margin-left: -11%;
@@ -182,11 +182,13 @@
     }
     #intentview{
       margin-left: 95%;
-      margin-top: -2.5%;
+      margin-top: 0%;
     }
     #list{
       margin-left: -20%;
     }
+    
+   
   </style>
   <template>
     <grn-service id="gs"></grn-service>
@@ -197,7 +199,7 @@
 
         <!--Drawer menu dynamically change for the logged role-->
         <div class="sidemenu">
-          Logo goes here.....
+          <div id="logo">Logo goes here.....</div>
           <drawermenu-list id="drawerlist"></drawermenu-list>
           <menusearch-card id="searchmenu"></menusearch-card>
         </div>
