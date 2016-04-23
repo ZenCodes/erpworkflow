@@ -255,7 +255,7 @@
               itemarr[i].invoiceno=this.invoiceno;
             }
             }
-            alert(JSON.stringify(obj));
+            //alert(JSON.stringify(obj));
             this.$.itemservice.FnSeqItemwriteService(itemarr);
           }
         }

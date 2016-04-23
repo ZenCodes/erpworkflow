@@ -155,7 +155,8 @@
     Polymer({
       is: 'outwardreport-card',
      ready:function(){
-        //this.$.reportservice.callOutwardService("current");
+      if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="5")
+        this.$.reportservice.callOutwardService("current");
      },
      forward:function(){
         this.$.reportservice.callOutwardService("forward");
