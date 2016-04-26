@@ -87,10 +87,10 @@
 		var arr=itemArray;
 		arrlength=arr.length;
 		for(var i=0;i<arr.length;i++){
-			var obj={"itemid":"","supplierid":""};
+			var obj={"itemid":"","supplierid":"","price":""};
 			obj.itemid=itemid;
 			obj.supplierid=arr[i].supplierid;
-
+      obj.price=arr[i].price;
 		this.writesupplierparam=obj;
 		this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
         this.$.additemwritesupplierajax.generateRequest();

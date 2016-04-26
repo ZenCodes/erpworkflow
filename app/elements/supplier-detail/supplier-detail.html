@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
 <link rel="import" href="../customer-list/customer-list.html">
+<link rel="import" href="../itemprice-card/itemprice-card.html">
 
 <dom-module id="supplier-detail">
   <template>
@@ -32,17 +33,31 @@
       .choice{
         margin-left: -70%;
       }
+      .list{
+        @apply(--layout-vertical);
+      }
+      paper-input{
+        width:30%;
+        margin-left: 10%;
+        --paper-input-container-label: { color: red };
+      }
+      .suppliercard{
+      @apply(--layout-horizontal);
+      }
     </style>
     <div class="card">
     <div class="choice">
       <paper-radio-group>
-      <paper-radio-button  checked id="addsupplier" name="Add Supplier" on-click="FnChooseSupplier">Add Supplier</paper-radio-button>
+      <paper-radio-button  checked id="addsupplier" name="Add Supplier" on-change="FnChooseSupplier">Add Supplier</paper-radio-button>
       <paper-radio-button  id="addcustomer" name="Add Customer" on-click="FnChooseCustomer">Add Customer</paper-radio-button>      
       </paper-radio-group>
     </div>
     <div class="list" hidden$="{{hidesupplier}}">
     <template is="dom-repeat" items="{{supArray}}" as="item">
+    <div class="suppliercard">
     <supplier-list id="{{item.id}}" supname="{{item.supname}}"></supplier-list>
+    <itemprice-card></itemprice-card>
+    </div>
     </template>
     </div>
     <div class="cuslist" hidden$="{{hidecustomer}}">

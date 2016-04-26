@@ -8,13 +8,14 @@
 	 this.hidecustomer=true;
 	 this.hidesupplier=false;
 	 this.idd=0;
-
+	 this.price="";
+	 //this.hideprice=false;
 	 localStorage.setItem("curr_sess_unitset",this.idd);
 	 localStorage.setItem("curr_sess_addsupplierforitem","1");
 	 localStorage.setItem("curr_sess_addcustomerforitem","0");
 	 //document.querySelector('#addsupplier').checked=true;
 	 /*Dynamic array for creating rows of item card*/
-	 this.supArray=[{id:this.idd,supname:''}];
+	 this.supArray=[{id:this.idd,supname:'',price:''}];
      this.splice('supArray',1,1);
 	 },
 	 FnChooseSupplier:function(e){
@@ -23,18 +24,30 @@
 	 	this.hidesupplier=false;
 	 },
 	 FnChooseCustomer:function(e){
+	 	//this.hideprice=true;
 	 	document.querySelector('#addsupplier').checked=false;
 	 	localStorage.setItem("curr_sess_addcustomerforitem","1");
 		this.hidecustomer=false;
 	 	this.hidesupplier=true;
 	 },
+	
      FnAddSupplier:function(){
-		this.push('supArray', {id: this.idd, supname: ''});
+     	//alert(itemArray.length);
+     	//alert("halo"+this.price);
+     	itemArray[(itemArray.length)-1].price=this.price;
+     	//alert(JSON.stringify(itemArray));
+     	//this.idd=parseInt(this.idd)+1;
+     	// alert(this.idd);
+    	
+		this.push('supArray', {id: this.idd, supname: '',price:''});
+		
 	 },
 	 FnSaveSupplier:function(){
 	 	//localStorage.setItem("curr_sess_writesupplierfromadditem","1");
-	 	if(localStorage.getItem("curr_sess_addsupplierforitem")=="1")
+	 	if(localStorage.getItem("curr_sess_addsupplierforitem")=="1"){
+	 	itemArray[(itemArray.length)-1].price=this.price;
 		document.querySelector('admin-service').callItemWriteSupplierService(itemid,itemArray);
+		}
 		else if(localStorage.getItem("curr_sess_addcustomerforitem")=="1")
 		document.querySelector('admin-service').callItemWriteCustomerService(itemid,itemArray);	
 		else
@@ -42,11 +55,12 @@
 		this.FnBtnDisable();
 	 },
 	 FnSelectSupplier:function(supplierid,suppliername){
-		 var obj={"supplierid":"","suppliername":""};
+		 var obj={"supplierid":"","suppliername":"","price":""};
 		 obj.supplierid=supplierid;
 		 obj.suppliername=suppliername;
+		 
 		 itemArray.push(obj);
-		 //alert(JSON.stringify(itemArray));
+		 // alert(JSON.stringify(itemArray));
 	 },
 	 FnSelectCustomer:function(cusid,cusname){
 	     var obj={"supplierid":"","suppliername":""};
@@ -62,6 +76,10 @@
       document.querySelector('#saveitem').style.backgroundColor='grey';
       document.querySelector('#add').style.backgroundColor='grey';
       this.Btn_disable_flag=true;
+    },
+    FnSetPrice:function(price){
+    	//alert(price);
+    	this.price=price;
     }
     });
   })();

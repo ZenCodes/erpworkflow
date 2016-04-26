@@ -489,7 +489,8 @@ app.post("/additemsupplier-service",urlencodedParser,function(req,res) {
 
   response = {
     Item_Supplier_ID:req.query.supplierid,
-    Item_ID:req.query.itemid
+    Item_ID:req.query.itemid,
+    Item_Supplier_price:req.query.price
 
   };
   //console.log(response);
