@@ -8,9 +8,11 @@
 	 this.hidecustomer=true;
 	 this.hidesupplier=false;
 	 this.idd=0;
+
 	 localStorage.setItem("curr_sess_unitset",this.idd);
-	 localStorage.setItem("curr_sess_addsupplierforitem","0");
+	 localStorage.setItem("curr_sess_addsupplierforitem","1");
 	 localStorage.setItem("curr_sess_addcustomerforitem","0");
+	 //document.querySelector('#addsupplier').checked=true;
 	 /*Dynamic array for creating rows of item card*/
 	 this.supArray=[{id:this.idd,supname:''}];
      this.splice('supArray',1,1);
@@ -21,6 +23,7 @@
 	 	this.hidesupplier=false;
 	 },
 	 FnChooseCustomer:function(e){
+	 	document.querySelector('#addsupplier').checked=false;
 	 	localStorage.setItem("curr_sess_addcustomerforitem","1");
 		this.hidecustomer=false;
 	 	this.hidesupplier=true;
@@ -32,8 +35,10 @@
 	 	//localStorage.setItem("curr_sess_writesupplierfromadditem","1");
 	 	if(localStorage.getItem("curr_sess_addsupplierforitem")=="1")
 		document.querySelector('admin-service').callItemWriteSupplierService(itemid,itemArray);
-		if(localStorage.getItem("curr_sess_addcustomerforitem")=="1")
+		else if(localStorage.getItem("curr_sess_addcustomerforitem")=="1")
 		document.querySelector('admin-service').callItemWriteCustomerService(itemid,itemArray);	
+		else
+			alert("unable to add supplier");
 		this.FnBtnDisable();
 	 },
 	 FnSelectSupplier:function(supplierid,suppliername){

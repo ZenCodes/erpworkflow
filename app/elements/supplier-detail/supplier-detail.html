@@ -36,8 +36,8 @@
     <div class="card">
     <div class="choice">
       <paper-radio-group>
-      <paper-radio-button name="Add Supplier" on-click="FnChooseSupplier">Add Supplier</paper-radio-button>
-      <paper-radio-button name="Add Customer" on-click="FnChooseCustomer">Add Customer</paper-radio-button>      
+      <paper-radio-button  checked id="addsupplier" name="Add Supplier" on-click="FnChooseSupplier">Add Supplier</paper-radio-button>
+      <paper-radio-button  id="addcustomer" name="Add Customer" on-click="FnChooseCustomer">Add Customer</paper-radio-button>      
       </paper-radio-group>
     </div>
     <div class="list" hidden$="{{hidesupplier}}">
