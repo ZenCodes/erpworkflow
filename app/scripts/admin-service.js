@@ -15,15 +15,15 @@
       this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
     },
     //Method invokes while making write req from the additem card
-    callItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
+    callItemWriteService:function(price,itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
 		//alert("yes");
 
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
     };
-     supobj={"supplierid" :""};
+     supobj={"supplierid" :"","price":""};
       //obj.itemoptionalsupplier=itemoptionalsupplier,
-      //obj.itemsupplier=itemsupplier;
+      supobj.price=price;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;

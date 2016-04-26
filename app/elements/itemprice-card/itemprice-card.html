@@ -8,6 +8,9 @@
       :host {
         display: block;
       }
+      paper-input{
+        text-align: left;
+      }
     </style>
       <paper-input id="input" label="Item price" value="{{price}}" on-change="FnInputChanged"></paper-input>
   </template>
@@ -23,6 +26,7 @@
      },
     FnInputChanged:function(){   
     document.querySelector('supplier-detail').FnSetPrice(this.price);
+    document.querySelector('supplieradditem-card').FnSetPrice(this.price);
     }
     });
   })();

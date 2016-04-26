@@ -106,7 +106,7 @@
     FnSummaryOk:function(){
       //localStorage.setItem("curr_sess_itemsummaryflag","1");
       if(localStorage.getItem("curr_sess_searchitemflag")=="0")
-      document.querySelector('admin-service').callItemWriteService("","",this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.storeslocation, this.purchasetype);
+      document.querySelector('admin-service').callItemWriteService("","","",this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.storeslocation, this.purchasetype);
       else
       document.querySelector('admin-service').callItemUpdateService("","",this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.storeslocation, this.purchasetype);
       localStorage.setItem("curr_sess_ItemTypeId","");

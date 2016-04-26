@@ -22,6 +22,7 @@
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../itemsearch-card/itemsearch-card.html">
 <link rel="import" href="../stores-card/stores-card.html">
+<link rel="import" href="../itemprice-card/itemprice-card.html">
 
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
@@ -68,7 +69,12 @@
 	  	        margin-left:5%;
       }
       .storescard{
-        margin-left:5%;        
+        margin-left:5%;       
+        @apply(--layout-horizontal);     
+      }
+      itemprice-card{
+        margin-left: 17.5%;
+        width:37%;
       }
       
     </style>
@@ -112,6 +118,7 @@
         </div>
         <div class="storescard">
           <stores-card id="storescard"></stores-card>
+          <itemprice-card></itemprice-card>
         </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>

@@ -75,7 +75,7 @@ FnAddItemSubmit:function(){
 	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
 	//alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
   localStorage.setItem("curr_sess_additemsupplierwrite","1");
-	this.$.adminservice.callItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
+	this.$.adminservice.callItemWriteService(this.price,this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
 	}
   document.querySelector('stores-card').FnClear();
 },
@@ -137,5 +137,8 @@ FnSetClearFields:function(){
 FnSetEnableDisableFields:function(flag){
   document.querySelector("stores-card"). FnEnableFields(flag);
   this.read=flag;
+},
+FnSetPrice:function(price){
+this.price=price;
 }
 });
