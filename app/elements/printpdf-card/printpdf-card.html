@@ -1,7 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
-
+<link rel="import" href="../purchaseorder-card/purchaseorder-card.html">
 <dom-module id="printpdf-card">
   <template>
     <style>
@@ -16,6 +16,7 @@
       <paper-icon-button icon="mail" on-click="mail"></paper-icon-button>   
       <paper-icon-button icon="print" on-click="print"></paper-icon-button>   
     </div>
+    <purchaseorder-card id="purchase"></purchaseorder-card>
   </template>
   <script>
   (function() {
@@ -30,6 +31,7 @@
       },
       print:function(){
         alert("print");
+        this.$.purchase.FnToggle();
       }
  
     });

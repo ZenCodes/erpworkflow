@@ -1,6 +1,11 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-
+<link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
+<script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+<script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 <dom-module id="purchaseorder-card">
   <template>
     <style>
@@ -39,7 +44,8 @@
         border-collapse: none;
       }
     </style>
-    <div class="card">
+    <paper-dialog id="dialog">
+    <div class="card" id="canvas">
       <div class="title">Purchase Order</div>
       <div class="header">
         <div class="companyheader">
@@ -77,15 +83,39 @@
       </div>
       </div>
     </div>
-  </template>
+    <paper-button id="pdf">Click</paper-button>
+    </paper-dialog>
+  </template>  
+  
   <script>
+   $(window).load(function(){
+    $(document).ready(function() {
+     $('#pdf').click(function() {  
+     alert("yes");     
+        html2canvas($("#canvas"), {
+          
+            onrendered: function(canvas) {    
+            alert("in");     
+                var imgData = canvas.toDataURL('image/png'); 
+                $("#imgRes").attr("src", imgData);             
+                var doc = new jsPDF('p', 'mm');
+                doc.addImage(imgData, 'PNG', 10, 8);
+                doc.save('sample.pdf');
+            }
+        });
+    });
+    });
+    });
   (function() {
     'use strict';
 
     Polymer({
       is: 'purchaseorder-card',
       ready:function(){
-
+        
+      },
+      FnToggle:function(){
+        this.$.dialog.toggle();
       }
     });
   })();
