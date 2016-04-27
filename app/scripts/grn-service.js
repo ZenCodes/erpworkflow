@@ -152,24 +152,19 @@
     },
     intentitemreadResponse:function(e){
       //alert(JSON.stringify(e.detail.response));
+      var itemarr=e.detail.response.itemarr;     
+      var items=[];
+      if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+        for(var i=0;i<itemarr.length;i++){
+          if(localStorage.getItem('curr_sess_postate')==itemarr[i].intentstate){          
+            items.push(itemarr[i]);
+          }
+        }        
+        document.querySelector('viewintent-page').itemArray=items;
+      }
+      else{        
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
-      /*if(intentstate=="Created"){
-      // alert('hi');
-      // alert(JSON.stringify(e.detail.response));
-      document.querySelector('viewintenthome-page').itemArray=e.detail.response.itemarr;
       }
-      if(intentstate=="Approved"){
-      // alert('hii');
-      // alert(JSON.stringify(e.detail.response));
-      document.querySelector('viewintenthome-page').supplyitemArray=e.detail.response.itemarr;
-      }
-      if(intentstate=="Supplied")
-      {
-      // alert('hiii');
-      // alert(JSON.stringify(e.detail.response));
-      document.querySelector('viewintenthome-page').acceptitemArray=e.detail.response.itemarr;
-      }*/
-      //alert(JSON.stringify(document.querySelector('viewintenthome-page').itemArray));
     },
     FnIntentsupplyitemReadService:function(){
       //alert("coming...");

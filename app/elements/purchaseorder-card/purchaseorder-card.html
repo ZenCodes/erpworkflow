@@ -1,0 +1,93 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="purchaseorder-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+      }
+      .title{
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .header{
+        @apply(--layout-horizontal);
+      }
+      .companyheader{
+        font-size: 15px;
+        @apply(--layout-vertical);
+      }
+      .dateheader{
+        font-size: 15px;
+        @apply(--layout-vertical);
+      }
+      .toheader{
+        @apply(--layout-vertical);
+      }
+      .total{
+        @apply(--layout-vertical);
+      }
+      .summary{
+        @apply(--layout-horizontal);
+      }
+      table{
+        border-collapse: none;
+      }
+    </style>
+    <div class="card">
+      <div class="title">Purchase Order</div>
+      <div class="header">
+        <div class="companyheader">
+          Company name
+          Building address
+          Street address          
+        </div>
+        <div class="dateheader">
+          Date
+          Ponumber
+        </div>
+      </div>
+      <div class="toheader">
+        To
+        Supplier name
+        Supplier Address
+      </div>
+      <div>
+        <table border="1">
+          <tr><th>S.No</th><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </div>
+      <div class="summary">
+      <div>
+        Notes:
+      </div>
+      <div class="total">
+        Total:
+        Tax1:
+        Tax2:
+        Total:
+      </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'purchaseorder-card',
+      ready:function(){
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

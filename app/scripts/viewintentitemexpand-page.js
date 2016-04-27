@@ -8,8 +8,9 @@ Polymer({is:"viewintentitemexpand-page",
   ready:function(){
     this.poraiseflag=0;
     this.hidesupplier=true;
-    this.promotestate=["Created","Approved","POCreated","Accepted"];
-    this.promotebtn=["Approve","Create PO","Accept"];
+    this.hideprintpdf=true;
+    this.promotestate=["Created","Approved","POCreated","POSent","Accepted"];
+    this.promotebtn=["Approve","Create PO","Send PO","Accept"];
     this.inpromotestate=["Created","Approved","Supplied","Accepted"];
     this.inpromotebtn=["Approve","Supply","Accept"];
     this.spotpromotestate=["SpotCreated","SpotApproved"];
@@ -53,9 +54,10 @@ Polymer({is:"viewintentitemexpand-page",
       //alert(obj.intentstate); 
       //alert(this.promotestate[j]);     
         if(obj.intentstate==this.promotestate[j]){
-          this.promote=this.promotebtn[j]; 
-          //if(this.promote=="Create PO")
-            //this.hidesupplier=false;
+          this.promote=this.promotebtn[j];
+          if(this.promote=="Send PO"){
+            this.hideprintpdf=false;
+          } 
         }
       }
       }
@@ -109,9 +111,7 @@ Polymer({is:"viewintentitemexpand-page",
     }
   },
   FnPromoteState:function(e){
-
-    //alert(this.promote+" "+this.poraiseflag);
-  
+    //alert(this.promote+" "+this.poraiseflag);  
   if(this.promote=="Create PO"&&this.poraiseflag==0){
   //alert('show supplier');
     for(var i=0;i<(this.promotebtn).length;i++){
@@ -130,7 +130,7 @@ Polymer({is:"viewintentitemexpand-page",
   }
   else{
   for(var i=0;i<(this.promotebtn).length;i++){
-    if(this.promote==this.promotebtn[i]){
+    if(this.promote==this.promotebtn[i]){      
       this.$.intentservice.FnIntentStateUpdate(this.promotestate[i+1]);
       //alert(this.promotestate[i+1]);
     }
@@ -168,7 +168,7 @@ Polymer({is:"viewintentitemexpand-page",
   FnSelectSupplier:function(e){
       this.poraiseflag=1;
       var selectedsupplier=e.target.selectedItem.textContent.trim();
-      alert(selectedsupplier);
+      //alert(selectedsupplier);
       this.$.intentservice.FnCreatePO(selectedsupplier);      
   },
   FnSetPoRaiseFlag:function(){

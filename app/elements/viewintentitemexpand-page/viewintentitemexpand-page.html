@@ -26,6 +26,7 @@
 
 <link rel="import" href="../viewintentexpanditem-page/viewintentexpanditem-page.html">
 <link rel="import" href="../intent-service/intent-service.html">
+<link rel="import" href="../printpdf-card/printpdf-card.html">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="viewintentitemexpand-page">
@@ -144,10 +145,14 @@
        </paper-menu>
     </paper-dropdown-menu>
     </div>
+    
     <!-- <paper-item>PO Request:</paper-item> -->
     <!--<paper-input label="PO Request" name="poreq" value="{{poreq}}" readonly>{{poreq}}</paper-input>
     <paper-input id="pono" name="pono" value="{{pono}}" label="PO Number" readonly="{{read}}" hidden$="{{hide}}" required></paper-input>-->
     <paper-button id="promote"  name="promote" value="{{promote}}" on-click="FnPromoteState">{{promote}}</paper-button>
+    <div hidden$="{{hideprintpdf}}">
+      <printpdf-card></printpdf-card>
+    </div>
     </div>     
 
     <!--<paper-dialog id="Fn_PoItem_dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>

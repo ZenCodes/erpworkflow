@@ -8,7 +8,7 @@
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="intentflow-card">
   <template>
@@ -95,7 +95,7 @@
         z-index: 1;
         border-color: transparent transparent transparent #bfbfbf;
       }
-      ol > li > #Supplied:after, ol > li > #Supplied:before {
+      ol > li > #POCreated:after, ol > li > #POCreated:before {
         content:"";
         display:inline-block;
         border-width: 16px;
@@ -108,7 +108,7 @@
         z-index: 1;
         border-color: transparent transparent transparent #bfbfbf;
       }
-      ol > li > #Accepted:after, ol > li > #Accepted:before {
+      ol > li > #POSent:after, ol > li > #POSent:before {
         content:"";
         display:inline-block;
         border-width: 16px;
@@ -136,13 +136,14 @@
           <div id="Approved1"><paper-button noink id="Approved" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Approved</paper-button></div>
         </li>
         <li>
-          <div id="Supplied1"><paper-button noink id="Supplied" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Supplied</paper-button></div>
+          <div id="POCreated1"><paper-button noink id="POCreated" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">POCreated</paper-button></div>
         </li>
         <li>
-          <div id="Accepted1"><paper-button noink id="Accepted" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">Accepted</paper-button></div>
+          <div id="POSent1"><paper-button noink id="POSent" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">POSent</paper-button></div>
         </li>
       </ol>
     </div>    
+    <grn-service id="grnservice"></grn-service>
   </template>
   <script src="../../scripts/intentflow-card.js"></script>
 </dom-module>

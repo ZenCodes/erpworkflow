@@ -1,0 +1,38 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
+
+<dom-module id="printpdf-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-horizontal);
+      }
+    </style>
+    <div class="card">
+      <paper-icon-button icon="mail" on-click="mail"></paper-icon-button>   
+      <paper-icon-button icon="print" on-click="print"></paper-icon-button>   
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      ready:function(){
+
+      },
+      mail:function(){
+        alert("mail");
+      },
+      print:function(){
+        alert("print");
+      }
+ 
+    });
+  })();
+  </script>
+</dom-module>
