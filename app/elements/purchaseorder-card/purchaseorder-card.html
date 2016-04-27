@@ -83,19 +83,16 @@
       </div>
       </div>
     </div>
-    <paper-button id="pdf">Click</paper-button>
+    <paper-button id="pdf" on-click="click">Click</paper-button>
     </paper-dialog>
   </template>  
   
   <script>
    $(window).load(function(){
     $(document).ready(function() {
-     $('#pdf').click(function() {  
-     alert("yes");     
-        html2canvas($("#canvas"), {
-          
-            onrendered: function(canvas) {    
-            alert("in");     
+     $('#pdf').click(function() {          
+        html2canvas($("#canvas"), {          
+            onrendered: function(canvas) {                 
                 var imgData = canvas.toDataURL('image/png'); 
                 $("#imgRes").attr("src", imgData);             
                 var doc = new jsPDF('p', 'mm');
@@ -116,6 +113,17 @@
       },
       FnToggle:function(){
         this.$.dialog.toggle();
+      },
+      click:function(){
+         html2canvas($("#canvas"), {          
+            onrendered: function(canvas) {                 
+                var imgData = canvas.toDataURL('image/png'); 
+                $("#imgRes").attr("src", imgData);             
+                var doc = new jsPDF('p', 'mm');
+                doc.addImage(imgData, 'PNG', 10, 8);
+                doc.save('sample.pdf');
+            }
+          });
       }
     });
   })();
