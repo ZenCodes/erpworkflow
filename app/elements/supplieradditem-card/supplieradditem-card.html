@@ -24,6 +24,8 @@
 <link rel="import" href="../stores-card/stores-card.html">
 <link rel="import" href="../itemprice-card/itemprice-card.html">
 
+<link rel="import" href="../container-card/container-card.html">
+<link rel="import" href="../unit-card/unit-card.html">
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <dom-module id="supplieradditem-card">
@@ -95,9 +97,10 @@
 
         </div>
         <div class="input">
-
-          <paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
+        <container-card></container-card>
+        <unit-card></unit-card>
+          <!--<paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>-->
 
         </div>
         <div class="drop">

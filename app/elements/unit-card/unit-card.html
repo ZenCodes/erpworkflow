@@ -1,0 +1,45 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<dom-module id="unit-card">
+  <template>
+    <style>
+      
+       paper-dropdown-menu{
+        width: 120%;
+      }
+    </style>
+    <div>
+    <paper-dropdown-menu id="dropitemtype" label="Select Unit" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectunit"  attr-for-selected="value" selected="{{unittype}}" required>
+              <template is="dom-repeat" items="{{itemarr}}">
+              <paper-item value="{{item.Unit_Name}}">{{item.Unit_Name}}</paper-item>
+              </template>
+            </paper-menu>
+    </paper-dropdown-menu>
+    </div>
+    <admin-service id="adminservice"></admin-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'unit-card',
+    ready:function(){
+    this.$.adminservice.callUnitReadService();
+    },
+    FnSelectunit:function(e){      
+    document.querySelector('additem-card').FnQuantityChange((e.target.selectedItem.textContent).trim());
+    },
+    FnSetQuantity:function(unit){
+      alert(unit);
+      this.unittype=unit;
+    }
+    });
+  })();
+  </script>
+</dom-module>

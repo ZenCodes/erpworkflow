@@ -560,6 +560,23 @@ app.post('/itemsupplierread-service',urlencodedParser, function (req, res) {
   });
 });
 
+//Function to fetch supplier info req receives from admin service
+app.post('/containerread-service',urlencodedParser, function (req, res) {
+  
+  var FnContainerReadcall = require("./app/scripts/dboperations.js");
+  FnContainerReadcall.FnContainerRead("containerread-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+//Function to fetch supplier info req receives from admin service
+app.post('/unitread-service',urlencodedParser, function (req, res) {
+  
+  var FnUnitReadcall = require("./app/scripts/dboperations.js");
+  FnUnitReadcall.FnUnitRead("unitread-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 
 //Function to fetch the searched item info using id or name according to the search type
 app.post('/addsearchitem-service',urlencodedParser, function (req, res) {

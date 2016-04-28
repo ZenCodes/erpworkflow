@@ -1466,6 +1466,52 @@ exports.FnItemsupplierRead=function(pagename,itemid,callback) {
 
 }
 
+//Function fetches supplier info
+exports.FnContainerRead=function(pagename,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="SELECT * FROM MD_Container";
+  //console.log(queryy);
+  connection.query(queryy,function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){
+      return callback(rows);
+    
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}
+
+
+//Function fetches supplier info
+exports.FnUnitRead=function(pagename,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="SELECT * FROM MD_Unit";
+  //console.log(queryy);
+  connection.query(queryy,function(err, rows, fields) {
+    var itemarr=[];
+    if(!err){    
+      return callback(rows);
+    }
+    else
+      console.log(err);
+  });
+  //console.log(Config_tables);
+
+}
+
 //Function fecthes searched item info
 exports.FnAddsearchItem=function(pagename,cond,callback) {
   var Config_tables=[];

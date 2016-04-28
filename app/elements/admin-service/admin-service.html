@@ -121,7 +121,28 @@
         content-type="application/json"
         on-response="additemwritecustomerResponse">
     </iron-ajax>
-
+    <!--Component which makes read req to fetch the container info-->
+    <iron-ajax
+      auto
+      id="containerreadajax"
+      url="{{containerreadurl}}"
+      params='{{containerreadparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="containerreadResponse">
+    </iron-ajax>
+    <!--Component which makes read req to fetch the unit info-->
+    <iron-ajax
+      auto
+      id="unitreadajax"
+      url="{{unitreadurl}}"
+      params='{{unitreadparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="unitreadResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

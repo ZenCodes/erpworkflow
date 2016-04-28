@@ -1,0 +1,45 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<dom-module id="container-card">
+  <template>
+    <style>
+  
+      paper-dropdown-menu{
+       width: 120%;
+      }
+    </style>
+    <div>
+    <paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer"  attr-for-selected="value" selected="{{containertype}}" required>
+              <template is="dom-repeat" items="{{itemarr}}">
+              <paper-item value="{{item.Container_Name}}">{{item.Container_Name}}</paper-item>
+              </template>
+            </paper-menu>
+    </paper-dropdown-menu>
+    </div>
+    <admin-service id="adminservice"></admin-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'container-card',
+    ready:function(){
+        this.$.adminservice.callContainerReadService();
+    },
+    FnSelectcontainer:function(e){
+      document.querySelector('additem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
+    },
+    FnSetContainer:function(container){
+      alert(container);
+      this.containertype=container;
+    }
+    });
+  })();
+  </script>
+</dom-module>

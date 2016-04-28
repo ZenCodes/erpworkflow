@@ -47,10 +47,12 @@ Polymer({
   FnDesChange:function(e){
     localStorage.setItem("curr_sess_itemdesflag","1");
   },
-  FnContainerChange:function(e){
+  FnContainerChange:function(container){
+    this.container=container;
     localStorage.setItem("curr_sess_itemcontainerflag","1");
   },
-  FnQuantityChange:function(e){
+  FnQuantityChange:function(quantity){
+    this.quantity=quantity;
     localStorage.setItem("curr_sess_itemquantityflag","1");
   },
   FnSelectPurchaseType:function(){
@@ -277,15 +279,15 @@ Polymer({
     document.querySelector('#itemid').validate();
     document.querySelector('#itemname').validate();
     document.querySelector('#itemdes').validate();
-    document.querySelector('#container').validate();
-    document.querySelector('#quantity').validate();
+    //document.querySelector('#container').validate();
+    //document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
     //document.querySelector('supplier-list').FnValidate();
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
 
-  if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
+  if(this.container==null||this.container==""||this.quantity==null||this.quantity==""||this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
   }
     else {
     //Setting flags according to the purchase type selection if type is regular then flag is 0 ,if spot flag is 1

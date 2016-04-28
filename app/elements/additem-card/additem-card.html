@@ -20,6 +20,8 @@
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
 <link rel="import" href="../supplier-list/supplier-list.html">
 <link rel="import" href="../stores-card/stores-card.html">
+<link rel="import" href="../container-card/container-card.html">
+<link rel="import" href="../unit-card/unit-card.html">
 
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
@@ -117,6 +119,12 @@
       #searchname{
       width: 35%;
       }
+     
+      unit-card{
+        
+        margin-left: 10%;
+      }
+      
     </style>
     <!--Component for listenen to keyboard enter event-->
     <!--<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>-->
@@ -159,8 +167,10 @@
           <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  on-change="FnDesChange" id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>
+        <container-card></container-card>
+        <unit-card></unit-card>
+          <!--<paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>-->
         </div>
         <div class="owner">
           <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>

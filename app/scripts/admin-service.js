@@ -169,6 +169,28 @@
       document.querySelector('additem-card').itemsupplierarr=itemsupplierarray;
       document.querySelector('additem-card').itemoptionalsupplierarr=itemsupplierarray;
     },
+    //Method invokes while making req to fetch container info
+    callContainerReadService:function(){
+      this.containerreadurl=sessionStorage.getItem("curr_sess_url")+"containerread-service";
+      this.$.containerreadajax.generateRequest();
+    },
+    containerreadResponse:function(e) {
+      var containerarray=e.detail.response.itemarr;
+      document.querySelector('container-card').itemarr=containerarray;
+      //document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
+      //document.querySelector('customeradditem-card').itemgrouparr=itemgrouparray;
+    },
+     //Method invokes while making req to fetch container info
+    callUnitReadService:function(){
+      this.unitreadurl=sessionStorage.getItem("curr_sess_url")+"unitread-service";
+      this.$.unitreadajax.generateRequest();
+    },
+    unitreadResponse:function(e) {
+      var unitarray=e.detail.response.itemarr;
+      document.querySelector('unit-card').itemarr=unitarray;
+      // document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
+      // document.querySelector('customeradditem-card').itemgrouparr=itemgrouparray;
+    },
     //Method invokes while making req for fetch all the info of the currently selected item in listbox
     callSearchService:function(itemid,itemname){
       this.searchurl=sessionStorage.getItem("curr_sess_url")+"addsearchitem-service";
@@ -210,6 +232,8 @@
       document.querySelector("additem-card").itemdes=arr[0].itemdes;
       document.querySelector("additem-card").container=arr[0].container;
       document.querySelector("additem-card").quantity=arr[0].quantity;
+      document.querySelector("container-card").FnSetContainer(arr[0].container);
+      document.querySelector("unit-card").FnSetQuantity(arr[0].quantity);
       document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
       document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
 	  }
