@@ -10,9 +10,10 @@
       }
       paper-input{
         text-align: left;
+        --paper-input-container-label: { color: red };
       }
     </style>
-      <paper-input id="input" label="Item price" value="{{price}}" on-change="FnInputChanged"></paper-input>
+      <paper-input id="input" label="Item price" value="{{price}}" on-change="FnInputChanged" required></paper-input>
   </template>
   <script>
   (function() {
