@@ -147,6 +147,12 @@ Polymer({
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('View Intent');
       }
+      if(localStorage.getItem("curr_sess_wardflag")=="4") {
+        this.$.flow.style.visibility='hidden';
+        localStorage.setItem("curr_sess_showpage", "Add Supplier");
+        //document.querySelector("supplier-page").setPage("Add Supplier");
+        this.page = "supplier-page";
+      }
     }
 
   },

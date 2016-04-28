@@ -36,7 +36,7 @@
         "status":"Purchase",
         "newstatus":"OldPurchase",
         "updatestatus":"Confirm",
-        "menu" : ["GRN Flow","View Intent"]
+        "menu" : ["GRN Flow","View Intent","Add Supplier"]
       },
       {
         "rolename": "Administration manager",
@@ -46,7 +46,7 @@
       {
         "rolename": "Administration admin",
         "RoleFlag": "6",
-        "menu" : ["Add Item","Add Supplier"]
+        "menu" : ["Add Item"]
       },
       {
         "rolename": "Maintenance manager",

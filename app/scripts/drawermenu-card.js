@@ -24,6 +24,12 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","");
         window.location.href="../elements/indexhome.html";
       }
+       if(e.target.id=="Add Supplier"){
+        localStorage.setItem("curr_sess_wardflag","4");
+        //document.querySelector('app-homepage').setPage('supplier-page');
+        window.location.href="../elements/indexhome.html";
+        //document.querySelector('supplier-page').setPage('addsupplier-card');
+      }
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");

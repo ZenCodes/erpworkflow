@@ -14,8 +14,7 @@ Polymer({is:"dynamic-card",
         this.url="../../config/outwardmenu.json";
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
-	  if(localStorage.getItem("curr_sess_wardflag")=="4")
-        this.url="../../config/suppliermenu.json";
+	 
          if(localStorage.getItem("curr_sess_wardflag")=="")
         this.url="../../config/itemmenu.json";
     }
@@ -23,7 +22,10 @@ Polymer({is:"dynamic-card",
     if(localStorage.getItem("curr_sess_wardflag")=="6")
         this.url="../../config/customermenu.json";      
     }
-
+    if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+    if(localStorage.getItem("curr_sess_wardflag")=="4")
+        this.url="../../config/suppliermenu.json";
+    }
 
   },
   /*which receives the menu response of security menu json file,bind it to the dynamic card*/
