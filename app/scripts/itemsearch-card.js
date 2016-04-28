@@ -58,7 +58,7 @@
 	    obj.wardflag="2";
       obj.itemid="sale";
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
       var obj={"wardflag":"","itemid":""};
       obj.wardflag="2";
       obj.itemid="purchase";
