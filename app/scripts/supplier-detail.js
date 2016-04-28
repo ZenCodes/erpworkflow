@@ -2,23 +2,33 @@
     'use strict';
     var itemArray=[];
     var itemid;
+    var itemtype;
     Polymer({
       is: 'supplier-detail',
 	 ready:function(){
+	 	
 	 this.hidecustomer=true;
-	 this.hidesupplier=false;
+	 this.hidesupplier=true;
 	 this.idd=0;
 	 this.price="";
-	 //this.hideprice=false;
+	 //this.hideprice=false;	 
 	 localStorage.setItem("curr_sess_unitset",this.idd);
-	 localStorage.setItem("curr_sess_addsupplierforitem","1");
+	 localStorage.setItem("curr_sess_addsupplierforitem","0");
 	 localStorage.setItem("curr_sess_addcustomerforitem","0");
 	 //document.querySelector('#addsupplier').checked=true;
+	 if(itemtype!="FG"){
+	 	localStorage.setItem("curr_sess_addsupplierforitem","1");
+	 	this.hidesupplier=false;
+	 }
+	 if(itemtype=="FG"){
+	 	localStorage.setItem("curr_sess_addcustomerforitem","1");
+	 	this.hidecustomer=false;
+	 }
 	 /*Dynamic array for creating rows of item card*/
 	 this.supArray=[{id:this.idd,supname:'',price:''}];
      this.splice('supArray',1,1);
 	 },
-	 FnChooseSupplier:function(e){
+	 /*FnChooseSupplier:function(e){
 	 	localStorage.setItem("curr_sess_addsupplierforitem","1");
 		this.hidecustomer=true;
 	 	this.hidesupplier=false;
@@ -29,7 +39,7 @@
 	 	localStorage.setItem("curr_sess_addcustomerforitem","1");
 		this.hidecustomer=false;
 	 	this.hidesupplier=true;
-	 },
+	 },*/
 	
      FnAddSupplier:function(){
      	//alert(itemArray.length);
@@ -68,9 +78,10 @@
 		 obj.suppliername=cusname;
 	 	 itemArray.push(obj);
 	 },
-	 FnSetItemid:function(iitemid){
+	 FnSetItemid:function(iitemid,iitemtype){
 		 itemid=iitemid;
-		 //alert(itemid);
+		 itemtype=iitemtype;
+		
 	 },
 	  FnBtnDisable:function(){	  	
       document.querySelector('#saveitem').style.backgroundColor='grey';

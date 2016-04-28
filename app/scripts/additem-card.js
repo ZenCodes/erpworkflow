@@ -319,13 +319,13 @@ Polymer({
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
-      document.querySelector('supplier-detail').FnSetItemid(this.itemid);
+      document.querySelector('supplier-detail').FnSetItemid(this.itemid,this.itemtype);
       this.$.ID_Dialogpage.FnShowDialog(this.storesid,this.storesarr,this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     //If save button click happens via search/Edit mode,it would call the update service
     if(localStorage.getItem("curr_sess_searchitemflag")=="1") {
       //Calling dialog ensure  the update item details
-      document.querySelector('supplier-detail').FnSetItemid(this.itemid);
+      document.querySelector('supplier-detail').FnSetItemid(this.itemid,this.itemtype);
       this.$.ID_Dialogpage.FnShowDialog(this.storesid,this.storesarr,this.itemarr, this.itemgrouparr, this.itemsupplierarr, this.itemoptionalsupplierarr, this.purchasearr, this.itemflag, this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, purchasetype);
     }
     }

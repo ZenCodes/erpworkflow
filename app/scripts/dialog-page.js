@@ -24,6 +24,7 @@
       if(this.retflag!="duplicate entry") {
         if (sessionStorage.getItem("curr_sess_roleflag") == "6") {
 	      document.querySelector('admin-page').setPage('supplier-detail');
+        document.querySelector('supplier-detail').ready();
         //window.location.href = "indexhome.html";
         }
         if (localStorage.getItem("curr_sess_wardflag") == "2") {
