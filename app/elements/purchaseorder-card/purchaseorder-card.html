@@ -1,6 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="..\..\bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
@@ -16,12 +17,14 @@
         @apply(--layout-vertical);
       }
       .title{
+        margin-top: 5%;
         font-size: 24px;
         font-weight: bold;
         text-align: center;
       }
       .header{
         @apply(--layout-horizontal);
+        margin-top: 7%;
       }
       .companyheader{
         font-size: 15px;
@@ -30,9 +33,11 @@
       .dateheader{
         font-size: 15px;
         @apply(--layout-vertical);
+        margin-left: 30%;
       }
       .toheader{
         @apply(--layout-vertical);
+        text-align: left;
       }
       .total{
         @apply(--layout-vertical);
@@ -41,49 +46,108 @@
         @apply(--layout-horizontal);
       }
       table{
-        border-collapse: none;
+        border-collapse: collapse;
+      }
+      .company{
+        @apply(--layout-horizontal);
+      }
+      paper-dialog{
+        width: 700px;
+        height: 600px;
+      }
+      .address{
+        margin-left: 4%;
+        text-align: left;                
+      }
+      .comp{
+        width:150px;
+        text-align: left;
+      }
+      .todetail{
+        margin-left: 10%;
+        font-size: 15px;
+      }
+      .to{
+        margin-left: 2%;
+        font-size: 15px;
+        margin-top: 2%;
+      }
+      .itemdetail{
+        margin-left: 10%;
+        margin-top: 2%;
+      }
+      table{
+        width: 100%;
+      }
+      textarea{
+        margin-top: 20%;
+        margin-left: 40%;
+        width:120%;
+        height:7%;
+      }
+      .total{
+        font-size: 15px;
+        margin-top: 3%;
+        margin-left: 50%;
+        text-align: left;
       }
     </style>
     <paper-dialog id="dialog">
+     <paper-dialog-scrollable>
     <div class="card" id="canvas">
+    <template is="dom-repeat" items="{{poarray}}" as="po">
       <div class="title">Purchase Order</div>
       <div class="header">
         <div class="companyheader">
-          Company name
-          Building address
-          Street address          
+        <div class="company">
+          <div><img src='../../images/logo.jpg' width="60px" height="100px" /></div>
+          <div class="address">
+          <p class="comp">Company name</p>
+          <p class="comp">Building address</p>
+          <p class="comp">Street address</p>  
+          </div>
+        </div>          
         </div>
         <div class="dateheader">
-          Date
-          Ponumber
+          <p>PO Date: {{po.PO_Date}}</p>
+          <p>PO Number: {{po.PO_Number}}</p>
         </div>
       </div>
       <div class="toheader">
-        To
-        Supplier name
-        Supplier Address
+        <div class="to"><p>To</p></div>
+        <div class="todetail">
+        <p>{{po.Supplier_Name}}</p>
+        <p>{{po.Location}}</p>
+        <p>{{po.City}}</p>
+        <p>{{po.District}}</p>
+        </div>
       </div>
-      <div>
+      <template is="dom-repeat" items="{{poitemarray}}" as="poitem">
+      <div class="itemdetail">
         <table border="1">
           <tr><th>S.No</th><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          
+          <tr><td>1</td><td>{{poitem.Product_ID}}</td><td>{{poitem.Quantity}} {{poitem.Quantity_Measure}}</td>
+          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td>{{poitem.total}}</td></tr>         
+          
         </table>
       </div>
       <div class="summary">
       <div>
-        Notes:
+        <textarea>Notes....</textarea>
       </div>
       <div class="total">
-        Total:
-        Tax1:
-        Tax2:
-        Total:
+        <p>Total: {{poitem.total}}</p>
+        <p>Tax1:</p>
+        <p>Tax2:</p>
+        <p>Grand Total: {{poitem.total}}</p>
       </div>
-      </div>
+      </template>
+      </div>      
+      </template>
     </div>
     <paper-button id="pdf" on-click="click">Click</paper-button>
+     </paper-dialog-scrollable>
     </paper-dialog>
   </template>  
   
@@ -109,19 +173,21 @@
     Polymer({
       is: 'purchaseorder-card',
       ready:function(){
-        
       },
       FnToggle:function(){
         this.$.dialog.toggle();
       },
       click:function(){
+        var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
          html2canvas($("#canvas"), {          
             onrendered: function(canvas) {                 
                 var imgData = canvas.toDataURL('image/png'); 
+                //alert(imgData);
                 $("#imgRes").attr("src", imgData);             
                 var doc = new jsPDF('p', 'mm');
+                //alert(JSON.stringify(doc));
                 doc.addImage(imgData, 'PNG', 10, 8);
-                doc.save('sample.pdf');
+                doc.save(porder+'.pdf');
             }
           });
       }

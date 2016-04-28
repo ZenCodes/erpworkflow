@@ -2,7 +2,7 @@
  * Created by praba on 2/10/2016.
  */
 var mysql      = require('mysql');
-
+var email   = require("emailjs/email");
 
 var credential=[];
 //Fetching credential information
@@ -37,6 +37,33 @@ exports.FnDBConnection=function(){
     }
   });
 }
+
+
+
+exports.Fnmailservice=function() {    
+var server  = email.server.connect({
+   user:    "rmpraba@gmail.com", 
+   password:"rmpraba90raja", 
+   host:    "smtp.gmail.com", 
+   ssl:     true
+
+});
+// send the message and get a callback with an error or details of the message that was sent
+server.send({
+   text:    "Purchase Order", 
+   from:    "rmpraba@gmail.com", 
+   to:      "rmpraba@gmail.com",
+   cc:      "prabha@niit-karur.com",
+   subject: "testing po",
+    attachment: 
+   [
+      {data:"<html>i <i>hope</i> this works!</html>", alternative:true},
+      {path:"F:\\NodeJS\\Doc1.pdf", type:"application/pdf", name:"sample.pdf"}
+   ]
+}, function(err, message) { console.log(err || message); });
+  return callback('mail sent');
+}
+
 
 //Fetch all config tables
 var obj=[];
@@ -2272,3 +2299,65 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
 //else
 //return callback("no item");
   }
+
+  //Function fetches the expanded intent item card info
+exports.Fnpurchaseorder=function(pagename,intentno,itemdes,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.state,ps.Mobile from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {   
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+    }
+  });
+
+}
+
+exports.Fnpurchaseorderitem=function(pagename,intentno,itemdes,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="select Product_ID,Quantity,Quantity_Measure,unit,Unit_Measure from OD_Stores_Intent_Items where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {   
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+    }
+  });
+
+}
+
+exports.Fnpurchaseorderitemprice=function(pagename,intentno,itemdes,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="select Item_Supplier_price from OD_Item where Item_ID=(Select Item_ID from MD_Item where Item_Name='"+itemdes+"') and Item_Supplier_ID=(SELECT ps.Supplier_ID from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"')";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {  
+      //console.log(JSON.stringify(rows)); 
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+    }
+  });
+
+}

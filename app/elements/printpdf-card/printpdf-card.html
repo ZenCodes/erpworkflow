@@ -2,6 +2,7 @@
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../purchaseorder-card/purchaseorder-card.html">
+<link rel="import" href="../intent-service/intent-service.html">
 <dom-module id="printpdf-card">
   <template>
     <style>
@@ -17,6 +18,7 @@
       <paper-icon-button icon="print" on-click="print"></paper-icon-button>   
     </div>
     <purchaseorder-card id="purchase"></purchaseorder-card>
+    <intent-service id="intentservice"></intent-service>
   </template>
   <script>
   (function() {
@@ -30,7 +32,8 @@
         alert("mail");
       },
       print:function(){
-        alert("print");
+        //alert("print");
+        this.$.intentservice.FnPurchaseorderService();
         this.$.purchase.FnToggle();
       }
  

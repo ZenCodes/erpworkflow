@@ -20,6 +20,14 @@ app.get('/' ,function (req, res) {
   res.sendFile( "app/index.html" );
 });
 
+
+app.post('/mailservice-service',urlencodedParser, function (req, res) {
+  var Fnmailservicecall = require("./app/scripts/dboperations.js");
+  Fnmailservicecall.Fnmailservice("mailservice-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
 //Receiving post request from login card
 app.post('/login-card', urlencodedParser, function (req, res) {
   //Loading JS file to call the login check function
@@ -930,14 +938,30 @@ app.post('/readcustomeriteminfo-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
-/*app.post('/intentpoitemread-service',urlencodedParser, function (req, res) {
+app.post('/purchaseorder-service',urlencodedParser, function (req, res) {
   var intentno=req.query.intentregno;
-  
-  var Fnintentpoitemreadcall = require("./app/scripts/dboperations.js");
-  Fnintentpoitemreadcall.Fnintentpoitemread("intentpoitemread-service",intentno,function(returnval){
+  var itemdes=req.query.itemdes;
+  var Fnpurchaseordercall = require("./app/scripts/dboperations.js");
+  Fnpurchaseordercall.Fnpurchaseorder("purchaseorder-service",intentno,itemdes,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
-});*/
+});
+app.post('/purchaseorderitem-service',urlencodedParser, function (req, res) {
+  var intentno=req.query.intentregno;
+  var itemdes=req.query.itemdes;
+  var Fnpurchaseorderitemcall = require("./app/scripts/dboperations.js");
+  Fnpurchaseorderitemcall.Fnpurchaseorderitem("purchaseorderitem-service",intentno,itemdes,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+app.post('/purchaseorderitemprice-service',urlencodedParser, function (req, res) {
+  var intentno=req.query.intentregno;
+  var itemdes=req.query.itemdes;
+  var Fnpurchaseorderitempricecall = require("./app/scripts/dboperations.js");
+  Fnpurchaseorderitempricecall.Fnpurchaseorderitemprice("purchaseorderitemprice-service",intentno,itemdes,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 
 //Node server running port number
 app.listen(4000);

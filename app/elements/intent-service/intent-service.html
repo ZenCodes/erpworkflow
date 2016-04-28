@@ -39,25 +39,6 @@
       }
     </style>
 
-    <!--<div class="card">
-    <paper-dialog id="Fn_PoItem_dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
-    <div class="dialogdiv">
-    <template is="dom-repeat" items="{{suppliernamearr}}" as="out">
-    <div class="innerdialog">
-    <paper-item>{{out.itemdes}}</paper-item>   
-    <paper-dropdown-menu label="Select">
-    <paper-menu class="dropdown-content" on-iron-select="FnSelectSupplier">
-      <template is="dom-repeat" items="{{out.suppliername}}">
-        <paper-item value="{{item.name}}" >{{item.name}}</paper-item>
-      </template>
-    </paper-menu>
-    </paper-dropdown-menu>
-    </div>  
-    </template>
-    </div>
-    <paper-button dialog-dismiss autofocus on-click="FnClickOk">OK</paper-button>
-    </paper-dialog>
-    </div>-->
     
   <!--Component which make request to display the Intent items based on INT no-->
     <iron-ajax
@@ -145,6 +126,36 @@
       on-response="FnintenttypelistResponse">
     </iron-ajax>
 
+    <iron-ajax
+      id="purchaseorderajax"
+      url="{{purchaseorderurl}}"
+      params='{{purchaseorderparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderResponse">
+    </iron-ajax>
+
+     <iron-ajax
+      id="purchaseorderitemajax"
+      url="{{purchaseorderitemurl}}"
+      params='{{purchaseorderitemparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemResponse">
+    </iron-ajax>
+
+    <iron-ajax
+      id="purchaseorderitempriceajax"
+      url="{{purchaseorderitempriceurl}}"
+      params='{{purchaseorderitempriceparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitempriceResponse">
+    </iron-ajax>
+
     <grn-service id="gs"></grn-service>
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
@@ -160,17 +171,61 @@
     var arrlength=0;
     var poarray=[];
     var largestpono=0;
+    var poarr=[];
+    var poitemarr=[];
+    var poitemprice=[];
     Polymer({
       is: 'intent-service',
       ready:function(){
         this.flag=0;
       },
+      FnPurchaseorderService:function(){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderurl=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
+         this.purchaseorderparam=obj;
+         this.$.purchaseorderajax.generateRequest(); 
+
+      },
+      FnPurchaseorderResponse:function(e){
+          poarr=e.detail.response.itemarr;
+         if(poarr.length>0){
+         document.querySelector("purchaseorder-card").poarray=poarr;
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitemurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
+         this.purchaseorderitemparam=obj;
+         this.$.purchaseorderitemajax.generateRequest(); 
+         //alert(JSON.stringify(poarr));
+         }
+      },
+      FnPurchaseorderitemResponse:function(e){
+          poitemarr=e.detail.response.itemarr;         
+         if(poitemarr.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitempriceurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
+         this.purchaseorderitempriceparam=obj;
+         this.$.purchaseorderitempriceajax.generateRequest(); 
+         //alert(JSON.stringify(poitemarr));
+         }
+      },
+      FnPurchaseorderitempriceResponse:function(e){
+          poitemprice=e.detail.response.itemarr;
+          if(poitemprice.length>0){
+          //alert(JSON.stringify(poitemprice));
+          poitemarr[(poitemarr.length)-1].price=poitemprice[0].Item_Supplier_price;
+          poitemarr[(poitemarr.length)-1].total=parseInt(poitemprice[0].Item_Supplier_price)*parseInt(poitemarr[0].Quantity);
+          //poitemarr.push(poitemprice[0].Item_Supplier_price);
+          //alert(JSON.stringify(poitemarr));
+          }
+          document.querySelector("purchaseorder-card").poitemarray=poitemarr;
+      },
       FnSelectSupplier:function(e){
-        //alert(e.target.selectedItem.textContent.trim());
         var selecteditem=e.target.selectedItem.textContent.trim();
-
-        //alert(this.suppliernamearr[0].suppliername);
-
         for(var i=0;i<this.suppliernamearr.length;i++){
           for(var j=0;j<this.suppliernamearr[i].suppliername.length;j++){
           if(selecteditem==this.suppliernamearr[i].suppliername[j].name)
@@ -181,10 +236,9 @@
           alert('Po raised against the supplier'+selecteditem);
         else
           alert('Go with another supplier');      
-
       },
       FnIntentTypeListService:function(){
-          var obj={"loggeduser":""};
+         var obj={"loggeduser":""};
          obj.loggeduser=sessionStorage.getItem("loggeduser");        
          this.intenttypelisturl=sessionStorage.getItem("curr_sess_url")+"intenttypelist-service";
          this.intenttypelistparam=obj;
