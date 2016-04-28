@@ -209,17 +209,18 @@
     //document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
 	  document.querySelector("itemsearch-card").itemid=arr[0].itemid;
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
+    document.querySelector("container-card").FnSetContainer(arr[0].container);
+    document.querySelector("unit-card").FnSetQuantity(arr[0].quantity);
  	  document.querySelector("supplieradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
     document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }
     if(localStorage.getItem("curr_sess_wardflag")=="6"){
     //alert('6');
-    //alert('yes');
-    //document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
-    //alert(arr[0].itemid);
-    //alert("item.."+document.querySelector("itemsearch-card"));
+    
     document.querySelector("itemsearch-card").FnSetItemId(arr[0].itemid);
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
+    document.querySelector("container-card").FnSetContainer(arr[0].container);
+    document.querySelector("unit-card").FnSetQuantity(arr[0].quantity);
     document.querySelector("customeradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
     document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }

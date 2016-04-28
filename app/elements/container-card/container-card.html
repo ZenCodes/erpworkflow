@@ -34,9 +34,11 @@
     },
     FnSelectcontainer:function(e){
       document.querySelector('additem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
+      document.querySelector('supplieradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
+      document.querySelector('customeradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
     },
     FnSetContainer:function(container){
-      alert(container);
+      //alert(container);
       this.containertype=container;
     }
     });

@@ -58,7 +58,7 @@ FnAddItemSubmit:function(){
     document.querySelector('#itemname').validate();
     document.querySelector('#itemdes').validate();
     //document.querySelector('#container').validate();
-    document.querySelector('#quantity').validate();
+    //document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
     document.querySelector('#supplier').validate();
@@ -95,11 +95,11 @@ FnBtnDisable:function(){
 },
 FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,itemgroup,selection){
   
-	this.itemid=itemid;
+	//this.itemid=itemid;
 	this.itemname=itemname;
 	this.itemdes=itemdes;
-	this.container=container;
-	this.quantity=quantity;
+	//this.container=container;
+	//this.quantity=quantity;
 	for(var i=0;i<this.itemarr.length;i++){
 	   if(this.itemarr[i].itemtypeid==itemtype)
 	      this.itemtype=this.itemarr[i].itemtypename;
@@ -143,5 +143,11 @@ FnSetClearFields:function(){
 FnSetEnableDisableFields:function(flag){
   document.querySelector("stores-card"). FnEnableFields(flag);
   this.read=flag;
+},
+FnContainerChange:function(container){
+this.container=container;
+},
+FnQuantityChange:function(quantity){
+this.quantity=quantity;
 }
 });

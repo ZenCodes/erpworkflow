@@ -57,7 +57,7 @@ FnAddItemSubmit:function(){
     document.querySelector('#itemname').validate();
     document.querySelector('#itemdes').validate();
     //document.querySelector('#container').validate();
-    document.querySelector('#quantity').validate();
+    //document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
     document.querySelector('#supplier').validate();
@@ -93,8 +93,8 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 	this.itemid=itemid;
 	this.itemname=itemname;
 	this.itemdes=itemdes;
-	this.container=container;
-	this.quantity=quantity;
+	//this.container=container;
+	//this.quantity=quantity;
 	for(var i=0;i<this.itemarr.length;i++){
 	   if(this.itemarr[i].itemtypeid==itemtype)
 	      this.itemtype=this.itemarr[i].itemtypename;
@@ -140,5 +140,11 @@ FnSetEnableDisableFields:function(flag){
 },
 FnSetPrice:function(price){
 this.price=price;
+},
+FnContainerChange:function(container){
+this.container=container
+},
+FnQuantityChange:function(quantity){
+this.quantity=quantity;
 }
 });
