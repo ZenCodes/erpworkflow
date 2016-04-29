@@ -18,6 +18,9 @@ var supid="";
 	},
 	FnCreateItemSupplier:function(){	
 	document.querySelector('supplier-page').setPage('Add Item');
+	},
+	FnDelete:function(e){
+		
 	}
   });
 })();

@@ -1,0 +1,41 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/supplier-list/supplier-list.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<dom-module id="supplierattacheditem-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .innercard{
+      @apply(--layout-horizontal);
+      }
+      #name{
+        width: 200px;
+      }
+    </style>
+    <div class="innercard">   
+       <paper-item hidden>{{supplierid}}</paper-item> 
+       <paper-item hidden>{{itemid}}</paper-item> 
+       <paper-item id="name">{{itemname}}</paper-item>
+       <paper-icon-button icon="delete" on-click="FnDelete"></paper-icon-button>
+    </div>
+    <admin-service id="adminservice"></admin-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'supplierattacheditem-card',
+      FnDelete:function(){
+        this.$.adminservice.calldeleteitemsupplierService(this.itemid,this.supplierid);
+      }
+    });
+  })();
+  </script>
+</dom-module>

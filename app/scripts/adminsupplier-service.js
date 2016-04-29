@@ -59,6 +59,7 @@
     callItemService:function(supplierid){
 	this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
 		      var obj={"supplierid":""};
+		      this.supplierid=supplierid;
 		      obj.supplierid=supplierid;
 		      this.itemreadparam=obj;
       this.$.readitemajax.generateRequest();
@@ -66,6 +67,7 @@
     readitemResponse:function(e){
 			var arr= e.detail.response.itemarr;
 			//alert(JSON.stringify(arr));
+			if(this.supplierid!="")
 		    document.querySelector("supplieritem-card").itemArray=arr;
 		    /*document.querySelector("payment-card").bankname=arr[0].bankname;
 		    document.querySelector("payment-card").accountno=arr[0].accountno;
