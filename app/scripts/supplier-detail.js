@@ -16,6 +16,8 @@
 	 localStorage.setItem("curr_sess_addsupplierforitem","0");
 	 localStorage.setItem("curr_sess_addcustomerforitem","0");
 	 //document.querySelector('#addsupplier').checked=true;
+	 //alert(itemtype);
+	 
 	 if(itemtype!="FG"){
 	 	localStorage.setItem("curr_sess_addsupplierforitem","1");
 	 	this.hidesupplier=false;
@@ -61,7 +63,7 @@
 		else if(localStorage.getItem("curr_sess_addcustomerforitem")=="1")
 		document.querySelector('admin-service').callItemWriteCustomerService(itemid,itemArray);	
 		else
-			alert("unable to add supplier");
+		alert("unable to add supplier");
 		this.FnBtnDisable();
 	 },
 	 FnSelectSupplier:function(supplierid,suppliername){
@@ -83,12 +85,12 @@
 		 itemtype=iitemtype;
 		
 	 },
-	  FnBtnDisable:function(){	  	
-      document.querySelector('#saveitem').style.backgroundColor='grey';
-      document.querySelector('#add').style.backgroundColor='grey';
-      this.Btn_disable_flag=true;
+	 FnBtnDisable:function(){	  	
+         document.querySelector('#saveitem').style.backgroundColor='grey';
+      	 document.querySelector('#add').style.backgroundColor='grey';
+     	 this.Btn_disable_flag=true;
     },
-    FnSetPrice:function(price){
+     FnSetPrice:function(price){
     	//alert(price);
     	this.price=price;
     }

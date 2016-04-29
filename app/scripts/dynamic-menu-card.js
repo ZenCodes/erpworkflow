@@ -52,6 +52,11 @@
         //alert(localStorage.getItem("curr_sess_searchtypeflag"));
         if(localStorage.getItem("curr_sess_searchtypeflag")!="1")
         document.querySelector("additem-card").FnAddItemInfoSubmit();
+        if(localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+        document.querySelector("admin-page").setPage("supplier-detail"); 
+        document.querySelector('supplier-detail').ready();
+        document.querySelector('viewtype-card').FnEnableEdit(false);
+        } 
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Payment Detail")
         document.querySelector("addcustomer-card").FnSupplierInfoSubmit();

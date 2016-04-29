@@ -237,6 +237,7 @@
       document.querySelector("unit-card").FnSetQuantity(arr[0].quantity);
       document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
       document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
+      document.querySelector("supplier-detail").FnSetItemid(arr[0].itemid,arr[0].itemtype);
 	  }
     },
     //Method invokes while making update request from item card
