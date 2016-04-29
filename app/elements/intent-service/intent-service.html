@@ -303,6 +303,8 @@
            pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_PO;       
           else if(promotestate=="POCreated")          
            pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_Accept;
+          else if(promotestate=="POSent")          
+           pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_Accept;
           else if(promotestate=="Accepted")          
            pstate="Item Accepted!";
           }
@@ -360,53 +362,11 @@
           obj.itemdes=poarray[i].itemdes;
           obj.supplier=poarray[i].supplier;
           obj.intentregno=poarray[i].intentregno;
-          if(i==0){
-            //alert('first');
-           obj.ponumber=ponumber+String.fromCharCode(group);
-           temparr.push(obj);
-           //ponumber=parseInt(ponumber)+1;
+          obj.ponumber=ponumber+String.fromCharCode(group);
+          group=parseInt(group)+1;
+          temparr.push(obj);
+          this.FnViewIntentPromoteService(temparr);
          }
-         else
-         {
-          for(var j=0;j<temparr.length;j++){
-            //alert(poarray[i].supplier+"  "+temparr[j].supplier);
-            if(poarray[i].supplier!=temparr[j].supplier){
-              //alert('sec uneq');
-              //ponumber=parseInt(ponumber)+1;
-              group=parseInt(group)+1;
-              temppo=ponumber+String.fromCharCode(group);
-              //alert(temppo);
-              obj.ponumber=temppo;
-            }
-            else{
-              //alert('sec eq');
-              //alert(temparr[j].ponumber);
-              obj.ponumber=temparr[j].ponumber;
-              break;
-            }
-          }
-              temparr.push(obj);
-        }
-        }
-        //alert(JSON.stringify(temparr));
-        /*for(var i=0;i<temparr.length;i++){
-          if(parseInt(temparr[i].ponumber)>parseInt(largestpono))
-            largestpono=parseInt(temparr[i].ponumber);
-        }*/
-        this.FnViewIntentPromoteService(temparr);
-        //alert(JSON.stringify(temparr));
-
-         /*for(var i=0;i<temparr.length;i++){
-          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
-          obj.itemdes=temparr[i].itemdes;
-          obj.supplier=temparr[i].supplier;
-          obj.intentregno=temparr[i].intentregno;
-          obj.ponumber=temparr[i].ponumber;
-          this.viewintentpromteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromote-service";
-          this.viewintentpromteparam=obj;
-          this.$.viewintentpromteajax.generateRequest();
-         }*/
-     
       },
       FnViewIntentPromoteService:function(temparr){
          //alert(JSON.stringify(temparr));

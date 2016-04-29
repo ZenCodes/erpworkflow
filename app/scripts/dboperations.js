@@ -2483,7 +2483,7 @@ exports.Fndeleteitemcustomer=function(pagename,itemid,customerid,callback) {
     }
   }
   var queryy="delete from OD_Item where Item_ID='"+itemid+"' and Item_Customer_ID='"+customerid+"'";
-  console.log(queryy);
+  // console.log(queryy);
   connection.query(queryy, function(err, rows) {
     if(!err)
     {       
