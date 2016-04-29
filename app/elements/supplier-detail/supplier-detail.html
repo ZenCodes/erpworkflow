@@ -6,6 +6,7 @@
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
 <link rel="import" href="../customer-list/customer-list.html">
 <link rel="import" href="../itemprice-card/itemprice-card.html">
+<link rel="import" href="../customersupplier-card/customersupplier-card.html">
 
 <dom-module id="supplier-detail">
   <template>
@@ -56,7 +57,7 @@
       </paper-radio-group>
     </div>-->
 
-    
+    <customersupplier-card id="customersuppliercard"></customersupplier-card>
 
     <div class="list" hidden$="{{hidesupplier}}">
     <template is="dom-repeat" items="{{supArray}}" as="item">

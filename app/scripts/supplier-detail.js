@@ -83,7 +83,7 @@
 	 FnSetItemid:function(iitemid,iitemtype){
 		 itemid=iitemid;
 		 itemtype=iitemtype;
-		
+		 this.$.customersuppliercard.FnSetcussupItemId(itemid,itemtype);		 
 	 },
 	 FnBtnDisable:function(){	  	
          document.querySelector('#saveitem').style.backgroundColor='grey';

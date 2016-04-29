@@ -1,0 +1,56 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../admin-service/admin-service">
+<dom-module id="itemattachedcustomer-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+      }
+      .innercard{
+        @apply(--layout-horizontal);
+      }
+      #itemprice{
+        margin-left:5%; 
+      }
+      #supname{
+        width: 30%;
+      }
+    </style>
+    <div class="card">
+    <div class="innercard">
+    <paper-input value="{{customerid}}" required hidden></paper-input>
+    <paper-input value="{{itemid}}" required hidden></paper-input>
+    <paper-input readonly  label="Customer name" name="cusname" value="{{customername}}" required  id="cusname"></paper-input>
+    <!-- <paper-icon-button icon="create" on-click="FnEdit"></paper-icon-button> -->
+    <paper-icon-button icon="delete" on-click="FnDelete"></paper-icon-button>
+    </div>
+    </div>
+    <admin-service id="adminservice"></admin-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'itemattachedcustomer-card',
+
+     ready:function(){
+
+     },
+     FnDelete:function(e){
+        this.$.adminservice.calldeleteitemcustomerService(this.itemid,this.customerid);
+     }
+    });
+  })();
+  </script>
+</dom-module>

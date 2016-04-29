@@ -980,6 +980,45 @@ app.post('/purchaseorderitemprice-service',urlencodedParser, function (req, res)
   });
 });
 
+app.post('/customersupplier-service',urlencodedParser, function (req, res) {
+  var itemid=req.query.itemid;
+  var itemtype=req.query.itemtype;
+  var Fncustomersuppliercall = require("./app/scripts/dboperations.js");
+  Fncustomersuppliercall.Fncustomersupplier("customersupplier-service",itemid,itemtype,function(returnval){
+    res.status(200).json({'itemarr': returnval.itemarr,'returntype':returnval.returntype});
+  });
+});
+
+app.post('/deleteitemsupplier-service',urlencodedParser, function (req, res) {
+  var itemid=req.query.itemid;
+  var supplierid=req.query.supplierid;
+  var Fndeleteitemsuppliercall = require("./app/scripts/dboperations.js");
+  Fndeleteitemsuppliercall.Fndeleteitemsupplier("deleteitemsupplier-service",itemid,supplierid,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+app.post('/updateitempricesupplier-service',urlencodedParser, function (req, res) {
+  var itemid=req.query.itemid;
+  var supplierid=req.query.supplierid;
+  var supplierprice=req.query.supplierprice;
+  var Fnupdateitempricesuppliercall = require("./app/scripts/dboperations.js");
+  Fnupdateitempricesuppliercall.Fnupdateitempricesupplier("updateitempricesupplier-service",itemid,supplierid,supplierprice,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
+app.post('/deleteitemcustomer-service',urlencodedParser, function (req, res) {
+  var itemid=req.query.itemid;
+  var customerid=req.query.customerid;
+  var Fndeleteitemcustomercall = require("./app/scripts/dboperations.js");
+  Fndeleteitemcustomercall.Fndeleteitemcustomer("deleteitemcustomer-service",itemid,customerid,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
 //Node server running port number
 app.listen(4000);
 

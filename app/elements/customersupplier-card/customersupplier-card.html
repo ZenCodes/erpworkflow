@@ -1,0 +1,58 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../admin-service/admin-service.html">
+<link rel="import" href="../itemattachedsupplier-card/itemattachedsupplier-card.html">
+<link rel="import" href="../itemattachedcustomer-card/itemattachedcustomer-card.html">
+<dom-module id="customersupplier-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+      }
+      .innercard{
+        @apply(--layout-horizontal);
+      }
+      #itemprice{
+        margin-left:5%; 
+      }
+      #supname{
+        width: 30%;
+      }
+    </style> 
+    <div class="card">
+    <template is="dom-repeat" items="{{itemSupArray}}" as="item">
+    <itemattachedsupplier-card supplierid="{{item.Item_Supplier_ID}}" suppliername="{{item.Supplier_Name}}" supplierprice="{{item.Item_Supplier_price}}" itemid="{{item.Item_ID}}"></itemattachedsupplier-card>
+    </template>
+    </div>
+    <div class="card">
+    <template is="dom-repeat" items="{{itemCusArray}}" as="item">
+    <itemattachedcustomer-card customerid="{{item.Item_Customer_ID}}" customername="{{item.Customer_Name}}" itemid="{{item.Item_ID}}"></itemattachedcustomer-card>
+    </template>
+    </div>
+    <admin-service id="adminservice"></admin-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'customersupplier-card',
+      ready:function(){
+        this.read=true;
+      },
+      FnSetcussupItemId:function(itemid,itemtype){
+        //alert(itemid);
+        this.$.adminservice.callCustomerSupplierService(itemid,itemtype);
+      }
+    });
+  })();
+  </script>
+</dom-module>

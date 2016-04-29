@@ -143,6 +143,46 @@
       content-type="application/json"
       on-response="unitreadResponse">
     </iron-ajax>
+    <!--Component which makes read req to fetch item attached with the customer or supplier-->
+    <iron-ajax      
+      id="customersupplierajax"
+      url="{{customersupplierurl}}"
+      params='{{customersupplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customersupplierResponse">
+    </iron-ajax>
+    <!--Component to delete the item attached supplier-->
+    <iron-ajax      
+      id="deleteitemsupplierajax"
+      url="{{deleteitemsupplierurl}}"
+      params='{{deleteitemsupplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="deleteitemsupplierResponse">
+    </iron-ajax>
+    <!--Component to update price of a supplier item-->
+    <iron-ajax      
+      id="updateitempricesupplierajax"
+      url="{{updateitempricesupplierurl}}"
+      params='{{updateitempricesupplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updateitempricesupplierResponse">
+    </iron-ajax>
+    <!--Component to delete the item attached customer-->
+    <iron-ajax      
+      id="deleteitemcustomerajax"
+      url="{{deleteitemcustomerurl}}"
+      params='{{deleteitemcustomerparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="deleteitemcustomerResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

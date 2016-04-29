@@ -238,6 +238,7 @@
       document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
       document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
       document.querySelector("supplier-detail").FnSetItemid(arr[0].itemid,arr[0].itemtype);
+      
 	  }
     },
     //Method invokes while making update request from item card
@@ -386,6 +387,62 @@
     //this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
 
     }
+  },
+  callCustomerSupplierService:function(itemid,itemtype){
+    var obj={"itemid":"","itemtype":""};
+    obj.itemid=itemid;
+    obj.itemtype=itemtype;
+    this.customersupplierparam=obj;
+    this.customersupplierurl=sessionStorage.getItem("curr_sess_url")+"customersupplier-service";    
+    this.$.customersupplierajax.generateRequest();
+  },
+  customersupplierResponse:function(e){
+    //alert(JSON.stringify(e.detail.response));
+    if(e.detail.response.returntype=="FG"){
+      document.querySelector('customersupplier-card').itemCusArray=e.detail.response.itemarr;
+    }
+    else{
+      document.querySelector('customersupplier-card').itemSupArray=e.detail.response.itemarr;
+    }
+    
+  },
+  calldeleteitemsupplierService:function(itemid,supplierid){
+    var obj={"supplierid":"","itemid":""};
+    obj.itemid=itemid;
+    obj.supplierid=supplierid;
+    this.deleteitemsupplierparam=obj;
+    this.deleteitemsupplierurl=sessionStorage.getItem("curr_sess_url")+"deleteitemsupplier-service";    
+    this.$.deleteitemsupplierajax.generateRequest();
+  },
+  deleteitemsupplierResponse:function(e){
+    alert(e.detail.response.itemarr);  
+    //document.querySelector('apphome-page').setPage('admin-page'); 
+    //document.querySelector('admin-page').setPage('supplier-detail');
+  },
+  callupdateitempricesupplierService:function(itemid,supplierid,supplierprice){
+    var obj={"supplierid":"","itemid":"","supplierprice":""};
+    obj.itemid=itemid;
+    obj.supplierid=supplierid;
+    obj.supplierprice=supplierprice;
+    this.updateitempricesupplierparam=obj;
+    this.updateitempricesupplierurl=sessionStorage.getItem("curr_sess_url")+"updateitempricesupplier-service";    
+    this.$.updateitempricesupplierajax.generateRequest();
+  },
+  updateitempricesupplierResponse:function(e){
+    alert(JSON.stringify(e.detail.response.itemarr));
+  },
+   calldeleteitemcustomerService:function(itemid,customerid){
+    var obj={"customerid":"","itemid":""};
+    obj.itemid=itemid;
+    obj.customerid=customerid;
+    this.deleteitemcustomerparam=obj;
+    this.deleteitemcustomerurl=sessionStorage.getItem("curr_sess_url")+"deleteitemcustomer-service";    
+    this.$.deleteitemcustomerajax.generateRequest();
+  },
+  deleteitemcustomerResponse:function(e){
+    alert(e.detail.response.itemarr);  
+    //document.querySelector('apphome-page').setPage('admin-page'); 
+    //document.querySelector('admin-page').setPage('supplier-detail');
   }
 
   });

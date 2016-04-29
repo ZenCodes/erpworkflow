@@ -1,0 +1,70 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../admin-service/admin-service">
+<dom-module id="itemattachedsupplier-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+      }
+      .innercard{
+        @apply(--layout-horizontal);
+      }
+      #itemprice{
+        margin-left:5%; 
+      }
+      #supname{
+        width: 30%;
+      }
+    </style>
+    <div class="card">
+
+    <div class="innercard">
+    <paper-input value="{{supplierid}}" hidden></paper-input>
+    <paper-input value="{{itemid}}" hidden></paper-input>
+    <paper-input readonly label="Supplier name" name="supname" value="{{suppliername}}" required  id="supname"></paper-input>
+    <paper-input readonly="{{read}}" label="Item price" name="itemprice" value="{{supplierprice}}" required  on-change="FnPriceChange" id="itemprice"></paper-input>
+    <paper-icon-button icon="create" on-click="FnEdit" hidden$="{{hideedit}}"></paper-icon-button>
+    <paper-icon-button icon="save" on-click="FnSave" hidden$="{{hidesave}}"></paper-icon-button>
+    <paper-icon-button icon="delete" on-click="FnDelete"></paper-icon-button>
+    </div>
+
+    </div>
+    <admin-service id="adminservice"></admin-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'itemattachedsupplier-card',
+      ready:function(){
+        this.read=true;
+        this.hidesave=true;
+        this.hideedit=false;
+      },
+      FnEdit:function(e){
+        this.read=false;
+        this.hideedit=true;
+        this.hidesave=false;
+      },
+      FnSave:function(){
+        this.$.adminservice.callupdateitempricesupplierService(this.itemid,this.supplierid,this.supplierprice);
+      },
+      FnDelete:function(e){
+        this.$.adminservice.calldeleteitemsupplierService(this.itemid,this.supplierid);
+        //alert(this.itemid+" "+this.supplierid);
+      }
+    });
+  })();
+  </script>
+</dom-module>

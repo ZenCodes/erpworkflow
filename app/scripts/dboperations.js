@@ -2407,3 +2407,92 @@ exports.Fnpurchaseorderitemprice=function(pagename,intentno,itemdes,callback) {
   });
 
 }
+
+exports.Fncustomersupplier=function(pagename,itemid,itemtype,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  if(itemtype!='FG')
+  var queryy="SELECT ps.Supplier_Name,od.Item_ID,od.Item_Supplier_ID,od.Item_Supplier_price from OD_Item od join MD_Purchase_Supplier ps on (ps.Supplier_ID=od.Item_Supplier_ID) where Item_ID='"+itemid+"'";
+  if(itemtype=='FG')
+  var queryy="SELECT cs.Customer_Name,od.Item_ID,od.Item_Customer_ID from OD_Item od join MD_Sales_Customer_Detail cs on (cs.Customer_ID=od.Item_Customer_ID) where Item_ID='"+itemid+"'";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    { 
+      //console.log(JSON.stringify(rows)); 
+      return callback({"itemarr":rows,"returntype":itemtype});
+    }
+    else{
+      console.log(err);
+    }
+  });
+
+}
+
+exports.Fndeleteitemsupplier=function(pagename,itemid,supplierid,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="delete from OD_Item where Item_ID='"+itemid+"' and Item_Supplier_ID='"+supplierid+"'";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {       
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+      console.log(err);
+    }
+  });
+
+}
+
+exports.Fnupdateitempricesupplier=function(pagename,itemid,supplierid,supplierprice,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="update OD_Item set Item_Supplier_price='"+supplierprice+"' where Item_ID='"+itemid+"' and Item_Supplier_ID='"+supplierid+"'";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {       
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+      console.log(err);
+    }
+  });
+
+}
+
+
+exports.Fndeleteitemcustomer=function(pagename,itemid,customerid,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="delete from OD_Item where Item_ID='"+itemid+"' and Item_Customer_ID='"+customerid+"'";
+  console.log(queryy);
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {       
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+      console.log(err);
+    }
+  });
+
+}
