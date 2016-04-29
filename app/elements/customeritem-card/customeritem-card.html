@@ -4,6 +4,9 @@
 <link rel="import" href="../customer-service/customer-service.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/supplier-list/supplier-list.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../customerattacheditem-card/customerattacheditem-card.html">
 <!-- <link rel="import" href="../../bower_components/supplier-list/supplier-list.html"> -->
 
 <dom-module id="customeritem-card">
@@ -41,15 +44,12 @@
 
 
   <template is="dom-repeat" items="{{itemArray}}" as="name">
-    <div class="innercard">
-     <iron-icon icon="icons:check"></iron-icon>
-       <paper-item>{{name.itemname}}</paper-item>
-    </div>
+    <customerattacheditem-card customerid="{{name.Item_Customer_ID}}" itemname="{{name.Item_Name}}" itemid={{name.Item_ID}}></customerattacheditem-card>   
   </template>
 
-    <div class="create">
+  <div class="create">
       <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateItemSupplier">Add Item</paper-button>
-    </div>
+  </div>
 
   </div>
 
