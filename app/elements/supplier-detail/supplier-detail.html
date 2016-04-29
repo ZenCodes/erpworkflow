@@ -14,8 +14,8 @@
         display: block;
       }
       .card{
-		@apply(--layout-vertical);
-		margin-left: 5%;
+	    	@apply(--layout-vertical);
+		    margin-left: 5%;
       }
       paper-button{
 	          text-align: center;
@@ -55,6 +55,9 @@
       <paper-radio-button  id="addcustomer" name="Add Customer" on-click="FnChooseCustomer">Add Customer</paper-radio-button>      
       </paper-radio-group>
     </div>-->
+
+    
+
     <div class="list" hidden$="{{hidesupplier}}">
     <template is="dom-repeat" items="{{supArray}}" as="item">
     <div class="suppliercard">
