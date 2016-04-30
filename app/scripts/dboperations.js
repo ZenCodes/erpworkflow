@@ -1608,6 +1608,50 @@ exports.FnAddPayment=function(pagename,response,callback) {
   });
 }
 
+//Function which updates supplier info
+exports.FnUpdateSupplier=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Supplier_ID:response.Supplier_ID};
+  connection.query('UPDATE MD_Purchase_Supplier SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+//Function which addpayment info
+exports.FnUpdatePayment=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Supplier_ID:response.Supplier_ID};
+  console.log(cond);
+  console.log(response);
+  connection.query('UPDATE MD_Supplier_Payment SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
 
 //Function fecthes searched item info
 exports.Fnreadsupplier=function(pagename,cond,callback) {
@@ -2185,6 +2229,49 @@ exports.FnAddcustomerPayment=function(pagename,response,callback) {
   });
 }
 
+//Function which updates supplier info
+exports.FnUpdateCustomer=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Customer_ID:response.Customer_ID};
+  //console.log(cond);
+  connection.query('Update MD_Sales_Customer_Detail SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+//Function which addpayment info
+exports.FnUpdatecustomerPayment=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Customer_ID:response.Customer_ID};
+  console.log(cond);
+  connection.query('UPDATE MD_Customer_Payment SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
 //Function fetches supplier info
 exports.FnItemcustomerRead=function(pagename,itemid,callback) {
   var Config_tables=[];

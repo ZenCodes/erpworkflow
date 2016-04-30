@@ -31,6 +31,11 @@ Polymer({
 	 document.querySelector('customer-page').setPage('Show Item');
 	 document.querySelector('customeritem-card').FnFetchItemInfo(this.supid,this.supname);
  		}
+ 		else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+ 		this.$.customerservice.updatepaymentService(this.accountno,this.bankname,this.address,this.mode,paymentterm);
+ 		document.querySelector('customer-page').setPage('Show Item');
+		document.querySelector('customeritem-card').FnFetchItemInfo(this.supid,this.supname);
+ 		}
  		else
  		{
 		document.querySelector('customer-page').setPage('Show Item');
@@ -46,7 +51,10 @@ Polymer({
 	this.$.customerservice.callPaymentService(supplierid,suppliername);
   },
   setSelectType:function(mode,term){
-	  this.read=true;
+	  if(localStorage.getItem("curr_sess_addcustomereditflag")=="1")
+  		this.read=false;
+  	  else
+  		this.read=true;
 	  this.paymenttype=mode;
 	  this.selected=term;
 	  //this.term=term;

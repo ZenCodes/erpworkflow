@@ -58,8 +58,21 @@ Polymer({
     }
   },
   edit:function(){
+    //alert(localStorage.getItem("curr_sess_wardflag"));
+    if(localStorage.getItem("curr_sess_wardflag")=="") {
     document.querySelector('additem-card').FnEnableFields();    
     this.$.edit.style.visibility = 'hidden';
+    }
+    if(localStorage.getItem("curr_sess_wardflag")=="4") {
+      localStorage.setItem("curr_sess_addsuppliereditflag","1");
+      document.querySelector('addsupplier-card').FnEnableFields();    
+      this.$.edit.style.visibility = 'hidden';  
+    }
+     if(localStorage.getItem("curr_sess_wardflag")=="6") {
+      localStorage.setItem("curr_sess_addcustomereditflag","1");
+      document.querySelector('addcustomer-card').FnEnableFields();    
+      this.$.edit.style.visibility = 'hidden';  
+    }
   },
   FnEnableEdit:function(flag){
     if(flag==true) {

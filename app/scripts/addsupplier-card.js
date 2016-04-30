@@ -7,6 +7,7 @@
   Polymer({
     is: 'addsupplier-card',
     ready:function(){
+
 		this.Btn_disable_flag=false;
 		this.read=false;
 		 //Initially hiding paperlistbox of itemtype and itemgroup fields
@@ -14,6 +15,7 @@
     		this.isHiddenid=true;
     		this.IDread=true;
     		localStorage.setItem("curr_sess_searchtypeflag", "nothing");
+    		localStorage.setItem("curr_sess_addsuppliereditflag","0");
 	},
 	FnEmailChange:function(){
 	   document.querySelector('#emailid').validate();
@@ -44,6 +46,13 @@
          document.querySelector("supplier-page").setPage("Add Payment");
      	//document.querySelector("payment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
  		}
+ 		else if(localStorage.getItem("curr_sess_addsuppliereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+ 			this.$.adminsupplierservice.updatesupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+            document.querySelector("payment-card").FnEnableFields();
+            document.querySelector("supplier-page").setPage("Add Payment");
+
+            document.querySelector("payment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
+ 		}
  		else{
 			document.querySelector("supplier-page").setPage("Add Payment");
 			//if(localStorage.getItem("curr_sess_searchtypeflag")=="0")
@@ -65,6 +74,7 @@
 	FnSearchSupplierName:function(){
 	//The flag is used to ensure the search is performed by using item name
     localStorage.setItem("curr_sess_searchtypeflag","1");
+    document.querySelector('viewtype-card').FnEnableEdit(true);
     //When performing search using itemname making listbox visible with items
     this.isHidden=false;
     this.read=true;
@@ -179,6 +189,9 @@
 		    this.querySelector('#searchname').style.visibility='hidden';
 		    this.querySelector('#searchname').selected=-1;
     }
+	},
+	FnEnableFields:function(){
+		this.read=false;
 	}
   });
 })();

@@ -183,6 +183,75 @@
       else
       	  alert("Unable to add suppliers!");
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
+    },
+    updatesupplierService:function(supplieridd,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
+    	//alert(supplieridd+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
+      obj1={
+        "supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""
+      };
+      supplierid=supplieridd;
+      obj1.supplierid=supplierid;
+      obj1.suppliername=suppliername;
+      obj1.landmark=landmark;
+      obj1.location=location;
+      obj1.city=city;
+      obj1.district=district;
+      obj1.state=state;
+      obj1.country=country;
+      obj1.pincode=pincode;
+      obj1.phoneno=phoneno;
+      obj1.mobileno=mobileno;
+      obj1.emailid=emailid;
+      },
+     updatesupplierResponse:function(e){
+     	//alert(e.detail.response.returnval);
+      if(e.detail.response.returnval=="succ"){
+		  //alert("Supplier Added!");
+		  this.updatepaymentparam=obj2;
+		  this.updatepaymenturl=sessionStorage.getItem("curr_sess_url")+"updatepayment-service";
+		  this.$.updatepaymentajax.generateRequest();
+
+		  //document.querySelector('addsupplier-card').FnBtnDisable();
+          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+      }
+      else{
+      	  alert("Supplier ID already exists!..Create new supplier...");
+      	  window.location.href="../elements/indexhome.html";
+      }
+       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
+    },
+    updatepaymentService:function(accno,bankname,address,mode,paymentterm){
+    	//alert(accno+" "+bankname+" "+address+" "+mode+" "+paymentterm);
+		 obj2={
+		        "supplierid":"","accno":"","bankname":"","mode":"","paymentterm":""
+		      };
+		      obj2.supplierid=supplierid;
+		      obj2.accno=accno;
+		      obj2.bankname=bankname;
+		      obj2.mode=mode;
+		      obj2.paymentterm=paymentterm;
+		      obj2.address=address;
+  			  this.updatesupplierparam=obj1;
+
+			  //if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
+              this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
+		      this.$.updatesupplierajax.generateRequest();
+		  	  //}
+
+	},
+	updatepaymentResponse:function(e){
+		//alert(e.detail.response.returnval);
+	if(e.detail.response.returnval=="succ"){
+		alert("Supplier Info Updated successfully!!");
+		//this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
+		//this.itemparam=obj3;
+        //this.$.additemajax.generateRequest();
+    	  //document.querySelector('addsupplier-card').FnBtnDisable();
+	      //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+	      }
+	      else
+	      	  alert("Unable to add payment!");
+	       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     }
 
   });

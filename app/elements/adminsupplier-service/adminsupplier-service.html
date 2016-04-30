@@ -62,6 +62,26 @@
 			      content-type="application/json"
 			      on-response="readitemResponse">
     </iron-ajax>
+     <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="updatesupplierajax"
+      url="{{updatesupplierurl}}"
+      params='{{updatesupplierparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatesupplierResponse">
+    </iron-ajax>
+     <!--Component which makes update req to update the payment info-->
+	    <iron-ajax
+	      id="updatepaymentajax"
+	      url="{{updatepaymenturl}}"
+	      params='{{updatepaymentparam}}'
+	      method="post"
+	      handle-as="json"
+	      content-type="application/json"
+	      on-response="updatepaymentResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

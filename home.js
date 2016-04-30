@@ -665,6 +665,51 @@ app.post("/addpayment-service",urlencodedParser,function(req,res) {
 
 });
 
+//Function to update the supplier info req receives from the admin service
+app.post("/updatesupplier-service",urlencodedParser,function(req,res) {
+
+  response = {
+   Supplier_ID:req.query.supplierid,
+   Supplier_Name:req.query.suppliername,
+    LandMark:req.query.landmark,
+    Location:req.query.location,
+    City:req.query.city,
+    District:req.query.district,
+    State:req.query.state,
+    Country:req.query.country,
+    Pincode:req.query.pincode,
+    Phone:req.query.phoneno,
+    Mobile:req.query.mobileno,
+    Email:req.query.emailid
+
+  };
+  var FnUpdateSuppliercall = require("./app/scripts/dboperations.js");
+  FnUpdateSuppliercall.FnUpdateSupplier("updatesupplier-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+//Function to update the supplier info req receives from the admin service
+app.post("/updatepayment-service",urlencodedParser,function(req,res) {
+
+  response = {
+   Supplier_ID:req.query.supplierid,
+   Account_No:req.query.accno,
+   Bank_Name:req.query.bankname,
+   Payment_Type:req.query.mode,
+   Payment_Term:req.query.paymentterm,
+   Bank_Address:req.query.address
+
+  };
+  var FnUpdatePaymentcall = require("./app/scripts/dboperations.js");
+  FnUpdatePaymentcall.FnUpdatePayment("updatepayment-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+
 
 //Function to fetch the searched item info using id or name according to the search type
 app.post('/readsupplierinfo-service',urlencodedParser, function (req, res) {
@@ -894,6 +939,54 @@ app.post("/addcustomerpayment-service",urlencodedParser,function(req,res) {
   };
   var FnAddcustomerPaymentcall = require("./app/scripts/dboperations.js");
   FnAddcustomerPaymentcall.FnAddcustomerPayment("addcustomerpayment-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+
+//Function to update the supplier info req receives from the admin service
+app.post("/updatecustomer-service",urlencodedParser,function(req,res) {
+
+  response = {
+   Customer_ID:req.query.supplierid,
+   Customer_Name:req.query.suppliername,
+    LandMark:req.query.landmark,
+    Location:req.query.location,
+    City:req.query.city,
+    District:req.query.district,
+    State:req.query.state,
+    Country:req.query.country,
+    Pincode:req.query.pincode,
+    Phone:req.query.phoneno,
+    Mobile:req.query.mobileno,
+    Email:req.query.emailid
+
+  };
+  console.log(response);
+  var FnUpdateCustomercall = require("./app/scripts/dboperations.js");
+  FnUpdateCustomercall.FnUpdateCustomer("updatecustomer-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+//Function to update the supplier info req receives from the admin service
+app.post("/updatecustomerpayment-service",urlencodedParser,function(req,res) {
+  console.log('in.............');
+console.log(req.query.supplierid);
+  response = {
+   Customer_ID:req.query.supplierid,
+   Account_No:req.query.accno,
+   Bank_Name:req.query.bankname,
+   Payment_Type:req.query.mode,
+   Payment_Term:req.query.paymentterm,
+   Bank_Address:req.query.address
+
+  };
+  console.log(response);
+  var FnUpdatecustomerPaymentcall = require("./app/scripts/dboperations.js");
+  FnUpdatecustomerPaymentcall.FnUpdatecustomerPayment("updatecustomerpayment-service",response,function(returnval){
     res.status(200).json({'returnval': returnval});
   });
 
