@@ -20,9 +20,17 @@ Polymer({
    this.$.adminservice.callItemPurchasetypeReadService();
    this.$.adminservice.callItemReadService();
    this.$.adminservice.callItemgroupReadService();
+   this.$.adminservice.callContainerReadService();
+   this.$.adminservice.callUnitReadService();
    localStorage.setItem("curr_sess_showpage","customeradditem-card");
    //calling webcomponent service to fetch labels for current page
    this.$.ID_Webcomponent_Service.callWebcomponentService();
+  },
+  FnSelectcontainer:function(e){
+    document.querySelector('customeradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
+  },
+  FnSelectunit:function(e){  
+    document.querySelector('customeradditem-card').FnQuantityChange((e.target.selectedItem.textContent).trim());
   },
   //Method invokes to fetch item id of the currently selected Item type name in dropdown
     FnSelecttype:function(e){
@@ -95,11 +103,11 @@ FnBtnDisable:function(){
 },
 FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,itemgroup,selection){
   
-	//this.itemid=itemid;
+	this.itemid=itemid;
 	this.itemname=itemname;
 	this.itemdes=itemdes;
-	//this.container=container;
-	//this.quantity=quantity;
+	this.containertype=container;
+	this.unittype=quantity;
 	for(var i=0;i<this.itemarr.length;i++){
 	   if(this.itemarr[i].itemtypeid==itemtype)
 	      this.itemtype=this.itemarr[i].itemtypename;

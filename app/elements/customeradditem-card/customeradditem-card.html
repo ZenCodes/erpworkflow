@@ -73,13 +73,13 @@
       .storescard{
         margin-left:5%;        
       }
-      container-card{
-        margin-left: 5%;
-        width:30%;
+      .containercard{
+        //margin-left: -5%;
+        //width:80%;
       }
-      unit-card{
+      .unitcard{
         margin-left: 10%;
-        width:30%;
+        //width:80%;
       }      
     </style>
 
@@ -87,7 +87,7 @@
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
         <div class="input">
-      <itemsearch-card></itemsearch-card>
+      <itemsearch-card itemid="{{itemid}}"></itemsearch-card>
             <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
             <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>-->
 
@@ -99,8 +99,26 @@
 
         </div>
         <div class="input">
-        <container-card></container-card>
-        <unit-card></unit-card>
+        <div class="containercard">
+        <paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer" attr-for-selected="value" selected="{{containertype}}" required>
+              <template is="dom-repeat" items="{{containerarr}}">
+              <paper-item value="{{item.Container_Name}}">{{item.Container_Name}}</paper-item>
+              </template>
+            </paper-menu>
+        </paper-dropdown-menu>
+        </div>
+        <div class="unitcard">
+         <paper-dropdown-menu id="dropitemtype" label="Select Unit" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectunit"  attr-for-selected="value" selected="{{unittype}}" required>
+              <template is="dom-repeat" items="{{unitarr}}">
+              <paper-item value="{{item.Unit_Name}}">{{item.Unit_Name}}</paper-item>
+              </template>
+            </paper-menu>
+         </paper-dropdown-menu>
+         </div>
+        <!-- <container-card containerarr="{{containerarr}}" containertype="{{id}}"></container-card> -->
+        <!-- <unit-card unitarr="{{unitarr}}" unittype="{{selected}}"></unit-card> -->
           <!--<paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
           <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>-->
 
@@ -151,7 +169,7 @@
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>
     <!--Component to call the service to bind item type and group type-->
-    <admin-service id="adminservice" purchasearr="{{purchasearr}}" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" ></admin-service>
+    <admin-service id="adminservice" itemarr="{{itemarr}}" purchasearr="{{purchasearr}}" itemarr="{{itemarr}}" itemgrouparr="{{itemgrouparr}}" ></admin-service>
   </template>
   <!--JS File import-->
   <script src="../../scripts/customeradditem-card.js"> </script>

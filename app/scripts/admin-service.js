@@ -10,6 +10,8 @@
     is: "admin-service",
     ready: function () {
       //Setting url to fetch item type and group type info
+      this.containerreadurl=sessionStorage.getItem("curr_sess_url")+"containerread-service";
+      this.unitreadurl=sessionStorage.getItem("curr_sess_url")+"unitread-service";
       this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
       this.groupurl=sessionStorage.getItem("curr_sess_url")+"additemgroupread-service";
       this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
@@ -176,9 +178,10 @@
     },
     containerreadResponse:function(e) {
       var containerarray=e.detail.response.itemarr;
-      document.querySelector('container-card').itemarr=containerarray;
+      
+      document.querySelector('container-card').containerarr=containerarray;
       //document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
-      //document.querySelector('customeradditem-card').itemgrouparr=itemgrouparray;
+      document.querySelector('customeradditem-card').containerarr=containerarray;
     },
      //Method invokes while making req to fetch container info
     callUnitReadService:function(){
@@ -187,9 +190,9 @@
     },
     unitreadResponse:function(e) {
       var unitarray=e.detail.response.itemarr;
-      document.querySelector('unit-card').itemarr=unitarray;
+      document.querySelector('unit-card').unitarr=unitarray;
       // document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
-      // document.querySelector('customeradditem-card').itemgrouparr=itemgrouparray;
+      document.querySelector('customeradditem-card').unitarr=unitarray;
     },
     //Method invokes while making req for fetch all the info of the currently selected item in listbox
     callSearchService:function(itemid,itemname){

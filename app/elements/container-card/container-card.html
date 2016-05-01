@@ -6,22 +6,21 @@
 <link rel="import" href="../admin-service/admin-service.html">
 <dom-module id="container-card">
   <template>
-    <style>
-  
+    <style> 
       paper-dropdown-menu{
        width: 120%;
       }
     </style>
     <div>
     <paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
-            <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer"  attr-for-selected="value" selected="{{containertype}}" required>
-              <template is="dom-repeat" items="{{itemarr}}">
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer" attr-for-selected="value" selected="{{containertype}}" required>
+              <template is="dom-repeat" items="{{containerarr}}">
               <paper-item value="{{item.Container_Name}}">{{item.Container_Name}}</paper-item>
               </template>
             </paper-menu>
     </paper-dropdown-menu>
     </div>
-    <admin-service id="adminservice"></admin-service>
+    <admin-service id="adminservice" containerarr="{{containerarr}}"></admin-service>
   </template>
   <script>
   (function() {
@@ -30,12 +29,13 @@
     Polymer({
       is: 'container-card',
     ready:function(){
-        this.$.adminservice.callContainerReadService();
+      this.containertype=this.container;
+      this.$.adminservice.callContainerReadService();
     },
     FnSelectcontainer:function(e){
       document.querySelector('additem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
       document.querySelector('supplieradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
-      document.querySelector('customeradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
+      
     },
     FnSetContainer:function(container){
       //alert(container);
