@@ -1,13 +1,17 @@
 /**
  * Created by praba on 2/12/2016.
- */
+ */ 
+  (function(){
+    var inwardno;
+    var ponumber;
+    var podate;
+    var supname;
 Polymer({is:"physicqualify-card",
   ready:function(){
 
     //Flag is setting to make PO read only and writable
     if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
       //localStorage.setItem("curr_sess_PONumber",this.pono);
-
       this.read = false;
     }
     if(sessionStorage.getItem("curr_sess_roleflag")!="1"){
@@ -16,7 +20,7 @@ Polymer({is:"physicqualify-card",
     }
 
     this.url=sessionStorage.getItem("curr_sess_url")+"physicqualify-card";
-
+    //this.physicqualifyreadService(sessionStorage.getItem("sess_curr_inwardregno"));
     /*if(this.pono!=""||this.pono!=null)
      alert("yes");
      else
@@ -75,11 +79,12 @@ Polymer({is:"physicqualify-card",
   {
     //Response binding to the card
     var arr=e.detail.response;
-
+    //alert(JSON.stringify(arr));
+    if(arr!='no items'){
     var commarr=[];
     var prodarr=[];
     var potempflag="";
-    for(var i=0;i<arr.length;i++)
+    for(var i=0;i<1;i++)
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
       this.purchasetypeflag=arr[i].purchasetypeflag;
@@ -97,6 +102,7 @@ Polymer({is:"physicqualify-card",
       obj.inwardno=arr[i].inwardno;
       obj.inwarddate=arr[i].inwarddate;
       obj.ponumber=arr[i].ponumber;
+
       if(arr[i].ponumber==null||arr[i].ponumber=="") {
       }
       else
@@ -105,11 +111,17 @@ Polymer({is:"physicqualify-card",
       }
       obj.podate=arr[i].podate;
       obj.supname=arr[i].supname;
+
+      /*inwardno=arr[i].inwardno;      
+      ponumber=arr[i].ponumber;
+      podate=arr[i].podate;
+      supname=arr[i].supname;*/
     }
     commarr.push(obj);
+    // alert(JSON.stringify(commarr));
     for(var i=0;i<arr.length;i++)
     {
-      var obj={"itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","containerreceived":"","containeraccepted":"","contmeasure":"","qtymeasure":"","ctrreceived":"","qtyyreceived":""};
+      var obj={"inwardno":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","containerreceived":"","containeraccepted":"","contmeasure":"","qtymeasure":"","ctrreceived":"","qtyyreceived":""};
       obj.itemdes=arr[i].itemdes;
       obj.qtyreceived=arr[i].qtyreceived;
       obj.containerreceived=arr[i].containerreceived+" / "+arr[i].qtyreceived;
@@ -126,8 +138,13 @@ Polymer({is:"physicqualify-card",
       obj.ctrreceived=arr[i].ctrreceived;
       obj.qtyyreceived=arr[i].qtyyreceived;
       obj.remarks=arr[i].remarks;
+      /*obj.inwardno=inwardno;
+      obj.ponumber=ponumber;
+      obj.podate=podate;
+      obj.supname=supname;*/
       prodarr.push(obj);
     }
+    // alert(JSON.stringify(prodarr));
     this.mainArray=commarr;
     this.itemArray=prodarr;
     this.pono=potempflag;
@@ -137,7 +154,7 @@ Polymer({is:"physicqualify-card",
 
     //alert(JSON.stringify(commarr));
     //alert(JSON.stringify(prodarr));
-
+}
   },
   callWebcomponentService:function(){
     this.$.webcomponentreadajax.generateRequest();
@@ -160,3 +177,4 @@ Polymer({is:"physicqualify-card",
     }
   }
 });
+})();

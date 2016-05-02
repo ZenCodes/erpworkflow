@@ -56,17 +56,17 @@
   </style>
   <template>
     <!--Expand Itemcard-->
-    <div class="expandcard" id="card{{inwardregno}}">
-      <paper-button  name="inwardregno" value="{{inwardregno}}" on-click="FnExpandItemcard" noink>{{inwardregno}}</paper-button>
-      <paper-button  name="inwardno" value="{{inwardno}}" on-click="FnExpandItemcard" noink>{{inwardno}}</paper-button>
-      <paper-button  name="inwarddate" value="{{inwarddate}}"  on-click="FnExpandItemcard" noink>{{inwarddate}}</paper-button>
-      <paper-icon-button id="expand" icon="{{icons}}" on-click="FnExpandItemcard" noink></paper-icon-button>
+    <div class="expandcard" id="card{{inwardregno}}" on-click="FnExpandItemcard">
+      <paper-button  name="inwardregno" value="{{inwardregno}}" noink>{{inwardregno}}</paper-button>
+      <paper-button  name="inwardno" value="{{inwardno}}" noink>{{inwardno}}</paper-button>
+      <paper-button  name="inwarddate" value="{{inwarddate}}" noink>{{inwarddate}}</paper-button>
+      <paper-icon-button id="expand" icon="{{icons}}" noink></paper-icon-button>
       <paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>
     </div>
     <!--Expand item collapse card-->
     <iron-collapse id="{{inwardregno}}">
       <div class="collapse">
-        <physicqualify-card id="ps"></physicqualify-card>
+        <physicqualify-card id="ps" ></physicqualify-card>
       </div>
     </iron-collapse>
 

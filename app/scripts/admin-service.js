@@ -10,11 +10,11 @@
     is: "admin-service",
     ready: function () {
       //Setting url to fetch item type and group type info
-      this.containerreadurl=sessionStorage.getItem("curr_sess_url")+"containerread-service";
+     /* this.containerreadurl=sessionStorage.getItem("curr_sess_url")+"containerread-service";
       this.unitreadurl=sessionStorage.getItem("curr_sess_url")+"unitread-service";
       this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
       this.groupurl=sessionStorage.getItem("curr_sess_url")+"additemgroupread-service";
-      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";*/
     },
     //Method invokes while making write req from the additem card
     callItemWriteService:function(price,itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
@@ -178,7 +178,8 @@
     },
     containerreadResponse:function(e) {
       var containerarray=e.detail.response.itemarr;
-      
+      if(document.querySelector('container-card')==null){}
+        else
       document.querySelector('container-card').containerarr=containerarray;
       //document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
       document.querySelector('customeradditem-card').containerarr=containerarray;
@@ -190,6 +191,8 @@
     },
     unitreadResponse:function(e) {
       var unitarray=e.detail.response.itemarr;
+      if(document.querySelector('unit-card')==null){}
+        else
       document.querySelector('unit-card').unitarr=unitarray;
       // document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
       document.querySelector('customeradditem-card').unitarr=unitarray;

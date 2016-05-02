@@ -381,11 +381,15 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
       Config_tables=obj[i].value;
     }
   }
+
+  console.log(JSON.stringify(cond)+" "+JSON.stringify(cond1));
   //Query fetches item info under the specific IRN Number with desired state
   connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ?',[cond,cond1], function(err, rows) {
     if(!err)
     {
       var itemarr=[];
+      console.log(rows.length);
+      if(rows.length>0){
 
       for(var i=0;i<rows.length;i++)
       {
@@ -408,8 +412,13 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
         obj.qtyyreceived=rows[i].Qty_Received;
         itemarr.push(obj);
       }
+
+      console.log(JSON.stringify(itemarr));
       //Item Response sending back to the server
       return callback(itemarr);
+    }
+    else
+      return callback("no items");
     }
     else{
     }
