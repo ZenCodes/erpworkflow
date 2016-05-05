@@ -131,6 +131,10 @@
       .supplierdiv{
         margin-left: 3%;
       }
+      #pdf{
+        margin-top: 1%;
+        margin-left: 3%;
+      }
     </style>
     <!--Expanded card template-->
     <div class="card">
@@ -150,8 +154,8 @@
     <!--<paper-input label="PO Request" name="poreq" value="{{poreq}}" readonly>{{poreq}}</paper-input>
     <paper-input id="pono" name="pono" value="{{pono}}" label="PO Number" readonly="{{read}}" hidden$="{{hide}}" required></paper-input>-->
     <paper-button id="promote"  name="promote" value="{{promote}}" on-click="FnPromoteState">{{promote}}</paper-button>
-    <div hidden$="{{hideprintpdf}}">
-      <printpdf-card></printpdf-card>
+    <div hidden$="{{hideprintpdf}}" id="pdf">
+    <printpdf-card></printpdf-card>
     </div>
     </div>     
 

@@ -1064,6 +1064,14 @@ app.post('/purchaseorderitem-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
+app.post('/purchaseorderitemtax-service',urlencodedParser, function (req, res) {
+  var intentno=req.query.intentregno;
+  var itemdes=req.query.itemdes;
+  var Fnpurchaseorderitemtaxcall = require("./app/scripts/dboperations.js");
+  Fnpurchaseorderitemtaxcall.Fnpurchaseorderitemtax("purchaseorderitemtax-service",intentno,itemdes,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 app.post('/purchaseorderitemprice-service',urlencodedParser, function (req, res) {
   var intentno=req.query.intentregno;
   var itemdes=req.query.itemdes;

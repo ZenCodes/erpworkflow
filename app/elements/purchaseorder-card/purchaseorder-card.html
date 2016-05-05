@@ -10,14 +10,20 @@
 <dom-module id="purchaseorder-card">
   <template>
     <style>
-      :host {
-        display: block;
-      }
+      /*:host {*/
+        /*display: block;*/
+      /*}*/
       .card{
+        /*margin-top: -3%;*/
         @apply(--layout-vertical);
+        width: 70%;
+        height: 135%;
+        margin-left: 15%;
+        border-radius: 1px;
+        border-style: groove;
       }
       .title{
-        margin-top: 5%;
+        margin-top: 3%;
         font-size: 24px;
         font-weight: bold;
         text-align: center;
@@ -25,6 +31,7 @@
       .header{
         @apply(--layout-horizontal);
         margin-top: 7%;
+        margin-left: 5%;
       }
       .companyheader{
         font-size: 15px;
@@ -38,6 +45,7 @@
       .toheader{
         @apply(--layout-vertical);
         text-align: left;
+        margin-left: 5%;
       }
       .total{
         @apply(--layout-vertical);
@@ -77,30 +85,72 @@
         margin-top: 2%;
       }
       table{
-        width: 100%;
+        width: 90%;
+        text-align: center;
       }
       textarea{
         margin-top: 20%;
-        margin-left: 40%;
-        width:120%;
+        margin-left: 0%;
+        width:130%;
         height:7%;
       }
       .total{
         font-size: 15px;
         margin-top: 3%;
-        margin-left: 50%;
+        margin-left: 35%;
         text-align: left;
       }
+       paper-button{
+        text-align: center;      
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        height: 30px;
+        margin-top: 5%;
+        text-transform:none;
+        margin-left: 35%;
+        width: 20%;
+
+      }
+      .align{
+       @apply(--layout-horizontal); 
+      }
+      .p1{
+        width: 80%;
+      }
+      .p2{
+        margin-left: 5%;
+        text-align: left;;
+      }
+      #canvas{
+        @apply(--layout-vertical); 
+      }
+      hr{
+        height: 1px;
+        width: 140%;
+        margin-left: -10%;
+      }
+      .grandalign{
+        @apply(--layout-horizontal);
+        
+        margin-left: -10%;
+      }
+      .gp1{
+        width: 80%;
+      }
     </style>
-    <paper-dialog id="dialog">
-     <paper-dialog-scrollable>
-    <div class="card" id="canvas">
-    <template is="dom-repeat" items="{{poarray}}" as="po">
+    <!-- <paper-dialog id="dialog"> -->
+     <!-- <paper-dialog-scrollable> -->
+    <div class="card" >
+    <div id="canvas">
+    
       <div class="title">Purchase Order</div>
+      <template is="dom-repeat" items="{{poarray}}" as="po">
       <div class="header">
         <div class="companyheader">
         <div class="company">
-          <div><img src='../../images/logo.jpg' width="60px" height="100px" /></div>
+          <div><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
           <div class="address">
           <p class="comp">Company name</p>
           <p class="comp">Building address</p>
@@ -122,37 +172,42 @@
         <p>{{po.District}}</p>
         </div>
       </div>
+      </template>
       <template is="dom-repeat" items="{{poitemarray}}" as="poitem">
       <div class="itemdetail">
         <table border="1">
           <tr><th>S.No</th><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
-          
           <tr><td>1</td><td>{{poitem.Product_ID}}</td><td>{{poitem.Quantity}} {{poitem.Quantity_Measure}}</td>
-          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td>{{poitem.total}}</td></tr>         
-          
+          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td>{{poitem.total}}</td></tr>          
         </table>
-      </div>
+      <!-- </div> -->
       <div class="summary">
       <div>
         <textarea>Notes....</textarea>
       </div>
       <div class="total">
-        <p>Total: {{poitem.total}}</p>
-        <p>Tax1:</p>
-        <p>Tax2:</p>
-        <p>Grand Total: {{poitem.total}}</p>
+        <div class="align"><p class="p1">Total: </p><p class="p2">{{poitem.total}}</p></div>
+        <div class="align"><p class="p1">Excise Duty (12.5%): </p><p class="p2">{{poitem.exduty}}</p></div>
+        <div class="align"><p class="p1">VAT (5%): </p><p class="p2">{{poitem.vat}}</p></div>
+        <div class="align"><p class="p1">CST (2%): </p><p class="p2">{{poitem.cst}}</p></div>
+        <hr/>
+        <div class="align"><p class="p1">Grand Total: </p><p class="p2">{{poitem.grandtot}}</p></div>
       </div>
-      </template>
-      </div>      
-      </template>
+      
+      </div> 
+      </div>     
+      </template>      
+
     </div>
-    <paper-button id="pdf" on-click="click">Click</paper-button>
-     </paper-dialog-scrollable>
-    </paper-dialog>
+    <paper-button id="pdf" on-click="click">View PDF</paper-button>
+    </div>
+     <!-- </paper-dialog-scrollable> -->
+    <!-- </paper-dialog> -->
+    
   </template>  
   
   <script>
-   $(window).load(function(){
+   /*$(window).load(function(){
     $(document).ready(function() {
      $('#pdf').click(function() {          
         html2canvas($("#canvas"), {          
@@ -166,7 +221,7 @@
         });
     });
     });
-    });
+    });*/
   (function() {
     'use strict';
 
@@ -187,7 +242,8 @@
                 var doc = new jsPDF('p', 'mm');
                 //alert(JSON.stringify(doc));
                 doc.addImage(imgData, 'PNG', 10, 8);
-                doc.output(porder+'.pdf');
+                doc.save(porder+'.pdf');
+                //doc.output('datauri');
             }
           });
       }

@@ -2450,7 +2450,7 @@ exports.Fnpurchaseorder=function(pagename,intentno,itemdes,callback) {
       Config_tables=obj[i].value;
     }
   }
-  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.state,ps.Mobile from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
+  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.State,ps.Mobile from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
   connection.query(queryy, function(err, rows) {
     if(!err)
     {   
@@ -2474,6 +2474,27 @@ exports.Fnpurchaseorderitem=function(pagename,intentno,itemdes,callback) {
   connection.query(queryy, function(err, rows) {
     if(!err)
     {   
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+    }
+  });
+
+}
+
+exports.Fnpurchaseorderitemtax=function(pagename,intentno,itemdes,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var queryy="select * from MD_Item_Tax where Item_ID=(Select Item_ID from MD_Item where Item_Name='"+itemdes+"')";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {  
+      //console.log(JSON.stringify(rows)); 
       return callback(rows);
     }
     else{

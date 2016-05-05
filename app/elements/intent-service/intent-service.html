@@ -147,6 +147,16 @@
     </iron-ajax>
 
     <iron-ajax
+      id="purchaseorderitemtaxajax"
+      url="{{purchaseorderitemtaxurl}}"
+      params='{{purchaseorderitemtaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemtaxResponse">
+    </iron-ajax>
+
+    <iron-ajax
       id="purchaseorderitempriceajax"
       url="{{purchaseorderitempriceurl}}"
       params='{{purchaseorderitempriceparam}}'
@@ -173,6 +183,7 @@
     var largestpono=0;
     var poarr=[];
     var poitemarr=[];
+    var poitemtax=[];
     var poitemprice=[];
     Polymer({
       is: 'intent-service',
@@ -191,6 +202,12 @@
       FnPurchaseorderResponse:function(e){
           poarr=e.detail.response.itemarr;
          if(poarr.length>0){
+         var d=new Date(poarr[0].PO_Date);
+         //alert(d);
+         var y=d.getFullYear();
+         var m=d.getMonth();
+         var d=d.getDate();
+         poarr[0].PO_Date=d+"/"+m+"/"+y;
          document.querySelector("purchaseorder-card").poarray=poarr;
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -202,8 +219,21 @@
          }
       },
       FnPurchaseorderitemResponse:function(e){
-          poitemarr=e.detail.response.itemarr;         
+         poitemarr=e.detail.response.itemarr;         
          if(poitemarr.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitemtaxurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
+         this.purchaseorderitemtaxparam=obj;
+         this.$.purchaseorderitemtaxajax.generateRequest(); 
+         //alert(JSON.stringify(poitemarr));
+         }
+      },
+      FnPurchaseorderitemtaxResponse:function(e){
+         poitemtax=e.detail.response.itemarr;  
+         //alert(JSON.stringify(poitemtax));       
+         if(poitemtax.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
@@ -217,8 +247,34 @@
           poitemprice=e.detail.response.itemarr;
           if(poitemprice.length>0){
           //alert(JSON.stringify(poitemprice));
+          var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
+          var tax2=((parseFloat(poitemtax[0].VAT))/100);
+          var tax3=((parseFloat(poitemtax[0].CST))/100);
+          var total=parseInt(poitemprice[0].Item_Supplier_price)*parseInt(poitemarr[0].Quantity);
+          var exduty=(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseInt(poitemarr[0].Quantity);
           poitemarr[(poitemarr.length)-1].price=poitemprice[0].Item_Supplier_price;
           poitemarr[(poitemarr.length)-1].total=parseInt(poitemprice[0].Item_Supplier_price)*parseInt(poitemarr[0].Quantity);
+          poitemarr[(poitemarr.length)-1].exduty=(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseInt(poitemarr[0].Quantity);
+          if(poarr[0].State=="Tamilnadu"){
+            //alert(parseInt(poitemprice[0].Item_Supplier_price));
+            //alert(parseFloat(tax2));
+            //alert(parseInt(poitemarr[0].Quantity));
+            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].vat=parseInt(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].cst="0";
+          poitemarr[(poitemarr.length)-1].grandtot=parseFloat(total)+parseFloat(exduty)+parseFloat(parseInt(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseInt(poitemarr[0].Quantity));
+          }
+          else{
+            //alert(parseInt(poitemprice[0].Item_Supplier_price));
+            //alert(parseFloat(tax3));
+            //alert(parseInt(poitemarr[0].Quantity));
+            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].vat="0";
+          poitemarr[(poitemarr.length)-1].cst=parseInt(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));          
+          poitemarr[(poitemarr.length)-1].grandtot=parseFloat(total)+parseFloat(exduty)+parseFloat(parseInt(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseInt(poitemarr[0].Quantity));
+          }
+         
+
           //poitemarr.push(poitemprice[0].Item_Supplier_price);
           //alert(JSON.stringify(poitemarr));
           }

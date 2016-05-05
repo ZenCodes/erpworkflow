@@ -19,6 +19,9 @@
       var n=1;
       var x=-4;
       //alert(this.intentregno);
+
+      this.$.intentservice.FnPurchaseorderService();
+
       sessionStorage.setItem("sess_curr_inwardregno",this.itemno);
       sessionStorage.setItem("sess_curr_intentregno",this.intentregno);
       sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
