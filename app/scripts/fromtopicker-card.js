@@ -34,23 +34,48 @@ Polymer({
       var dd1=new Date();
       var dd2=new Date(pickdate);
       var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));
-      if(days>=0)
+      //alert(days);
+      if(days<0)
       {
         //if(days>60)
           //this.$.ID_Show_Dialog.FnShowDialog("You can see 60 days!","");
           //alert("You can add only recent entries within 60 days!");
         //else{
-          this.fromshowdate = moment(this.$.frompicker.date).format('L');
-          localStorage.setItem("curr_sess_todaydate",this.fromshowdate); 
-          //alert(fromshowdate+"  "+toshowdate)
-          if(this.fromshowdate<this.toshowdate)         
-          document.querySelector('report-service').FnFromToDateChange(this.fromshowdate,this.toshowdate);
-          else
-          this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");          
+  
+          //alert('no');
+          if(this.fromshowdate>this.toshowdate) { 
+           this.fromshowdate=moment(new Date()).format('L');
+           this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");    
+          }  
+          else{
+          this.fromshowdate=moment(new Date()).format('L');
+          this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!",""); 
+          }   
+              
         //}
       }
-      else
-        this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
+      else if(days==0&&(this.fromshowdate==this.toshowdate)){
+          this.fromshowdate = moment(this.$.frompicker.date).format('L');
+          localStorage.setItem("curr_sess_todaydate",this.fromshowdate);  
+          
+          //alert(this.fromshowdate+"  "+this.toshowdate)
+          if(this.fromshowdate>this.toshowdate) { 
+          this.fromshowdate=moment(new Date()).format('L');
+          this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");    
+          }     
+          
+      }
+      else{
+        // alert('infrom');
+          this.fromshowdate = moment(this.$.frompicker.date).format('L');
+          localStorage.setItem("curr_sess_todaydate",this.fromshowdate); 
+          //alert(this.fromshowdate+"  "+this.toshowdate)
+          if(this.fromshowdate<this.toshowdate) {   
+          //alert('yes');     
+          document.querySelector('report-service').FnFromToDateChange(this.fromshowdate,this.toshowdate);
+          }
+        // this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
+      }
         //alert("Date shouldn't exceed the run date!");
     }
   },
@@ -61,25 +86,42 @@ Polymer({
       var dd1=new Date();
       var dd2=new Date(pickdate);
       var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));
-
-      if(days>=0)
+      // alert(days);
+    if(days<0)
       {
-        //if(days>60)
-          //this.$.ID_Show_Dialog.FnShowDialog("You can add only recent entries within 60 days!","");
-          //alert("You can add only recent entries within 60 days!");
-        //else{          
+       
+          if(this.fromshowdate>this.toshowdate) { 
+           this.toshowdate=moment(new Date()).format('L');
+           this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");    
+          }  
+          else{
+          this.toshowdate=moment(new Date()).format('L');
+          this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!",""); 
+          }          
+        
+      }
+      else if(days==0&&(this.fromshowdate==this.toshowdate)){
+          this.toshowdate = moment(this.$.topicker.date).format('L');
+          localStorage.setItem("curr_sess_todaydate",this.toshowdate);           
+          
+          if(this.fromshowdate>this.toshowdate) { 
+          this.toshowdate=moment(new Date()).format('L');
+          this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");    
+          }     
+          
+      }
+      else{
+          
           this.toshowdate = moment(this.$.topicker.date).format('L');
           localStorage.setItem("curr_sess_todaydate",this.toshowdate); 
-           //alert(this.fromshowdate+"  "+this.toshowdate);
-          if(this.fromshowdate<this.toshowdate)         
+          
+          if(this.fromshowdate<this.toshowdate) {             
           document.querySelector('report-service').FnFromToDateChange(this.fromshowdate,this.toshowdate);
+          }
           else
-          this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");  
-        //}
+          this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");
       }
-      else
-        this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
-        //alert("Date shouldn't exceed the run date!");
+        
     }
   },
   FnSetFromDate:function(fromdate){    
