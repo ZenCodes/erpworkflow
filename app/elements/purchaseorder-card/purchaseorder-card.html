@@ -3,6 +3,7 @@
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="..\..\bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
 <script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
@@ -82,7 +83,7 @@
       }
       .itemdetail{
         margin-left: 10%;
-        margin-top: 2%;
+        margin-top: 4%;
       }
       table{
         width: 90%;
@@ -139,6 +140,9 @@
       .gp1{
         width: 80%;
       }
+      .img{
+        /*margin-top: 2%;*/
+      }
     </style>
     <!-- <paper-dialog id="dialog"> -->
      <!-- <paper-dialog-scrollable> -->
@@ -152,9 +156,12 @@
         <div class="company">
           <div><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
           <div class="address">
-          <p class="comp">Company name</p>
-          <p class="comp">Building address</p>
-          <p class="comp">Street address</p>  
+          <p class="comp">{{cmpname}}</p>
+          <p class="comp">{{cmpaddr1}}</p>
+          <p class="comp">{{cmpaddr2}}</p>  
+          <!-- <p class="comp">{{cmpaddr3}}</p> -->
+          <p class="comp">{{cmpemail}}</p>
+          <p class="comp">{{cmpphone}}</p>            
           </div>
         </div>          
         </div>
@@ -186,12 +193,12 @@
         <textarea>Notes....</textarea>
       </div>
       <div class="total">
-        <div class="align"><p class="p1">Total: </p><p class="p2">{{poitem.total}}</p></div>
-        <div class="align"><p class="p1">Excise Duty (12.5%): </p><p class="p2">{{poitem.exduty}}</p></div>
-        <div class="align"><p class="p1">VAT (5%): </p><p class="p2">{{poitem.vat}}</p></div>
-        <div class="align"><p class="p1">CST (2%): </p><p class="p2">{{poitem.cst}}</p></div>
+        <div class="align"><p class="p1">Total: </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.total}}</p></div>
+        <div class="align"><p class="p1">Excise Duty (12.5%): </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.exduty}}</p></div>
+        <div class="align"><p class="p1">VAT (5%): </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.vat}}</p></div>
+        <div class="align"><p class="p1">CST (2%): </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.cst}}</p></div>
         <hr/>
-        <div class="align"><p class="p1">Grand Total: </p><p class="p2">{{poitem.grandtot}}</p></div>
+        <div class="align"><p class="p1">Grand Total: </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.grandtot}}</p></div>
       </div>
       
       </div> 
@@ -203,6 +210,15 @@
     </div>
      <!-- </paper-dialog-scrollable> -->
     <!-- </paper-dialog> -->
+
+    <iron-ajax
+      auto
+      id="companyprofilereadAjax"
+      url="../../config/companyprofile.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="companyprofilereadResponse">
+    </iron-ajax>    
     
   </template>  
   
@@ -228,6 +244,15 @@
     Polymer({
       is: 'purchaseorder-card',
       ready:function(){
+      },
+      companyprofilereadResponse:function(e){
+        var cmparr=e.detail.response;
+        this.cmpname=cmparr[0].name;
+        this.cmpaddr1=cmparr[0].addressline1;
+        this.cmpaddr2=cmparr[0].addressline2;
+        this.cmpaddr3=cmparr[0].addressline3;
+        this.cmpemail=cmparr[0].email;
+        this.cmpphone=cmparr[0].phoneno;
       },
       FnToggle:function(){
         this.$.dialog.toggle();
