@@ -14,7 +14,7 @@
       }
      },
      click:function(e){
-      alert(e.target.id);
+      //alert(e.target.id);
       localStorage.setItem('curr_sess_postate',e.target.id);
       this.$.grnservice.FnIntentitemReadService();
      }
