@@ -4,7 +4,7 @@
     Polymer({
       is: 'intentflow-card',
      ready:function(){
-      localStorage.setItem('curr_sess_postate','Created');
+      localStorage.setItem('curr_sess_postate','Approved');
       this.flag='true';
       this.idval = ["Created", "Approved", "POCreated", "POSent"];
       if (localStorage.getItem("curr_sess_roleflag")=="4") { 
