@@ -13,6 +13,7 @@ Polymer({is:"intentviewitemexpand-card",
   },
   //fetches item info under the INT corresponding to the user loggedin role
   intentviewexpanditemreadService:function(intentregno){
+    document.querySelector('intentviewitem-card').FnStopSpinner();
     //alert(intentregno);
     this.intentregno=intentregno;
     var arg={"intentregno":""};
@@ -45,6 +46,7 @@ Polymer({is:"intentviewitemexpand-card",
       prodarr.push(obj);
     }
     this.itemArray=prodarr;
+    document.querySelector('intentviewitem-card').FnStopSpinner();
     //alert(JSON.stringify(this.itemArray));
   },
   //Function to fetch labels for the card

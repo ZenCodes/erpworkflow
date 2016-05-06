@@ -207,6 +207,7 @@
       //document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
     },
     FnIntentViewitemReadService:function(){
+
       this.intentviewurl=sessionStorage.getItem("curr_sess_url")+"intentviewitemread-service";
       var arg={"loggeduser":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
@@ -217,6 +218,7 @@
     intentviewitemreadResponse:function(e){
       //alert(JSON.stringify(e.detail.response));
       document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;
+      document.querySelector('intentview-card').FnStopSpinner();
     }
   });
 })();
