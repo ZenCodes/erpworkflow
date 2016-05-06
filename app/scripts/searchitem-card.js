@@ -13,6 +13,11 @@
       this.icons="icons:arrow-drop-down";
       //alert(this.inwardregno+"   "+id+"   "+clrid);
     },
+    FnStopSpinner:function(){
+    this.$.dialog.toggle();
+    var spin=document.querySelector('paper-spinner');
+    spin.active=!spin.active;
+    },
     //Function which invokes when click on expand icon button
     FnExpandItemCard:function(){
       var n=1;

@@ -10,6 +10,7 @@ var supid="";
 
     ready:function(){
 	},
+	
 	FnFetchItemInfo:function(supplierid,suppliername){
 		supname=suppliername;
 		supid=supplierid;

@@ -6,5 +6,11 @@ Polymer({
   is: "searchread-page",
   ready:function()
   {
+  	//this.$.dialog.toggle();
+  },
+  FnStopSpinner:function(){
+    this.$.dialog.toggle();
+    var spin=document.querySelector('paper-spinner');
+    spin.active=!spin.active;
   }
 });

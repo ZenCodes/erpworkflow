@@ -8,6 +8,7 @@ Polymer({is:"searchexpand-card",
 
   },
   searchreadService:function(inwardregno){
+    document.querySelector('searchitem-card').FnStopSpinner();
     this.inwardno=inwardregno;
 
     var arg={"inwardregno":""};
@@ -55,6 +56,9 @@ Polymer({is:"searchexpand-card",
     }
     this.mainArray=commarr;
     this.itemArray=prodarr;
+
+    document.querySelector('searchitem-card').FnStopSpinner();
+    
     //document.querySelector('grnflow-card').setSearchflowState(state,stateno);
     //this.pono=potempflag;
     //this.ponumber=potempflag;

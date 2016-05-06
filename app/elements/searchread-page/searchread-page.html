@@ -14,6 +14,10 @@
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">  
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <dom-module id="searchread-page">
   <template>
     <style is="custom-style">
@@ -28,7 +32,14 @@
         font-size: 15px;
         text-transform: none;
       }
+      #dialog{
+        background-color: transparent;
+        
+      }
     </style>
+    <paper-dialog id="dialog" with-backdrop>
+    <paper-spinner class="multi" active></paper-spinner>
+    </paper-dialog>
     <!--Component to show search component-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
