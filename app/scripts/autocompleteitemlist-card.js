@@ -31,6 +31,7 @@
       if(sessionStorage.getItem("curr_sess_roleflag")=="5") {
        //alert("two");
         obj.wardflag="2";
+        obj.itemid = "all";
       }
       if(suplrid==""||suplrid==null){}
       else {
