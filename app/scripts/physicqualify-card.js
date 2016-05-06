@@ -73,7 +73,7 @@ Polymer({is:"physicqualify-card",
       arg.status=localStorage.getItem("curr_sess_currflowstatus");
     }*/
     this.param=arg;
-    alert(JSON.stringify(arg));
+    // alert(JSON.stringify(arg));
     this.url=sessionStorage.getItem("curr_sess_url")+"physicqualify-card";
     this.$.physicqualifyitemreadajax.generateRequest();
   },
