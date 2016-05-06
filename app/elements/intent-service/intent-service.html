@@ -250,28 +250,30 @@
           var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
           var tax2=((parseFloat(poitemtax[0].VAT))/100);
           var tax3=((parseFloat(poitemtax[0].CST))/100);
-          var total=parseInt(poitemprice[0].Item_Supplier_price)*parseInt(poitemarr[0].Quantity);
-          var exduty=(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseInt(poitemarr[0].Quantity);
-          poitemarr[(poitemarr.length)-1].price=poitemprice[0].Item_Supplier_price;
-          poitemarr[(poitemarr.length)-1].total=parseInt(poitemprice[0].Item_Supplier_price)*parseInt(poitemarr[0].Quantity);
-          poitemarr[(poitemarr.length)-1].exduty=(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseInt(poitemarr[0].Quantity);
-          if(poarr[0].State=="Tamilnadu"){
+          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          //alert(total);
+          var exduty=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity).toFixed(2);
+          poitemarr[(poitemarr.length)-1].price=(poitemprice[0].Item_Supplier_price).toFixed(2);
+          poitemarr[(poitemarr.length)-1].total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].exduty=((parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+
+          if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){
             //alert(parseInt(poitemprice[0].Item_Supplier_price));
             //alert(parseFloat(tax2));
             //alert(parseInt(poitemarr[0].Quantity));
             //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
-          poitemarr[(poitemarr.length)-1].vat=parseInt(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
-          poitemarr[(poitemarr.length)-1].cst="0";
-          poitemarr[(poitemarr.length)-1].grandtot=parseFloat(total)+parseFloat(exduty)+parseFloat(parseInt(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].vat=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
           else{
             //alert(parseInt(poitemprice[0].Item_Supplier_price));
             //alert(parseFloat(tax3));
             //alert(parseInt(poitemarr[0].Quantity));
             //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));
-          poitemarr[(poitemarr.length)-1].vat="0";
-          poitemarr[(poitemarr.length)-1].cst=parseInt(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));          
-          poitemarr[(poitemarr.length)-1].grandtot=parseFloat(total)+parseFloat(exduty)+parseFloat(parseInt(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
          
 
