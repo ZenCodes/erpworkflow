@@ -433,7 +433,7 @@ app.post("/intentitemexpand-card",urlencodedParser,function(req,res){
 
 //Function to promote intent state to the next level
 app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
-  //console.log(req.query.intentregno);
+  console.log(req.query.intentregno);
   cond={Intent_Register_Number:req.query.intentregno}
   cond1={Product_ID:req.query.itemdes}
   //ponumber={PO_Number:req.query.pono}
@@ -444,6 +444,8 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   if(req.query.updatestate=="Supplied")
   updaterolecolumn={Intent_Supplied_By:req.query.loggedrole};
   if(req.query.updatestate=="POCreated")
+  updaterolecolumn={PO_Created_By:req.query.loggedrole};
+  if(req.query.updatestate=="POSent")
   updaterolecolumn={PO_Created_By:req.query.loggedrole};
   if(req.query.updatestate=="Accepted")
   updaterolecolumn={Intent_Accepted_By:req.query.loggedrole};
