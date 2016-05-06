@@ -20,8 +20,12 @@
         width: 65%;
         height: 95%;
         margin-left: 15%;
-        border-radius: 1px;
-        border-style: groove;
+       
+      }
+      #canvas{ border-radius: 1px;
+                border-style: groove;
+        height: 90%;
+        width: 100%;
       }
       .title{
         margin-top: 1%;
@@ -89,6 +93,7 @@
       table{
         width: 90%;
         text-align: center;
+        margin-top: 3%;
       }
       textarea{
         /*margin-top: 4%;*/
@@ -125,7 +130,7 @@
       }
       .p2{
         margin-left: 10%;
-        /*text-align: right;*/
+        text-align: left;
       }
       #canvas{
         @apply(--layout-vertical); 
@@ -264,7 +269,7 @@
       },
       click:function(){
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
-         html2canvas($("#outcard"), {          
+         html2canvas($("#canvas"), {          
             onrendered: function(canvas) {                 
                 var imgData = canvas.toDataURL('image/png'); 
                 //alert(imgData);
