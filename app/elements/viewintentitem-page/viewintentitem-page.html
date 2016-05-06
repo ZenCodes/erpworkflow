@@ -18,6 +18,10 @@
 <link rel="import" href="../viewintentitemexpand-page/viewintentitemexpand-page.html">
 <link rel="import" href="../intent-service/intent-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">  
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <dom-module id="viewintentitem-page">
   <style>
     .intentexpandcard{
@@ -61,8 +65,17 @@
     #date{
       margin-left: 10%;
     }
+    #dialog{
+      background-color: transparent;
+        
+    }
   </style>
   <template>
+
+    <paper-dialog id="dialog" with-backdrop>
+    <paper-spinner class="multi" active></paper-spinner>
+    </paper-dialog>
+
     <!--Expand Itemcard-->
     <div class="intentexpandcard" id="card{{itemno}}">
      <!-- <div class="repeatcard"> -->
@@ -75,17 +88,6 @@
      <paper-button id="itemlocation"  name="itemlocation" value="{{itemlocation}}" on-click="FnExpandItemCard" noink>{{itemlocation}}</paper-button>
      <paper-button id="intentregno"  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
 
-        <!--<div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
-        <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
-        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}</paper-item></div>
-        <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div>
-        <textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
-        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>-->
-      <!-- </div> -->
-      <!--<paper-button id="regno"  name="intentregno" value="{{intentregno}}" on-click="FnExpandItemCard" noink>{{intentregno}}</paper-button>
-      <paper-button id="date" name="intentdate" value="{{intentdate}}"  on-click="FnExpandItemCard" noink>{{intentdate}}</paper-button>
-      <paper-icon-button id="expand" icon="{{icons}}" on-click="FnExpandItemCard" noink></paper-icon-button>
-      <paper-tooltip for="expand" offset="0">Click to expand</paper-tooltip>-->
     </div>
     <!--Expand item collapse card-->
     <iron-collapse id="{{itemno}}">

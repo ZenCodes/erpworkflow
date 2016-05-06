@@ -10,12 +10,19 @@
   //var n=1;
   Polymer({is:"viewintentitem-page",
     ready:function(){
+
       //alert("call");
       this.icons="icons:arrow-drop-down";
       //this.$.osc.outwardsearchreadService(this.inwardregno);
     },
+    FnStopSpinner:function(){
+    this.$.dialog.toggle();
+    var spin=document.querySelector('paper-spinner');
+    spin.active=!spin.active;
+    },
     //Function which invokes when click on expand icon button
     FnExpandItemCard:function(){
+
       var n=1;
       var x=-4;
       //alert(this.intentregno);

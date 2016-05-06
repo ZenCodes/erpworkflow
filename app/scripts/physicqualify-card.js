@@ -41,7 +41,8 @@ Polymer({is:"physicqualify-card",
   },
   physicqualifyreadService:function(inwardregno){
     //fetches item info under the IRN corresponding to the user loggedin role
-    //alert(inwardregno);
+    // alert(inwardregno);
+    //document.querySelector('physicinsitem-card').FnStopSpinner();
     this.inwardno=inwardregno;
     var arg={"inwardregno":"","status":""};
     arg.inwardregno=inwardregno;
@@ -80,7 +81,7 @@ Polymer({is:"physicqualify-card",
     //Response binding to the card
     var arr=e.detail.response;
     //alert(JSON.stringify(arr));
-    if(arr!='no items'){
+    // if(arr!='no items'){
     var commarr=[];
     var prodarr=[];
     var potempflag="";
@@ -111,6 +112,7 @@ Polymer({is:"physicqualify-card",
       }
       obj.podate=arr[i].podate;
       obj.supname=arr[i].supname;
+
 
       /*inwardno=arr[i].inwardno;      
       ponumber=arr[i].ponumber;
@@ -151,10 +153,13 @@ Polymer({is:"physicqualify-card",
     this.ponumber=potempflag;
     localStorage.setItem("curr_sess_PONumber",potempflag);
     this.suppliername=commarr[0].supname;
-
+    //alert(this.suppliername);
+    // if(arr!='no items'){}
+    // else
+    //document.querySelector('physicinsitem-card').FnStopSpinner();
     //alert(JSON.stringify(commarr));
     //alert(JSON.stringify(prodarr));
-}
+// }
   },
   callWebcomponentService:function(){
     this.$.webcomponentreadajax.generateRequest();

@@ -15,7 +15,12 @@
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../intentviewtype-card/intentviewtype-card.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">  
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <dom-module id="viewintent-page">
   <template>
     <style is="custom-style">
@@ -38,8 +43,16 @@
         margin-left: 90%;
         margin-top: -6%;
       }
+      #dialog{
+        background-color: transparent;
+        
+      }
     </style>
-    
+
+    <paper-dialog id="dialog" with-backdrop>
+    <paper-spinner class="multi" active></paper-spinner>
+    </paper-dialog>
+
     <!--Template which has card template-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
       <div class="card">

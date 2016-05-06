@@ -9,6 +9,7 @@ Polymer({is:"physicqualifyread-card",
   },
   physicqualifyreadService:function(inwardregno){
     //Reading item info under the expanded IRN card
+    //alert(inwardregno)
     this.inwardno=inwardregno;
 
     var arg={"inwardregno":"","status":""};

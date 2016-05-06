@@ -388,8 +388,8 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
     if(!err)
     {
       var itemarr=[];
-      console.log(rows.length);
-      if(rows.length>0){
+      //console.log(rows.length);
+      //if(rows.length>0){
 
       for(var i=0;i<rows.length;i++)
       {
@@ -413,14 +413,14 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
         itemarr.push(obj);
       }
 
-      console.log(JSON.stringify(itemarr));
+      //console.log(JSON.stringify(itemarr));
       //Item Response sending back to the server
       return callback(itemarr);
-    }
-    else
-      return callback("no items");
-    }
-    else{
+    //}
+    //else
+      //return callback("no items");
+    //}
+    //else{
     }
   });
 }

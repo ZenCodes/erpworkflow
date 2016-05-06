@@ -11,6 +11,7 @@
     },
     //Invoking service to fetch item under state according to the role logged in
     physicreadService:function(){
+    
       var arg={"status":""};
       switch(parseInt(sessionStorage.getItem("curr_sess_roleflag"))){
         case 1:
@@ -38,6 +39,7 @@
     {
       var arr=e.detail.response;
       document.querySelector('physicins-page').itemArray=arr;
+      document.querySelector('physicins-page').FnStopSpinner();
     },
     //Fetching history of the items correspoding to the item viewed by the current logged role
     flowphysicreadService:function(state){
@@ -132,6 +134,9 @@
       }
     },
     FnIntentitemReadService:function(){
+      if(document.querySelector('viewintent-page')==null){}
+      else
+      document.querySelector('viewintent-page').FnStopSpinner();
       //intentstate=state;
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":"","state":"","loggedrole":""};
@@ -165,6 +170,7 @@
       else{        
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       }
+      document.querySelector('viewintent-page').FnStopSpinner();
     },
     FnIntentsupplyitemReadService:function(){
       //alert("coming...");
