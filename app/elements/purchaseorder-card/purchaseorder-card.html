@@ -17,25 +17,22 @@
       .card{
         /*margin-top: -3%;*/
         @apply(--layout-vertical);
-        width: 65%;
-        height: 95%;
+        width: 700px;
+        height: 900px;
         margin-left: 15%;
-       
-      }
-      #canvas{ border-radius: 1px;
-                border-style: groove;
-        height: 90%;
-        width: 100%;
+        border-radius: 1px;
+        border-style: groove;
+        padding-bottom: -10%;
       }
       .title{
-        margin-top: 1%;
-        font-size: 22px;
+        margin-top: 3%;
+        font-size: 24px;
         font-weight: bold;
         text-align: center;
       }
-      .header{
+      .cheader{
         @apply(--layout-horizontal);
-        margin-top: 1%;
+        margin-top: 7%;
         margin-left: 5%;
       }
       .companyheader{
@@ -75,7 +72,6 @@
       .comp{
         width:150px;
         text-align: left;
-        height:3.5%;
       }
       .todetail{
         margin-left: 10%;
@@ -84,27 +80,26 @@
       .to{
         margin-left: 2%;
         font-size: 15px;
-        /*margin-top: 2%;*/
+        margin-top: 2%;
       }
       .itemdetail{
         margin-left: 10%;
-        /*margin-top: 4%;*/
+        margin-top: 4%;
       }
       table{
         width: 90%;
         text-align: center;
-        margin-top: 3%;
       }
       textarea{
-        /*margin-top: 4%;*/
+        margin-top: 20%;
         margin-left: 0%;
         width:130%;
         height:7%;
       }
       .total{
         font-size: 15px;
-        /*margin-top: 3%;*/
-        margin-left: 53%;
+        margin-top: 3%;
+        margin-left: 35%;
         text-align: left;
       }
        paper-button{
@@ -122,22 +117,20 @@
       }
       .align{
        @apply(--layout-horizontal); 
-       height:4%;
-       width:220px;
       }
       .p1{
         width: 80%;
       }
       .p2{
-        margin-left: 10%;
-        text-align: left;
+        margin-left: 5%;
+        text-align: left;;
       }
       #canvas{
         @apply(--layout-vertical); 
       }
       hr{
         height: 1px;
-        width: 120%;
+        width: 140%;
         margin-left: -10%;
       }
       .grandalign{
@@ -148,24 +141,22 @@
       .gp1{
         width: 80%;
       }
-      p
-      {
-        font-size: 16px;
+      .img{
+        /*margin-top: 2%;*/
       }
-      
     </style>
     <!-- <paper-dialog id="dialog"> -->
      <!-- <paper-dialog-scrollable> -->
-    <div class="card" id="outcard">
+    <div class="card" >
     <div id="canvas">
     
       <div class="title">Purchase Order</div>
       <template is="dom-repeat" items="{{poarray}}" as="po">
-      <div class="header">
+      <div class="cheader">
         <div class="companyheader">
         <div class="company">
           <div><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
-          <div class="address" style="height:20%;">
+          <div class="address">
           <p class="comp">{{cmpname}}</p>
           <p class="comp">{{cmpaddr1}}</p>
           <p class="comp">{{cmpaddr2}}</p>  
@@ -182,11 +173,11 @@
       </div>
       <div class="toheader">
         <div class="to"><p>To</p></div>
-        <div class="todetail" style="height:15%;">
-        <p style="height:3.5%;">{{po.Supplier_Name}}</p>
-        <p style="height:3.5%;">{{po.Location}}</p>
-        <p style="height:3.5%;">{{po.City}}</p>
-        <p style="height:3.5%;">{{po.District}}</p>
+        <div class="todetail">
+        <p>{{po.Supplier_Name}}</p>
+        <p>{{po.Location}}</p>
+        <p>{{po.City}}</p>
+        <p>{{po.District}}</p>
         </div>
       </div>
       </template>
@@ -200,14 +191,14 @@
       <!-- </div> -->
       <div class="summary">
       <div>
-        <!-- <textarea>Notes....</textarea> -->
+        <textarea>Notes....</textarea>
       </div>
       <div class="total">
         <div class="align"><p class="p1">Total: </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.total}}</p></div>
-        <div class="align"><p class="p1">Excise Duty : </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.exduty}}</p></div>
-        <div class="align"><p class="p1">VAT : </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.vat}}</p></div>
-        <div class="align"><p class="p1">CST : </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.cst}}</p></div>
-        <!-- <hr/> -->
+        <div class="align"><p class="p1">Excise Duty (12.5%): </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.exduty}}</p></div>
+        <div class="align"><p class="p1">VAT (5%): </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.vat}}</p></div>
+        <div class="align"><p class="p1">CST (2%): </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.cst}}</p></div>
+        <hr/>
         <div class="align"><p class="p1">Grand Total: </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.grandtot}}</p></div>
       </div>
       
@@ -216,7 +207,7 @@
       </template>      
 
     </div>
-    <paper-button id="pdf" on-click="click">View PDF</paper-button>
+    <paper-button id="pdf" on-click="click" hidden>View PDF</paper-button>
     </div>
      <!-- </paper-dialog-scrollable> -->
     <!-- </paper-dialog> -->
@@ -269,6 +260,8 @@
       },
       click:function(){
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
+        //window.location.href="../elements/printhome.html";
+        //window.print();
          html2canvas($("#canvas"), {          
             onrendered: function(canvas) {                 
                 var imgData = canvas.toDataURL('image/png'); 

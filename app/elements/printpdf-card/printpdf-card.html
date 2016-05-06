@@ -29,7 +29,7 @@
       <paper-button id="ViewPO"  name="viewpo" on-click="FnViewPO">View PO</paper-button>
     </div>
     <!-- <purchaseorder-card id="purchase"></purchaseorder-card> -->
-    <!-- <intent-service id="intentservice"></intent-service> -->
+    <intent-service id="intentservice"></intent-service>
   </template>
   <script>
   (function() {
@@ -46,7 +46,7 @@
         document.querySelector('app-homepage').FnSetIntentFlowVisibility("false");
         document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
         document.querySelector('intenthome-page').setPage('purchaseorder-card');   
-        // this.$.intentservice.FnPurchaseorderService();
+        this.$.intentservice.FnPurchaseorderService();
         // this.$.purchase.FnToggle();
       }
  
