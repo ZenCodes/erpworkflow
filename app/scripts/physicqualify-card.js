@@ -73,6 +73,7 @@ Polymer({is:"physicqualify-card",
       arg.status=localStorage.getItem("curr_sess_currflowstatus");
     }*/
     this.param=arg;
+    alert(JSON.stringify(arg));
     this.url=sessionStorage.getItem("curr_sess_url")+"physicqualify-card";
     this.$.physicqualifyitemreadajax.generateRequest();
   },
@@ -80,11 +81,14 @@ Polymer({is:"physicqualify-card",
   {
     //Response binding to the card
     var arr=e.detail.response;
+    //alert(arr.length);
     //alert(JSON.stringify(arr));
     // if(arr!='no items'){
+
     var commarr=[];
     var prodarr=[];
     var potempflag="";
+    if(arr.length>0){
     for(var i=0;i<1;i++)
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
@@ -113,6 +117,7 @@ Polymer({is:"physicqualify-card",
       obj.podate=arr[i].podate;
       obj.supname=arr[i].supname;
 
+      document.querySelector('physicinsitem-card').FnStopSpinner();
 
       /*inwardno=arr[i].inwardno;      
       ponumber=arr[i].ponumber;
@@ -120,6 +125,9 @@ Polymer({is:"physicqualify-card",
       supname=arr[i].supname;*/
     }
     commarr.push(obj);
+    this.suppliername=commarr[0].supname;
+    }
+    
     // alert(JSON.stringify(commarr));
     for(var i=0;i<arr.length;i++)
     {
@@ -152,13 +160,15 @@ Polymer({is:"physicqualify-card",
     this.pono=potempflag;
     this.ponumber=potempflag;
     localStorage.setItem("curr_sess_PONumber",potempflag);
-    this.suppliername=commarr[0].supname;
+    
     //alert(this.suppliername);
     // if(arr!='no items'){}
     // else
     //document.querySelector('physicinsitem-card').FnStopSpinner();
     //alert(JSON.stringify(commarr));
     //alert(JSON.stringify(prodarr));
+    //if(arr.length>0)
+    
 // }
   },
   callWebcomponentService:function(){
