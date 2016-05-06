@@ -28,15 +28,19 @@
       },
       FnShowIntentView:function(){
         if(toggleflag==0){
+          document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
         localStorage.setItem("curr_sess_intenttoggleflag","1"); 
         document.querySelector('intenthome-page').setPage('Intent View');
         toggleflag=1;
+        
         //window.location.href="../elements/indexhome.html";
         }
         else if(toggleflag==1){
+          document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("true");
         localStorage.setItem("curr_sess_intenttoggleflag","0");
         document.querySelector('intenthome-page').setPage('View Intent');
         toggleflag=0; 
+        
         //window.location.href="../elements/indexhome.html";
         }
       }
