@@ -43,6 +43,8 @@
       },
       FnViewPO:function(){  
         document.querySelector('app-homepage').setPage('intenthome-page');
+        document.querySelector('app-homepage').FnSetIntentFlowVisibility("false");
+        document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
         document.querySelector('intenthome-page').setPage('purchaseorder-card');   
         // this.$.intentservice.FnPurchaseorderService();
         // this.$.purchase.FnToggle();

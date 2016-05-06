@@ -193,5 +193,12 @@ Polymer({
       this.$.promotebutton.style.visibility='visible';
     if(flag=="false")
       this.$.promotebutton.style.visibility='hidden';
+  },
+  FnSetIntentFlowcardVisibility:function(flag){
+    //alert(flag);
+     if(flag=="true")
+      this.$.intentflow.style.visibility='visible';
+    if(flag=="false")
+      this.$.intentflow.style.visibility='hidden';
   }
 });
