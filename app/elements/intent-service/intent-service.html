@@ -208,6 +208,7 @@
          var m=d.getMonth();
          var d=d.getDate();
          poarr[0].PO_Date=d+"/"+m+"/"+y;
+         document.querySelector("purchaseorder-home").poarray=poarr;
          document.querySelector("purchaseorder-card").poarray=poarr;
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -280,6 +281,7 @@
           //poitemarr.push(poitemprice[0].Item_Supplier_price);
           //alert(JSON.stringify(poitemarr));
           }
+          document.querySelector("purchaseorder-home").poitemarray=poitemarr;
           document.querySelector("purchaseorder-card").poitemarray=poitemarr;
       },
       FnSelectSupplier:function(e){

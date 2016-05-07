@@ -1,0 +1,33 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../purchaseoreder-card/purchaseorder-card.html">
+<link rel="import" href="../intent-service/intent-service.html">
+
+<dom-module id="purchaseorder-home">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>Hello from <span></span></div>
+    <purchaseorder-card poarray="{{poarray}}" poitemarray="{{poitemarray}}"></purchaseorder-card>
+
+    <intent-service id="service" poarray="{{poarray}}" poitemarray="{{poitemarray}}"></intent-service>  
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'purchaseorder-home',
+      ready:function(){
+        alert('halo');
+        this.$.service.FnPurchaseorderService();
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -42,11 +42,12 @@
         //alert("mail");
       },
       FnViewPO:function(){  
-        document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('app-homepage').FnSetIntentFlowVisibility("false");
-        document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
-        document.querySelector('intenthome-page').setPage('purchaseorder-card');   
+        // document.querySelector('app-homepage').setPage('intenthome-page');
+        // document.querySelector('app-homepage').FnSetIntentFlowVisibility("false");
+        // document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
+        // document.querySelector('intenthome-page').setPage('purchaseorder-card');   
         this.$.intentservice.FnPurchaseorderService();
+        window.location.href="../elements/printhome.html";
         // this.$.purchase.FnToggle();
       }
  

@@ -8,6 +8,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
 <script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
 <script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+
 <dom-module id="purchaseorder-card">
   <template>
     <style>
@@ -18,14 +19,14 @@
         /*margin-top: -3%;*/
         @apply(--layout-vertical);
         width: 700px;
-        height: 900px;
+        height: 1050px;
         margin-left: 15%;
         border-radius: 1px;
         border-style: groove;
         padding-bottom: -10%;
       }
       .title{
-        margin-top: 3%;
+        margin-top: 8%;
         font-size: 24px;
         font-weight: bold;
         text-align: center;
@@ -57,6 +58,7 @@
       }
       table{
         border-collapse: collapse;
+        cellspacing: 8px;
       }
       .company{
         @apply(--layout-horizontal);
@@ -87,7 +89,8 @@
         margin-top: 4%;
       }
       table{
-        width: 90%;
+        width: 95%;
+        height: 10%;
         text-align: center;
       }
       textarea{
@@ -111,7 +114,7 @@
         height: 30px;
         margin-top: 5%;
         text-transform:none;
-        margin-left: 35%;
+        margin-left: 30%;
         width: 20%;
 
       }
@@ -130,7 +133,7 @@
       }
       hr{
         height: 1px;
-        width: 140%;
+        width: 120%;
         margin-left: -10%;
       }
       .grandalign{
@@ -144,14 +147,18 @@
       .img{
         /*margin-top: 2%;*/
       }
+      p{
+        font-size: 17px;
+      }
     </style>
     <!-- <paper-dialog id="dialog"> -->
      <!-- <paper-dialog-scrollable> -->
-    <div class="card" >
+    <div> 
+    <div class="card" id="card">
     <div id="canvas">
     
       <div class="title">Purchase Order</div>
-      <template is="dom-repeat" items="{{poarray}}" as="po">
+      
       <div class="cheader">
         <div class="companyheader">
         <div class="company">
@@ -166,11 +173,14 @@
           </div>
         </div>          
         </div>
+        <template is="dom-repeat" items="{{poarray}}" as="po">
         <div class="dateheader">
           <p>PO Date: {{po.PO_Date}}</p>
           <p>PO Number: {{po.PO_Number}}</p>
         </div>
+        </template>
       </div>
+      <template is="dom-repeat" items="{{poarray}}" as="po">
       <div class="toheader">
         <div class="to"><p>To</p></div>
         <div class="todetail">
@@ -207,7 +217,8 @@
       </template>      
 
     </div>
-    <paper-button id="pdf" on-click="click" hidden>View PDF</paper-button>
+    </div>
+    <paper-button id="pdf" on-click="click">View PDF</paper-button>
     </div>
      <!-- </paper-dialog-scrollable> -->
     <!-- </paper-dialog> -->
@@ -219,8 +230,48 @@
       handle-as="json"
       content-type="application/json"
       on-response="companyprofilereadResponse">
-    </iron-ajax>    
-    
+    </iron-ajax>  
+
+     <iron-ajax
+      id="purchaseorderajax"
+      url="{{purchaseorderurl}}"
+      params='{{purchaseorderparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderResponse">
+    </iron-ajax>
+
+     <iron-ajax
+      id="purchaseorderitemajax"
+      url="{{purchaseorderitemurl}}"
+      params='{{purchaseorderitemparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemResponse">
+    </iron-ajax>
+
+    <iron-ajax
+      id="purchaseorderitemtaxajax"
+      url="{{purchaseorderitemtaxurl}}"
+      params='{{purchaseorderitemtaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemtaxResponse">
+    </iron-ajax>
+
+    <iron-ajax
+      id="purchaseorderitempriceajax"
+      url="{{purchaseorderitempriceurl}}"
+      params='{{purchaseorderitempriceparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitempriceResponse">
+    </iron-ajax>
+
   </template>  
   
   <script>
@@ -241,19 +292,129 @@
     });*/
   (function() {
     'use strict';
-
+    var productid="";
+    var intentno;
+    var promotestate;
+    var no=0;
+    var arrlength=0;
+    var poarray=[];
+    var largestpono=0;
+    var poarr=[];
+    var poitemarr=[];
+    var poitemtax=[];
+    var poitemprice=[];
     Polymer({
       is: 'purchaseorder-card',
       ready:function(){
+      // alert('yes');
+      this.FnPurchaseorderService();
       },
       companyprofilereadResponse:function(e){
         var cmparr=e.detail.response;
+        //alert(JSON.stringify(cmparr));
         this.cmpname=cmparr[0].name;
         this.cmpaddr1=cmparr[0].addressline1;
         this.cmpaddr2=cmparr[0].addressline2;
         this.cmpaddr3=cmparr[0].addressline3;
         this.cmpemail=cmparr[0].email;
         this.cmpphone=cmparr[0].phoneno;
+      },
+       FnPurchaseorderService:function(){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderurl=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
+         this.purchaseorderparam=obj;
+         // alert(JSON.stringify(obj));
+         this.$.purchaseorderajax.generateRequest(); 
+
+      },
+      FnPurchaseorderResponse:function(e){
+          poarr=e.detail.response.itemarr;
+         if(poarr.length>0){
+         var d=new Date(poarr[0].PO_Date);
+         //alert(d);
+         var y=d.getFullYear();
+         var m=d.getMonth();
+         var d=d.getDate();
+         poarr[0].PO_Date=d+"/"+m+"/"+y;
+         this.poarray=poarr;
+         // document.querySelector("purchaseorder-home").poarray=poarr;
+         // document.querySelector("purchaseorder-card").poarray=poarr;
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitemurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
+         this.purchaseorderitemparam=obj;
+         this.$.purchaseorderitemajax.generateRequest(); 
+         //alert(JSON.stringify(poarr));
+         }
+      },
+      FnPurchaseorderitemResponse:function(e){
+         poitemarr=e.detail.response.itemarr;         
+         if(poitemarr.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitemtaxurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
+         this.purchaseorderitemtaxparam=obj;
+         this.$.purchaseorderitemtaxajax.generateRequest(); 
+         //alert(JSON.stringify(poitemarr));
+         }
+      },
+      FnPurchaseorderitemtaxResponse:function(e){
+         poitemtax=e.detail.response.itemarr;  
+         //alert(JSON.stringify(poitemtax));       
+         if(poitemtax.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitempriceurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
+         this.purchaseorderitempriceparam=obj;
+         this.$.purchaseorderitempriceajax.generateRequest(); 
+         //alert(JSON.stringify(poitemarr));
+         }
+      },
+      FnPurchaseorderitempriceResponse:function(e){
+          poitemprice=e.detail.response.itemarr;
+          if(poitemprice.length>0){
+          //alert(JSON.stringify(poitemprice));
+          var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
+          var tax2=((parseFloat(poitemtax[0].VAT))/100);
+          var tax3=((parseFloat(poitemtax[0].CST))/100);
+          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          //alert(total);
+          var exduty=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity).toFixed(2);
+          poitemarr[(poitemarr.length)-1].price=(poitemprice[0].Item_Supplier_price).toFixed(2);
+          poitemarr[(poitemarr.length)-1].total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].exduty=((parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+
+          if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){
+            //alert(parseInt(poitemprice[0].Item_Supplier_price));
+            //alert(parseFloat(tax2));
+            //alert(parseInt(poitemarr[0].Quantity));
+            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].vat=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
+          }
+          else{
+            //alert(parseInt(poitemprice[0].Item_Supplier_price));
+            //alert(parseFloat(tax3));
+            //alert(parseInt(poitemarr[0].Quantity));
+            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));
+          poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
+          }
+         
+
+          //poitemarr.push(poitemprice[0].Item_Supplier_price);
+          //alert(JSON.stringify(poitemarr));
+          }
+          this.poitemarray=poitemarr;
+          // document.querySelector("purchaseorder-home").poitemarray=poitemarr;
+          // document.querySelector("purchaseorder-card").poitemarray=poitemarr;
       },
       FnToggle:function(){
         this.$.dialog.toggle();
@@ -262,7 +423,7 @@
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
         //window.location.href="../elements/printhome.html";
         //window.print();
-         html2canvas($("#canvas"), {          
+         html2canvas($("#card"), {          
             onrendered: function(canvas) {                 
                 var imgData = canvas.toDataURL('image/png'); 
                 //alert(imgData);
