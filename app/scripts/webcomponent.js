@@ -29,6 +29,7 @@
           if(this.current_page!='login-card')
           document.querySelector('app-homepage').setPageTitle(arr[i].Page[2].title);
           /*Binding Labels and error message to the respective card*/
+          //alert(JSON.stringify(labelvalue));
           document.querySelector(arr[i].Page[0].page[1]).label = labelvalue;
 
         }

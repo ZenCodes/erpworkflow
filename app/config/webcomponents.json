@@ -193,7 +193,12 @@
         "Item_Group_error":"Enter Item Group","Item_Type_error":"Enter Item Type",
         "Supplier_error":"Enter Supplier Name"}]}
       ,{"title":["Add Customer"]}
-    ]}
+    ]},
+       {"Page":[
+          {"page":["Outward Report","outwardreport-card"]},
+        {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Container/Quantity"},{"tab":"Customer Name"},{"tab":"Destination"},{"tab":"Invoice Number"},{"tab":"Date"}]}]}
+      ,{"title":["Outward Report Card"]}
+      ]}
     
   ]
 

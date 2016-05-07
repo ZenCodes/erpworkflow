@@ -20,6 +20,8 @@
       },
       callOutwardService:function(dayval){
         //alert(todayTime);
+
+        // document.querySelector('outwardreport-card').FnStopSpinner();
         var flag=true;
         var obj={"outdate":""};
         if(dayval=="current"){ 
@@ -53,12 +55,21 @@
       },
       outwardResponse:function(e){
         //alert(JSON.stringify(e.detail.response.itemarr));
-        if((e.detail.response.itemarr).length==0)
-          alert("No Items Found!");
+        if((e.detail.response.itemarr).length==0){
+          var arr=[];
+          document.querySelector('outwardreport-card').FnEnableHide(true);
+          document.querySelector('outwardreport-card').itemarr=arr;
+        }
+          // alert("No Items Found!");
           //this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
+        else{
+          document.querySelector('outwardreport-card').FnEnableHide(false);
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
+      }
+      document.querySelector('outwardreport-card').FnStopSpinner();
       },
       FnFromToDateChange:function(fromdate,todate){
+        document.querySelector('outwardreport-card').FnStopSpinner();
         todayTime=new Date(localStorage.getItem("curr_sess_todaydate"));
         var obj={"fromdate":"","todate":""};
         obj.fromdate=fromdate;
@@ -68,10 +79,18 @@
         this.$.outwarditemfromtofetchajax.generateRequest();
       },
       outwardfromtoResponse:function(e){
-        if((e.detail.response.itemarr).length==0)
-          alert("No Items Found!");
+        if((e.detail.response.itemarr).length==0){
+          var arr=[];
+          document.querySelector('outwardreport-card').FnEnableHide(true);
+          document.querySelector('outwardreport-card').itemarr=arr;
+        }
+          // alert("No Items Found!");
           //this.$.ID_Show_Dialog.FnShowDialog("No Items Found!","");
+        else  {
+          document.querySelector('outwardreport-card').FnEnableHide(false);
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
+      }
+      document.querySelector('outwardreport-card').FnStopSpinner();
       },
       FnSetTodayTime:function(){
         //todayTime=localStorage.getItem("curr_sess_todaydate");
