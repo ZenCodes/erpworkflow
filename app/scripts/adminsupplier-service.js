@@ -6,6 +6,7 @@
    var obj1;
   var obj2;
   var obj3;
+  var approvesupplierarr=[];
   Polymer({
     is: "adminsupplier-service",
     ready: function () {
@@ -77,7 +78,6 @@
 
 	},
     addsupplierService:function(supplieridd,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
-
       obj1={
         "supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""
       };
@@ -96,15 +96,13 @@
       obj1.emailid=emailid;
       },
     addsupplierResponse:function(e){
-
       if(e.detail.response.returnval=="succ"){
 		  //alert("Supplier Added!");
 		  this.paymentparam=obj2;
 		  this.paymenturl=sessionStorage.getItem("curr_sess_url")+"addpayment-service";
 		  this.$.addpaymentajax.generateRequest();
-
 		  //document.querySelector('addsupplier-card').FnBtnDisable();
-          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+      //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
       }
       else{
       	  alert("Supplier ID already exists!..Create new supplier...");
@@ -234,7 +232,7 @@
   			  this.updatesupplierparam=obj1;
 
 			  //if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-              this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
+          this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
 		      this.$.updatesupplierajax.generateRequest();
 		  	  //}
 
@@ -252,6 +250,39 @@
 	      else
 	      	  alert("Unable to add payment!");
 	       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
+    },
+    readsuppliertoapproveService:function(){
+    	//alert("call");
+      this.readsuppliertoapproveurl=sessionStorage.getItem("curr_sess_url")+"readsuppliertoapprove-service";
+      this.$.readsuppliertoapproveajax.generateRequest();
+    },
+    FnreadsuppliertoapproveResponse:function(e){
+      //alert(e.detail.response.itemarr);
+      document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
+    },
+    FnSetSupplierforApprove:function(supplierid){
+    	approvesupplierarr.push(supplierid);
+    },
+     approvesupplierforpurchaseService:function(){
+      //alert("call"+JSON.stringify(approvesupplierarr));
+      	
+      for(var i=0;i<approvesupplierarr.length;i++){
+      var obj={"supplierid":""};
+      obj.supplierid=approvesupplierarr[i];
+      this.approvesupplierforpurchaseparam=obj;
+      this.approvesupplierforpurchaseurl=sessionStorage.getItem("curr_sess_url")+"approvesupplierforpurchase-service";
+      this.$.approvesupplierforpurchaseajax.generateRequest();
+  	  }
+    },
+    FnapprovesupplierforpurchaseResponse:function(e){
+      //alert(e.detail.response.itemarr);
+      if(e.detail.response.itemarr=="succ"){
+      	alert("Suppliers are approved!!");
+      	window.location.href="../elements/indexhome.html";
+      }
+      else
+      	alert("Failed to approve the supplier!!");
+      //document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
     }
 
   });

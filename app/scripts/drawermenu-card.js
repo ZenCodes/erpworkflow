@@ -154,9 +154,24 @@ Polymer({is:"drawermenu-card",
 
         //window.location.href="../elements/indexhome.html";
       }
+      if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&e.target.id=="Approve Supplier"){
+        //alert("approve");
+        localStorage.setItem("curr_sess_wardflag","7");
+        //document.querySelector('app-homepage').setPage('intenthome-page');
+        //document.querySelector('app-homepage').setVisible("false");
+        //document.querySelector('viewtype-card').FnViewlist();
+        //document.querySelector('app-homepage').setFlowVisibility('false');
+        // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+        //document.querySelector('intenthome-page').setPage('Approve Supplier');
+
+        window.location.href="../elements/indexhome.html";
+      }
+
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
         //document.querySelector('intenthome-page').setPage('Add Intent');
     }
+
+    
 
      //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
     else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){

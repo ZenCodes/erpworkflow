@@ -61,7 +61,7 @@
       {
         "rolename": "Ceo ceo",
         "RoleFlag": "9",
-        "menu" : ["Add Intent","View Intent"]
+        "menu" : ["Add Intent","View Intent","Approve Supplier"]
       },
       {
         "rolename": "Sales manager",

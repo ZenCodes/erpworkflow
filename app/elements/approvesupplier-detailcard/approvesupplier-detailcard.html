@@ -1,0 +1,50 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/paper-checkbox/paper-checkbox.html">
+
+<dom-module id="approvesupplier-detailcard">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{        
+      @apply(--layout-horizontal);
+      width: 100%;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      margin-top:2%;      
+      }
+      paper-button{
+        width:30%;
+      }
+    </style>
+    <div class="card">
+     <paper-button id="supplierid"  name="supplierid" value="{{supplierid}}" noink>{{supplierid}}</paper-button>          
+     <paper-button id="suppliername"  name="suppliername" value="{{suppliername}}" noink>{{suppliername}}</paper-button>
+     <paper-button id="location"  name="location" value="{{location}}" noink>{{location}}</paper-button>
+     <paper-button id="city"  name="city" value="{{city}}" noink>{{city}}</paper-button>
+     <paper-checkbox id={{supplierid}} on-change="FnCheck"></paper-checkbox>
+     </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var approvearr=[];
+
+    Polymer({
+      is: 'approvesupplier-detailcard',
+
+    FnCheck:function(){
+      // alert(this.supplierid);
+      if(document.querySelector('#'+this.supplierid).checked==true){
+        approvearr.push(this.supplierid);
+        document.querySelector('adminsupplier-service').FnSetSupplierforApprove(this.supplierid);
+      }
+    }
+    });
+  })();
+  </script>
+</dom-module>

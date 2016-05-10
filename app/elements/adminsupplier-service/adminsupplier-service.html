@@ -82,6 +82,26 @@
 	      content-type="application/json"
 	      on-response="updatepaymentResponse">
     </iron-ajax>
+    <!--Component to fetch newly created supplier for approval-->
+    <iron-ajax
+      id="readsuppliertoapproveajax"
+      url="{{readsuppliertoapproveurl}}"
+      params='{{readsuppliertoapproveparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnreadsuppliertoapproveResponse">
+    </iron-ajax>
+     <!--Component to appreov newly created supplier for purchase-->
+    <iron-ajax
+      id="approvesupplierforpurchaseajax"
+      url="{{approvesupplierforpurchaseurl}}"
+      params='{{approvesupplierforpurchaseparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnapprovesupplierforpurchaseResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

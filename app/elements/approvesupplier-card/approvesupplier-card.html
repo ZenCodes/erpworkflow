@@ -1,0 +1,83 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../viewintentitem-page/viewintentitem-page.html">
+<link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../intentviewtype-card/intentviewtype-card.html">
+<link rel="import" href="../approvesupplier-detailcard/approvesupplier-detailcard.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<dom-module id="approvesupplier-card">
+  <template>
+    <style is="custom-style">
+      .card{
+        margin-top: 2%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 80%;
+      //margin-top: 5%;
+        height: 4%;
+        margin-left: 10%;
+        text-align: start;
+      }
+      paper-button{
+        font-size: 15px;
+        text-transform: none;
+      }
+      .itemcard{
+        width: 80%;
+        margin-left: 10%;
+      }
+      #dialog{
+        background-color: transparent;
+
+      }
+    </style>
+
+    <paper-dialog id="dialog" with-backdrop>
+      <paper-spinner class="multi" active></paper-spinner>
+    </paper-dialog>
+
+    <!--Template which has card template-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+      <div class="card">
+        <paper-tabs selected="0" noink id="ptab">
+          <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+            <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+          </template>
+        </paper-tabs>
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <div class="itemcard">
+            <div><approvesupplier-detailcard supplierid="{{item.Supplier_ID}}" suppliername="{{item.Supplier_Name}}" location="{{item.Location}}" city="{{item.City}}"></approvesupplier-detailcard>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <!--Calling webcomponent service to bind label info-->
+    <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
+    <!--Binding items to the above template-->
+    <adminsupplier-service id="adminsupplierservice" itemArray="{{itemArray}}"></adminsupplier-service>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/approvesupplier-card.js"></script>
+
+</dom-module>

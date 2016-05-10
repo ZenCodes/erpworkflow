@@ -564,7 +564,7 @@ app.post('/itemsupplierread-service',urlencodedParser, function (req, res) {
 
 //Function to fetch supplier info req receives from admin service
 app.post('/containerread-service',urlencodedParser, function (req, res) {
-  
+
   var FnContainerReadcall = require("./app/scripts/dboperations.js");
   FnContainerReadcall.FnContainerRead("containerread-service",function(returnval){
     res.status(200).json({'itemarr': returnval});
@@ -573,7 +573,7 @@ app.post('/containerread-service',urlencodedParser, function (req, res) {
 
 //Function to fetch supplier info req receives from admin service
 app.post('/unitread-service',urlencodedParser, function (req, res) {
-  
+
   var FnUnitReadcall = require("./app/scripts/dboperations.js");
   FnUnitReadcall.FnUnitRead("unitread-service",function(returnval){
     res.status(200).json({'itemarr': returnval});
@@ -638,7 +638,8 @@ app.post("/addsupplier-service",urlencodedParser,function(req,res) {
     Pincode:req.query.pincode,
     Phone:req.query.phoneno,
     Mobile:req.query.mobileno,
-    Email:req.query.emailid
+    Email:req.query.emailid,
+    Status:""
 
   };
   var FnAddSuppliercall = require("./app/scripts/dboperations.js");
@@ -813,7 +814,7 @@ app.post('/outwarditemfromtofetch',urlencodedParser, function (req, res) {
 app.post('/intentpoitemread-service',urlencodedParser, function (req, res) {
   var intentno=req.query.intentregno;
   var itemdes=req.query.itemdes;
-  
+
   var Fnintentpoitemreadcall = require("./app/scripts/dboperations.js");
   Fnintentpoitemreadcall.Fnintentpoitemread("intentpoitemread-service",intentno,itemdes,function(returnval){
     res.status(200).json({'itemarr': returnval});
@@ -833,7 +834,7 @@ app.post('/itempocreate-service',urlencodedParser, function (req, res) {
     Product_ID:req.query.itemdes,
     PO_Number:''
   };
-  
+
   var Fnitempocreatecall = require("./app/scripts/dboperations.js");
   Fnitempocreatecall.Fnitempocreate("itempocreate-service",response,function(returnval){
     res.status(200).json({'itemarr': returnval});
@@ -845,7 +846,7 @@ app.post('/itempocreate-service',urlencodedParser, function (req, res) {
 app.post('/intentviewitemread-service',urlencodedParser, function (req, res) {
   var loggeduser=req.query.loggeduser;
   var loggedrole=req.query.loggedrole;
-  
+
   var FnIntentViewItemReadcall = require("./app/scripts/dboperations.js");
   FnIntentViewItemReadcall.FnIntentViewItemRead("intentViewitemread-service",loggeduser,loggedrole,function(returnval){
     res.status(200).json({'itemarr': returnval});
@@ -855,7 +856,7 @@ app.post('/intentviewitemread-service',urlencodedParser, function (req, res) {
 //Function fetches the expanded intent view item info
 app.post("/intentviewitemexpand-card",urlencodedParser,function(req,res){
   cond={Intent_Register_Number:req.query.intentregno}
-  
+
   var FnIntentviewExpandItemFetchcall = require("./app/scripts/dboperations.js");
   FnIntentviewExpandItemFetchcall.FnIntentviewExpandItemFetch("intentviewitemexpand-card",cond,function(returnval){
     res.status(200).json({"itemarr":returnval.itemarr});
@@ -864,7 +865,7 @@ app.post("/intentviewitemexpand-card",urlencodedParser,function(req,res){
 
 //Function fetches the expanded intent view item info
 app.post("/viewintentpocreate-service",urlencodedParser,function(req,res){
- 
+
   var FnIntentviewPocreatecall = require("./app/scripts/dboperations.js");
   FnIntentviewPocreatecall.FnIntentviewPocreate("viewintentpocreate-service",function(returnval){
     res.status(200).json({"itemarr":returnval});
@@ -1121,7 +1122,20 @@ app.post('/deleteitemcustomer-service',urlencodedParser, function (req, res) {
   });
 });
 
+app.post('/readsuppliertoapprove-service',urlencodedParser, function (req, res) {
+  var Fnreadsuppliertoapprovecall = require("./app/scripts/dboperations.js");
+  Fnreadsuppliertoapprovecall.Fnreadsuppliertoapprove("readsuppliertoapprove-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 
+app.post('/approvesupplierforpurchase-service',urlencodedParser, function (req, res) {
+  var supplierid=req.query.supplierid;
+  var Fnapprovesupplierforpurchasecall = require("./app/scripts/dboperations.js");
+  Fnapprovesupplierforpurchasecall.Fnapprovesupplierforpurchase("approvesupplierforpurchase-service",supplierid,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 //Node server running port number
 app.listen(4000);
 

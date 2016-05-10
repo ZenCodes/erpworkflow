@@ -1,0 +1,47 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
+
+<dom-module id="dynamicbutton-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button{
+        text-transform: none;
+
+      }
+    </style>
+    <div>
+      <paper-button on-click="FnApprove">{{label}}</paper-button>
+    </div>
+    <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dynamicbutton-card',
+      ready:function(){
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+          this.label="Approve";
+        }
+      },
+      FnApprove:function(){
+        //alert('approve');
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+        this.$.adminsupplierservice.approvesupplierforpurchaseService();
+        }
+
+      },
+      FnSetLabel:function(label){
+        this.label=label;
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

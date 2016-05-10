@@ -46,7 +46,9 @@
   <link rel="import" href="promotebutton-card/promotebutton-card.html">  
   <link rel="import" href="intentflow-card/intentflow-card.html">  
   
-  <!-- <link rel="import" href="viewintenthome-page/viewintenthome-page.html"> -->
+  <link rel="import" href="approvesupplier-card/approvesupplier-card.html">
+  <link rel="import" href="dynamicbutton-card/dynamicbutton-card.html">
+
   <!-- <link rel="import" href="intentflow-card/intentflow-card.html"> -->
 </head>
 
@@ -188,7 +190,10 @@
     #list{
       margin-left: -20%;
     }
-    
+    #dynamicbutton{
+      margin-left: -5%;
+      margin-top: -3%;
+    }
    
   </style>
   <template>
@@ -230,6 +235,10 @@
           <div id="list">
             <!--Component for create button in UI-->
             <viewtype-card></viewtype-card>
+          </div>
+
+          <div id="dynamicbutton">
+            <dynamicbutton-card></dynamicbutton-card>
           </div>
          
           <div class="flex"></div>
@@ -282,6 +291,9 @@
             </section>
             <section data-category="outwardreport-card">
               <outwardreport-card></outwardreport-card>
+            </section>
+            <section data-category="approvesupplier-card">
+              <approvesupplier-card></approvesupplier-card>
             </section>
         
           </iron-pages>
