@@ -12,11 +12,6 @@
     ready:function(){
       this.icons="icons:arrow-drop-down";
     },
-    FnStopSpinner:function(){
-    this.$.dialog.toggle();
-    var spin=document.querySelector('paper-spinner');
-    spin.active=!spin.active;
-    },
     FnExpandItemcard:function(){
       //alert('yes'+this.inwardregno);
       var n=1;

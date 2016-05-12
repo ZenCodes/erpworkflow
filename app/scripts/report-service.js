@@ -21,7 +21,7 @@
       callOutwardService:function(dayval){
         //alert(todayTime);
 
-        // document.querySelector('outwardreport-card').FnStopSpinner();
+        
         var flag=true;
         var obj={"outdate":""};
         if(dayval=="current"){ 
@@ -66,10 +66,10 @@
           document.querySelector('outwardreport-card').FnEnableHide(false);
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
       }
-      document.querySelector('outwardreport-card').FnStopSpinner();
+      
       },
       FnFromToDateChange:function(fromdate,todate){
-        document.querySelector('outwardreport-card').FnStopSpinner();
+        
         todayTime=new Date(localStorage.getItem("curr_sess_todaydate"));
         var obj={"fromdate":"","todate":""};
         obj.fromdate=fromdate;
@@ -90,7 +90,7 @@
           document.querySelector('outwardreport-card').FnEnableHide(false);
         document.querySelector('outwardreport-card').itemarr=e.detail.response.itemarr;
       }
-      document.querySelector('outwardreport-card').FnStopSpinner();
+      
       },
       FnSetTodayTime:function(){
         //todayTime=localStorage.getItem("curr_sess_todaydate");
