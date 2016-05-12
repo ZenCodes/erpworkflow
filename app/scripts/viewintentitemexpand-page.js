@@ -19,7 +19,7 @@ Polymer({is:"viewintentitemexpand-page",
   },
   //fetches item info under the INT corresponding to the user loggedin role
   intentexpanditemreadService:function(itemdes,intentregno){
-    document.querySelector('viewintentitem-page').FnStopSpinner();
+    
     //alert(intentregno);
     this.itemdes=itemdes;
     this.intentregno=intentregno;
@@ -88,8 +88,7 @@ Polymer({is:"viewintentitemexpand-page",
     }
 
     this.itemArray=prodarr;
-    document.querySelector('viewintentitem-page').FnStopSpinner();
-
+    
   },
   //Function to fetch labels for the card
   callWebcomponentService:function(){

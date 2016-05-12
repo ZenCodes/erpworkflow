@@ -39,7 +39,7 @@
     {
       var arr=e.detail.response;
       document.querySelector('physicins-page').itemArray=arr;
-      document.querySelector('physicins-page').FnStopSpinner();
+      
     },
     //Fetching history of the items correspoding to the item viewed by the current logged role
     flowphysicreadService:function(state){
@@ -134,10 +134,7 @@
       }
     },
     FnIntentitemReadService:function(){
-      if(document.querySelector('viewintent-page')==null){}
-      else
-      document.querySelector('viewintent-page').FnStopSpinner();
-      //intentstate=state;
+     
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":"","state":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
@@ -170,7 +167,7 @@
       else{        
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       }
-      document.querySelector('viewintent-page').FnStopSpinner();
+      
     },
     FnIntentsupplyitemReadService:function(){
       //alert("coming...");
@@ -202,12 +199,10 @@
       if(sessionStorage.getItem("loggedrole")=="Purchase manager")
       {
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
-      }
-      //if(sessionStorage.getItem("loggedrole")=="Purchase manager"&&intentstate=="POCreated")
-      //document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
+      }     
+      
     },
     FnIntentViewitemReadService:function(){
-
       this.intentviewurl=sessionStorage.getItem("curr_sess_url")+"intentviewitemread-service";
       var arg={"loggeduser":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
@@ -215,10 +210,8 @@
       this.intentviewparam=arg;
       this.$.intentviewitemreadajax.generateRequest();        
     },
-    intentviewitemreadResponse:function(e){
-      //alert(JSON.stringify(e.detail.response));
-      document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;
-      document.querySelector('intentview-card').FnStopSpinner();
+    intentviewitemreadResponse:function(e){      
+      document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;      
     }
   });
 })();
