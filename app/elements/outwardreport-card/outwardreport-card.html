@@ -175,18 +175,14 @@
     Polymer({
       is: 'outwardreport-card',
      ready:function(){
-      this.$.dialog.toggle();
+      
       this.hidenoitem=true;
       localStorage.setItem("curr_sess_showpage","Outward Report");
       //alert(localStorage.getItem("curr_sess_showpage"));
       if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="5")
         this.$.reportservice.callOutwardService("current");
      },
-     FnStopSpinner:function(){
-    this.$.dialog.toggle();
-    var spin=document.querySelector('paper-spinner');
-    spin.active=!spin.active;
-    },
+    
      forward:function(){
         this.$.reportservice.callOutwardService("forward");
      },
