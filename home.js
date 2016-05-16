@@ -193,107 +193,58 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   var cond3={PO_Number:req.body.ponumber};
   var cond4={new_Inward_Register_Number:req.body.inwardregno};
   var cond5={state:req.body.status};
-
+  var cond6={Container_id:req.body.containerid};
   var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,function(returnval){
+  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,cond6,function(returnval){
     if(returnval=="updated")
       res.status(200).json({"flag":returnval});
     else if(returnval=="not updated")
       res.status(200).json({"flag":returnval});
   });
 });
-//Function to update the specific item under particular IRN number when they made any change in quantity,remarks etc
-/*app.post("/physicqualifyitem-card",urlencodedParser,function(req,res){
-  cond1={
-    new_Inward_Register_Number:req.body.inwardno}
-  cond2={
-    Supplier_ID:req.body.suppliername}
-  cond3={
-    Product_ID:req.body.itemdes}
-  cond4={
-    state:req.body.status}
-  cond5={
-    state:req.body.newstatus}
-  newstatus=req.body.newstatus;
-  val1={Unit_Accepted:req.body.containeraccepted};
-  val2={Qty_Accepted:req.body.qtyaccepted};
-  val3={Remarks:req.body.remark};
-  val4={PO_Number:req.body.ponumber};
-  val5={PO_Date:req.body.podate};
 
-  var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
+/*Function to check all the items id heat no filled or not*/
+
+app.post("/physicqualifyinwardacceptcheck-service",urlencodedParser,function(req,res) {
+var inwardregno=req.query.inwardregno;
+var checkstatus=req.query.checkstatus;
+var repeatflag=req.query.repeatflag;
+  var Fnphysicqualifyinwardacceptcheckcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",cond1,cond2,cond3,cond4,cond5,newstatus,val1,val2,val3,val4,val5,function(returnval){
-    if(returnval=="updated")
-    res.status(200).json({"flag":returnval});
-    else if(returnval=="not updated")
-    res.status(200).json({"flag":returnval});
-  });
-});*/
-
-//Function calls when the user performing flow accept
-app.post("/physicqualified-service",urlencodedParser,function(req,res){
-  console.log("In physic update...."+req.query.inwardnumber+"  "+req.query.checkstatus+"  "+req.query.status);
-  cond1={new_Inward_Register_Number:req.query.inwardnumber};
-  cond2={state:req.query.checkstatus};
-  cond3={state:"Old"+req.query.checkstatus};
-  var updatestatus="Old"+req.query.checkstatus;
-  //console.log(cond3);
-  var qtyupdatestatus={state:req.query.checkstatus};
-  val={state:req.query.status};
-  updateflag=req.query.updateflag;
-  var ponumber={"PO_Number":req.query.ponumber};
-  var FnPhysicqualifiedServicecall = require("./app/scripts/dboperations.js");
-  //Function which send non updated items to the service
-  FnPhysicqualifiedServicecall.FnPhysicqualifiedService("physicqualified-service",cond1,cond2,cond3,updatestatus,qtyupdatestatus,val,updateflag,ponumber,function(returnval){
-      res.status(200).json(returnval);
+  Fnphysicqualifyinwardacceptcheckcall.Fnphysicqualifyinwardacceptcheck("physicqualifyinwardacceptcheck-service",inwardregno,checkstatus,repeatflag,function(returnval){
+    if(returnval=="succ")
+      res.status(200).json({"flag":returnval});
+    else if(returnval=="fail")
+      res.status(200).json({"flag":returnval});
   });
 });
 
-//Before moving from one state to another state it will copy all the items to the old state
-app.post("/physicinsertupdate-service",urlencodedParser,function(req,res){
-  //console.log('inside'+req.query.inwardno);
-  response = {
-    //Purchase_Type:req.query.purchasetype,
-    Purchase_Type:req.query.purchasetypeflag,
-    Inward_Bill_Number:req.query.inwardno,
-    Inward_Register_Date:req.query.inwarddate,
-    PO_Number:req.query.ponumber,
-    PO_Date:req.query.podate,
-    Supplier_ID:req.query.supname,
-    Product_ID:req.query.itemdes,
-    Qty_Received:req.query.qtyreceived,
-    Qty_Accepted:req.query.qtyaccepted,
-    unit:req.query.containerreceived,
-    Unit_Accepted:req.query.containeraccepted,
-    Qty_measure:req.query.qtymeasure,
-    Unit_measure:req.query.contmeasure,
-    Remarks:req.query.remarks,
-    new_Inward_Register_Number:req.query.inwardregno,
-    state:req.query.state
-  };
-  var FnPhysicinsertupdatecall = require("./app/scripts/dboperations.js");
-  //Function which send non updated item info
-  FnPhysicinsertupdatecall.FnPhysicinsertupdate("physicinsertupdate-service",response,function(returnval){
-  //Function which send response flag with inward no to the respective service
-    res.status(200).json({"flag":returnval.flag,"inwardno":returnval.inwardno});
+app.post("/oldphysicinsert-service",urlencodedParser,function(req,res) {
+  var inwardregno=req.query.inwardregno;
+  var checkstatus=req.query.checkstatus;
+  var status=req.query.status;
+  var Fnoldphysicinsertcall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  Fnoldphysicinsertcall.Fnoldphysicinsert("oldphysicinsert-service",inwardregno,checkstatus,status,function(returnval){
+    if(returnval=="succ")
+      res.status(200).json({"flag":returnval});
+    else if(returnval=="fail")
+      res.status(200).json({"flag":returnval});
   });
 });
 
-//Function which updates item state from one flow to next level of flow state
-app.post("/flowstateupdate-service",urlencodedParser,function(req,res){
-  cond1={state:req.query.checkstatus};
-  cond2={new_Inward_Register_Number:req.query.inwardnumber};
-  val={state:req.query.status};
-  retstatus=req.query.status;
-  var FnFlowstateupdatecall = require("./app/scripts/dboperations.js");
-  //Function call to update the flow state
-  FnFlowstateupdatecall.FnFlowstateupdate("flowstateupdate-service",cond1,cond2,val,retstatus,function(returnval){
-    console.log();
+app.post("/physicqualified-service",urlencodedParser,function(req,res) {
+  var inwardregno=req.query.inwardregno;
+  var checkstatus=req.query.checkstatus;
+  var status=req.query.status;
+  var Fnphysicqualifiedcall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  Fnphysicqualifiedcall.Fnphysicqualified("physicqualified-service",inwardregno,checkstatus,status,function(returnval){
     res.status(200).json({"flag":returnval.flag,"state":returnval.state});
   });
 });
+
 //Function which read the item info after performed flowstate update
 app.post("/backwardflowitem-service",urlencodedParser,function(req,res){
   //console.log('grn service...'+req.query.status);

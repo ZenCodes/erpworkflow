@@ -429,7 +429,7 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
 }
 
 //Function fetches the item info and update the status of the specific item
-exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,callback) {
+exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,cond6,callback) {
   //fetching tables for this page
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -437,7 +437,7 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
       Config_tables=obj[i].value;
     }
   }
-  connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ?',[cond1,cond2,cond3], function(err, rows) {
+  connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? and ?',[cond1,cond2,cond3,cond6], function(err, rows) {
   if(!err){
     console.log(rows.length);
     if(rows.length>0){
@@ -476,291 +476,91 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
   });
 }
 
-/*exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,newstatus,val1,val2,val3,val4,val5,callback) {
+exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,checkstatus,repeatflag,callback) {
   //fetching tables for this page
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
       Config_tables=obj[i].value;
     }
-    //console.log(Config_tables);
   }
-
-  var existflag="false";
-  //Check for the item status,is it already updated or not
-  connection.query('SELECT * from '+Config_tables[0]+' WHERE ? and ? and ? and ? ',[cond1,cond2,cond3,cond5], function(err, rows) {
-    if(!err){
-      //console.log("Inward......."+rows.length);
-      if(rows.length>0)
-        existflag="true";
-    }
-    else
-    {
-    }
-  });
-  //Creating copy of item to the old state and changes updated the current item
-  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ? and ? and ? ',[cond1,cond2,cond3,cond4], function(err, rows) {
-    if(!err){
-      //console.log("In ......"+rows.length+"  "+existflag);
-      if((rows.length>0)&&(existflag=="false")){
-        //console.log("Yes into....");
-        response = {
-          //Purchase_Type:rows[0].Purchase_Type,
-          Purchase_Type:rows[0].Purchase_Type,
-          Inward_Bill_Number:rows[0].Inward_Bill_Number,
-          Inward_Register_Date:rows[0].Inward_Register_Date,
-          PO_Number:val4.PO_Number,
-          PO_Date:rows[0].PO_Date,
-          Supplier_ID:rows[0].Supplier_ID,
-          Product_ID:rows[0].Product_ID,
-          //Qty:rows[0].Qty,
-          //GRAN_No:rows[0].GRAN_No,
-          Qty_Received:rows[0].Qty_Received,
-          Qty_Accepted:rows[0].Qty_Accepted,
-          unit:rows[0].unit,
-          Unit_Accepted:rows[0].Unit_Accepted,
-          Qty_measure:rows[0].Qty_measure,
-          Unit_measure:rows[0].Unit_measure,
-          Remarks:rows[0].Remarks,
-          new_Inward_Register_Number:rows[0].new_Inward_Register_Number,
-          state:newstatus
-        };
-        console.log(response);
-        //Updating changed parameters of the current state items
-        connection.query('UPDATE '+Config_tables[0]+' set ?,?,?,?,? WHERE  ? and ? and ? and ?',[val4,val5,val1,val2,val3,cond1,cond2,cond3,cond4], function(err, result){
-          if(!err){
-            connection.query('insert into OD_Sales_Inward_Material set ?',[response],function(err,result){
-              if(!err){
-                return callback("updated");
-                //res.status(200).json({"flag":"updated"});
-              }
-              else
-              {
-                console.log('error.....'+err);
-                return callback("not updated");
-                //res.status(200).json({"flag":"not updated"});
-              }
-            });
-          }
-          else
-          {
-            return callback("not updated");
-            //res.status(200).json({"flag":"not updated"});
-          }
-        });
-      }
-      if((rows.length>0)&&(existflag=="true")){
-        //If item already updated,when reupdating it will update the changed parameter alone like quantity or remarks
-        connection.query('UPDATE '+Config_tables[0]+' SET ?,?,?,?,? WHERE  ? and ? and ? and ?',[val4,val5,val1,val2,val3,cond1,cond2,cond3,cond4], function(err, result){
-          if(!err){
-            //res.status(200).json({"flag":"updated"});
-            return callback("updated");
-          }
-
-        });
-
+  if(repeatflag=="1") {
+    var queryy = "select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' and unit=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "')";
+    //console.log(queryy);
+    connection.query(queryy, function (err, rows) {
+      if (rows.length > 0)
+        return callback("succ");
+      else
+        return callback("fail");
+    });
+  }
+  if(repeatflag=="0"){
+    var queryy = "select * from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "'";
+    //console.log(queryy);
+    connection.query(queryy, function (err, rows) {
+      if(!err) {
+        console.log(rows.length);
+        if (rows.length > 0)
+          return callback("succ");
+        else
+          return callback("fail");
       }
       else
-      {
-        console.log('no items found');
-      }
-    }
-    else
-    {
-      console.log('Error...'+err);
-    }
-  });
-}*/
-//Function filters the non updated items while making flow state change
-exports.FnPhysicqualifiedService=function(pagename,cond1,cond2,cond3,updatestatus,qtyupdatestatus,val,updateflag,ponumber,callback){
-  //Fetching table info
-  var Config_tables=[];
-  for(var i=0;i<obj.length;i++){
-    if(obj[i].name==pagename){
-      Config_tables=obj[i].value;
-    }
-    //console.log(Config_tables);
+      console.log(err);
+    });
   }
-
-  var oldnewarr=[];
-  var newarr=[];
-  var splicearr=[];
-  var flag=0;
-  var returnval=0;
-  //Function which filters individually updated items
-  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ?',[cond1,cond3], function(err, rows) {
-    console.log(rows.length+ "  "+JSON.stringify(cond1)+"  "+JSON.stringify(cond3));
-    if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
-      {
-        /*var obj={"inwardno":"","itemdes":""};
-         obj.inwardno=rows[i].Inward_Bill_Number;
-         obj.itemdes=rows[i].Product_ID;
-         oldnewarr.push(obj);*/
-        var obj={"purchasetype":"","purchasetypeflag":"","inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
-        //obj.purchasetype=rows[i].Purchase_Type;
-        obj.purchasetypeflag=rows[i].Purchase_Type;
-        obj.inwardno=rows[i].Inward_Bill_Number;
-        obj.inwarddate=rows[i].Inward_Register_Date;
-        obj.ponumber=rows[i].PO_Number;
-        obj.podate=rows[i].PO_Date;
-        obj.supname=rows[i].Supplier_ID;
-        obj.itemdes=rows[i].Product_ID;
-        //obj.qtyordered=rows[i].Qty;
-        obj.qtyreceived=rows[i].Qty_Received;
-        obj.qtyaccepted=rows[i].Qty_Accepted;
-        obj.containerreceived=rows[i].unit;
-        obj.containeraccepted=rows[i].Unit_Accepted;
-        obj.qtymeasure=rows[i].Qty_measure;
-        obj.contmeasure=rows[i].Unit_measure;
-        obj.remarks=rows[i].Remarks;
-        obj.state=updatestatus;
-        obj.inwardregno=rows[i].new_Inward_Register_Number;
-        oldnewarr.push(obj);
-      }
-    }
-  });
-  //console.log('old array');
-  //console.log(JSON.stringify(oldnewarr));
-  //Query which reads all the items
-  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ?',[cond1,cond2], function(err, rows) {
-    //console.log(rows.length);
-    if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
-      {
-        var obj={"purchasetype":"","purchasetypeflag":"","inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":"","itemdes":"","qtyreceived":"","qtyaccepted":"","remarks":"","state":"","inwardregno":"","containeraccepted":"","containerreceived":"","contmeasure":"","qtymeasure":""};
-        //obj.purchasetype=rows[i].Purchase_Type;
-        obj.purchasetypeflag=rows[i].Purchase_Type;
-        obj.inwardno=rows[i].Inward_Bill_Number;
-        obj.inwarddate=rows[i].Inward_Register_Date;
-        obj.ponumber=ponumber.PO_Number;
-        obj.podate=rows[i].PO_Date;
-        obj.supname=rows[i].Supplier_ID;
-        obj.itemdes=rows[i].Product_ID;
-        //obj.qtyordered=rows[i].Qty;
-        obj.qtyreceived=rows[i].Qty_Received;
-        obj.qtyaccepted=rows[i].Qty_Accepted;
-        obj.containerreceived=rows[i].unit;
-        obj.containeraccepted=rows[i].Unit_Accepted;
-        obj.qtymeasure=rows[i].Qty_measure;
-        obj.contmeasure=rows[i].Unit_measure;
-        obj.remarks=rows[i].Remarks;
-        obj.state=updatestatus;
-        obj.inwardregno=rows[i].new_Inward_Register_Number;
-        newarr.push(obj);
-        //console.log(JSON.stringify(newarr));
-      }
-      //console.log('new arr');
-      //console.log(JSON.stringify(newarr));
-      for(var i=0;i<newarr.length;i++){
-        flag=0;
-        for(var j=0;j<oldnewarr.length;j++)
-        {
-          if(newarr[i].itemdes==oldnewarr[j].itemdes)
-            flag=1;
-          //console.log(newarr[i].itemdes);
-          //else
-          //flag=1;
-        }
-        if(flag==0){
-          splicearr.push(newarr[i]);
-          if(updateflag=="1"){
-            var contval={Unit_Accepted : newarr[i].containerreceived}
-            var qtyval= {Qty_Accepted : newarr[i].qtyreceived};
-            var itemdes={Product_ID : newarr[i].itemdes};
-            var supname={Supplier_ID : newarr[i].supname};
-
-            //console.log(qtyval.Qty_Accepted+" "+itemdes.Product_ID+"  "+supname.Supplier_ID);
-            //Updating status to the non updated items
-            connection.query('UPDATE '+Config_tables[0]+' SET ?,?,? WHERE ? and ?  and ? and ?',[ponumber,qtyval,contval,cond1,itemdes,supname,qtyupdatestatus], function(err, result){
-              if(!err)
-              {
-                console.log('updated state quantity');
-                //res.status(200).json({"flag":"updated","state":val.state});
-              }
-              else{
-                console.log(err);
-                //res.status(200).json({"flag":"not updated"});
-              }
-            });
-          }
-
-        }
-      }
-      //console.log(JSON.stringify(splicearr));
-      if(splicearr.length>0){
-        return callback(splicearr);
-        //res.status(200).json(splicearr);
-      }
-      else
-      {
-        if(oldnewarr.length==0){
-          for(var i=0;i<newarr.length;i++)
-          {
-            splicearr[i]=newarr[i];
-          }
-
-        }
-        if(oldnewarr.length==newarr.length){
-          /*for(var i=0;i<newarr.length;i++)
-           {
-           splicearr[i]=oldnewarr[i];
-           }*/
-
-        }
-        //res.status(200).json(splicearr);
-        return callback(splicearr);
-      }
-    }
-  });
-
 }
-//Function which insert copy of the existing state of items
-exports.FnPhysicinsertupdate=function(pagename,response,callback){
-  //console.log(response);
-  var Config_tables=[];
-  for(var i=0;i<obj.length;i++){
-    if(obj[i].name==pagename){
-      Config_tables=obj[i].value;
-    }
-    //console.log(Config_tables);
-  }
-  connection.query('INSERT INTO '+Config_tables[0]+' SET ?',[response],function(err,result){
+
+exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callback) {
+  var queryy="select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "'";
+  console.log(queryy);
+  connection.query(queryy, function (err, rows) {
+  console.log(rows);
     if(!err){
-      return callback({"flag":"updated","inwardno":response.new_Inward_Register_Number});
-      //res.status(200).json({"flag":"updated","inwardno":response.new_Inward_Register_Number});
+    var response= {
+      Purchase_Type: rows[0].Purchase_Type,
+      Inward_Bill_Number: rows[0].Inward_Bill_Number,
+      Inward_Register_Date: rows[0].Inward_Register_Date,
+      PO_Number: rows[0].PO_Number,
+      PO_Date: rows[0].PO_Date,
+      Supplier_ID: rows[0].Supplier_ID,
+      Product_ID: rows[0].Product_ID,
+      Qty_Received: rows[0].Qty_Received,
+      Qty_Accepted: rows[0].Qty_Accepted,
+      unit: rows[0].unit,
+      Unit_Accepted: rows[0].Unit_Accepted,
+      Qty_measure: rows[0].Qty_measure,
+      Unit_measure: rows[0].Unit_measure,
+      Remarks: rows[0].Remarks,
+      new_Inward_Register_Number: rows[0].new_Inward_Register_Number,
+      state: "Old"+rows[0].state
     }
-    else
-    {
-      //console.log("error......."+err);
-      return callback({"flag":"not updated"});
-      //res.status(200).json({"flag":"not updated"});
-    }
+    connection.query('insert into OD_Sales_Inward_Material set ?',[response], function (err, rows) {
+      if(!err)
+        return callback("succ");
+      else
+        return callback("fail");
+    });
+  }
+  else
+  console.log(err);
+
   });
 }
-//Function which update the flow states
-exports.FnFlowstateupdate=function(pagename,cond1,cond2,val,retstatus,callback){
-  var Config_tables=[];
-  for(var i=0;i<obj.length;i++){
-    if(obj[i].name==pagename){
-      Config_tables=obj[i].value;
-    }
-    //console.log(Config_tables);
-  }
-  connection.query('UPDATE '+Config_tables[0]+' SET ? WHERE ? and ? ',[val,cond1,cond2], function(err, result){
+
+exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callback) {
+  var queryy="update OD_Sales_Inward_Material set Unit_Accepted=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "' and Inspection_Status='Approved'),Qty_Accepted=(select sum(Quantity) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "' and Inspection_Status='Approved'),state='"+status+"' where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' ";
+  console.log(queryy);
+  connection.query(queryy, function (err, rows) {
     if(!err)
     {
-      return callback({"flag":"updated","state":val.state});
-      //res.status(200).json({"flag":"updated","state":val.state});
+      return callback({"flag":"updated","state":status});
     }
     else{
-      //console.log(err);
       return callback({"flag":"not updated"});
-      //res.status(200).json({"flag":"not updated"});
     }
   });
 }
-
 //Function which reads the item info after updating to the next state
 exports.FnBackwardflowitem=function(pagename,cond,cond1,callback){
   var Config_tables=[];

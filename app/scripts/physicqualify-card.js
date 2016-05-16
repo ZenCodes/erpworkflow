@@ -33,12 +33,14 @@
     this.speccardlength=contreceived;
     this.specarr=[];
     if(contmeasure=='Coil'){
+      localStorage.setItem("curr_sess_repeatitementry","1");
       for(var i=0;i<parseInt(this.speccardlength);i++){
         var obj={"id":"","number":""};
         this.specarr.push(obj);
       }
     }
     else{
+      localStorage.setItem("curr_sess_repeatitementry","0");
       var obj={"id":"","number":""};
       this.specarr.push(obj);
     }

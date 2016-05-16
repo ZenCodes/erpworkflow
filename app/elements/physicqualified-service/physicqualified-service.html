@@ -5,22 +5,31 @@
 
   <template>
     <iron-ajax
-      id="physicupdateajax"
-      url="{{url}}"
+      id="inwardacceptcheckajax"
+      url="{{inwardaccepturl}}"
       method="post"
-      params='{{param}}'
+      params='{{inwardacceptparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="inwardacceptcheckResponse">
+    </iron-ajax>
+    <iron-ajax
+      id="physicupdateajax"
+      url="{{physicupdateurl}}"
+      method="post"
+      params='{{physicupdateparam}}'
       handle-as="json"
       content-type="application/json"
       on-response="physicupdateResponse">
     </iron-ajax>
     <iron-ajax
-      id="oldinsertupdateajax"
-      url="{{url1}}"
+      id="oldphysicinsertajax"
+      url="{{oldphysicinserturl}}"
       method="post"
-      params='{{param1}}'
+      params='{{oldphysicinsertparam}}'
       handle-as="json"
       content-type="application/json"
-      on-response="oldinsertupdateResponse">
+      on-response="oldphysicinsertResponse">
     </iron-ajax>
     <iron-ajax
       id="flowstateupdateajax"

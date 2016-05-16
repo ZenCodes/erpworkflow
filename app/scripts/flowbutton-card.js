@@ -19,9 +19,7 @@ Polymer({
       //this.label='Approve';
   },
   click:function(){
-
-   // alert(localStorage.getItem("curr_sess_PONumber")+"   "+localStorage.getItem("curr_sess_POchangeflag"));
-    if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+   if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
       if(localStorage.getItem("curr_sess_PONumber")==null||localStorage.getItem("curr_sess_PONumber")==""){
         this.sessupdateflag="false";
       }
@@ -36,14 +34,17 @@ Polymer({
         alert("Please enter PO Number!");
       }
       else{
+        this.$.pqs.physicqualifyacceptcheckService(sessionStorage.getItem("sess_curr_inwardregno"));
+      }
+      /*else{
         document.querySelector('physicinsitem-card').setToggle();
         this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
-      }
+      }*/
     }
     else
     {
-      document.querySelector('physicinsitem-card').setToggle();
-      this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
+      //document.querySelector('physicinsitem-card').setToggle();
+      //this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
     }
   }
 });
