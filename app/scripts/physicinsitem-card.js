@@ -13,13 +13,12 @@
       this.icons="icons:arrow-drop-down";
     },
     FnExpandItemcard:function(){
-      //alert('yes'+this.inwardregno);
       var n=1;
       var x=-4;
       //Storing expanded card IRN number in sessionstorage
       sessionStorage.setItem("sess_curr_inwardregno",this.inwardregno);
       //Sending IRN number to service component to fetch the expanded card info
-      this.$.ps.physicqualifyreadService(this.inwardregno);
+      this.$.ps.physicqualifyitemService(this.contreceived,this.contmeasure);
       //Calling webcomponent service to fetch labels dynamically for this card from config file
       this.$.ps.callWebcomponentService();
       var all=document.querySelectorAll('.expandcard');
@@ -36,7 +35,6 @@
         {
           id.opened=false;
         }
-        //alert('yes');
         document.querySelector('app-homepage').setVisible("false");
         id= document.querySelector("#"+this.inwardregno);
         id.toggle();

@@ -21,12 +21,12 @@
     ]},
     {"Page":[
       {"page":["physicins-page","physicins-page"]},
-      {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Supplier Name"},{"tab":"Cont/Qty Received"},{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
        ,{"title":["Goods Receipt Note"]}
     ]},
     {"Page":[
       {"page":["physicqualify-card","physicqualify-card"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Cont/Qty Received"},{"tab":"Cont Accepted"},{"tab":"Qty Accepted"},{"tab":"Remarks"}],"Qty_Received":"Qty Received","PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
+      {"Label":[{"tabs":[{"tab":"Container Id"},{"tab":"Heat Number"},{"tab":"Qty Accepted"},{"tab":"Remarks"}],"Qty_Received":"Qty Received","PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
       ,{"title":["Goods Receipt Note"]}
     ]},
     {"Page":[
@@ -204,6 +204,6 @@
       {"Label":[{"tabs":[{"tab":"Supplier ID"},{"tab":"Supplier name"},{"tab":"Location"},{"tab":"City"}]}]}
       ,{"title":["Supplier Approval"]}
       ]}
-    
+
   ]
 

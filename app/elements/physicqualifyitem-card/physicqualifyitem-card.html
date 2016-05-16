@@ -23,9 +23,13 @@
     <style>
       .repeatcard{
         @apply(--layout-horizontal);
-        width: 110%;
-        margin-top: -1%;
+        width: 100%;
+        margin-top: 0%;
         text-align: center;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        margin-left: 3%;
+        height: 7%;
       }
       .itemdes,.ctr,.ctinput,.qtinput,.remark{
         width:15%;
@@ -38,11 +42,13 @@
         margin-top: 2%;
       }
       .remark{
-        height:4%;
-        margin-top:3%;
+        height:60%;
+        margin-top:1%;
+        width: 18%;
       }
-      .save{
-        margin-top: 2%;
+      .save,.reject{
+        margin-top: 0%;
+        margin-left: 1%;
       }
       .custom {
         margin-left: 5%;
@@ -50,8 +56,22 @@
         --paper-tooltip-text-color: black;
         font-size: 14px;
         width: 150px;
-
         //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      .containerid{
+        margin-left: 2%;
+        width: 20%;
+      }
+      .heatno{
+        margin-left: 5%;
+      }
+      paper-input{
+        margin-top: -1%;
+      }
+      paper-radio-button{
+        margin-top: 1.5%;
+        --paper-radio-button-unchecked-color: var(--paper-blue-900);
+        --paper-radio-button-unchecked-ink-color: var(--paper-blue-900);
       }
     </style>
     <!--card which has expanded card item template-->
@@ -63,18 +83,19 @@
         <paper-input name="ponumber" value="{{ponumber}}" hidden></paper-input>
         <paper-input name="podate" value="{{podate}}" hidden></paper-input>
         <paper-input name="suppliername" value="{{suppliername}}" hidden></paper-input>
-        <paper-input name="itemdes" value="{{itemdes}}" hidden></paper-input>
-        <paper-input name="ctrreceived" value="{{ctrreceived}}" hidden></paper-input>
-        <paper-input name="qtyyreceived" value="{{qtyyreceived}}" hidden></paper-input>
-        <paper-item class="itemdes" name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>
-        <paper-item class="ctr" name="containerreceived" value="{{containerreceived}}">{{containerreceived}}</paper-item>
-        <paper-input class="ctinput" name="containeraccepted" value="{{containeraccepted}}" required id="ctr{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
-        <paper-input class="ctmeasure" name="contmeasure" value="{{contmeasure}}" readonly></paper-input>
-        <paper-input class="qtinput" name="qtyaccepted" value="{{qtyaccepted}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
+        <paper-input name="productid" value="{{productid}}" hidden></paper-input>
+        <paper-input name="inwardregno" value="{{inwardregno}}" hidden></paper-input>
+        <paper-input name="inspectionstatus" value="{{inspectionstatus}}" hidden></paper-input>
+
+        <paper-radio-button></paper-radio-button>
+        <paper-input class="containerid" name="containerid" label="Container ID" value="{{containerid}}" id="cont{{inwardno}}" required></paper-input>
+        <paper-input class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" required></paper-input>
+        <paper-input class="qtinput" name="qtyaccept" label="Quantity" value="{{qtyaccept}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
         <paper-input class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
-        <textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
+        <textarea class="remark" name="remark" placeholder="Remarks here...." value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
         <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
-        <paper-icon-button icon="icons:save" on-click="FnSaveItem" class="save"></paper-icon-button>
+        <paper-icon-button icon="icons:check" on-click="FnSaveItem" class="save"></paper-icon-button>
+        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button>
       </div>
     </form>
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>

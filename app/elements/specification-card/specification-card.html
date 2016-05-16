@@ -1,0 +1,35 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\paper-input/paper-input.html">
+
+<dom-module id="specification-card">
+  <template>
+    <style>
+      .card{
+         @apply(--layout-horizontal);
+      }
+      #id{
+        margin-left: 20%;
+      }
+      #number{
+        margin-left: 10%;
+      }
+    </style>
+    <div class="card">
+      <paper-input id="id" label="Container Id" value="{{id}}"></paper-input>
+      <paper-input id="number" label="Number" value="{{number}}"></paper-input>       
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'specification-card',
+      ready:function(){
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

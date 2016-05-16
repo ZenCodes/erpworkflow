@@ -38,6 +38,7 @@
     physicitemreadResponse:function(e)
     {
       var arr=e.detail.response;
+      // alert(JSON.stringify(arr));
       document.querySelector('physicins-page').itemArray=arr;
       
     },

@@ -22,11 +22,11 @@
   <style>
     .expandcard{
       @apply(--layout-horizontal);
-      width: 100%;
+      width: 120%;
       border-radius: 2px;
       box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       margin-top:2%;
-      //margin-left: 5%;
+      margin-left: -10%;
     }
     paper-button{
       width: 35%;
@@ -57,6 +57,9 @@
   <template>
     <!--Expand Itemcard-->
     <div class="expandcard" id="card{{inwardregno}}" on-click="FnExpandItemcard">
+      <paper-button  name="productid" value="{{productid}}" noink>{{productid}}</paper-button>
+      <paper-button  name="productid" value="{{suppliername}}" noink>{{suppliername}}</paper-button>
+      <paper-button  name="contqty" value="{{contreceived}}" noink>{{contreceived}}{{contmeasure}}/{{qtyreceived}}{{qtymeasure}}</paper-button>
       <paper-button  name="inwardregno" value="{{inwardregno}}" noink>{{inwardregno}}</paper-button>
       <paper-button  name="inwardno" value="{{inwardno}}" noink>{{inwardno}}</paper-button>
       <paper-button  name="inwarddate" value="{{inwarddate}}" noink>{{inwarddate}}</paper-button>
@@ -66,7 +69,7 @@
     <!--Expand item collapse card-->
     <iron-collapse id="{{inwardregno}}">
       <div class="collapse">
-        <physicqualify-card id="ps" ></physicqualify-card>
+        <physicqualify-card id="ps" inwardregno="{{inwardregno}}" inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" contmeasure="{{contmeasure}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" qtymeasure="{{qtymeasure}}" remarks="{{remarks}}"></physicqualify-card>
       </div>
     </iron-collapse>
 

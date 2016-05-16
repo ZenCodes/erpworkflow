@@ -350,8 +350,8 @@ exports.FnForwardFlowitemFetch=function(pagename,cond,callback){
     //console.log(Config_tables);
   }
   //Query which fetch the item under specific IRN Number
-  connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+','+Config_columns[2]+' FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
-    var itemarr=[];
+  connection.query('SELECT  * FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
+    /*var itemarr=[];
     for(var i=0;i<rows.length;i++)
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","state":"","inwardregno":""};
@@ -363,10 +363,13 @@ exports.FnForwardFlowitemFetch=function(pagename,cond,callback){
       obj.state=rows[i].state;
       obj.inwardregno=rows[i].new_Inward_Register_Number;
       itemarr.push(obj);
-    }
+    }*/
     if(!err){
       //Sending response items under the IRN number
-      return callback(itemarr);
+      if(rows.length>0)
+      return callback(rows);
+      else
+      return callback("no items");
       //res.status(200).json(itemarr);
     }
   });
@@ -426,7 +429,54 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
 }
 
 //Function fetches the item info and update the status of the specific item
-exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,newstatus,val1,val2,val3,val4,val5,callback) {
+exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,callback) {
+  //fetching tables for this page
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ?',[cond1,cond2,cond3], function(err, rows) {
+  if(!err){
+    console.log(rows.length);
+    if(rows.length>0){
+      connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ?',[response,cond1,cond2,cond3], function(err, result) {
+        if(!err)
+          return callback("updated");
+        else {
+          console.log(err);
+          return callback("not updated");
+        }
+      });
+      }
+    else{
+      connection.query('INSERT INTO OD_Inward_Material_Inspection SET ? ',[response], function(err, result) {
+        if(!err){
+
+          connection.query('UPDATE OD_Sales_Inward_Material SET ? where ? and ?',[cond3,cond4,cond5], function(err, result) {
+          if(!err)
+            return callback("updated");
+          else {
+            console.log("error!"+err);
+            return callback("not updated");
+          }
+          });
+        }
+        else {
+          console.log(err);
+          return callback("not updated");
+        }
+      });
+    }
+    }
+  else {
+  console.log(err);
+  }
+  });
+}
+
+/*exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,newstatus,val1,val2,val3,val4,val5,callback) {
   //fetching tables for this page
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -520,7 +570,7 @@ exports.FnPhysicqualifyitem=function(pagename,cond1,cond2,cond3,cond4,cond5,news
       console.log('Error...'+err);
     }
   });
-}
+}*/
 //Function filters the non updated items while making flow state change
 exports.FnPhysicqualifiedService=function(pagename,cond1,cond2,cond3,updatestatus,qtyupdatestatus,val,updateflag,ponumber,callback){
   //Fetching table info

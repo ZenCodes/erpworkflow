@@ -152,7 +152,6 @@ app.post("/forwardflowitem-service",urlencodedParser,function(req,res){
 
 //Fetching items under particularIRN number which expanded by the user
 app.post("/physicqualify-card",urlencodedParser,function(req,res){
-  //console.log("In physic qualify service"+req.query.status);
   cond={new_Inward_Register_Number:req.query.inwardregno}
   cond1={state:req.query.status};
   //importing js file to invoke the function
@@ -164,8 +163,48 @@ app.post("/physicqualify-card",urlencodedParser,function(req,res){
   });
 });
 
+app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
+
+  var inspectionstatus;
+  if(req.body.inspectionstatus=="1")
+  inspectionstatus="Approved";
+  else
+  inspectionstatus="Rejected";
+
+  var  response={
+    Inward_Register_Number:req.body.inwardregno,
+    Product_ID:req.body.productid,
+    PO_Number:req.body.ponumber,
+    PO_Date:req.body.podate,
+    Supplier_ID:req.body.suppliername,
+    Container_ID:req.body.containerid,
+    Heat_Number:req.body.heatno,
+    Quantity:req.body.qtyaccept,
+    Quantity_Measure:req.body.qtymeasure,
+    Remarks:req.body.remark,
+    status:req.body.status,
+    Inspection_Status:inspectionstatus
+  };
+
+  //console.log(response);
+
+  var cond1={Inward_Register_Number:req.body.inwardregno};
+  var cond2={status:req.body.status};
+  var cond3={PO_Number:req.body.ponumber};
+  var cond4={new_Inward_Register_Number:req.body.inwardregno};
+  var cond5={state:req.body.status};
+
+  var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,function(returnval){
+    if(returnval=="updated")
+      res.status(200).json({"flag":returnval});
+    else if(returnval=="not updated")
+      res.status(200).json({"flag":returnval});
+  });
+});
 //Function to update the specific item under particular IRN number when they made any change in quantity,remarks etc
-app.post("/physicqualifyitem-card",urlencodedParser,function(req,res){
+/*app.post("/physicqualifyitem-card",urlencodedParser,function(req,res){
   cond1={
     new_Inward_Register_Number:req.body.inwardno}
   cond2={
@@ -191,9 +230,7 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res){
     else if(returnval=="not updated")
     res.status(200).json({"flag":returnval});
   });
-
-});
-
+});*/
 
 //Function calls when the user performing flow accept
 app.post("/physicqualified-service",urlencodedParser,function(req,res){
@@ -207,7 +244,6 @@ app.post("/physicqualified-service",urlencodedParser,function(req,res){
   val={state:req.query.status};
   updateflag=req.query.updateflag;
   var ponumber={"PO_Number":req.query.ponumber};
-
   var FnPhysicqualifiedServicecall = require("./app/scripts/dboperations.js");
   //Function which send non updated items to the service
   FnPhysicqualifiedServicecall.FnPhysicqualifiedService("physicqualified-service",cond1,cond2,cond3,updatestatus,qtyupdatestatus,val,updateflag,ponumber,function(returnval){

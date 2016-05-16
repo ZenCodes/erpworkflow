@@ -21,10 +21,9 @@
 
       paper-tabs{
         background-color: #e6e6e6;
-        width: 100%;
-      //margin-top: 5%;
+        width: 120%;
         height: 4%;
-        //margin-left: 5%;
+        margin-left: -10%;
       }
       paper-button{
         font-size: 15px;
@@ -32,7 +31,7 @@
       }
 
     </style>
-    
+
     <!--Page for showing Inward items which has static tab and dynamic item will be shown as a card-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
@@ -44,7 +43,7 @@
       <!--Template to bind the current state cards according to the role logged in-->
       <template is="dom-repeat" items="{{itemArray}}" as="item">
         <div class="itemcard">
-          <div><physicinsitem-card inwardregno="{{item.inwardregno}}" inwardno="{{item.inwardno}}" inwarddate="{{item.inwarddate}}" ></physicinsitem-card>
+          <div><physicinsitem-card productid="{{item.Product_ID}}" suppliername="{{item.Supplier_ID}}" contreceived="{{item.unit}}" contmeasure="{{item.Unit_measure}}" qtyreceived="{{item.Qty_Received}}" qtymeasure="{{item.Qty_measure}}" inwardregno="{{item.new_Inward_Register_Number}}" inwardno="{{item.Inward_Bill_Number}}" inwarddate="{{item.Inward_Register_Date}}" ponumber="{{item.PO_Number}}" qtyaccepted="{{item.Qty_Accepted}}" contaccepted="{{item.Unit_Accepted}}" remarks="{{item.Remarks}}"></physicinsitem-card>
           </div></div>
       </template>
     </div>
