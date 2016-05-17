@@ -163,6 +163,21 @@ app.post("/physicqualify-card",urlencodedParser,function(req,res){
   });
 });
 
+
+//Fetching items under particularIRN number which expanded by the user
+app.post("/physicqualifyexpanditemread-service",urlencodedParser,function(req,res){
+  //console.log('req coming...'+req.query.inwardregno);
+  var cond={Inward_Register_Number:req.query.inwardregno}
+  //console.log('coming...........');
+  //importing js file to invoke the function
+  var Fnphysicqualifyexpanditemreadcall = require("./app/scripts/dboperations.js");
+  //Invoking function to fetch the items data under particular IRN
+  Fnphysicqualifyexpanditemreadcall.Fnphysicqualifyexpanditemread("physicqualifyexpanditemread-service",cond,function(returnval){
+    //Response Sending back to the service componet
+    res.status(200).json(returnval);
+  });
+});
+
 app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
 
   var inspectionstatus;
@@ -242,6 +257,51 @@ app.post("/physicqualified-service",urlencodedParser,function(req,res) {
   //Invoking function to update the item info
   Fnphysicqualifiedcall.Fnphysicqualified("physicqualified-service",inwardregno,checkstatus,status,function(returnval){
     res.status(200).json({"flag":returnval.flag,"state":returnval.state});
+  });
+});
+
+app.post("/specificationitemread-service",urlencodedParser,function(req,res) {
+  var Fnspecificationitemreadcall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  Fnspecificationitemreadcall.Fnspecificationitemread("specificationitemread-service",function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post("/updatequalityparameter-service",urlencodedParser,function(req,res) {
+  var response={
+    Test_ID:"",
+    Inward_register_Number:req.query.inwardregno,
+    Container_ID:req.query.containerid,
+    Quality_Parameter_Name:req.query.name,
+    Min_Value:req.query.minvalue,
+    Max_Value:req.query.maxvalue,
+    Actual_Value:req.query.actualvalue,
+    Remarks:req.query.remarks
+  };
+  //console.log(response);
+  var Fnupdatequalityparametercall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  Fnupdatequalityparametercall.Fnupdatequalityparameter("updatequalityparameter-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post("/qualityparametersequenceupdate-service",urlencodedParser,function(req,res) {
+  var Fnqualityparametersequenceupdatecall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  Fnqualityparametersequenceupdatecall.Fnqualityparametersequenceupdate("qualityparametersequenceupdate-service",function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post("/qualityparameterdisplay-service",urlencodedParser,function(req,res) {
+  var cond1={Inward_Register_Number:req.query.inwardregno};
+  var cond2={Container_ID:req.query.containerid};
+  var Fnqualityparameterdisplaycall = require("./app/scripts/dboperations.js");
+  //Invoking function to update the item info
+  Fnqualityparameterdisplaycall.Fnqualityparameterdisplay("qualityparameterdisplay-service",cond1,cond2,function(returnval){
+    res.status(200).json(returnval);
   });
 });
 

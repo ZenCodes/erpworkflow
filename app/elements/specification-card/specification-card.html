@@ -1,12 +1,18 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-<link rel="import" href="..\..\paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../specification-item-crd/specification-item-crd.html">
+<link rel="import" href="../grn-service/grn-service.html">
 
 <dom-module id="specification-card">
   <template>
     <style>
-      .card{
-         @apply(--layout-horizontal);
+      .outcard{
+        @apply(--layout-verical);
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        margin-left: 6%;
       }
       #id{
         margin-left: 20%;
@@ -14,11 +20,52 @@
       #number{
         margin-left: 10%;
       }
+      #test{
+        margin-left: 75%;
+        text-transform: none;
+        text-align: center;
+      //width: 35%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        height: 30px;
+      //margin-top: 4%;
+      }
+      paper-button{
+        text-transform: none;
+      }
+      paper-tabs{
+        width: 90%;
+
+      }
     </style>
-    <div class="card">
-      <paper-input id="id" label="Container Id" value="{{id}}"></paper-input>
-      <paper-input id="number" label="Number" value="{{number}}"></paper-input>       
-    </div>
+      <div class="outcard">
+        <paper-tabs selected="0" noink id="ptab">
+          <paper-tab><paper-button>Parameter Name</paper-button></paper-tab>
+          <paper-tab><paper-button>Min Value</paper-button></paper-tab>
+          <paper-tab><paper-button>Max Value</paper-button></paper-tab>
+          <paper-tab><paper-button>Actual Value</paper-button></paper-tab>
+          <paper-tab><paper-button>Remarks</paper-button></paper-tab>
+        </paper-tabs>
+      <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <specification-item-crd name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
+      </template>
+      <paper-button id="test" on-click="FnAddtest">Add Test</paper-button>
+      </div>
+
+    <iron-ajax
+      method="post"
+      id="specificationitemreadajax"
+      url="{{specificationitemreadurl}}"
+      params="{{specificationitemreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnspecificationitemreadResponse">
+    </iron-ajax>
+
+
+  <grn-service id="grnservice"></grn-service>
   </template>
   <script>
   (function() {
@@ -27,7 +74,36 @@
     Polymer({
       is: 'specification-card',
       ready:function(){
+        this.temparr=[];
+        var obj={"parametername":"","minval":"","maxval":"","actualval":"","remark":""};
+        this.temparr.push(obj);
+        this.itemArray=this.temparr;
+      },
+      FnspecificationitemreadService:function(){
+        this.specificationitemreadurl=sessionStorage.getItem("curr_sess_url")+"specificationitemread-service";
+        this.$.specificationitemreadajax.generateRequest();
+      },
+      FnspecificationitemreadResponse:function(e){
+        if(JSON.stringify(e.detail.response)!='no items')
+        this.itemArray=e.detail.response;
+        this.specarr=e.detail.response;
+      },
 
+      FnSetValue:function(qualityarray){
+        alert(JSON.stringify(qualityarray));
+        this.qualityarray=qualityarray;
+      },
+      FnAddtest:function(){
+        alert('yes');
+        alert((this.qualityarray).length);
+        if((this.qualityarray).length==(this.itemArray).length)
+        {
+          alert('Test submit!');
+          this.$.grnservice.updatequalityparameterService(this.qualityarray);
+        }
+        else{
+          alert('Please enter all the quality parameters!');
+        }
       }
     });
   })();

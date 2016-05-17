@@ -1,0 +1,60 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="specification-item-crd">
+  <template>
+    <style>
+      .card{
+        @apply(--layout-horizontal);
+      }
+      paper-input{
+        width: 15%;
+        margin-left: 3%;
+      }
+    </style>
+    <div class="card">
+      <paper-input id="parameter" value="{{name}}"></paper-input>
+      <paper-input id="minvalue" value="{{minvalue}}"></paper-input>
+      <paper-input id="maxvalue" value="{{maxvalue}}"></paper-input>
+      <paper-input id="{{name}}actualvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input>
+      <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var testarr=[];
+    Polymer({
+      is: 'specification-item-crd',
+      ready:function(){
+      this.flag=0;
+      },
+      FnChange:function(){
+      var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":""};
+      obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+      obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");
+      obj.name=this.name;
+      obj.minvalue=this.minvalue;
+      obj.maxvalue=this.maxvalue;
+      obj.actualvalue=this.actualvalue;
+      obj.remarks=this.remarks;
+      for(var i=0;i<testarr.length;i++){
+        if(testarr[i].name==obj.name){
+          //alert('exists');
+          this.flag=1;
+          testarr[i].actualvalue=this.actualvalue;
+          testarr[i].remarks=this.remarks;
+        }
+      }
+      if(this.flag==0) {
+        testarr.push(obj);
+        document.querySelector('specification-card').FnSetValue(testarr);
+      }
+      },
+      FnRemarkChange:function(){
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

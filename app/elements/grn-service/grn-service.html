@@ -27,6 +27,28 @@
       on-response="flowphysicitemreadResponse">
     </iron-ajax>
 
+    <!--Component which make req to store the quality parameters-->
+    <iron-ajax
+      id="updatequalityparameterajax"
+      url="{{updatequalityparameterurl}}"
+      params='{{updatequalityparameterparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatequalityparameterResponse">
+    </iron-ajax>
+
+    <!--Component which make req to store the quality parameters testid sequence -->
+    <iron-ajax
+      id="qualityparametersequenceajax"
+      url="{{qualityparametersequenceurl}}"
+      params='{{qualityparametersequenceparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="qualityparametersequenceResponse">
+    </iron-ajax>
+
     <!--Component which make request to display the search items based on IRN,ORN,INvoice no,item des-->
     <iron-ajax
       id="searchitemreadajax"

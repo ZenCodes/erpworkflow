@@ -17,8 +17,11 @@
       var x=-4;
       //Storing expanded card IRN number in sessionstorage
       sessionStorage.setItem("sess_curr_inwardregno",this.inwardregno);
+      //calling service to call fetch coil info
+      this.$.ps.FnexpandcardreadService();
       //Sending IRN number to service component to fetch the expanded card info
       this.$.ps.physicqualifyitemService(this.contreceived,this.contmeasure);
+      //document.querySelector('specification-card').FnspecificationitemreadService();
       //Calling webcomponent service to fetch labels dynamically for this card from config file
       this.$.ps.callWebcomponentService();
       var all=document.querySelectorAll('.expandcard');

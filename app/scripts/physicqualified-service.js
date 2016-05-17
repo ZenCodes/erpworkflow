@@ -18,6 +18,18 @@
       if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
       this.inwardacceptparam=arg;
       this.inwardaccepturl=sessionStorage.getItem("curr_sess_url")+"physicqualifyinwardacceptcheck-service";
       this.$.inwardacceptcheckajax.generateRequest();
@@ -38,6 +50,22 @@
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
 
       if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
@@ -62,12 +90,28 @@
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+        arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
+        arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+      }
       this.physicupdateparam=arg;
       this.physicupdateurl=sessionStorage.getItem("curr_sess_url")+"physicqualified-service";
       this.$.physicupdateajax.generateRequest();
     },
     physicupdateResponse:function(e){
-      alert(e.detail.response.flag);
+      //alert(e.detail.response.flag);
       if(e.detail.response.flag=="updated"){
         localStorage.setItem('curr_sess_flowstate',"1");
         document.querySelector('grnflow-card').disableBackstate();

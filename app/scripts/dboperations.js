@@ -385,7 +385,7 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
     }
   }
 
-  console.log(JSON.stringify(cond)+" "+JSON.stringify(cond1));
+  //console.log(JSON.stringify(cond)+" "+JSON.stringify(cond1));
   //Query fetches item info under the specific IRN Number with desired state
   connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ?',[cond,cond1], function(err, rows) {
     if(!err)
@@ -426,6 +426,31 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
     //else{
     }
   });
+}
+
+//Function fetches expanded card item info
+exports.Fnphysicqualifyexpanditemread=function(pagename,cond,callback) {
+  //Fetches tables for this page
+  var Config_tables = [];
+  for (var i = 0; i < obj.length; i++) {
+    if (obj[i].name == pagename) {
+      Config_tables = obj[i].value;
+    }
+  }
+  console.log(JSON.stringify(cond));
+  connection.query('SELECT * FROM OD_Inward_Material_Inspection where ?',[cond], function(err, rows) {
+    if(!err){
+      console.log(JSON.stringify(rows));
+        if(rows.length>0) {
+          return callback(rows);
+        }
+        else
+        return callback("no items");
+    }
+    else
+    console.log(err);
+  });
+
 }
 
 //Function fetches the item info and update the status of the specific item
@@ -513,9 +538,9 @@ exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,checkstat
 
 exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callback) {
   var queryy="select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "'";
-  console.log(queryy);
+  //console.log(queryy);
   connection.query(queryy, function (err, rows) {
-  console.log(rows);
+  //console.log(rows);
     if(!err){
     var response= {
       Purchase_Type: rows[0].Purchase_Type,
@@ -542,7 +567,7 @@ exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callb
         return callback("fail");
     });
   }
-  else
+  else+
   console.log(err);
 
   });
@@ -550,17 +575,87 @@ exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callb
 
 exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callback) {
   var queryy="update OD_Sales_Inward_Material set Unit_Accepted=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "' and Inspection_Status='Approved'),Qty_Accepted=(select sum(Quantity) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "' and Inspection_Status='Approved'),state='"+status+"' where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' ";
-  console.log(queryy);
+  //console.log(queryy);
   connection.query(queryy, function (err, rows) {
     if(!err)
     {
-      return callback({"flag":"updated","state":status});
-    }
-    else{
-      return callback({"flag":"not updated"});
+      var queryy1="UPDATE OD_Inward_Material_Inspection SET status='"+status+"' where Inward_Register_Number='"+inwardregno+"' and status='"+checkstatus+"'";
+      connection.query(queryy1, function (err, rows) {
+      if(!err){
+        return callback({"flag":"updated","state":status});
+      }
+      else {
+        return callback({"flag": "not updated"});
+      }
+      });
     }
   });
 }
+
+exports.Fnspecificationitemread=function(pagename,callback) {
+  var queryy="SELECT * FROM MD_Quality_Parameter";
+  connection.query(queryy, function (err, rows) {
+    if(!err)
+    {
+      if(rows.length>0)
+        return callback(rows);
+      else
+        return callback("no items");
+    }
+  });
+}
+
+
+exports.Fnupdatequalityparameter=function(pagename,response,callback) {
+
+  connection.query('SELECT Test_ID FROM MD_Quality_Test_ID',function (err, rows) {
+    if(!err) {
+      response.Test_ID=rows[0].Test_ID;
+      connection.query('INSERT INTO OD_Inward_Material_Quality_Test SET ?', [response], function (err, rows) {
+        if (!err) {
+          return callback("succ");
+        }
+        else
+          return callback("fail");
+      });
+    }
+  });
+}
+
+exports.Fnqualityparametersequenceupdate=function(pagename,callback) {
+
+  connection.query('SELECT Test_ID FROM MD_Quality_Test_ID',function (err, rows) {
+    if(!err) {
+      var response={Test_ID:parseInt(rows[0].Test_ID)+1};
+      connection.query('UPDATE MD_Quality_Test_ID SET ?',[response],function (err, rows) {
+        if (!err) {
+          return callback("succ");
+        }
+        else
+          return callback("fail");
+      });
+    }
+    else
+    console.log(err);
+  });
+}
+
+exports.Fnqualityparameterdisplay=function(pagename,cond1,cond2,callback) {
+
+  connection.query('SELECT * FROM OD_Inward_Material_Quality_Test WHERE ? and ?',[cond1,cond2],function (err, rows) {
+    if(!err) {
+      if (rows.length > 0)
+        return callback(rows);
+
+      else
+        return callback("fail");
+    }
+    else
+    console.log(err);
+    });
+}
+
+
 //Function which reads the item info after updating to the next state
 exports.FnBackwardflowitem=function(pagename,cond,cond1,callback){
   var Config_tables=[];

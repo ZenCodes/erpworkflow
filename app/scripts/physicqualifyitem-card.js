@@ -89,5 +89,19 @@ Polymer({is:"physicqualifyitem-card",
   FnResponse:function(e)
   {
     this.$.ID_Show_Dialog.FnShowDialog(e.detail.response.flag,"");
+  },
+  FnExpandInnerCard:function(){
+    //alert(this.containerid);
+    if(document.querySelector('#radio'+this.containerid).checked==true)
+    {
+      localStorage.setItem("curr_sess_expandedcontainer",this.containerid);
+      this.$.specificationcard.FnspecificationitemreadService();
+      this.$.qualityparameterdisplay.FnparameterdisplayService();
+      document.querySelector("#inner"+this.containerid).toggle();
+    }
+    if(document.querySelector('#radio'+this.containerid).checked==false)
+    {
+      document.querySelector("#inner"+this.containerid).toggle();
+    }
   }
 });

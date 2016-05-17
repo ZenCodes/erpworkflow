@@ -1,0 +1,67 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
+<link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="quality-parameter-displaycard">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-horizontal);
+      }
+      paper-input{
+        width: 15%;
+        margin-left: 3%;
+      }
+    </style>
+
+      <template is="dom-repeat" items="{{itemArray}}" as="item">
+      <div class="card">
+        <paper-input id="parameter" value="{{item.Quality_Parameter_Name}}">{{item.Quality_Parameter_Name}}</paper-input>
+        <paper-input id="minvalue" value="{{item.Min_Value}}">{{item.Min_Value}}</paper-input>
+        <paper-input id="maxvalue" value="{{item.Max_Value}}">{{item.Max_Value}}</paper-input>
+        <paper-input id="actualvalue" value="{{item.Actual_Value}}" on-change="FnChange">{{item.Actual_Value}}</paper-input>
+        <paper-input id="remarks" value="{{item.Remarks}}" on-change="FnChange">{{item.Remarks}}</paper-input>
+      </div>
+      </template>
+
+    <!--Component which make req to display the quality parameters for the previous testid -->
+    <iron-ajax
+      id="qualityparameterdisplayajax"
+      url="{{qualityparameterdisplayurl}}"
+      params='{{qualityparameterdisplayparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnqualityparameterdisplayResponse">
+    </iron-ajax>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'quality-parameter-displaycard',
+      ready:function(){
+      },
+      FnparameterdisplayService:function(){
+        var obj={"inwardregno":"","containerid":""};
+        obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+        obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");
+        this.qualityparameterdisplayparam=obj;
+        this.qualityparameterdisplayurl=sessionStorage.getItem("curr_sess_url")+"qualityparameterdisplay-service";
+        this.$.qualityparameterdisplayajax.generateRequest();
+      },
+      FnqualityparameterdisplayResponse:function(e){
+        //alert(JSON.stringify(e.detail.response));
+        if(JSON.stringify(e.detail.response)!='no items')
+          this.itemArray=e.detail.response;
+      }
+    });
+  })();
+  </script>
+</dom-module>

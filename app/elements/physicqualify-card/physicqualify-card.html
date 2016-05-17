@@ -130,12 +130,22 @@
       <!--template which shows the no of items under expended IRN card-->
       <template is="dom-repeat" items="{{specificationArray}}" as="item">
       <div class="repeatcard">
-        <physicqualifyitem-card inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></physicqualifyitem-card>
+        <physicqualifyitem-card containerid="{{item.Container_ID}}" heatno="{{item.Heat_Number}}" qtyaccept="{{item.Quantity}}" inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></physicqualifyitem-card>
       </div>
       </template>
     </div>
     </template>
     </div>
+    <!--Component to read specification card info-->
+    <iron-ajax
+      method="post"
+      id="physicqualifyexpanditemreadajax"
+      url="{{physicqualifyexpanditemreadurl}}"
+      params="{{physicqualifyexpanditemreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnphysicqualifyexpanditemreadResponse">
+    </iron-ajax>
   <!--Component to read Labels for the components from webcomponents.json file-->
   <iron-ajax
     id="webcomponentreadajax"

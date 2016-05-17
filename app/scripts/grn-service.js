@@ -4,14 +4,48 @@
 //JS file for grn service
 (function() {
   var intentstate;
+  var arrlength=0;
+  var no=0;
   Polymer({
     is: "grn-service",
     ready:function()
     {
     },
+    updatequalityparameterService:function(qualityarray){
+      arrlength=qualityarray.length;
+      for(var i=0;i<qualityarray.length;i++){
+        var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":""};
+        obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+        obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");
+        obj.name=qualityarray[i].name;
+        obj.minvalue=qualityarray[i].minvalue;
+        obj.maxvalue=qualityarray[i].maxvalue;
+        obj.actualvalue=qualityarray[i].actualvalue;
+        obj.remarks=qualityarray[i].remarks;
+        this.updatequalityparameterurl=sessionStorage.getItem("curr_sess_url")+"updatequalityparameter-service";
+        this.updatequalityparameterparam=obj;
+        this.$.updatequalityparameterajax.generateRequest();
+      }
+    },
+    updatequalityparameterResponse:function(e){
+      //alert(JSON.stringify(e.detail.response));
+      if(e.detail.response=="succ"){
+        no=no+1;
+      }
+      if(arrlength==no){
+        this.qualityparametersequenceurl=sessionStorage.getItem("curr_sess_url")+"qualityparametersequenceupdate-service";
+        //this.qualityparametersequenceparam=obj;
+        this.$.qualityparametersequenceajax.generateRequest();
+      }
+    },
+    qualityparametersequenceResponse:function(e){
+      if(e.detail.response=="succ") {
+        alert("Updated!!");
+        //document.querySelector('quality-parameter-displaycard').FnparameterdisplayService();
+      }
+    },
     //Invoking service to fetch item under state according to the role logged in
     physicreadService:function(){
-    
       var arg={"status":""};
       switch(parseInt(sessionStorage.getItem("curr_sess_roleflag"))){
         case 1:
@@ -40,7 +74,7 @@
       var arr=e.detail.response;
       // alert(JSON.stringify(arr));
       document.querySelector('physicins-page').itemArray=arr;
-      
+
     },
     //Fetching history of the items correspoding to the item viewed by the current logged role
     flowphysicreadService:function(state){
@@ -135,14 +169,14 @@
       }
     },
     FnIntentitemReadService:function(){
-     
+
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":"","state":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
       arg.loggedrole=sessionStorage.getItem("loggedrole");
      // arg.state=state;
       this.intentparam=arg;
-     
+
       /*if((sessionStorage.getItem("loggedrole")=="Stores manager")||(sessionStorage.getItem("loggedrole")=="Purchase manager")){
       //alert("yes");
       this.FnIntentsupplyitemReadService();
@@ -150,35 +184,35 @@
       else
       {*/
         //alert("No");
-        this.$.intentitemreadajax.generateRequest();        
+        this.$.intentitemreadajax.generateRequest();
      // }
     },
     intentitemreadResponse:function(e){
       //alert(JSON.stringify(e.detail.response));
-      var itemarr=e.detail.response.itemarr;     
+      var itemarr=e.detail.response.itemarr;
       var items=[];
       if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
         for(var i=0;i<itemarr.length;i++){
-          if(localStorage.getItem('curr_sess_postate')==itemarr[i].intentstate){          
+          if(localStorage.getItem('curr_sess_postate')==itemarr[i].intentstate){
             items.push(itemarr[i]);
           }
-        }        
+        }
         document.querySelector('viewintent-page').itemArray=items;
       }
-      else{        
+      else{
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
       }
-      
+
     },
     FnIntentsupplyitemReadService:function(){
       //alert("coming...");
       //intentstate=state;
       this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupplyitemread-service";
       var arg={"loggeduser":"","intentstate":"","state":""};
-      arg.loggeduser=sessionStorage.getItem("loggeduser");   
-      
+      arg.loggeduser=sessionStorage.getItem("loggeduser");
+
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
-      {      
+      {
       arg.intentstate="Approved";
       arg.state="internal";
       }
@@ -200,19 +234,19 @@
       if(sessionStorage.getItem("loggedrole")=="Purchase manager")
       {
       document.querySelector('viewintent-page').itemArray=e.detail.response.itemarr;
-      }     
-      
+      }
+
     },
     FnIntentViewitemReadService:function(){
       this.intentviewurl=sessionStorage.getItem("curr_sess_url")+"intentviewitemread-service";
       var arg={"loggeduser":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
-      arg.loggedrole=sessionStorage.getItem("loggedrole");     
+      arg.loggedrole=sessionStorage.getItem("loggedrole");
       this.intentviewparam=arg;
-      this.$.intentviewitemreadajax.generateRequest();        
+      this.$.intentviewitemreadajax.generateRequest();
     },
-    intentviewitemreadResponse:function(e){      
-      document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;      
+    intentviewitemreadResponse:function(e){
+      document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;
     }
   });
 })();

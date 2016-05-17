@@ -17,6 +17,9 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../physicqualify-service/physicqualify-service.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
+<link rel="import" href="../specification-card/specification-card.html">
+<link rel="import" href="../quality-parameter-displaycard/quality-parameter-displaycard.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="physicqualifyitem-card">
   <template>
@@ -87,7 +90,7 @@
         <paper-input name="inwardregno" value="{{inwardregno}}" hidden></paper-input>
         <paper-input name="inspectionstatus" value="{{inspectionstatus}}" hidden></paper-input>
 
-        <paper-radio-button></paper-radio-button>
+        <paper-radio-button id="radio{{containerid}}" on-change="FnExpandInnerCard"></paper-radio-button>
         <paper-input class="containerid" name="containerid" label="Container ID" value="{{containerid}}" id="cont{{inwardno}}" required></paper-input>
         <paper-input class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" required></paper-input>
         <paper-input class="qtinput" name="qtyaccept" label="Quantity" value="{{qtyaccept}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
@@ -97,8 +100,16 @@
         <paper-icon-button icon="icons:check" on-click="FnSaveItem" class="save"></paper-icon-button>
         <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button>
       </div>
+      <!--Expand item collapse card-->
+      <iron-collapse id="inner{{containerid}}">
+        <div class="collapse">
+          <specification-card id="specificationcard"></specification-card>
+          <quality-parameter-displaycard id="qualityparameterdisplay"></quality-parameter-displaycard>
+        </div>
+      </iron-collapse>
     </form>
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
+
   </template>
   <!--JS file import-->
   <script src="../../scripts/physicqualifyitem-card.js"></script>
