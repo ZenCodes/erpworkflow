@@ -70,7 +70,7 @@
   <script>
   (function() {
     'use strict';
-
+    var qualityarr;
     Polymer({
       is: 'specification-card',
       ready:function(){
@@ -80,26 +80,31 @@
         this.itemArray=this.temparr;
       },
       FnspecificationitemreadService:function(){
+        var obj={"inwardregno":"","checkstatus":""};
+        obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+        obj.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        //alert(localStorage.getItem("curr_sess_currflowstatus"));
+        this.specificationitemreadparam=obj;
         this.specificationitemreadurl=sessionStorage.getItem("curr_sess_url")+"specificationitemread-service";
         this.$.specificationitemreadajax.generateRequest();
       },
       FnspecificationitemreadResponse:function(e){
         if(JSON.stringify(e.detail.response)!='no items')
         this.itemArray=e.detail.response;
+        //alert(JSON.stringify(this.itemArray));
         this.specarr=e.detail.response;
       },
-
       FnSetValue:function(qualityarray){
-        alert(JSON.stringify(qualityarray));
-        this.qualityarray=qualityarray;
+        //alert(JSON.stringify(qualityarray));
+        qualityarr=qualityarray;
       },
       FnAddtest:function(){
-        alert('yes');
-        alert((this.qualityarray).length);
-        if((this.qualityarray).length==(this.itemArray).length)
+        //alert('yes');
+        //alert((this.qualityarray).length);
+        if((qualityarr).length==(this.itemArray).length)
         {
           alert('Test submit!');
-          this.$.grnservice.updatequalityparameterService(this.qualityarray);
+          this.$.grnservice.updatequalityparameterService(qualityarr);
         }
         else{
           alert('Please enter all the quality parameters!');

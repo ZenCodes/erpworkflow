@@ -437,10 +437,10 @@ exports.Fnphysicqualifyexpanditemread=function(pagename,cond,callback) {
       Config_tables = obj[i].value;
     }
   }
-  console.log(JSON.stringify(cond));
+  //console.log(JSON.stringify(cond));
   connection.query('SELECT * FROM OD_Inward_Material_Inspection where ?',[cond], function(err, rows) {
     if(!err){
-      console.log(JSON.stringify(rows));
+      //console.log(JSON.stringify(rows));
         if(rows.length>0) {
           return callback(rows);
         }
@@ -592,8 +592,12 @@ exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callb
   });
 }
 
-exports.Fnspecificationitemread=function(pagename,callback) {
-  var queryy="SELECT * FROM MD_Quality_Parameter";
+exports.Fnspecificationitemread=function(pagename,inwardregno,checkstatus,callback) {
+  //var queryy="SELECT * FROM MD_Quality_Parameter";
+  var queryy="select * from MD_Quality_Parameter where Quality_Parameter_ID in"+
+  "(select Quality_Parameter_ID from OD_Item_Quality_Parameter where Item_ID="+
+    "(select Item_ID from MD_Item where Item_Name="+
+    "(SELECT Product_ID from OD_Sales_Inward_Material where new_Inward_Register_Number='"+inwardregno+"' and state='"+checkstatus+"')))";
   connection.query(queryy, function (err, rows) {
     if(!err)
     {
@@ -648,7 +652,7 @@ exports.Fnqualityparameterdisplay=function(pagename,cond1,cond2,callback) {
         return callback(rows);
 
       else
-        return callback("fail");
+        return callback("no items");
     }
     else
     console.log(err);

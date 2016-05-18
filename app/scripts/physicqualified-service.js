@@ -38,7 +38,7 @@
       //alert(JSON.stringify(e.detail.response));
       if(e.detail.response.flag=="succ")
       {
-        //alert("All rows wr filled");
+        alert("All rows wr filled");
         this.oldphysicinsertService();
       }
       else{
@@ -53,19 +53,19 @@
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
@@ -90,19 +90,19 @@
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
       }

@@ -6,6 +6,7 @@ Polymer({is:"physicqualifyitem-card",
     this.updateflag="false";
     this.url=sessionStorage.getItem("curr_sess_url")+"physicqualifyitem-card";
   },
+
   FnSaveItem:function(){
     //Validating container and quantity fields,if container or quantity accepted fileds are greater than received fields it will throw error
     //Validating quantity field
@@ -92,14 +93,14 @@ Polymer({is:"physicqualifyitem-card",
   },
   FnExpandInnerCard:function(){
     //alert(this.containerid);
-    if(document.querySelector('#radio'+this.containerid).checked==true)
+    if(document.querySelector('#radio'+this.containerid).checked==true&&sessionStorage.getItem("curr_sess_roleflag")=="3")
     {
       localStorage.setItem("curr_sess_expandedcontainer",this.containerid);
       this.$.specificationcard.FnspecificationitemreadService();
       this.$.qualityparameterdisplay.FnparameterdisplayService();
       document.querySelector("#inner"+this.containerid).toggle();
     }
-    if(document.querySelector('#radio'+this.containerid).checked==false)
+    if(document.querySelector('#radio'+this.containerid).checked==false&&sessionStorage.getItem("curr_sess_roleflag")=="3")
     {
       document.querySelector("#inner"+this.containerid).toggle();
     }

@@ -43,6 +43,7 @@ Polymer({
     }
     else
     {
+      this.$.pqs.physicqualifyacceptcheckService(sessionStorage.getItem("sess_curr_inwardregno"));
       //document.querySelector('physicinsitem-card').setToggle();
       //this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
     }

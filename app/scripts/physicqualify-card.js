@@ -41,7 +41,7 @@
       this.$.physicqualifyexpanditemreadajax.generateRequest();
     },
     FnphysicqualifyexpanditemreadResponse:function(e){
-      //alert(e.detail.response);
+      //alert(JSON.stringify(e.detail.response));
       if(e.detail.response=="no items")
       {
         //alert('yeas');
@@ -61,8 +61,17 @@
         }
         this.specificationArray=this.specarr;
       }
-      else
-      this.specificationArray=e.detail.response;
+      else{
+        var arr=e.detail.response;
+        for(var i=0;i<arr.length;i++) {
+          if(arr[i].Inspection_Status=="Approved")
+          arr[i].readflag=false;
+          else
+          arr[i].readflag=true;
+        }
+        //alert(JSON.stringify(arr));
+        this.specificationArray = arr;
+      }
     },
   physicqualifyitemService:function(contreceived,contmeasure){
     containerreceived=contreceived;

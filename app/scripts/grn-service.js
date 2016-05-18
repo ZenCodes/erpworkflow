@@ -12,6 +12,8 @@
     {
     },
     updatequalityparameterService:function(qualityarray){
+      arrlength=0;
+      no=0;
       arrlength=qualityarray.length;
       for(var i=0;i<qualityarray.length;i++){
         var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":""};
