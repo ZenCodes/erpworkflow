@@ -648,7 +648,7 @@ exports.Fnqualityparameterdisplay=function(pagename,cond1,cond2,callback) {
         return callback(rows);
 
       else
-        return callback("fail");
+        return callback("no items");
     }
     else
     console.log(err);

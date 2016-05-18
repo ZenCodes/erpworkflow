@@ -70,7 +70,7 @@
   <script>
   (function() {
     'use strict';
-
+    var temparr;
     Polymer({
       is: 'specification-card',
       ready:function(){
@@ -90,16 +90,18 @@
       },
 
       FnSetValue:function(qualityarray){
-        alert(JSON.stringify(qualityarray));
-        this.qualityarray=qualityarray;
+        temparr=qualityarray;
+        //alert(JSON.stringify(qualityarray));
+        //this.qualityarray=qualityarray;
       },
       FnAddtest:function(){
-        alert('yes');
-        alert((this.qualityarray).length);
-        if((this.qualityarray).length==(this.itemArray).length)
+        //alert('yes');
+        //alert(JSON.stringify(temparr));
+        //alert((this.qualityarray).length);
+        if(temparr.length==(this.itemArray).length)
         {
           alert('Test submit!');
-          this.$.grnservice.updatequalityparameterService(this.qualityarray);
+          this.$.grnservice.updatequalityparameterService(temparr);
         }
         else{
           alert('Please enter all the quality parameters!');

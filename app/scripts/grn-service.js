@@ -12,6 +12,8 @@
     {
     },
     updatequalityparameterService:function(qualityarray){
+      arrlength=0;
+      no=0;
       arrlength=qualityarray.length;
       for(var i=0;i<qualityarray.length;i++){
         var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":""};
@@ -41,7 +43,7 @@
     qualityparametersequenceResponse:function(e){
       if(e.detail.response=="succ") {
         alert("Updated!!");
-        //document.querySelector('quality-parameter-displaycard').FnparameterdisplayService();
+        document.querySelector('physicqualifyitem-card').FnShrinkExpand();
       }
     },
     //Invoking service to fetch item under state according to the role logged in

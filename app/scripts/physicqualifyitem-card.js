@@ -103,5 +103,11 @@ Polymer({is:"physicqualifyitem-card",
     {
       document.querySelector("#inner"+this.containerid).toggle();
     }
+  },
+  FnShrinkExpand:function(){
+    //this.$.specificationcard.FnspecificationitemreadService();
+    //this.$.qualityparameterdisplay.FnparameterdisplayService();
+    //document.querySelector("#inner"+this.containerid).toggle();
+    //document.querySelector("#inner"+this.containerid).toggle();
   }
 });
