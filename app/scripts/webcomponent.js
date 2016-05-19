@@ -50,6 +50,7 @@
           localStorage.setItem("curr_sess_currflowstatus",roleconfig[0].role[i].status);
           localStorage.setItem("curr_sess_currflownewstatus",roleconfig[0].role[i].newstatus);
           localStorage.setItem("curr_sess_currflowupdatestatus",roleconfig[0].role[i].updatestatus);
+          localStorage.setItem("curr_sess_currflowcontainerstatus",roleconfig[0].role[i].containerstatus);
           //alert(roleconfig[0].role[i].RoleFlag+" "+roleconfig[0].role[i].status+" "+roleconfig[0].role[i].newtatus+" "+roleconfig[0].role[i].updatetatus);
           if(sessionStorage.getItem("curr_sess_roleflag")=="6")
           localStorage.setItem("curr_sess_wardflag","");

@@ -17,53 +17,48 @@ Polymer({is:"physicqualifyread-card",
 
     arg.status=localStorage.getItem('curr_sess_expandstate');
     //alert(arg.inwardregno+"  "+arg.status);
-    this.param=arg;
-    this.url=sessionStorage.getItem("curr_sess_url")+"physicqualify-card";
-    this.$.physicqualifyitemreadajax.generateRequest();
+    this.physicqualifyexpanditemreadparam=arg;
+    //alert(JSON.stringify(arg));
+    this.physicqualifyexpanditemreadurl=sessionStorage.getItem("curr_sess_url")+"physicqualifyexpanditemread-service";
+    //alert(this.expanditemreadurl);
+    this.$.physicqualifyexpanditemreadajax.generateRequest();
   },
-  FnPhysicqualifyitemreadResponse:function(e)
-  {
-    //Binding inforamtion to the card
-    var arr=e.detail.response;
-    //alert(JSON.stringify(arr));
-    var commarr=[];
-    var prodarr=[];
-    for(var i=0;i<arr.length;i++)
+  FnphysicqualifyexpanditemreadResponse:function(e){
+    //alert(JSON.stringify(e.detail.response));
+    if(e.detail.response=="no items")
     {
-      var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","supname":""};
-      this.purchasetypeflag=arr[i].purchasetypeflag;
-      if(this.purchasetypeflag!="1") {
-        document.querySelector('#readsuplr').style.paddingTop='0%';
-        this.isHidden = false;
+      //alert('yeas');
+      this.speccardlength=contreceived;
+      this.specarr=[];
+      if(contmeasure=='Coil'){
+        localStorage.setItem("curr_sess_repeatitementry","1");
+        for(var i=0;i<parseInt(this.speccardlength);i++){
+          var obj={"id":"","number":""};
+          this.specarr.push(obj);
+        }
       }
-      else {
-        document.querySelector('#readsuplr').style.paddingTop='6%';
-        //document.querySelector('#readsuplr').style.marginLeft='65%';
-        this.isHidden = true;
+      else{
+        localStorage.setItem("curr_sess_repeatitementry","0");
+        var obj={"id":"","number":""};
+        this.specarr.push(obj);
       }
-      obj.inwardno=arr[i].inwardno;
-      obj.inwarddate=arr[i].inwarddate;
-      obj.ponumber=arr[i].ponumber;
-      if(arr[i].ponumber!=null||arr[i].ponumber!="")
-        this.potempreadflag=arr[i].ponumber;
-      obj.podate=arr[i].podate;
-      obj.supname=arr[i].supname;
+      this.specificationArray=this.specarr;
+      //document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
     }
-    commarr.push(obj);
-    for(var i=0;i<arr.length;i++)
-    {
-      var obj={"itemdes":"","qtyordered":"","qtyreceived":"","qtyaccepted":"","remarks":""};
-      obj.itemdes=arr[i].itemdes;
-      obj.qtyordered=arr[i].qtyordered;
-      obj.qtyreceived=(arr[i].containerreceived)+" / "+(arr[i].qtyreceived);
-      obj.qtyaccepted=(arr[i].containeraccepted+arr[i].contmeasure)+" / "+(arr[i].qtyaccepted+arr[i].qtymeasure);
-      obj.remarks=arr[i].remarks;
-      prodarr.push(obj);
+    else{
+      var arr=e.detail.response;
+      for(var i=0;i<arr.length;i++) {
+        if(arr[i].Inspection_Status=="Approved")
+          arr[i].readflag=false;
+        else
+          arr[i].readflag=true;
+      }
+      //alert(JSON.stringify(arr));
+      this.specificationArray = arr;
+      this.ponumber=this.specificationArray[0].PO_Number;
+
+      //document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
     }
-    this.mainArray=commarr;
-    this.itemArray=prodarr;
-    this.pono=this.potempreadflag;
-    this.suppliername=commarr[0].supname;
   },
   //Method to invoke webcomponent service to read the dynamic label from config file
   callWebcomponentService:function(){

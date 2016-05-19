@@ -12,6 +12,7 @@
         "status":"Stores",
         "newstatus":"OldStores",
         "updatestatus":"Production",
+        "containerstatus":"",
         "menu" : ["GRN Flow","Add Intent","View Intent"]
       },
       {
@@ -20,6 +21,7 @@
         "status":"Production",
         "newstatus":"OldProduction",
         "updatestatus":"Quality",
+        "containerstatus":"OldStores",
         "menu" : ["GRN Flow","Add Intent","View Intent"]
       },
       {
@@ -28,6 +30,7 @@
         "status":"Quality",
         "newstatus":"OldQuality",
         "updatestatus":"Purchase",
+        "containerstatus":"OldProduction",
         "menu" : ["GRN Flow"]
       },
       {
@@ -36,6 +39,7 @@
         "status":"Purchase",
         "newstatus":"OldPurchase",
         "updatestatus":"Confirm",
+        "containerstatus":"OldQuality",
         "menu" : ["GRN Flow","View Intent","Add Supplier"]
       },
       {

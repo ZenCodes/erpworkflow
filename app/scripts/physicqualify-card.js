@@ -32,8 +32,28 @@
   },
     FnexpandcardreadService:function(){
       //alert("calling");
-      var arg={"inwardregno":""};
+      var arg={"inwardregno":"","status":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+      if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
+
+        arg.status=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
+
+        arg.status=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
+
+        arg.status=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
+
+        arg.status=localStorage.getItem("curr_sess_currflowstatus");
+      }
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
+
+        arg.status=localStorage.getItem("curr_sess_currflowstatus");
+      }
       this.physicqualifyexpanditemreadparam=arg;
       //alert(JSON.stringify(arg));
       this.physicqualifyexpanditemreadurl=sessionStorage.getItem("curr_sess_url")+"physicqualifyexpanditemread-service";
@@ -60,6 +80,7 @@
           this.specarr.push(obj);
         }
         this.specificationArray=this.specarr;
+        document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
       }
       else{
         var arr=e.detail.response;
@@ -71,6 +92,8 @@
         }
         //alert(JSON.stringify(arr));
         this.specificationArray = arr;
+        localStorage.setItem("curr_sess_PONumber",this.specificationArray[0].PO_Number);
+        document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
       }
     },
   physicqualifyitemService:function(contreceived,contmeasure){

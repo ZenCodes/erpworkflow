@@ -31,7 +31,7 @@
     ]},
     {"Page":[
       {"page":["physicinsread-page","physicinsread-page"]},
-      {"Label":[{"tabs":[{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Supplier Name"},{"tab":"Cont/Qty Received"},{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
       ,{"title":["Goods Receipt Note"]}
     ]},
     {"Page":[

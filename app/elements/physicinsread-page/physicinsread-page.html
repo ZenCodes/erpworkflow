@@ -21,10 +21,9 @@
 
       paper-tabs{
         background-color: #e6e6e6;
-        width: 100%;
-      //margin-top: 5%;
+        width: 120%;
         height: 4%;
-        //margin-left: 5%;
+        margin-left: -10%;
       }
       paper-button{
         font-size: 15px;
@@ -33,11 +32,11 @@
       }
       .itemcard{
         @apply(--layout-horizontal);
-        width: 100%;
+        width: 120%;
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
         margin-top:2%;
-        //margin-left: 5%;
+        margin-left: -10%;
       }
     </style>
     <!--Template which has card template-->
@@ -52,9 +51,15 @@
       <!--Template which bind items under the current logged role state-->
       <template is="dom-repeat" items="{{itemArray}}" as="item">
         <div class="itemcard">
-          <paper-button  name="inwardregno" value="{{item.inwardregno}}" noink>{{item.inwardregno}}</paper-button>
-          <paper-button  name="inwardno" value="{{item.inwardno}}"  noink>{{item.inwardno}}</paper-button>
-          <paper-button  name="inwarddate" value="{{item.inwarddate}}"  noink>{{item.inwarddate}}</paper-button>
+          <paper-button  name="productid" value="{{item.productid}}" noink>{{item.Product_ID}}</paper-button>
+          <paper-button  name="suppliername" value="{{item.suppliername}}" noink>{{item.Supplier_ID}}</paper-button>
+          <paper-button  name="contqty" value="{{item.contreceived}}" noink>{{item.unit}}{{item.Unit_measure}}/{{item.Qty_Received}}{{item.Qty_measure}}</paper-button>
+          <paper-button  name="inwardregno" value="{{item.inwardregno}}" noink>{{item.new_Inward_Register_Number}}</paper-button>
+          <paper-button  name="inwardno" value="{{item.inwardno}}" noink>{{item.Inward_Bill_Number}}</paper-button>
+          <paper-button  name="inwarddate" value="{{item.inwarddate}}" noink>{{item.Inward_Register_Date}}</paper-button>
+          <!--<paper-button  name="inwardregno" value="{{item.inwardregno}}" noink>{{item.inwardregno}}</paper-button>-->
+          <!--<paper-button  name="inwardno" value="{{item.inwardno}}"  noink>{{item.inwardno}}</paper-button>-->
+          <!--<paper-button  name="inwarddate" value="{{item.inwarddate}}"  noink>{{item.inwarddate}}</paper-button>-->
           <!--<div><physicinsitemread-card inwardregno="{{item.inwardregno}}" inwardno="{{item.inwardno}}" inwarddate="{{item.inwarddate}}"></physicinsitemread-card>-->
           <!--</div></div>-->
           </div>

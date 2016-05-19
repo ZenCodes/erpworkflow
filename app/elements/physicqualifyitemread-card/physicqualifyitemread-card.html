@@ -22,33 +22,32 @@
     <style>
       .repeatcard{
         @apply(--layout-horizontal);
-        width: 110%;
-        margin-top: -1%;
+        width: 100%;
+        margin-top: 0%;
         text-align: center;
-        position: relative;
-      }
-      #itemdes{
-       width:210px;
-      }
-      #itemdes{
-        margin-left: 2%;
-      }
-      #qta{
-        margin-left: 15%;
-        width: 210px;
-       }
-      #qtr{
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
         margin-left: 7%;
-        width: 210px;
-       }
-      .remark{
-        width:27%;
-        height:4%;
-        margin-left: 10%;
+        height: 7%;
+      }
+      .itemdes,.ctr,.ctinput,.qtinput,.remark{
+        width:15%;
+        margin-left:2%;
+      }
+      .ctmeasure,.qtunit{
+        width:5%;
+      }
+      .itemdes,.ctr{
         margin-top: 2%;
       }
-      paper-item{
-        width: 100%;
+      .remark{
+        height:60%;
+        margin-top:1%;
+        width: 18%;
+      }
+      .save,.reject{
+        margin-top: 0%;
+        margin-left: 1%;
       }
       .custom {
         margin-left: 5%;
@@ -56,17 +55,34 @@
         --paper-tooltip-text-color: black;
         font-size: 14px;
         width: 150px;
-        //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      .containerid{
+        margin-left: 2%;
+        width: 20%;
+      }
+      .heatno{
+        margin-left: 5%;
+      }
+      paper-input{
+        margin-top: -1%;
+      }
+      paper-radio-button{
+        margin-top: 1.5%;
+        --paper-radio-button-unchecked-color: var(--paper-blue-900);
+        --paper-radio-button-unchecked-ink-color: var(--paper-blue-900);
       }
     </style>
     <!--template for showing item info-->
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
       <div class="repeatcard">
-        <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
-        <div id="qtr" ><paper-item name="qtyreceived" value="{{qtyreceived}}">{{qtyreceived}}</paper-item></div>
-        <div id="qta" ><paper-item name="qtyaccepted" value="{{qtyaccepted}}">{{qtyaccepted}}</paper-item></div>
-        <textarea class="remark" name="remark" value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
-        <paper-tooltip for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
+        <paper-radio-button disabled="{{read}}" id="radio{{containerid}}" on-change="FnExpandInnerCard"></paper-radio-button>
+        <paper-input disabled="{{read}}" class="containerid" name="containerid" label="Container ID" value="{{containerid}}" id="cont{{inwardno}}" required></paper-input>
+        <paper-input disabled="{{read}}" class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" required></paper-input>
+        <paper-input disabled="{{read}}" class="qtinput" name="qtyaccept" label="Quantity" value="{{qtyaccept}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
+        <paper-input disabled="{{read}}" class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
+        <textarea disabled="{{read}}" class="remark" name="remark" placeholder="Remarks here...." value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
+        <paper-tooltip disabled="{{read}}" for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
       </div>
     </form>
   </template>

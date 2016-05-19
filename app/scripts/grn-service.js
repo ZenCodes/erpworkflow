@@ -94,7 +94,7 @@
     {
       var arr=e.detail.response;
       //alert('coming....');
-      //alert(JSON.stringify(arr));
+      alert(JSON.stringify(arr));
       if(localStorage.getItem("curr_sess_forwardstate")=='0'){
         //document.querySelector('home-page').setPage('Inward Flow');
         document.querySelector('physicinsread-page').itemArray=arr;

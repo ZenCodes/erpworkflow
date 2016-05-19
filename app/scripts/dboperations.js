@@ -429,7 +429,7 @@ exports.FnExpanditemFetch=function(pagename,cond,cond1,callback){
 }
 
 //Function fetches expanded card item info
-exports.Fnphysicqualifyexpanditemread=function(pagename,cond,callback) {
+exports.Fnphysicqualifyexpanditemread=function(pagename,cond,status,callback) {
   //Fetches tables for this page
   var Config_tables = [];
   for (var i = 0; i < obj.length; i++) {
@@ -438,7 +438,7 @@ exports.Fnphysicqualifyexpanditemread=function(pagename,cond,callback) {
     }
   }
   //console.log(JSON.stringify(cond));
-  connection.query('SELECT * FROM OD_Inward_Material_Inspection where ?',[cond], function(err, rows) {
+  connection.query('SELECT * FROM OD_Inward_Material_Inspection where ? and ?',[cond,status], function(err, rows) {
     if(!err){
       //console.log(JSON.stringify(rows));
         if(rows.length>0) {
@@ -462,23 +462,29 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
       Config_tables=obj[i].value;
     }
   }
-  connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? and ?',[cond1,cond2,cond3,cond6], function(err, rows) {
+
+  connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? ',[cond1,cond2,cond6], function(err, rows) {
   if(!err){
-    console.log(rows.length);
+    console.log(JSON.stringify(rows));
     if(rows.length>0){
-      connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ?',[response,cond1,cond2,cond3], function(err, result) {
-        if(!err)
-          return callback("updated");
-        else {
-          console.log(err);
-          return callback("not updated");
-        }
-      });
+      console.log("already thr upading..........");
+      //connection.query('INSERT INTO OD_Inward_Material_Inspection VALUES(SELECT * FROM OD_Inward_Material_Inspection WHERE  ? and ? and ? and ?)',[cond1,cond2,cond3,cond6], function(err, result) {
+      //  if(!err) {
+          connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ? and ?', [response, cond1, cond2, cond6], function (err, result) {
+            if (!err)
+              return callback("updated");
+            else {
+              console.log(err);
+              return callback("not updated");
+            }
+          });
+        //}
+      //});
       }
     else{
+      console.log("new inserting..........");
       connection.query('INSERT INTO OD_Inward_Material_Inspection SET ? ',[response], function(err, result) {
         if(!err){
-
           connection.query('UPDATE OD_Sales_Inward_Material SET ? where ? and ?',[cond3,cond4,cond5], function(err, result) {
           if(!err)
             return callback("updated");
@@ -501,7 +507,61 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
   });
 }
 
-exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,checkstatus,repeatflag,callback) {
+//Function fetches expanded card item info
+exports.Fnreadcontainercoil=function(pagename,cond1,cond2,callback) {
+  //Fetches tables for this page
+  var Config_tables = [];
+  for (var i = 0; i < obj.length; i++) {
+    if (obj[i].name == pagename) {
+      Config_tables = obj[i].value;
+    }
+  }
+  //console.log(JSON.stringify(cond));
+  connection.query('SELECT * FROM OD_Inward_Material_Inspection where ? and ?',[cond1,cond2], function(err, rows) {
+    if(!err){
+      //console.log(JSON.stringify(rows));
+      if(rows.length>0) {
+        return callback(rows);
+      }
+      else
+        return callback("no items");
+    }
+    else
+      console.log(err);
+  });
+
+}
+
+
+exports.Fnoldcontainerupdate=function(pagename,response,inwardregno,callback) {
+  //fetching tables for this page
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+
+  connection.query('INSERT INTO OD_Inward_Material_Inspection SET ?',[response], function (err, rows) {
+    if (!err)
+    {
+      //connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE ? and ?',[newupdatestatus,inwardregno,checkstatus], function (err, rows) {
+      //if(!err){
+        return callback("succ");
+      //}
+      //  else
+      //  return callback("fail");
+      //});
+    }
+    else {
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,status,checkstatus,repeatflag,callback) {
   //fetching tables for this page
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -510,8 +570,8 @@ exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,checkstat
     }
   }
   if(repeatflag=="1") {
-    var queryy = "select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' and unit=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "')";
-    //console.log(queryy);
+    var queryy = "select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + status + "' and unit=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "')";
+    console.log(queryy);
     connection.query(queryy, function (err, rows) {
       if (rows.length > 0)
         return callback("succ");
@@ -560,6 +620,7 @@ exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callb
       new_Inward_Register_Number: rows[0].new_Inward_Register_Number,
       state: "Old"+rows[0].state
     }
+      //console.log(response);
     connection.query('insert into OD_Sales_Inward_Material set ?',[response], function (err, rows) {
       if(!err)
         return callback("succ");
@@ -567,29 +628,31 @@ exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callb
         return callback("fail");
     });
   }
-  else+
+  else
   console.log(err);
 
   });
 }
 
 exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callback) {
-  var queryy="update OD_Sales_Inward_Material set Unit_Accepted=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "' and Inspection_Status='Approved'),Qty_Accepted=(select sum(Quantity) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "' and Inspection_Status='Approved'),state='"+status+"' where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' ";
+  var queryy="update OD_Sales_Inward_Material set Unit_Accepted=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + status + "' and Inspection_Status='Approved'),Qty_Accepted=(select sum(Quantity) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + status + "' and Inspection_Status='Approved'),state='"+status+"' where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' ";
   //console.log(queryy);
   connection.query(queryy, function (err, rows) {
-    if(!err)
-    {
-      var queryy1="UPDATE OD_Inward_Material_Inspection SET status='"+status+"' where Inward_Register_Number='"+inwardregno+"' and status='"+checkstatus+"'";
-      connection.query(queryy1, function (err, rows) {
-      if(!err){
-        return callback({"flag":"updated","state":status});
-      }
-      else {
+    if(!err) {
+      //var queryy1="UPDATE OD_Inward_Material_Inspection SET status='"+status+"' where Inward_Register_Number='"+inwardregno+"' and status='"+checkstatus+"'";
+      //connection.query(queryy1, function (err, rows) {
+      //if(!err){
+      return callback({"flag": "updated", "state": status});
+    }
+      //}
+    else
+      {
         return callback({"flag": "not updated"});
       }
+
       });
-    }
-  });
+
+  //});
 }
 
 exports.Fnspecificationitemread=function(pagename,inwardregno,checkstatus,callback) {
@@ -670,9 +733,9 @@ exports.FnBackwardflowitem=function(pagename,cond,cond1,callback){
       Config_columns=obj[i].columns;
     }
   }
-  connection.query('SELECT distinct '+Config_columns[0]+','+Config_columns[1]+','+Config_columns[2]+' FROM '+Config_tables[0]+' WHERE ? and ?',[cond,cond1], function(err, rows, fields) {
+  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ? and ?',[cond,cond1], function(err, rows, fields) {
     var itemarr=[];
-    for(var i=0;i<rows.length;i++)
+    /*for(var i=0;i<rows.length;i++)
     {
       var obj={"inwardno":"","inwarddate":"","ponumber":"","podate":"","state":"","inwardregno":""};
       obj.inwardno=rows[i].Inward_Bill_Number;
@@ -683,12 +746,12 @@ exports.FnBackwardflowitem=function(pagename,cond,cond1,callback){
       obj.inwardregno=rows[i].new_Inward_Register_Number;
 
       itemarr.push(obj);
-    }
+    }*/
     if(!err){
-      //console.log(JSON.stringify(itemarr));
-      //res.status(200).json(itemarr);
-      return callback(itemarr);
+      return callback(rows);
     }
+    else
+      return callback("no items");
   });
 }
 

@@ -168,11 +168,12 @@ app.post("/physicqualify-card",urlencodedParser,function(req,res){
 app.post("/physicqualifyexpanditemread-service",urlencodedParser,function(req,res){
   //console.log('req coming...'+req.query.inwardregno);
   var cond={Inward_Register_Number:req.query.inwardregno}
+  var status={status:req.query.status}
   //console.log('coming...........');
   //importing js file to invoke the function
   var Fnphysicqualifyexpanditemreadcall = require("./app/scripts/dboperations.js");
   //Invoking function to fetch the items data under particular IRN
-  Fnphysicqualifyexpanditemreadcall.Fnphysicqualifyexpanditemread("physicqualifyexpanditemread-service",cond,function(returnval){
+  Fnphysicqualifyexpanditemreadcall.Fnphysicqualifyexpanditemread("physicqualifyexpanditemread-service",cond,status,function(returnval){
     //Response Sending back to the service componet
     res.status(200).json(returnval);
   });
@@ -197,18 +198,21 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
     Quantity:req.body.qtyaccept,
     Quantity_Measure:req.body.qtymeasure,
     Remarks:req.body.remark,
-    status:req.body.status,
+    status:req.body.updatestatus,
     Inspection_Status:inspectionstatus
   };
 
   //console.log(response);
 
   var cond1={Inward_Register_Number:req.body.inwardregno};
-  var cond2={status:req.body.status};
+  var cond2={status:req.body.updatestatus};
   var cond3={PO_Number:req.body.ponumber};
   var cond4={new_Inward_Register_Number:req.body.inwardregno};
   var cond5={state:req.body.status};
-  var cond6={Container_id:req.body.containerid};
+  var cond6={Container_ID:req.body.containerid};
+
+  //console.log(cond3);
+
   var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
   FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,cond6,function(returnval){
@@ -219,15 +223,59 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   });
 });
 
+//Fetching items under IRN to update coil state while promotion
+app.post("/readcontainercoil-service",urlencodedParser,function(req,res){
+  var cond1={Inward_Register_Number:req.query.inwardregno}
+  var cond2={status:req.query.checkstatus}
+
+  //importing js file to invoke the function
+  var Fnreadcontainercoilcall = require("./app/scripts/dboperations.js");
+  //Invoking function to fetch the items data under particular IRN
+  Fnreadcontainercoilcall.Fnreadcontainercoil("readcontainercoil-service",cond1,cond2,function(returnval){
+    //Response Sending back to the service componet
+    res.status(200).json(returnval);
+  });
+});
+
+//Fetching items under IRN to update coil state while promotion
+app.post("/oldcontainerupdate-service",urlencodedParser,function(req,res){
+  //var updatestatus = {status:req.query.updatestatus};
+  //var checkstatus = {status:req.query.checkstatus};
+ var response= {
+  Inward_Register_Number : req.query.Inward_Register_Number,
+  Product_ID : req.query.Product_ID,
+  PO_Number : req.query.PO_Number,
+  PO_Date : req.query.PO_Date,
+  Supplier_ID : req.query.Supplier_ID,
+  Container_ID : req.query.Container_ID,
+  Heat_Number : req.query.Heat_Number,
+  Quantity : req.query.Quantity,
+  Quantity_Measure : req.query.Quantity_Measure,
+  Remarks : req.query.Remarks,
+  status : req.query.status,
+  Inspection_Status :req.query.Inspection_Status
+  }
+  var inwardregno={Inward_Register_Number:req.query.Inward_Register_Number};
+  //var newupdatestatus={status:"Old"+req.query.checkstatus};
+  //importing js file to invoke the function
+  var Fnoldcontainerupdatecall = require("./app/scripts/dboperations.js");
+  //Invoking function to fetch the items data under particular IRN
+  Fnoldcontainerupdatecall.Fnoldcontainerupdate("oldcontainerupdate-service",response,inwardregno,function(returnval){
+    //Response Sending back to the service componet
+    res.status(200).json(returnval);
+  });
+});
+
 /*Function to check all the items id heat no filled or not*/
 
 app.post("/physicqualifyinwardacceptcheck-service",urlencodedParser,function(req,res) {
 var inwardregno=req.query.inwardregno;
 var checkstatus=req.query.checkstatus;
+var status=req.query.status;
 var repeatflag=req.query.repeatflag;
   var Fnphysicqualifyinwardacceptcheckcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  Fnphysicqualifyinwardacceptcheckcall.Fnphysicqualifyinwardacceptcheck("physicqualifyinwardacceptcheck-service",inwardregno,checkstatus,repeatflag,function(returnval){
+  Fnphysicqualifyinwardacceptcheckcall.Fnphysicqualifyinwardacceptcheck("physicqualifyinwardacceptcheck-service",inwardregno,status,checkstatus,repeatflag,function(returnval){
     if(returnval=="succ")
       res.status(200).json({"flag":returnval});
     else if(returnval=="fail")
