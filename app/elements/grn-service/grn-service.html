@@ -104,6 +104,18 @@
       content-type="application/json"
       on-response="retestitemreadResponse">
     </iron-ajax>
+
+    <!--Fetching retesting items-->
+    <iron-ajax
+      id="resenditemtoqualityajax"
+      url="{{resenditemtoqualityurl}}"
+      params='{{resenditemtoqualityparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="resenditemtoqualityResponse">
+    </iron-ajax>
+
   </template>
 
   <script src="../../scripts/grn-service.js"></script>

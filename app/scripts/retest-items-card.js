@@ -6,6 +6,11 @@
 (function() {
   Polymer({is:"retest-items-card",
     ready:function() {
+    },
+    FnChecktoresend:function(){
+      if(document.querySelector('#check'+this.inwardregno).checked==true){
+        document.querySelector('retest-card').Fngetresendvalue(this.inwardregno);
+      }
     }
   });
 })();

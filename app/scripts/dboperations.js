@@ -2688,7 +2688,7 @@ exports.Fnretestitemread=function(pagename,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }
-  var queryy="SELECT * FROM OD_Sales_Inward_Material where state in('Confirm','OldPurchase','OldQuality','OldProduction')";
+  var queryy="SELECT * FROM OD_Sales_Inward_Material where state in('Confirm')";
 
   connection.query(queryy, function(err, rows) {
     if(!err)
@@ -2697,6 +2697,28 @@ exports.Fnretestitemread=function(pagename,callback) {
     }
     else{
       return callback("no items");
+    }
+  });
+
+}
+
+exports.Fnresenditemtoquality=function(pagename,inwardregno,updatestate,checkstate,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  connection.query('UPDATE OD_Sales_Inward_Material set ? WHERE ? and ?',[updatestate,inwardregno,checkstate], function(err, rows) {
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
     }
   });
 

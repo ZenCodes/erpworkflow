@@ -22,11 +22,11 @@
   <style>
     .expandcard{
       @apply(--layout-horizontal);
-      width: 120%;
+      width: 90%;
       border-radius: 2px;
       box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       margin-top:2%;
-      margin-left: -10%;
+      margin-left: 1%;
     }
     paper-button{
       width: 35%;
@@ -53,9 +53,22 @@
     .collapse{
       width:100%;
     }
+    .outcard{
+      @apply(--layout-horizontal);
+    }
+    paper-checkbox{
+      margin-top: 2%;
+    }
+    .check{
+      margin-left: 2%;
+      margin-top: 3%;
+    }
   </style>
   <template>
     <!--Expand Itemcard-->
+    <div class="outcard">
+
+    <div class="check"><paper-checkbox id="check{{inwardregno}}" on-change="FnChecktoresend"></paper-checkbox></div>
     <div class="expandcard" id="card{{inwardregno}}" on-click="FnExpandItemcard">
       <paper-button  name="productid" value="{{productid}}" noink>{{productid}}</paper-button>
       <paper-button  name="productid" value="{{suppliername}}" noink>{{suppliername}}</paper-button>
@@ -64,7 +77,8 @@
       <paper-button  name="inwardno" value="{{inwardno}}" noink>{{inwardno}}</paper-button>
       <paper-button  name="inwarddate" value="{{inwarddate}}" noink>{{inwarddate}}</paper-button>
     </div>
-    <paper-checkbox></paper-checkbox>
+
+    </div>
 
   </template>
   <!--JS file import-->

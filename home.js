@@ -1241,6 +1241,17 @@ app.post('/retestitemread-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
+
+app.post('/resenditemtoquality-service',urlencodedParser, function (req, res) {
+  var inwardregno={new_Inward_Register_Number:req.query.inwardregno};
+  var updatestate={state:req.query.updatestate};
+  var checkstate={state:req.query.checkstate};
+  var Fnresenditemtoqualitycall = require("./app/scripts/dboperations.js");
+  Fnresenditemtoqualitycall.Fnresenditemtoquality("resenditemtoquality-service",inwardregno,updatestate,checkstate,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
 //Node server running port number
 app.listen(4000);
 
