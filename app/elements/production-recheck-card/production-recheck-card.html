@@ -1,0 +1,30 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+
+
+<dom-module id="production-recheck-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>
+      <paper-button on-click="FnRecheck">Recheck</paper-button>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'production-recheck-card',
+      FnRecheck:function(){
+        document.querySelector('app-homepage').setPage('retest-card');
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

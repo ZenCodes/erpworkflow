@@ -94,7 +94,7 @@
     {
       var arr=e.detail.response;
       //alert('coming....');
-      alert(JSON.stringify(arr));
+      //alert(JSON.stringify(arr));
       if(localStorage.getItem("curr_sess_forwardstate")=='0'){
         //document.querySelector('home-page').setPage('Inward Flow');
         document.querySelector('physicinsread-page').itemArray=arr;
@@ -249,6 +249,16 @@
     },
     intentviewitemreadResponse:function(e){
       document.querySelector('intentview-card').itemArray=e.detail.response.itemarr;
+    },
+    retestitemreadService:function(){
+      this.retesturl=sessionStorage.getItem("curr_sess_url")+"retestitemread-service";
+      //this.retestparam=obj;
+      this.$.retestitemreadajax.generateRequest();
+    },
+    retestitemreadResponse:function(e){
+      alert(JSON.stringify(e.detail.response));
+      document.querySelector('retest-card').itemArray= e.detail.response;
     }
+
   });
 })();

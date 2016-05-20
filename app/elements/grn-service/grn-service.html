@@ -92,6 +92,18 @@
       content-type="application/json"
       on-response="intentsupplyitemreadResponse">
     </iron-ajax>
+
+
+    <!--Fetching retesting items-->
+    <iron-ajax
+      id="retestitemreadajax"
+      url="{{retesturl}}"
+      params='{{retestparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="retestitemreadResponse">
+    </iron-ajax>
   </template>
 
   <script src="../../scripts/grn-service.js"></script>

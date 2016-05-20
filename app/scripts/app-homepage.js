@@ -12,9 +12,10 @@ Polymer({
     this.$.intentview.style.visibility='hidden';
     this.$.promotebutton.style.visibility='hidden';
     this.$.intentflow.style.visibility='hidden';
+    this.$.recheck.style.visibility='hidden';
 
     this.$.dynamicbutton.style.visibility='hidden';
-    
+
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
       //alert("sales");
       if(localStorage.getItem("curr_sess_wardflag")=="5") {
@@ -46,7 +47,7 @@ Polymer({
       this.$.searchmenu.style.visibility='visible';
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
-      
+
       //alert(localStorage.getItem("curr_sess_wardflag"));
       if(localStorage.getItem("curr_sess_wardflag")=="") {
         //localStorage.setItem("curr_sess_wardflag", "");
@@ -91,8 +92,8 @@ Polymer({
     {
       //alert("oldintent");
       if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
-      this.$.flow.style.visibility='hidden';    
-      // this.$.intentflow.style.visibility='visible';  
+      this.$.flow.style.visibility='hidden';
+      // this.$.intentflow.style.visibility='visible';
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
       }
@@ -106,6 +107,9 @@ Polymer({
       localStorage.setItem("curr_sess_showpage","physicins-page");
       this.page="home-page";
       this.$.flow.style.visibility='visible';
+
+      if(sessionStorage.getItem("curr_sess_roleflag")=="2")
+        this.$.recheck.style.visibility='visible';
       }
       this.$.list.style.visibility='visible';
       this.$.flowbutton.style.visibility='hidden';
@@ -188,7 +192,7 @@ Polymer({
       this.$.flow.style.visibility='visible';
     if(flag=="false")
       this.$.flow.style.visibility='hidden';
-  },  
+  },
   FnSetIntentFlowVisibility:function(flag){
     if(flag=="true")
       this.$.intentview.style.visibility='visible';

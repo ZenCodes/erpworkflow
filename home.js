@@ -1233,6 +1233,14 @@ app.post('/approvesupplierforpurchase-service',urlencodedParser, function (req, 
     res.status(200).json({'itemarr': returnval});
   });
 });
+
+app.post('/retestitemread-service',urlencodedParser, function (req, res) {
+
+  var Fnretestitemreadcall = require("./app/scripts/dboperations.js");
+  Fnretestitemreadcall.Fnretestitemread("retestitemread-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 //Node server running port number
 app.listen(4000);
 

@@ -43,11 +43,13 @@
   <link rel="import" href="outwardreport-card/outwardreport-card.html">
   <link rel="import" href="intentviewtype-card/intentviewtype-card.html">
   <link rel="import" href="customer-page/customer-page.html">
-  <link rel="import" href="promotebutton-card/promotebutton-card.html">  
-  <link rel="import" href="intentflow-card/intentflow-card.html">  
-  
+  <link rel="import" href="promotebutton-card/promotebutton-card.html">
+  <link rel="import" href="intentflow-card/intentflow-card.html">
+
   <link rel="import" href="approvesupplier-card/approvesupplier-card.html">
   <link rel="import" href="dynamicbutton-card/dynamicbutton-card.html">
+  <link rel="import" href="production-recheck-card/production-recheck-card.html">
+  <link rel="import" href="retest-card/retest-card.html">
 
   <!-- <link rel="import" href="intentflow-card/intentflow-card.html"> -->
 </head>
@@ -194,7 +196,10 @@
       margin-left: -5%;
       margin-top: -3%;
     }
-   
+    #recheck{
+      margin-left: -7%;
+    }
+
   </style>
   <template>
     <grn-service id="gs"></grn-service>
@@ -240,7 +245,10 @@
           <div id="dynamicbutton">
             <dynamicbutton-card></dynamicbutton-card>
           </div>
-         
+          <div id="recheck">
+            <production-recheck-card></production-recheck-card>
+          </div>
+
           <div class="flex"></div>
 
         </paper-toolbar>
@@ -295,7 +303,10 @@
             <section data-category="approvesupplier-card">
               <approvesupplier-card></approvesupplier-card>
             </section>
-        
+            <section data-category="retest-card">
+              <retest-card></retest-card>
+            </section>
+
           </iron-pages>
         </div>
         <div class="bottom">
