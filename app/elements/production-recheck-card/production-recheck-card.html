@@ -13,6 +13,7 @@
     <div>
       <paper-button on-click="FnRecheck">Recheck</paper-button>
     </div>
+
   </template>
   <script>
   (function() {
@@ -21,6 +22,7 @@
     Polymer({
       is: 'production-recheck-card',
       FnRecheck:function(){
+        document.querySelector('retest-card').FnCallPage();
         document.querySelector('app-homepage').setPage('retest-card');
       }
 
