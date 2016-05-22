@@ -94,10 +94,12 @@
     {
       var arr=e.detail.response;
       //alert('coming....');
-      //alert(JSON.stringify(arr));
+      var temparr=[];
+      temparr.push(arr[0]);
+      alert(JSON.stringify(temparr));
       if(localStorage.getItem("curr_sess_forwardstate")=='0'){
         //document.querySelector('home-page').setPage('Inward Flow');
-        document.querySelector('physicinsread-page').itemArray=arr;
+        document.querySelector('physicinsread-page').itemArray=temparr;
         document.querySelector('physicqualifyread-card').physicqualifyreadService(sessionStorage.getItem("sess_curr_inwardregno"));
         //this.$.pqrc.physicqualifyreadService(sessionStorage.getItem("sess_curr_inwardregno"));
         //alert('done');

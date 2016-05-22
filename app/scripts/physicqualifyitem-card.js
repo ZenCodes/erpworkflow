@@ -14,19 +14,7 @@
     },
 
     FnSaveItem: function () {
-      //Validating container and quantity fields,if container or quantity accepted fileds are greater than received fields it will throw error
-      //Validating quantity field
-      /*if(parseInt(this.qtyaccepted)>parseInt(this.qtyyreceived)){
-       this.querySelector('#qty'+this.inwardno).validate();
-       this.$.ID_Show_Dialog.FnShowDialog("Accepted quantity shouldn't greater than received quantity!","");
-       }
-       //validating Container field
-       else if(parseInt(this.containeraccepted)>parseInt(this.ctrreceived)){
-       this.querySelector('#ctr'+this.inwardno).validate();
-       this.$.ID_Show_Dialog.FnShowDialog("Accepted container quantity shouldn't greater than received container quantity!","");
-       }*/
-      //if all validations are done it will call ajax component to update the changes
-      //else{
+
       document.querySelector("#cont" + this.inwardno).validate();
       document.querySelector("#heat" + this.inwardno).validate();
       document.querySelector("#qty" + this.inwardno).validate();
