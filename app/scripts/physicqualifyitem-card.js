@@ -7,7 +7,10 @@
     is: "physicqualifyitem-card",
     ready: function () {
       this.updateflag = "false";
+      this.hideradio=true;
       this.url = sessionStorage.getItem("curr_sess_url") + "physicqualifyitem-card";
+      if(sessionStorage.getItem("curr_sess_roleflag") == "3")
+      this.hideradio=false;
     },
 
     FnSaveItem: function () {
