@@ -1,0 +1,41 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="quality-parameter-displayitem-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-horizontal);
+      }
+    </style>
+
+    <div class="card">
+    <div>{{Name}}</div>
+    <div>{{MinValue}}</div>
+    <div>{{MaxValue}}</div>
+    <div>{{ActualValue}}</div>
+    <div>{{Remarks}}</div>
+    </div>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'quality-parameter-displayitem-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'quality-parameter-displayitem-card',
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -272,8 +272,10 @@
     },
     resenditemtoqualityResponse:function(e){
       alert(JSON.stringify(e.detail.response));
-      if(e.detail.response=="succ")
-      alert("Item sent for retesting!");
+      if(e.detail.response=="succ") {
+        alert("Item sent for retesting!");
+
+      }
       else
       alert("Failed to send item!");
     }

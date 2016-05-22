@@ -103,6 +103,7 @@
       }
       if (document.querySelector('#radio' + this.containerid).checked == false && sessionStorage.getItem("curr_sess_roleflag") == "3") {
         document.querySelector("#inner" + this.containerid).toggle();
+        this.$.specificationcard.FnHideSpeccard();
       }
     }
   });

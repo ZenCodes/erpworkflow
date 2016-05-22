@@ -10,8 +10,8 @@
     <style>
       .outcard{
         @apply(--layout-verical);
-        border-radius: 2px;
-        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        /*border-radius: 2px;*/
+        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
         margin-left: 6%;
       }
       #id{
@@ -20,8 +20,8 @@
       #number{
         margin-left: 10%;
       }
-      #test{
-        margin-left: 75%;
+      #test,#submittest{
+        /*margin-left: 75%;*/
         text-transform: none;
         text-align: center;
       //width: 35%;
@@ -37,10 +37,14 @@
       }
       paper-tabs{
         width: 90%;
-
+      }
+      .btncard{
+        margin-left: -80%;
+        margin-top: 2%;
       }
     </style>
       <div class="outcard">
+        <div class="speccard" hidden$="{{speccardhide}}">
         <paper-tabs selected="0" noink id="ptab">
           <paper-tab><paper-button>Parameter Name</paper-button></paper-tab>
           <paper-tab><paper-button>Min Value</paper-button></paper-tab>
@@ -51,7 +55,11 @@
       <template is="dom-repeat" items="{{itemArray}}" as="item">
         <specification-item-crd name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
       </template>
+        </div>
+        <div class="btncard">
+      <paper-button id="submittest" on-click="FnSubmittest">Submit Test</paper-button>
       <paper-button id="test" on-click="FnAddtest">Add Test</paper-button>
+        </div>
       </div>
 
     <iron-ajax
@@ -74,6 +82,7 @@
     Polymer({
       is: 'specification-card',
       ready:function(){
+        this.speccardhide=true;
         this.temparr=[];
         var obj={"parametername":"","minval":"","maxval":"","actualval":"","remark":""};
         this.temparr.push(obj);
@@ -98,7 +107,7 @@
         //alert(JSON.stringify(qualityarray));
         qualityarr=qualityarray;
       },
-      FnAddtest:function(){
+      FnSubmittest:function(){
         //alert('yes');
         //alert((this.qualityarray).length);
         if((qualityarr).length==(this.itemArray).length)
@@ -109,6 +118,12 @@
         else{
           alert('Please enter all the quality parameters!');
         }
+      },
+      FnAddtest:function(){
+        this.speccardhide=false;
+      },
+      FnHideSpeccard:function(){
+        this.speccardhide=true;
       }
     });
   })();

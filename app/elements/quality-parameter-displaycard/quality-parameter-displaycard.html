@@ -9,26 +9,51 @@
     <style>
       :host {
         display: block;
+        font-size: 15px;
       }
       .card{
-        @apply(--layout-horizontal);
-        margin-left: 5%;
+        @apply(--layout-vertical);
+        margin-left: 10%;
+        width: 60%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
       paper-input{
         width: 15%;
         margin-left: 3%;
       }
+      p{
+        font-size: 15px;
+      }
+      .inner{
+        @apply(--layout-horizontal);
+      }
+      paper-item{
+        width: 100px;
+      }
+      .testno{
+        margin-left: -70%;
+        margin-top: 2%;
+      }
     </style>
 
       <template is="dom-repeat" items="{{itemArray}}" as="item">
-      <div class="card">
-        <paper-input id="parameter" value="{{item.Quality_Parameter_Name}}">{{item.Quality_Parameter_Name}}</paper-input>
-        <paper-input id="minvalue" value="{{item.Min_Value}}">{{item.Min_Value}}</paper-input>
-        <paper-input id="maxvalue" value="{{item.Max_Value}}">{{item.Max_Value}}</paper-input>
-        <paper-input id="actualvalue" value="{{item.Actual_Value}}" on-change="FnChange">{{item.Actual_Value}}</paper-input>
-        <paper-input id="remarks" value="{{item.Remarks}}" on-change="FnChange">{{item.Remarks}}</paper-input>
-      </div>
+
+        <div class="testno"><b>Test no: {{item.testno}}</b></div>
+        <div class="card">
+        <template is="dom-repeat" items="{{item.temparr}}" as="item">
+
+        <div class="inner">
+        <paper-item>{{item.Quality_Parameter_Name}}</paper-item>
+        <paper-item>{{item.Min_Value}}</paper-item>
+        <paper-item>{{item.Max_Value}}</paper-item>
+        <paper-item>{{item.Actual_Value}}</paper-item>
+        <paper-item>{{item.Remarks}}</paper-item>
+        </div>
+        </template>
+        </div>
       </template>
+
 
     <!--Component which make req to display the quality parameters for the previous testid -->
     <iron-ajax
@@ -59,8 +84,32 @@
       },
       FnqualityparameterdisplayResponse:function(e){
         //alert(JSON.stringify(e.detail.response));
+        var arr= e.detail.response;
+        var temparr=[];
+        var finalarr=[];
+        var flag="true";
+        for(var i=0;i<arr.length;i++){
+            if(flag=="true"){
+              temparr.push(arr[i]);
+              flag=arr[i].Test_ID;
+            }
+            else{
+              if(flag==arr[i].Test_ID){
+                temparr.push(arr[i]);
+                flag=arr[i].Test_ID;
+              }
+              else{
+                finalarr.push({"testno":flag,"temparr":temparr});
+                temparr=[];
+                temparr.push(arr[i]);
+                flag=arr[i].Test_ID;
+              }
+            }
+        }
+        //alert(JSON.stringify(finalarr));
+
         if(JSON.stringify(e.detail.response)!='no items')
-          this.itemArray=e.detail.response;
+          this.itemArray=finalarr;
       }
     });
   })();
