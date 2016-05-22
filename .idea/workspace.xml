@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/physicqualifyitemread-card/physicqualifyitemread-card.html" afterPath="$PROJECT_DIR$/app/elements/physicqualifyitemread-card/physicqualifyitemread-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/grn-service.js" afterPath="$PROJECT_DIR$/app/scripts/grn-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js" afterPath="$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html" afterPath="$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,18 +37,18 @@
       <file leaf-file-name="specification-card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/specification-card/specification-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.1132076">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.3207547">
+              <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quality-parameter-displaycard.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="quality-parameter-displaycard.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.8490567">
-              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.767148">
+              <caret line="109" column="55" selection-start-line="109" selection-start-column="55" selection-end-line="109" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -66,22 +64,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quality-parameter-displayitem-card.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/quality-parameter-displayitem-card/quality-parameter-displayitem-card.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4150944">
-              <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="specification-item-crd.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6415095">
-              <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
-              <folding />
+            <state vertical-scroll-proportion="-6.735849">
+              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+              <folding>
+                <marker date="1463918075792" expanded="true" signature="759:1799" placeholder="{...}" />
+                <marker date="1463918075792" expanded="true" signature="811:1793" placeholder="{&quot;is&quot;: 'specification-item-crd'...}" />
+                <marker date="1463918075792" expanded="true" signature="871:899" placeholder="{...}" />
+                <marker date="1463918075792" expanded="true" signature="926:1744" placeholder="{...}" />
+                <marker date="1463918075792" expanded="true" signature="1398:1602" placeholder="{...}" />
+                <marker date="1463918075792" expanded="true" signature="1437:1594" placeholder="{...}" />
+                <marker date="1463918075792" expanded="true" signature="1626:1736" placeholder="{...}" />
+                <marker date="1463918075792" expanded="true" signature="1777:1787" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,18 +86,18 @@
       <file leaf-file-name="physicqualifyitem-card.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6666665">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state vertical-scroll-proportion="-8.259259">
+              <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grn-service.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="grn-service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/grn-service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76551723">
-              <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+            <state vertical-scroll-proportion="-10.777778">
+              <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -165,7 +162,6 @@
         <option value="$PROJECT_DIR$/app/elements/flowbutton-card/flowbutton-card.html" />
         <option value="$PROJECT_DIR$/app/elements/physicinsitem-card/physicinsitem-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/physicinsitem-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html" />
         <option value="$PROJECT_DIR$/app/scripts/flowbutton-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/grnflow-card.js" />
         <option value="$PROJECT_DIR$/app/elements/physicqualified-service/physicqualified-service.html" />
@@ -189,13 +185,14 @@
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
         <option value="$PROJECT_DIR$/app/elements/retest-card/retest-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" />
         <option value="$PROJECT_DIR$/app/elements/quality-parameter-displayitem-card/quality-parameter-displayitem-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html" />
         <option value="$PROJECT_DIR$/app/elements/physicqualifyitem-card/physicqualifyitem-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js" />
         <option value="$PROJECT_DIR$/app/elements/physicqualifyitemread-card/physicqualifyitemread-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/grn-service.js" />
+        <option value="$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html" />
+        <option value="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html" />
       </list>
     </option>
   </component>
@@ -998,58 +995,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6415095">
-          <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/quality-parameter-displayitem-card/quality-parameter-displayitem-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4150944">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/specification-card/specification-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.1132076">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/physicqualifyitem-card/physicqualifyitem-card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2075472">
           <caret line="83" column="40" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8490567">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/physicinsread-page/physicinsread-page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8867927">
-          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1072,8 +1021,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/grn-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76551723">
-          <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+        <state vertical-scroll-proportion="-10.777778">
+          <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/quality-parameter-displayitem-card/quality-parameter-displayitem-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6137184">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/physicinsread-page/physicinsread-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8867927">
+          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.735849">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <folding>
+            <marker date="1463918075792" expanded="true" signature="759:1799" placeholder="{...}" />
+            <marker date="1463918075792" expanded="true" signature="811:1793" placeholder="{&quot;is&quot;: 'specification-item-crd'...}" />
+            <marker date="1463918075792" expanded="true" signature="871:899" placeholder="{...}" />
+            <marker date="1463918075792" expanded="true" signature="926:1744" placeholder="{...}" />
+            <marker date="1463918075792" expanded="true" signature="1398:1602" placeholder="{...}" />
+            <marker date="1463918075792" expanded="true" signature="1437:1594" placeholder="{...}" />
+            <marker date="1463918075792" expanded="true" signature="1626:1736" placeholder="{...}" />
+            <marker date="1463918075792" expanded="true" signature="1777:1787" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.259259">
+          <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/specification-card/specification-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3207547">
+          <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/quality-parameter-displaycard/quality-parameter-displaycard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.767148">
+          <caret line="109" column="55" selection-start-line="109" selection-start-column="55" selection-end-line="109" selection-end-column="55" />
           <folding />
         </state>
       </provider>

@@ -83,13 +83,14 @@
         this.$.qualityparameterdisplayajax.generateRequest();
       },
       FnqualityparameterdisplayResponse:function(e){
-        //alert(JSON.stringify(e.detail.response));
+        alert(JSON.stringify(e.detail.response));
         var arr= e.detail.response;
         var temparr=[];
         var finalarr=[];
         var flag="true";
         for(var i=0;i<arr.length;i++){
             if(flag=="true"){
+              alert('yes');
               temparr.push(arr[i]);
               flag=arr[i].Test_ID;
             }
@@ -106,7 +107,8 @@
               }
             }
         }
-        //alert(JSON.stringify(finalarr));
+        finalarr.push({"testno":flag,"temparr":temparr});
+        alert(JSON.stringify(finalarr));
 
         if(JSON.stringify(e.detail.response)!='no items')
           this.itemArray=finalarr;
