@@ -94,8 +94,25 @@
       }
       if (document.querySelector('#radio' + this.containerid).checked == false && sessionStorage.getItem("curr_sess_roleflag") == "3") {
         document.querySelector("#inner" + this.containerid).toggle();
-        this.$.specificationcard.FnHideSpeccard();
+        //this.$.specificationcard.FnHideSpeccard();
       }
+    },
+    FnToggle:function(){
+      this.$.specificationcard.FnspecificationitemreadService();
+      this.$.qualityparameterdisplay.FnparameterdisplayService();
+      document.querySelector("#inner" + id).toggle();
+    },
+    FnReferesh:function(){
+        var id=localStorage.getItem("curr_sess_expandedcontainer");
+        this.$.specificationcard.FnspecificationitemreadService();
+        this.$.qualityparameterdisplay.FnparameterdisplayService();
+        document.querySelector("#inner" + id).toggle();
+    },
+    Fnhidequality:function(flag){
+      if(flag=="true")
+        this.hidequality=true;
+      if(flag=="false")
+        this.hidequality=false;
     }
   });
 })();

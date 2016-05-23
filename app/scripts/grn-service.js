@@ -43,7 +43,7 @@
     qualityparametersequenceResponse:function(e){
       if(e.detail.response=="succ") {
         alert("Updated!!");
-        //document.querySelector('quality-parameter-displaycard').FnparameterdisplayService();
+        document.querySelector('physicqualifyitem-card').FnReferesh();
       }
     },
     //Invoking service to fetch item under state according to the role logged in

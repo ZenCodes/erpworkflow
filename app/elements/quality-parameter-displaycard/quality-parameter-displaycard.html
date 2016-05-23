@@ -73,6 +73,7 @@
     Polymer({
       is: 'quality-parameter-displaycard',
       ready:function(){
+      this.itemArray=[];
       },
       FnparameterdisplayService:function(){
         var obj={"inwardregno":"","containerid":""};
@@ -83,35 +84,47 @@
         this.$.qualityparameterdisplayajax.generateRequest();
       },
       FnqualityparameterdisplayResponse:function(e){
-        alert(JSON.stringify(e.detail.response));
-        var arr= e.detail.response;
-        var temparr=[];
-        var finalarr=[];
-        var flag="true";
-        for(var i=0;i<arr.length;i++){
-            if(flag=="true"){
-              alert('yes');
-              temparr.push(arr[i]);
-              flag=arr[i].Test_ID;
-            }
-            else{
-              if(flag==arr[i].Test_ID){
-                temparr.push(arr[i]);
-                flag=arr[i].Test_ID;
-              }
-              else{
-                finalarr.push({"testno":flag,"temparr":temparr});
-                temparr=[];
-                temparr.push(arr[i]);
-                flag=arr[i].Test_ID;
-              }
-            }
-        }
-        finalarr.push({"testno":flag,"temparr":temparr});
-        alert(JSON.stringify(finalarr));
+//        alert(JSON.stringify(e.detail.response));
+//        alert(JSON.stringify(this.itemArray));
+        var arr = e.detail.response;
+        //alert(arr);
+        if(arr!="no items") {
 
-        if(JSON.stringify(e.detail.response)!='no items')
-          this.itemArray=finalarr;
+          var temparr = [];
+          var finalarr = [];
+          var flag = "true";
+          for (var i = 0; i < arr.length; i++) {
+            if (flag == "true") {
+              //alert('yes');
+              temparr.push(arr[i]);
+              flag = arr[i].Test_ID;
+            }
+            else {
+              if (flag == arr[i].Test_ID) {
+                temparr.push(arr[i]);
+                flag = arr[i].Test_ID;
+              }
+              else {
+                finalarr.push({"testno": flag, "temparr": temparr});
+                temparr = [];
+                temparr.push(arr[i]);
+                flag = arr[i].Test_ID;
+              }
+            }
+          }
+          finalarr.push({"testno": flag, "temparr": temparr});
+          //alert(JSON.stringify(finalarr));
+
+          if (finalarr.length > 0) {
+            //alert('false');
+            this.itemArray = finalarr;
+            document.querySelector('physicqualityitem-card').Fnhidequality("false");
+          }
+          else{
+            //alert('true');
+            document.querySelector('physicqualityitem-card').Fnhidequality("true");
+          }
+        }
       }
     });
   })();
