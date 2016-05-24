@@ -107,6 +107,7 @@
         this.$.specificationcard.FnspecificationitemreadService();
         this.$.qualityparameterdisplay.FnparameterdisplayService();
         document.querySelector("#inner" + id).toggle();
+        document.querySelector('#radio' + id).checked = false;
     },
     Fnhidequality:function(flag){
       if(flag=="true")
