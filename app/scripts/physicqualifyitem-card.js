@@ -2,7 +2,7 @@
  * Created by praba on 2/12/2016.
  */
 (function() {
-
+var flag="true";
   Polymer({
     is: "physicqualifyitem-card",
     ready: function () {
@@ -86,16 +86,34 @@
     },
     FnExpandInnerCard: function () {
       //alert(this.containerid);
+    if(flag=="true") {
       if (document.querySelector('#radio' + this.containerid).checked == true && sessionStorage.getItem("curr_sess_roleflag") == "3") {
         localStorage.setItem("curr_sess_expandedcontainer", this.containerid);
         this.$.specificationcard.FnspecificationitemreadService();
         this.$.qualityparameterdisplay.FnparameterdisplayService();
         document.querySelector("#inner" + this.containerid).toggle();
       }
-      if (document.querySelector('#radio' + this.containerid).checked == false && sessionStorage.getItem("curr_sess_roleflag") == "3") {
-        document.querySelector("#inner" + this.containerid).toggle();
-        //this.$.specificationcard.FnHideSpeccard();
+      flag=this.containerid;
+    }
+      else {
+      if(flag==this.containerid) {
+        if (document.querySelector('#radio' + this.containerid).checked == false && sessionStorage.getItem("curr_sess_roleflag") == "3") {
+          localStorage.setItem("curr_sess_expandedcontainer", this.containerid);
+          document.querySelector("#inner" + this.containerid).toggle();
+          flag="true";
+          //this.$.specificationcard.FnHideSpeccard();
+        }
       }
+      else{
+          document.querySelector('#radio' + flag).checked = false;
+        document.querySelector("#inner" + flag).toggle();
+        localStorage.setItem("curr_sess_expandedcontainer", this.containerid);
+        this.$.specificationcard.FnspecificationitemreadService();
+        this.$.qualityparameterdisplay.FnparameterdisplayService();
+        document.querySelector("#inner" + this.containerid).toggle();
+        flag=this.containerid;
+      }
+    }
     },
     FnToggle:function(){
       this.$.specificationcard.FnspecificationitemreadService();
@@ -108,6 +126,7 @@
         this.$.qualityparameterdisplay.FnparameterdisplayService();
         document.querySelector("#inner" + id).toggle();
         document.querySelector('#radio' + id).checked = false;
+        flag="true";
     },
     Fnhidequality:function(flag){
       if(flag=="true")
