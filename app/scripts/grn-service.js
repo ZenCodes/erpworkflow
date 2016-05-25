@@ -44,6 +44,7 @@
       if(e.detail.response=="succ") {
         alert("Updated!!");
         document.querySelector('physicqualifyitem-card').FnReferesh();
+        //document.querySelector('specification-card').FnSpecBtnHide();
       }
     },
     //Invoking service to fetch item under state according to the role logged in

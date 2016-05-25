@@ -57,8 +57,8 @@
       </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
-      <paper-button id="submittest" on-click="FnSubmittest">Submit Test</paper-button>
-      <paper-button id="test" on-click="FnAddtest">Add Test</paper-button>
+      <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}">Submit Test</paper-button>
+      <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
       </div>
 
@@ -87,7 +87,7 @@
         var obj={"parametername":"","minval":"","maxval":"","actualval":"","remark":""};
         this.temparr.push(obj);
         this.itemArray=this.temparr;
-//        this.hidebtns=false;
+        this.hidesubmit=true;
 //        if(sessionStorage.getItem("curr_sess_roleflag") == "2"){
 //          this.hidebtns=true;
 //        }
@@ -119,6 +119,8 @@
           alert('Test submit!');
           this.$.grnservice.updatequalityparameterService(qualityarr);
           this.speccardhide=true;
+          this.hidesubmit=true;
+          this.hidetest=false;
           //document.querySelector('physicqualifyitem-card').FnToggle();
         }
         else{
@@ -127,9 +129,15 @@
       },
       FnAddtest:function(){
         this.speccardhide=false;
+        this.hidesubmit=false;
+        this.hidetest=true;
       },
       FnHideSpeccard:function(){
         this.speccardhide=true;
+      },
+      FnSpecBtnHide:function(){
+        this.hidesubmit=true;
+        this.hidetest=false;
       }
     });
   })();
