@@ -140,10 +140,13 @@ app.post('/itemsave-service',urlencodedParser, function (req, res) {
 //Function to fetch items in the respective states,according to the logged user role
 app.post("/forwardflowitem-service",urlencodedParser,function(req,res){
   cond={state:req.query.status};
+  state=req.query.status;
+  roleid=req.query.roleid;
+  empid=req.query.empid;
   //importing js file to invoke the function
   var FnForwardflowfetchcall = require("./app/scripts/dboperations.js");
   //Invoking function to fetch IRN information under respective states
-  FnForwardflowfetchcall.FnForwardFlowitemFetch("forwardflowitem-service",cond,function(returnval){
+  FnForwardflowfetchcall.FnForwardFlowitemFetch("forwardflowitem-service",state,roleid,empid,function(returnval){
     //Response sending back to the respective page
     res.status(200).json(returnval);
   });

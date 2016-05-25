@@ -48,7 +48,9 @@
     },
     //Invoking service to fetch item under state according to the role logged in
     physicreadService:function(){
-      var arg={"status":""};
+      var arg={"status":"","roleid":"","empid":""};
+      arg.empid=sessionStorage.getItem("loggeduser");
+      arg.roleid=sessionStorage.getItem("curr_sess_roleflag");
       switch(parseInt(sessionStorage.getItem("curr_sess_roleflag"))){
         case 1:
               arg.status=localStorage.getItem("curr_sess_currflowstatus");
