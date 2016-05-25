@@ -3,7 +3,8 @@
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
-
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
 <dom-module id="quality-parameter-displaycard">
   <template>
     <style>
@@ -32,7 +33,7 @@
         width: 100px;
       }
       .testno{
-        margin-left: -70%;
+        margin-left: -50%;
         margin-top: 2%;
       }
     </style>
@@ -42,6 +43,13 @@
         <div class="testno"><b>Test no: {{item.testno}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         Test date: {{item.testdate}}</b></div>
         <div class="card">
+          <paper-tabs selected="0" noink id="ptab">
+            <paper-tab>Parameter Name</paper-tab>
+            <paper-tab>Maximum Value</paper-tab>
+            <paper-tab>Minimum Value</paper-tab>
+            <paper-tab>Actual Value</paper-tab>
+            <paper-tab>Remarks</paper-tab>
+          </paper-tabs>
         <template is="dom-repeat" items="{{item.temparr}}" as="item">
 
         <div class="inner">

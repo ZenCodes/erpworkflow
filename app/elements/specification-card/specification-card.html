@@ -88,9 +88,10 @@
         this.temparr.push(obj);
         this.itemArray=this.temparr;
         this.hidesubmit=true;
-//        if(sessionStorage.getItem("curr_sess_roleflag") == "2"){
-//          this.hidebtns=true;
-//        }
+        if(localStorage.getItem("curr_sess_retestflag")=="1"){
+          this.hidesubmit=true;
+          this.hidetest=true;
+        }
       },
       FnspecificationitemreadService:function(){
         var obj={"inwardregno":"","checkstatus":""};
