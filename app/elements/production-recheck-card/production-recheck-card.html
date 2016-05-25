@@ -24,9 +24,14 @@
 
     Polymer({
       is: 'production-recheck-card',
+      ready:function(){
+        localStorage.setItem("curr_sess_retestflag","0");
+      },
       FnRecheck:function(){
+        localStorage.setItem("curr_sess_retestflag","1");
         document.querySelector('retest-card').FnCallPage();
         document.querySelector('app-homepage').setPage('retest-card');
+        document.querySelector('specification-card').ready();
       }
 
     });
