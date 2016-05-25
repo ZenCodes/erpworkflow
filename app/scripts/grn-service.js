@@ -16,7 +16,7 @@
       no=0;
       arrlength=qualityarray.length;
       for(var i=0;i<qualityarray.length;i++){
-        var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":""};
+        var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":"","testdate":""};
         obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
         obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");
         obj.name=qualityarray[i].name;
@@ -24,6 +24,7 @@
         obj.maxvalue=qualityarray[i].maxvalue;
         obj.actualvalue=qualityarray[i].actualvalue;
         obj.remarks=qualityarray[i].remarks;
+        obj.testdate=qualityarray[i].testdate;
         this.updatequalityparameterurl=sessionStorage.getItem("curr_sess_url")+"updatequalityparameter-service";
         this.updatequalityparameterparam=obj;
         this.$.updatequalityparameterajax.generateRequest();

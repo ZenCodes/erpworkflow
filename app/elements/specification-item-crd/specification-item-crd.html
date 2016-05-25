@@ -30,7 +30,7 @@
       this.flag=0;
       },
       FnChange:function(){
-      var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":""};
+      var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":"","testdate":""};
       obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
       obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");
       obj.name=this.name;
@@ -38,6 +38,8 @@
       obj.maxvalue=this.maxvalue;
       obj.actualvalue=this.actualvalue;
       obj.remarks=this.remarks;
+      var dat=new Date();
+      obj.testdate=dat.getDate()+"/"+(dat.getMonth()+1)+"/"+dat.getFullYear();
       for(var i=0;i<testarr.length;i++){
         if(testarr[i].name==obj.name){
           //alert('exists');

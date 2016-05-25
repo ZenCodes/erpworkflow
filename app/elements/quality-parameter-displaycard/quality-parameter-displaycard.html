@@ -39,7 +39,8 @@
 
       <template is="dom-repeat" items="{{itemArray}}" as="item">
 
-        <div class="testno"><b>Test no: {{item.testno}}</b></div>
+        <div class="testno"><b>Test no: {{item.testno}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        Test date: {{item.testdate}}</b></div>
         <div class="card">
         <template is="dom-repeat" items="{{item.temparr}}" as="item">
 
@@ -93,26 +94,30 @@
           var temparr = [];
           var finalarr = [];
           var flag = "true";
+          var testdate="";
           for (var i = 0; i < arr.length; i++) {
             if (flag == "true") {
               //alert('yes');
               temparr.push(arr[i]);
               flag = arr[i].Test_ID;
+              testdate = arr[i].Test_Date;
             }
             else {
               if (flag == arr[i].Test_ID) {
                 temparr.push(arr[i]);
                 flag = arr[i].Test_ID;
+                testdate = arr[i].Test_Date;
               }
               else {
-                finalarr.push({"testno": flag, "temparr": temparr});
+                finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
                 temparr = [];
                 temparr.push(arr[i]);
                 flag = arr[i].Test_ID;
+                testdate = arr[i].Test_Date;
               }
             }
           }
-          finalarr.push({"testno": flag, "temparr": temparr});
+          finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
           //alert(JSON.stringify(finalarr));
 
           if (finalarr.length > 0) {

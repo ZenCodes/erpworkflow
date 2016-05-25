@@ -330,7 +330,8 @@ app.post("/updatequalityparameter-service",urlencodedParser,function(req,res) {
     Min_Value:req.query.minvalue,
     Max_Value:req.query.maxvalue,
     Actual_Value:req.query.actualvalue,
-    Remarks:req.query.remarks
+    Remarks:req.query.remarks,
+    Test_Date:req.query.testdate
   };
   //console.log(response);
   var Fnupdatequalityparametercall = require("./app/scripts/dboperations.js");
