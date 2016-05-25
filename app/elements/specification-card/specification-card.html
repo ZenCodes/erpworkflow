@@ -56,7 +56,7 @@
         <specification-item-crd name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
       </template>
         </div>
-        <div class="btncard">
+        <div class="btncard" hidden$="{{hidebtns}}">
       <paper-button id="submittest" on-click="FnSubmittest">Submit Test</paper-button>
       <paper-button id="test" on-click="FnAddtest">Add Test</paper-button>
         </div>
@@ -87,6 +87,10 @@
         var obj={"parametername":"","minval":"","maxval":"","actualval":"","remark":""};
         this.temparr.push(obj);
         this.itemArray=this.temparr;
+//        this.hidebtns=false;
+//        if(sessionStorage.getItem("curr_sess_roleflag") == "2"){
+//          this.hidebtns=true;
+//        }
       },
       FnspecificationitemreadService:function(){
         var obj={"inwardregno":"","checkstatus":""};

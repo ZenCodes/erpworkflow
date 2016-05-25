@@ -1,0 +1,161 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../retestqualify-item-card/retestqualify-item-card.html">
+<link rel="import" href="../datepicker-card/datepicker-card.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../specification-card/specification-card.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="retestqualify-card">
+  <template>
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 120%;
+      }
+      .outcard{
+        width: 120%;
+        background-color:white;
+        border-bottom:2px solid #e6e6e6;
+        margin-left: -10%;
+      }
+      #card1{
+        margin-top: 0.5%;
+      //border-radius: 2px;
+      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 100%;
+      //height:50%;
+        background-color:white;
+      //border-color:#dbe9d6;
+        overflow-x:hidden;
+      }
+      .topright{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: 10%;
+        margin-top: -5%;
+      }
+      .topright1{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-top: 0%;
+      }
+      .set{
+        @apply(--layout-horizontal);
+        margin-left:10%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 95%;
+        margin-left: 2%;
+        height: 3%;
+        margin-top: 5%;
+      }
+      paper-button{
+        text-transform:none;
+      }
+      #div2{
+        margin-top: 0%;
+      }
+      datepicker-card{
+        width: 30%;
+
+      }
+      .polbl{
+        margin-left:24%;
+        margin-top: 1%;
+      }
+      .podate{
+        font-size:12px;
+      }
+      #supplier{
+        margin-left:3%;
+        width:150%;
+      }
+      #pinput{
+        margin-left: 5%;
+      }
+      #datepick,#ponbr,#suplr{
+        margin-left: 3%;
+      }
+      #datepick{
+        width: 25%;
+      }
+      #pono{
+
+        --paper-input-container-label: { color: red };
+      }
+      .physiccard{
+        margin-top: 0%;
+      }
+      .speccard{
+        @apply(--layout-vertical);
+      }
+    </style>
+    <!--template to show item info of currently expended card-->
+    <div class="outcard">
+      <template is="dom-repeat" items="{{label}}" as="lbl">
+        <div class="card" id="card1">
+          <div class="physiccard">
+            <div class="polbl" hidden$="{{isHidden}}"><paper-item class="podate">{{lbl.PO_Date}}</paper-item></div>
+            <div class="topright">
+              <div id="datepick" hidden$="{{isHidden}}"><datepicker-card></datepicker-card></div>
+              <div id="ponbr" hidden$="{{isHidden}}"><paper-input name="ponumber" label="{{lbl.PO_Number}}"  value="{{ponumber}}" required auto-validate id="pono" error-message="{{lbl.PO_Number_error}}" on-change="FnInputChanged" readonly="{{read}}"></paper-input></div>
+            </div>
+          </div>
+        </div>
+        <!--<paper-tabs selected="0" noink id="ptab">
+          <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+          <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+          </template>
+        </paper-tabs>-->
+        <div id="div2">
+          <!--template which shows the no of items under expended IRN card-->
+          <template is="dom-repeat" items="{{specificationArray1}}" as="item">
+            <div class="repeatcard">
+              <retestqualify-item-card read="{{item.readflag}}" containerid="{{item.Container_ID}}" heatno="{{item.Heat_Number}}" qtyaccept="{{item.Quantity}}" inspectionstatus="{{item.Inspection_Status}}" inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{item.Remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></retestqualify-item-card>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+    <!--Component to read specification card info-->
+    <iron-ajax
+      method="post"
+      id="physicqualifyexpanditemreadajax"
+      url="{{physicqualifyexpanditemreadurl}}"
+      params="{{physicqualifyexpanditemreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnphysicqualifyexpanditemreadResponse">
+    </iron-ajax>
+    <!--Component to read Labels for the components from webcomponents.json file-->
+    <iron-ajax
+      id="webcomponentreadajax"
+      url="../../config/webcomponents.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnWebcomponentreadResponse">
+    </iron-ajax>
+  </template>
+  <!--Import JS file-->
+  <script src="../../scripts/retestqualify-card.js"></script>
+
+</dom-module>

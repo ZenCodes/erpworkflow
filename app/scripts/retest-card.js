@@ -26,7 +26,7 @@
       retestarr.push(retestirn);
     },
     FnSendtoretest:function(e){
-      this.$.gs.resenditemtoqualityService(retestarr);
+      this.$.gs.resenditemtoqualityService(sessionStorage.getItem("sess_curr_inwardregno"));
     }
   });
 })();

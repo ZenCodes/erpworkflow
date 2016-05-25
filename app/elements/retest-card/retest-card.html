@@ -24,6 +24,7 @@
         width: 90%;
         height: 4%;
         margin-left: 5%;
+        margin-top: 5%;
       }
       #resend{
         text-align: center;
@@ -31,12 +32,20 @@
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
         background-color: #3d6868;
         color: white;
-        margin-top: 4%;
+        margin-top: 0%;
         margin-left: 70%;
         text-transform: none;
       }
       paper-button{
         text-transform: none;
+      }
+      .itemcard{
+        width: 75%;
+        margin-left: 12%;
+        margin-top: 2%;
+      }
+      .items{
+        margin-top: 5%;
       }
 
     </style>
@@ -50,12 +59,14 @@
           </template>
         </paper-tabs>
         <!--Template to bind the current state cards according to the role logged in-->
+       <div class="items">
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <div class="itemcard">
             <div><retest-items-card productid="{{item.Product_ID}}" suppliername="{{item.Supplier_ID}}" contreceived="{{item.unit}}" contmeasure="{{item.Unit_measure}}" qtyreceived="{{item.Qty_Received}}" qtymeasure="{{item.Qty_measure}}" inwardregno="{{item.new_Inward_Register_Number}}" inwardno="{{item.Inward_Bill_Number}}" inwarddate="{{item.Inward_Register_Date}}" ponumber="{{item.PO_Number}}" qtyaccepted="{{item.Qty_Accepted}}" contaccepted="{{item.Unit_Accepted}}" remarks="{{item.Remarks}}"></retest-items-card>
             </div>
           </div>
         </template>
+       </div>
         <paper-button id="resend" on-click="FnSendtoretest">Send to retest</paper-button>
       </div>
     </template>

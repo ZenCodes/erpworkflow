@@ -261,16 +261,16 @@
         document.querySelector('retest-card').itemArray = e.detail.response.itemarr;
       //alert(JSON.stringify(document.querySelector('retest-card').itemArray));
     },
-    resenditemtoqualityService:function(resenditemarray){
+    resenditemtoqualityService:function(inwardregno){
       this.resenditemtoqualityurl=sessionStorage.getItem("curr_sess_url")+"resenditemtoquality-service";
-      for(var i=0;i<resenditemarray.length;i++){
+      //for(var i=0;i<resenditemarray.length;i++){
         var obj={"inwardregno":"","updatestate":"","checkstate":""};
-        obj.inwardregno=resenditemarray[i];
+        obj.inwardregno=inwardregno;
         obj.updatestate='Quality';
         obj.checkstate='Confirm';
         this.resenditemtoqualityparam=obj;
         this.$.resenditemtoqualityajax.generateRequest();
-      }
+      //}
     },
     resenditemtoqualityResponse:function(e){
       alert(JSON.stringify(e.detail.response));
