@@ -338,7 +338,7 @@ exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
 }
 
 //Function which fetches the forward flow items
-exports.FnForwardFlowitemFetch=function(pagename,cond,callback){
+exports.FnForwardFlowitemFetch=function(pagename,cond,roleid,empid,callback){
   //Fetching tables for this page
   var Config_tables=[];
   var Config_columns=[];
@@ -349,8 +349,12 @@ exports.FnForwardFlowitemFetch=function(pagename,cond,callback){
     }
     //console.log(Config_tables);
   }
+  if(roleid=="2")
+  var queryy="SELECT * from OD_Sales_Inward_Material where Product_ID in(SELECT Item_name from MD_Item where Store_Location_ID in (SELECT  Store_Location_ID FROM `MD_Stores_Mapping` WHERE Employee_ID='"+empid+"')) and state='"+state+"'";
+  else
+  var queryy="SELECT  * FROM OD_Sales_Inward_Material WHERE state='"+state+"' ORDER BY '+Config_columns[0]+' DESC";
   //Query which fetch the item under specific IRN Number
-  connection.query('SELECT  * FROM '+Config_tables[0]+' WHERE ? ORDER BY '+Config_columns[0]+' DESC',[cond], function(err, rows, fields) {
+  connection.query(queryy,function(err, rows, fields) {
     /*var itemarr=[];
     for(var i=0;i<rows.length;i++)
     {
@@ -465,9 +469,9 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
 
   connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? ',[cond1,cond2,cond6], function(err, rows) {
   if(!err){
-    console.log(JSON.stringify(rows));
+    //console.log(JSON.stringify(rows));
     if(rows.length>0){
-      console.log("already thr upading..........");
+      //console.log("already thr upading..........");
       //connection.query('INSERT INTO OD_Inward_Material_Inspection VALUES(SELECT * FROM OD_Inward_Material_Inspection WHERE  ? and ? and ? and ?)',[cond1,cond2,cond3,cond6], function(err, result) {
       //  if(!err) {
           connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ? and ?', [response, cond1, cond2, cond6], function (err, result) {
@@ -482,7 +486,7 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
       //});
       }
     else{
-      console.log("new inserting..........");
+      //console.log("new inserting..........");
       connection.query('INSERT INTO OD_Inward_Material_Inspection SET ? ',[response], function(err, result) {
         if(!err){
           connection.query('UPDATE OD_Sales_Inward_Material SET ? where ? and ?',[cond3,cond4,cond5], function(err, result) {
@@ -571,7 +575,7 @@ exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,status,ch
   }
   if(repeatflag=="1") {
     var queryy = "select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + status + "' and unit=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + checkstatus + "')";
-    console.log(queryy);
+    //console.log(queryy);
     connection.query(queryy, function (err, rows) {
       if (rows.length > 0)
         return callback("succ");
@@ -584,7 +588,7 @@ exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,status,ch
     //console.log(queryy);
     connection.query(queryy, function (err, rows) {
       if(!err) {
-        console.log(rows.length);
+        //console.log(rows.length);
         if (rows.length > 0)
           return callback("succ");
         else
