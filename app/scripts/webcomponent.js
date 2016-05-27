@@ -21,7 +21,7 @@
       var errorlabelvalue=[];
       //Binding labels to login-card
       for(var i=1;i<arr.length;i++) {
-
+        //alert((arr[i].Page[0].page[0]));
         if ((arr[i].Page[0].page[0]) == this.current_page) {
 
           labelvalue = arr[i].Page[1].Label;

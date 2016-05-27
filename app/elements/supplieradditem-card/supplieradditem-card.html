@@ -71,8 +71,8 @@
 	  	        margin-left:5%;
       }
       .storescard{
-        margin-left:5%;       
-        @apply(--layout-horizontal);     
+        margin-left:5%;
+        @apply(--layout-horizontal);
       }
       itemprice-card{
         margin-left: 17.5%;
@@ -86,14 +86,14 @@
         margin-left: 10%;
         width:30%;
       }
-      
+
     </style>
 
     <!--Template to show card for entering item info-->
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
         <div class="input">
-			<itemsearch-card></itemsearch-card>
+			<itemsearch-card id="itemsearchcard"></itemsearch-card>
             <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
             <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>-->
 
@@ -129,7 +129,7 @@
         </div>
         <div class="storescard">
           <stores-card id="storescard"></stores-card>
-          <itemprice-card></itemprice-card>
+          <itemprice-card id="itempricecard"></itemprice-card>
         </div>
         <div class="type">
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>

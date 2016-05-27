@@ -36,7 +36,7 @@ Polymer({is:"drawermenu-card",
         document.querySelector('viewintent-page').FnRefreshService();
         window.location.href="../elements/indexhome.html";
         /*document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('intenthome-page').setPage('View Intent');        
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
@@ -68,7 +68,7 @@ Polymer({is:"drawermenu-card",
        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
        /* document.querySelector('viewintent-page').FnRefreshService();
         document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('intenthome-page').setPage('View Intent');        
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');*/
@@ -100,7 +100,7 @@ Polymer({is:"drawermenu-card",
         /*document.querySelector('viewintent-page').FnRefreshService();
         document.querySelector('app-homepage').setPage('intenthome-page');
         document.querySelector('intenthome-page').setPage('View Intent');
-        
+
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');*/
@@ -127,32 +127,29 @@ Polymer({is:"drawermenu-card",
       }
     }
     else if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
-         //localStorage.setItem("curr_sess_showpage","Add Intent");
-        if(e.target.id=="Add Intent"){
-        sessionStorage.setItem("curr_sess_intentrefreshflag","0");
+      if(e.target.id=="Add Intent"){
+
         //localStorage.setItem("curr_sess_showpage","Add Intent");
         localStorage.setItem("curr_sess_wardflag","2");
-        document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('app-homepage').setVisible("false");
-        document.querySelector('viewtype-card').FnViewlist();
-        document.querySelector('app-homepage').setFlowVisibility('false');
-        // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
-        document.querySelector('intenthome-page').setPage('Add Intent');
-
-        //window.location.href="../elements/indexhome.html";
+        sessionStorage.setItem("curr_sess_intentrefreshflag","0");
+        /*document.querySelector('app-homepage').setPage('intenthome-page');
+         document.querySelector('app-homepage').setVisible("false");
+         document.querySelector('viewtype-card').FnViewlist();
+         document.querySelector('app-homepage').setFlowVisibility('false');
+         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+         document.querySelector('intenthome-page').setPage('Add Intent');*/
+        window.location.href="../elements/indexhome.html";
       }
       if(e.target.id=="View Intent"){
-        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         localStorage.setItem("curr_sess_wardflag","3");
-        document.querySelector('viewintent-page').FnRefreshService();
-        document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('intenthome-page').setPage('View Intent');
-        
-        document.querySelector('app-homepage').setVisible("false");
-        document.querySelector('viewtype-card').FnHideBtns();
-        document.querySelector('app-homepage').setFlowVisibility('false');
-
-        //window.location.href="../elements/indexhome.html";
+        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
+        /* document.querySelector('viewintent-page').FnRefreshService();
+         document.querySelector('app-homepage').setPage('intenthome-page');
+         document.querySelector('intenthome-page').setPage('View Intent');
+         document.querySelector('app-homepage').setVisible("false");
+         document.querySelector('viewtype-card').FnHideBtns();
+         document.querySelector('app-homepage').setFlowVisibility('false');*/
+        window.location.href="../elements/indexhome.html";
       }
       if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&e.target.id=="Approve Supplier"){
         //alert("approve");
@@ -171,17 +168,17 @@ Polymer({is:"drawermenu-card",
         //document.querySelector('intenthome-page').setPage('Add Intent');
     }
 
-    
+
 
      //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
     else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
-     
+
       if(e.target.id=="View Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         document.querySelector('viewintent-page').FnRefreshService();
         document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('intenthome-page').setPage('View Intent');        
+        document.querySelector('intenthome-page').setPage('View Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');
@@ -196,7 +193,7 @@ Polymer({is:"drawermenu-card",
         window.location.href="../elements/indexhome.html";
       }
       if(e.target.id=="Add Customer"){
-        localStorage.setItem("curr_sess_wardflag","6");        
+        localStorage.setItem("curr_sess_wardflag","6");
         window.location.href="../elements/indexhome.html";
       }
     }

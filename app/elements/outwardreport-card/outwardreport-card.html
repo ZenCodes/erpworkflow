@@ -59,12 +59,12 @@
         width:100%;
         margin-left: 0%;
       }
-      .label{      
+      .label{
         @apply(--layout-horizontal);
         //width:50%;
         margin-left: 65%;
       }
-      
+
       /*#quantity{
         margin-left: -3%;
       }
@@ -97,8 +97,8 @@
        background-color: #f1f1f1;
       }
       .itemcard:nth-child(even) {
-        background-color: white; 
-      
+        background-color: white;
+
       }
       #customer,#date,#invoice{
         margin-left: 3%;
@@ -112,14 +112,14 @@
         color: red;
         margin-left: 35%;
         margin-top: 10%;
-      }    
-  
+      }
+
     </style>
      <!-- <div class="label"> -->
        <!-- <iron-label value="From date">From Date</iron-label>  -->
        <!-- <iron-label value="To date">To Date</iron-label> -->
       <!-- </div> -->
-    <div class="topcard">     
+    <div class="topcard">
       <!-- <div class="icon"> -->
       <!-- <paper-fab id="back" mini icon="arrow-back" on-click="backward"></paper-fab> -->
       <!-- <paper-fab id="forward" mini icon="arrow-forward" on-click="forward"></paper-fab> -->
@@ -132,15 +132,15 @@
       <!-- <paper-input id="to" label="To date" name="to" value="{{todate}}"></paper-input> -->
       </div>
     </div>
-    <!-- <template is="dom-repeat" items="{{label}}"> 
+    <!-- <template is="dom-repeat" items="{{label}}">
       <div class="tabcard">
         <paper-tabs selected="0" no-bar>
           <paper-tab>{{item.tab}}</paper-tab>
-           <paper-tab>Container/Quantity</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Invoice Number</paper-tab><paper-tab>Date</paper-tab> 
+           <paper-tab>Container/Quantity</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Invoice Number</paper-tab><paper-tab>Date</paper-tab>
         </paper-tabs>
       </div>
     </template>-->
-    <template is="dom-repeat" items="{{label}}" as="lbl"> 
+    <template is="dom-repeat" items="{{label}}" as="lbl">
       <paper-tabs selected="0" noink id="ptab" no-bar>
           <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
           <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
@@ -151,19 +151,19 @@
       <paper-item id="noitem" value="No item found for this search!!" hidden$="{{hidenoitem}}">No item found for this search!!</paper-item>
           <template is="dom-repeat" items="{{itemarr}}">
             <div class="itemcard">
-              
+
               <paper-item id="description" value="{{item.Product_ID}}">{{item.Product_ID}}</paper-item>
-              <paper-item id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</paper-item> 
+              <paper-item id="quantity" value="{{item.Quantity}}">{{item.Quantity}}/{{item.Weight}}</paper-item>
 
               <paper-item id="customer" value="{{item.Customer_Name}}">{{item.Customer_Name}}</paper-item>
               <paper-item id="city" value="{{item.City}}">{{item.City}}</paper-item>
-             
+
               <paper-item id="invoice" value="{{item.Invoice_No}}">{{item.Invoice_No}}</paper-item>
-              <paper-item id="date" value="{{item.Out_Date}}">{{item.Out_Date}}</paper-item> 
+              <paper-item id="date" value="{{item.Out_Date}}">{{item.Out_Date}}</paper-item>
 
             </div>
           </template>
-      
+
     </div>
     <report-service id="reportservice" itemarr="{{itemarr}}"></report-service>
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
@@ -175,14 +175,23 @@
     Polymer({
       is: 'outwardreport-card',
      ready:function(){
-      
+
       this.hidenoitem=true;
-      localStorage.setItem("curr_sess_showpage","Outward Report");
+
       //alert(localStorage.getItem("curr_sess_showpage"));
-      if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="5")
+       if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+         localStorage.setItem("curr_sess_showpage","approvesupplier-card");
+       }
+       if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
+         localStorage.setItem("curr_sess_showpage","retest-card");
+       }
+      if(sessionStorage.getItem("curr_sess_roleflag")=="10"||sessionStorage.getItem("curr_sess_roleflag")=="11") {
+        localStorage.setItem("curr_sess_showpage","Outward Report");
+        //localStorage.setItem("curr_sess_wardflag","5");
         this.$.reportservice.callOutwardService("current");
+      }
      },
-    
+
      forward:function(){
         this.$.reportservice.callOutwardService("forward");
      },

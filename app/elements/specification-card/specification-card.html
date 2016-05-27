@@ -53,7 +53,7 @@
           <paper-tab><paper-button>Remarks</paper-button></paper-tab>
         </paper-tabs>
       <template is="dom-repeat" items="{{itemArray}}" as="item">
-        <specification-item-crd name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
+        <specification-item-crd measure="{{item.Unit_Measure}}" name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
       </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">

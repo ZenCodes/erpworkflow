@@ -23,9 +23,9 @@
       is: 'itemprice-card',
 
      ready:function(){
-
+      this.price="";
      },
-    FnInputChanged:function(){   
+    FnInputChanged:function(){
     document.querySelector('supplier-detail').FnSetPrice(this.price);
     document.querySelector('supplieradditem-card').FnSetPrice(this.price);
     }

@@ -200,7 +200,7 @@
       ,{"title":["Outward Report Card"]}
       ]},
        {"Page":[
-      {"page":["Approve Supplier","approvesupplier-card"]},
+      {"page":["approvesupplier-card","approvesupplier-card"]},
       {"Label":[{"tabs":[{"tab":"Supplier ID"},{"tab":"Supplier name"},{"tab":"Location"},{"tab":"City"}]}]}
       ,{"title":["Supplier Approval"]}
       ]},

@@ -74,16 +74,20 @@
       var arr = [];
       arr.push({"itemname": "-----Select-----"});
       var item = e.detail.response.itemarr;
+      //alert(JSON.stringify(e.detail.response.itemarr));
+      //alert(this.itemname);
       if (this.itemname.length > 0) {
         for (var i = 0; i < item.length; i++) {
           var subval = ((item[i].itemname).trim()).substring(0, this.itemname.length);
           if ((subval).toLowerCase() == (this.itemname).toLowerCase()) {
             var obj = {"itemname": ""};
             obj.itemname = item[i].itemname;
+            //alert(JSON.stringify(obj));
             arr.push(obj);
           }
         }
         //Binding items to the listbox when it has the matching items otherwise showing no items
+        //alert(JSON.stringify(arr));
         if (arr.length > 0)
           this.itemArray = arr;
         else {

@@ -29,7 +29,7 @@ Polymer({
   FnSelectcontainer:function(e){
     document.querySelector('customeradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
   },
-  FnSelectunit:function(e){  
+  FnSelectunit:function(e){
     document.querySelector('customeradditem-card').FnQuantityChange((e.target.selectedItem.textContent).trim());
   },
   //Method invokes to fetch item id of the currently selected Item type name in dropdown
@@ -90,6 +90,14 @@ FnAddItemSubmit:function(){
 	this.$.adminservice.callCustomerItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
 	}
   document.querySelector('stores-card').FnClear();
+  document.querySelector('itemsearch-card').FnSetClearFields();
+  this.itemdes="";
+  document.querySelector('#dropcontainertype').selected=-1;
+  document.querySelector('#dropunittype').selected=-1;
+  document.querySelector('#dropitemtype').selected=-1;
+  document.querySelector('#dropgrouptype').selected=-1;
+  document.querySelector('#radio').selected=-1;
+  this.read=false;
 },
 FnSetValue:function(supplierid,suppliername){
 	this.supplierid=supplierid;
@@ -102,7 +110,7 @@ FnBtnDisable:function(){
 	this.Btn_disable_flag=true;
 },
 FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,itemgroup,selection){
-  
+
 	this.itemid=itemid;
 	this.itemname=itemname;
 	this.itemdes=itemdes;
@@ -120,12 +128,12 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 	   if(this.purchasearr[i].purchasetypeid==selection)
 	      this.selection=this.purchasearr[i].purchasetypename;
     }
-  
+
 },
  FnSetStoresInfo:function(storesarr,storesid){
- //alert(storesid);    
+ //alert(storesid);
     this.storesarr=storesarr;
-    this.storesid=storesid;    
+    this.storesid=storesid;
   },
 FnSetItemId:function(itemid){
   //alert(itemid);

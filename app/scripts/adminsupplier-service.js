@@ -257,7 +257,7 @@
       this.$.readsuppliertoapproveajax.generateRequest();
     },
     FnreadsuppliertoapproveResponse:function(e){
-      //alert(e.detail.response.itemarr);
+      //alert(JSON.stringify(e.detail.response.itemarr));
       document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
     },
     FnSetSupplierforApprove:function(supplierid){
@@ -265,7 +265,7 @@
     },
      approvesupplierforpurchaseService:function(){
       //alert("call"+JSON.stringify(approvesupplierarr));
-      	
+
       for(var i=0;i<approvesupplierarr.length;i++){
       var obj={"supplierid":""};
       obj.supplierid=approvesupplierarr[i];

@@ -71,7 +71,7 @@
               margin-left:5%;
       }
       .storescard{
-        margin-left:5%;        
+        margin-left:5%;
       }
       .containercard{
         margin-left: 4%;
@@ -80,10 +80,10 @@
       .unitcard{
         margin-left: 13%;
         //width:80%;
-      } 
+      }
       .container,.unit{
         width: 133%;
-      }     
+      }
     </style>
 
     <!--Template to show card for entering item info-->
@@ -103,7 +103,7 @@
         </div>
         <div class="input">
         <div class="containercard">
-        <paper-dropdown-menu class="container" id="dropitemtype" label="Select Container" disabled="{{read}}" required>
+        <paper-dropdown-menu class="container" id="dropcontainertype" label="Select Container" disabled="{{read}}" required>
             <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer" attr-for-selected="value" selected="{{containertype}}" required>
               <template is="dom-repeat" items="{{containerarr}}">
               <paper-item value="{{item.Container_Name}}">{{item.Container_Name}}</paper-item>
@@ -112,7 +112,7 @@
         </paper-dropdown-menu>
         </div>
         <div class="unitcard">
-         <paper-dropdown-menu id="dropitemtype" class="unit" label="Select Unit" disabled="{{read}}" required>
+         <paper-dropdown-menu id="dropunittype" class="unit" label="Select Unit" disabled="{{read}}" required>
             <paper-menu class="dropdown-content"  on-iron-select="FnSelectunit"  attr-for-selected="value" selected="{{unittype}}" required>
               <template is="dom-repeat" items="{{unitarr}}">
               <paper-item value="{{item.Unit_Name}}">{{item.Unit_Name}}</paper-item>

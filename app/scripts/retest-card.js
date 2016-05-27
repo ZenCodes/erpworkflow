@@ -7,6 +7,7 @@
   var retestarr=[];
   Polymer({is:"retest-card",
     ready:function() {
+
       //Setting current page in session for fetching labels dynamically
       localStorage.setItem("curr_sess_showpage","retest-card");
       //calling webcomponent service to fetch labels for current page

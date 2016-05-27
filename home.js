@@ -331,7 +331,8 @@ app.post("/updatequalityparameter-service",urlencodedParser,function(req,res) {
     Max_Value:req.query.maxvalue,
     Actual_Value:req.query.actualvalue,
     Remarks:req.query.remarks,
-    Test_Date:req.query.testdate
+    Test_Date:req.query.testdate,
+    measure:req.query.measure
   };
   //console.log(response);
   var Fnupdatequalityparametercall = require("./app/scripts/dboperations.js");
