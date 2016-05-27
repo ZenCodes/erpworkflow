@@ -82,7 +82,13 @@ var flag="true";
       }
     },
     FnResponse: function (e) {
-      this.$.ID_Show_Dialog.FnShowDialog(e.detail.response.flag, "");
+      alert(JSON.stringify(e.detail.response.flag));
+      var retflag="";
+      if(e.detail.response.flag=="exist")
+        retflag="Coil id already exist";
+      else
+        retflag=e.detail.response.flag;
+      this.$.ID_Show_Dialog.FnShowDialog(retflag, "");
     },
     FnExpandInnerCard: function () {
       //alert(this.containerid);

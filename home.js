@@ -191,6 +191,7 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   inspectionstatus="Rejected";
 
   var  response={
+    Serial_No:req.body.serialno,
     Inward_Register_Number:req.body.inwardregno,
     Product_ID:req.body.productid,
     PO_Number:req.body.ponumber,
@@ -213,13 +214,16 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   var cond4={new_Inward_Register_Number:req.body.inwardregno};
   var cond5={state:req.body.status};
   var cond6={Container_ID:req.body.containerid};
+  var cond7={Serial_No:req.body.serialno};
 
-  //console.log(cond3);
+  console.log(JSON.stringify(cond1)+"  "+JSON.stringify(cond2)+"  "+JSON.stringify(cond3)+"  "+JSON.stringify(cond4)+"  "+JSON.stringify(cond5)+"  "+JSON.stringify(cond6)+"  "+JSON.stringify(cond7));
 
   var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,cond6,function(returnval){
+  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,cond6,cond7,function(returnval){
     if(returnval=="updated")
+      res.status(200).json({"flag":returnval});
+    else if(returnval=="exist")
       res.status(200).json({"flag":returnval});
     else if(returnval=="not updated")
       res.status(200).json({"flag":returnval});

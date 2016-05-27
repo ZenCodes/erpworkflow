@@ -458,7 +458,7 @@ exports.Fnphysicqualifyexpanditemread=function(pagename,cond,status,callback) {
 }
 
 //Function fetches the item info and update the status of the specific item
-exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,cond6,callback) {
+exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,cond6,cond7,callback) {
   //fetching tables for this page
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -466,15 +466,12 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
       Config_tables=obj[i].value;
     }
   }
-
   connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? ',[cond1,cond2,cond6], function(err, rows) {
-  if(!err){
-    //console.log(JSON.stringify(rows));
-    if(rows.length>0){
-      //console.log("already thr upading..........");
-      //connection.query('INSERT INTO OD_Inward_Material_Inspection VALUES(SELECT * FROM OD_Inward_Material_Inspection WHERE  ? and ? and ? and ?)',[cond1,cond2,cond3,cond6], function(err, result) {
-      //  if(!err) {
-          connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ? and ?', [response, cond1, cond2, cond6], function (err, result) {
+    if(rows.length>0) {
+      connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? and ?', [cond1, cond2, cond6, cond7], function (err, rows) {
+        if(rows.length>0) {
+          console.log('same serial no');
+          connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ? and ? and ?', [response, cond1, cond2, cond6,cond7], function (err, result) {
             if (!err)
               return callback("updated");
             else {
@@ -482,20 +479,25 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
               return callback("not updated");
             }
           });
-        //}
-      //});
-      }
+
+        }
+        else
+        {
+          console.log('diff serial no');
+          return callback("exist");
+        }
+      });
+    }
     else{
-      //console.log("new inserting..........");
-      connection.query('INSERT INTO OD_Inward_Material_Inspection SET ? ',[response], function(err, result) {
-        if(!err){
-          connection.query('UPDATE OD_Sales_Inward_Material SET ? where ? and ?',[cond3,cond4,cond5], function(err, result) {
-          if(!err)
-            return callback("updated");
-          else {
-            console.log("error!"+err);
-            return callback("not updated");
-          }
+      connection.query('INSERT INTO OD_Inward_Material_Inspection SET ? ', [response], function (err, result) {
+        if (!err) {
+          connection.query('UPDATE OD_Sales_Inward_Material SET ? where ? and ?', [cond3, cond4, cond5], function (err, result) {
+            if (!err)
+              return callback("updated");
+            else {
+              console.log("error!" + err);
+              return callback("not updated");
+            }
           });
         }
         else {
@@ -504,11 +506,8 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
         }
       });
     }
-    }
-  else {
-  console.log(err);
-  }
   });
+
 }
 
 //Function fetches expanded card item info
