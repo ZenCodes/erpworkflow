@@ -685,8 +685,10 @@ exports.Fnupdatequalityparameter=function(pagename,response,callback) {
         if (!err) {
           return callback("succ");
         }
-        else
+        else {
+         console.log(err);
           return callback("fail");
+        }
       });
     }
   });

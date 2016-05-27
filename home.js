@@ -336,9 +336,9 @@ app.post("/updatequalityparameter-service",urlencodedParser,function(req,res) {
     Actual_Value:req.query.actualvalue,
     Remarks:req.query.remarks,
     Test_Date:req.query.testdate,
-    measure:req.query.measure
+    Unit_Measure:req.query.measure
   };
-  //console.log(response);
+  console.log(response);
   var Fnupdatequalityparametercall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
   Fnupdatequalityparametercall.Fnupdatequalityparameter("updatequalityparameter-service",response,function(returnval){

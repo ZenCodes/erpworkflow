@@ -36,7 +36,7 @@
         text-transform: none;
       }
       paper-tabs{
-        width: 90%;
+        width: 70%;
       }
       .btncard{
         margin-left: -80%;
@@ -78,7 +78,7 @@
   <script>
   (function() {
     'use strict';
-    var qualityarr;
+    var qualityarr=[];
     Polymer({
       is: 'specification-card',
       ready:function(){
@@ -109,12 +109,12 @@
         this.specarr=e.detail.response;
       },
       FnSetValue:function(qualityarray){
-        //alert(JSON.stringify(qualityarray));
+        alert(JSON.stringify(qualityarray));
         qualityarr=qualityarray;
       },
       FnSubmittest:function(){
         //alert('yes');
-        //alert((this.qualityarray).length);
+        alert((qualityarr).length);
         if((qualityarr).length==(this.itemArray).length)
         {
           alert('Test submit!');

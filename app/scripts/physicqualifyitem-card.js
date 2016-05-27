@@ -82,7 +82,7 @@ var flag="true";
       }
     },
     FnResponse: function (e) {
-      alert(JSON.stringify(e.detail.response.flag));
+      //alert(JSON.stringify(e.detail.response.flag));
       var retflag="";
       if(e.detail.response.flag=="exist")
         retflag="Coil id already exist";
