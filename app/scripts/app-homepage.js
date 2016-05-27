@@ -15,7 +15,7 @@ Polymer({
     this.$.dynamicbutton.style.visibility='hidden';
     this.$.flowbutton.style.visibility='hidden';
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
-      alert("sales"+ localStorage.getItem("curr_sess_wardflag"));
+      //alert("sales"+ localStorage.getItem("curr_sess_wardflag"));
       if(localStorage.getItem("curr_sess_wardflag")=="5") {
         //localStorage.setItem("curr_sess_wardflag", "");
         document.querySelector('app-homepage').setPage('outwardreport-card');
@@ -36,7 +36,7 @@ Polymer({
 
     /*Condition which allow to see the search page and hide the respective components in UI*/
     if(sessionStorage.getItem("curr_sess_roleflag")=="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"){
-     alert("search");
+     //alert("search");
       localStorage.setItem("curr_sess_showpage","Search Items");
       this.page="Search Items";
       this.$.flow.style.visibility='hidden';
@@ -46,7 +46,7 @@ Polymer({
       this.$.searchmenu.style.visibility='visible';
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
-      alert('admin');
+      //alert('admin');
       //alert(localStorage.getItem("curr_sess_wardflag"));
       if(localStorage.getItem("curr_sess_wardflag")=="") {
         //localStorage.setItem("curr_sess_wardflag", "");
@@ -68,7 +68,7 @@ Polymer({
     //if(sessionStorage.getItem("loggedrole")=="Security guard")
     if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6")
     {
-      alert("inwardoutward");
+      //alert("inwardoutward");
       /*Condtion to navigate to the inward item entry page when he initially logged in or changing options in drawer menu*/
       if(localStorage.getItem("curr_sess_wardflag")!="1"){
         localStorage.setItem("curr_sess_showpage","Vehicle Info");
@@ -89,7 +89,7 @@ Polymer({
     //if(sessionStorage.getItem("loggedrole")=="Stores manager"||sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager"||sessionStorage.getItem("loggedrole")=="Purchase manager")
     if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"&&sessionStorage.getItem("curr_sess_roleflag")!="7"&&sessionStorage.getItem("curr_sess_roleflag")!="8"&&sessionStorage.getItem("curr_sess_roleflag")!="9"&&sessionStorage.getItem("curr_sess_roleflag")!="10"&&sessionStorage.getItem("curr_sess_roleflag")!="11")
     {
-      alert("oldintent");
+      //alert("oldintent");
       if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
       this.$.flow.style.visibility='hidden';
       // this.$.intentflow.style.visibility='visible';
@@ -137,14 +137,14 @@ Polymer({
       document.querySelector('app-homepage').setPage('outwardreport-card');
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
-      alert('ceo');
+      //alert('ceo');
       this.$.flow.style.visibility='hidden';
       this.$.intentflow.style.visibility='hidden';
       this.$.dynamicbutton.style.visibility='visible';
       document.querySelector('app-homepage').setPage('approvesupplier-card');
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
-      alert('purchase');
+      //alert('purchase');
       if(localStorage.getItem("curr_sess_wardflag")=="3")
       this.$.intentview.style.visibility='visible';
       //this.$.intentflow.style.visibility='visible';
