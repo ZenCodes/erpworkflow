@@ -93,7 +93,7 @@
 
         <paper-radio-button disabled="{{read}}" hidden$="{{hideradio}}" id="radio{{containerid}}" on-change="FnExpandInnerCard"></paper-radio-button>
         <paper-input disabled="{{read}}" class="containerid" name="containerid" label="Container ID" value="{{containerid}}" id="cont{{inwardno}}" required></paper-input>
-        <paper-input disabled="{{read}}" class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" required></paper-input>
+        <paper-input disabled="{{read}}" hidden$="{{hideflg}}" class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}"></paper-input>
         <paper-input disabled="{{read}}" class="qtinput" name="qtyaccept" label="Quantity" value="{{qtyaccept}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
         <paper-input disabled="{{read}}" class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
         <textarea disabled="{{read}}" class="remark" name="remark" placeholder="Remarks here...." value="{{remarks::input}}" id="remark">{{remarks}}</textarea>

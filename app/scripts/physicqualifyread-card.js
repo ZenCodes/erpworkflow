@@ -33,13 +33,15 @@ Polymer({is:"physicqualifyread-card",
       if(contmeasure=='Coil'){
         localStorage.setItem("curr_sess_repeatitementry","1");
         for(var i=0;i<parseInt(this.speccardlength);i++){
-          var obj={"id":"","number":""};
+          var obj={"id":"","number":"","hideflag":""};
+          obj.hideflag=false;
           this.specarr.push(obj);
         }
       }
       else{
         localStorage.setItem("curr_sess_repeatitementry","0");
-        var obj={"id":"","number":""};
+        var obj={"id":"","number":"","hideflag":""};
+        obj.hideflag=true;
         this.specarr.push(obj);
       }
       this.specificationArray=this.specarr;
@@ -52,6 +54,10 @@ Polymer({is:"physicqualifyread-card",
           arr[i].readflag=false;
         else
           arr[i].readflag=true;
+        if(arr[i].Quantity_Measure=="Coil")
+          arr[i].hideflag=false;
+        else
+          arr[i].hideflag=true;
       }
       //alert(JSON.stringify(arr));
       this.specificationArray = arr;

@@ -129,7 +129,7 @@
           <!--template which shows the no of items under expended IRN card-->
           <template is="dom-repeat" items="{{specificationArray}}" as="item">
             <div class="repeatcard">
-              <physicqualifyitemread-card read="{{item.readflag}}" containerid="{{item.Container_ID}}" heatno="{{item.Heat_Number}}" qtyaccept="{{item.Quantity}}" inspectionstatus="{{item.Inspection_Status}}" inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{item.Remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></physicqualifyitemread-card>
+              <physicqualifyitemread-card hideflg="{{item.hideflag}}" read="{{item.readflag}}" containerid="{{item.Container_ID}}" heatno="{{item.Heat_Number}}" qtyaccept="{{item.Quantity}}" inspectionstatus="{{item.Inspection_Status}}" inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{item.Remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></physicqualifyitemread-card>
             </div>
           </template>
         </div>

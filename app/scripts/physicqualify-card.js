@@ -65,32 +65,45 @@
       if(e.detail.response=="no items")
       {
         //alert('yeas');
-        this.speccardlength=contreceived;
+        this.speccardlength=containerreceived;
         this.specarr=[];
-        if(contmeasure=='Coil'){
+        if(containermeasure=='Coil'){
+          //alert('coil');
           localStorage.setItem("curr_sess_repeatitementry","1");
           for(var i=0;i<parseInt(this.speccardlength);i++){
-            var obj={"serialno":"","id":"","number":""};
+            var obj={"hideflag":"","serialno":"","heatno":"","id":"","number":""};
             obj.serialno=i;
+            obj.heatno="0";
+            obj.hideflag=false;
             this.specarr.push(obj);
           }
         }
         else{
+          //alert('no coil');
           localStorage.setItem("curr_sess_repeatitementry","0");
-          var obj={"serialno":"","id":"","number":""};
+          var obj={"hideflag":"","serialno":"","heatno":"","id":"","number":""};
           obj.serialno=i;
+          obj.heatno="0";
+          obj.hideflag=true;
           this.specarr.push(obj);
         }
         this.specificationArray=this.specarr;
+        //alert(JSON.stringify(this.specificationArray));
         document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
       }
       else{
         var arr=e.detail.response;
+        //alert(JSON.stringify(arr));
         for(var i=0;i<arr.length;i++) {
           if(arr[i].Inspection_Status=="Approved")
           arr[i].readflag=false;
           else
           arr[i].readflag=true;
+
+         if(arr[i].Quantity_Measure=="Coil")
+         arr[i].hideflag=false;
+         else
+         arr[i].hideflag=true;
         }
         //alert(JSON.stringify(arr));
         this.specificationArray = arr;
@@ -106,14 +119,16 @@
     if(contmeasure=='Coil'){
       localStorage.setItem("curr_sess_repeatitementry","1");
       for(var i=0;i<parseInt(this.speccardlength);i++){
-        var obj={"serialno":"","id":"","number":""};
+        var obj={"serialno":"","hideflag":"","id":"","number":""};
+        obj.hideflag=false;
         obj.serialno=i;
         this.specarr.push(obj);
       }
     }
     else{
       localStorage.setItem("curr_sess_repeatitementry","0");
-      var obj={"serialno":"","id":"","number":""};
+      var obj={"serialno":"","hideflag":"","id":"","number":""};
+      obj.hideflag=true;
       obj.serialno=i;
       this.specarr.push(obj);
     }
