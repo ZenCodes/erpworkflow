@@ -1101,7 +1101,7 @@ app.post("/addcustomer-service",urlencodedParser,function(req,res) {
 app.post("/addcustomerpayment-service",urlencodedParser,function(req,res) {
 
   response = {
-   Customer_ID:req.query.supplierid,
+   Customer_ID:req.query.customerid,
    Account_Name:req.query.accountname,
    Account_No:req.query.accountno,
    Account_Type:req.query.accounttype,

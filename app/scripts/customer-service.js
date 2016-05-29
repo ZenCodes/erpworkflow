@@ -103,7 +103,8 @@
       obj1.website=website;
       },
     addsupplierResponse:function(e){
-      alert('customer added!'+e.detail.response.returnval);
+      //alert('supplier'+e.detail.response.returnval);
+      //alert(JSON.stringify(obj3));
       if(e.detail.response.returnval=="succ"){
         this.customertaxaddparam=obj3;
         this.customertaxaddurl=sessionStorage.getItem("curr_sess_url")+"customertaxadd-service";
@@ -115,7 +116,7 @@
       }
     },
     FnAddContactService:function(designation,mobileno,emailid){
-    var obj2={"customerid":"","designation":"","mobileno":"","emailid":""};
+    obj2={"customerid":"","designation":"","mobileno":"","emailid":""};
     obj2.customerid=localStorage.getItem('curr_sess_customerloggedid');
     obj2.designation=designation;
     obj2.mobileno=mobileno;
@@ -143,9 +144,9 @@
     document.querySelector('contactperson-card').itemArray=e.detail.response.itemarr;
   },
   FnCustomerTaxAddService:function(tin,cst,pan,tan,cin){
-    var obj3={"customerid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
+    obj3={"customerid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
     obj3.customerid=localStorage.getItem('curr_sess_customerloggedid');
-    alert(obj3.customerid);
+    //alert(obj3.customerid);
     obj3.tin=tin;
     obj3.cst=cst;
     obj3.pan=pan;
@@ -155,16 +156,17 @@
   },
   customertaxaddResponse:function(e){
     //alert('tax'+e.detail.response.returnval);
+    //alert(JSON.stringify(obj4));
     if(e.detail.response.returnval=="succ") {
       this.customerexciseaddparam = obj4;
       this.customerexciseaddurl = sessionStorage.getItem("curr_sess_url") + "customerexciseadd-service";
-      this.$.customerexciseaddjax.generateRequest();
+      this.$.customeraddexciseajax.generateRequest();
     }
   },
   FnCustomerExciseAddService:function(regno,eccno,range,division,commission,servicetax){
-    var obj4={"customerid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
+    obj4={"customerid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
     obj4.customerid=localStorage.getItem('curr_sess_customerloggedid');
-    alert(obj4.customerid);
+    //alert(obj4.customerid);
     obj4.regno=regno;
     obj4.eccno=eccno;
     obj4.range=range;
@@ -182,7 +184,7 @@
   }
   },
   addpaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
-    alert('in payment!');
+    //alert('in payment!');
     obj5={
             "customerid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
             "branch":"","ifsccode":"","micrcode":"","swiftcode":"","paymentterm":""
