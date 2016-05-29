@@ -1,0 +1,57 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../contactperson-display-card/contactperson-display-card.html">
+<!-- <link rel="import" href="../../bower_components/supplier-list/supplier-list.html"> -->
+
+<dom-module id="contactperson-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:0%;
+      }
+      .innercard{
+        @apply(--layout-horizontal);
+      }
+      paper-button{
+        text-transform: none;
+        text-align: center;
+        width: 12%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+      .create{
+        margin-left:-70%;
+        margin-top: -2%;
+      }
+    </style>
+    <div class="card">
+
+      <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <contactperson-display-card designation="{{item.Designation}}" mobileno="{{item.Mobile_No}}" emailid="{{item.Email_ID}}"></contactperson-display-card>
+      </template>
+
+      <div class="create">
+        <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateContact">Add Contact</paper-button>
+        <paper-button disabled="{{Btn_disable_flag}}" id="next" on-click="FnNextContact">Next</paper-button>
+      </div>
+
+    </div>
+
+  </template>
+  <script src="../../scripts/contactperson-card.js"></script>
+</dom-module>

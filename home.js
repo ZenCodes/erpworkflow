@@ -962,7 +962,6 @@ app.post('/intentviewitemread-service',urlencodedParser, function (req, res) {
 //Function fetches the expanded intent view item info
 app.post("/intentviewitemexpand-card",urlencodedParser,function(req,res){
   cond={Intent_Register_Number:req.query.intentregno}
-
   var FnIntentviewExpandItemFetchcall = require("./app/scripts/dboperations.js");
   FnIntentviewExpandItemFetchcall.FnIntentviewExpandItemFetch("intentviewitemexpand-card",cond,function(returnval){
     res.status(200).json({"itemarr":returnval.itemarr});
@@ -987,7 +986,7 @@ app.post("/viewintentpromote-service",urlencodedParser,function(req,res){
   updaterolecolumn={PO_Created_By:'Purchase manager'};
   updatecolumn={Intent_State:'POCreated'};
   oldcolumn={Intent_State:'Approved'};
-   var response={
+  var response={
     Supplier_Name:req.query.supplier,
     Intent_Register_Number:req.query.intentregno,
     Product_ID:req.query.itemdes,
@@ -1008,6 +1007,63 @@ app.post("/posequpdate-service",urlencodedParser,function(req,res){
   });
 });
 
+//Function to add the customer contac info
+app.post("/customeraddcontact-service",urlencodedParser,function(req,res) {
+  response = {
+    Customer_ID:req.query.customerid,
+    Designation:req.query.designation,
+    Mobile_No:req.query.mobileno,
+    Email_ID:req.query.emailid
+  };
+  var Fncustomeraddcontactcall = require("./app/scripts/dboperations.js");
+  Fncustomeraddcontactcall.Fncustomeraddcontact("customeraddcontact-service",response,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
+
+//Function to add the customer contac info
+app.post("/customerreadcontact-service",urlencodedParser,function(req,res) {
+  customerid = {
+    Customer_ID:req.query.customerid
+  };
+  var Fncustomerreadcontactcall = require("./app/scripts/dboperations.js");
+  Fncustomerreadcontactcall.Fncustomerreadcontact("customerreadcontact-service",customerid,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
+
+//Function to add the customer contac info
+app.post("/customertaxadd-service",urlencodedParser,function(req,res) {
+  response = {
+    Customer_ID:req.query.customerid,
+    TIN:req.query.tin,
+    CST:req.query.cst,
+    PAN:req.query.pan,
+    TAN:req.query.tan,
+    CIN:req.query.cin
+  };
+  var Fncustomertaxaddcall = require("./app/scripts/dboperations.js");
+  Fncustomertaxaddcall.Fncustomertaxadd("customertaxadd-service",response,function(returnval){
+    res.status(200).json({"returnval":returnval});
+  });
+});
+
+//Function to add the customer contac info
+app.post("/customerexciseadd-service",urlencodedParser,function(req,res) {
+  response = {
+    Customer_ID:req.query.customerid,
+    Reg_No:req.query.regno,
+    Ecc_No:req.query.eccno,
+    Range:req.query.range,
+    Division:req.query.division,
+    Commission:req.query.commission,
+    Service_Tax:req.query.servicetax
+  };
+  var Fncustomerexciseaddcall = require("./app/scripts/dboperations.js");
+  Fncustomerexciseaddcall.Fncustomerexciseadd("customerexciseadd-service",response,function(returnval){
+    res.status(200).json({"returnval":returnval});
+  });
+});
 
 //Function to update the supplier info req receives from the admin service
 app.post("/addcustomer-service",urlencodedParser,function(req,res) {
@@ -1015,16 +1071,23 @@ app.post("/addcustomer-service",urlencodedParser,function(req,res) {
   response = {
    Customer_ID:req.query.supplierid,
    Customer_Name:req.query.suppliername,
-    LandMark:req.query.landmark,
-    Location:req.query.location,
-    City:req.query.city,
-    District:req.query.district,
-    State:req.query.state,
-    Country:req.query.country,
-    Pincode:req.query.pincode,
-    Phone:req.query.phoneno,
-    Mobile:req.query.mobileno,
-    Email:req.query.emailid
+   Alias_Name:req.query.aliasname,
+   Address1:req.query.address1,
+   Address2:req.query.address2,
+   Doorno:req.query.doorno,
+   Streetno:req.query.streetno,
+   Street_Name:req.query.streetname,
+   Location:req.query.location,
+   City:req.query.city,
+   District:req.query.district,
+   State:req.query.state,
+   Country:req.query.country,
+   Pincode:req.query.pincode,
+   Phoneno:req.query.phoneno,
+   Mobileno:req.query.mobileno,
+   Email:req.query.emailid,
+   Faxno:req.query.faxno,
+   Website:req.query.website
 
   };
   var FnAddCustomercall = require("./app/scripts/dboperations.js");
@@ -1039,11 +1102,16 @@ app.post("/addcustomerpayment-service",urlencodedParser,function(req,res) {
 
   response = {
    Customer_ID:req.query.supplierid,
-   Account_No:req.query.accno,
+   Account_Name:req.query.accountname,
+   Account_No:req.query.accountno,
+   Account_Type:req.query.accounttype,
+   Payment_Type:req.query.paymenttype,
    Bank_Name:req.query.bankname,
-   Payment_Type:req.query.mode,
-   Payment_Term:req.query.paymentterm,
-   Bank_Address:req.query.address
+   Branch:req.query.branch,
+   IFSC_Code:req.query.ifsccode,
+   MICR_Code:req.query.micrcode,
+   Swift_Code:req.query.swiftcode,
+   Payment_Term:req.query.paymentterm
 
   };
   var FnAddcustomerPaymentcall = require("./app/scripts/dboperations.js");

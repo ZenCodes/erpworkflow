@@ -25,8 +25,8 @@
 	this.supplierid=(this.suppliername).substring(0,4);
 	},
    FnSupplierInfoSubmit:function(){
-     document.querySelector('#emailid').validate();   	
-     document.querySelector('#supplierid').validate();
+     document.querySelector('#emailid').validate();
+     //document.querySelector('#supplierid').validate();
      document.querySelector('#suppliername').validate();
      document.querySelector('#location').validate();
      document.querySelector('#district').validate();
@@ -38,30 +38,30 @@
      //document.querySelector('#landmark').validate();
      if(this.supplierid==""||this.supplierid==null||this.suppliername==""||this.suppliername==null||this.location==""||this.location==null||this.city==null||this.city==""||this.district==""||this.district==null||this.state==null||this.state==""||this.country==null||this.country==""||this.pincode==""||this.pincode==null||this.mobileno==null||this.mobileno==""){}
      else{
-     	
+       alert(this.supplierid);
+     localStorage.setItem('curr_sess_customerloggedid',this.supplierid);
 		 document.querySelector("customeradditem-card").FnSetValue(this.supplierid,this.suppliername);
 		 if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-         this.$.customerservice.addsupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
-         document.querySelector("customer-page").setPage("Add Payment");
+         this.$.customerservice.addsupplierService(this.supplierid,this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
+         document.querySelector("customer-page").setPage("Add Contact");
+       //document.querySelector("customer-page").setPage("Add Payment");
      	//document.querySelector("payment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
- 		}
- 		else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
- 			this.$.customerservice.updatesupplierService(this.supplierid,this.suppliername,this.landmark,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
-            
-            document.querySelector("customer-page").setPage("Add Payment");
-
-            document.querySelector("customerpayment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
- 		}
- 		else{
+ 		 }
+ 		 else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+ 			   this.$.customerservice.updatesupplierService(this.supplierid,this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
+         document.querySelector("customer-page").setPage("Add Payment");
+         document.querySelector("customerpayment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
+ 		 }
+ 		 else{
 			document.querySelector("customer-page").setPage("Add Payment");
 			//if(localStorage.getItem("curr_sess_searchtypeflag")=="0")
 			document.querySelector("customerpayment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
 			//else if(localStorage.getItem("curr_sess_searchtypeflag")=="1")
 			//document.querySelector("supplieradditem-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
-		}
-	}
+		 }
+	  }
     },
-    FnSearchSupplierId:function(){
+    /*FnSearchSupplierId:function(){
 	//The flag is used to ensure the search is performed by using item id
     localStorage.setItem("curr_sess_searchtypeflag","0");
     //When performing search using itemid making listbox visible with items
@@ -69,7 +69,7 @@
 	this.read=true;
     this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemcustomerread-service";
 	this.$.supplierlistreadajax.generateRequest();
-	},
+	},*/
 	FnSearchSupplierName:function(){
 	//The flag is used to ensure the search is performed by using item name
     localStorage.setItem("curr_sess_searchtypeflag","1");
@@ -144,7 +144,7 @@
 		      }
     }
 	},
-	FnSupplierIdSelected:function(e){
+	/*FnSupplierIdSelected:function(e){
 		//if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
 		if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
 		this.supplierid = e.target.selectedItem.textContent.trim();
@@ -163,7 +163,7 @@
 		this.querySelector('#searchid').style.visibility='hidden';
 		this.querySelector('#searchid').selected=-1;
     }
-	},
+	},*/
 	FnSupplierNameSelected:function(e){
 		//if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
 		    if(e.target.selectedItem.textContent.trim()!="-----Select-----") {

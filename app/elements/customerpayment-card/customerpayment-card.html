@@ -63,19 +63,24 @@
 
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
-          <div>
+        <paper-input readonly="{{read}}" label="{{item.Account_Name}}" name="accountname" value="{{accountname}}" required id="accountname" error-message="{{item.Account_Name_error}}"></paper-input>
+        <paper-input readonly="{{read}}" label="{{item.Account_Number}}" name="accno" value="{{accountno}}" required id="accno" error-message="{{item.Account_Number_Error}}"></paper-input>
+        <paper-input readonly="{{read}}" label="{{item.Account_Type}}" name="acctype" value="{{accounttype}}" required id="acctype" error-message="{{item.Account_Type_Error}}"></paper-input>
+        <div>
           <paper-dropdown-menu disabled="{{read}}" id="droppaymentmode" label="Select payment Type" required>
           <paper-listbox id="paymentmode" attr-for-selected="value" class="dropdown-content" on-iron-select="FnModeSelected" selected="{{paymenttype}}">
               <paper-item>-----Select-----</paper-item>
               <paper-item value="DD">DD</paper-item>
-              <paper-item value="Checque">Checque</paper-item>
+              <paper-item value="Checque">Cheque</paper-item>
               <paper-item value="A/C Transfer">A/C Transfer</paper-item>
           </paper-listbox>
           </paper-dropdown-menu>
           </div>
           <paper-input readonly="{{read}}" label="{{item.Bank_Name}}" name="bankname" value="{{bankname}}" required id="bankname" error-message="{{item.Bank_Name_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Account_Number}}" name="accno" value="{{accountno}}" required id="accno" error-message="{{item.Account_Number}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Bank_Address}}" name="address" value="{{address}}" required id="address" error-message="{{Bank_Address_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Branch}}" name="branch" value="{{branch}}" required id="branch" error-message="{{item.Branch_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.IFSC_Code}}" name="ifsccode" value="{{ifsccode}}" required id="ifsccode" error-message="{{item.IFSC_Code_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.MICR_Code}}" name="micrcode" value="{{micrcode}}" required id="micrcode" error-message="{{item.MICR_Code_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Swift_Code}}" name="swiftcode" value="{{swiftcode}}" required id="swiftcode" error-message="{{item.Swift_Code_error}}"></paper-input>
         <div class="type">
           <paper-item class="paymentterms" value="{{item.Payment_Terms}}">{{item.Payment_Terms}}</paper-item>
           <div class="radio">

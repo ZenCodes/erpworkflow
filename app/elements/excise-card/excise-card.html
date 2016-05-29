@@ -1,0 +1,53 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="../customer-service/customer-service.html">
+<dom-module id="excise-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+        margin-left: 10%;
+      }
+      paper-input{
+        width: 30%;
+      }
+      paper-button{
+        text-transform: none;
+        text-align: center;
+        width: 30%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+    </style>
+    <div class="card">
+
+        <paper-input readonly="{{read}}" label="C. Ex Reg No" value="{{regno}}" id="regno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Regno No"></paper-input>
+        <paper-input readonly="{{read}}" label="ECC No" value="{{eccno}}" id="eccno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter ECC No"></paper-input>
+        <paper-input readonly="{{read}}" label="Range" value="{{range}}" id="range" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Range No"></paper-input>
+        <paper-input readonly="{{read}}" label="Division" value="{{division}}" id="division" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Division No"></paper-input>
+        <paper-input readonly="{{read}}" label="Commission" value="{{commission}}" id="commission" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Commission No"></paper-input>
+        <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetaxno}}" id="servicetaxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
+        <paper-button on-click="FnExciseNext">Next</paper-button>
+    </div>
+    <customer-service id="customerservice"></customer-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'excise-card',
+      FnExciseNext:function(){
+        this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

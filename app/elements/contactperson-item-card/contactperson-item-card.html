@@ -1,0 +1,43 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\customer-service\customer-service.html">
+
+
+<dom-module id="contactperson-item-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+        margin-left: 10%;
+      }
+      paper-input{
+        width: 30%;
+      }
+      paper-button{
+        text-transform: none;
+        text-align: center;
+        width: 30%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+    </style>
+    <div class="card">
+      <paper-input readonly="{{read}}" label="Designation" value="{{designation}}" id="designation" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Designation"></paper-input>
+      <paper-input readonly="{{read}}" label="Mobile No" value="{{mobileno}}" id="mobileno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Mobile no"></paper-input>
+      <paper-input readonly="{{read}}" label="Email id" value="{{emailid}}" id="emailid" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Email id"></paper-input>
+      <paper-button on-click="FnAddContact">Add</paper-button>
+      <!--<paper-button on-click="FnNext">Next</paper-button>-->
+    </div>
+
+    <customer-service id="customerservice"></customer-service>
+  </template>
+  <script src="../../scripts/contactperson-item-card.js"> </script>
+</dom-module>

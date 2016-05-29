@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
+<link rel="import" href="..\customerdialog-card\customerdialog-card.html">
 
 <dom-module id="customer-service">
   <template>
@@ -82,7 +83,48 @@
         content-type="application/json"
         on-response="updatecustomerpaymentResponse">
     </iron-ajax>
+    <!--Component which makes req to add the customer contact info-->
+    <iron-ajax
+      id="customeraddcontactajax"
+      url="{{customeraddcontacturl}}"
+      params='{{customeraddcontactparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customeraddcontactResponse">
+    </iron-ajax>
+    <!--Component which makes req to read the customer contact info-->
+    <iron-ajax
+      id="customerreadcontactajax"
+      url="{{customerreadcontacturl}}"
+      params='{{customerreadcontactparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customerreadcontactResponse">
+    </iron-ajax>
+    <!--Component which makes req to add tax to customer-->
+    <iron-ajax
+      id="customertaxaddajax"
+      url="{{customertaxaddurl}}"
+      params='{{customertaxaddparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customertaxaddResponse">
+    </iron-ajax>
+    <!--Component which makes req to add excise to customer-->
+    <iron-ajax
+      id="customerexciseaddajax"
+      url="{{customerexciseaddurl}}"
+      params='{{customerexciseaddparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customerexciseaddResponse">
+    </iron-ajax>
   <!--Dialog component import-->
+  <customerdialog-card id="customerdialogcard"></customerdialog-card>
   <dialog-page id="dialogpage"></dialog-page>
   </template>
   <!--Importing JS file for this page-->

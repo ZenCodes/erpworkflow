@@ -17,17 +17,16 @@ Polymer({
       this.mode = e.target.selectedItem.textContent.trim();
   },
   FnAddPaymentInfoSubmit:function(){
-
 	 document.querySelector('#droppaymentmode').validate();
 	 document.querySelector('#bankname').validate();
 	 document.querySelector('#accno').validate();
 	 document.querySelector('#address').validate();
 	 var paymentterm=this.querySelector('#radio').selected;
-	 if(this.mode==""||this.address==null||this.address==""||this.bankname==null||this.bankname==""||this.accountno==null||this.accountno==""){
+	 if(this.accountno==null||this.accountno==""){
 	 }
 	 else{
-		 if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-	 this.$.customerservice.addpaymentService(this.accountno,this.bankname,this.address,this.mode,paymentterm);
+   if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
+	 this.$.customerservice.addpaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm);
 	 document.querySelector('customer-page').setPage('Show Item');
 	 document.querySelector('customeritem-card').FnFetchItemInfo(this.supid,this.supname);
  		}
@@ -43,7 +42,6 @@ Polymer({
 		}
 	}
   },
-
   FnFetchPaymentInfo:function(supplierid,suppliername){
 	this.supid=supplierid;
 	this.supname=suppliername;

@@ -1,0 +1,60 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/paper-item/paper-iem.html">
+<link rel="import" href="../customer-service/customer-service.html">
+
+<dom-module id="tax-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+        margin-left: 10%;
+      }
+      paper-input{
+        width: 30%;
+      }
+      paper-button{
+        text-transform: none;
+        text-align: center;
+        width: 30%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+    </style>
+    <div class="card">
+      <paper-item>Sales Tax:</paper-item>
+      <div class="salestax">
+        <paper-input readonly="{{read}}" label="TIN No" value="{{tinno}}" id="tinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Tin No"></paper-input>
+        <paper-input readonly="{{read}}" label="CST No" value="{{cstno}}" id="cstno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CST No"></paper-input>
+      </div>
+      <paper-item>Income Tax:</paper-item>
+      <div class="incometax">
+        <paper-input readonly="{{read}}" label="PAN No" value="{{panno}}" id="panno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter PAN No"></paper-input>
+        <paper-input readonly="{{read}}" label="TAN no" value="{{tanno}}" id="tanno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter TAN No"></paper-input>
+        <paper-input readonly="{{read}}" label="CIN no" value="{{cinno}}" id="cinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CIN No"></paper-input>
+      </div>
+      <paper-button on-click="FnTaxNext">Next</paper-button>
+    </div>
+    <customer-service id="customerservice"></customer-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'tax-card',
+    FnTaxNext:function(){
+      this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
+
+    }
+    });
+  })();
+  </script>
+</dom-module>

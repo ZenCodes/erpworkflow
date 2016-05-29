@@ -2219,6 +2219,83 @@ exports.Fnupdateposeq=function(pagename,ponumber,callback) {
   });
 }
 
+//Function which update customer contact info
+exports.Fncustomeraddcontact=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Customer_Contact SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
+}
+
+//Function which update customer contact info
+exports.Fncustomerreadcontact=function(pagename,customerid,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Customer_Contact WHERE ?',[customerid],function(err,rows){
+    if(rows.length>0)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+}
+
+//Function which add customer tax info
+exports.Fncustomertaxadd=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Customer_Tax SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+//Function which add customer excise info
+exports.Fncustomerexciseadd=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Customer_Excise SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
 
 //Function which updates supplier info
 exports.FnAddCustomer=function(pagename,response,callback) {
