@@ -18,9 +18,14 @@ Polymer({
   },
   FnAddPaymentInfoSubmit:function(){
     document.querySelector('#droppaymentmode').validate();
-    //document.querySelector('#bankname').validate();
-    //document.querySelector('#accno').validate();
-    //document.querySelector('#address').validate();
+    document.querySelector('#bankname').validate();
+    document.querySelector('#accountno').validate();
+    document.querySelector('#accountname').validate();
+    document.querySelector('#accounttype').validate();
+    document.querySelector('#branch').validate();
+    document.querySelector('#ifsccode').validate();
+    document.querySelector('#micrcode').validate();
+    document.querySelector('#swiftcode').validate();
     var paymentterm=this.querySelector('#radio').selected;
     if(this.accountno==null||this.accountno==""){
     }

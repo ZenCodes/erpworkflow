@@ -17,6 +17,7 @@
       }
       paper-input{
         width: 30%;
+        text-align: left;
       }
       paper-button{
         text-transform: none;
@@ -28,11 +29,15 @@
         color: white;
         margin-top: 4%;
       }
+      :host{
+        --paper-input-container-label: {
+          color:red;
+        }}
     </style>
     <div class="card">
-      <paper-input readonly="{{read}}" label="Designation" value="{{designation}}" id="designation" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Designation"></paper-input>
-      <paper-input readonly="{{read}}" label="Mobile No" value="{{mobileno}}" id="mobileno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Mobile no"></paper-input>
-      <paper-input readonly="{{read}}" label="Email id" value="{{emailid}}" id="emailid" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Email id"></paper-input>
+      <paper-input readonly="{{read}}" label="Designation" value="{{designation}}" id="designation" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Designation"></paper-input>
+      <paper-input readonly="{{read}}" label="Mobile No" value="{{mobileno}}" id="mobileno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Mobile no"></paper-input>
+      <paper-input readonly="{{read}}" label="Email id" value="{{emailid}}" id="emailid" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Email id"></paper-input>
       <paper-button on-click="FnAddContact">Add</paper-button>
       <!--<paper-button on-click="FnNext">Next</paper-button>-->
     </div>

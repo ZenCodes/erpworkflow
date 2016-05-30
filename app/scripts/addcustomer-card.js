@@ -25,17 +25,20 @@
 	this.supplierid=(this.suppliername).substring(0,4);
 	},
    FnSupplierInfoSubmit:function(){
-     document.querySelector('#emailid').validate();
+     document.querySelector('#address1').validate();
      //document.querySelector('#supplierid').validate();
      document.querySelector('#suppliername').validate();
+     document.querySelector('#doorno').validate();
+     document.querySelector('#streetno').validate();
+     document.querySelector('#streetname').validate();
      document.querySelector('#location').validate();
+     document.querySelector('#city').validate();
      document.querySelector('#district').validate();
      document.querySelector('#state').validate();
      document.querySelector('#country').validate();
      document.querySelector('#pincode').validate();
-     document.querySelector('#city').validate();
      document.querySelector('#mobileno').validate();
-     //document.querySelector('#landmark').validate();
+     document.querySelector('#emailid').validate();
      if(this.supplierid==""||this.supplierid==null||this.suppliername==""||this.suppliername==null||this.location==""||this.location==null||this.city==null||this.city==""||this.district==""||this.district==null||this.state==null||this.state==""||this.country==null||this.country==""||this.pincode==""||this.pincode==null||this.mobileno==null||this.mobileno==""){}
      else{
 

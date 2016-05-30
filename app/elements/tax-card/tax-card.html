@@ -11,12 +11,16 @@
       :host {
         display: block;
       }
+      .card1,.card2{
+        @apply(--layout-vertical);
+      }
       .card{
         @apply(--layout-vertical);
         margin-left: 10%;
       }
       paper-input{
-        width: 30%;
+        width: 150%;
+        text-align: left;
       }
       paper-button{
         text-transform: none;
@@ -28,18 +32,36 @@
         color: white;
         margin-top: 4%;
       }
+      .outer{
+        @apply(--layout-horizontal);
+      }
+      .card2{
+        margin-left: 13%;
+      }
+      :host{
+        --paper-input-container-label: {
+          color:red;
+        }}
     </style>
     <div class="card">
-      <paper-item>Sales Tax:</paper-item>
-      <div class="salestax">
-        <paper-input readonly="{{read}}" label="TIN No" name="tinno" value="{{tinno}}" id="tinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Tin No"></paper-input>
-        <paper-input readonly="{{read}}" label="CST No" name="cstno" value="{{cstno}}" id="cstno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CST No"></paper-input>
-      </div>
+      <div class="outer">
+
+
+      <div class="card1">
       <paper-item>Income Tax:</paper-item>
       <div class="incometax">
         <paper-input readonly="{{read}}" label="PAN No" name="panno" value="{{panno}}" id="panno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter PAN No"></paper-input>
         <paper-input readonly="{{read}}" label="TAN no" name="tanno" value="{{tanno}}" id="tanno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter TAN No"></paper-input>
         <paper-input readonly="{{read}}" label="CIN no" name="cinno" value="{{cinno}}" id="cinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CIN No"></paper-input>
+      </div>
+      </div>
+      <div class="card2">
+        <paper-item>Sales Tax:</paper-item>
+        <div class="salestax">
+          <paper-input readonly="{{read}}" label="TIN No" name="tinno" value="{{tinno}}" id="tinno" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Tin No"></paper-input>
+          <paper-input readonly="{{read}}" label="CST No" name="cstno" value="{{cstno}}" id="cstno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CST No"></paper-input>
+        </div>
+      </div>
       </div>
       <paper-button on-click="FnTaxNext">Next</paper-button>
     </div>
@@ -50,20 +72,39 @@
     'use strict';
     Polymer({
       is: 'tax-card',
+      ready:function(){
+        this.read=false;
+      },
     FnTaxNext:function(){
-      if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing") {
-        this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
+
+      document.querySelector('#tinno').validate();
+      document.querySelector('#cstno').validate();
+      document.querySelector('#panno').validate();
+      document.querySelector('#tanno').validate();
+      document.querySelector('#cinno').validate();
+      if(this.tinno==""||this.tinno==null){}
+      else {
+
+        if (localStorage.getItem("curr_sess_searchtypeflag") == "nothing") {
+          this.$.customerservice.FnCustomerTaxAddService(this.tinno, this.cstno, this.panno, this.tanno, this.cinno);
+        }
+        else if (localStorage.getItem("curr_sess_addcustomereditflag") == "1" && localStorage.getItem("curr_sess_searchtypeflag") == "1") {
+          this.$.customerservice.updatecustomertaxService(this.tinno, this.cstno, this.panno, this.tanno, this.cinno);
+          this.$.customerservice.callExcisereadService();
+          document.querySelector('customer-page').setPage('Add Excise');
+        }
+        else {
+          this.$.customerservice.callExcisereadService();
+          document.querySelector('customer-page').setPage('Add Excise');
+        }
       }
-      else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
-        this.$.customerservice.updatecustomertaxService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
-        this.$.customerservice.callExcisereadService();
-        document.querySelector('customer-page').setPage('Add Excise');
+    },
+      FnEnableFields:function(){
+        if(localStorage.getItem("curr_sess_addcustomereditflag")=="1")
+          this.read=false;
+        else
+          this.read=true;
       }
-      else{
-        this.$.customerservice.callExcisereadService();
-        document.querySelector('customer-page').setPage('Add Excise');
-      }
-    }
     });
   })();
   </script>

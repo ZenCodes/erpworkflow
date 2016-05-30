@@ -129,7 +129,7 @@
           {"Label":[{"Account_Name":"Account Name","Account_Type":"Account Type",
             "Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
             "Branch":"Branch","IFSC_Code":"IFSC Code","MICR_Code":"MICR Code","Swift_Code":"Swift Code",
-            "Payment_Terms":"Payment Terms","Term1":"30 days","Term2":"60 days",
+            "Payment_Terms":"Payment Terms","Term1":"15 days","Term2":"30 days","Term3":"45 days","Term4":"60 days",
             "Bank_Name_error":"Enter Bank Name","Account_Number_error":"Enter Account Number",
             "Bank_Address_error":"Enter Bank Address"
       }]}
@@ -189,7 +189,7 @@
           {"Label":[{"Account_Name":"Account Name","Account_Type":"Account Type",
             "Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
             "Branch":"Branch","IFSC_Code":"IFSC Code","MICR_Code":"MICR Code","Swift_Code":"Swift Code",
-            "Payment_Terms":"Payment Terms","Term1":"30 days","Term2":"60 days",
+            "Payment_Terms":"Payment Terms","Term1":"15 days","Term2":"30 days","Term3":"45 days","Term4":"60 days",
             "Bank_Name_error":"Enter Bank Name","Account_Number_error":"Enter Account Number",
             "Bank_Address_error":"Enter Bank Address"
       }]}

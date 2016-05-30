@@ -104,6 +104,7 @@
       document.querySelector("tax-card").panno=arr[0].PAN;
       document.querySelector("tax-card").tanno=arr[0].TAN;
       document.querySelector("tax-card").cinno=arr[0].CIN;
+      document.querySelector("tax-card").FnEnableFields();
     },
     callExcisereadService:function(){
       this.readexciseurl=sessionStorage.getItem("curr_sess_url")+"exciseread-service";
@@ -123,6 +124,7 @@
       document.querySelector("excise-card").division=arr[0].Division;
       document.querySelector("excise-card").commission=arr[0].Commission;
       document.querySelector("excise-card").servicetax=arr[0].Service_Tax;
+      document.querySelector("excise-card").FnEnableFields();
     },
     addsupplierService:function(supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       obj1={

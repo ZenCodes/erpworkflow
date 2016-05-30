@@ -51,7 +51,7 @@
         margin-top: 4%;
       }
 
-      #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno{
+      #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno,#address1,#doorno,#streetno,#streetname{
         --paper-input-container-label: { color: red };
       }
       #suppliername,#location,#district,#country,#phoneno,#emailid,#address2,#streetno,#website,#aliasname{
@@ -110,15 +110,15 @@
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.Address1}}" name="address1" value="{{address1}}" required  id="address1" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Address1_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Address2}}" name="address2" value="{{address2}}" required  id="address2" allowed-pattern="[a-zA-Z ]" error-message="{{item.Address2_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Address2}}" name="address2" value="{{address2}}" required  id="address2" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Address2_error}}"></paper-input>
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.Door_No}}" name="doorno" value="{{doorno}}" required  id="doorno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Door_No_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Street_No}}" name="streetno" value="{{streetno}}" required  id="streetno" allowed-pattern="[a-zA-Z ]" error-message="{{item.Street_No_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Street_No}}" name="streetno" value="{{streetno}}" required  id="streetno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Street_No_error}}"></paper-input>
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.Street_Name}}" name="streetname" value="{{streetname}}" required  id="streetname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Street_Name_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" allowed-pattern="[a-zA-Z ]" error-message="{{item.Location_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Location_error}}"></paper-input>
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.City_error}}"></paper-input>
@@ -140,8 +140,8 @@
           <gold-email-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
         </div>
         <div class="owner">
-          <paper-input readonly="{{read}}" label="{{item.Fax_No}}" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Website}}" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Fax_No}}" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Website}}" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
         </div>
         <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
         <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>

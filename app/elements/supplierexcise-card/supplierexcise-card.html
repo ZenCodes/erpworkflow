@@ -14,6 +14,7 @@
       }
       paper-input{
         width: 30%;
+        text-align: left;
       }
       paper-button{
         text-transform: none;
@@ -25,15 +26,19 @@
         color: white;
         margin-top: 4%;
       }
+      :host{
+        --paper-input-container-label: {
+          color:red;
+        }}
     </style>
     <div class="card">
 
-      <paper-input readonly="{{read}}" label="C. Ex Reg No" value="{{regno}}" id="regno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Regno No"></paper-input>
-      <paper-input readonly="{{read}}" label="ECC No" value="{{eccno}}" id="eccno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter ECC No"></paper-input>
-      <paper-input readonly="{{read}}" label="Range" value="{{range}}" id="range" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Range No"></paper-input>
-      <paper-input readonly="{{read}}" label="Division" value="{{division}}" id="division" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Division No"></paper-input>
-      <paper-input readonly="{{read}}" label="Commission" value="{{commission}}" id="commission" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Commission No"></paper-input>
-      <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetax}}" id="servicetaxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
+      <paper-input readonly="{{read}}" label="C. Ex Reg No" value="{{regno}}" id="regno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Regno No"></paper-input>
+      <paper-input readonly="{{read}}" label="ECC No" value="{{eccno}}" id="eccno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter ECC No"></paper-input>
+      <paper-input readonly="{{read}}" label="Range" value="{{range}}" id="range" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Range No"></paper-input>
+      <paper-input readonly="{{read}}" label="Division" value="{{division}}" id="division" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Division No"></paper-input>
+      <paper-input readonly="{{read}}" label="Commission" value="{{commission}}" id="commission" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Commission No"></paper-input>
+      <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetax}}" id="servicetaxno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
       <paper-button on-click="FnExciseNext">Next</paper-button>
     </div>
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
@@ -43,20 +48,38 @@
       'use strict';
       Polymer({
         is: 'supplierexcise-card',
+        ready:function(){
+          this.read=false;
+        },
         FnExciseNext:function(){
-          //this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
-          if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing") {
-            this.$.adminsupplierservice.FnSupplierExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+          document.querySelector('#regno').validate();
+          document.querySelector('#eccno').validate();
+          document.querySelector('#range').validate();
+          document.querySelector('#division').validate();
+          document.querySelector('#commission').validate();
+          document.querySelector('#servicetaxno').validate();
+          if(this.regno==""||this.regno==null){}
+          else {
+            //this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+            if (localStorage.getItem("curr_sess_searchtypeflag") == "nothing") {
+              this.$.adminsupplierservice.FnSupplierExciseAddService(this.regno, this.eccno, this.range, this.division, this.commission, this.servicetax);
+            }
+            else if (localStorage.getItem("curr_sess_addcustomereditflag") == "1" && localStorage.getItem("curr_sess_searchtypeflag") == "1") {
+              this.$.adminsupplierservice.updatesupplierexciseService(this.regno, this.eccno, this.range, this.division, this.commission, this.servicetax);
+              this.$.adminsupplierservice.callPaymentService();
+              document.querySelector('supplier-page').setPage('Add Payment');
+            }
+            else {
+              this.$.adminsupplierservice.callPaymentService();
+              document.querySelector('supplier-page').setPage('Add Payment');
+            }
           }
-          else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
-            this.$.adminsupplierservice.updatesupplierexciseService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
-            this.$.adminsupplierservice.callPaymentService();
-            document.querySelector('supplier-page').setPage('Add Payment');
-          }
-          else{
-            this.$.adminsupplierservice.callPaymentService();
-            document.querySelector('supplier-page').setPage('Add Payment');
-          }
+        },
+        FnEnableFields:function(){
+          if(localStorage.getItem("curr_sess_addsuppliereditflag")=="1")
+            this.read=false;
+          else
+            this.read=true;
         }
       });
     })();

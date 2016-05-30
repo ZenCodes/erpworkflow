@@ -2,23 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/suppliercontactperson-card.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/suppliermenu.json" afterPath="$PROJECT_DIR$/app/config/suppliermenu.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/webcomponents.json" afterPath="$PROJECT_DIR$/app/config/webcomponents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" afterPath="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html" afterPath="$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html" afterPath="$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/elements.html" afterPath="$PROJECT_DIR$/app/elements/elements.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/contactperson-item-card/contactperson-item-card.html" afterPath="$PROJECT_DIR$/app/elements/contactperson-item-card/contactperson-item-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html" afterPath="$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/excise-card/excise-card.html" afterPath="$PROJECT_DIR$/app/elements/excise-card/excise-card.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/payment-card/payment-card.html" afterPath="$PROJECT_DIR$/app/elements/payment-card/payment-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/supplier-page/supplier-page.html" afterPath="$PROJECT_DIR$/app/elements/supplier-page/supplier-page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/suppliercontactperson-item-card/suppliercontactperson-item-card.html" afterPath="$PROJECT_DIR$/app/elements/suppliercontactperson-item-card/suppliercontactperson-item-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html" afterPath="$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html" afterPath="$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/tax-card/tax-card.html" afterPath="$PROJECT_DIR$/app/elements/tax-card/tax-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/addcustomer-card.js" afterPath="$PROJECT_DIR$/app/scripts/addcustomer-card.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/addsupplier-card.js" afterPath="$PROJECT_DIR$/app/scripts/addsupplier-card.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" afterPath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/contactperson-item-card.js" afterPath="$PROJECT_DIR$/app/scripts/contactperson-item-card.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/customer-service.js" afterPath="$PROJECT_DIR$/app/scripts/customer-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" afterPath="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/customerpayment-card.js" afterPath="$PROJECT_DIR$/app/scripts/customerpayment-card.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/payment-card.js" afterPath="$PROJECT_DIR$/app/scripts/payment-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js" afterPath="$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/viewtype-card.js" afterPath="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,61 +42,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="adminsupplier-service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/adminsupplier-service.js">
+      <file leaf-file-name="excise-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/excise-card/excise-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.30357143">
-              <caret line="334" column="35" selection-start-line="334" selection-start-column="35" selection-end-line="334" selection-end-column="35" />
+            <state vertical-scroll-proportion="-3.1320755">
+              <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="suppliertax-card.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html">
+      <file leaf-file-name="customerpayment-card.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/customerpayment-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.490566">
-              <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+            <state vertical-scroll-proportion="-11.333333">
+              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="supplierexcise-card.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html">
+      <file leaf-file-name="customerpayment-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03359684">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="payment-card.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/payment-card/payment-card.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.3584905">
-              <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.982143">
-              <caret line="1785" column="23" selection-start-line="1785" selection-start-column="8" selection-end-line="1785" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="adminsupplier-service.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.182927">
-              <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+            <state vertical-scroll-proportion="-5.6981134">
+              <caret line="104" column="77" selection-start-line="104" selection-start-column="77" selection-end-line="104" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -102,18 +75,58 @@
       <file leaf-file-name="payment-card.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/payment-card.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.222222">
-              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+            <state vertical-scroll-proportion="-11.962963">
+              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="27" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.js">
+      <file leaf-file-name="payment-card.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/elements/payment-card/payment-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.30357143">
-              <caret line="893" column="28" selection-start-line="893" selection-start-column="28" selection-end-line="893" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.6304348">
+              <caret line="121" column="12" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="suppliertax-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.1698112">
+              <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tax-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/tax-card/tax-card.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.1320755">
+              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="supplierexcise-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.3773584">
+              <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addcustomer-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.6603775">
+              <caret line="161" column="58" selection-start-line="161" selection-start-column="58" selection-end-line="161" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -138,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/scripts/physicqualifyitem-card.js" />
         <option value="$PROJECT_DIR$/app/elements/physicqualifyitem-card/physicqualifyitem-card.html" />
         <option value="$PROJECT_DIR$/app/elements/physicqualifyread-card/physicqualifyread-card.html" />
         <option value="$PROJECT_DIR$/app/elements/physicqualifyitemread-card/physicqualifyitemread-card.html" />
@@ -146,18 +158,10 @@
         <option value="$PROJECT_DIR$/app/scripts/physicqualifyread-card.js" />
         <option value="$PROJECT_DIR$/app/config/customermenu.json" />
         <option value="$PROJECT_DIR$/app/elements/customer-page/customer-page.html" />
-        <option value="$PROJECT_DIR$/app/scripts/contactperson-item-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/contactperson-item-card/contactperson-item-card.html" />
         <option value="$PROJECT_DIR$/app/elements/customerdialog-card/customerdialog-card.html" />
         <option value="$PROJECT_DIR$/app/elements/contactperson-display-card/contactperson-display-card.html" />
         <option value="$PROJECT_DIR$/app/elements/contactperson-card/contactperson-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/contactperson-card.js" />
-        <option value="$PROJECT_DIR$/app/scripts/customerpayment-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/excise-card/excise-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/tax-card/tax-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
-        <option value="$PROJECT_DIR$/app/scripts/addcustomer-card.js" />
         <option value="$PROJECT_DIR$/app/config/roleconfig.json" />
         <option value="$PROJECT_DIR$/app/scripts/app-homepage.js" />
         <option value="$PROJECT_DIR$/app/elements/customer-service/customer-service.html" />
@@ -169,26 +173,35 @@
         <option value="$PROJECT_DIR$/app/elements/outwardreport-card/outwardreport-card.html" />
         <option value="$PROJECT_DIR$/app/elements/approvecustomer-card/approvecustomer-card.html" />
         <option value="$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html" />
-        <option value="$PROJECT_DIR$/app/scripts/addsupplier-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html" />
         <option value="$PROJECT_DIR$/app/config/suppliermenu.json" />
         <option value="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" />
         <option value="$PROJECT_DIR$/app/elements/suppliercontactperson-display-card/suppliercontactperson-display-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/suppliercontactperson-item-card/suppliercontactperson-item-card.html" />
         <option value="$PROJECT_DIR$/app/elements/suppliercontactperson-card/suppliercontactperson-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/suppliercontactperson-card.js" />
         <option value="$PROJECT_DIR$/app/elements/supplier-page/supplier-page.html" />
-        <option value="$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/payment-card/payment-card.html" />
         <option value="$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html" />
-        <option value="$PROJECT_DIR$/app/scripts/customer-service.js" />
-        <option value="$PROJECT_DIR$/app/scripts/payment-card.js" />
-        <option value="$PROJECT_DIR$/app/config/webcomponents.json" />
-        <option value="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
         <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
         <option value="$PROJECT_DIR$/home.js" />
+        <option value="$PROJECT_DIR$/app/scripts/viewtype-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
+        <option value="$PROJECT_DIR$/app/scripts/customer-service.js" />
+        <option value="$PROJECT_DIR$/app/config/webcomponents.json" />
+        <option value="$PROJECT_DIR$/app/elements/payment-card/payment-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
+        <option value="$PROJECT_DIR$/app/scripts/addsupplier-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/addcustomer-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/contactperson-item-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js" />
+        <option value="$PROJECT_DIR$/app/elements/suppliercontactperson-item-card/suppliercontactperson-item-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/contactperson-item-card/contactperson-item-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/tax-card/tax-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/excise-card/excise-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html" />
+        <option value="$PROJECT_DIR$/app/scripts/payment-card.js" />
+        <option value="$PROJECT_DIR$/app/scripts/customerpayment-card.js" />
+        <option value="$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html" />
       </list>
     </option>
   </component>
@@ -473,6 +486,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="supplieradditem-card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="supplier-page" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -518,6 +553,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="excise-card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dynamicbutton-card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="customersupplier-card" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -830,7 +909,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17862372" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17862372" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07559055" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -867,24 +946,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/scripts/dialog-page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.148148">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/viewtype-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.740741">
-          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
-          <folding>
-            <marker date="1464605918169" expanded="true" signature="2313:2375" placeholder="{...}" />
-            <marker date="1464605918169" expanded="true" signature="2923:2929" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/roleconfig.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.8490567">
@@ -997,32 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.981132">
-          <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.09434">
-          <caret line="100" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/addcustomer-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2592592">
-          <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
-          <folding>
-            <marker date="1464605914736" expanded="true" signature="3693:3766" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/customermenu.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -1055,14 +1090,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/contactperson-item-card/contactperson-item-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1320753">
-          <caret line="29" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/contactperson-card/contactperson-card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.1698112">
@@ -1083,22 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.0">
           <caret line="16" column="63" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.264151">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/addsupplier-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.444445">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1135,62 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/contactperson-item-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31954888">
-          <caret line="10" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8888888">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/suppliercontactperson-item-card/suppliercontactperson-item-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26877472">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/tax-card/tax-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4328063">
-          <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/excise-card/excise-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3320158">
-          <caret line="47" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32608697">
-          <caret line="81" column="76" selection-start-line="0" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/customerpayment-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93609023">
-          <caret line="53" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/customer-service/customer-service.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6415094">
@@ -1199,41 +1154,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/customer-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.259259">
-          <caret line="411" column="6" selection-start-line="411" selection-start-column="6" selection-end-line="411" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/payment-card/payment-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3584905">
-          <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/payment-card.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.222222">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/webcomponents.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26086956">
-          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/adminsupplier-service/adminsupplier-service.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.182927">
+        <state vertical-scroll-proportion="0.5471698">
           <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
           <folding />
         </state>
@@ -1241,7 +1164,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.982143">
+        <state vertical-scroll-proportion="0.33200794">
           <caret line="1785" column="23" selection-start-line="1785" selection-start-column="8" selection-end-line="1785" selection-end-column="23" />
           <folding />
         </state>
@@ -1249,32 +1172,189 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.30357143">
+        <state vertical-scroll-proportion="0.033797216">
           <caret line="893" column="28" selection-start-line="893" selection-start-column="28" selection-end-line="893" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46640316">
+          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/viewtype-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.074074">
+          <caret line="67" column="6" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="66" />
+          <folding>
+            <marker date="1464638572407" expanded="true" signature="2313:2375" placeholder="{...}" />
+            <marker date="1464638572407" expanded="true" signature="2908:2914" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/adminsupplier-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.30357143">
-          <caret line="334" column="35" selection-start-line="334" selection-start-column="35" selection-end-line="334" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.62823063">
+          <caret line="447" column="45" selection-start-line="447" selection-start-column="45" selection-end-line="447" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/customer-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39285713">
+          <caret line="120" column="46" selection-start-line="120" selection-start-column="46" selection-end-line="120" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/webcomponents.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.475891">
+          <caret line="191" column="116" selection-start-line="191" selection-start-column="116" selection-end-line="191" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/addsupplier-card/addsupplier-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7648221">
+          <caret line="143" column="163" selection-start-line="143" selection-start-column="163" selection-end-line="143" selection-end-column="163" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/addsupplier-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39285713">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/supplieradditem-card/supplieradditem-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25889328">
+          <caret line="129" column="27" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/contactperson-item-card/contactperson-item-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60474306">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/contactperson-item-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35150376">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/suppliercontactperson-item-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31954888">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/suppliercontactperson-item-card/suppliercontactperson-item-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6007905">
+          <caret line="39" column="98" selection-start-line="39" selection-start-column="98" selection-end-line="39" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/addcustomer-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10150376">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="31" selection-end-column="52" />
+          <folding>
+            <marker date="1464643962198" expanded="true" signature="3850:3923" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3773584">
+          <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/tax-card/tax-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1320755">
+          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/excise-card/excise-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1320755">
+          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/suppliertax-card/suppliertax-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.490566">
-          <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+        <state vertical-scroll-proportion="-2.1698112">
+          <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/supplierexcise-card/supplierexcise-card.html">
+    <entry file="file://$PROJECT_DIR$/app/scripts/payment-card.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03359684">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        <state vertical-scroll-proportion="-11.962963">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="27" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6603775">
+          <caret line="161" column="58" selection-start-line="161" selection-start-column="58" selection-end-line="161" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/customerpayment-card.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.333333">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/customerpayment-card/customerpayment-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6981134">
+          <caret line="104" column="77" selection-start-line="104" selection-start-column="77" selection-end-line="104" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/payment-card/payment-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6304348">
+          <caret line="121" column="12" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
           <folding />
         </state>
       </provider>

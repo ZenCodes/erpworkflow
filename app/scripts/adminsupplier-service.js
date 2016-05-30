@@ -103,6 +103,7 @@
     document.querySelector("suppliertax-card").panno=arr[0].PAN;
     document.querySelector("suppliertax-card").tanno=arr[0].TAN;
     document.querySelector("suppliertax-card").cinno=arr[0].CIN;
+    document.querySelector("suppliertax-card").FnEnableFields();
   },
   callExcisereadService:function(){
     this.readexciseurl=sessionStorage.getItem("curr_sess_url")+"supplierexciseread-service";
@@ -115,13 +116,14 @@
   },
   readexciseResponse:function(e){
     var arr= e.detail.response.itemarr;
-    alert("excise....."+JSON.stringify(arr));
+    //alert("excise....."+JSON.stringify(arr));
     document.querySelector("supplierexcise-card").regno=arr[0].Reg_No;
     document.querySelector("supplierexcise-card").eccno=arr[0].Ecc_No;
     document.querySelector("supplierexcise-card").range=arr[0].Range;
     document.querySelector("supplierexcise-card").division=arr[0].Division;
     document.querySelector("supplierexcise-card").commission=arr[0].Commission;
     document.querySelector("supplierexcise-card").servicetax=arr[0].Service_Tax;
+    document.querySelector("supplierexcise-card").FnEnableFields();
   },
     addsupplierService:function(supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       obj1={
@@ -148,10 +150,10 @@
       obj1.emailid=emailid;
       obj1.faxno=faxno;
       obj1.website=website;
-      alert(JSON.stringify(obj1));
+      //alert(JSON.stringify(obj1));
       },
     addsupplierResponse:function(e){
-      alert("supplier..."+e.detail.response.returnval);
+      //alert("supplier..."+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
         this.customertaxaddparam=obj3;
         this.customertaxaddurl=sessionStorage.getItem("curr_sess_url")+"suppliertaxadd-service";
@@ -172,11 +174,11 @@
       obj3.pan=pan;
       obj3.tan=tan;
       obj3.cin=cin;
-      alert(JSON.stringify(obj3));
+      //alert(JSON.stringify(obj3));
       document.querySelector('supplier-page').setPage('Add Excise');
     },
     customertaxaddResponse:function(e){
-      alert('tax'+e.detail.response.returnval);
+      //alert('tax'+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ") {
         this.customerexciseaddparam = obj4;
         this.customerexciseaddurl = sessionStorage.getItem("curr_sess_url") + "supplierexciseadd-service";
@@ -192,11 +194,11 @@
       obj4.division=division;
       obj4.commission=commission;
       obj4.servicetax=servicetax;
-      alert(JSON.stringify(obj4));
+      //alert(JSON.stringify(obj4));
       document.querySelector('supplier-page').setPage('Add Payment');
     },
     customerexciseaddResponse:function(e) {
-      alert('excise' + e.detail.response.returnval);
+      //alert('excise' + e.detail.response.returnval);
       if (e.detail.response.returnval=="succ"){
         this.paymentparam = obj5;
         this.paymenturl = sessionStorage.getItem("curr_sess_url") + "addpayment-service";
@@ -222,14 +224,14 @@
       obj5.swiftcode=swiftcode;
       obj5.paymentterm=paymentterm;
       this.supplierparam=obj1;
-      alert(JSON.stringify(obj5));
+      //alert(JSON.stringify(obj5));
       if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
         this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
         this.$.addsupplierajax.generateRequest();
       }
     },
     addpaymentResponse:function(e){
-      alert("payment..."+e.detail.response.returnval);
+      //alert("payment..."+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
         alert("Supplier Added successfully!!");
       }
@@ -302,7 +304,7 @@
       obj1.emailid=emailid;
       obj1.faxno=faxno;
       obj1.website=website;
-      alert(JSON.stringify(obj1));
+      //alert(JSON.stringify(obj1));
     },
     updatesupplierResponse:function(e){
       //alert("update customer...."+e.detail.response.returnval);
@@ -326,7 +328,7 @@
       obj3.pan=pan;
       obj3.tan=tan;
       obj3.cin=cin;
-      alert(JSON.stringify(obj3));
+      //alert(JSON.stringify(obj3));
     },
     updatetaxResponse:function(e){
       //alert('tax update'+e.detail.response.returnval);
@@ -345,7 +347,7 @@
       obj4.division=division;
       obj4.commission=commission;
       obj4.servicetax=servicetax;
-      alert(JSON.stringify(obj4));
+      //alert(JSON.stringify(obj4));
     },
     updateexciseResponse:function(e) {
       //alert('update excise' + e.detail.response.returnval);
@@ -371,7 +373,7 @@
       obj5.micrcode=micrcode;
       obj5.swiftcode=swiftcode;
       obj5.paymentterm=paymentterm;
-      alert(JSON.stringify(obj5));
+      //alert(JSON.stringify(obj5));
       this.updatesupplierparam=obj1;
       this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
       this.$.updatesupplierajax.generateRequest();
