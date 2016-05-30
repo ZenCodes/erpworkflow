@@ -13,7 +13,6 @@
   Polymer({
     is: "customer-service",
     ready: function () {
-
     },
     callSearchService:function(supplierid,suppliername){
     this.supplierreadurl=sessionStorage.getItem("curr_sess_url")+"readcustomerinfo-service";

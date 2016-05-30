@@ -35,6 +35,28 @@
 	      content-type="application/json"
 	      on-response="additemResponse">
     </iron-ajax>
+
+    <!--Component which makes req to add tax to supplier-->
+    <iron-ajax
+      id="customertaxaddajax"
+      url="{{customertaxaddurl}}"
+      params='{{customertaxaddparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customertaxaddResponse">
+    </iron-ajax>
+    <!--Component which makes req to add excise to supplier-->
+    <iron-ajax
+      id="customeraddexciseajax"
+      url="{{customerexciseaddurl}}"
+      params='{{customerexciseaddparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="customerexciseaddResponse">
+    </iron-ajax>
+
      <iron-ajax
 	      id="readsupplierajax"
 	      url="{{supplierreadurl}}"
@@ -62,6 +84,27 @@
 			      content-type="application/json"
 			      on-response="readitemResponse">
     </iron-ajax>
+    <!--Reading tax info-->
+    <iron-ajax
+      id="readtaxajax"
+      url="{{readtaxurl}}"
+      params='{{readtaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="readtaxResponse">
+    </iron-ajax>
+    <iron-ajax
+      id="readexciseajax"
+      url="{{readexciseurl}}"
+      params='{{readexciseparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="readexciseResponse">
+    </iron-ajax>
+
+
      <!--Component which makes update req to update the supplier info-->
     <iron-ajax
       id="updatesupplierajax"
@@ -82,6 +125,47 @@
 	      content-type="application/json"
 	      on-response="updatepaymentResponse">
     </iron-ajax>
+
+    <!--Component which makes update req to update customer-->
+    <iron-ajax
+      id="updatetaxajax"
+      url="{{updatetaxurl}}"
+      params='{{updatetaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatetaxResponse">
+    </iron-ajax>
+    <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="updateexciseajax"
+      url="{{updateexciseurl}}"
+      params='{{updateexciseparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updateexciseResponse">
+    </iron-ajax>
+    <!--Component which makes req to add the customer contact info-->
+    <iron-ajax
+      id="supplieraddcontactajax"
+      url="{{supplieraddcontacturl}}"
+      params='{{supplieraddcontactparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="supplieraddcontactResponse">
+    </iron-ajax>
+    <!--Component which makes req to read the customer contact info-->
+    <iron-ajax
+      id="supplierreadcontactajax"
+      url="{{supplierreadcontacturl}}"
+      params='{{supplierreadcontactparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="supplierreadcontactResponse">
+    </iron-ajax>
     <!--Component to fetch newly created supplier for approval-->
     <iron-ajax
       id="readsuppliertoapproveajax"
@@ -92,6 +176,8 @@
       content-type="application/json"
       on-response="FnreadsuppliertoapproveResponse">
     </iron-ajax>
+
+
      <!--Component to appreov newly created supplier for purchase-->
     <iron-ajax
       id="approvesupplierforpurchaseajax"

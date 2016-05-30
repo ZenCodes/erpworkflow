@@ -109,11 +109,15 @@
     ]},
     {"Page":[
       {"page":["Add Supplier","addsupplier-card"]},
-      {"Label":[{"Supplier_ID":"Supplier ID","Supplier_Name":"Supplier Name","Landmark":"Landmark","Location":"Location",
+      {"Label":[{"Supplier_ID":"Supplier ID","Supplier_Name":"Supplier Name",
+        "Alias_Name":"Alias Name","Address1":"Address1","Address2":"Address2",
+        "Door_No":"Door No","Street_No":"Street No","Street_Name":"Street Name",
+        "Landmark":"Landmark","Location":"Location",
         "City":"City","District":"District","State":"State",
         "Country":"Country","Pincode":"Pincode",
         "Phone_Number":"Phone Number","Mobile_Number":"Mobile Number",
-        "Email_ID":"Email ID","Supplier_ID_error":"Enter Supplier ID","Supplier_Name_error":"Enter Supplier Name","Landmark_error":"Enter Landmark","Location_error":"Enter Location",
+        "Email_ID":"Email ID","Supplier_ID_error":"Enter Customer ID",
+        "Fax_No":"Fax No","Website":"Website","Supplier_ID_error":"Enter Supplier ID","Supplier_Name_error":"Enter Supplier Name","Landmark_error":"Enter Landmark","Location_error":"Enter Location",
         "City_error":"Enter City","District_error":"Enter District","State_error":"Enter State",
         "Country_error":"Enter Country","Pincode_error":"Enter Pincode",
         "Phone_Number_error":"Enter Phone Number","Mobile_Number_error":"Enter Mobile Number",
@@ -122,7 +126,9 @@
     ]},
     {"Page":[
           {"page":["Add Payment","payment-card"]},
-          {"Label":[{"Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
+          {"Label":[{"Account_Name":"Account Name","Account_Type":"Account Type",
+            "Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
+            "Branch":"Branch","IFSC_Code":"IFSC Code","MICR_Code":"MICR Code","Swift_Code":"Swift Code",
             "Payment_Terms":"Payment Terms","Term1":"30 days","Term2":"60 days",
             "Bank_Name_error":"Enter Bank Name","Account_Number_error":"Enter Account Number",
             "Bank_Address_error":"Enter Bank Address"

@@ -13,7 +13,7 @@
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
- <link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
 
 <dom-module id="addsupplier-card" on-keypress="{{keypress}}">
   <template>
@@ -28,8 +28,8 @@
         margin-top:-2%;
       }
       .drop{
-       width: 100%;
-	   @apply(--layout-vertical);
+        width: 100%;
+        @apply(--layout-vertical);
       }
       .driver{
         @apply(--layout-horizontal);
@@ -54,30 +54,35 @@
       #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno{
         --paper-input-container-label: { color: red };
       }
-      #suppliername,#location,#district,#country,#phoneno,#emailid{
+      #suppliername,#location,#district,#country,#phoneno,#emailid,#address2,#streetno,#website,#aliasname{
         margin-left: 5%;
       }
       paper-listbox{
       //width: 100%;
       }
-	  paper-listbox{
+      paper-listbox{
         width: 70%;
         background-color: whitesmoke;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
       #supplierid,#suppliername{
-      width: 70%;
+        width: 70%;
       }
       #supplierid,#searchid{
-      margin-left:-20%;
+        margin-left:-20%;
       }
       #suppliername{
-      margin-left: -1%;
+        margin-left: -1%;
       }
       #supplierid{
       //margin-top:5%;
       //height:3%;
       //background-color: whitesmoke;
+      }
+      #aliasname{
+        width: 70%;
+        margin-left: -20%;
+        margin-top: 4%;
       }
     </style>
     <!--Component for listenen to keyboard enter event-->
@@ -87,36 +92,32 @@
 
       <div class="card">
         <div class="driver">
-
-        <div class="drop">
-		   <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  on-change="FnInputChange" id="suppliername" error-message="{{item.Supplier_Name_error}}">
-		   <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
-		   </paper-input>
-		   <div hidden$="{{isHidden}}">
-		   <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnSupplierNameSelected">
-		   <template is="dom-repeat" items="{{itemArray}}" as="name">
-		   <paper-item>{{name.itemname}}</paper-item>
-		   </template>
-		   </paper-listbox>
-		   </div>
-        </div>
-
-        <div class="drop">
-          <paper-input readonly="{{IDread}}" label="{{item.Supplier_ID}}" name="supplierid" value="{{supplierid}}" required  id="supplierid" error-message="{{item.Supplier_ID_error}}">
-          <paper-icon-button suffix icon="search" on-click="FnSearchSupplierId"></paper-icon-button>
-          </paper-input>
-          <div hidden$="{{isHiddenid}}">
-		   <paper-listbox id="searchid" class="dropdown-content" on-iron-select="FnSupplierIdSelected">
-		   <template is="dom-repeat" items="{{itemidArray}}" as="name">
-		   <paper-item>{{name.itemid}}</paper-item>
-		   </template>
-		   </paper-listbox>
+          <div class="drop">
+            <paper-input label="{{item.Supplier_Name}}" name="suppliername" value="{{suppliername}}" required  on-change="FnInputChange" id="suppliername" error-message="{{item.Supplier_Name_error}}">
+              <paper-icon-button suffix icon="search" on-click="FnSearchSupplierName"></paper-icon-button>
+            </paper-input>
+            <div hidden$="{{isHidden}}">
+              <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnSupplierNameSelected">
+                <template is="dom-repeat" items="{{itemArray}}" as="name">
+                  <paper-item>{{name.itemname}}</paper-item>
+                </template>
+              </paper-listbox>
+            </div>
+          </div>
+          <div class="drop">
+            <paper-input readonly="{{read}}" label="{{item.Alias_Name}}" name="aliasname" value="{{aliasname}}" id="aliasname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Alias_Name_error}}"></paper-input>
           </div>
         </div>
-
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.Address1}}" name="address1" value="{{address1}}" required  id="address1" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Address1_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Address2}}" name="address2" value="{{address2}}" required  id="address2" allowed-pattern="[a-zA-Z ]" error-message="{{item.Address2_error}}"></paper-input>
         </div>
         <div class="driver">
-          <paper-input readonly="{{read}}" label="{{item.Landmark}}" name="landmark" value="{{landmark}}" required  id="landmark" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Landmark_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Door_No}}" name="doorno" value="{{doorno}}" required  id="doorno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Door_No_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Street_No}}" name="streetno" value="{{streetno}}" required  id="streetno" allowed-pattern="[a-zA-Z ]" error-message="{{item.Street_No_error}}"></paper-input>
+        </div>
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.Street_Name}}" name="streetname" value="{{streetname}}" required  id="streetname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Street_Name_error}}"></paper-input>
           <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" allowed-pattern="[a-zA-Z ]" error-message="{{item.Location_error}}"></paper-input>
         </div>
         <div class="driver">
@@ -138,20 +139,23 @@
           <!-- <paper-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input> -->
           <gold-email-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
         </div>
-        
-       <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.Fax_No}}" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Website}}" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
+        </div>
+        <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
         <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>
       </div>
     </template>
     <!--Component to fetch item info to the dropdown-->
-	<iron-ajax
-	      method="post"
-	      params='{{supplierparam}}'
-	      id="supplierlistreadajax"
-	      url="{{supplierurl}}"
-	      handle-as="json"
-	      content-type="application/json"
-	      on-response="supplierlistreadResponse">
+    <iron-ajax
+      method="post"
+      params='{{supplierparam}}'
+      id="supplierlistreadajax"
+      url="{{supplierurl}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="supplierlistreadResponse">
     </iron-ajax>
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
     <!--Component included here for  calling webcomponnet service to fetch labels-->

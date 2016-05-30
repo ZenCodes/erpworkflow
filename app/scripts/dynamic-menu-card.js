@@ -29,16 +29,7 @@
       else if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&localStorage.getItem("curr_sess_wardflag")=="1"&&value=="Item Detail"){
         document.querySelector("vehicleinfo-page").FnVehicleInfoSubmit();
       }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
-       	document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")
-        document.querySelector("payment-card").FnAddPaymentInfoSubmit();
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")!="nothing"&&value=="Item Detail")
-        {
-        document.querySelector("supplier-page").setPage("Show Item");
-        }
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Supplier Detail")
-        document.querySelector("supplier-page").setPage("Add Supplier");
+
       else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""&&value=="Item Detail")
 	      document.querySelector("admin-page").setPage("additem-card");
 	    else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""&&value=="Supplier/Customer Detail")
@@ -61,13 +52,32 @@
         document.querySelector("customer-page").setPage("Add Customer");
       else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Contact Detail")
         document.querySelector("addcustomer-card").FnSupplierInfoSubmit();
-      //document.querySelector("customer-page").setPage("Add Contact");
       else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Tax Detail")
         document.querySelector("contactperson-card").FnNextContact();
-      //document.querySelector("customer-page").setPage("Add Tax");
       else if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&localStorage.getItem("curr_sess_wardflag")=="6"&&value=="Excise Detail")
         document.querySelector("tax-card").FnTaxNext();
-      //document.querySelector("customer-page").setPage("Add Excise");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
+        document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")
+        document.querySelector("payment-card").FnAddPaymentInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")!="nothing"&&value=="Item Detail")
+        document.querySelector("supplier-page").setPage("Show Item");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Supplier Detail")
+        document.querySelector("supplier-page").setPage("Add Supplier");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Contact Detail")
+        document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Tax Detail")
+        document.querySelector("suppliercontactperson-card").FnNextContact();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Excise Detail")
+        document.querySelector("suppliertax-card").FnTaxNext();
+      /*else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
+        document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")
+        document.querySelector("payment-card").FnAddPaymentInfoSubmit();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")!="nothing"&&value=="Item Detail")
+        document.querySelector("supplier-page").setPage("Show Item");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Supplier Detail")
+        document.querySelector("supplier-page").setPage("Add Supplier");*/
     }
   });
 })();

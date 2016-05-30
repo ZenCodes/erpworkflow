@@ -1596,6 +1596,7 @@ exports.FnAddItemUpdate=function(pagename,cond,response,callback) {
     }
   });
 }
+
 //Function which updates supplier info
 exports.FnAddSupplier=function(pagename,response,callback) {
   var Config_tables=[];
@@ -1617,6 +1618,85 @@ exports.FnAddSupplier=function(pagename,response,callback) {
     }
   });
 }
+
+//Function which update customer contact info
+exports.Fnsupplieraddcontact=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Supplier_Contact SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
+}
+
+//Function which update supplier contact info
+exports.Fnsupplierreadcontact=function(pagename,supplierid,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Supplier_Contact WHERE ?',[supplierid],function(err,rows){
+    if(rows.length>0)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+}
+
+//Function which add customer tax info
+exports.Fnsuppliertaxadd=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Supplier_Tax SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+//Function which add customer excise info
+exports.Fnsupplierexciseadd=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('INSERT INTO MD_Supplier_Excise SET ?',[response],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
 
 //Function which addpayment info
 exports.FnAddPayment=function(pagename,response,callback) {
@@ -1658,6 +1738,50 @@ exports.FnUpdateSupplier=function(pagename,response,callback) {
   });
 }
 
+//Function which updates supplier info
+exports.FnSupplierUpdatetax=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Supplier_ID:response.Supplier_ID};
+  //console.log(cond);
+  connection.query('Update MD_Supplier_Tax SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+//Function which updates supplier info
+exports.FnSupplierUpdateexcise=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Supplier_ID:response.Supplier_ID};
+  //console.log(cond);
+  connection.query('Update MD_Supplier_Excise SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
 //Function which addpayment info
 exports.FnUpdatePayment=function(pagename,response,callback) {
   var Config_tables=[];
@@ -1667,8 +1791,8 @@ exports.FnUpdatePayment=function(pagename,response,callback) {
     }
   }
   var cond={Supplier_ID:response.Supplier_ID};
-  console.log(cond);
-  console.log(response);
+  //console.log(cond);
+  //console.log(response);
   connection.query('UPDATE MD_Supplier_Payment SET ? where ?',[response,cond],function(err,result){
     if(!err)
     {
@@ -1681,7 +1805,6 @@ exports.FnUpdatePayment=function(pagename,response,callback) {
   });
 }
 
-
 //Function fecthes searched item info
 exports.Fnreadsupplier=function(pagename,cond,callback) {
   //console.log(pagename+"  "+JSON.stringify(cond));
@@ -1691,30 +1814,13 @@ exports.Fnreadsupplier=function(pagename,cond,callback) {
       Config_tables=obj[i].value;
     }
   }
-  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+  connection.query('SELECT * FROM MD_Purchase_Supplier WHERE ?',[cond],function(err, rows, fields) {
     var itemarr=[];
 
     if(!err){
       if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
-      {
-        var obj={"supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""};
 
-        obj.supplierid=rows[i].Supplier_ID;
-        obj.suppliername=rows[i].Supplier_Name;
-        obj.landmark=rows[i].LandMark;
-        obj.city=rows[i].City;
-        obj.location=rows[i].Location;
-        obj.district=rows[i].District;
-        obj.state=rows[i].State;
-        obj.country=rows[i].Country;
-        obj.pincode=rows[i].Pincode;
-        obj.phoneno=rows[i].Phone;
-        obj.mobileno=rows[i].Mobile;
-        obj.emailid=rows[i].Email;
-        itemarr.push(obj);
-      }
-        return callback(itemarr);
+        return callback(rows);
       }
       else{
         return callback("no item");
@@ -1723,7 +1829,59 @@ exports.Fnreadsupplier=function(pagename,cond,callback) {
     else
       console.log(err);
   });
+}
+
+//Function fecthes searched item info
+exports.Fnsuppliertaxread=function(pagename,supplierid,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
   }
+  connection.query('SELECT * FROM MD_Supplier_Tax WHERE ?',[supplierid],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+
+        return callback(rows);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+}
+
+//Function fecthes searched item info
+exports.Fnsupplierexciseread=function(pagename,supplierid,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Supplier_Excise WHERE ?',[supplierid],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+
+        return callback(rows);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+}
 
 //Function fecthes searched item info
 exports.Fnreadpayment=function(pagename,cond,callback) {
@@ -1734,22 +1892,12 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
       Config_tables=obj[i].value;
     }
   }
-  connection.query('SELECT * FROM '+Config_tables[0]+' WHERE ?',[cond],function(err, rows, fields) {
+  connection.query('SELECT * FROM MD_Supplier_Payment WHERE ?',[cond],function(err, rows, fields) {
     var itemarr=[];
 
     if(!err){
       if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
-      {
-        var obj={"paymenttype":"","bankname":"","accountno":"","address":"","paymentterm":""};
-        obj.paymenttype=rows[i].Payment_Type;
-        obj.bankname=rows[i].Bank_Name;
-        obj.accountno=rows[i].Account_No;
-        obj.address=rows[i].Bank_Address;
-        obj.paymentterm=rows[i].Payment_Term;
-        itemarr.push(obj);
-      }
-        return callback(itemarr);
+        return callback(rows);
       }
       else{
         return callback("no item");
@@ -1758,8 +1906,7 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
     else
       console.log(err);
   });
-  }
-
+}
   //Function fecthes searched item info
   exports.Fnreaditeminfo=function(pagename,cond,id,callback) {
     //console.log(pagename+"  "+JSON.stringify(cond));
@@ -2624,7 +2771,7 @@ exports.Fnpurchaseorder=function(pagename,intentno,itemdes,callback) {
       Config_tables=obj[i].value;
     }
   }
-  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.State,ps.Mobile from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
+  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.State,ps.Mobileno from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
   connection.query(queryy, function(err, rows) {
     if(!err)
     {

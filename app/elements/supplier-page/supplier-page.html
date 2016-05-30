@@ -19,6 +19,10 @@
 <link rel="import" href="../supplieritem-card/supplieritem-card.html">
 <link rel="import" href="../additem-card/additem-card.html">
 
+<link rel="import" href="../suppliercontactperson-card/suppliercontactperson-card.html">
+<link rel="import" href="../suppliercontactperson-item-card/suppliercontactperson-item-card.html">
+<link rel="import" href="../suppliertax-card/suppliertax-card.html">
+<link rel="import" href="../supplierexcise-card/supplierexcise-card.html">
 <!--<link rel="stylesheet" href="../../styles/inwardslip-page.css">-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,8 +79,19 @@
 		        <section data-category="Add Supplier">
 				      <addsupplier-card></addsupplier-card>
 		        </section>
+            <section data-category="Add Contact">
+              <suppliercontactperson-card></suppliercontactperson-card>
+            </section>
+            <section data-category="Add Contact Detail">
+              <suppliercontactperson-item-card></suppliercontactperson-item-card>
+            </section>
+            <section data-category="Add Tax">
+              <suppliertax-card></suppliertax-card>
+            </section>
+            <section data-category="Add Excise">
+              <supplierexcise-card></supplierexcise-card>
+            </section>
 		        <section data-category="Add Item">
-		        <!--<additem-card></additem-card>-->
 		          <supplieradditem-card></supplieradditem-card>
 		        </section>
 		        <section data-category="Add Payment">
@@ -85,6 +100,7 @@
 				    <section data-category="Show Item">
 					    <supplieritem-card></supplieritem-card>
 		        </section>
+
      		 </iron-pages>
       </div>
     </div>

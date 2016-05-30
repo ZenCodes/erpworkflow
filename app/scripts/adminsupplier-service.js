@@ -6,6 +6,9 @@
    var obj1;
   var obj2;
   var obj3;
+  var obj4;
+  var obj5;
+  var obj6;
   var approvesupplierarr=[];
   Polymer({
     is: "adminsupplier-service",
@@ -22,69 +25,118 @@
 	},
 	readsupplierResponse:function(e){
 		var arr= e.detail.response.itemarr;
-		//alert(JSON.stringify(arr));
-		document.querySelector("addsupplier-card").supplierid=arr[0].supplierid;
-		document.querySelector("addsupplier-card").suppliername=arr[0].suppliername;
-		document.querySelector("addsupplier-card").landmark=arr[0].landmark;
-		document.querySelector("addsupplier-card").location=arr[0].location;
-        document.querySelector("addsupplier-card").city=arr[0].city;
-        document.querySelector("addsupplier-card").district=arr[0].district;
-        document.querySelector("addsupplier-card").state=arr[0].state;
-        document.querySelector("addsupplier-card").country=arr[0].country;
-        document.querySelector("addsupplier-card").pincode=arr[0].pincode;
-        document.querySelector("addsupplier-card").phoneno=arr[0].phoneno;
-        document.querySelector("addsupplier-card").mobileno=arr[0].mobileno;
-        document.querySelector("addsupplier-card").emailid=arr[0].emailid;
-        //To call show item card when click item detail tab after add supplier page
-        document.querySelector("supplieradditem-card").FnSetValue(arr[0].supplierid,arr[0].suppliername);
-        document.querySelector("supplieritem-card").FnFetchItemInfo(arr[0].supplierid,arr[0].suppliername);
+    localStorage.setItem('curr_sess_supplierloggedid',arr[0].Supplier_ID);
+    document.querySelector("addsupplier-card").suppliername=arr[0].Supplier_Name;
+    document.querySelector("addsupplier-card").aliasname=arr[0].Alias_Name;
+    document.querySelector("addsupplier-card").address1=arr[0].Address1;
+    document.querySelector("addsupplier-card").address2=arr[0].Address2;
+    document.querySelector("addsupplier-card").doorno=arr[0].Doorno;
+    document.querySelector("addsupplier-card").streetno=arr[0].Streetno;
+    document.querySelector("addsupplier-card").streetname=arr[0].Street_Name;
+    document.querySelector("addsupplier-card").location=arr[0].Location;
+    document.querySelector("addsupplier-card").city=arr[0].City;
+    document.querySelector("addsupplier-card").district=arr[0].District;
+    document.querySelector("addsupplier-card").state=arr[0].State;
+    document.querySelector("addsupplier-card").country=arr[0].Country;
+    document.querySelector("addsupplier-card").pincode=arr[0].Pincode;
+    document.querySelector("addsupplier-card").phoneno=arr[0].Phoneno;
+    document.querySelector("addsupplier-card").mobileno=arr[0].Mobileno;
+    document.querySelector("addsupplier-card").emailid=arr[0].Email;
+    document.querySelector("addsupplier-card").faxno=arr[0].Faxno;
+    document.querySelector("addsupplier-card").website=arr[0].Website;
+    //To call show item card when click item detail tab after add supplier page
+    document.querySelector("supplieradditem-card").FnSetValue(arr[0].Supplier_ID,arr[0].Supplier_Name);
+    document.querySelector("supplieritem-card").FnFetchItemInfo(arr[0].Supplier_ID,arr[0].Supplier_Name);
 	},
-	callPaymentService:function(supid,supname){
+	callPaymentService:function(){
 		this.paymentreadurl=sessionStorage.getItem("curr_sess_url")+"readpaymentinfo-service";
 		      var obj={"supplierid":"","suppliername":""};
-		      obj.supplierid=supid;
-		      obj.suppliername=supname;
+		      obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+		      //obj.suppliername=supname;
 		      this.paymentreadparam=obj;
       this.$.readpaymentajax.generateRequest();
 	},
 	readpaymentResponse:function(e){
 		var arr= e.detail.response.itemarr;
-	    document.querySelector("payment-card").paymenttype=arr[0].paymenttype;
-	    document.querySelector("payment-card").bankname=arr[0].bankname;
-	    document.querySelector("payment-card").accountno=arr[0].accountno;
-	    document.querySelector("payment-card").address=arr[0].address;
-	    document.querySelector("payment-card").term=arr[0].paymentterm;
-	    document.querySelector("payment-card"). setSelectType(arr[0].paymenttype,arr[0].paymentterm);
+    document.querySelector("payment-card").accountname=arr[0].Account_Name;
+    document.querySelector("payment-card").accountno=arr[0].Account_No;
+    document.querySelector("payment-card").accounttype=arr[0].Account_Type;
+    document.querySelector("payment-card").paymenttype=arr[0].Payment_Type;
+    document.querySelector("payment-card").bankname=arr[0].Bank_Name;
+    document.querySelector("payment-card").branch=arr[0].Branch;
+    document.querySelector("payment-card").ifsccode=arr[0].IFSC_Code;
+    document.querySelector("payment-card").micrcode=arr[0].MICR_Code;
+    document.querySelector("payment-card").swiftcode=arr[0].Swift_Code;
+    document.querySelector("payment-card").term=arr[0].Payment_Term;
+    document.querySelector("payment-card"). setSelectType(arr[0].Payment_Type,arr[0].Payment_Term);
 
 	},
     callItemService:function(supplierid){
-	this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
+	        this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
 		      var obj={"supplierid":""};
 		      this.supplierid=supplierid;
 		      obj.supplierid=supplierid;
 		      this.itemreadparam=obj;
-      this.$.readitemajax.generateRequest();
+          this.$.readitemajax.generateRequest();
     },
     readitemResponse:function(e){
 			var arr= e.detail.response.itemarr;
 			//alert(JSON.stringify(arr));
 			if(this.supplierid!="")
 		    document.querySelector("supplieritem-card").itemArray=arr;
-		    /*document.querySelector("payment-card").bankname=arr[0].bankname;
-		    document.querySelector("payment-card").accountno=arr[0].accountno;
-		    document.querySelector("payment-card").address=arr[0].address;
-		    document.querySelector("payment-card").selection=arr[0].paymentterm;
-		    document.querySelector("payment-card"). setSelectType(arr[0].paymenttype,arr[0].paymentterm);*/
-
 	},
-    addsupplierService:function(supplieridd,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
+
+    callTaxreadService:function(){
+    this.readtaxurl=sessionStorage.getItem("curr_sess_url")+"suppliertaxread-service";
+    var obj={"supplierid":""};
+    this.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+    obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+    //alert(obj.customerid);
+    this.readtaxparam=obj;
+    this.$.readtaxajax.generateRequest();
+  },
+  readtaxResponse:function(e){
+    var arr= e.detail.response.itemarr;
+    //alert("tax...."+JSON.stringify(arr));
+    document.querySelector("suppliertax-card").tinno=arr[0].TIN;
+    document.querySelector("suppliertax-card").cstno=arr[0].CST;
+    document.querySelector("suppliertax-card").panno=arr[0].PAN;
+    document.querySelector("suppliertax-card").tanno=arr[0].TAN;
+    document.querySelector("suppliertax-card").cinno=arr[0].CIN;
+  },
+  callExcisereadService:function(){
+    this.readexciseurl=sessionStorage.getItem("curr_sess_url")+"supplierexciseread-service";
+    var obj={"supplierid":""};
+    this.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+    obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+    //alert(obj.customerid);
+    this.readexciseparam=obj;
+    this.$.readexciseajax.generateRequest();
+  },
+  readexciseResponse:function(e){
+    var arr= e.detail.response.itemarr;
+    alert("excise....."+JSON.stringify(arr));
+    document.querySelector("supplierexcise-card").regno=arr[0].Reg_No;
+    document.querySelector("supplierexcise-card").eccno=arr[0].Ecc_No;
+    document.querySelector("supplierexcise-card").range=arr[0].Range;
+    document.querySelector("supplierexcise-card").division=arr[0].Division;
+    document.querySelector("supplierexcise-card").commission=arr[0].Commission;
+    document.querySelector("supplierexcise-card").servicetax=arr[0].Service_Tax;
+  },
+    addsupplierService:function(supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       obj1={
-        "supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""
+        "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
+        "faxno":"","website":""
       };
       supplierid=supplieridd;
       obj1.supplierid=supplierid;
       obj1.suppliername=suppliername;
-      obj1.landmark=landmark;
+      obj1.aliasname=aliasname;
+      obj1.address1=address1;
+      obj1.address2=address2;
+      obj1.doorno=doorno;
+      obj1.streetno=streetno;
+      obj1.streetname=streetname;
       obj1.location=location;
       obj1.city=city;
       obj1.district=district;
@@ -94,53 +146,95 @@
       obj1.phoneno=phoneno;
       obj1.mobileno=mobileno;
       obj1.emailid=emailid;
+      obj1.faxno=faxno;
+      obj1.website=website;
+      alert(JSON.stringify(obj1));
       },
     addsupplierResponse:function(e){
+      alert("supplier..."+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
-		  //alert("Supplier Added!");
-		  this.paymentparam=obj2;
-		  this.paymenturl=sessionStorage.getItem("curr_sess_url")+"addpayment-service";
-		  this.$.addpaymentajax.generateRequest();
-		  //document.querySelector('addsupplier-card').FnBtnDisable();
-      //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+        this.customertaxaddparam=obj3;
+        this.customertaxaddurl=sessionStorage.getItem("curr_sess_url")+"suppliertaxadd-service";
+        this.$.customertaxaddajax.generateRequest();
       }
       else{
-      	  alert("Supplier ID already exists!..Create new supplier...");
-      	  window.location.href="../elements/indexhome.html";
+        //alert("Customer ID already exists!..Create new customer...");
+        //window.location.href="../elements/indexhome.html";
       }
-       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
-    addpaymentService:function(accno,bankname,address,mode,paymentterm){
-		 obj2={
-		        "supplierid":"","accno":"","bankname":"","mode":"","paymentterm":""
-		      };
-		      obj2.supplierid=supplierid;
-		      obj2.accno=accno;
-		      obj2.bankname=bankname;
-		      obj2.mode=mode;
-		      obj2.paymentterm=paymentterm;
-		      obj2.address=address;
-  			  this.supplierparam=obj1;
 
-			  if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-              this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
-		      this.$.addsupplierajax.generateRequest();
-		  	  }
+    FnCustomerTaxAddService:function(tin,cst,pan,tan,cin){
+      obj3={"supplierid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
+      obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      //alert(obj3.customerid);
+      obj3.tin=tin;
+      obj3.cst=cst;
+      obj3.pan=pan;
+      obj3.tan=tan;
+      obj3.cin=cin;
+      alert(JSON.stringify(obj3));
+      document.querySelector('supplier-page').setPage('Add Excise');
+    },
+    customertaxaddResponse:function(e){
+      alert('tax'+e.detail.response.returnval);
+      if(e.detail.response.returnval=="succ") {
+        this.customerexciseaddparam = obj4;
+        this.customerexciseaddurl = sessionStorage.getItem("curr_sess_url") + "supplierexciseadd-service";
+        this.$.customeraddexciseajax.generateRequest();
+      }
+    },
+    FnSupplierExciseAddService:function(regno,eccno,range,division,commission,servicetax){
+      obj4={"supplierid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
+      obj4.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      obj4.regno=regno;
+      obj4.eccno=eccno;
+      obj4.range=range;
+      obj4.division=division;
+      obj4.commission=commission;
+      obj4.servicetax=servicetax;
+      alert(JSON.stringify(obj4));
+      document.querySelector('supplier-page').setPage('Add Payment');
+    },
+    customerexciseaddResponse:function(e) {
+      alert('excise' + e.detail.response.returnval);
+      if (e.detail.response.returnval=="succ"){
+        this.paymentparam = obj5;
+        this.paymenturl = sessionStorage.getItem("curr_sess_url") + "addpayment-service";
+        this.$.addpaymentajax.generateRequest();
+      }
+    },
 
-	},
-	addpaymentResponse:function(e){
-
-	if(e.detail.response.returnval=="succ"){
-		alert("Supplier Added successfully!!");
-		//this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
-		//this.itemparam=obj3;
-        //this.$.additemajax.generateRequest();
-    	  //document.querySelector('addsupplier-card').FnBtnDisable();
-	      //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
-	      }
-	      else
-	      	  alert("Unable to add payment!");
-	       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
+    addpaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
+      //alert('in payment!');
+      obj5={
+        "supplierid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
+        "branch":"","ifsccode":"","micrcode":"","swiftcode":"","paymentterm":""
+      };
+      obj5.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      obj5.accountname=accountname;
+      obj5.accountno=accountno;
+      obj5.accounttype=accounttype;
+      obj5.paymenttype=paymenttype;
+      obj5.bankname=bankname;
+      obj5.branch=branch;
+      obj5.ifsccode=ifsccode;
+      obj5.micrcode=micrcode;
+      obj5.swiftcode=swiftcode;
+      obj5.paymentterm=paymentterm;
+      this.supplierparam=obj1;
+      alert(JSON.stringify(obj5));
+      if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
+        this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
+        this.$.addsupplierajax.generateRequest();
+      }
+    },
+    addpaymentResponse:function(e){
+      alert("payment..."+e.detail.response.returnval);
+      if(e.detail.response.returnval=="succ"){
+        alert("Supplier Added successfully!!");
+      }
+      else
+        alert("Unable to add payment!");
     },
     additemService:function(itemflag,itemid, itemname, itemdes, container, quantity, itemgroup, itemtype,supplier, purchasetype){
 		 obj3={
@@ -182,15 +276,21 @@
       	  alert("Unable to add suppliers!");
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
-    updatesupplierService:function(supplieridd,suppliername,landmark,location,city,district,state,country,pincode,phoneno,mobileno,emailid){
-    	//alert(supplieridd+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
+    updatesupplierService:function(supplierid,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
+      //alert(supplierid+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
       obj1={
-        "supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""
+        "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
+        "faxno":"","website":""
       };
-      supplierid=supplieridd;
+      supplierid=localStorage.getItem('curr_sess_supplierloggedid');
       obj1.supplierid=supplierid;
       obj1.suppliername=suppliername;
-      obj1.landmark=landmark;
+      obj1.aliasname=aliasname;
+      obj1.address1=address1;
+      obj1.address2=address2;
+      obj1.doorno=doorno;
+      obj1.streetno=streetno;
+      obj1.streetname=streetname;
       obj1.location=location;
       obj1.city=city;
       obj1.district=district;
@@ -200,56 +300,89 @@
       obj1.phoneno=phoneno;
       obj1.mobileno=mobileno;
       obj1.emailid=emailid;
-      },
-     updatesupplierResponse:function(e){
-     	//alert(e.detail.response.returnval);
+      obj1.faxno=faxno;
+      obj1.website=website;
+      alert(JSON.stringify(obj1));
+    },
+    updatesupplierResponse:function(e){
+      //alert("update customer...."+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
-		  //alert("Supplier Added!");
-		  this.updatepaymentparam=obj2;
-		  this.updatepaymenturl=sessionStorage.getItem("curr_sess_url")+"updatepayment-service";
-		  this.$.updatepaymentajax.generateRequest();
-
-		  //document.querySelector('addsupplier-card').FnBtnDisable();
-          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+        this.updatetaxparam=obj3;
+        this.updatetaxurl=sessionStorage.getItem("curr_sess_url")+"supplierupdatetax-service";
+        this.$.updatetaxajax.generateRequest();
       }
       else{
-      	  alert("Supplier ID already exists!..Create new supplier...");
-      	  window.location.href="../elements/indexhome.html";
+        alert("Unable to update supplier");
+        window.location.href="../elements/indexhome.html";
       }
-       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
-    updatepaymentService:function(accno,bankname,address,mode,paymentterm){
-    	//alert(accno+" "+bankname+" "+address+" "+mode+" "+paymentterm);
-		 obj2={
-		        "supplierid":"","accno":"","bankname":"","mode":"","paymentterm":""
-		      };
-		      obj2.supplierid=supplierid;
-		      obj2.accno=accno;
-		      obj2.bankname=bankname;
-		      obj2.mode=mode;
-		      obj2.paymentterm=paymentterm;
-		      obj2.address=address;
-  			  this.updatesupplierparam=obj1;
 
-			  //if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-          this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
-		      this.$.updatesupplierajax.generateRequest();
-		  	  //}
-
-	},
-	updatepaymentResponse:function(e){
-		//alert(e.detail.response.returnval);
-	if(e.detail.response.returnval=="succ"){
-		alert("Supplier Info Updated successfully!!");
-		//this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
-		//this.itemparam=obj3;
-        //this.$.additemajax.generateRequest();
-    	  //document.querySelector('addsupplier-card').FnBtnDisable();
-	      //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
-	      }
-	      else
-	      	  alert("Unable to add payment!");
-	       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
+    updatesuppliertaxService:function(tin,cst,pan,tan,cin){
+      obj3={"supplierid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
+      obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      //alert(obj3.customerid);
+      obj3.tin=tin;
+      obj3.cst=cst;
+      obj3.pan=pan;
+      obj3.tan=tan;
+      obj3.cin=cin;
+      alert(JSON.stringify(obj3));
+    },
+    updatetaxResponse:function(e){
+      //alert('tax update'+e.detail.response.returnval);
+      if(e.detail.response.returnval=="succ") {
+        this.updateexciseparam = obj4;
+        this.updateexciseurl = sessionStorage.getItem("curr_sess_url") + "supplierupdateexcise-service";
+        this.$.updateexciseajax.generateRequest();
+      }
+    },
+    updatesupplierexciseService:function(regno,eccno,range,division,commission,servicetax){
+      obj4={"supplierid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
+      obj4.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      obj4.regno=regno;
+      obj4.eccno=eccno;
+      obj4.range=range;
+      obj4.division=division;
+      obj4.commission=commission;
+      obj4.servicetax=servicetax;
+      alert(JSON.stringify(obj4));
+    },
+    updateexciseResponse:function(e) {
+      //alert('update excise' + e.detail.response.returnval);
+      if (e.detail.response.returnval=="succ"){
+        this.updatepaymentparam=obj5;
+        this.updatepaymenturl=sessionStorage.getItem("curr_sess_url")+"updatepayment-service";
+        this.$.updatepaymentajax.generateRequest();
+      }
+    } ,
+    updatepaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
+      obj5={
+        "supplierid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
+        "branch":"","ifsccode":"","micrcode":"","swiftcode":"","paymentterm":""
+      };
+      obj5.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      obj5.accountname=accountname;
+      obj5.accountno=accountno;
+      obj5.accounttype=accounttype;
+      obj5.paymenttype=paymenttype;
+      obj5.bankname=bankname;
+      obj5.branch=branch;
+      obj5.ifsccode=ifsccode;
+      obj5.micrcode=micrcode;
+      obj5.swiftcode=swiftcode;
+      obj5.paymentterm=paymentterm;
+      alert(JSON.stringify(obj5));
+      this.updatesupplierparam=obj1;
+      this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
+      this.$.updatesupplierajax.generateRequest();
+    },
+    updatepaymentResponse:function(e){
+      //alert(e.detail.response.returnval);
+      if(e.detail.response.returnval=="succ"){
+        alert("Supplier Info Updated successfully!!");
+      }
+      else
+        alert("Unable to add payment!");
     },
     readsuppliertoapproveService:function(){
     	//alert("call");
@@ -283,6 +416,38 @@
       else
       	alert("Failed to approve the supplier!!");
       //document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
+    },
+    FnAddContactService:function(designation,mobileno,emailid){
+      obj2={"supplierid":"","designation":"","mobileno":"","emailid":""};
+      obj2.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      obj2.designation=designation;
+      obj2.mobileno=mobileno;
+      obj2.emailid=emailid;
+      this.supplieraddcontactparam=obj2;
+      this.supplieraddcontacturl=sessionStorage.getItem("curr_sess_url")+"supplieraddcontact-service";
+      this.$.supplieraddcontactajax.generateRequest();
+    },
+    supplieraddcontactResponse:function(e){
+      if(e.detail.response.itemarr=="succ") {
+        alert('Contact Added!');
+        //this.$.customerdialogcard.FnShowDialog("Contact Added!");
+        this.FnsupplierreadcontactService();
+      }
+      else
+        alert("Problem in adding contact!");
+    },
+    FnsupplierreadcontactService:function(){
+      document.querySelector("supplier-page").setPage("Add Contact");
+      var obj={"supplierid":""};
+      obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
+      //alert("In customer..."+obj.customerid);
+      this.supplierreadcontactparam=obj;
+      this.supplierreadcontacturl=sessionStorage.getItem("curr_sess_url")+"supplierreadcontact-service";
+      this.$.supplierreadcontactajax.generateRequest();
+    },
+    supplierreadcontactResponse:function(e) {
+      //alert(JSON.stringify(e.detail.response.itemarr));
+      document.querySelector('suppliercontactperson-card').itemArray=e.detail.response.itemarr;
     }
 
   });

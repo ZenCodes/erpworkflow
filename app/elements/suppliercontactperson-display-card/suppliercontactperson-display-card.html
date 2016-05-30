@@ -1,0 +1,38 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
+
+<dom-module id="suppliercontactperson-display-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-horizontal);
+      }
+    </style>
+    <div class="card">
+      <paper-item>{{designation}}</paper-item>
+      <paper-item>{{mobileno}}</paper-item>
+      <paper-item>{{emailid}}</paper-item>
+    </div>
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'suppliercontactperson-display-card',
+
+        properties: {
+          foo: {
+            type: String,
+            value: 'suppliercontactperson-display-card',
+            notify: true
+          }
+        }
+      });
+    })();
+  </script>
+</dom-module>
