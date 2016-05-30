@@ -2,6 +2,7 @@
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
+<link rel="import" href="../customer-service/customer-service.html">
 
 <dom-module id="dynamicbutton-card">
   <template>
@@ -18,6 +19,7 @@
       <paper-button on-click="FnApprove">{{label}}</paper-button>
     </div>
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
+    <customer-service id="customerservice"></customer-service>
   </template>
   <script>
   (function() {
@@ -32,10 +34,12 @@
       },
       FnApprove:function(){
         //alert('approve');
-        if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
         this.$.adminsupplierservice.approvesupplierforpurchaseService();
         }
-
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
+        this.$.customerservice.approvecustomerforsalesService();
+        }
       },
       FnSetLabel:function(label){
         this.label=label;

@@ -213,6 +213,11 @@
       ,{"title":["Supplier Approval"]}
       ]},
     {"Page":[
+      {"page":["approvecustomer-card","approvecustomer-card"]},
+      {"Label":[{"tabs":[{"tab":"Customer ID"},{"tab":"Customer name"},{"tab":"Location"},{"tab":"City"}]}]}
+    ,{"title":["Customer Approval"]}
+    ]},
+    {"Page":[
       {"page":["retest-card","retest-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Supplier Name"},{"tab":"Cont/Qty Received"},{"tab":"Inward Register No"},{"tab":"Invoice Number"},{"tab":"Invoice Date"}]}]}
     ,{"title":["Retest"]}

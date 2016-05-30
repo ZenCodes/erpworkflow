@@ -163,6 +163,19 @@ Polymer({is:"drawermenu-card",
 
         window.location.href="../elements/indexhome.html";
       }
+      if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&e.target.id=="Approve Customer"){
+        //alert("approve");
+        localStorage.setItem("curr_sess_wardflag","8");
+        //document.querySelector('app-homepage').setPage('intenthome-page');
+        //document.querySelector('app-homepage').setVisible("false");
+        //document.querySelector('viewtype-card').FnViewlist();
+        //document.querySelector('app-homepage').setFlowVisibility('false');
+        // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
+        //document.querySelector('intenthome-page').setPage('Approve Supplier');
+
+        window.location.href="../elements/indexhome.html";
+      }
+
 
         // document.querySelector('app-homepage').FnSetIntentFlowVisibility('true');
         //document.querySelector('intenthome-page').setPage('Add Intent');

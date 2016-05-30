@@ -34,5 +34,7 @@
   {"name":"readiteminfo-service","value":["MD_Item"]},
   {"name":"itemstoresread-service","value":["MD_WH_Store_Location"]},
   {"name":"readsuppliertoapprove-service","value":["MD_Purchase_Supplier"],"columnvalues":["New"]},
-  {"name":"approvesupplierforpurchase-service","value":["MD_Purchase_Supplier"],"columnvalues":["Approved"]}
+  {"name":"approvesupplierforpurchase-service","value":["MD_Purchase_Supplier"],"columnvalues":["Approved"]},
+  {"name":"readcustomertoapprove-service","value":["MD_Sales_Customer_Detail"],"columnvalues":["Created"]},
+  {"name":"approvecustomerforsales-service","value":["MD_Sales_Customer_Detail"],"columnvalues":["Approved"]}
   ]

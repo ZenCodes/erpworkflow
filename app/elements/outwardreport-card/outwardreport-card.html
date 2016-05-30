@@ -180,7 +180,10 @@
 
       //alert(localStorage.getItem("curr_sess_showpage"));
        if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+         if(localStorage.getItem("curr_sess_wardflag")=="7")
          localStorage.setItem("curr_sess_showpage","approvesupplier-card");
+         if(localStorage.getItem("curr_sess_wardflag")=="8")
+         localStorage.setItem("curr_sess_showpage","approvecustomer-card");
        }
        if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
          localStorage.setItem("curr_sess_showpage","retest-card");

@@ -143,6 +143,13 @@ Polymer({
       this.$.dynamicbutton.style.visibility='visible';
       document.querySelector('app-homepage').setPage('approvesupplier-card');
     }
+    if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
+      //alert('ceo');
+      this.$.flow.style.visibility='hidden';
+      this.$.intentflow.style.visibility='hidden';
+      this.$.dynamicbutton.style.visibility='visible';
+      document.querySelector('app-homepage').setPage('approvecustomer-card');
+    }
     if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
       //alert('purchase');
       if(localStorage.getItem("curr_sess_wardflag")=="3")

@@ -164,6 +164,26 @@
       content-type="application/json"
       on-response="updateexciseResponse">
     </iron-ajax>
+    <!--Component to fetch newly created customer for approval-->
+    <iron-ajax
+      id="readcustomertoapproveajax"
+      url="{{readcustomertoapproveurl}}"
+      params='{{readcustomertoapproveparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnreadcustomertoapproveResponse">
+    </iron-ajax>
+    <!--Component to appreov newly created customer for sales-->
+    <iron-ajax
+      id="approvecustomerforsalesajax"
+      url="{{approvecustomerforsalesurl}}"
+      params='{{approvecustomerforsalesparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnapprovecustomerforsalesResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <customerdialog-card id="customerdialogcard"></customerdialog-card>
   <dialog-page id="dialogpage"></dialog-page>

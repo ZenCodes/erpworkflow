@@ -1381,6 +1381,21 @@ app.post('/approvesupplierforpurchase-service',urlencodedParser, function (req, 
   });
 });
 
+app.post('/readcustomertoapprove-service',urlencodedParser, function (req, res) {
+  var Fnreadcustomertoapprovecall = require("./app/scripts/dboperations.js");
+  Fnreadcustomertoapprovecall.Fnreadcustomertoapprove("readcustomertoapprove-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+app.post('/approvecustomerforsales-service',urlencodedParser, function (req, res) {
+  var customerid=req.query.customerid;
+  var Fnapprovecustomerforsalescall = require("./app/scripts/dboperations.js");
+  Fnapprovecustomerforsalescall.Fnapprovecustomerforsales("approvecustomerforsales-service",customerid,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
 app.post('/retestitemread-service',urlencodedParser, function (req, res) {
 
   var Fnretestitemreadcall = require("./app/scripts/dboperations.js");

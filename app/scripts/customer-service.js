@@ -9,6 +9,7 @@
   var obj4;
   var obj5;
   var obj6;
+  var approvecustomerarr=[];
   Polymer({
     is: "customer-service",
     ready: function () {
@@ -409,8 +410,37 @@
       }
       else
         alert("Unable to add payment!");
+    },
+    readcustomertoapproveService:function(){
+      //alert("call");
+      this.readcustomertoapproveurl=sessionStorage.getItem("curr_sess_url")+"readcustomertoapprove-service";
+      this.$.readcustomertoapproveajax.generateRequest();
+    },
+    FnreadcustomertoapproveResponse:function(e){
+      //alert(JSON.stringify(e.detail.response.itemarr));
+      document.querySelector('approvecustomer-card').itemArray=e.detail.response.itemarr;
+    },
+    FnSetCustomerforApprove:function(customerid){
+      approvecustomerarr.push(customerid);
+    },
+    approvecustomerforsalesService:function(){
+      //alert("call"+JSON.stringify(approvesupplierarr));
+      for(var i=0;i<approvecustomerarr.length;i++){
+        var obj={"customerid":""};
+        obj.customerid=approvecustomerarr[i];
+        this.approvecustomerforsalesparam=obj;
+        this.approvecustomerforsalesurl=sessionStorage.getItem("curr_sess_url")+"approvecustomerforsales-service";
+        this.$.approvecustomerforsalesajax.generateRequest();
+      }
+    },
+    FnapprovecustomerforsalesResponse:function(e){
+      //alert(e.detail.response.itemarr);
+      if(e.detail.response.itemarr=="succ"){
+        alert("Customers are approved!!");
+        window.location.href="../elements/indexhome.html";
+      }
+      else
+        alert("Failed to approve the customer!!");
     }
-
-
   });
 })();

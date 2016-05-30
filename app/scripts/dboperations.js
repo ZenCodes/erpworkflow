@@ -2837,6 +2837,57 @@ exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,callback) {
 
 }
 
+exports.Fnreadcustomertoapprove=function(pagename,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  var queryy="SELECT * FROM "+Config_tables[0]+" where Status='"+Config_columnvalues[0]+"'";
+  //console.log(queryy);
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("fail");
+      //console.log(err);
+    }
+  });
+
+}
+
+exports.Fnapprovecustomerforsales=function(pagename,customerid,callback) {
+  console.log('coming');
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  var queryy="UPDATE "+Config_tables[0]+" SET Status='"+Config_columnvalues[0]+"' where Customer_ID='"+customerid+"'";
+  //console.log(queryy);
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+      //console.log(err);
+    }
+  });
+
+}
+
+
+
 exports.Fnretestitemread=function(pagename,callback) {
 
   var Config_tables=[];
