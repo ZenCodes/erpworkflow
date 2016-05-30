@@ -7,7 +7,7 @@ Polymer({
   is: "customerpayment-card",
   ready:function()
   {
-    this.read=false;
+  this.read=false;
 	this.mode="";
 	this.supid="";
 	this.supname="";

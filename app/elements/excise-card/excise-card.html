@@ -33,7 +33,7 @@
         <paper-input readonly="{{read}}" label="Range" value="{{range}}" id="range" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Range No"></paper-input>
         <paper-input readonly="{{read}}" label="Division" value="{{division}}" id="division" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Division No"></paper-input>
         <paper-input readonly="{{read}}" label="Commission" value="{{commission}}" id="commission" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Commission No"></paper-input>
-        <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetaxno}}" id="servicetaxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
+        <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetax}}" id="servicetaxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
         <paper-button on-click="FnExciseNext">Next</paper-button>
     </div>
     <customer-service id="customerservice"></customer-service>
@@ -44,8 +44,19 @@
     Polymer({
       is: 'excise-card',
       FnExciseNext:function(){
-        this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
-
+        //this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+        if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing") {
+          this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+        }
+        else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+          //this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+          this.$.customerservice.callPaymentService();
+          document.querySelector('customer-page').setPage('Add Payment');
+        }
+        else{
+          this.$.customerservice.callPaymentService();
+          document.querySelector('customer-page').setPage('Add Payment');
+        }
       }
     });
   })();

@@ -6,7 +6,7 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../contactperson-display-card/contactperson-display-card.html">
 <!-- <link rel="import" href="../../bower_components/supplier-list/supplier-list.html"> -->
-
+<link rel="import" href="../customer-service/customer-service.html">
 <dom-module id="contactperson-card">
   <template>
     <style>
@@ -49,7 +49,7 @@
         <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateContact">Add Contact</paper-button>
         <paper-button disabled="{{Btn_disable_flag}}" id="next" on-click="FnNextContact">Next</paper-button>
       </div>
-
+      <customer-service id="customerservice"></customer-service>
     </div>
 
   </template>

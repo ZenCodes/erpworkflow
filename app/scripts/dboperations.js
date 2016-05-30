@@ -1739,18 +1739,17 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
 
     if(!err){
       if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
+      /*for(var i=0;i<rows.length;i++)
       {
         var obj={"paymenttype":"","bankname":"","accountno":"","address":"","paymentterm":""};
-
         obj.paymenttype=rows[i].Payment_Type;
         obj.bankname=rows[i].Bank_Name;
         obj.accountno=rows[i].Account_No;
         obj.address=rows[i].Bank_Address;
         obj.paymentterm=rows[i].Payment_Term;
         itemarr.push(obj);
-      }
-        return callback(itemarr);
+      }*/
+        return callback(rows);
       }
       else{
         return callback("no item");
@@ -2422,25 +2421,8 @@ exports.Fnreadcustomer=function(pagename,cond,callback) {
 
     if(!err){
       if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
-      {
-        var obj={"supplierid":"","suppliername":"","landmark":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""};
 
-        obj.supplierid=rows[i].Customer_ID;
-        obj.suppliername=rows[i].Customer_Name;
-        obj.landmark=rows[i].LandMark;
-        obj.city=rows[i].City;
-        obj.location=rows[i].Location;
-        obj.district=rows[i].District;
-        obj.state=rows[i].State;
-        obj.country=rows[i].Country;
-        obj.pincode=rows[i].Pincode;
-        obj.phoneno=rows[i].Phone;
-        obj.mobileno=rows[i].Mobile;
-        obj.emailid=rows[i].Email;
-        itemarr.push(obj);
-      }
-        return callback(itemarr);
+        return callback(rows);
       }
       else{
         return callback("no item");
@@ -2451,6 +2433,57 @@ exports.Fnreadcustomer=function(pagename,cond,callback) {
   });
   }
 
+//Function fecthes searched item info
+exports.Fntaxread=function(pagename,customerid,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Customer_Tax WHERE ?',[customerid],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+
+        return callback(rows);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+}
+
+//Function fecthes searched item info
+exports.Fnexciseread=function(pagename,customerid,callback) {
+  //console.log(pagename+"  "+JSON.stringify(cond));
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  connection.query('SELECT * FROM MD_Customer_Excise WHERE ?',[customerid],function(err, rows, fields) {
+    var itemarr=[];
+
+    if(!err){
+      if(rows.length>0){
+
+        return callback(rows);
+      }
+      else{
+        return callback("no item");
+      }
+    }
+    else
+      console.log(err);
+  });
+}
 
   //Function fecthes searched item info
 exports.Fnreadcustomerpayment=function(pagename,cond,callback) {

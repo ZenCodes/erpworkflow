@@ -1087,7 +1087,8 @@ app.post("/addcustomer-service",urlencodedParser,function(req,res) {
    Mobileno:req.query.mobileno,
    Email:req.query.emailid,
    Faxno:req.query.faxno,
-   Website:req.query.website
+   Website:req.query.website,
+   Status:'Created'
 
   };
   var FnAddCustomercall = require("./app/scripts/dboperations.js");
@@ -1121,6 +1122,28 @@ app.post("/addcustomerpayment-service",urlencodedParser,function(req,res) {
 
 });
 
+//Function to add the customer contac info
+app.post("/taxread-service",urlencodedParser,function(req,res) {
+  customerid = {
+    Customer_ID:req.query.customerid
+  };
+
+  var Fntaxreadcall = require("./app/scripts/dboperations.js");
+  Fntaxreadcall.Fntaxread("taxread-service",customerid,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
+
+//Function to add the customer contac info
+app.post("/exciseread-service",urlencodedParser,function(req,res) {
+  customerid = {
+    Customer_ID:req.query.customerid
+  };
+  var Fnexcisereadcall = require("./app/scripts/dboperations.js");
+  Fnexcisereadcall.Fnexciseread("exciseread-service",customerid,function(returnval){
+    res.status(200).json({"itemarr":returnval});
+  });
+});
 
 //Function to update the supplier info req receives from the admin service
 app.post("/updatecustomer-service",urlencodedParser,function(req,res) {

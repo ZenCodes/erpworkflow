@@ -63,6 +63,25 @@
             content-type="application/json"
             on-response="readitemResponse">
     </iron-ajax>
+    <!--Reading tax info-->
+    <iron-ajax
+      id="readtaxajax"
+      url="{{readtaxurl}}"
+      params='{{readtaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="readtaxResponse">
+    </iron-ajax>
+    <iron-ajax
+      id="readexciseajax"
+      url="{{readexciseurl}}"
+      params='{{readexciseparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="readexciseResponse">
+    </iron-ajax>
      <!--Component which makes update req to update the supplier info-->
     <iron-ajax
       id="updatecustomerajax"

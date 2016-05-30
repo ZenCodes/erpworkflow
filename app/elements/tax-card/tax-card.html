@@ -32,14 +32,14 @@
     <div class="card">
       <paper-item>Sales Tax:</paper-item>
       <div class="salestax">
-        <paper-input readonly="{{read}}" label="TIN No" value="{{tinno}}" id="tinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Tin No"></paper-input>
-        <paper-input readonly="{{read}}" label="CST No" value="{{cstno}}" id="cstno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CST No"></paper-input>
+        <paper-input readonly="{{read}}" label="TIN No" name="tinno" value="{{tinno}}" id="tinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Tin No"></paper-input>
+        <paper-input readonly="{{read}}" label="CST No" name="cstno" value="{{cstno}}" id="cstno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CST No"></paper-input>
       </div>
       <paper-item>Income Tax:</paper-item>
       <div class="incometax">
-        <paper-input readonly="{{read}}" label="PAN No" value="{{panno}}" id="panno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter PAN No"></paper-input>
-        <paper-input readonly="{{read}}" label="TAN no" value="{{tanno}}" id="tanno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter TAN No"></paper-input>
-        <paper-input readonly="{{read}}" label="CIN no" value="{{cinno}}" id="cinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CIN No"></paper-input>
+        <paper-input readonly="{{read}}" label="PAN No" name="panno" value="{{panno}}" id="panno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter PAN No"></paper-input>
+        <paper-input readonly="{{read}}" label="TAN no" name="tanno" value="{{tanno}}" id="tanno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter TAN No"></paper-input>
+        <paper-input readonly="{{read}}" label="CIN no" name="cinno" value="{{cinno}}" id="cinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CIN No"></paper-input>
       </div>
       <paper-button on-click="FnTaxNext">Next</paper-button>
     </div>
@@ -51,8 +51,18 @@
     Polymer({
       is: 'tax-card',
     FnTaxNext:function(){
-      this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
-
+      if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing") {
+        this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
+      }
+      else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+        //this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
+        this.$.customerservice.callExcisereadService();
+        document.querySelector('customer-page').setPage('Add Excise');
+      }
+      else{
+        this.$.customerservice.callExcisereadService();
+        document.querySelector('customer-page').setPage('Add Excise');
+      }
     }
     });
   })();
