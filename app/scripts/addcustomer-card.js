@@ -54,7 +54,7 @@
  		 }
  		 else{
          this.$.customerservice.FncustomerreadcontactService();
-			   //document.querySelector("customer-page").setPage("Add Contac");
+			   //document.querySelector("customer-page").setPage("Add Contact");
 			   //document.querySelector("customerpayment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
 		 }
 	  }

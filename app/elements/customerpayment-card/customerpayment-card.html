@@ -64,8 +64,8 @@
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
         <paper-input readonly="{{read}}" label="{{item.Account_Name}}" name="accountname" value="{{accountname}}" required id="accountname" error-message="{{item.Account_Name_error}}"></paper-input>
-        <paper-input readonly="{{read}}" label="{{item.Account_Number}}" name="accno" value="{{accountno}}" required id="accno" error-message="{{item.Account_Number_Error}}"></paper-input>
-        <paper-input readonly="{{read}}" label="{{item.Account_Type}}" name="acctype" value="{{accounttype}}" required id="acctype" error-message="{{item.Account_Type_Error}}"></paper-input>
+        <paper-input readonly="{{read}}" label="{{item.Account_Number}}" name="accountno" value="{{accountno}}" required id="accountno" error-message="{{item.Account_Number_Error}}"></paper-input>
+        <paper-input readonly="{{read}}" label="{{item.Account_Type}}" name="accounttype" value="{{accounttype}}" required id="accounttype" error-message="{{item.Account_Type_Error}}"></paper-input>
         <div>
           <paper-dropdown-menu disabled="{{read}}" id="droppaymentmode" label="Select payment Type" required>
           <paper-listbox id="paymentmode" attr-for-selected="value" class="dropdown-content" on-iron-select="FnModeSelected" selected="{{paymenttype}}">

@@ -1739,7 +1739,7 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
 
     if(!err){
       if(rows.length>0){
-      /*for(var i=0;i<rows.length;i++)
+      for(var i=0;i<rows.length;i++)
       {
         var obj={"paymenttype":"","bankname":"","accountno":"","address":"","paymentterm":""};
         obj.paymenttype=rows[i].Payment_Type;
@@ -1748,8 +1748,8 @@ exports.Fnreadpayment=function(pagename,cond,callback) {
         obj.address=rows[i].Bank_Address;
         obj.paymentterm=rows[i].Payment_Term;
         itemarr.push(obj);
-      }*/
-        return callback(rows);
+      }
+        return callback(itemarr);
       }
       else{
         return callback("no item");
@@ -2356,6 +2356,50 @@ exports.FnUpdateCustomer=function(pagename,response,callback) {
   });
 }
 
+//Function which updates supplier info
+exports.FnUpdatetax=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Customer_ID:response.Customer_ID};
+  //console.log(cond);
+  connection.query('Update MD_Customer_Tax SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+//Function which updates supplier info
+exports.FnUpdateexcise=function(pagename,response,callback) {
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+  var cond={Customer_ID:response.Customer_ID};
+  //console.log(cond);
+  connection.query('Update MD_Customer_Excise SET ? where ?',[response,cond],function(err,result){
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
 //Function which addpayment info
 exports.FnUpdatecustomerPayment=function(pagename,response,callback) {
   var Config_tables=[];
@@ -2499,7 +2543,7 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
 
     if(!err){
       if(rows.length>0){
-      for(var i=0;i<rows.length;i++)
+      /*for(var i=0;i<rows.length;i++)
       {
         var obj={"paymenttype":"","bankname":"","accountno":"","address":"","paymentterm":""};
 
@@ -2509,8 +2553,8 @@ exports.Fnreadcustomerpayment=function(pagename,cond,callback) {
         obj.address=rows[i].Bank_Address;
         obj.paymentterm=rows[i].Payment_Term;
         itemarr.push(obj);
-      }
-        return callback(itemarr);
+      }*/
+        return callback(rows);
       }
       else{
         return callback("no item");

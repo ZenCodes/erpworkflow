@@ -1026,6 +1026,7 @@ app.post("/customerreadcontact-service",urlencodedParser,function(req,res) {
   customerid = {
     Customer_ID:req.query.customerid
   };
+  console.log("In customer read...."+req.query.customerid);
   var Fncustomerreadcontactcall = require("./app/scripts/dboperations.js");
   Fncustomerreadcontactcall.Fncustomerreadcontact("customerreadcontact-service",customerid,function(returnval){
     res.status(200).json({"itemarr":returnval});
@@ -1149,21 +1150,27 @@ app.post("/exciseread-service",urlencodedParser,function(req,res) {
 app.post("/updatecustomer-service",urlencodedParser,function(req,res) {
 
   response = {
-   Customer_ID:req.query.supplierid,
-   Customer_Name:req.query.suppliername,
-    LandMark:req.query.landmark,
+    Customer_ID:req.query.supplierid,
+    Customer_Name:req.query.suppliername,
+    Alias_Name:req.query.aliasname,
+    Address1:req.query.address1,
+    Address2:req.query.address2,
+    Doorno:req.query.doorno,
+    Streetno:req.query.streetno,
+    Street_Name:req.query.streetname,
     Location:req.query.location,
     City:req.query.city,
     District:req.query.district,
     State:req.query.state,
     Country:req.query.country,
     Pincode:req.query.pincode,
-    Phone:req.query.phoneno,
-    Mobile:req.query.mobileno,
-    Email:req.query.emailid
-
+    Phoneno:req.query.phoneno,
+    Mobileno:req.query.mobileno,
+    Email:req.query.emailid,
+    Faxno:req.query.faxno,
+    Website:req.query.website
   };
-  console.log(response);
+  //console.log(response);
   var FnUpdateCustomercall = require("./app/scripts/dboperations.js");
   FnUpdateCustomercall.FnUpdateCustomer("updatecustomer-service",response,function(returnval){
     res.status(200).json({'returnval': returnval});
@@ -1172,19 +1179,59 @@ app.post("/updatecustomer-service",urlencodedParser,function(req,res) {
 });
 
 //Function to update the supplier info req receives from the admin service
-app.post("/updatecustomerpayment-service",urlencodedParser,function(req,res) {
-  console.log('in.............');
-console.log(req.query.supplierid);
-  response = {
-   Customer_ID:req.query.supplierid,
-   Account_No:req.query.accno,
-   Bank_Name:req.query.bankname,
-   Payment_Type:req.query.mode,
-   Payment_Term:req.query.paymentterm,
-   Bank_Address:req.query.address
+app.post("/updatetax-service",urlencodedParser,function(req,res) {
 
+  response = {
+    Customer_ID:req.query.customerid,
+    TIN:req.query.tin,
+    CST:req.query.cst,
+    PAN:req.query.pan,
+    TAN:req.query.tan,
+    CIN:req.query.cin
   };
-  console.log(response);
+  //console.log(response);
+  var FnUpdatetaxcall = require("./app/scripts/dboperations.js");
+  FnUpdatetaxcall.FnUpdatetax("updatetax-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+//Function to update the supplier info req receives from the admin service
+app.post("/updateexcise-service",urlencodedParser,function(req,res) {
+  response = {
+    Customer_ID:req.query.customerid,
+    Reg_No:req.query.regno,
+    Ecc_No:req.query.eccno,
+    Range:req.query.range,
+    Division:req.query.division,
+    Commission:req.query.commission,
+    Service_Tax:req.query.servicetax
+  };
+  //console.log(response);
+  var FnUpdateexcisecall = require("./app/scripts/dboperations.js");
+  FnUpdateexcisecall.FnUpdateexcise("updateexcise-service",response,function(returnval){
+    res.status(200).json({'returnval': returnval});
+  });
+
+});
+
+//Function to update the supplier info req receives from the admin service
+app.post("/updatecustomerpayment-service",urlencodedParser,function(req,res) {
+  response = {
+    Customer_ID:req.query.customerid,
+    Account_Name:req.query.accountname,
+    Account_No:req.query.accountno,
+    Account_Type:req.query.accounttype,
+    Payment_Type:req.query.paymenttype,
+    Bank_Name:req.query.bankname,
+    Branch:req.query.branch,
+    IFSC_Code:req.query.ifsccode,
+    MICR_Code:req.query.micrcode,
+    Swift_Code:req.query.swiftcode,
+    Payment_Term:req.query.paymentterm
+  };
+  //console.log(response);
   var FnUpdatecustomerPaymentcall = require("./app/scripts/dboperations.js");
   FnUpdatecustomerPaymentcall.FnUpdatecustomerPayment("updatecustomerpayment-service",response,function(returnval){
     res.status(200).json({'returnval': returnval});

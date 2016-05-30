@@ -49,17 +49,18 @@
         document.querySelector("customeradditem-card").FnSetValue(arr[0].Customer_ID,arr[0].Customer_Name);
         document.querySelector("customeritem-card").FnFetchItemInfo(arr[0].Customer_ID,arr[0].Customer_Name);
   },
-  callPaymentService:function(supname){
+  callPaymentService:function(){
           this.paymentreadurl=sessionStorage.getItem("curr_sess_url")+"readcustomerpaymentinfo-service";
           var obj={"supplierid":"","suppliername":""};
           obj.supplierid=localStorage.getItem('curr_sess_customerloggedid');
-          obj.suppliername=supname;
+          alert("read payment"+obj.supplierid);
+          //obj.suppliername=supname;
           this.paymentreadparam=obj;
           this.$.readpaymentajax.generateRequest();
   },
   readpaymentResponse:function(e){
     var arr= e.detail.response.itemarr;
-    //alert(JSON.stringify(arr));
+     alert(JSON.stringify(arr));
       document.querySelector("customerpayment-card").accountname=arr[0].Account_Name;
       document.querySelector("customerpayment-card").accountno=arr[0].Account_No;
       document.querySelector("customerpayment-card").accounttype=arr[0].Account_Type;
@@ -191,6 +192,7 @@
     this.$.customerreadcontactajax.generateRequest();
   },
   customerreadcontactResponse:function(e) {
+    alert(JSON.stringify(e.detail.response.itemarr));
     document.querySelector('contactperson-card').itemArray=e.detail.response.itemarr;
   },
   FnCustomerTaxAddService:function(tin,cst,pan,tan,cin){
@@ -216,7 +218,6 @@
   FnCustomerExciseAddService:function(regno,eccno,range,division,commission,servicetax){
     obj4={"customerid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
     obj4.customerid=localStorage.getItem('curr_sess_customerloggedid');
-    //alert(obj4.customerid);
     obj4.regno=regno;
     obj4.eccno=eccno;
     obj4.range=range;
@@ -302,7 +303,7 @@
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
     updatesupplierService:function(supplierid,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
-      //alert(supplieridd+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
+      //alert(supplierid+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
       obj1={
         "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
         "faxno":"","website":""
@@ -327,51 +328,88 @@
       obj1.emailid=emailid;
       obj1.faxno=faxno;
       obj1.website=website;
+      alert(JSON.stringify(obj1));
       },
      updatecustomerResponse:function(e){
-      //alert(e.detail.response.returnval);
+      alert("update customer...."+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
-      //alert("Supplier Added!");
-      this.updatecustomerpaymentparam=obj2;
-      this.updatecustomerpaymenturl=sessionStorage.getItem("curr_sess_url")+"updatecustomerpayment-service";
-      this.$.updatecustomerpaymentajax.generateRequest();
-
-      //document.querySelector('addsupplier-card').FnBtnDisable();
-          //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+        this.updatetaxparam=obj3;
+        this.updatetaxurl=sessionStorage.getItem("curr_sess_url")+"updatetax-service";
+        this.$.updatetaxajax.generateRequest();
       }
       else{
           alert("Unable to update customer");
           window.location.href="../elements/indexhome.html";
       }
-       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
-    updatepaymentService:function(accno,bankname,address,mode,paymentterm){
-      //alert(supplierid+" "+accno+" "+bankname+" "+address+" "+mode+" "+paymentterm);
-     obj2={
-            "supplierid":"","accno":"","bankname":"","mode":"","paymentterm":""
-          };
-          obj2.supplierid=supplierid;
-          obj2.accno=accno;
-          obj2.bankname=bankname;
-          obj2.mode=mode;
-          obj2.paymentterm=paymentterm;
-          obj2.address=address;
-          this.updatecustomerparam=obj1;
 
-        //if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-          this.updatecustomerurl=sessionStorage.getItem("curr_sess_url")+"updatecustomer-service";
-          this.$.updatecustomerajax.generateRequest();
-          //}
-
-  },
-  updatecustomerpaymentResponse:function(e){
-    //alert(e.detail.response.returnval);
-    if(e.detail.response.returnval=="succ"){
-    alert("Customer Info Updated successfully!!");
+    updatecustomertaxService:function(tin,cst,pan,tan,cin){
+      obj3={"customerid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
+      obj3.customerid=localStorage.getItem('curr_sess_customerloggedid');
+      //alert(obj3.customerid);
+      obj3.tin=tin;
+      obj3.cst=cst;
+      obj3.pan=pan;
+      obj3.tan=tan;
+      obj3.cin=cin;
+      alert(JSON.stringify(obj3));
+    },
+    updatetaxResponse:function(e){
+      alert('tax update'+e.detail.response.returnval);
+       if(e.detail.response.returnval=="succ") {
+        this.updateexciseparam = obj4;
+        this.updateexciseurl = sessionStorage.getItem("curr_sess_url") + "updateexcise-service";
+        this.$.updateexciseajax.generateRequest();
+      }
+    },
+    updatecustomerexciseService:function(regno,eccno,range,division,commission,servicetax){
+      obj4={"customerid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
+      obj4.customerid=localStorage.getItem('curr_sess_customerloggedid');
+      obj4.regno=regno;
+      obj4.eccno=eccno;
+      obj4.range=range;
+      obj4.division=division;
+      obj4.commission=commission;
+      obj4.servicetax=servicetax;
+      alert(JSON.stringify(obj4));
+    },
+    updateexciseResponse:function(e) {
+      alert('update excise' + e.detail.response.returnval);
+      if (e.detail.response.returnval=="succ"){
+        this.updatecustomerpaymentparam=obj5;
+        this.updatecustomerpaymenturl=sessionStorage.getItem("curr_sess_url")+"updatecustomerpayment-service";
+        this.$.updatecustomerpaymentajax.generateRequest();
+      }
+    } ,
+    updatepaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
+      obj5={
+        "customerid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
+        "branch":"","ifsccode":"","micrcode":"","swiftcode":"","paymentterm":""
+      };
+      obj5.customerid=localStorage.getItem('curr_sess_customerloggedid');
+      obj5.accountname=accountname;
+      obj5.accountno=accountno;
+      obj5.accounttype=accounttype;
+      obj5.paymenttype=paymenttype;
+      obj5.bankname=bankname;
+      obj5.branch=branch;
+      obj5.ifsccode=ifsccode;
+      obj5.micrcode=micrcode;
+      obj5.swiftcode=swiftcode;
+      obj5.paymentterm=paymentterm;
+      alert(JSON.stringify(obj5));
+      this.updatecustomerparam=obj1;
+      this.updatecustomerurl=sessionStorage.getItem("curr_sess_url")+"updatecustomer-service";
+      this.$.updatecustomerajax.generateRequest();
+    },
+    updatecustomerpaymentResponse:function(e){
+      alert(e.detail.response.returnval);
+      if(e.detail.response.returnval=="succ"){
+        alert("Customer Info Updated successfully!!");
+      }
+      else
+        alert("Unable to add payment!");
     }
-    else
-    alert("Unable to add payment!");
-  }
 
 
   });

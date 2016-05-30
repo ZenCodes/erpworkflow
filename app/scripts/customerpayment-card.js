@@ -31,7 +31,7 @@ Polymer({
 	 document.querySelector('customeritem-card').FnFetchItemInfo(this.supid,this.supname);
  		}
  		else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
- 		this.$.customerservice.updatepaymentService(this.accountno,this.bankname,this.address,this.mode,paymentterm);
+ 		this.$.customerservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm);
  		document.querySelector('customer-page').setPage('Show Item');
 		document.querySelector('customeritem-card').FnFetchItemInfo(this.supid,this.supname);
  		}

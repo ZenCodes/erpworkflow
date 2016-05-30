@@ -82,26 +82,7 @@
       content-type="application/json"
       on-response="readexciseResponse">
     </iron-ajax>
-     <!--Component which makes update req to update the supplier info-->
-    <iron-ajax
-      id="updatecustomerajax"
-      url="{{updatecustomerurl}}"
-      params='{{updatecustomerparam}}'
-      method="post"
-      handle-as="json"
-      content-type="application/json"
-      on-response="updatecustomerResponse">
-    </iron-ajax>
-     <!--Component which makes update req to update the supplier info-->
-      <iron-ajax
-        id="updatecustomerpaymentajax"
-        url="{{updatecustomerpaymenturl}}"
-        params='{{updatecustomerpaymentparam}}'
-        method="post"
-        handle-as="json"
-        content-type="application/json"
-        on-response="updatecustomerpaymentResponse">
-    </iron-ajax>
+
     <!--Component which makes req to add the customer contact info-->
     <iron-ajax
       id="customeraddcontactajax"
@@ -141,6 +122,47 @@
       handle-as="json"
       content-type="application/json"
       on-response="customerexciseaddResponse">
+    </iron-ajax>
+
+    <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="updatecustomerajax"
+      url="{{updatecustomerurl}}"
+      params='{{updatecustomerparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatecustomerResponse">
+    </iron-ajax>
+    <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="updatecustomerpaymentajax"
+      url="{{updatecustomerpaymenturl}}"
+      params='{{updatecustomerpaymentparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatecustomerpaymentResponse">
+    </iron-ajax>
+    <!--Component which makes update req to update customer-->
+    <iron-ajax
+      id="updatetaxajax"
+      url="{{updatetaxurl}}"
+      params='{{updatetaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatetaxResponse">
+    </iron-ajax>
+    <!--Component which makes update req to update the supplier info-->
+    <iron-ajax
+      id="updateexciseajax"
+      url="{{updateexciseurl}}"
+      params='{{updateexciseparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updateexciseResponse">
     </iron-ajax>
   <!--Dialog component import-->
   <customerdialog-card id="customerdialogcard"></customerdialog-card>

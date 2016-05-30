@@ -55,7 +55,7 @@
         this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
       }
       else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
-        //this.$.customerservice.FnCustomerTaxAddService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
+        this.$.customerservice.updatecustomertaxService(this.tinno,this.cstno,this.panno,this.tanno,this.cinno);
         this.$.customerservice.callExcisereadService();
         document.querySelector('customer-page').setPage('Add Excise');
       }

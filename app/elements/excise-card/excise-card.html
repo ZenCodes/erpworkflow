@@ -49,7 +49,7 @@
           this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
         }
         else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
-          //this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+          this.$.customerservice.updatecustomerexciseService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
           this.$.customerservice.callPaymentService();
           document.querySelector('customer-page').setPage('Add Payment');
         }
