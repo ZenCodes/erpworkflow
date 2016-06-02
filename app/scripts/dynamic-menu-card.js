@@ -16,7 +16,9 @@
       {
       document.getElementById(value).style.border = "none";
       }
+
       value=this.menulabel;
+      //alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag")+"  "+value);
       //Setting page views in Inwardslip page according to the tab selection made in the Inwardslip page
       if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&value=="Vehicle Info"&&localStorage.getItem("curr_sess_wardflag")!="1")
         document.querySelector("inwardslip-page").setPage(this.menulabel);
@@ -70,6 +72,14 @@
         document.querySelector("suppliercontactperson-card").FnNextContact();
       else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Excise Detail")
         document.querySelector("suppliertax-card").FnTaxNext();
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"&&value=="Customer Detail")
+        document.querySelector("customer-read-page").setPage("Customer Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"&&value=="Tax Detail")
+        document.querySelector("customer-read-page").setPage("Tax Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"&&value=="Excise Detail")
+        document.querySelector("customer-read-page").setPage("Excise Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"&&value=="Payment Detail")
+        document.querySelector("customer-read-page").setPage("Payment Detail");
       /*else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
         document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
       else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")

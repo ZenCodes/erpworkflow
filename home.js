@@ -1214,6 +1214,7 @@ app.post("/customerexciseadd-service",urlencodedParser,function(req,res) {
 app.post("/addcustomer-service",urlencodedParser,function(req,res) {
 
   response = {
+    Category:req.query.category,
    Customer_ID:req.query.supplierid,
    Customer_Name:req.query.suppliername,
    Alias_Name:req.query.aliasname,
@@ -1294,6 +1295,7 @@ app.post("/exciseread-service",urlencodedParser,function(req,res) {
 app.post("/updatecustomer-service",urlencodedParser,function(req,res) {
 
   response = {
+    Category:req.query.category,
     Customer_ID:req.query.supplierid,
     Customer_Name:req.query.suppliername,
     Alias_Name:req.query.aliasname,
@@ -1535,8 +1537,9 @@ app.post('/readcustomertoapprove-service',urlencodedParser, function (req, res) 
 
 app.post('/approvecustomerforsales-service',urlencodedParser, function (req, res) {
   var customerid=req.query.customerid;
+  var status=req.query.status;
   var Fnapprovecustomerforsalescall = require("./app/scripts/dboperations.js");
-  Fnapprovecustomerforsalescall.Fnapprovecustomerforsales("approvecustomerforsales-service",customerid,function(returnval){
+  Fnapprovecustomerforsalescall.Fnapprovecustomerforsales("approvecustomerforsales-service",customerid,status,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
@@ -1555,6 +1558,15 @@ app.post('/resenditemtoquality-service',urlencodedParser, function (req, res) {
   var checkstate={state:req.query.checkstate};
   var Fnresenditemtoqualitycall = require("./app/scripts/dboperations.js");
   Fnresenditemtoqualitycall.Fnresenditemtoquality("resenditemtoquality-service",inwardregno,updatestate,checkstate,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+
+app.post('/customerinforead-service',urlencodedParser, function (req, res) {
+  var customerid={Customer_ID:req.query.customerid};
+  var Fncustomerinforeadcall = require("./app/scripts/dboperations.js");
+  Fncustomerinforeadcall.Fncustomerinforead("customerinforead-service",req.query.customerid,function(returnval){
     res.status(200).json(returnval);
   });
 });

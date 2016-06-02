@@ -232,7 +232,43 @@
       {"page":["retestqualify-card","retestqualify-card"]},
       {"Label":[{"tabs":[{"tab":"Container Id"},{"tab":"Heat Number"},{"tab":"Qty Accepted"},{"tab":"Remarks"}],"Qty_Received":"Qty Received","PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
     ,{"title":["Goods Receipt Note"]}
+    ]},
+    {"Page":[
+      {"page":["Customer Detail","customer-detail-read"]},
+      {"Label":[{"Supplier_ID":"Customer ID","Supplier_Name":"Customer Name",
+        "Alias_Name":"Alias Name","Address1":"Address1","Address2":"Address2",
+        "Door_No":"Door No","Street_No":"Street No","Street_Name":"Street Name",
+        "Landmark":"Landmark","Location":"Location",
+        "City":"City","District":"District","State":"State",
+        "Country":"Country","Pincode":"Pincode",
+        "Phone_Number":"Phone Number","Mobile_Number":"Mobile Number",
+        "Email_ID":"Email ID","Supplier_ID_error":"Enter Customer ID",
+        "Fax_No":"Fax No","Website":"Website"
+       }]}
+    ,{"title":["Customer Detail"]}
+    ]},
+    {"Page":[
+      {"page":["Tax Detail","tax-detail-read"]},
+      {"Label":[{"PAN_No":"PAN No","CST_No":"CST No",
+        "TAN_No":"TAN No","CIN_No":"CIN No","TIN_No":"TIN No"
+      }]}
+    ,{"title":["Tax Detail"]}
+    ]},
+    {"Page":[
+      {"page":["Excise Detail","excise-detail-read"]},
+      {"Label":[{"Reg_No":"C. Ex Reg No","ECC_No":"ECC No",
+        "Range":"Range","Division":"Division","Commission":"Commission","Service_Tax_No":"Service Tax No"
+      }]}
+    ,{"title":["Excise Detail"]}
+    ]},
+    {"Page":[
+      {"page":["Payment Detail","payment-detail-read"]},
+      {"Label":[{"Account_Name":"Account Name","Account_Type":"Account Type",
+        "Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
+        "Branch":"Branch","IFSC_Code":"IFSC Code","MICR_Code":"MICR Code","Swift_Code":"Swift Code",
+        "Payment_Terms":"Payment Terms","Term1":"15 days","Term2":"30 days","Term3":"45 days","Term4":"60 days"
+      }]}
+    ,{"title":["Payment Detail"]}
     ]}
-
   ]
 

@@ -14,9 +14,15 @@
         text-transform: none;
 
       }
+      .card{
+        @apply(--layout-horizontal);
+        margin-left: -50%;
+      }
     </style>
-    <div>
-      <paper-button on-click="FnApprove">{{label}}</paper-button>
+    <div class="card">
+      <paper-button on-click="FnApprove">{{label1}}</paper-button>
+      <paper-button hidden$="{{viewresend}}" on-click="FnResend">{{label2}}</paper-button>
+      <paper-button hidden$="{{viewreject}}" on-click="FnReject">{{label3}}</paper-button>
     </div>
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
     <customer-service id="customerservice"></customer-service>
@@ -29,20 +35,47 @@
       is: 'dynamicbutton-card',
       ready:function(){
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
-          this.label="Approve";
+          this.label1="Approve";
+          this.label2="Resend";
+          this.viewresend=false;
+          this.label3="Reject";
+          this.viewreject=false;
+        }
+        else {
+          this.viewresend = true;
+          this.viewreject=false;
         }
       },
       FnApprove:function(){
         //alert('approve');
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
-        this.$.adminsupplierservice.approvesupplierforpurchaseService();
+        this.$.adminsupplierservice.approvesupplierforpurchaseService("Approved");
         }
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
-        this.$.customerservice.approvecustomerforsalesService();
+        this.$.customerservice.approvecustomerforsalesService("Approved");
         }
       },
+      FnResend:function(){
+        //alert('approve');
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
+          this.$.adminsupplierservice.approvesupplierforpurchaseService("Resend");
+        }
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
+          this.$.customerservice.approvecustomerforsalesService("Resend");
+        }
+      },
+      FnReject:function(){
+        //alert('approve');
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
+          this.$.adminsupplierservice.approvesupplierforpurchaseService("Reject");
+        }
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
+          this.$.customerservice.approvecustomerforsalesService("Reject");
+        }
+      },
+
       FnSetLabel:function(label){
-        this.label=label;
+        this.label1=label;
       }
 
     });

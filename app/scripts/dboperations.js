@@ -3008,7 +3008,7 @@ exports.Fnreadcustomertoapprove=function(pagename,callback) {
 
 }
 
-exports.Fnapprovecustomerforsales=function(pagename,customerid,callback) {
+exports.Fnapprovecustomerforsales=function(pagename,customerid,status,callback) {
   console.log('coming');
   var Config_tables=[];
   var Config_columnvalues=[];
@@ -3018,7 +3018,7 @@ exports.Fnapprovecustomerforsales=function(pagename,customerid,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }
-  var queryy="UPDATE "+Config_tables[0]+" SET Status='"+Config_columnvalues[0]+"' where Customer_ID='"+customerid+"'";
+  var queryy="UPDATE "+Config_tables[0]+" SET Status='"+status+"' where Customer_ID='"+customerid+"'";
   //console.log(queryy);
   connection.query(queryy, function(err, rows) {
     if(!err)
@@ -3076,6 +3076,31 @@ exports.Fnresenditemtoquality=function(pagename,inwardregno,updatestate,checksta
     }
     else{
       return callback("fail");
+    }
+  });
+
+}
+
+exports.Fncustomerinforead=function(pagename,customerid,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  console.log(customerid);
+  var qur="SELECT * FROM MD_Sales_Customer_Detail cd JOIN MD_Customer_Payment cp ON ( cd.Customer_ID = cp.Customer_ID ) JOIN MD_Customer_Excise ce ON ( cp.Customer_ID = ce.Customer_ID ) JOIN MD_Customer_Tax ct ON ( ce.Customer_ID = ct.Customer_ID ) WHERE cd.Customer_ID='"+customerid+"'";
+  console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
     }
   });
 

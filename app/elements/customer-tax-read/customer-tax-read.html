@@ -1,0 +1,83 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/paper-item/paper-iem.html">
+<link rel="import" href="../customer-service/customer-service.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+
+<dom-module id="customer-tax-read">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card1,.card2{
+        @apply(--layout-vertical);
+      }
+      .card{
+        @apply(--layout-vertical);
+        margin-left: 10%;
+      }
+      paper-input{
+        width: 150%;
+        text-align: left;
+      }
+      paper-button{
+        text-transform: none;
+        text-align: center;
+        width: 30%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #3d6868;
+        color: white;
+        margin-top: 4%;
+      }
+      .outer{
+        @apply(--layout-horizontal);
+      }
+      .card2{
+        margin-left: 13%;
+      }
+      :host{
+        --paper-input-container-label: {
+          color:red;
+        }}
+    </style>
+    <div class="card">
+      <!--<template is="dom-repeat" items="{{label}}" as="lbl">-->
+      <div class="outer">
+        <div class="card1">
+          <paper-item>Income Tax:</paper-item>
+          <div class="incometax">
+            <paper-input readonly="{{read}}" label="PAN No" name="panno" value="{{panno}}" id="panno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter PAN No"></paper-input>
+            <paper-input readonly="{{read}}" label="TAN no" name="tanno" value="{{tanno}}" id="tanno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter TAN No"></paper-input>
+            <paper-input readonly="{{read}}" label="CIN no" name="cinno" value="{{cinno}}" id="cinno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CIN No"></paper-input>
+          </div>
+        </div>
+        <div class="card2">
+          <paper-item>Sales Tax:</paper-item>
+          <div class="salestax">
+            <paper-input readonly="{{read}}" label="TIN No" name="tinno" value="{{tinno}}" id="tinno" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Tin No"></paper-input>
+            <paper-input readonly="{{read}}" label=".CST No" name="cstno" value="{{cstno}}" id="cstno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter CST No"></paper-input>
+          </div>
+        </div>
+      </div>
+      <!--<paper-button on-click="FnTaxNext">Next</paper-button>-->
+      <!--</template>-->
+    </div>
+    <customer-service id="customerservice"></customer-service>
+    <!--<webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>-->
+  </template>
+  <script>
+    (function() {
+      'use strict';
+      Polymer({
+        is: 'customer-tax-read',
+        ready:function(){
+          localStorage.setItem("curr_sess_showpage","Tax Detail");
+        }
+      });
+    })();
+  </script>
+</dom-module>

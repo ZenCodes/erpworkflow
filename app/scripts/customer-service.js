@@ -27,6 +27,7 @@
         //alert(arr[0].Customer_ID);
         //document.querySelector("addcustomer-card").supplierid=arr[0].Customer_ID;
         localStorage.setItem('curr_sess_customerloggedid',arr[0].Customer_ID);
+        document.querySelector("addcustomer-card").category=arr[0].Category;
         document.querySelector("addcustomer-card").suppliername=arr[0].Customer_Name;
         document.querySelector("addcustomer-card").aliasname=arr[0].Alias_Name;
         document.querySelector("addcustomer-card").address1=arr[0].Address1;
@@ -126,12 +127,13 @@
       document.querySelector("excise-card").servicetax=arr[0].Service_Tax;
       document.querySelector("excise-card").FnEnableFields();
     },
-    addsupplierService:function(supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
+    addsupplierService:function(category,supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       obj1={
-        "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
+        "category":"","supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
         "faxno":"","website":""
       };
       supplierid=supplieridd;
+      obj1.category=category;
       obj1.supplierid=supplierid;
       obj1.suppliername=suppliername;
       obj1.aliasname=aliasname;
@@ -304,13 +306,14 @@
           alert("Unable to add customer!");
        // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
     },
-    updatesupplierService:function(supplierid,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
+    updatesupplierService:function(category,supplierid,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       //alert(supplierid+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
       obj1={
         "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
         "faxno":"","website":""
       };
       supplierid=localStorage.getItem('curr_sess_customerloggedid');
+      obj1.category=category;
       obj1.supplierid=supplierid;
       obj1.suppliername=suppliername;
       obj1.aliasname=aliasname;
@@ -424,24 +427,81 @@
     FnSetCustomerforApprove:function(customerid){
       approvecustomerarr.push(customerid);
     },
-    approvecustomerforsalesService:function(){
+    approvecustomerforsalesService:function(status){
       //alert("call"+JSON.stringify(approvesupplierarr));
-      for(var i=0;i<approvecustomerarr.length;i++){
-        var obj={"customerid":""};
-        obj.customerid=approvecustomerarr[i];
+      //for(var i=0;i<approvecustomerarr.length;i++){
+        var obj={"customerid":"","status":""};
+        obj.status=status;
+        obj.customerid=sessionStorage.getItem("sess_curr_customerid");
+        //alert(JSON.stringify(obj));
         this.approvecustomerforsalesparam=obj;
         this.approvecustomerforsalesurl=sessionStorage.getItem("curr_sess_url")+"approvecustomerforsales-service";
         this.$.approvecustomerforsalesajax.generateRequest();
-      }
+      //}
     },
     FnapprovecustomerforsalesResponse:function(e){
       //alert(e.detail.response.itemarr);
       if(e.detail.response.itemarr=="succ"){
-        alert("Customers are approved!!");
+        alert("Action Done!!");
         window.location.href="../elements/indexhome.html";
       }
       else
         alert("Failed to approve the customer!!");
+    },
+    FnCustomerinforeadService:function(){
+      var obj={"customerid":""};
+      obj.customerid=sessionStorage.getItem("sess_curr_customerid");
+      //alert(obj.customerid);
+      this.customerinforeadparam=obj;
+      this.customerinforeadurl=sessionStorage.getItem("curr_sess_url")+"customerinforead-service";
+      this.$.customerinforeadajax.generateRequest();
+    },
+    FncustomerinforeadResponse:function(e){
+        //alert(JSON.stringify(e.detail.response));
+
+      var arr=e.detail.response;
+      document.querySelector("customer-detail-read").suppliername=arr[0].Customer_Name;
+      document.querySelector("customer-detail-read").aliasname=arr[0].Alias_Name;
+      document.querySelector("customer-detail-read").address1=arr[0].Address1;
+      document.querySelector("customer-detail-read").address2=arr[0].Address2;
+      document.querySelector("customer-detail-read").doorno=arr[0].Doorno;
+      document.querySelector("customer-detail-read").streetno=arr[0].Streetno;
+      document.querySelector("customer-detail-read").streetname=arr[0].Street_Name;
+      document.querySelector("customer-detail-read").location=arr[0].Location;
+      document.querySelector("customer-detail-read").city=arr[0].City;
+      document.querySelector("customer-detail-read").district=arr[0].District;
+      document.querySelector("customer-detail-read").state=arr[0].State;
+      document.querySelector("customer-detail-read").country=arr[0].Country;
+      document.querySelector("customer-detail-read").pincode=arr[0].Pincode;
+      document.querySelector("customer-detail-read").phoneno=arr[0].Phoneno;
+      document.querySelector("customer-detail-read").mobileno=arr[0].Mobileno;
+      document.querySelector("customer-detail-read").emailid=arr[0].Email;
+      document.querySelector("customer-detail-read").faxno=arr[0].Faxno;
+      document.querySelector("customer-detail-read").website=arr[0].Website;
+
+      document.querySelector("customer-payment-read").accountname=arr[0].Account_Name;
+      document.querySelector("customer-payment-read").accountno=arr[0].Account_No;
+      document.querySelector("customer-payment-read").accounttype=arr[0].Account_Type;
+      document.querySelector("customer-payment-read").paymenttype=arr[0].Payment_Type;
+      document.querySelector("customer-payment-read").bankname=arr[0].Bank_Name;
+      document.querySelector("customer-payment-read").branch=arr[0].Branch;
+      document.querySelector("customer-payment-read").ifsccode=arr[0].IFSC_Code;
+      document.querySelector("customer-payment-read").micrcode=arr[0].MICR_Code;
+      document.querySelector("customer-payment-read").swiftcode=arr[0].Swift_Code;
+      document.querySelector("customer-payment-read").term=arr[0].Payment_Term;
+
+      document.querySelector("customer-tax-read").tinno=arr[0].TIN;
+      document.querySelector("customer-tax-read").cstno=arr[0].CST;
+      document.querySelector("customer-tax-read").panno=arr[0].PAN;
+      document.querySelector("customer-tax-read").tanno=arr[0].TAN;
+      document.querySelector("customer-tax-read").cinno=arr[0].CIN;
+
+      document.querySelector("customer-excise-read").regno=arr[0].Reg_No;
+      document.querySelector("customer-excise-read").eccno=arr[0].Ecc_No;
+      document.querySelector("customer-excise-read").range=arr[0].Range;
+      document.querySelector("customer-excise-read").division=arr[0].Division;
+      document.querySelector("customer-excise-read").commission=arr[0].Commission;
+      document.querySelector("customer-excise-read").servicetax=arr[0].Service_Tax;
     }
   });
 })();

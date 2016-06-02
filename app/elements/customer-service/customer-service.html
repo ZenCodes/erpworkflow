@@ -184,6 +184,16 @@
       content-type="application/json"
       on-response="FnapprovecustomerforsalesResponse">
     </iron-ajax>
+    <!--Component to read created customer info-->
+    <iron-ajax
+      id="customerinforeadajax"
+      url="{{customerinforeadurl}}"
+      params='{{customerinforeadparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FncustomerinforeadResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <customerdialog-card id="customerdialogcard"></customerdialog-card>
   <dialog-page id="dialogpage"></dialog-page>

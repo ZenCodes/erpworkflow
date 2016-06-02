@@ -16,6 +16,11 @@
     		localStorage.setItem("curr_sess_searchtypeflag", "nothing");
     		localStorage.setItem("curr_sess_addcustomereditflag","0");
 	},
+    FnCategorySelected:function(e){
+      if(e.target.selectedItem.textContent.trim()!="-----Select-----")
+        this.category = e.target.selectedItem.textContent.trim();
+        alert(this.category);
+    },
 	FnEmailChange:function(){
 	   document.querySelector('#emailid').validate();
 	},
@@ -45,11 +50,11 @@
 		     document.querySelector("customeradditem-card").FnSetValue(this.supplierid,this.suppliername);
 		 if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
          localStorage.setItem('curr_sess_customerloggedid',this.supplierid);
-         this.$.customerservice.addsupplierService(this.supplierid,this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
+         this.$.customerservice.addsupplierService(this.category,this.supplierid,this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
          document.querySelector("customer-page").setPage("Add Contact");
  		 }
  		 else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
- 			   this.$.customerservice.updatesupplierService(localStorage.getItem('curr_sess_customerloggedid'),this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
+ 			   this.$.customerservice.updatesupplierService(this.category,localStorage.getItem('curr_sess_customerloggedid'),this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
          this.$.customerservice.FncustomerreadcontactService();
          //document.querySelector("customer-page").setPage("Add Contact");
          //document.querySelector("customer-page").setPage("Add Payment");
