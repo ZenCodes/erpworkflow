@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/customerreadmenu.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/config/supplierreadmenu.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/customer-detail-read.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/customer-payment-read.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/customer-read-page.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/webcomponents.json" afterPath="$PROJECT_DIR$/app/config/webcomponents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" afterPath="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/approvecustomer-card/approvecustomer-card.html" afterPath="$PROJECT_DIR$/app/elements/approvecustomer-card/approvecustomer-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/approvecustomer-detailcard/approvecustomer-detailcard.html" afterPath="$PROJECT_DIR$/app/elements/approvecustomer-detailcard/approvecustomer-detailcard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/customer-service/customer-service.html" afterPath="$PROJECT_DIR$/app/elements/customer-service/customer-service.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html" afterPath="$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/elements.html" afterPath="$PROJECT_DIR$/app/elements/elements.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/addcustomer-card.js" afterPath="$PROJECT_DIR$/app/scripts/addcustomer-card.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" afterPath="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/customer-service.js" afterPath="$PROJECT_DIR$/app/scripts/customer-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dynamic-card.js" afterPath="$PROJECT_DIR$/app/scripts/dynamic-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" afterPath="$PROJECT_DIR$/app/scripts/dynamic-menu-card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +27,28 @@
       <file leaf-file-name="addcustomer-card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.094339624">
-              <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="153" selection-end-column="32" />
+            <state vertical-scroll-proportion="-1.6037736">
+              <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer-read-page.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/customer-read-page/customer-read-page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.1509433">
+              <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer-detail-read.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.47128713">
+              <caret line="105" column="14" selection-start-line="105" selection-start-column="14" selection-end-line="105" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -76,18 +79,28 @@
       <file leaf-file-name="customer-service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/customer-service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.25">
-              <caret line="250" column="39" selection-start-line="250" selection-start-column="39" selection-end-line="250" selection-end-column="39" />
+            <state vertical-scroll-proportion="-0.30357143">
+              <caret line="449" column="6" selection-start-line="449" selection-start-column="6" selection-end-line="449" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43426296">
-              <caret line="1297" column="31" selection-start-line="1297" selection-start-column="31" selection-end-line="1297" selection-end-column="31" />
+            <state vertical-scroll-proportion="-4.5">
+              <caret line="1299" column="41" selection-start-line="1299" selection-start-column="41" selection-end-line="1299" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webcomponents.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/webcomponents.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.3207547">
+              <caret line="234" column="7" selection-start-line="234" selection-start-column="7" selection-end-line="234" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -153,7 +166,6 @@
         <option value="$PROJECT_DIR$/app/scripts/approvecustomer-card.js" />
         <option value="$PROJECT_DIR$/app/elements/approvecustomer-detailcard/approvecustomer-detailcard.html" />
         <option value="$PROJECT_DIR$/app/elements/approvecustomer-card/approvecustomer-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" />
         <option value="$PROJECT_DIR$/app/elements/customer-tax-read/customer-tax-read.html" />
         <option value="$PROJECT_DIR$/app/elements/customer-excise-read/customer-excise-read.html" />
         <option value="$PROJECT_DIR$/app/elements/customer-payment-read/customer-payment-read.html" />
@@ -161,8 +173,9 @@
         <option value="$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html" />
         <option value="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/addcustomer-card.js" />
-        <option value="$PROJECT_DIR$/app/scripts/customer-service.js" />
         <option value="$PROJECT_DIR$/home.js" />
+        <option value="$PROJECT_DIR$/app/scripts/customer-service.js" />
+        <option value="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" />
       </list>
     </option>
   </component>
@@ -1014,14 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/webcomponents.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8113208">
-          <caret line="259" column="31" selection-start-line="259" selection-start-column="31" selection-end-line="259" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/webcomponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.4074073">
@@ -1066,22 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.037736">
           <caret line="63" column="52" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/customer-read-page/customer-read-page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7924528">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52871287">
-          <caret line="139" column="7" selection-start-line="139" selection-start-column="7" selection-end-line="139" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1142,14 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.094339624">
-          <caret line="150" column="33" selection-start-line="150" selection-start-column="33" selection-end-line="153" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/customerpayment-card.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.444445">
@@ -1168,18 +1149,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/customer-service.js">
+    <entry file="file://$PROJECT_DIR$/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.25">
-          <caret line="250" column="39" selection-start-line="250" selection-start-column="39" selection-end-line="250" selection-end-column="39" />
+        <state vertical-scroll-proportion="-4.5">
+          <caret line="1299" column="41" selection-start-line="1299" selection-start-column="41" selection-end-line="1299" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home.js">
+    <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43426296">
-          <caret line="1297" column="31" selection-start-line="1297" selection-start-column="31" selection-end-line="1297" selection-end-column="31" />
+        <state vertical-scroll-proportion="-1.6037736">
+          <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/customer-read-page/customer-read-page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1509433">
+          <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/customer-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.30357143">
+          <caret line="449" column="6" selection-start-line="449" selection-start-column="6" selection-end-line="449" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/webcomponents.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3207547">
+          <caret line="234" column="7" selection-start-line="234" selection-start-column="7" selection-end-line="234" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47128713">
+          <caret line="105" column="14" selection-start-line="105" selection-start-column="14" selection-end-line="105" selection-end-column="14" />
           <folding />
         </state>
       </provider>

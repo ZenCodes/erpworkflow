@@ -93,7 +93,7 @@
       <div class="card">
         <div class="driver">
           <div class="drop">
-            <paper-input label="Supplier Name" name="suppliername" value="{{suppliername}}" required  on-change="FnInputChange" id="suppliername" error-message="{{item.Supplier_Name_error}}">
+            <paper-input label="Customer Name" name="suppliername" value="{{suppliername}}" required  on-change="FnInputChange" id="suppliername" error-message="{{item.Supplier_Name_error}}">
             </paper-input>
           </div>
           <div class="drop">
@@ -134,6 +134,16 @@
         <div class="owner">
           <paper-input readonly="{{read}}" label="Fax_No" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
           <paper-input readonly="{{read}}" label="Website" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
+        </div>
+        <div>
+          <paper-dropdown-menu disabled="{{read}}" id="category" label="Select Category" required>
+            <paper-listbox id="cuscategory" attr-for-selected="value" class="dropdown-content" on-iron-select="FnCategorySelected" selected="{{category}}">
+              <paper-item>-----Select-----</paper-item>
+              <paper-item value="Dealer">Dealer</paper-item>
+              <paper-item value="Distributor">distributor</paper-item>
+              <paper-item value="Manufacturer">Manufacturer</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
         </div>
         <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
         <!--<paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>-->

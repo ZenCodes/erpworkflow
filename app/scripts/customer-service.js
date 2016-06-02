@@ -457,9 +457,9 @@
       this.$.customerinforeadajax.generateRequest();
     },
     FncustomerinforeadResponse:function(e){
-        //alert(JSON.stringify(e.detail.response));
-
+      //alert(JSON.stringify(e.detail.response));
       var arr=e.detail.response;
+      document.querySelector("customer-detail-read").suppliername=arr[0].Category;
       document.querySelector("customer-detail-read").suppliername=arr[0].Customer_Name;
       document.querySelector("customer-detail-read").aliasname=arr[0].Alias_Name;
       document.querySelector("customer-detail-read").address1=arr[0].Address1;
