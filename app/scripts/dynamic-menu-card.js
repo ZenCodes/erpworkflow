@@ -80,6 +80,14 @@
         document.querySelector("customer-read-page").setPage("Excise Detail");
       else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"&&value=="Payment Detail")
         document.querySelector("customer-read-page").setPage("Payment Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"&&value=="Supplier Detail")
+        document.querySelector("supplier-read-page").setPage("Supplier Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"&&value=="Tax Detail")
+        document.querySelector("supplier-read-page").setPage("Tax Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"&&value=="Excise Detail")
+        document.querySelector("supplier-read-page").setPage("Excise Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"&&value=="Payment Detail")
+        document.querySelector("supplier-read-page").setPage("Payment Detail");
       /*else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
         document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
       else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")

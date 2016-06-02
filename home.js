@@ -1522,8 +1522,9 @@ app.post('/readsuppliertoapprove-service',urlencodedParser, function (req, res) 
 
 app.post('/approvesupplierforpurchase-service',urlencodedParser, function (req, res) {
   var supplierid=req.query.supplierid;
+  var status=req.query.status;
   var Fnapprovesupplierforpurchasecall = require("./app/scripts/dboperations.js");
-  Fnapprovesupplierforpurchasecall.Fnapprovesupplierforpurchase("approvesupplierforpurchase-service",supplierid,function(returnval){
+  Fnapprovesupplierforpurchasecall.Fnapprovesupplierforpurchase("approvesupplierforpurchase-service",supplierid,status,function(returnval){
     res.status(200).json({'itemarr': returnval});
   });
 });
@@ -1567,6 +1568,15 @@ app.post('/customerinforead-service',urlencodedParser, function (req, res) {
   var customerid={Customer_ID:req.query.customerid};
   var Fncustomerinforeadcall = require("./app/scripts/dboperations.js");
   Fncustomerinforeadcall.Fncustomerinforead("customerinforead-service",req.query.customerid,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+
+app.post('/supplierinforead-service',urlencodedParser, function (req, res) {
+  var supplierid={Supplier_ID:req.query.supplierid};
+  var Fnsupplierinforeadcall = require("./app/scripts/dboperations.js");
+  Fnsupplierinforeadcall.Fnsupplierinforead("supplierinforead-service",req.query.supplierid,function(returnval){
     res.status(200).json(returnval);
   });
 });

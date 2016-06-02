@@ -2959,7 +2959,7 @@ exports.Fnreadsuppliertoapprove=function(pagename,callback) {
 
 }
 
-exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,callback) {
+exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,status,callback) {
   console.log('coming');
   var Config_tables=[];
   var Config_columnvalues=[];
@@ -2969,7 +2969,7 @@ exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }
-  var queryy="UPDATE "+Config_tables[0]+" SET Status='"+Config_columnvalues[0]+"' where Supplier_ID='"+supplierid+"'";
+  var queryy="UPDATE "+Config_tables[0]+" SET Status='status' where Supplier_ID='"+supplierid+"'";
    console.log(queryy);
   connection.query(queryy, function(err, rows) {
     if(!err)
@@ -3105,3 +3105,30 @@ exports.Fncustomerinforead=function(pagename,customerid,callback) {
   });
 
 }
+
+
+exports.Fnsupplierinforead=function(pagename,supplierid,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  var qur="SELECT * FROM MD_Purchase_Supplier cd JOIN MD_Supplier_Payment cp ON ( cd.Supplier_ID = cp.Supplier_ID ) JOIN MD_Supplier_Excise ce ON ( cp.Supplier_ID = ce.Supplier_ID ) JOIN MD_Supplier_Tax ct ON ( ce.Supplier_ID = ct.Supplier_ID ) WHERE cd.Supplier_ID='"+supplierid+"'";
+  console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+
+}
+

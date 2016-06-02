@@ -188,6 +188,16 @@
       content-type="application/json"
       on-response="FnapprovesupplierforpurchaseResponse">
     </iron-ajax>
+    <!--Component to read created supplier info-->
+    <iron-ajax
+      id="supplierinforeadajax"
+      url="{{supplierinforeadurl}}"
+      params='{{supplierinforeadparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnsupplierinforeadResponse">
+    </iron-ajax>
   <!--Dialog component import-->
   <dialog-page id="dialogpage"></dialog-page>
   </template>

@@ -399,25 +399,20 @@
     	approvesupplierarr.push(supplierid);
     },
      approvesupplierforpurchaseService:function(){
-      //alert("call"+JSON.stringify(approvesupplierarr));
-
-      for(var i=0;i<approvesupplierarr.length;i++){
-      var obj={"supplierid":""};
-      obj.supplierid=approvesupplierarr[i];
+      var obj={"supplierid":"","status":""};
+      obj.status=status;
+      obj.supplierid=sessionStorage.getItem("sess_curr_supplierid");
       this.approvesupplierforpurchaseparam=obj;
       this.approvesupplierforpurchaseurl=sessionStorage.getItem("curr_sess_url")+"approvesupplierforpurchase-service";
       this.$.approvesupplierforpurchaseajax.generateRequest();
-  	  }
     },
     FnapprovesupplierforpurchaseResponse:function(e){
-      //alert(e.detail.response.itemarr);
       if(e.detail.response.itemarr=="succ"){
       	alert("Suppliers are approved!!");
       	window.location.href="../elements/indexhome.html";
       }
       else
       	alert("Failed to approve the supplier!!");
-      //document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
     },
     FnAddContactService:function(designation,mobileno,emailid){
       obj2={"supplierid":"","designation":"","mobileno":"","emailid":""};
@@ -450,6 +445,61 @@
     supplierreadcontactResponse:function(e) {
       //alert(JSON.stringify(e.detail.response.itemarr));
       document.querySelector('suppliercontactperson-card').itemArray=e.detail.response.itemarr;
+    },
+    FnSupplierinforeadService:function(){
+      var obj={"supplierid":""};
+      obj.supplierid=sessionStorage.getItem("sess_curr_supplierid");
+      //alert(obj.customerid);
+      this.supplierinforeadparam=obj;
+      this.supplierinforeadurl=sessionStorage.getItem("curr_sess_url")+"supplierinforead-service";
+      this.$.supplierinforeadajax.generateRequest();
+    },
+    FnsupplierinforeadResponse:function(e){
+      var arr=e.detail.response;
+      //alert(JSON.stringify(arr))
+      //document.querySelector("supplier-detail-read").suppliername=arr[0].Category;
+      document.querySelector("supplier-detail-read").suppliername=arr[0].Supplier_Name;
+      document.querySelector("supplier-detail-read").aliasname=arr[0].Alias_Name;
+      document.querySelector("supplier-detail-read").address1=arr[0].Address1;
+      document.querySelector("supplier-detail-read").address2=arr[0].Address2;
+      document.querySelector("supplier-detail-read").doorno=arr[0].Doorno;
+      document.querySelector("supplier-detail-read").streetno=arr[0].Streetno;
+      document.querySelector("supplier-detail-read").streetname=arr[0].Street_Name;
+      document.querySelector("supplier-detail-read").location=arr[0].Location;
+      document.querySelector("supplier-detail-read").city=arr[0].City;
+      document.querySelector("supplier-detail-read").district=arr[0].District;
+      document.querySelector("supplier-detail-read").state=arr[0].State;
+      document.querySelector("supplier-detail-read").country=arr[0].Country;
+      document.querySelector("supplier-detail-read").pincode=arr[0].Pincode;
+      document.querySelector("supplier-detail-read").phoneno=arr[0].Phoneno;
+      document.querySelector("supplier-detail-read").mobileno=arr[0].Mobileno;
+      document.querySelector("supplier-detail-read").emailid=arr[0].Email;
+      document.querySelector("supplier-detail-read").faxno=arr[0].Faxno;
+      document.querySelector("supplier-detail-read").website=arr[0].Website;
+
+      document.querySelector("customer-payment-read").accountname=arr[0].Account_Name;
+      document.querySelector("customer-payment-read").accountno=arr[0].Account_No;
+      document.querySelector("customer-payment-read").accounttype=arr[0].Account_Type;
+      document.querySelector("customer-payment-read").paymenttype=arr[0].Payment_Type;
+      document.querySelector("customer-payment-read").bankname=arr[0].Bank_Name;
+      document.querySelector("customer-payment-read").branch=arr[0].Branch;
+      document.querySelector("customer-payment-read").ifsccode=arr[0].IFSC_Code;
+      document.querySelector("customer-payment-read").micrcode=arr[0].MICR_Code;
+      document.querySelector("customer-payment-read").swiftcode=arr[0].Swift_Code;
+      document.querySelector("customer-payment-read").term=arr[0].Payment_Term;
+
+      document.querySelector("customer-tax-read").tinno=arr[0].TIN;
+      document.querySelector("customer-tax-read").cstno=arr[0].CST;
+      document.querySelector("customer-tax-read").panno=arr[0].PAN;
+      document.querySelector("customer-tax-read").tanno=arr[0].TAN;
+      document.querySelector("customer-tax-read").cinno=arr[0].CIN;
+
+      document.querySelector("customer-excise-read").regno=arr[0].Reg_No;
+      document.querySelector("customer-excise-read").eccno=arr[0].Ecc_No;
+      document.querySelector("customer-excise-read").range=arr[0].Range;
+      document.querySelector("customer-excise-read").division=arr[0].Division;
+      document.querySelector("customer-excise-read").commission=arr[0].Commission;
+      document.querySelector("customer-excise-read").servicetax=arr[0].Service_Tax;
     }
 
   });

@@ -1,0 +1,91 @@
+<!--Components import-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+
+<link rel="import" href="../supplier-detail-read/supplier-detail-read.html">
+<link rel="import" href="../customer-tax-read/customer-tax-read.html">
+<link rel="import" href="../customer-excise-read/customer-excise-read.html">
+<link rel="import" href="../customer-payment-read/customer-payment-read.html">
+<link rel="import" href="../dynamic-card/dynamic-card.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="supplier-read-page">
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    .card{
+      @apply(--layout-vertical);
+      position: relative;
+      color: black;
+      width: 100%;
+      left: 0%;
+      margin-top:-3%;
+    }
+    .contentbanner{
+      border-top: groove;
+    //border-radius: 2px;
+    //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      width: 89.5%;
+      margin-left: 5.2%;
+      margin-top: 0%;
+    //border-style:groove;
+    //border-color:#e5efe2;
+    //height: 100%;
+      overflow: scroll;
+    }
+    paper-tabs{
+      width: 90%;
+      margin-left: 4.5%;
+    }
+    paper-button{
+      font-size: 17px;
+      text-transform: none;
+    }
+    .tabbanner{
+      margin-left: 2%;
+      margin-top:5%;
+    }
+
+  </style>
+  <template>
+    <div class="card">
+      <div class="tabbanner">
+        <!--Card imported for the dynamic menu -->
+        <dynamic-card></dynamic-card>
+      </div>
+      <div class="contentbanner">
+        <!--Tag is used to change the page view according to the menu selection either vehicle info or item page for the security inward item entry-->
+        <iron-pages selected="{{page}}" attr-for-selected="data-category">
+
+          <section data-category="Supplier Detail">
+            <supplier-detail-read></supplier-detail-read>
+          </section>
+          <section data-category="Tax Detail">
+            <customer-tax-read></customer-tax-read>
+          </section>
+          <section data-category="Excise Detail">
+            <customer-excise-read></customer-excise-read>
+          </section>
+          <section data-category="Payment Detail">
+            <customer-payment-read></customer-payment-read>
+          </section>
+
+        </iron-pages>
+      </div>
+    </div>
+  </template>
+  <!--JS file imported for this inwardslip page-->
+  <script src="../../scripts/supplier-read-page.js"></script>
+
+</dom-module>
