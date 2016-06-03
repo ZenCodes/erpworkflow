@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/supplier-list.js" afterPath="$PROJECT_DIR$/app/scripts/supplier-list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" afterPath="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" afterPath="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,51 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dboperations.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/scripts/dboperations.js">
+      <file leaf-file-name="addcustomer-card.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5694444">
-              <caret line="2579" column="81" selection-start-line="2579" selection-start-column="81" selection-end-line="2579" selection-end-column="81" />
+            <state vertical-scroll-proportion="-3.471698">
+              <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="autocompleteitemlist-card.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
+      <file leaf-file-name="customer-detail-read.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.592592">
-              <caret line="46" column="74" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9107144">
-              <caret line="665" column="44" selection-start-line="665" selection-start-column="44" selection-end-line="665" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="supplier-list.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/supplier-list.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.148148">
-              <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dbconfig.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/dbconfig.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.097561">
-              <caret line="28" column="35" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.43589744">
+              <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -117,9 +87,7 @@
         <option value="$PROJECT_DIR$/app/elements/customer-excise-read/customer-excise-read.html" />
         <option value="$PROJECT_DIR$/app/elements/customer-payment-read/customer-payment-read.html" />
         <option value="$PROJECT_DIR$/app/elements/dynamicbutton-card/dynamicbutton-card.html" />
-        <option value="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/customer-service.js" />
-        <option value="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" />
         <option value="$PROJECT_DIR$/app/elements/approvesupplier-card/approvesupplier-card.html" />
         <option value="$PROJECT_DIR$/app/elements/supplier-read-page/supplier-read-page.html" />
         <option value="$PROJECT_DIR$/app/scripts/supplier-read-page.js" />
@@ -145,6 +113,8 @@
         <option value="$PROJECT_DIR$/app/scripts/customeradditem-card.js" />
         <option value="$PROJECT_DIR$/app/scripts/supplier-list.js" />
         <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
+        <option value="$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html" />
+        <option value="$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html" />
       </list>
     </option>
   </component>
@@ -276,6 +246,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="customer-detail-read" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grnworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="erpworkflow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="addcustomer-card" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -467,14 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6037736">
-          <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/approvesupplier-card/approvesupplier-card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2075472">
@@ -503,14 +509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.4528303">
           <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33663365">
-          <caret line="93" column="28" selection-start-line="0" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -791,7 +789,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/autocompleteitemlist-card.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.592592">
+        <state vertical-scroll-proportion="0.8405253">
           <caret line="46" column="74" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="74" />
           <folding />
         </state>
@@ -799,7 +797,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9107144">
+        <state vertical-scroll-proportion="0.43452382">
           <caret line="665" column="44" selection-start-line="665" selection-start-column="44" selection-end-line="665" selection-end-column="44" />
           <folding />
         </state>
@@ -815,7 +813,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/supplier-list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.148148">
+        <state vertical-scroll-proportion="0.36210132">
           <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
           <folding />
         </state>
@@ -823,7 +821,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/dbconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.097561">
+        <state vertical-scroll-proportion="0.35983264">
           <caret line="28" column="35" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="35" />
           <folding />
         </state>
@@ -833,6 +831,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5694444">
           <caret line="2579" column="81" selection-start-line="2579" selection-start-column="81" selection-end-line="2579" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/addcustomer-card/addcustomer-card.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.471698">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/elements/customer-detail-read/customer-detail-read.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43589744">
+          <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
           <folding />
         </state>
       </provider>

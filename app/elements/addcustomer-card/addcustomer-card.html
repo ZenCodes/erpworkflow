@@ -84,6 +84,9 @@
         margin-left: -20%;
         margin-top: 4%;
       }
+      paper-dropdown-menu{
+        width:35%;
+      }
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
@@ -143,7 +146,7 @@
           <paper-input readonly="{{read}}" label="{{item.Fax_No}}" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
           <paper-input readonly="{{read}}" label="{{item.Website}}" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
         </div>
-        <div>
+        <div class="owner">
           <paper-dropdown-menu disabled="{{read}}" id="category" label="Select Category" required>
             <paper-listbox id="cuscategory" attr-for-selected="value" class="dropdown-content" on-iron-select="FnCategorySelected" selected="{{category}}">
               <paper-item>-----Select-----</paper-item>
