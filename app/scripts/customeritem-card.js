@@ -11,12 +11,13 @@ var supid="";
     ready:function(){
 	},
 	FnFetchItemInfo:function(supplierid,suppliername){
+    alert(supplierid);
 		supname=suppliername;
 		supid=supplierid;
-	
+
 	this.$.customerservice.callItemService(supplierid);
 	},
-	FnCreateItemSupplier:function(){	
+	FnCreateItemSupplier:function(){
 	document.querySelector('customer-page').setPage('Add Item');
 	}
   });

@@ -12,7 +12,7 @@
     },
     //Method invokes while making write req from the additem card
     callItemWriteService:function(price,itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-		//alert("yes"+itemoptionalsupplier);
+		alert("yes"+itemoptionalsupplier);
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
     };

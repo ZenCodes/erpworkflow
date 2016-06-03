@@ -79,15 +79,17 @@ FnAddItemSubmit:function(){
     this.itemflag=this.purchasearr[i].purchasetypeid;
 	}
   //alert(this.itemflag);
-  //alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
+  alert(this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
 	if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){
-	}
+	alert('empty');
+  }
 	else
 	{
+    alert('save');
 	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
 	//alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
   localStorage.setItem("curr_sess_additemcustomerwrite","1");
-	this.$.adminservice.callCustomerItemWriteService(this.supplierid,this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
+	this.$.adminservice.callCustomerItemWriteService(localStorage.getItem('curr_sess_customerloggedid'),this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
 	}
   document.querySelector('stores-card').FnClear();
   document.querySelector('itemsearch-card').FnSetClearFields();
@@ -116,6 +118,8 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 	this.itemdes=itemdes;
 	this.containertype=container;
 	this.unittype=quantity;
+  this.container=container;
+  this.quantity=quantity;
 	for(var i=0;i<this.itemarr.length;i++){
 	   if(this.itemarr[i].itemtypeid==itemtype)
 	      this.itemtype=this.itemarr[i].itemtypename;

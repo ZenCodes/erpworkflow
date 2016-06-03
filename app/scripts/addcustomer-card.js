@@ -58,12 +58,12 @@
          this.$.customerservice.FncustomerreadcontactService();
          //document.querySelector("customer-page").setPage("Add Contact");
          //document.querySelector("customer-page").setPage("Add Payment");
-         //document.querySelector("customerpayment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_customerloggedid'),this.suppliername);
+         document.querySelector("customerpayment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_customerloggedid'),this.suppliername);
  		 }
  		 else{
          this.$.customerservice.FncustomerreadcontactService();
 			   //document.querySelector("customer-page").setPage("Add Contact");
-			   //document.querySelector("customerpayment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
+			   document.querySelector("customerpayment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_customerloggedid'),this.suppliername);
 		 }
 	  }
     },
