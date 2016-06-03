@@ -4,8 +4,13 @@
 Polymer({
   is: "app-homepage",
   ready: function() {
-    //this.page='home-page';
+    alert(sessionStorage.getItem("curr_sess_roleflag"));
+    alert(localStorage.getItem("curr_sess_wardflag"));
 
+
+    if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&(localStorage.getItem("curr_sess_wardflag")!="5"||localStorage.getItem("curr_sess_wardflag")!="6")){
+      localStorage.setItem("curr_sess_wardflag","5");
+    }
     this.userlabel="Signout";
     this.$.intentview.style.visibility='hidden';
     this.$.promotebutton.style.visibility='hidden';
@@ -15,16 +20,12 @@ Polymer({
     this.$.dynamicbutton.style.visibility='hidden';
     this.$.flowbutton.style.visibility='hidden';
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
-      //alert("sales"+ localStorage.getItem("curr_sess_wardflag"));
       if(localStorage.getItem("curr_sess_wardflag")=="5") {
-        //localStorage.setItem("curr_sess_wardflag", "");
         document.querySelector('app-homepage').setPage('outwardreport-card');
         this.page = "outwardreport-card";
       }
       if(localStorage.getItem("curr_sess_wardflag")=="6") {
-
         localStorage.setItem("curr_sess_showpage", "Add Customer");
-        //document.querySelector("supplier-page").setPage("Add Supplier");
         this.page = "customer-page";
       }
       this.$.flow.style.visibility='hidden';
@@ -33,7 +34,6 @@ Polymer({
       this.$.drawerlist.style.visibility='visible';
       this.$.searchmenu.style.visibility='hidden';
     }
-
     /*Condition which allow to see the search page and hide the respective components in UI*/
     if(sessionStorage.getItem("curr_sess_roleflag")=="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"){
      //alert("search");
@@ -65,10 +65,8 @@ Polymer({
       this.$.searchmenu.style.visibility='hidden';
     }
     /*Condition which allow security gaurd(role flag is 0) to navigate to his respective inward/outward item entry page*/
-    //if(sessionStorage.getItem("loggedrole")=="Security guard")
     if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6")
     {
-      //alert("inwardoutward");
       /*Condtion to navigate to the inward item entry page when he initially logged in or changing options in drawer menu*/
       if(localStorage.getItem("curr_sess_wardflag")!="1"){
         localStorage.setItem("curr_sess_showpage","Vehicle Info");
@@ -178,6 +176,7 @@ Polymer({
       this.page = "supplier-page";
       }
     }
+
 
   },
   /*when user click signout button it will clear the user session*/
