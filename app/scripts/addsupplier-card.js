@@ -52,12 +52,12 @@
           this.$.adminsupplierservice.FnsupplierreadcontactService();
           //document.querySelector("customer-page").setPage("Add Contact");
           //document.querySelector("customer-page").setPage("Add Payment");
-          //document.querySelector("customerpayment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_customerloggedid'),this.suppliername);
+          document.querySelector("payment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.suppliername);
         }
         else{
           this.$.adminsupplierservice.FnsupplierreadcontactService();
           //document.querySelector("customer-page").setPage("Add Contact");
-          //document.querySelector("customerpayment-card").FnFetchPaymentInfo(this.supplierid,this.suppliername);
+          document.querySelector("payment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.suppliername);
         }
       }
     },

@@ -33,17 +33,17 @@ Polymer({
       if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
         this.$.adminsupplierservice.addpaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm);
         document.querySelector('supplier-page').setPage('Show Item');
-        document.querySelector('supplieritem-card').FnFetchItemInfo(this.supid,this.supname);
+        document.querySelector('supplieritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.supname);
       }
       else if(localStorage.getItem("curr_sess_addsuppliereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
         this.$.adminsupplierservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm);
         document.querySelector('supplier-page').setPage('Show Item');
-        document.querySelector('supplieritem-card').FnFetchItemInfo(this.supid,this.supname);
+        document.querySelector('supplieritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.supname);
       }
       else
       {
         document.querySelector('supplier-page').setPage('Show Item');
-        document.querySelector('supplieritem-card').FnFetchItemInfo(this.supid,this.supname);
+        document.querySelector('supplieritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.supname);
       }
     }
   },

@@ -10,18 +10,19 @@ var supid="";
 
     ready:function(){
 	},
-	
+
 	FnFetchItemInfo:function(supplierid,suppliername){
 		supname=suppliername;
 		supid=supplierid;
-	
+
 	this.$.adminsupplierservice.callItemService(supplierid);
+    //alert('fetch item info...'+supplierid);
 	},
-	FnCreateItemSupplier:function(){	
+	FnCreateItemSupplier:function(){
 	document.querySelector('supplier-page').setPage('Add Item');
 	},
 	FnDelete:function(e){
-		
+
 	}
   });
 })();

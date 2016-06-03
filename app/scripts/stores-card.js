@@ -17,11 +17,11 @@
         this.$.storeslist.style.width='150%';
       }
     this.querySelector('#storeslist').style.visibility = 'hidden';
-    this.storesurl=sessionStorage.getItem("curr_sess_url")+"itemstoresread-service";     
+    this.storesurl=sessionStorage.getItem("curr_sess_url")+"itemstoresread-service";
     },
     //Method to toggle supplier names readonly or non editable
     FnEnableFields:function(enableflag){
-    this.read=enableflag;    
+    this.read=enableflag;
     },
     FnSetDefaultValue:function(storesid){
       //alert(storesid);
@@ -29,8 +29,10 @@
         if(item[i].Store_Location_ID==storesid){
           this.value=item[i].Store_Location_Name;
           document.querySelector('additem-card').FnSetStoresInfo(item,storesid);
+          document.querySelector('supplieradditem-card').FnSetStoresInfo(item,storesid);
+          document.querySelector('supplieradditem-card').FnSetStoresInfo(item,storesid);
         }
-      }      
+      }
     },
     //Funtion invokes when selecting item in dropdown
     FnItemSelected:function(e){
@@ -38,7 +40,7 @@
         this.value = e.target.selectedItem.textContent.trim();
         for(var i=0;i<item.length;i++){
           if(this.value==item[i].Store_Location_Name)
-            storesid=item[i].Store_Location_ID;          
+            storesid=item[i].Store_Location_ID;
         }
         if(localStorage.getItem("curr_sess_wardflag") == ""){
         document.querySelector('additem-card').FnSetStoresInfo(item,storesid);
@@ -52,18 +54,18 @@
         this.querySelector('#storeslist').style.visibility = 'hidden';
         this.querySelector('#storeslist').selected=-1;
         this.itemArray="";
-      } 
+      }
       else
       {
         this.querySelector('#storeslist').style.visibility = 'hidden';
-        this.querySelector('#storeslist').selected=-1; 
+        this.querySelector('#storeslist').selected=-1;
         this.itemArray="";
-      }   
+      }
     },
-    
+
     //Function invokes when item value changes in input box to show the relevent items
     FnInputChanged:function(e){
-        localStorage.setItem("curr_sess_storeschangeflag","1"); 
+        localStorage.setItem("curr_sess_storeschangeflag","1");
         if (e.keyCode == 13 || e.keyCode == 40)
           this.querySelector('#storeslist').focus();
         var arr = [];
@@ -135,8 +137,8 @@
     },
     //Fetches and binding to the auto complete dropdown list dynamically
     itemstoresreadResponse:function(e) {
-       item=e.detail.response.itemarr; 
-       //alert(JSON.stringify(item));      
+       item=e.detail.response.itemarr;
+       //alert(JSON.stringify(item));
     },
     FnValidate:function(){
       this.$.stores.validate();

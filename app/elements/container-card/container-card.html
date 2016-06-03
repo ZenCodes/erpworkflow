@@ -6,7 +6,7 @@
 <link rel="import" href="../admin-service/admin-service.html">
 <dom-module id="container-card">
   <template>
-    <style> 
+    <style>
       paper-dropdown-menu{
        width: 120%;
       }
@@ -35,10 +35,10 @@
     FnSelectcontainer:function(e){
       document.querySelector('additem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
       document.querySelector('supplieradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
-      
+
     },
     FnSetContainer:function(container){
-      //alert(container);
+//      alert(container);
       this.containertype=container;
     }
     });
