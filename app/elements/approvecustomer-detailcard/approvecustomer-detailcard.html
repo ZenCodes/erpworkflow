@@ -10,16 +10,6 @@
 <dom-module id="approvecustomer-detailcard">
   <template>
     <style>
-      :host {
-        display: block;
-      }
-      .collapsecard{
-        @apply(--layout-horizontal);
-        /*width: 100%;*/
-        /*border-radius: 2px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        margin-top:2%;
-      }
       paper-button{
         width:30%;
       }
@@ -27,40 +17,11 @@
     <div class="collapsecard" id="card{{customerid}}" on-click="FnFetchInfo">
       <paper-button hidden id="customerid"  name="customerid" value="{{customerid}}" noink>{{customerid}}</paper-button>
       <paper-button id="customername"  name="customername" value="{{customername}}" noink>{{customername}}</paper-button>
-      <!--<paper-button id="location"  name="location" value="{{location}}" noink>{{location}}</paper-button>-->
-      <!--<paper-button id="city"  name="city" value="{{city}}" noink>{{city}}</paper-button>-->
-      <!--<paper-checkbox id={{customerid}} on-change="FnCheck"></paper-checkbox>-->
     </div>
-    <!--Expand item collapse card-->
-    <!--<iron-collapse id="{{customerid}}">
-      <div class="collapse">
-        <customer-read-page></customer-read-page>
-      </div>
-    </iron-collapse>-->
     <customer-service id="cs"></customer-service>
   </template>
   <script>
-    /*(function() {
-      'use strict';
-      var approvearr=[];
-      Polymer({
-        is: 'approvecustomer-detailcard',
-        FnCheck:function(){
-          if(document.querySelector('#'+this.customerid).checked==true){
-            approvearr.push(this.customerid);
-            document.querySelector('customer-service').FnSetCustomerforApprove(this.customerid);
-          }
-        },
-        FnExpandcard:function(){
 
-        }
-      });
-    })();*/
-
-    /**
-     * Created by praba on 2/12/2016.
-     */
-//JS file for physicinsitem-card
     (function() {
       var arr=[];
       var id="true";
@@ -75,85 +36,6 @@
           sessionStorage.setItem("sess_curr_customerid",this.customerid);
           this.$.cs.FnCustomerinforeadService();
         }
-       /* FnExpandcard:function(){
-          var n=1;
-          var x=-4;
-          //Storing expanded card IRN number in sessionstorage
-          sessionStorage.setItem("sess_curr_customerid",this.customerid);
-          document.querySelector('customer-read-page').ready();
-          //calling service to call fetch coil info
-          this.$.cs.FnCustomerinforeadService();
-          //Sending IRN number to service component to fetch the expanded card info
-//          this.$.ps.physicqualifyitemService(this.contreceived,this.contmeasure);
-          //document.querySelector('specification-card').FnspecificationitemreadService();
-          //Calling webcomponent service to fetch labels dynamically for this card from config file
-//          this.$.ps.callWebcomponentService();
-          var all=document.querySelectorAll('.collapsecard');
-          //Expand card toggle logic
-          if(id=="true")
-          {
-            id= document.querySelector("#"+this.customerid);
-            id.toggle();
-          }
-          else
-          {
-            if(id!=document.querySelector("#"+this.customerid))
-            {
-              id.opened=false;
-            }
-            id= document.querySelector("#"+this.customerid);
-            id.toggle();
-          }
-          //Logic for closing all cards and showing the currently expand card
-          if(clrid=="true")
-          {
-            for(var i=0;i<all.length;i++){
-              if(all[i].id==document.querySelector("#card"+this.customerid).id){
-                if(i!=0){
-                  all[i].style.marginTop=((i*(x))-i)+"%";
-                }
-                if(i>10){
-                  all[i].style.marginTop=((i*(x+(-.5)))-i)+"%";
-                }
-                all[i].style.visibility='visible';
-              }
-              else
-                all[i].style.visibility='hidden';
-            }
-            clrid= document.querySelector("#card"+this.customerid);
-          }
-          else
-          {
-            if(clrid!=document.querySelector("#card"+this.customerid))
-            {
-              for(var i=0;i<all.length;i++){
-                if(all[i].id==document.querySelector("#card"+this.customerid).id){
-                  //alert("yes yes");
-                  all[i].style.visibility='visible';
-                }
-                else
-                  all[i].style.visibility='hidden';
-              }
-              clrid= document.querySelector("#card"+this.customerid);
-            }
-            else
-            {
-              for(var i=0;i<all.length;i++){
-                if(i!=0)
-                  all[i].style.marginTop=(n)+"%";
-                all[i].style.visibility='visible';
-              }
-              clrid="true";
-            }
-          }
-        },
-        setToggle:function()
-        {
-          //Method to toggle card
-          var toggleid=sessionStorage.getItem("sess_curr_customerid");
-          id= document.querySelector("#"+toggleid);
-          id.opened=false;
-        }*/
       });
     })();
 
