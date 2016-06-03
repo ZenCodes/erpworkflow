@@ -43,7 +43,7 @@
     this.read=enableflag;
     },
     FnSpecificSupplierReadService:function(itemid){
-      //alert(itemname);      
+      //alert(itemname);
       var obj={"itemid":""};
       obj.itemid=itemid;
       this.supplierparam=obj;
@@ -70,7 +70,7 @@
         }
         //Binding values to the respective cards where the supplier name field have been used
         if(sessionStorage.getItem("curr_sess_roleflag")=="0"){
-          document.querySelector('item-page').FnInputChanged(this.supplierid,this.suppliername);          
+          document.querySelector('item-page').FnInputChanged(this.supplierid,this.suppliername);
           document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supplierid,this.suppliername);
           this.read=true;
         }
@@ -260,6 +260,7 @@
     //Fetches and binding to the auto complete dropdown list dynamically
     itemsupplierreadResponse:function(e) {
        item=e.detail.response.itemarr;
+      //alert(JSON.stringify(item));
        item1=e.detail.response.itemarr;
     },
     setDefaultValue:function(supplier1,supplier2){

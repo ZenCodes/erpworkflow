@@ -1470,7 +1470,8 @@ exports.FnItemsupplierRead=function(pagename,itemid,callback) {
       Config_tables=obj[i].value;
     }
   }
-  var queryy="SELECT * FROM "+Config_tables[0]+" where Supplier_ID not in(SELECT Item_Supplier_ID from OD_Item where Item_ID='"+itemid+"')";
+  console.log('itemid.....'+itemid);
+  var queryy="SELECT * FROM "+Config_tables[0]+" where Status='Approved' and Supplier_ID not in(SELECT Item_Supplier_ID from OD_Item where Item_ID='"+itemid+"')";
   //console.log(queryy);
   connection.query(queryy,function(err, rows, fields) {
     var itemarr=[];
@@ -2576,7 +2577,7 @@ exports.FnItemcustomerRead=function(pagename,itemid,callback) {
       Config_tables=obj[i].value;
     }
   }
-  var queryy="SELECT * FROM MD_Sales_Customer_Detail where Customer_ID not in(SELECT Item_Customer_ID from OD_Item where Item_ID='"+itemid+"')";
+  var queryy="SELECT * FROM MD_Sales_Customer_Detail where Status='Approved' and Customer_ID not in(SELECT Item_Customer_ID from OD_Item where Item_ID='"+itemid+"')";
   //console.log(queryy);
   connection.query(queryy,function(err, rows, fields) {
     var itemarr=[];
@@ -2969,7 +2970,7 @@ exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,status,callbac
       Config_columnvalues=obj[i].columnvalues;
     }
   }
-  var queryy="UPDATE "+Config_tables[0]+" SET Status='status' where Supplier_ID='"+supplierid+"'";
+  var queryy="UPDATE "+Config_tables[0]+" SET Status='"+status+"' where Supplier_ID='"+supplierid+"'";
    console.log(queryy);
   connection.query(queryy, function(err, rows) {
     if(!err)
