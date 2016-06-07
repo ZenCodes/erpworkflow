@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/login.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/logo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/rupee.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/apple-touch-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/chrome-splashscreen-icon-384x384.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/chrome-touch-icon-192x192.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/icon-128x128.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/icon-512x512.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/icon-72x72.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/icon-96x96.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/ms-icon-144x144.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/images/touch/ms-touch-icon-144x144-precomposed.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" afterPath="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html" afterPath="$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app-homepage.js" afterPath="$PROJECT_DIR$/app/scripts/app-homepage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/dboperations.js" afterPath="$PROJECT_DIR$/app/scripts/dboperations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/physicqualify-card.js" afterPath="$PROJECT_DIR$/app/scripts/physicqualify-card.js" />
-    </list>
+    <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="" />
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
