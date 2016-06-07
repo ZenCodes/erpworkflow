@@ -8,9 +8,9 @@ Polymer({
     //alert(localStorage.getItem("curr_sess_wardflag"));
 
 
-    if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&(localStorage.getItem("curr_sess_wardflag")!="5"||localStorage.getItem("curr_sess_wardflag")!="6")){
+    /*if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&(localStorage.getItem("curr_sess_wardflag")!="5"||localStorage.getItem("curr_sess_wardflag")!="6")){
       localStorage.setItem("curr_sess_wardflag","5");
-    }
+    }*/
     /*if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&(localStorage.getItem("curr_sess_wardflag")!="7"||localStorage.getItem("curr_sess_wardflag")!="8")){
       localStorage.setItem("curr_sess_wardflag","7");
     }*/
