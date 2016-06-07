@@ -1,5 +1,10 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+
 
 <dom-module id="specification-item-crd">
   <template>
@@ -8,7 +13,7 @@
         @apply(--layout-horizontal);
 
       }
-      paper-input{
+      paper-input,paper-dropdown-menu{
         width: 12%;
         margin-left: 3%;
       }
@@ -19,7 +24,16 @@
     </style>
     <div class="card">
       <paper-input id="parameter" value="{{name}}"></paper-input>
-      <paper-input id="minvalue" value="{{minvalue}}"></paper-input><paper-input readonly id="minmeasure" value="{{measure}}"></paper-input>
+
+      <paper-dropdown-menu label="Select" hidden$="{{dropflag}}">
+        <paper-listbox class="dropdown-content">
+          <template is="dom-repeat" items="{{itemarr}}" as="item">
+          <paper-item>{{item}}</paper-item>
+          </template>
+        </paper-listbox>
+      </paper-dropdown-menu>
+
+      <paper-input id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}"></paper-input><paper-input readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}"></paper-input>
       <paper-input id="maxvalue" value="{{maxvalue}}"></paper-input><paper-input readonly id="maxmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}actualvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>

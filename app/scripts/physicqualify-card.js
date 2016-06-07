@@ -100,7 +100,7 @@
           else
           arr[i].readflag=true;
 
-         if(arr[i].Quantity_Measure=="Coil")
+         if(containermeasure=='Coil')
          arr[i].hideflag=false;
          else
          arr[i].hideflag=true;

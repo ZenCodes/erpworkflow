@@ -4,8 +4,8 @@
 Polymer({
   is: "app-homepage",
   ready: function() {
-    alert(sessionStorage.getItem("curr_sess_roleflag"));
-    alert(localStorage.getItem("curr_sess_wardflag"));
+    //alert(sessionStorage.getItem("curr_sess_roleflag"));
+    //alert(localStorage.getItem("curr_sess_wardflag"));
 
 
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&(localStorage.getItem("curr_sess_wardflag")!="5"||localStorage.getItem("curr_sess_wardflag")!="6")){

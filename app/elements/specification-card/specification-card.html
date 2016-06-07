@@ -53,7 +53,7 @@
           <paper-tab><paper-button>Remarks</paper-button></paper-tab>
         </paper-tabs>
       <template is="dom-repeat" items="{{itemArray}}" as="item">
-        <specification-item-crd measure="{{item.Unit_Measure}}" name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
+        <specification-item-crd dropflag="{{item.dropflag}}" inputflag="{{item.inputflag}}" itemarr="{{item.droparr}}" measure="{{item.Unit_Measure}}" name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
       </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
@@ -79,6 +79,7 @@
   (function() {
     'use strict';
     var qualityarr=[];
+    var repeatflag=0;
     Polymer({
       is: 'specification-card',
       ready:function(){
@@ -103,18 +104,57 @@
         this.$.specificationitemreadajax.generateRequest();
       },
       FnspecificationitemreadResponse:function(e){
+        this.finalarr=[];
+//        alert(JSON.stringify(e.detail.response));
         if(JSON.stringify(e.detail.response)!='no items')
-        this.itemArray=e.detail.response;
-        //alert(JSON.stringify(this.itemArray));
-        this.specarr=e.detail.response;
+          this.specarr=e.detail.response;
+          for(var i=0;i<this.specarr.length;i++){
+            this.flag=0;
+          if(this.specarr[i].Quality_Parameter_Name=='Size'){
+            this.specarr[i].dropflag=false;
+            this.specarr[i].inputflag=true;
+            var darr=['Small','Medium','Large'];
+            this.specarr[i].droparr=darr;
+            if(repeatflag==0)
+            this.finalarr.push(this.specarr[i]);
+            repeatflag=1;
+//          break;
+          }
+          else
+          {
+            this.specarr[i].dropflag=true;
+            this.specarr[i].inputflag=false;
+            this.flag=1;
+          }
+            if(this.flag==1){
+              this.finalarr.push(this.specarr[i]);
+            }
+
+            /*if(i==0) {
+              alert('value 0');
+              alert(this.specarr[i]);
+            }*/
+          }
+        /*if(this.specarr.length>0) {
+          alert('coming...');
+          for(var j=0;j<this.specarr.length;j++) {
+            if(j==0)
+            this.finalarr.push(this.specarr[j]);
+            for(var k=0;k<this.finalarr.length;k++)
+            if(this.finalarr[k].Quality_Parameter_Name!=this.specarr[j].Quality_Parameter_Name)
+              this.finalarr.push(this.specarr[j]);
+          }
+        }*/
+          alert(JSON.stringify(this.finalarr));
+          this.itemArray=this.finalarr;
       },
       FnSetValue:function(qualityarray){
-        alert(JSON.stringify(qualityarray));
+//        alert(JSON.stringify(qualityarray));
         qualityarr=qualityarray;
       },
       FnSubmittest:function(){
         //alert('yes');
-        alert((qualityarr).length);
+//        alert((qualityarr).length);
         if((qualityarr).length==(this.itemArray).length)
         {
           alert('Test submit!');
