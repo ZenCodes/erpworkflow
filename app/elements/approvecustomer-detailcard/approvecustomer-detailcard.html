@@ -33,6 +33,7 @@
           this.icons="icons:arrow-drop-down";
         },
         FnFetchInfo:function(){
+          sessionStorage.setItem("sess_curr_customername",this.customername);
           sessionStorage.setItem("sess_curr_customerid",this.customerid);
           this.$.cs.FnCustomerinforeadService();
         }

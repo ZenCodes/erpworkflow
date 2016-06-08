@@ -409,7 +409,8 @@
     },
     FnapprovesupplierforpurchaseResponse:function(e){
       if(e.detail.response.itemarr=="succ"){
-      	alert("Suppliers are approved!!");
+      	//alert("Suppliers are approved!!");
+        this.$.dialogpage.FnShowDialog(sessionStorage.getItem("sess_curr_suppliername")+" Approved Successfully!!","");
       	window.location.href="../elements/indexhome.html";
       }
       else

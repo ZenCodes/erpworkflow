@@ -428,7 +428,7 @@
       approvecustomerarr.push(customerid);
     },
     approvecustomerforsalesService:function(status){
-      //alert("call"+JSON.stringify(approvesupplierarr));
+      //alert("call"+JSON.stringify(approvesupplierarr));dialogpage
       //for(var i=0;i<approvecustomerarr.length;i++){
         var obj={"customerid":"","status":""};
         obj.status=status;
@@ -442,7 +442,8 @@
     FnapprovecustomerforsalesResponse:function(e){
       //alert(e.detail.response.itemarr);
       if(e.detail.response.itemarr=="succ"){
-        alert("Action Done!!");
+        //alert("Action Done!!");
+        this.$.dialogpage.FnShowDialog(sessionStorage.getItem("sess_curr_customername")+" Approved Successfully!!","");
         window.location.href="../elements/indexhome.html";
       }
       else
