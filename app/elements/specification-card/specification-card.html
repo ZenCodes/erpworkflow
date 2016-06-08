@@ -105,16 +105,32 @@
       },
       FnspecificationitemreadResponse:function(e){
         this.finalarr=[];
+        this.arr=[];
+        this.temp="true";
 //        alert(JSON.stringify(e.detail.response));
         if(JSON.stringify(e.detail.response)!='no items')
           this.specarr=e.detail.response;
           for(var i=0;i<this.specarr.length;i++){
+            if(this.specarr[i].Quality_Flag=='1'){
+              if(this.temp=="true") {
+                this.temp=this.specarr[i].Quality_Parameter_Name;
+                this.arr.push(this.specarr[i].Min_Value);
+              }
+              else if(this.temp==this.specarr[i].Quality_Parameter_Name){
+                this.arr.push(this.specarr[i].Min_Value);
+              }
+
+            }
+          }
+//          alert(JSON.stringify(this.arr));
+
+          for(var i=0;i<this.specarr.length;i++){
             this.flag=0;
-          if(this.specarr[i].Quality_Parameter_Name=='Size'){
+          if(this.specarr[i].Quality_Flag=='1'){
             this.specarr[i].dropflag=false;
             this.specarr[i].inputflag=true;
-            var darr=['Small','Medium','Large'];
-            this.specarr[i].droparr=darr;
+//            var darr=['Small','Medium','Large'];
+            this.specarr[i].droparr=this.arr;
             if(repeatflag==0)
             this.finalarr.push(this.specarr[i]);
             repeatflag=1;

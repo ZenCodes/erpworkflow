@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf3fb231-85cc-4338-a98a-05a9680da69c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/approvecustomer-detailcard/approvecustomer-detailcard.html" afterPath="$PROJECT_DIR$/app/elements/approvecustomer-detailcard/approvecustomer-detailcard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/approvesupplier-detailcard/approvesupplier-detailcard.html" afterPath="$PROJECT_DIR$/app/elements/approvesupplier-detailcard/approvesupplier-detailcard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" afterPath="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/customer-service.js" afterPath="$PROJECT_DIR$/app/scripts/customer-service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" afterPath="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" />
     </list>
     <ignored path="grnworkflow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +36,8 @@
       <file leaf-file-name="specification-card.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/elements/specification-card/specification-card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4827586">
-              <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.9310345">
+              <caret line="165" column="8" selection-start-line="165" selection-start-column="8" selection-end-line="165" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -108,7 +104,6 @@
         <option value="$PROJECT_DIR$/app/elements/approvecustomer-card/approvecustomer-card.html" />
         <option value="$PROJECT_DIR$/app/elements/approvesupplier-card/approvesupplier-card.html" />
         <option value="$PROJECT_DIR$/app/scripts/physicqualify-card.js" />
-        <option value="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" />
         <option value="$PROJECT_DIR$/app/elements/specification-item-crd/specification-item-crd.html" />
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/app/scripts/dboperations.js" />
@@ -117,6 +112,7 @@
         <option value="$PROJECT_DIR$/app/elements/approvesupplier-detailcard/approvesupplier-detailcard.html" />
         <option value="$PROJECT_DIR$/app/scripts/adminsupplier-service.js" />
         <option value="$PROJECT_DIR$/app/scripts/customer-service.js" />
+        <option value="$PROJECT_DIR$/app/elements/specification-card/specification-card.html" />
       </list>
     </option>
   </component>
@@ -955,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/elements/specification-card/specification-card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4827586">
-          <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.9310345">
+          <caret line="165" column="8" selection-start-line="165" selection-start-column="8" selection-end-line="165" selection-end-column="8" />
           <folding />
         </state>
       </provider>
