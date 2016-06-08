@@ -158,6 +158,8 @@
       //alert('supplier'+e.detail.response.returnval);
       //alert(JSON.stringify(obj3));
       if(e.detail.response.returnval=="succ"){
+        localStorage.setItem('curr_sess_customerloggedid',e.detail.response.id);
+        obj3.customerid=localStorage.getItem('curr_sess_customerloggedid');
         this.customertaxaddparam=obj3;
         this.customertaxaddurl=sessionStorage.getItem("curr_sess_url")+"customertaxadd-service";
         this.$.customertaxaddajax.generateRequest();
@@ -214,6 +216,7 @@
     //alert('tax'+e.detail.response.returnval);
     //alert(JSON.stringify(obj4));
     if(e.detail.response.returnval=="succ") {
+      obj4.customerid=localStorage.getItem('curr_sess_customerloggedid');
       this.customerexciseaddparam = obj4;
       this.customerexciseaddurl = sessionStorage.getItem("curr_sess_url") + "customerexciseadd-service";
       this.$.customeraddexciseajax.generateRequest();
@@ -233,6 +236,7 @@
   customerexciseaddResponse:function(e) {
   //alert('excise' + e.detail.response.returnval);
   if (e.detail.response.returnval=="succ"){
+    obj5.customerid=localStorage.getItem('curr_sess_customerloggedid');
     this.paymentparam = obj5;
     this.paymenturl = sessionStorage.getItem("curr_sess_url") + "addcustomerpayment-service";
     this.$.addpaymentajax.generateRequest();

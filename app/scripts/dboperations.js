@@ -1612,13 +1612,13 @@ exports.FnAddSupplier=function(pagename,response,callback) {
     }
   }
   response.Status=Config_columnvalues[0];
-  connection.query('INSERT INTO ' + Config_tables[0] + ' SET ?', [response], function (err, result) {
+  /*connection.query('INSERT INTO ' + Config_tables[0] + ' SET ?', [response], function (err, result) {
         if(!err)
           return callback("succ");
         else
           return callback("fail");
-  });
-  /*connection.query('SELECT ID FROM MD_Supplier_Sequence',function(err,rows) {
+  });*/
+  connection.query('SELECT ID FROM MD_Supplier_Sequence',function(err,rows) {
     if(rows.length>0) {
       response.Supplier_ID=response.Supplier_ID+rows[0].ID;
       var newid=parseInt(rows[0].ID)+1;
@@ -1627,7 +1627,8 @@ exports.FnAddSupplier=function(pagename,response,callback) {
         if (!err) {
           connection.query('UPDATE MD_Supplier_Sequence set ?', [updateval], function (err, result) {
             if(!err)
-            return callback("succ");
+            return callback({"msg":"succ","id":response.Supplier_ID});
+            //return callback("succ");
             else
             return callback("fail");
           });
@@ -1638,7 +1639,7 @@ exports.FnAddSupplier=function(pagename,response,callback) {
       });
 
     }
-  });*/
+  });
 }
 
 //Function which update customer contact info
@@ -2473,13 +2474,13 @@ exports.FnAddCustomer=function(pagename,response,callback) {
       Config_tables=obj[i].value;
     }
   }
-  connection.query('INSERT INTO MD_Sales_Customer_Detail SET ?', [response], function (err, result) {
+ /* connection.query('INSERT INTO MD_Sales_Customer_Detail SET ?', [response], function (err, result) {
         if(!err)
           return callback("succ");
         else
           return callback("fail");
-  });
-  /*connection.query('SELECT ID FROM MD_Customer_Sequence',function(err,rows) {
+  });*/
+  connection.query('SELECT ID FROM MD_Customer_Sequence',function(err,rows) {
     if(rows.length>0) {
       response.Customer_ID=response.Customer_ID+rows[0].ID;
       var newid=parseInt(rows[0].ID)+1;
@@ -2488,7 +2489,7 @@ exports.FnAddCustomer=function(pagename,response,callback) {
         if (!err) {
           connection.query('UPDATE MD_Customer_Sequence set ?', [updateval], function (err, result) {
             if(!err)
-              return callback("succ");
+              return callback({"msg":"succ","id":response.Customer_ID});
             else
               return callback("fail");
           });
@@ -2499,7 +2500,7 @@ exports.FnAddCustomer=function(pagename,response,callback) {
       });
 
     }
-  });*/
+  });
 }
 
 //Function which addpayment info

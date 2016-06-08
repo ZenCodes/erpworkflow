@@ -758,7 +758,7 @@ app.post("/addsupplier-service",urlencodedParser,function(req,res) {
   };
   var FnAddSuppliercall = require("./app/scripts/dboperations.js");
   FnAddSuppliercall.FnAddSupplier("addsupplier-service", response, function (returnval) {
-    res.status(200).json({'returnval': returnval});
+    res.status(200).json({'returnval': returnval.msg,'id':returnval.id});
   });
 
 });
@@ -1240,7 +1240,7 @@ app.post("/addcustomer-service",urlencodedParser,function(req,res) {
   };
   var FnAddCustomercall = require("./app/scripts/dboperations.js");
   FnAddCustomercall.FnAddCustomer("addcustomer-service",response,function(returnval){
-    res.status(200).json({'returnval': returnval});
+    res.status(200).json({'returnval': returnval.msg,'id':returnval.id});
   });
 
 });

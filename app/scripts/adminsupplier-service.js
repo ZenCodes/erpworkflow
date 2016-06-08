@@ -156,6 +156,8 @@
     addsupplierResponse:function(e){
       //alert("supplier..."+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
+        localStorage.setItem('curr_sess_supplierloggedid',e.detail.response.id);
+        obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
         this.customertaxaddparam=obj3;
         this.customertaxaddurl=sessionStorage.getItem("curr_sess_url")+"suppliertaxadd-service";
         this.$.customertaxaddajax.generateRequest();
@@ -181,6 +183,7 @@
     customertaxaddResponse:function(e){
       //alert('tax'+e.detail.response.returnval);
       if(e.detail.response.returnval=="succ") {
+        obj4.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
         this.customerexciseaddparam = obj4;
         this.customerexciseaddurl = sessionStorage.getItem("curr_sess_url") + "supplierexciseadd-service";
         this.$.customeraddexciseajax.generateRequest();
@@ -201,6 +204,7 @@
     customerexciseaddResponse:function(e) {
       //alert('excise' + e.detail.response.returnval);
       if (e.detail.response.returnval=="succ"){
+        obj5.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
         this.paymentparam = obj5;
         this.paymenturl = sessionStorage.getItem("curr_sess_url") + "addpayment-service";
         this.$.addpaymentajax.generateRequest();
