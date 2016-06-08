@@ -48,7 +48,8 @@
       //alert(e.detail.response.returnval);
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"outdate":"","outtime":"","customername":"","invoiceno":"","city":"","vehicleno":"","transportname":"","drivername":"","driverno":"","ownername":"","ownerphone":"","panno":"","quantity":"","unit":"","itemdes":"","weight":""};
+          var obj={"invoicedate":"","outdate":"","outtime":"","customername":"","invoiceno":"","city":"","vehicleno":"","transportname":"","drivername":"","driverno":"","ownername":"","ownerphone":"","panno":"","quantity":"","unit":"","itemdes":"","weight":""};
+          obj.invoicedate=this.items[i].invoicedate;
           obj.outdate=this.items[i].outdate;
           obj.outtime=this.items[i].outtime;
           obj.customername=this.items[i].customername;

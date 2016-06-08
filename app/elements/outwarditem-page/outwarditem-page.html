@@ -21,6 +21,7 @@
 <link rel="import" href="../datepicker-card/datepicker-card.html">
 <link rel="import" href="../timepicker-card/timepicker-card.html">
 <link rel="import" href="../customer-list/customer-list.html">
+<link rel="import" href="../out-datepicker/out-datepicker.html">
 <dom-module id="outwarditem-page">
   <template>
     <style is="custom-style">
@@ -114,6 +115,9 @@
       #customerlist{
         margin-left: 5%;
       }
+      out-datepicker{
+        margin-left: 5%;
+      }
     </style>
     <!--Template which binds dynamic label to this page-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
@@ -121,6 +125,7 @@
       <div class="outcard">
       <paper-input label="{{lbl.Invoice_Number}}" name="invoiceno" value="{{invoiceno}}" required  id="invoiceno"  error-message="{{lbl.Invoice_Number_error}}"></paper-input>
       <customer-list id="customerlist"></customer-list>
+      <out-datepicker></out-datepicker>
       <!-- <paper-input label="{{lbl.Customer_Name}}" name="customername" value="{{customername}}" required  allowed-pattern="[a-zA-Z ]" id="customername" error-message="{{lbl.Customer_Name_error}}"></paper-input> -->
       </div>
       <!--Outward item card template-->

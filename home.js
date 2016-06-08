@@ -389,6 +389,7 @@ app.post('/outwardseq-service',urlencodedParser, function (req, res) {
 //Function to store outward items
 app.post('/outwarditem-service',urlencodedParser, function (req, res) {
   response = {
+    Invoice_Date:req.query.invoicedate,
     Outward_Register_Number:'',
     Out_Date:req.query.outdate,
     Out_Time:req.query.outtime,
