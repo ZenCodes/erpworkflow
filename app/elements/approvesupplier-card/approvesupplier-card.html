@@ -27,12 +27,13 @@
   <template>
     <style is="custom-style">
       .card{
-        margin-top: 2%;
+        margin-top: 3%;
+        @apply(--layout-horizontal);
+        width: 100%;
       }
       paper-tabs{
         background-color: #e6e6e6;
         width: 80%;
-      //margin-top: 5%;
         height: 4%;
         margin-left: 10%;
         text-align: start;
@@ -42,13 +43,14 @@
         text-transform: none;
       }
       .itemcard{
-        @apply(--layout-vertical);
-        width: 80%;
-        /*margin-left: 10%;*/
+        margin-left: 2%;
+        width: 15%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        text-align: center;
       }
       #dialog{
         background-color: transparent;
-
       }
     </style>
 
@@ -58,8 +60,7 @@
         <!--Template which bind items under the current logged role state-->
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <div class="itemcard">
-            <div><approvesupplier-detailcard supplierid="{{item.Supplier_ID}}" suppliername="{{item.Supplier_Name}}" location="{{item.Location}}" city="{{item.City}}"></approvesupplier-detailcard>
-            </div>
+            <approvesupplier-detailcard supplierid="{{item.Supplier_ID}}" suppliername="{{item.Supplier_Name}}" location="{{item.Location}}" city="{{item.City}}"></approvesupplier-detailcard>
           </div>
         </template>
       </div>

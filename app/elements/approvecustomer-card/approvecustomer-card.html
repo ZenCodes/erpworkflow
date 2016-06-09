@@ -26,13 +26,13 @@
   <template>
     <style is="custom-style">
       .card{
-        margin-top: 2%;
-        @apply(--layout-vartical);
+        margin-top: 3%;
+        @apply(--layout-horizontal);
+        width: 100%;
       }
       paper-tabs{
         background-color: #e6e6e6;
         width: 80%;
-      //margin-top: 5%;
         height: 4%;
         margin-left: 10%;
         text-align: start;
@@ -42,9 +42,11 @@
         text-transform: none;
       }
       .itemcard{
-        @apply(--layout-vertical);
-        width: 80%;
-        /*margin-left: 10%;*/
+        margin-left: 2%;
+        width: 15%;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        text-align: center;
       }
       #dialog{
         background-color: transparent;
@@ -60,10 +62,9 @@
             <approvecustomer-detailcard customerid="{{item.Customer_ID}}" customername="{{item.Customer_Name}}" location="{{item.Location}}" city="{{item.City}}"></approvecustomer-detailcard>
           </div>
         </template>
-
+      </div>
       <div class="customer">
         <customer-read-page></customer-read-page>
-      </div>
       </div>
     </template>
 
