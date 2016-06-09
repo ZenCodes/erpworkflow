@@ -112,8 +112,10 @@
       }
     },
   physicqualifyitemService:function(contreceived,contmeasure){
+
     containerreceived=contreceived;
     containermeasure=contmeasure;
+    localStorage.setItem("curr_sess_containermeasure",containermeasure);
     this.speccardlength=contreceived;
     this.specarr=[];
     if(contmeasure=='Coil'){

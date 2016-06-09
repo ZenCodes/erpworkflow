@@ -27,10 +27,9 @@ Polymer({is:"physicqualifyread-card",
     //alert(JSON.stringify(e.detail.response));
     if(e.detail.response=="no items")
     {
-      //alert('yeas');
       this.speccardlength=contreceived;
       this.specarr=[];
-      if(contmeasure=='Coil'){
+      if(localStorage.getItem("curr_sess_containermeasure")=='Coil'){
         localStorage.setItem("curr_sess_repeatitementry","1");
         for(var i=0;i<parseInt(this.speccardlength);i++){
           var obj={"id":"","number":"","hideflag":""};
@@ -45,7 +44,6 @@ Polymer({is:"physicqualifyread-card",
         this.specarr.push(obj);
       }
       this.specificationArray=this.specarr;
-      //document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
     }
     else{
       var arr=e.detail.response;
@@ -54,16 +52,13 @@ Polymer({is:"physicqualifyread-card",
           arr[i].readflag=false;
         else
           arr[i].readflag=true;
-        if(arr[i].Quantity_Measure=="Coil")
+        if(localStorage.getItem("curr_sess_containermeasure")=='Coil')
           arr[i].hideflag=false;
         else
           arr[i].hideflag=true;
       }
-      //alert(JSON.stringify(arr));
       this.specificationArray = arr;
       this.ponumber=this.specificationArray[0].PO_Number;
-
-      //document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
     }
   },
   //Method to invoke webcomponent service to read the dynamic label from config file
