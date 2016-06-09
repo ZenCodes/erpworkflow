@@ -26,15 +26,15 @@
       <paper-input id="parameter" value="{{name}}"></paper-input>
 
       <paper-dropdown-menu label="Select" hidden$="{{dropflag}}">
-        <paper-listbox class="dropdown-content">
+        <paper-listbox class="dropdown-content" on-iron-select="FnSelected">
           <template is="dom-repeat" items="{{itemarr}}" as="item">
           <paper-item>{{item}}</paper-item>
           </template>
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-input id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}"></paper-input><paper-input readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}"></paper-input>
-      <paper-input id="maxvalue" value="{{maxvalue}}"></paper-input><paper-input readonly id="maxmeasure" value="{{measure}}"></paper-input>
+      <paper-input id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly></paper-input><paper-input readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}"></paper-input>
+      <paper-input id="maxvalue" value="{{maxvalue}}" readonly></paper-input><paper-input readonly id="maxmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}actualvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
     </div>
@@ -48,6 +48,9 @@
       ready:function(){
       this.flag=0;
       },
+      FnSelected:function(e){
+        this.minvalue = e.target.selectedItem.textContent.trim();
+      },
       FnChange:function(){
       var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":"","testdate":"","measure":""};
       obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
@@ -60,6 +63,7 @@
       obj.measure=this.measure;
       var dat=new Date();
       obj.testdate=dat.getDate()+"/"+(dat.getMonth()+1)+"/"+dat.getFullYear();
+//        alert(JSON.stringify(obj));
       for(var i=0;i<testarr.length;i++){
         if(testarr[i].name==obj.name){
           //alert('exists');

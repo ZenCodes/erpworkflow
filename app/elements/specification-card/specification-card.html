@@ -72,7 +72,6 @@
       on-response="FnspecificationitemreadResponse">
     </iron-ajax>
 
-
   <grn-service id="grnservice"></grn-service>
   </template>
   <script>
@@ -98,7 +97,6 @@
         var obj={"inwardregno":"","checkstatus":""};
         obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
         obj.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
-        //alert(localStorage.getItem("curr_sess_currflowstatus"));
         this.specificationitemreadparam=obj;
         this.specificationitemreadurl=sessionStorage.getItem("curr_sess_url")+"specificationitemread-service";
         this.$.specificationitemreadajax.generateRequest();
@@ -107,7 +105,6 @@
         this.finalarr=[];
         this.arr=[];
         this.temp="true";
-//        alert(JSON.stringify(e.detail.response));
         if(JSON.stringify(e.detail.response)!='no items')
           this.specarr=e.detail.response;
           for(var i=0;i<this.specarr.length;i++){
@@ -119,58 +116,37 @@
               else if(this.temp==this.specarr[i].Quality_Parameter_Name){
                 this.arr.push(this.specarr[i].Min_Value);
               }
-
             }
           }
-//          alert(JSON.stringify(this.arr));
-
-          for(var i=0;i<this.specarr.length;i++){
-            this.flag=0;
-          if(this.specarr[i].Quality_Flag=='1'){
-            this.specarr[i].dropflag=false;
-            this.specarr[i].inputflag=true;
-//            var darr=['Small','Medium','Large'];
-            this.specarr[i].droparr=this.arr;
-            if(repeatflag==0)
-            this.finalarr.push(this.specarr[i]);
-            repeatflag=1;
-//          break;
-          }
-          else
-          {
-            this.specarr[i].dropflag=true;
-            this.specarr[i].inputflag=false;
-            this.flag=1;
-          }
-            if(this.flag==1){
+          for(var i=0;i<this.specarr.length;i++) {
+            this.flag = 0;
+            if (this.specarr[i].Quality_Flag == '1') {
+              //alert(this.specarr[i].Quality_Parameter_ID+'1');
+              this.specarr[i].dropflag = false;
+              this.specarr[i].inputflag = true;
+              this.specarr[i].droparr = this.arr;
+              if (repeatflag == 0) {
+                this.finalarr.push(this.specarr[i]);
+                repeatflag = 1;
+              }
+            }
+            else {
+              //alert(this.specarr[i].Quality_Parameter_ID+'0');
+              this.specarr[i].dropflag = true;
+              this.specarr[i].inputflag = false;
+              this.flag = 1;
+            }
+            if (this.flag == 1) {
               this.finalarr.push(this.specarr[i]);
             }
+          }
+            this.itemArray = this.finalarr;
 
-            /*if(i==0) {
-              alert('value 0');
-              alert(this.specarr[i]);
-            }*/
-          }
-        /*if(this.specarr.length>0) {
-          alert('coming...');
-          for(var j=0;j<this.specarr.length;j++) {
-            if(j==0)
-            this.finalarr.push(this.specarr[j]);
-            for(var k=0;k<this.finalarr.length;k++)
-            if(this.finalarr[k].Quality_Parameter_Name!=this.specarr[j].Quality_Parameter_Name)
-              this.finalarr.push(this.specarr[j]);
-          }
-        }*/
-          alert(JSON.stringify(this.finalarr));
-          this.itemArray=this.finalarr;
       },
       FnSetValue:function(qualityarray){
-//        alert(JSON.stringify(qualityarray));
         qualityarr=qualityarray;
       },
       FnSubmittest:function(){
-        //alert('yes');
-//        alert((qualityarr).length);
         if((qualityarr).length==(this.itemArray).length)
         {
           alert('Test submit!');
@@ -178,7 +154,6 @@
           this.speccardhide=true;
           this.hidesubmit=true;
           this.hidetest=false;
-          //document.querySelector('physicqualifyitem-card').FnToggle();
         }
         else{
           alert('Please enter all the quality parameters!');
