@@ -75,6 +75,7 @@
       Polymer({
         is: 'customer-tax-read',
         ready:function(){
+          this.read=true;
           localStorage.setItem("curr_sess_showpage","Tax Detail");
         }
       });
