@@ -403,9 +403,9 @@
     FnSetSupplierforApprove:function(supplierid){
     	approvesupplierarr.push(supplierid);
     },
-     approvesupplierforpurchaseService:function(){
+     approvesupplierforpurchaseService:function(status){
       var obj={"supplierid":"","status":""};
-      obj.status=status;
+      obj.status=status;      
       obj.supplierid=sessionStorage.getItem("sess_curr_supplierid");
       this.approvesupplierforpurchaseparam=obj;
       this.approvesupplierforpurchaseurl=sessionStorage.getItem("curr_sess_url")+"approvesupplierforpurchase-service";

@@ -3001,7 +3001,7 @@ exports.Fnreadsuppliertoapprove=function(pagename,callback) {
 }
 
 exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,status,callback) {
-  console.log('coming');
+  // console.log('coming');
   var Config_tables=[];
   var Config_columnvalues=[];
   for(var i=0;i<obj.length;i++){
@@ -3011,7 +3011,7 @@ exports.Fnapprovesupplierforpurchase=function(pagename,supplierid,status,callbac
     }
   }
   var queryy="UPDATE "+Config_tables[0]+" SET Status='"+status+"' where Supplier_ID='"+supplierid+"'";
-   console.log(queryy);
+   // console.log(queryy);
   connection.query(queryy, function(err, rows) {
     if(!err)
     {
