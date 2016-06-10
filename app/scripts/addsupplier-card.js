@@ -41,21 +41,26 @@
       document.querySelector('#emailid').validate();
       if(this.address1==""||this.address1==null||this.supplierid==""||this.supplierid==null||this.suppliername==""||this.suppliername==null||this.location==""||this.location==null||this.city==null||this.city==""||this.district==""||this.district==null||this.state==null||this.state==""||this.country==null||this.country==""||this.pincode==""||this.pincode==null||this.mobileno==null||this.mobileno==""){}
       else{
-        document.querySelector("supplieradditem-card").FnSetValue(this.supplierid,this.suppliername);
+        document.querySelector("supplieradditem-card").FnSetValue(localStorage.getItem('curr_sess_supplierloggedid'),this.suppliername);
         if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
           localStorage.setItem('curr_sess_supplierloggedid',this.supplierid);
           this.$.adminsupplierservice.addsupplierService(this.supplierid,this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
-          document.querySelector("supplier-page").setPage("Add Contact");
+          document.querySelector("supplier-page").setPage("Add Tax");
+          // document.querySelector("supplier-page").setPage("Add Contact");
         }
         else if(localStorage.getItem("curr_sess_addsuppliereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
           this.$.adminsupplierservice.updatesupplierService(localStorage.getItem('curr_sess_supplierloggedid'),this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
-          this.$.adminsupplierservice.FnsupplierreadcontactService();
+          // this.$.adminsupplierservice.FnsupplierreadcontactService();
+          this.$.adminsupplierservice.callTaxreadService();
+          document.querySelector("supplier-page").setPage("Add Tax");
           //document.querySelector("customer-page").setPage("Add Contact");
           //document.querySelector("customer-page").setPage("Add Payment");
           document.querySelector("payment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.suppliername);
         }
         else{
-          this.$.adminsupplierservice.FnsupplierreadcontactService();
+          // this.$.adminsupplierservice.FnsupplierreadcontactService();
+          this.$.adminsupplierservice.callTaxreadService();
+          document.querySelector("supplier-page").setPage("Add Tax");
           //document.querySelector("customer-page").setPage("Add Contact");
           document.querySelector("payment-card").FnFetchPaymentInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.suppliername);
         }

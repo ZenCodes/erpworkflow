@@ -276,7 +276,7 @@
      obj3={
             "itemflag":"","supplierid":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","itemsupplier":"","purchasetype":""
           };
-          obj3.supplierid=supplierid;
+          obj3.supplierid=localStorage.getItem('curr_sess_customerloggedid');
           obj3.itemid=itemid;
           obj3.itemname=itemname;
           obj3.itemdes=itemdes;

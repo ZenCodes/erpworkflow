@@ -150,7 +150,7 @@
     //Fetches and binding to the auto complete dropdown list dynamically
     itemcustomerreadResponse:function(e) {
        item=e.detail.response.itemarr;
-       //alert(JSON.stringify(item));       
+       // alert(JSON.stringify(item));       
     }
     });
   })();

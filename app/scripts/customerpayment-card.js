@@ -32,18 +32,17 @@ Polymer({
 	 else{
    if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
 	 this.$.customerservice.addpaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm);
-	 document.querySelector('customer-page').setPage('Show Item');
-	 document.querySelector('customeritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_customerloggedid'),this.supname);
+	 document.querySelector("customer-page").setPage("Add Contact");
  		}
  		else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
- 		this.$.customerservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm);
- 		document.querySelector('customer-page').setPage('Show Item');
-		document.querySelector('customeritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_customerloggedid'),this.supname);
+ 		this.$.customerservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode,this.micrcode,this.swiftcode,paymentterm); 		
+    this.$.customerservice.FncustomerreadcontactService();
+    document.querySelector("customer-page").setPage("Add Contact");
  		}
  		else
- 		{
-		document.querySelector('customer-page').setPage('Show Item');
-		document.querySelector('customeritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_customerloggedid'),this.supname);
+ 		{      
+      this.$.customerservice.FncustomerreadcontactService();
+      document.querySelector("customer-page").setPage("Add Contact");
 		}
 	}
   },

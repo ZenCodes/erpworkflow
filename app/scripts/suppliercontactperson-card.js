@@ -12,15 +12,21 @@
     },
     FnNextContact:function(){
       if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing") {
-        document.querySelector('supplier-page').setPage('Add Tax');
+        // document.querySelector('supplier-page').setPage('Add Tax');
+        document.querySelector('supplier-page').setPage('Show Item');
+        document.querySelector('supplieritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.supname);
       }
       else if(localStorage.getItem("curr_sess_addsuppliereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
-        this.$.adminsupplierservice.callTaxreadService();
-        document.querySelector('supplier-page').setPage('Add Tax');
+        document.querySelector('supplier-page').setPage('Show Item');
+        document.querySelector('supplieritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.supname);
+        // this.$.adminsupplierservice.callTaxreadService();
+        // document.querySelector('supplier-page').setPage('Add Tax');
       }
       else{
-        this.$.adminsupplierservice.callTaxreadService();
-        document.querySelector('supplier-page').setPage('Add Tax');
+        document.querySelector('supplier-page').setPage('Show Item');
+        document.querySelector('supplieritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_supplierloggedid'),this.supname);
+        // this.$.adminsupplierservice.callTaxreadService();
+        // document.querySelector('supplier-page').setPage('Add Tax');
       }
     }
   });

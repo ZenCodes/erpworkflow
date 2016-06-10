@@ -12,15 +12,21 @@
     },
     FnNextContact:function(){
       if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing") {
-        document.querySelector('customer-page').setPage('Add Tax');
+        document.querySelector('customer-page').setPage('Show Item');
+        document.querySelector('customeritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_customerloggedid'),this.supname);
+        // document.querySelector('customer-page').setPage('Add Tax');
       }
       else if(localStorage.getItem("curr_sess_addcustomereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
-        this.$.customerservice.callTaxreadService();
-        document.querySelector('customer-page').setPage('Add Tax');
+        document.querySelector('customer-page').setPage('Show Item');
+        document.querySelector('customeritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_customerloggedid'),this.supname);
+        //this.$.customerservice.callTaxreadService();
+        //document.querySelector('customer-page').setPage('Add Tax');
       }
       else{
-        this.$.customerservice.callTaxreadService();
-        document.querySelector('customer-page').setPage('Add Tax');
+        document.querySelector('customer-page').setPage('Show Item');
+        document.querySelector('customeritem-card').FnFetchItemInfo(localStorage.getItem('curr_sess_customerloggedid'),this.supname);
+        //this.$.customerservice.callTaxreadService();
+        //document.querySelector('customer-page').setPage('Add Tax');
       }
     }
   });

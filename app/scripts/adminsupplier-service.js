@@ -72,7 +72,7 @@
 
 	},
     callItemService:function(supplierid){
-      alert('display.....'+supplierid);
+      // alert('display.....'+supplierid);
 	        this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
 		      var obj={"supplierid":""};
 		      this.supplierid=supplierid;
@@ -82,7 +82,7 @@
     },
     readitemResponse:function(e){
 			var arr= e.detail.response.itemarr;
-			alert(JSON.stringify(arr));
+			// alert(JSON.stringify(arr));
 			if(this.supplierid!="")
 		    document.querySelector("supplieritem-card").itemArray=arr;
 	},

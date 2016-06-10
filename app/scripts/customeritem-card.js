@@ -11,7 +11,7 @@ var supid="";
     ready:function(){
 	},
 	FnFetchItemInfo:function(supplierid,suppliername){
-    alert(supplierid);
+    // alert(supplierid);
 		supname=suppliername;
 		supid=supplierid;
 

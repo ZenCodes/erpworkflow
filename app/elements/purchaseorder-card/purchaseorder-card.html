@@ -4,9 +4,18 @@
 <link rel="import" href="..\..\bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
 <script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+<script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
+<!--<script type="text/javascript" src="https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.debug.js"></script>-->
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>-->
+<!--<script type="text/javascript" src="https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.min.js"></script>-->
+<script type="text/javascript" src="../../scripts/jspdf.debug.js"></script>
+<script type="text/javascript" src="../../scripts/jspdf.min.js"></script>
 <script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 
 <dom-module id="purchaseorder-card">
@@ -69,7 +78,7 @@
       }
       .address{
         margin-left: 4%;
-        text-align: left;                
+        text-align: left;
       }
       .comp{
         width:150px;
@@ -106,7 +115,7 @@
         text-align: left;
       }
        paper-button{
-        text-align: center;      
+        text-align: center;
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
         background-color: #3d6868;
@@ -119,7 +128,7 @@
 
       }
       .align{
-       @apply(--layout-horizontal); 
+       @apply(--layout-horizontal);
       }
       .p1{
         width: 80%;
@@ -129,7 +138,7 @@
         text-align: left;;
       }
       #canvas{
-        @apply(--layout-vertical); 
+        @apply(--layout-vertical);
       }
       hr{
         height: 1px;
@@ -138,7 +147,7 @@
       }
       .grandalign{
         @apply(--layout-horizontal);
-        
+
         margin-left: -10%;
       }
       .gp1{
@@ -153,12 +162,12 @@
     </style>
     <!-- <paper-dialog id="dialog"> -->
      <!-- <paper-dialog-scrollable> -->
-    <div> 
+    <div>
     <div class="card" id="card">
     <div id="canvas">
-    
+
       <div class="title">Purchase Order</div>
-      
+
       <div class="cheader">
         <div class="companyheader">
         <div class="company">
@@ -166,12 +175,12 @@
           <div class="address">
           <p class="comp">{{cmpname}}</p>
           <p class="comp">{{cmpaddr1}}</p>
-          <p class="comp">{{cmpaddr2}}</p>  
+          <p class="comp">{{cmpaddr2}}</p>
           <!-- <p class="comp">{{cmpaddr3}}</p> -->
           <p class="comp">{{cmpemail}}</p>
-          <p class="comp">{{cmpphone}}</p>            
+          <p class="comp">{{cmpphone}}</p>
           </div>
-        </div>          
+        </div>
         </div>
         <template is="dom-repeat" items="{{poarray}}" as="po">
         <div class="dateheader">
@@ -196,7 +205,7 @@
         <table border="1">
           <tr><th>S.No</th><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
           <tr><td>1</td><td>{{poitem.Product_ID}}</td><td>{{poitem.Quantity}} {{poitem.Quantity_Measure}}</td>
-          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td>{{poitem.total}}</td></tr>          
+          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td>{{poitem.total}}</td></tr>
         </table>
       <!-- </div> -->
       <div class="summary">
@@ -211,10 +220,10 @@
         <hr/>
         <div class="align"><p class="p1">Grand Total: </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.grandtot}}</p></div>
       </div>
-      
-      </div> 
-      </div>     
-      </template>      
+
+      </div>
+      </div>
+      </template>
 
     </div>
     </div>
@@ -230,7 +239,7 @@
       handle-as="json"
       content-type="application/json"
       on-response="companyprofilereadResponse">
-    </iron-ajax>  
+    </iron-ajax>
 
      <iron-ajax
       id="purchaseorderajax"
@@ -272,16 +281,16 @@
       on-response="FnPurchaseorderitempriceResponse">
     </iron-ajax>
 
-  </template>  
-  
+  </template>
+
   <script>
    /*$(window).load(function(){
     $(document).ready(function() {
-     $('#pdf').click(function() {          
-        html2canvas($("#canvas"), {          
-            onrendered: function(canvas) {                 
-                var imgData = canvas.toDataURL('image/png'); 
-                $("#imgRes").attr("src", imgData);             
+     $('#pdf').click(function() {
+        html2canvas($("#canvas"), {
+            onrendered: function(canvas) {
+                var imgData = canvas.toDataURL('image/png');
+                $("#imgRes").attr("src", imgData);
                 var doc = new jsPDF('p', 'mm');
                 doc.addImage(imgData, 'PNG', 10, 8);
                 doc.save('sample.pdf');
@@ -322,11 +331,11 @@
        FnPurchaseorderService:function(){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
-         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderurl=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
          this.purchaseorderparam=obj;
          // alert(JSON.stringify(obj));
-         this.$.purchaseorderajax.generateRequest(); 
+         this.$.purchaseorderajax.generateRequest();
 
       },
       FnPurchaseorderResponse:function(e){
@@ -343,35 +352,35 @@
          // document.querySelector("purchaseorder-card").poarray=poarr;
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
-         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderitemurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
          this.purchaseorderitemparam=obj;
-         this.$.purchaseorderitemajax.generateRequest(); 
+         this.$.purchaseorderitemajax.generateRequest();
          //alert(JSON.stringify(poarr));
          }
       },
       FnPurchaseorderitemResponse:function(e){
-         poitemarr=e.detail.response.itemarr;         
+         poitemarr=e.detail.response.itemarr;
          if(poitemarr.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
-         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderitemtaxurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
          this.purchaseorderitemtaxparam=obj;
-         this.$.purchaseorderitemtaxajax.generateRequest(); 
+         this.$.purchaseorderitemtaxajax.generateRequest();
          //alert(JSON.stringify(poitemarr));
          }
       },
       FnPurchaseorderitemtaxResponse:function(e){
-         poitemtax=e.detail.response.itemarr;  
-         //alert(JSON.stringify(poitemtax));       
+         poitemtax=e.detail.response.itemarr;
+         //alert(JSON.stringify(poitemtax));
          if(poitemtax.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
-         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderitempriceurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
          this.purchaseorderitempriceparam=obj;
-         this.$.purchaseorderitempriceajax.generateRequest(); 
+         this.$.purchaseorderitempriceajax.generateRequest();
          //alert(JSON.stringify(poitemarr));
          }
       },
@@ -404,10 +413,10 @@
             //alert(parseInt(poitemarr[0].Quantity));
             //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));
           poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
-          poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
+          poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
           poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
-         
+
 
           //poitemarr.push(poitemprice[0].Item_Supplier_price);
           //alert(JSON.stringify(poitemarr));
@@ -423,11 +432,11 @@
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
         //window.location.href="../elements/printhome.html";
         //window.print();
-         html2canvas($("#card"), {          
-            onrendered: function(canvas) {                 
-                var imgData = canvas.toDataURL('image/png'); 
+         html2canvas($("#card"), {
+            onrendered: function(canvas) {
+                var imgData = canvas.toDataURL('image/png');
                 //alert(imgData);
-                $("#imgRes").attr("src", imgData);             
+                $("#imgRes").attr("src", imgData);
                 var doc = new jsPDF('p', 'mm');
                 //alert(JSON.stringify(doc));
                 doc.addImage(imgData, 'PNG', 10, 8);
