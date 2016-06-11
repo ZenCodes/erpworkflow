@@ -110,7 +110,7 @@ var flag="true";
         }
       }
       else{
-          document.querySelector('#radio' + flag).checked = false;
+        document.querySelector('#radio' + flag).checked = false;
         document.querySelector("#inner" + flag).toggle();
         localStorage.setItem("curr_sess_expandedcontainer", this.containerid);
         this.$.specificationcard.FnspecificationitemreadService();
@@ -138,6 +138,14 @@ var flag="true";
         this.hidequality=true;
       if(flag=="false")
         this.hidequality=false;
+    },
+    FnComponentSize:function(){
+      // alert('calling'+this.querySelector('paper-input'));
+      this.querySelector('.repeatcard').style.width='130%';
+      this.querySelector('#cont'+this.inwardno).style.width='40%';
+      this.querySelector('#qty'+this.inwardno).style.width='40%';
+      this.querySelector('textarea').style.width='50%'; 
+      // this.querySelector('paper-icon-button').style.width='5%';      
     }
   });
 })();

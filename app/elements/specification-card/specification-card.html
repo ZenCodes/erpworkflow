@@ -10,8 +10,6 @@
     <style>
       .outcard{
         @apply(--layout-verical);
-        /*border-radius: 2px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
         margin-left: 6%;
       }
       #id{
@@ -52,13 +50,13 @@
           <paper-tab><paper-button>Actual Value</paper-button></paper-tab>
           <paper-tab><paper-button>Remarks</paper-button></paper-tab>
         </paper-tabs>
-      <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
         <specification-item-crd dropflag="{{item.dropflag}}" inputflag="{{item.inputflag}}" itemarr="{{item.droparr}}" measure="{{item.Unit_Measure}}" name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
-      </template>
+        </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
-      <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}">Submit Test</paper-button>
-      <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
+        <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}">Submit Test</paper-button>
+        <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
       </div>
 
@@ -72,7 +70,7 @@
       on-response="FnspecificationitemreadResponse">
     </iron-ajax>
 
-  <grn-service id="grnservice"></grn-service>
+    <grn-service id="grnservice"></grn-service>
   </template>
   <script>
   (function() {

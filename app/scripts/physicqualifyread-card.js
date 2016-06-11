@@ -29,7 +29,7 @@ Polymer({is:"physicqualifyread-card",
     {
       this.speccardlength=contreceived;
       this.specarr=[];
-      if(localStorage.getItem("curr_sess_containermeasure")=='Coil'){
+      if(localStorage.getItem("curr_sess_containermeasure").toUpperCase()==('Coil').toUpperCase()){
         localStorage.setItem("curr_sess_repeatitementry","1");
         for(var i=0;i<parseInt(this.speccardlength);i++){
           var obj={"id":"","number":"","hideflag":""};
@@ -52,7 +52,7 @@ Polymer({is:"physicqualifyread-card",
           arr[i].readflag=false;
         else
           arr[i].readflag=true;
-        if(localStorage.getItem("curr_sess_containermeasure")=='Coil')
+        if(localStorage.getItem("curr_sess_containermeasure").toUpperCase()==('Coil').toUpperCase())
           arr[i].hideflag=false;
         else
           arr[i].hideflag=true;

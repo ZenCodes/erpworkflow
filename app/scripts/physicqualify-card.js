@@ -67,8 +67,9 @@
         //alert('yeas');
         this.speccardlength=containerreceived;
         this.specarr=[];
-        if(containermeasure=='Coil'){
+        if(containermeasure.toUpperCase()==('Coil').toUpperCase()){
           //alert('coil');
+          // document.querySelector('physicqualifyitem-card').FnComponentSize();
           localStorage.setItem("curr_sess_repeatitementry","1");
           for(var i=0;i<parseInt(this.speccardlength);i++){
             var obj={"hideflag":"","serialno":"","heatno":"","id":"","number":""};
@@ -80,12 +81,14 @@
         }
         else{
           //alert('no coil');
+          document.querySelector('physicqualifyitem-card').FnComponentSize();
           localStorage.setItem("curr_sess_repeatitementry","0");
           var obj={"hideflag":"","serialno":"","heatno":"","id":"","number":""};
           obj.serialno=i;
           obj.heatno="0";
           obj.hideflag=true;
           this.specarr.push(obj);
+
         }
         this.specificationArray=this.specarr;
         //alert(JSON.stringify(this.specificationArray));
@@ -100,10 +103,12 @@
           else
           arr[i].readflag=true;
 
-         if(containermeasure=='Coil')
+         if(containermeasure.toUpperCase()==('Coil').toUpperCase())
          arr[i].hideflag=false;
-         else
+         else{
+         document.querySelector('physicqualifyitem-card').FnComponentSize();
          arr[i].hideflag=true;
+         }
         }
         //alert(JSON.stringify(arr));
         this.specificationArray = arr;
@@ -112,13 +117,12 @@
       }
     },
   physicqualifyitemService:function(contreceived,contmeasure){
-
     containerreceived=contreceived;
     containermeasure=contmeasure;
     localStorage.setItem("curr_sess_containermeasure",containermeasure);
     this.speccardlength=contreceived;
     this.specarr=[];
-    if(contmeasure=='Coil'){
+    if(contmeasure.toUpperCase()==('Coil').toUpperCase()){
       localStorage.setItem("curr_sess_repeatitementry","1");
       for(var i=0;i<parseInt(this.speccardlength);i++){
         var obj={"serialno":"","hideflag":"","id":"","number":""};
