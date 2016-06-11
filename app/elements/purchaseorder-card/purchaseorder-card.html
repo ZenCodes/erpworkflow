@@ -4,18 +4,9 @@
 <link rel="import" href="..\..\bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
-<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
-<script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
-<script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>-->
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
-<!--<script type="text/javascript" src="https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.debug.js"></script>-->
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>-->
-<!--<script type="text/javascript" src="https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.min.js"></script>-->
-<script type="text/javascript" src="../../scripts/jspdf.debug.js"></script>
-<script type="text/javascript" src="../../scripts/jspdf.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
 <script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 
 <dom-module id="purchaseorder-card">
@@ -33,6 +24,8 @@
         border-radius: 1px;
         border-style: groove;
         padding-bottom: -10%;
+        background-color: #ffffff;
+
       }
       .title{
         margin-top: 8%;
@@ -158,10 +151,9 @@
       }
       p{
         font-size: 17px;
+        /*color: white;*/
       }
     </style>
-    <!-- <paper-dialog id="dialog"> -->
-     <!-- <paper-dialog-scrollable> -->
     <div>
     <div class="card" id="card">
     <div id="canvas">
@@ -229,8 +221,6 @@
     </div>
     <paper-button id="pdf" on-click="click">View PDF</paper-button>
     </div>
-     <!-- </paper-dialog-scrollable> -->
-    <!-- </paper-dialog> -->
 
     <iron-ajax
       auto
@@ -349,7 +339,7 @@
          poarr[0].PO_Date=d+"/"+m+"/"+y;
          this.poarray=poarr;
          // document.querySelector("purchaseorder-home").poarray=poarr;
-         // document.querySelector("purchaseorder-card").poarray=poarr;
+         document.querySelector("purchaseorder-card").poarray=poarr;
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
@@ -423,24 +413,27 @@
           }
           this.poitemarray=poitemarr;
           // document.querySelector("purchaseorder-home").poitemarray=poitemarr;
-          // document.querySelector("purchaseorder-card").poitemarray=poitemarr;
+          document.querySelector("purchaseorder-card").poitemarray=poitemarr;
       },
       FnToggle:function(){
+        // alert('calling');
         this.$.dialog.toggle();
       },
       click:function(){
+        // alert('converting....');
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
         //window.location.href="../elements/printhome.html";
         //window.print();
          html2canvas($("#card"), {
             onrendered: function(canvas) {
-                var imgData = canvas.toDataURL('image/png');
+                var imgData = canvas.toDataURL('image/jpeg');
                 //alert(imgData);
                 $("#imgRes").attr("src", imgData);
                 var doc = new jsPDF('p', 'mm');
                 //alert(JSON.stringify(doc));
-                doc.addImage(imgData, 'PNG', 10, 8);
-                doc.save(porder+'.pdf');
+                doc.addImage(imgData, 'JPEG', 10, 8);
+                // doc.save(porder+'.pdf');
+                doc.output('dataurlnewwindow');
                 //doc.output('datauri');
             }
           });
