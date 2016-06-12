@@ -47,7 +47,10 @@
         // document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
         // document.querySelector('intenthome-page').setPage('purchaseorder-card');   
         this.$.intentservice.FnPurchaseorderService();
-        window.location.href="../elements/printhome.html";
+        // setTimeout(document.querySelector('purchaseorder-card').click(), 1000);
+        window.open('../elements/printhome.html', '_blank');
+        // window.close();
+        //window.location.href="../elements/printhome.html";
         // this.$.purchase.FnToggle();
       }
  

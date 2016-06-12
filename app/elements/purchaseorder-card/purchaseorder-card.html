@@ -12,26 +12,41 @@
 <dom-module id="purchaseorder-card">
   <template>
     <style>
-      /*:host {*/
-        /*display: block;*/
-      /*}*/
+      :host {
+        display: block;
+        line-height: 110%;
+        font-family: calibri;
+      }
+      p{
+        line-height: 110%;
+        font-family: calibri;
+      }
       .card{
         /*margin-top: -3%;*/
         @apply(--layout-vertical);
         width: 700px;
         height: 1050px;
         margin-left: 15%;
-        border-radius: 1px;
-        border-style: groove;
+        /*border-radius: 1px;*/
+        /*border-style: groove;*/
+        /*border-style: solid;*/
+        /*border-width: 1px;*/
         padding-bottom: -10%;
         background-color: #ffffff;
 
+        border: 1px solid #dedede;
+    /*border-top-left-radius: 5px;*/
+    /*border-top-right-radius: 5px;*/
+  
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+ 
       }
       .title{
-        margin-top: 8%;
+        margin-top: 7%;
         font-size: 24px;
         font-weight: bold;
         text-align: center;
+        margin-left: 25%;
       }
       .cheader{
         @apply(--layout-horizontal);
@@ -45,7 +60,7 @@
       .dateheader{
         font-size: 15px;
         @apply(--layout-vertical);
-        margin-left: 30%;
+        margin-left: 42%;
       }
       .toheader{
         @apply(--layout-vertical);
@@ -70,7 +85,7 @@
         height: 600px;
       }
       .address{
-        margin-left: 4%;
+        margin-left: 8%;
         text-align: left;
       }
       .comp{
@@ -153,17 +168,23 @@
         font-size: 17px;
         /*color: white;*/
       }
+      .logohead{
+        @apply(--layout-horizontal);
+        margin-left: 5%;        
+      }
     </style>
     <div>
     <div class="card" id="card">
     <div id="canvas">
-
+      <div class="logohead">
+      <div><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
       <div class="title">Purchase Order</div>
+      </div>
 
       <div class="cheader">
         <div class="companyheader">
         <div class="company">
-          <div><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
+          
           <div class="address">
           <p class="comp">{{cmpname}}</p>
           <p class="comp">{{cmpaddr1}}</p>
@@ -307,8 +328,10 @@
       ready:function(){
       // alert('yes');
       this.FnPurchaseorderService();
+
       },
       companyprofilereadResponse:function(e){
+        // this.click();
         var cmparr=e.detail.response;
         //alert(JSON.stringify(cmparr));
         this.cmpname=cmparr[0].name;
@@ -414,6 +437,29 @@
           this.poitemarray=poitemarr;
           // document.querySelector("purchaseorder-home").poitemarray=poitemarr;
           document.querySelector("purchaseorder-card").poitemarray=poitemarr;
+
+
+ // alert('converting....');
+        var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
+        //window.location.href="../elements/printhome.html";
+        //window.print();
+        // alert(document.querySelector('#card'));
+         html2canvas(document.querySelector('#card'), {
+            onrendered: function(canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');
+                //alert(imgData);
+                $("#imgRes").attr("src", imgData);
+                var doc = new jsPDF('p', 'mm');
+                //alert(JSON.stringify(doc));
+                doc.addImage(imgData, 'JPEG', 10, 8);
+                // doc.save(porder+'.pdf');
+                // doc.output('dataurlnewwindow');
+                // window.location.href="../elements/indexhome.html";
+                doc.output('datauri');
+            }
+          });
+
+
       },
       FnToggle:function(){
         // alert('calling');
@@ -424,7 +470,8 @@
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
         //window.location.href="../elements/printhome.html";
         //window.print();
-         html2canvas($("#card"), {
+        // alert(document.querySelector('#card'));
+         html2canvas(document.querySelector('#card'), {
             onrendered: function(canvas) {
                 var imgData = canvas.toDataURL('image/jpeg');
                 //alert(imgData);
@@ -433,8 +480,9 @@
                 //alert(JSON.stringify(doc));
                 doc.addImage(imgData, 'JPEG', 10, 8);
                 // doc.save(porder+'.pdf');
-                doc.output('dataurlnewwindow');
-                //doc.output('datauri');
+                // doc.output('dataurlnewwindow');
+                // window.location.href="../elements/indexhome.html";
+                doc.output('datauri');
             }
           });
       }
