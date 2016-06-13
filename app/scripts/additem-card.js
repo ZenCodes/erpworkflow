@@ -369,7 +369,7 @@ Polymer({
     document.querySelector('stores-card').FnEnableFields(false);
     document.querySelector('supplier-list').FnEnableFields(false);
     this.Btn_disable_flag=false;
-    document.querySelector('#save').style.backgroundColor='#3d6868';
+    document.querySelector('#save').style.backgroundColor='#A0A0A0';
   },
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
   setSelectedItem:function(itemtype,itemgroup,selection){
