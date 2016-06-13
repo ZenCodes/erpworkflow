@@ -91,13 +91,11 @@
       }
       .additem,.save{
         text-align: center;
-      //width: 35%;
-        border-radius: 2px;
-        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
-        background-color: #3d6868;
-        color: white;
-        height: 30px;
-      //margin-top: 4%;
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 34px;      
       }
       #supname{
         --paper-input-container-label: { color: red };
@@ -113,7 +111,7 @@
         <paper-input hidden="{{isHidden}}" class="supname" name="supname" label="{{lbl.Supplier_Name}}" value="{{supname}}" allowed-pattern="[a-zA-Z ]" required id="supname" error-message="{{lbl.Supplier_Name_error}}" on-change="FnOthersInputChanged" ></paper-input>
       </div>
       <div class="banner2">
-        <paper-tabs selected="0" noink id="ptab">
+        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
           //Dynamically generating tabs from config file
           <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
           <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
