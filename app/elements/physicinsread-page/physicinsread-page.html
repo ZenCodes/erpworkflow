@@ -29,12 +29,15 @@
         font-size: 15px;
         text-transform: none;
         width: 30%;
+        font-family: calibri;
+        font-size: 16px;
       }
       .itemcard{
         @apply(--layout-horizontal);
         width: 120%;
-        border-radius: 2px;
-        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        border-bottom: 1px solid #dedede;
+        /*border-radius: 2px;*/
+        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
         margin-top:2%;
         margin-left: -10%;
       }
@@ -43,7 +46,7 @@
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
 
-      <paper-tabs selected="0" noink id="ptab">
+      <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
         <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
         <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
         </template>
