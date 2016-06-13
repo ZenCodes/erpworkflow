@@ -112,6 +112,7 @@
         }
         //alert(JSON.stringify(arr));
         this.specificationArray = arr;
+        localStorage.setItem("curr_sess_productid",this.specificationArray[0].Product_ID);
         localStorage.setItem("curr_sess_PONumber",this.specificationArray[0].PO_Number);
         document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
       }

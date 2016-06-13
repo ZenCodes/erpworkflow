@@ -658,14 +658,14 @@ exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callb
   //});
 }
 
-exports.Fnspecificationitemread=function(pagename,inwardregno,checkstatus,callback) {
+exports.Fnspecificationitemread=function(pagename,inwardregno,checkstatus,productid,callback) {
   //var queryy="SELECT * FROM MD_Quality_Parameter";
   /*var queryy="select * from MD_Quality_Parameter where Quality_Parameter_ID in"+
   "(select Quality_Parameter_ID from OD_Item_Quality_Parameter where Item_ID="+
     "(select Item_ID from MD_Item where Item_Name="+
     "(SELECT Product_ID from OD_Sales_Inward_Material where new_Inward_Register_Number='"+inwardregno+"' and state='"+checkstatus+"')))";*/
   var queryy="select distinct (select Quality_Parameter_Name from MD_Quality_Parameter m where m.Quality_Parameter_ID=o.Quality_Parameter_ID) as Quality_Parameter_Name,Min_Value,Max_Value,Unit_Measure,Quality_Flag from OD_Item_Quality_Parameter o where Quality_Parameter_ID in"+
-    "(select Quality_Parameter_ID from OD_Item_Quality_Parameter where Item_ID=(select Item_ID from MD_Item where Item_Name=(SELECT Product_ID from OD_Sales_Inward_Material where new_Inward_Register_Number='"+inwardregno+"' and state='"+checkstatus+"')))";
+    "(select Quality_Parameter_ID from OD_Item_Quality_Parameter where Item_ID=(select Item_ID from MD_Item where Item_Name=(SELECT Product_ID from OD_Sales_Inward_Material where new_Inward_Register_Number='"+inwardregno+"' and state='"+checkstatus+"'))) and Item_ID=(select Item_ID from MD_Item where Item_Name='"+productid+"')";
   // console.log(queryy);
   connection.query(queryy, function (err, rows) {
     if(!err)

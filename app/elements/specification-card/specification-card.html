@@ -92,9 +92,10 @@
         }
       },
       FnspecificationitemreadService:function(){
-        var obj={"inwardregno":"","checkstatus":""};
+        var obj={"inwardregno":"","checkstatus":"","productid":""};
         obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
         obj.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        obj.productid=localStorage.getItem("curr_sess_productid");
         this.specificationitemreadparam=obj;
         this.specificationitemreadurl=sessionStorage.getItem("curr_sess_url")+"specificationitemread-service";
         this.$.specificationitemreadajax.generateRequest();

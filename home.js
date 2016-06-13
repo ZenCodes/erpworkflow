@@ -318,9 +318,10 @@ app.post("/physicqualified-service",urlencodedParser,function(req,res) {
 app.post("/specificationitemread-service",urlencodedParser,function(req,res) {
   var inwardregno=req.query.inwardregno;
   var checkstatus=req.query.checkstatus;
+  var productid=req.query.productid;
   var Fnspecificationitemreadcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  Fnspecificationitemreadcall.Fnspecificationitemread("specificationitemread-service",inwardregno,checkstatus,function(returnval){
+  Fnspecificationitemreadcall.Fnspecificationitemread("specificationitemread-service",inwardregno,checkstatus,productid,function(returnval){
     res.status(200).json(returnval);
   });
 });
