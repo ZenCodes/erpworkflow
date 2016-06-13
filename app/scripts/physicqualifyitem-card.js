@@ -75,7 +75,6 @@ var flag="true";
             this.status = localStorage.getItem("curr_sess_currflowstatus");
             this.updatestatus = localStorage.getItem("curr_sess_currflowupdatestatus");
             break;
-
         }
         this.$.form.submit();
       }
@@ -87,7 +86,7 @@ var flag="true";
         retflag="Coil id already exist";
       else
         retflag=e.detail.response.flag;
-      this.$.ID_Show_Dialog.FnShowDialog(retflag, "");
+        this.$.ID_Show_Dialog.FnShowDialog(retflag, "");
     },
     FnExpandInnerCard: function () {
       //alert(this.containerid);

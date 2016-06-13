@@ -27,14 +27,7 @@
         font-size: 17px;
         color: black;
         height: 35px;        
-      /*//width: 35%;*/
-        /*border-radius: 2px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        /*background-color: #3d6868;*/
-        /*color: white;*/
-        /*height: 30px;*/
-      /*//margin-top: 4%;*/
-      }
+        }
       paper-button{
         text-transform: none;
       }
@@ -56,11 +49,11 @@
           <paper-tab><paper-button>Remarks</paper-button></paper-tab>
         </paper-tabs>
         <template is="dom-repeat" items="{{itemArray}}" as="item">
-        <specification-item-crd dropflag="{{item.dropflag}}" inputflag="{{item.inputflag}}" itemarr="{{item.droparr}}" measure="{{item.Unit_Measure}}" name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
+        <specification-item-crd hidediv="{{hidediv}}" dropflag="{{item.dropflag}}" inputflag="{{item.inputflag}}" itemarr="{{item.droparr}}" measure="{{item.Unit_Measure}}" name="{{item.Quality_Parameter_Name}}" minvalue="{{item.Min_Value}}" maxvalue="{{item.Max_Value}}" ></specification-item-crd>
         </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
-        <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}">Submit Test</paper-button>
+        <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
         <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
       </div>
@@ -106,10 +99,21 @@
         this.$.specificationitemreadajax.generateRequest();
       },
       FnspecificationitemreadResponse:function(e){
+        // alert(JSON.stringify(e.detail.response));
         this.finalarr=[];
         this.arr=[];
         this.temp="true";
-        if(JSON.stringify(e.detail.response)!='no items')
+        this.noparameter=0;
+        if(e.detail.response=="no items"){
+          // alert('yes');
+          this.noparameter=1;
+          this.hidediv=true;
+          // this.submitread=true;
+          //this.specarr=e.detail.response;
+        }
+        else{
+          this.hidediv=false;
+          // this.submitread=false;
           this.specarr=e.detail.response;
           for(var i=0;i<this.specarr.length;i++){
             if(this.specarr[i].Quality_Flag=='1'){
@@ -145,7 +149,7 @@
             }
           }
             this.itemArray = this.finalarr;
-
+          }
       },
       FnSetValue:function(qualityarray){
         qualityarr=qualityarray;
@@ -167,6 +171,8 @@
         this.speccardhide=false;
         this.hidesubmit=false;
         this.hidetest=true;
+        if(this.noparameter==1)
+          alert("No Quality Parameter Exists!");
       },
       FnHideSpeccard:function(){
         this.speccardhide=true;
