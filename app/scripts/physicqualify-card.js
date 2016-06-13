@@ -81,7 +81,7 @@
         }
         else{
           //alert('no coil');
-          document.querySelector('physicqualifyitem-card').FnComponentSize();
+          // document.querySelector('physicqualifyitem-card').FnComponentSize();
           localStorage.setItem("curr_sess_repeatitementry","0");
           var obj={"hideflag":"","serialno":"","heatno":"","id":"","number":""};
           obj.serialno=i;
@@ -106,7 +106,7 @@
          if(containermeasure.toUpperCase()==('Coil').toUpperCase())
          arr[i].hideflag=false;
          else{
-         document.querySelector('physicqualifyitem-card').FnComponentSize();
+         // document.querySelector('physicqualifyitem-card').FnComponentSize();
          arr[i].hideflag=true;
          }
         }

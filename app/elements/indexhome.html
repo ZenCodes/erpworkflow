@@ -172,7 +172,7 @@
     }
     #flowbutton{
       margin-top:-3%;
-    //margin-left:10%;
+      margin-left:-5%;
     }
     .pagetitle{
       font-size: 23px;
@@ -197,7 +197,7 @@
       margin-top: -3%;
     }
     #recheck{
-      margin-left: -16%;
+      margin-left: -20%;
       margin-top: -3%;
     }
 
@@ -219,8 +219,10 @@
       <paper-header-panel main>
         <!-- Top Toolbar for label change-->
         <paper-toolbar class="maintoolbar">
+
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <div>
+          <div><paper-item class="pagetitle">{{pagetitle}}</paper-item></div>
           <!-- <paper-item class="title" style="font-size:15px;color: black;">Applications link....</paper-item> -->
           </div>
           <div class="flex"></div>
@@ -229,10 +231,10 @@
           <paper-tooltip for="signin" offset="0">{{userlabel}}</paper-tooltip>
         </paper-toolbar>
         <!-- Top Toolbar for search and cart-->
-        <paper-toolbar class="top1">
+       <!-- <paper-toolbar class="top1">
           <div><paper-item class="pagetitle">{{pagetitle}}</paper-item></div>
           <div class="flex"></div>
-        </paper-toolbar>
+        </paper-toolbar>-->
         <paper-toolbar class="top2">
           <div id="intentview">
             <!--Component for create button in UI-->
