@@ -33,7 +33,7 @@
     <!--Component to show search component-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
     <div class="card">
-      <paper-tabs selected="0" noink id="ptab">
+      <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
         <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
         <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>
         </template>
