@@ -11,21 +11,31 @@
     <style>
       .card{
         @apply(--layout-horizontal);
-
       }
-      paper-input,paper-dropdown-menu{
+      paper-input,paper-dropdown-menu,paper-item{
         width: 12%;
-        margin-left: 3%;
+        /*margin-left: 3%;*/
         font-family: calibri;
         font-size: 16px;
+      }
+      paper-dropdown-menu{
+      margin-left: 2%;
+      }
+      paper-input{
+      margin-left: 3%;
       }
       #minmeasure,#maxmeasure,#actualmeasure{
         width: 5%;
         margin-left: -5%;
       }
+      #minvalue,#maxvalue{
+      margin-left: 2%;
+	  width: 5%;
+      }
+
     </style>
     <div class="card" hidden$="{{hidediv}}">
-      <paper-input id="parameter" value="{{name}}"></paper-input>
+      <paper-item id="parameter" value="{{name}}">{{name}}</paper-item>
 
       <paper-dropdown-menu label="Select" hidden$="{{dropflag}}">
         <paper-listbox class="dropdown-content" on-iron-select="FnSelected">
@@ -35,8 +45,10 @@
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-input id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly></paper-input><paper-input readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}"></paper-input>
-      <paper-input id="maxvalue" value="{{maxvalue}}" readonly></paper-input><paper-input readonly id="maxmeasure" value="{{measure}}"></paper-input>
+      <paper-item id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly>{{minvalue}}</paper-item>
+      <paper-item readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-item>
+      <paper-item id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-item>
+      <paper-item readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-item>
       <paper-input id="{{name}}actualvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
     </div>
