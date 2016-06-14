@@ -13,121 +13,121 @@
 <dom-module id="intentflow-card">
   <template>
     <style is="custom-style">
-      .card{
-        @apply(--layout-horizontal);
-      }
-      div.main {
-        /*margin-right5%;*/
-        margin-left:-5%;
-      }
-      ol > li {
-        display: table-cell;
-        height: 34px;
-        position: relative;
-        padding: 0px;
-        margin: 0px;
-        text-align: center;
-      //padding-left: 10px;
-        border: 1px solid #f2f2f2;
-      }
-      ol > li > div {
-        position:relative;
-        line-height: 30px; /* equal to the list item's height */
-        height:101%;
-        width: 100%;
-        background-color: #f2f2f2;
-      }
-      ol>li:hover {
-        background-color: #d68a3a;
-        cursor: pointer;
-        color: white;
-      }
-      ol {
-        display: table;
-        width: 60%;
-        padding: 0px;
-        margin: 0px;
-        position: relative;
-      }
-      ol > li > div:after, ol > li > div:before {
-        content:"";
-        display:inline-block;
-        border-width: 16px;
-        border-style: solid;
-        width: 0px;
-        height: 0px;
-        left: 100%;
-        top: -1px;
-        position: absolute;
-        z-index: 1;
-        border-color: transparent transparent transparent #c0dbb7;
-      }
-      ol > li > div:before {
-        border-width: 14px;
-        display: block;
-        border-color: transparent transparent transparent  #f2f2f2;
-        z-index: 2;
-        top:1px;
-      }
-      ol > li > #Created:after, ol > li > #Created:before {
-        content:"";
-        display:inline-block;
-        border-width: 16px;
-        border-style: solid;
-        width: 0px;
-        height: 0px;
-        left: 100%;
-        top: -1px;
-        position: absolute;
-        z-index: 1;
-        border-color: transparent transparent transparent #bfbfbf;
-      }
-      ol > li > #Approved:after, ol > li > #Approved:before {
-        content:"";
-        display:inline-block;
-        border-width: 16px;
-        border-style: solid;
-        width: 0px;
-        height: 0px;
-        left: 100%;
-        top: -1px;
-        position: absolute;
-        z-index: 1;
-        border-color: transparent transparent transparent #bfbfbf;
-      }
-      ol > li > #POCreated:after, ol > li > #POCreated:before {
-        content:"";
-        display:inline-block;
-        border-width: 16px;
-        border-style: solid;
-        width: 0px;
-        height: 0px;
-        left: 100%;
-        top: -1px;
-        position: absolute;
-        z-index: 1;
-        border-color: transparent transparent transparent #bfbfbf;
-      }
-      ol > li > #POSent:after, ol > li > #POSent:before {
-        content:"";
-        display:inline-block;
-        border-width: 16px;
-        border-style: solid;
-        width: 0px;
-        height: 0px;
-        left: 100%;
-        top: -1px;
-        position: absolute;
-        z-index: 1;
-        border-color: transparent transparent transparent #bfbfbf;
-      }   
-      .flowbutton{
-        margin-left: 20%;
-      }
-      li{
-       font-family: calibri;
-       font-size: 16px;
-      }
+		  .card{
+		        @apply(--layout-horizontal);
+		      }
+		      div.main {
+		        margin-left:-5%;
+		        margin-top: 0.9%;
+		      }
+		      ol > li {
+		        display: table-cell;
+		        height: 40px;
+		        position: relative;
+		        padding: 0px;
+		        margin: 0px;
+		        text-align: center;
+		        border: 1px solid #f2f2f2;
+		      }
+		      ol > li > div {
+		        position:relative;
+		        line-height: 30px; /* equal to the list item's height */
+		        height:101%;
+		        width: 100%;
+		        background-color: #f2f2f2;
+		      }
+		      ol>li:hover {
+		        background-color: #d68a3a;
+		        cursor: pointer;
+		        color: white;
+		      }
+		      ol {
+		        display: table;
+		        width: 60%;
+		        padding: 0px;
+		        margin: 0px;
+		        position: relative;
+		      }
+		      ol > li > div:after, ol > li > div:before {
+		        content:"";
+		        display:inline-block;
+		        border-width: 20px;
+		        border-style: solid;
+		        width: 0px;
+		        height: 0px;
+		        left: 100%;
+		        top: -1px;
+		        position: absolute;
+		        z-index: 1;
+				border-color: transparent transparent transparent #123456;
+		      }
+		      ol > li > div:before {
+		        border-width: 20px;
+		        display: block;
+		        border-color: transparent transparent transparent #f2f2f2;
+		        z-index: 2;
+		        top:-1px;
+		      }
+		      ol > li > #Created:after, ol > li > #Created:before {
+		        content:"";
+		        display:inline-block;
+		        border-width: 20px;
+		        border-style: solid;
+		        width: 0px;
+		        height: 0px;
+		        left: 100%;
+		        top: -1px;
+		        position: absolute;
+		        z-index: 1;
+		        border-color: transparent transparent transparent #bfbfbf;
+		      }
+		      ol > li > #Approved:after, ol > li > #Approved:before {
+		        content:"";
+		        display:inline-block;
+		        border-width: 20px;
+		        border-style: solid;
+		        width: 0px;
+		        height: 0px;
+		        left: 100%;
+		        top: -1px;
+		        position: absolute;
+		        z-index: 1;
+		        border-color: transparent transparent transparent #bfbfbf;
+		      }
+		      ol > li > #POCreated:after, ol > li > #POCreated:before {
+		        content:"";
+		        display:inline-block;
+		        border-width: 20px;
+		        border-style: solid;
+		        width: 0px;
+		        height: 0px;
+		        left: 100%;
+		        top: -1px;
+		        position: absolute;
+		        z-index: 1;
+		        border-color: transparent transparent transparent #bfbfbf;
+		      }
+		      ol > li > #POSent:after, ol > li > #POSent:before {
+		        content:"";
+		        display:inline-block;
+		        border-width: 20px;
+		        border-style: solid;
+		        width: 0px;
+		        height: 0px;
+		        left: 100%;
+		        top: -1px;
+		        position: absolute;
+		        z-index: 1;
+		        border-color: transparent transparent transparent #bfbfbf;
+		      }
+		      .flowbutton{
+		        margin-left: 20%;
+		      }
+		      li{
+		        font-family: calibri;
+		        font-size: 17px;
+      			}
+
     </style>
 
     <div class="main">
@@ -146,7 +146,7 @@
           <div id="POSent1"><paper-button noink id="POSent" style="height:9px;width:10px;text-transform:none;margin-top:-10px;" on-click="click">POSent</paper-button></div>
         </li>
       </ol>
-    </div>    
+    </div>
     <grn-service id="grnservice"></grn-service>
   </template>
   <script src="../../scripts/intentflow-card.js"></script>
