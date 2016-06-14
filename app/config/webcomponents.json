@@ -231,7 +231,7 @@
     {"Page":[
       {"page":["retestqualify-card","retestqualify-card"]},
       {"Label":[{"tabs":[{"tab":"Container Id"},{"tab":"Heat Number"},{"tab":"Qty Accepted"},{"tab":"Remarks"}],"Qty_Received":"Qty Received","PO_Date":"PO Date","PO_Number":"PO Number","PO_Number_error":"Enter PO Number!","Supplier_Name":"Supplier Name"}]}
-    ,{"title":["Goods Receipt Note"]}
+    ,{"title":["Retest"]}
     ]},
     {"Page":[
       {"page":["Customer Detail","customer-detail-read"]},

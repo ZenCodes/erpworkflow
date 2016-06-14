@@ -4,10 +4,7 @@
 Polymer({
   is: "app-homepage",
   ready: function() {
-    //alert(sessionStorage.getItem("curr_sess_roleflag"));
-    //alert(localStorage.getItem("curr_sess_wardflag"));
-
-
+    // alert(sessionStorage.getItem("curr_sess_roleflag")+"  "+localStorage.getItem("curr_sess_wardflag"));
     /*if(sessionStorage.getItem("curr_sess_roleflag")=="10"&&(localStorage.getItem("curr_sess_wardflag")!="5"||localStorage.getItem("curr_sess_wardflag")!="6")){
       localStorage.setItem("curr_sess_wardflag","5");
     }*/
@@ -117,13 +114,16 @@ Polymer({
     }
 
     if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
+      // alert('general');
       if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
+      // alert('add intent');
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
       }
       else
       {
       this.$.intentflow.style.visibility='visible';
+      // alert('view intent');
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('View Intent');
       }
@@ -137,27 +137,30 @@ Polymer({
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('outwardreport-card');
     }
+
+
     if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
-      //alert('ceo');
+      // alert('ceo');
       this.$.flow.style.visibility='hidden';
       this.$.intentflow.style.visibility='hidden';
       this.$.dynamicbutton.style.visibility='visible';
       document.querySelector('app-homepage').setPage('approvesupplier-card');
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
-      //alert('ceo');
+       // alert('ceo');
       this.$.flow.style.visibility='hidden';
       this.$.intentflow.style.visibility='hidden';
       this.$.dynamicbutton.style.visibility='visible';
       document.querySelector('app-homepage').setPage('approvecustomer-card');
     }
+        
     if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
-      //alert('purchase');
+      // alert('purchase');
       if(localStorage.getItem("curr_sess_wardflag")=="3")
       this.$.intentview.style.visibility='visible';
       //this.$.intentflow.style.visibility='visible';
       if(localStorage.getItem("curr_sess_wardflag")=="3"&&localStorage.getItem("curr_sess_intenttoggleflag")=="1"){
-        //alert("intent view");
+        // alert("intent view");
       this.$.intentview.style.visibility='visible';
       this.$.flow.style.visibility='hidden';
       // this.$.intentflow.style.visibility='hidden';
@@ -165,7 +168,7 @@ Polymer({
       document.querySelector('intenthome-page').setPage('Intent View');
       }
       if(localStorage.getItem("curr_sess_wardflag")=="3"&&localStorage.getItem("curr_sess_intenttoggleflag")=="0"){
-        //alert("item view");
+        // alert("item view");
       this.$.intentflow.style.visibility='visible';
       this.$.intentview.style.visibility='visible';
       this.$.flow.style.visibility='hidden';

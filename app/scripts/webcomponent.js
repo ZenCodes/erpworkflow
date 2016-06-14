@@ -54,6 +54,10 @@
           //alert(roleconfig[0].role[i].RoleFlag+" "+roleconfig[0].role[i].status+" "+roleconfig[0].role[i].newtatus+" "+roleconfig[0].role[i].updatetatus);
           if(sessionStorage.getItem("curr_sess_roleflag")=="6")
           localStorage.setItem("curr_sess_wardflag","");
+          if(sessionStorage.getItem("curr_sess_roleflag")=="9")
+          localStorage.setItem("curr_sess_wardflag","3");
+          if(sessionStorage.getItem("curr_sess_roleflag")=="10")
+          localStorage.setItem("curr_sess_wardflag","5");
           if(sessionStorage.getItem("curr_sess_roleflag")!=null)
           window.location.href="../elements/indexhome.html";
         }

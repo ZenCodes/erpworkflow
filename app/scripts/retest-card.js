@@ -7,13 +7,14 @@
   var retestarr=[];
   Polymer({is:"retest-card",
     ready:function() {
-
+      if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
       //Setting current page in session for fetching labels dynamically
       localStorage.setItem("curr_sess_showpage","retest-card");
       //calling webcomponent service to fetch labels for current page
       this.$.ID_Webcomponent_Service.callWebcomponentService();
       //To initially show current logged role state items requesting service component to make req to the server
       this.$.gs.retestitemreadService();
+      }
     },
     FnCallPage:function(){
       //Setting current page in session for fetching labels dynamically
