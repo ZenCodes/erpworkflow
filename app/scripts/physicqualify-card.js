@@ -31,6 +31,7 @@
     this.podate=localStorage.getItem("localsess_curr_inwarddate");
   },
     FnexpandcardreadService:function(){
+
       //alert("calling");
       var arg={"inwardregno":"","status":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
@@ -61,6 +62,10 @@
       this.$.physicqualifyexpanditemreadajax.generateRequest();
     },
     FnphysicqualifyexpanditemreadResponse:function(e){
+      if(containermeasure.toUpperCase()==('Coil').toUpperCase())      
+      document.querySelector('physicqualifyitem-card').FnComponentReSize();
+      else
+      document.querySelector('physicqualifyitem-card').FnComponentSize();
       //alert(JSON.stringify(e.detail.response));
       if(e.detail.response=="no items")
       {
@@ -69,7 +74,7 @@
         this.specarr=[];
         if(containermeasure.toUpperCase()==('Coil').toUpperCase()){
           //alert('coil');
-          // document.querySelector('physicqualifyitem-card').FnComponentSize();
+          // document.querySelector('physicqualifyitem-card').FnComponentReSize();
           localStorage.setItem("curr_sess_repeatitementry","1");
           for(var i=0;i<parseInt(this.speccardlength);i++){
             var obj={"hideflag":"","serialno":"","heatno":"","id":"","number":""};
@@ -88,7 +93,6 @@
           obj.heatno="0";
           obj.hideflag=true;
           this.specarr.push(obj);
-
         }
         this.specificationArray=this.specarr;
         //alert(JSON.stringify(this.specificationArray));
@@ -102,9 +106,11 @@
           arr[i].readflag=false;
           else
           arr[i].readflag=true;
-
          if(containermeasure.toUpperCase()==('Coil').toUpperCase())
+         {
+         // document.querySelector('physicqualifyitem-card').FnComponentReSize();
          arr[i].hideflag=false;
+         }
          else{
          // document.querySelector('physicqualifyitem-card').FnComponentSize();
          arr[i].hideflag=true;
@@ -123,6 +129,8 @@
     localStorage.setItem("curr_sess_containermeasure",containermeasure);
     this.speccardlength=contreceived;
     this.specarr=[];
+
+
     if(contmeasure.toUpperCase()==('Coil').toUpperCase()){
       localStorage.setItem("curr_sess_repeatitementry","1");
       for(var i=0;i<parseInt(this.speccardlength);i++){

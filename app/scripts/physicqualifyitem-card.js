@@ -140,11 +140,18 @@ var flag="true";
     },
     FnComponentSize:function(){
       // alert('calling'+this.querySelector('paper-input'));
-      this.querySelector('.repeatcard').style.width='130%';
-      this.querySelector('#cont'+this.inwardno).style.width='40%';
-      this.querySelector('#qty'+this.inwardno).style.width='40%';
-      this.querySelector('textarea').style.width='50%'; 
+      this.querySelector('.repeatcard').style.width='120%';
+      this.querySelector('#cont'+this.inwardno).style.width='35%';
+      this.querySelector('#qty'+this.inwardno).style.width='35%';
+      this.querySelector('textarea').style.width='40%'; 
       // this.querySelector('paper-icon-button').style.width='5%';      
-    }
+    },
+    FnComponentReSize:function(){
+      // alert('calling'+this.querySelector('paper-input'));
+      this.querySelector('.repeatcard').style.width='100%';
+      this.querySelector('#cont'+this.inwardno).style.width='20%';
+      this.querySelector('#qty'+this.inwardno).style.width='15%';
+      this.querySelector('textarea').style.width='18%'; 
+      }
   });
 })();
