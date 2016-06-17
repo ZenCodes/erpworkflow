@@ -3,6 +3,8 @@
  */
 var mysql      = require('mysql');
 var email   = require("emailjs/email");
+var fs = require('fs');
+var logfile;
 
 var credential=[];
 //Fetching credential information
@@ -14,6 +16,17 @@ exports.FnReadCredentials=function() {
     //console.log(obj);
   });
 }
+
+exports.FnCreateFile=function(app,express) {
+logfile = fs.createWriteStream('./app/config/logfile.log', {flags: 'a'});
+
+// app.use(express.logger({stream: logfile}));
+
+app.get('/', function(req, res){
+  fs.createReadStream('./app/config/logfile.log').pipe(res);
+});
+}
+
 
 //Create mysql connection using credential parameters
 var connection;
@@ -33,6 +46,7 @@ exports.FnDBConnection=function(){
       //Calling function to fetch all the tables from config files
       exports.FnReadConfig();
     } else {
+      logfile.write('db connection:'+err);
       console.log("Error connecting database ... \n\n"+err);
     }
   });
@@ -130,6 +144,7 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
       }
       else
       {
+        logfile.write('\nno user');
         //If the logged user is not exist it returns invalid flag to the login card
         return callback("invalid");
         }
@@ -670,11 +685,18 @@ exports.Fnspecificationitemread=function(pagename,inwardregno,checkstatus,produc
   connection.query(queryy, function (err, rows) {
     if(!err)
     {
-      if(rows.length>0)
+      if(rows.length>0){
+        logfile.write('\nQuality parameter read: Items found');
         return callback(rows);
-      else
+      }
+      else{
+        logfile.write('\nQuality parameter read: no items found ');
         return callback("no items");
+      }
     }
+    else
+      logfile.write('\nQuality parameter read: '+err);
+
   });
 }
 
@@ -686,10 +708,12 @@ exports.Fnupdatequalityparameter=function(pagename,response,callback) {
       response.Test_ID=rows[0].Test_ID;
       connection.query('INSERT INTO OD_Inward_Material_Quality_Test SET ?', [response], function (err, rows) {
         if (!err) {
+          logfile.write('\nQuality parameter update: success');
           return callback("succ");
         }
         else {
-         console.log(err);
+         // console.log(err);
+          logfile.write('\nQuality parameter update: fail'+err);
           return callback("fail");
         }
       });
@@ -704,10 +728,13 @@ exports.Fnqualityparametersequenceupdate=function(pagename,callback) {
       var response={Test_ID:parseInt(rows[0].Test_ID)+1};
       connection.query('UPDATE MD_Quality_Test_ID SET ?',[response],function (err, rows) {
         if (!err) {
+          logfile.write('\nQuality parameter test id update: success');
           return callback("succ");
         }
-        else
+        else{
+          logfile.write('\nQuality parameter test id update: fail');
           return callback("fail");
+        }
       });
     }
     else
@@ -719,14 +746,20 @@ exports.Fnqualityparameterdisplay=function(pagename,cond1,cond2,callback) {
 
   connection.query('SELECT * FROM OD_Inward_Material_Quality_Test WHERE ? and ?',[cond1,cond2],function (err, rows) {
     if(!err) {
-      if (rows.length > 0)
+      if (rows.length > 0){
+        logfile.write('\nQuality parameter display: items found');
         return callback(rows);
+      }
 
-      else
+      else{
+        logfile.write('\nQuality parameter display: no items');
         return callback("no items");
+      }
     }
-    else
+    else{
+      logfile.write('\nQuality parameter display: '+err);
     console.log(err);
+  }
     });
 }
 

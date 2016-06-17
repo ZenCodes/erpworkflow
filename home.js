@@ -12,6 +12,10 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var readcredential = require("./app/scripts/dboperations.js");
 readcredential.FnReadCredentials();
 
+
+var createfile = require("./app/scripts/dboperations.js");
+createfile.FnCreateFile(app,express);
+
 //Lodaing static files like elements from app folder
 app.use(express.static('app'));
 
