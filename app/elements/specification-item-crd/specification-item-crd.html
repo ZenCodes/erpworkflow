@@ -1,6 +1,7 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
@@ -12,14 +13,14 @@
       .card{
         @apply(--layout-horizontal);
       }
-      paper-input,paper-dropdown-menu,paper-item{
+      paper-input,paper-button,paper-dropdown-menu,paper-item{
         width: 12%;
         /*margin-left: 3%;*/
         font-family: calibri;
         font-size: 16px;
       }
       paper-dropdown-menu{
-      margin-left: 2%;
+      margin-left: 3%;
       }
       paper-input{
       margin-left: 3%;
@@ -30,12 +31,17 @@
       }
       #minvalue,#maxvalue{
       margin-left: 2%;
-	  width: 5%;
+	    width: 5%;
+      }
+      paper-button{
+        text-transform: none;
+        text-align: left;
+        margin-left: 2%;
       }
 
     </style>
     <div class="card" hidden$="{{hidediv}}">
-      <paper-item id="parameter" value="{{name}}">{{name}}</paper-item>
+      <paper-button id="parameter" value="{{name}}">{{name}}</paper-button>
 
       <paper-dropdown-menu label="Select" hidden$="{{dropflag}}">
         <paper-listbox class="dropdown-content" on-iron-select="FnSelected">
@@ -45,10 +51,10 @@
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-item id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly>{{minvalue}}</paper-item>
-      <paper-item readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-item>
-      <paper-item id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-item>
-      <paper-item readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-item>
+      <paper-button id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly>{{minvalue}}</paper-button>
+      <paper-button readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-button>
+      <paper-button id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-button>
+      <paper-button readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-button>
       <paper-input id="{{name}}actualvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
     </div>
