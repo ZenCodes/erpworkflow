@@ -97,6 +97,9 @@
         color: black;
         height: 34px;      
       }
+      .save{
+        margin-left: -8%;
+      }
       #supname{
         --paper-input-container-label: { color: red };
         margin-left: 10%;
@@ -126,7 +129,7 @@
           </div>
         </template>
         <div layout horizontal class="buttons">
-          <paper-button disabled="{{Btn_disable_flag}}" on-click="FnAddItem" class="additem" id="additem" >Add Item</paper-button>
+          <!-- <paper-button disabled="{{Btn_disable_flag}}" on-click="FnAddItem" class="additem" id="additem" >Add Item</paper-button> -->
           <paper-button disabled="{{Btn_disable_flag}}" on-click="FnSaveItem" class="save" id="save" >Save</paper-button>
         </div>
       </div>
