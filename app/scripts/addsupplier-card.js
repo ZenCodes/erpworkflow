@@ -7,6 +7,7 @@
   Polymer({
     is: 'addsupplier-card',
     ready:function(){
+      this.country="India";
       this.Btn_disable_flag=false;
       this.read=false;
       //Initially hiding paperlistbox of itemtype and itemgroup fields
