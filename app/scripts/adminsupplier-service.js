@@ -397,7 +397,7 @@
       this.$.readsuppliertoapproveajax.generateRequest();
     },
     FnreadsuppliertoapproveResponse:function(e){
-      //alert(JSON.stringify(e.detail.response.itemarr));
+      // alert(JSON.stringify(e.detail.response.itemarr));
       document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
     },
     FnSetSupplierforApprove:function(supplierid){
