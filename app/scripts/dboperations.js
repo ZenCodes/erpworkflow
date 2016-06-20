@@ -291,7 +291,7 @@ exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
             return callback("succ");
           }
           else{
-            console.log(error);
+            // console.log(error);
             //res.status(200).json({'returnval': "fail"});
             return callback("fail");
           }
@@ -485,12 +485,12 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
     if(rows.length>0) {
       connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? and ?', [cond1, cond2, cond6, cond7], function (err, rows) {
         if(rows.length>0) {
-          console.log('same serial no');
+          // console.log('same serial no');
           connection.query('UPDATE OD_Inward_Material_Inspection SET ? WHERE  ? and ? and ? and ?', [response, cond1, cond2, cond6,cond7], function (err, result) {
             if (!err)
               return callback("updated");
             else {
-              console.log(err);
+              // console.log(err);
               return callback("not updated");
             }
           });
@@ -498,7 +498,7 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
         }
         else
         {
-          console.log('diff serial no');
+          // console.log('diff serial no');
           return callback("exist");
         }
       });
@@ -510,13 +510,13 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
             if (!err)
               return callback("updated");
             else {
-              console.log("error!" + err);
+              // console.log("error!" + err);
               return callback("not updated");
             }
           });
         }
         else {
-          console.log(err);
+          // console.log(err);
           return callback("not updated");
         }
       });
@@ -572,7 +572,7 @@ exports.Fnoldcontainerupdate=function(pagename,response,inwardregno,callback) {
       //});
     }
     else {
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -798,7 +798,7 @@ exports.FnBackwardflowitem=function(pagename,cond,cond1,callback){
 
 //Function for outward seq no generation
 exports.FnOutwardSeq=function(pagename,cond,callback) {
-console.log(cond);
+// console.log(cond);
   var Config_tables=[];
   var Config_columns=[];
   for(var i=0;i<obj.length;i++){
@@ -1076,7 +1076,7 @@ exports.FnIntentitemSeq=function(pagename,callback) {
   connection.query('INSERT INTO '+Config_tables[0]+' SET ?',[dummyno],function(err,result){
     if(!err)
     {
-      console.log('seq generated!');
+      // console.log('seq generated!');
       return callback("succ");
     }
     else
@@ -1343,7 +1343,7 @@ exports.FnAddItemWrite=function(pagename,response,callback) {
             return callback("succ");
           }
           else {
-            console.log("Not Inserted!"+err);
+            // console.log("Not Inserted!"+err);
             return callback("fail");
           }
         });
@@ -1374,7 +1374,7 @@ exports.FnAddItemWriteSupplier=function(pagename,response,callback) {
             return callback("succ");
           }
           else {
-            console.log("Not Inserted!"+err);
+            // console.log("Not Inserted!"+err);
             return callback("fail");
           }
         });
@@ -1405,7 +1405,7 @@ exports.FnAddItemWriteCustomer=function(pagename,response,callback) {
             return callback("succ");
           }
           else {
-            console.log("Not Inserted!"+err);
+            // console.log("Not Inserted!"+err);
             return callback("fail");
           }
         });
@@ -1506,7 +1506,7 @@ exports.FnItemsupplierRead=function(pagename,itemid,callback) {
       Config_tables=obj[i].value;
     }
   }
-  console.log('itemid.....'+itemid);
+  // console.log('itemid.....'+itemid);
   var queryy="SELECT * FROM "+Config_tables[0]+" where Status='Approved' and Supplier_ID not in(SELECT Item_Supplier_ID from OD_Item where Item_ID='"+itemid+"')";
   //console.log(queryy);
   connection.query(queryy,function(err, rows, fields) {
@@ -1727,7 +1727,7 @@ exports.Fnsuppliertaxadd=function(pagename,response,callback) {
       return callback("succ");
     }
     else{
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -1788,7 +1788,7 @@ exports.FnUpdateSupplier=function(pagename,response,callback) {
       return callback("succ");
     }
     else{
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -1810,7 +1810,7 @@ exports.FnSupplierUpdatetax=function(pagename,response,callback) {
       return callback("succ");
     }
     else{
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -1832,7 +1832,7 @@ exports.FnSupplierUpdateexcise=function(pagename,response,callback) {
       return callback("succ");
     }
     else{
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -1855,7 +1855,7 @@ exports.FnUpdatePayment=function(pagename,response,callback) {
       return callback("succ");
     }
     else{
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -2409,7 +2409,7 @@ exports.Fnupdateposeq=function(pagename,ponumber,callback) {
   }
 
   var queryy="UPDATE Auto_PO_Number SET PO_Number="+parseInt(ponumber);
-  console.log(queryy);
+  // console.log(queryy);
   connection.query(queryy,function(err,rows,result){
     if(!err)
       return callback("succ");
@@ -2473,7 +2473,7 @@ exports.Fncustomertaxadd=function(pagename,response,callback) {
       return callback("succ");
     }
     else{
-      console.log(err);
+      // console.log(err);
       return callback("fail");
     }
   });
@@ -2528,6 +2528,7 @@ exports.FnAddCustomer=function(pagename,response,callback) {
           });
         }
         else {
+          // console.log('error in customer....'+err);
           return callback("fail");
         }
       });
@@ -2630,7 +2631,7 @@ exports.FnUpdatecustomerPayment=function(pagename,response,callback) {
     }
   }
   var cond={Customer_ID:response.Customer_ID};
-  console.log(cond);
+  // console.log(cond);
   connection.query('UPDATE MD_Customer_Payment SET ? where ?',[response,cond],function(err,result){
     if(!err)
     {
@@ -2686,8 +2687,9 @@ exports.Fnreadcustomer=function(pagename,cond,callback) {
 
     if(!err){
       if(rows.length>0){
-
+        // console.log(JSON.stringify(rows));
         return callback(rows);
+
       }
       else{
         return callback("no item");
@@ -3083,7 +3085,7 @@ exports.Fnreadcustomertoapprove=function(pagename,callback) {
 }
 
 exports.Fnapprovecustomerforsales=function(pagename,customerid,status,callback) {
-  console.log('coming');
+  // console.log('coming');
   var Config_tables=[];
   var Config_columnvalues=[];
   for(var i=0;i<obj.length;i++){
@@ -3165,9 +3167,9 @@ exports.Fncustomerinforead=function(pagename,customerid,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }
-  console.log(customerid);
+  // console.log(customerid);
   var qur="SELECT * FROM MD_Sales_Customer_Detail cd JOIN MD_Customer_Payment cp ON ( cd.Customer_ID = cp.Customer_ID ) JOIN MD_Customer_Excise ce ON ( cp.Customer_ID = ce.Customer_ID ) JOIN MD_Customer_Tax ct ON ( ce.Customer_ID = ct.Customer_ID ) WHERE cd.Customer_ID='"+customerid+"'";
-  console.log(qur);
+  // console.log(qur);
   connection.query(qur, function(err, rows) {
     if(!err)
     {

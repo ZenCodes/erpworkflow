@@ -1235,7 +1235,7 @@ app.post("/addcustomer-service",urlencodedParser,function(req,res) {
    State:req.query.state,
    Country:req.query.country,
    Pincode:req.query.pincode,
-   Phoneno:req.query.phoneno,
+   PhoneNo1:req.query.phoneno,
    Mobileno:req.query.mobileno,
    Email:req.query.emailid,
    Faxno:req.query.faxno,

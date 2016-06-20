@@ -41,7 +41,7 @@
         document.querySelector("addcustomer-card").state=arr[0].State;
         document.querySelector("addcustomer-card").country=arr[0].Country;
         document.querySelector("addcustomer-card").pincode=arr[0].Pincode;
-        document.querySelector("addcustomer-card").phoneno=arr[0].Phoneno;
+        document.querySelector("addcustomer-card").phoneno=arr[0].PhoneNo1;
         document.querySelector("addcustomer-card").mobileno=arr[0].Mobileno;
         document.querySelector("addcustomer-card").emailid=arr[0].Email;
         document.querySelector("addcustomer-card").faxno=arr[0].Faxno;
@@ -155,7 +155,7 @@
       obj1.website=website;
       },
     addsupplierResponse:function(e){
-      //alert('supplier'+e.detail.response.returnval);
+      // alert('supplier'+e.detail.response.returnval);
       //alert(JSON.stringify(obj3));
       if(e.detail.response.returnval=="succ"){
         localStorage.setItem('curr_sess_customerloggedid',e.detail.response.id);
@@ -181,7 +181,7 @@
   },
   customeraddcontactResponse:function(e){
     if(e.detail.response.itemarr=="succ") {
-      alert('Contact Added!');
+      // alert('Contact Added!');
       //this.$.customerdialogcard.FnShowDialog("Contact Added!");
       this.FncustomerreadcontactService();
     }
@@ -213,7 +213,7 @@
     document.querySelector('customer-page').setPage('Add Excise');
   },
   customertaxaddResponse:function(e){
-    //alert('tax'+e.detail.response.returnval);
+    // alert('tax'+e.detail.response.returnval);
     //alert(JSON.stringify(obj4));
     if(e.detail.response.returnval=="succ") {
       obj4.customerid=localStorage.getItem('curr_sess_customerloggedid');
@@ -234,7 +234,7 @@
     document.querySelector('customer-page').setPage('Add Payment');
   },
   customerexciseaddResponse:function(e) {
-  //alert('excise' + e.detail.response.returnval);
+  // alert('excise' + e.detail.response.returnval);
   if (e.detail.response.returnval=="succ"){
     obj5.customerid=localStorage.getItem('curr_sess_customerloggedid');
     this.paymentparam = obj5;
@@ -243,7 +243,7 @@
   }
   },
   addpaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
-    //alert('in payment!');
+    // alert('in payment!');
     obj5={
             "customerid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
             "branch":"","ifsccode":"","micrcode":"","swiftcode":"","paymentterm":""
@@ -266,6 +266,7 @@
         }
   },
   addpaymentResponse:function(e){
+    // alert('payment..'+e.detail.response.returnval);
   if(e.detail.response.returnval=="succ"){
     alert("Customer Added successfully!!");
   }
@@ -478,7 +479,7 @@
       document.querySelector("customer-detail-read").state=arr[0].State;
       document.querySelector("customer-detail-read").country=arr[0].Country;
       document.querySelector("customer-detail-read").pincode=arr[0].Pincode;
-      document.querySelector("customer-detail-read").phoneno=arr[0].Phoneno;
+      document.querySelector("customer-detail-read").phoneno=arr[0].PhoneNo1;
       document.querySelector("customer-detail-read").mobileno=arr[0].Mobileno;
       document.querySelector("customer-detail-read").emailid=arr[0].Email;
       document.querySelector("customer-detail-read").faxno=arr[0].Faxno;
