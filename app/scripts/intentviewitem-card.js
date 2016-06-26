@@ -49,13 +49,13 @@
           document.querySelector('app-homepage').FnSetPromoteVisibility('true');
           if(all[i].id==document.querySelector("#viewcard"+this.intentregno).id){
             if(i!=0) {
-
-              if(i!=0){
+              // all[i].style.marginTop=((i*(x))-i-(i*0.5))+"%";
+              // if(i!=0){
                 all[i].style.marginTop=((i*(x))-i)+"%";
-              }
-              if(i>10){
-                all[i].style.marginTop=((i*(x+(-.5)))-i)+"%";
-              }
+              // }
+              // if(i>10){
+                // all[i].style.marginTop=((i*(x+(-.5)))-i)+"%";
+              // }
             }
             all[i].style.visibility='visible';
           }
