@@ -52,11 +52,12 @@
           document.querySelector('app-homepage').setVisible("true");
           if(all[i].id==document.querySelector("#card"+this.inwardregno).id){
             if(i!=0){
-              all[i].style.marginTop=((i*(x))-i)+"%";
-            }
-            if(i>10){
-              all[i].style.marginTop=((i*(x+(-.5)))-i)+"%";
-            }
+              // alert(((i*(x))-i)-(i*5));
+              //if(i<4)
+              all[i].style.marginTop=((i*(x))-i-(i*2))+"%";
+              //if(i>4&&i<8)
+              //all[i].style.marginTop=((i*(x))-i)+"%";
+            }          
             //alert("yes");
             all[i].style.visibility='visible';
             localStorage.setItem('curr_sess_forwarddisablestate',"0");
