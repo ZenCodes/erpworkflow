@@ -267,12 +267,12 @@ exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
 
 
   //Fetching inward bill no if it is new it will insert data otherwise it wont
-  connection.query('SELECT '+ Config_columns[0] +' FROM '+ Config_tables[0] +' WHERE ?',[cond],function(error,rows) {
-    if(!error)
-    {
+  // connection.query('SELECT '+ Config_columns[0] +' FROM '+ Config_tables[0] +' WHERE ?',[cond],function(error,rows) {
+    // if(!error)
+    // {
       //console.log(rows.length);
-      if(rows.length==0)
-      {
+      // if(rows.length==0)
+      // {
         //Inserting vehicle info to the table
         connection.query('INSERT INTO '+Config_tables[0]+' set ?', [response], function(error) {
           if(!error){
@@ -296,21 +296,21 @@ exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
             return callback("fail");
           }
         });
-      }
-      else
-      {
+      // }
+      // else
+      // {
         //res.status(200).json({'returnval': "exists"});
         //Sending exists flag as seq no already there
-        return callback("exists");
-      }
-    }
-    else
-    {
+        // return callback("exists");
+      // }
+    // }
+    // else
+    // {
       //console.log("yes..."+error);
       //res.status(200).json({'returnval': "fail"});
-      return callback("fail");
-    }
-  });
+      // return callback("fail");
+    // }
+  // });
 }
 
 //Function which register the Inward items
@@ -364,6 +364,7 @@ exports.FnForwardFlowitemFetch=function(pagename,cond,roleid,empid,callback){
     }
     //console.log(Config_tables);
   }
+  console.log(Config_columns[0]);
   if(roleid=="2")
   var queryy="SELECT * from OD_Sales_Inward_Material where Product_ID in(SELECT Item_name from MD_Item where Store_Location_ID in (SELECT  Store_Location_ID FROM `MD_Stores_Mapping` WHERE Employee_ID='"+empid+"')) and state='"+state+"' ORDER BY '+Config_columns[0]+' DESC";
   else

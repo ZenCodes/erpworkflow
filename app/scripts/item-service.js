@@ -46,7 +46,7 @@ var intentregno;
     //Response received for inward seq creation req on successful creation it will call itemsave request to the server
     FnSeqItemwriteResponse:function(e)
     {
-      //alert(e.detail.response);
+      // alert(JSON.stringify(e.detail.response));
       //Sending row by row of item info to the server
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){

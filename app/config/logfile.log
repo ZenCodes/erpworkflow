@@ -23,3 +23,13 @@ Quality parameter read: Items found
 Quality parameter display: items found
 Quality parameter read: Items found
 Quality parameter display: items founddb connection:Error: Connection lost: The server closed the connection.db connection:Error: Connection lost: The server closed the connection.db connection:Error: Connection lost: The server closed the connection.db connection:Error: Connection lost: The server closed the connection.db connection:Error: connect ECONNREFUSED 127.0.0.1:3307
+Quality parameter read: Items found
+Quality parameter display: no items
+Quality parameter update: success
+Quality parameter update: success
+Quality parameter update: success
+Quality parameter test id update: success
+Quality parameter read: Items found
+Quality parameter display: items found
+Quality parameter read: Items found
+Quality parameter display: items found
