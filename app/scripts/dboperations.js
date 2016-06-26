@@ -366,9 +366,9 @@ exports.FnForwardFlowitemFetch=function(pagename,state,roleid,empid,callback){
   }
   // console.log(Config_columns[0]+"  "+state);
   if(roleid=="2")
-  var queryy="SELECT * from OD_Sales_Inward_Material where Product_ID in(SELECT Item_name from MD_Item where Store_Location_ID in (SELECT  Store_Location_ID FROM `MD_Stores_Mapping` WHERE Employee_ID='"+empid+"')) and state='"+state+"' ORDER BY '"+Config_columns[0]+"' DESC";
+  var queryy="SELECT * from OD_Sales_Inward_Material where Product_ID in(SELECT Item_name from MD_Item where Store_Location_ID in (SELECT  Store_Location_ID FROM `MD_Stores_Mapping` WHERE Employee_ID='"+empid+"')) and state='"+state+"' ORDER BY "+Config_columns[0]+" DESC";
   else
-  var queryy="SELECT  * FROM OD_Sales_Inward_Material WHERE state='"+state+"' ORDER BY '"+Config_columns[0]+"' DESC";
+  var queryy="SELECT  * FROM OD_Sales_Inward_Material WHERE state='"+state+"' ORDER BY "+Config_columns[0]+" DESC";
   
   // console.log(queryy);
   //Query which fetch the item under specific IRN Number
