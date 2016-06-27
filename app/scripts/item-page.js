@@ -204,7 +204,7 @@
             else if(this.unit==null||this.unit=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter unit value for container!","");
             else if(this.qtyreceived==null||this.qtyreceived=="")
-              this.$.ID_Show_Dialog.FnShowDialog("Enter received quantity unit!","");
+            this.$.ID_Show_Dialog.FnShowDialog("Enter received quantity unit!","");
             else if(this.measure==null||this.measure=="")
             this.$.ID_Show_Dialog.FnShowDialog("Enter measure for Qty Received!","");
             //alert("All fields must want to be filled");

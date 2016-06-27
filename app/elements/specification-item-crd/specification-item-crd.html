@@ -20,17 +20,19 @@
         font-size: 16px;
       }
       paper-dropdown-menu{
-      margin-left: 3%;
+      margin-left: 2%;
+      margin-top: -2%;
       }
       paper-input{
       margin-left: 3%;
+      margin-top: -2%;      
       }
       #minmeasure,#maxmeasure,#actualmeasure{
         width: 5%;
         margin-left: -5%;
       }
       #minvalue,#maxvalue{
-      margin-left: 2%;
+      margin-left: 1%;
 	    width: 5%;
       }
       paper-button{
@@ -55,7 +57,7 @@
       <paper-button readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-button>
       <paper-button id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-button>
       <paper-button readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-button>
-      <paper-input id="{{name}}actualvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
+      <paper-input id="actvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
       <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
     </div>
   </template>
@@ -70,8 +72,9 @@
       },
       FnSelected:function(e){
         this.minvalue = e.target.selectedItem.textContent.trim();
+        this.actualvalue = e.target.selectedItem.textContent.trim();
       },
-      FnChange:function(){
+      FnChange:function(){     
       var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":"","testdate":"","measure":""};
       obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
       obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");

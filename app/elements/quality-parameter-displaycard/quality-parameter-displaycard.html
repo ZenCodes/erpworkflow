@@ -15,7 +15,7 @@
       .card{
         @apply(--layout-vertical);
         margin-left: 10%;
-        width: 60%;
+        width: 70%;
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
@@ -29,9 +29,9 @@
       .inner{
         @apply(--layout-horizontal);
       }
-      paper-item{
-        width: 100px;
-      }
+      p{
+        width: 140px;
+      }      
       .testno{
         margin-left: -50%;
         margin-top: 2%;
@@ -53,11 +53,11 @@
         <template is="dom-repeat" items="{{item.temparr}}" as="item">
 
         <div class="inner">
-        <paper-item>{{item.Quality_Parameter_Name}}</paper-item>
-        <paper-item>{{item.Min_Value}}</paper-item>
-        <paper-item>{{item.Max_Value}}</paper-item>
-        <paper-item>{{item.Actual_Value}}</paper-item>
-        <paper-item>{{item.Remarks}}</paper-item>
+        <p>{{item.Quality_Parameter_Name}}</p>
+        <p>{{item.Min_Value}}</p>
+        <p>{{item.Max_Value}}</p>
+        <p>{{item.Actual_Value}}</p>
+        <p>{{item.Remarks}}</p>
         </div>
         </template>
         </div>
