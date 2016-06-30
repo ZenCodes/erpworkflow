@@ -14,7 +14,7 @@
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
 <link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
-
+<!-- Add supplier component registeration added keypress event to respond for key board enter while submitting form-->
 <dom-module id="addsupplier-card" on-keypress="{{keypress}}">
   <template>
     <style is="custom-style">
@@ -135,20 +135,17 @@
         </div>
 
         <div class="owner">
-          <paper-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="[0-9 ]" error-message="{{item.Pincode_error}}"></paper-input>
-          <!--<gold-zip-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" error-message="{{item.Pincode_error}}"></gold-zip-input>-->
+          <paper-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="[0-9 ]" error-message="{{item.Pincode_error}}"></paper-input>          
           <paper-input readonly="{{read}}" label="{{item.Phone_Number}}" name="phoneno" value="{{phoneno}}" required  id="phoneno" error-message="{{item.Phone_Number_error}}"></paper-input>
         </div>
         <div class="owner">
-          <paper-input readonly="{{read}}" label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="[0-9 ]" error-message="{{item.Mobile_Number_error}}"></paper-input>
-          <!-- <paper-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input> -->
+          <paper-input readonly="{{read}}" label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="[0-9 ]" error-message="{{item.Mobile_Number_error}}"></paper-input>          
           <gold-email-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
         </div>
         <div class="owner">
           <paper-input readonly="{{read}}" label="{{item.Fax_No}}" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
           <paper-input readonly="{{read}}" label="{{item.Website}}" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
-        </div>
-        <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
+        </div>        
         <paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>
       </div>
     </template>
@@ -162,6 +159,7 @@
       content-type="application/json"
       on-response="supplierlistreadResponse">
     </iron-ajax>
+    <!-- Service component to invoke the supplier related ajax calls -->
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
