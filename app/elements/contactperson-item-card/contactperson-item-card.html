@@ -1,12 +1,13 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\customer-service\customer-service.html">
 
-
+<!-- Component registeraion -->
 <dom-module id="contactperson-item-card">
   <template>
+  <!-- Internal style for the component -->
     <style>
       :host {
         display: block;
@@ -41,10 +42,9 @@
       <paper-input readonly="{{read}}" label="Designation" value="{{designation}}" id="designation" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Designation"></paper-input>
       <paper-input readonly="{{read}}" label="Mobile No" value="{{mobileno}}" id="mobileno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Mobile no"></paper-input>
       <paper-input readonly="{{read}}" label="Email id" value="{{emailid}}" id="emailid" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Email id"></paper-input>
-      <paper-button on-click="FnAddContact">Add</paper-button>
-      <!--<paper-button on-click="FnNext">Next</paper-button>-->
+      <paper-button on-click="FnAddContact">Add</paper-button>      
     </div>
-
+    <!-- Service component for making ajax call -->
     <customer-service id="customerservice"></customer-service>
   </template>
   <script src="../../scripts/contactperson-item-card.js"> </script>

@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../supplier-list/supplier-list.html">
@@ -7,7 +7,7 @@
 <link rel="import" href="../customer-list/customer-list.html">
 <link rel="import" href="../itemprice-card/itemprice-card.html">
 <link rel="import" href="../customersupplier-card/customersupplier-card.html">
-
+<!-- Component registeration -->
 <dom-module id="supplier-detail">
   <template>
     <style>
@@ -19,17 +19,17 @@
 		    margin-left: 5%;
       }
       paper-button{
-	          text-align: center;
-	          width: 15%;
-	          background-color: #A0A0A0;
-            font-family: calibri;
-            font-size: 17px;
-            color: black;
-            height: 35px;
-	          margin-top: 4%;	          
+	      text-align: center;
+	      width: 15%;
+	      background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+	      margin-top: 4%;	          
       }
       .btn{
-      @apply(--layout-horizontal);
+        @apply(--layout-horizontal);
       }
       .choice{
         margin-left: -70%;
@@ -45,22 +45,14 @@
         font-size: 16px;
       }
       .suppliercard{
-      @apply(--layout-horizontal);
+        @apply(--layout-horizontal);
       }
       itemprice-card{
         margin-left: 10%;
       }
     </style>
     <div class="card">
-    <!--<div class="choice">
-      <paper-radio-group>
-      <paper-radio-button  checked id="addsupplier" name="Add Supplier" on-change="FnChooseSupplier">Add Supplier</paper-radio-button>
-      <paper-radio-button  id="addcustomer" name="Add Customer" on-click="FnChooseCustomer">Add Customer</paper-radio-button>      
-      </paper-radio-group>
-    </div>-->
-
     <customersupplier-card id="customersuppliercard"></customersupplier-card>
-
     <div class="list" hidden$="{{hidesupplier}}">
     <template is="dom-repeat" items="{{supArray}}" as="item">
     <div class="suppliercard">
@@ -82,5 +74,6 @@
      <!--Including dialog component here-->
     <itemsummary-page id="ID_Dialogpage"></itemsummary-page>
   </template>
+     <!-- JS file import -->
   <script src="../../scripts/supplier-detail.js"></script>
 </dom-module>

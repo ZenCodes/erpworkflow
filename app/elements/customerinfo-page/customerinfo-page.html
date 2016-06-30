@@ -19,8 +19,7 @@
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-      //background-color: rgb(255, 255, 255);
+        position: relative;      
         color: black;
         width: 80%;
         left: 10%;
@@ -51,8 +50,7 @@
       }
 
       #datetitle,#timetitle{
-        font-size: 13px;
-      //color: blue;
+        font-size: 13px;      
       }
       #datetitle{
         margin-left: 20%;
@@ -70,12 +68,10 @@
       <paper-item id="datetitle" noink>{{item.Out_Date}}</paper-item>
     </div>
     <div class="topbanner">
-      <!--<paper-input label="Out Time" value="{{outtime}}" style="font-size:15px;" id="outtime" required  error-message="Enter Outtime"></paper-input>-->
       <timepicker-card></timepicker-card>
       <datepicker-card></datepicker-card>
     </div>
     <div class="card">
-
       <paper-input label="{{item.Customer_Name}}" name="customername" value="{{customername}}" required  allowed-pattern="[a-zA-Z ]" id="customer_name" error-message="{{item.Customer_Name_error}}"></paper-input>
       <paper-input label="{{item.Destination_City}}" name="city" value="{{city}}" required  id="customer_city" allowed-pattern="[a-zA-Z ]" error-message="{{item.Destination_City_error}}"></paper-input>
       <paper-button on-click="FnCustomerInfoSubmit">Next</paper-button>
@@ -86,6 +82,6 @@
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/customerinfo-page.js"></script>
-
 </dom-module>

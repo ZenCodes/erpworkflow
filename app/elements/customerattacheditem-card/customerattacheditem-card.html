@@ -1,9 +1,11 @@
+<!-- Components import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/supplier-list/supplier-list.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../admin-service/admin-service.html">
+<!-- Componnet registeration -->
 <dom-module id="customerattacheditem-card">
   <template>
     <style>
@@ -36,7 +38,7 @@
     Polymer({
       is: 'customerattacheditem-card',
       FnDelete:function(){
-        //alert(this.itemid+" "+this.customerid);
+        // Function which calls service to delete the selected customer
         this.$.adminservice.calldeleteitemcustomerService(this.itemid,this.customerid);
       }
     });

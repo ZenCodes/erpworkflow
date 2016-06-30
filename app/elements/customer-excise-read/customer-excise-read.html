@@ -1,8 +1,10 @@
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="../customer-service/customer-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<!-- Component registeraion -->
 <dom-module id="customer-excise-read">
   <template>
     <style>
@@ -30,16 +32,16 @@
      
     </style>
     <div class="card">
-      <!--<template is="dom-repeat" items="{{label}}" as="lbl">-->
+      
       <paper-input readonly="{{read}}" label="C. Ex Reg No" value="{{regno}}" id="regno" required rallowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Regno No"></paper-input>
       <paper-input readonly="{{read}}" label="ECC_No" value="{{eccno}}" id="eccno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter ECC No"></paper-input>
       <paper-input readonly="{{read}}" label="Range" value="{{range}}" id="range" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Range No"></paper-input>
       <paper-input readonly="{{read}}" label="Division" value="{{division}}" id="division" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Division No"></paper-input>
       <paper-input readonly="{{read}}" label="Commission" value="{{commission}}" id="commission" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Commission No"></paper-input>
       <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetax}}" id="servicetaxno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
-      <!--<paper-button on-click="FnExciseNext">Next</paper-button>-->
-      <!--</template>-->
+
     </div>
+    <!-- Component to acces the service to add the excise infor the customer -->
     <customer-service id="customerservice"></customer-service>
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
   </template>

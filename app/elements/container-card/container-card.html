@@ -1,9 +1,10 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../admin-service/admin-service.html">
+<!-- Component registeration -->
 <dom-module id="container-card">
   <template>
     <style>
@@ -13,13 +14,14 @@
     </style>
     <div>
     <paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
-            <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer" attr-for-selected="value" selected="{{containertype}}" required>
-              <template is="dom-repeat" items="{{containerarr}}">
-              <paper-item value="{{item.Container_Name}}">{{item.Container_Name}}</paper-item>
-              </template>
-            </paper-menu>
+      <paper-menu class="dropdown-content"  on-iron-select="FnSelectcontainer" attr-for-selected="value" selected="{{containertype}}" required>
+        <template is="dom-repeat" items="{{containerarr}}">
+        <paper-item value="{{item.Container_Name}}">{{item.Container_Name}}</paper-item>
+        </template>
+      </paper-menu>
     </paper-dropdown-menu>
     </div>
+    <!-- Component to access the service and get value for the component -->
     <admin-service id="adminservice" containerarr="{{containerarr}}"></admin-service>
   </template>
   <script>
@@ -28,17 +30,18 @@
 
     Polymer({
       is: 'container-card',
+    // Function which read the container information
     ready:function(){
       this.containertype=this.container;
       this.$.adminservice.callContainerReadService();
     },
+    // Function which invoke when changing container and binding container to the corresponding card
     FnSelectcontainer:function(e){
       document.querySelector('additem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
       document.querySelector('supplieradditem-card').FnContainerChange((e.target.selectedItem.textContent).trim());
-
     },
+    // Function which set the container while search for an item info in additem,supplieritem or customer item page
     FnSetContainer:function(container){
-//      alert(container);
       this.containertype=container;
     }
     });

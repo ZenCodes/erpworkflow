@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -6,7 +6,7 @@
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 
-
+<!-- Component registeration -->
 <dom-module id="specification-item-crd">
   <template>
     <style>
@@ -14,37 +14,34 @@
         @apply(--layout-horizontal);
       }
       paper-input,paper-button,paper-dropdown-menu,paper-item{
-        width: 12%;
-        /*margin-left: 3%;*/
+        width: 12%;        
         font-family: calibri;
         font-size: 16px;
       }
       paper-dropdown-menu{
-      margin-left: 2%;
-      margin-top: -2%;
+        margin-left: 2%;
+        margin-top: -2%;
       }
       paper-input{
-      margin-left: 3%;
-      margin-top: -2%;      
+        margin-left: 3%;
+        margin-top: -2%;      
       }
       #minmeasure,#maxmeasure,#actualmeasure{
         width: 5%;
         margin-left: -5%;
       }
       #minvalue,#maxvalue{
-      margin-left: 1%;
-	    width: 5%;
+        margin-left: 1%;
+	      width: 5%;
       }
       paper-button{
         text-transform: none;
         text-align: left;
         margin-left: 2%;
       }
-
     </style>
     <div class="card" hidden$="{{hidediv}}">
       <paper-button id="parameter" value="{{name}}">{{name}}</paper-button>
-
       <paper-dropdown-menu label="Select" hidden$="{{dropflag}}">
         <paper-listbox class="dropdown-content" on-iron-select="FnSelected">
           <template is="dom-repeat" items="{{itemarr}}" as="item">
@@ -52,7 +49,6 @@
           </template>
         </paper-listbox>
       </paper-dropdown-menu>
-
       <paper-button id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly>{{minvalue}}</paper-button>
       <paper-button readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-button>
       <paper-button id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-button>
@@ -70,10 +66,12 @@
       ready:function(){
       this.flag=0;
       },
+      // Function which invoke when selecting item in dropdown
       FnSelected:function(e){
         this.minvalue = e.target.selectedItem.textContent.trim();
         this.actualvalue = e.target.selectedItem.textContent.trim();
       },
+      // Function which invoke when changing input fields
       FnChange:function(){     
       var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":"","testdate":"","measure":""};
       obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
@@ -86,10 +84,8 @@
       obj.measure=this.measure;
       var dat=new Date();
       obj.testdate=dat.getDate()+"/"+(dat.getMonth()+1)+"/"+dat.getFullYear();
-//        alert(JSON.stringify(obj));
       for(var i=0;i<testarr.length;i++){
-        if(testarr[i].name==obj.name){
-          //alert('exists');
+        if(testarr[i].name==obj.name){          
           this.flag=1;
           testarr[i].actualvalue=this.actualvalue;
           testarr[i].remarks=this.remarks;
@@ -101,7 +97,6 @@
       }
       },
       FnRemarkChange:function(){
-
       }
     });
   })();

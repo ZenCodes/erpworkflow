@@ -18,12 +18,12 @@
 <link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeraion -->
 <dom-module id="customer-list">
   <style>
     .repeatcard{
       @apply(--layout-horizontal);
       width:100%;
-
     }
     paper-listbox{
       width: 135%;
@@ -37,8 +37,7 @@
       text-align: left;
       --paper-input-container-label: { color: red };
       font-family: calibri;
-      font-size: 16px;
-      //color: red ;
+      font-size: 16px;      
     }
     .cus{
       @apply(--layout-vertical);
@@ -58,7 +57,6 @@
         </template>
       </paper-listbox>
       </div>
-
     </div>
     <!--Component which read and bind data from item json file and bind to the dropdown card-->
     <iron-ajax 
@@ -71,11 +69,7 @@
       content-type="application/json"
       on-response="itemcustomerreadResponse">
     </iron-ajax>
-
   </template>
   <!--Importing JS file-->
-  <script src="../../scripts/customer-list.js">
-
-  </script>
-
+  <script src="../../scripts/customer-list.js"></script>
 </dom-module>

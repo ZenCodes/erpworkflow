@@ -1,4 +1,4 @@
-
+<!-- Componnet import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
@@ -46,8 +46,6 @@
     </style>
     <div class="card">
       <div class="outer">
-
-
       <div class="card1">
       <paper-item>Income Tax:</paper-item>
       <div class="incometax">
@@ -66,6 +64,7 @@
       </div>
       <paper-button on-click="FnTaxNext">Next</paper-button>
     </div>
+    <!-- Component to call the service -->
     <customer-service id="customerservice"></customer-service>
   </template>
   <script>
@@ -77,7 +76,7 @@
         this.read=false;
       },
     FnTaxNext:function(){
-
+      // Function to validate the component fields
       document.querySelector('#tinno').validate();
       document.querySelector('#cstno').validate();
       document.querySelector('#panno').validate();
@@ -85,16 +84,19 @@
       document.querySelector('#cinno').validate();
       if(this.tinno==""||this.tinno==null){}
       else {
-
+        // Condition will invoke to store the customer tax info
         if (localStorage.getItem("curr_sess_searchtypeflag") == "nothing") {
           this.$.customerservice.FnCustomerTaxAddService(this.tinno, this.cstno, this.panno, this.tanno, this.cinno);
         }
         else if (localStorage.getItem("curr_sess_addcustomereditflag") == "1" && localStorage.getItem("curr_sess_searchtypeflag") == "1") {
+          // Condition will invoke to update the customer tax info
           this.$.customerservice.updatecustomertaxService(this.tinno, this.cstno, this.panno, this.tanno, this.cinno);
+          // Condition will invoke to fetch the customer exciseinfo
           this.$.customerservice.callExcisereadService();
           document.querySelector('customer-page').setPage('Add Excise');
         }
         else {
+          // Condition will invoke to fetch the customer exciseinfo
           this.$.customerservice.callExcisereadService();
           document.querySelector('customer-page').setPage('Add Excise');
         }

@@ -25,8 +25,7 @@
       .card{
         @apply(--layout-vertical);
         position: relative;
-        color: black;
-        /*width: 80%;*/
+        color: black;        
         left: 10%;
         margin-top:0%;
       }
@@ -123,6 +122,7 @@
         <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddPaymentInfoSubmit">Next</paper-button>
       </div>
     </template>
+    <!-- Component to callthe service -->
     <customer-service id="customerservice"></customer-service>
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service>

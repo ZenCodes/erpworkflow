@@ -96,23 +96,15 @@
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
         <div class="input">
-			<itemsearch-card id="itemsearchcard"></itemsearch-card>
-            <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
-            <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>-->
-
+			   <itemsearch-card id="itemsearchcard"></itemsearch-card>
         </div>
-		<div class="input">
-
+		    <div class="input">
           <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  on-change="FnDesChange" id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
           <paper-input readonly="true" label="{{item.Supplier}}" name="supplier" value="{{supplier}}" required id="supplier" error-message="{{item.Supplier_error}}"></paper-input>
-
         </div>
         <div class="input">
         <container-card></container-card>
         <unit-card></unit-card>
-          <!--<paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>-->
-
         </div>
         <div class="drop">
           <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>

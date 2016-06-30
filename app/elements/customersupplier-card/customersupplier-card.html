@@ -1,4 +1,4 @@
-
+<!-- Components import -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
@@ -9,6 +9,7 @@
 <link rel="import" href="../admin-service/admin-service.html">
 <link rel="import" href="../itemattachedsupplier-card/itemattachedsupplier-card.html">
 <link rel="import" href="../itemattachedcustomer-card/itemattachedcustomer-card.html">
+<!-- Component registeration -->
 <dom-module id="customersupplier-card">
   <template>
     <style>
@@ -49,7 +50,7 @@
         this.read=true;
       },
       FnSetcussupItemId:function(itemid,itemtype){
-        //alert(itemid);
+        // Fn to fetch the customer/supplier attached to the item
         this.$.adminservice.callCustomerSupplierService(itemid,itemtype);
       }
     });

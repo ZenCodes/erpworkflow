@@ -22,12 +22,11 @@
 <link rel="import" href="../admin-service/admin-service.html">
 <link rel="import" href="../itemsearch-card/itemsearch-card.html">
 <link rel="import" href="../stores-card/stores-card.html">
-
 <link rel="import" href="../container-card/container-card.html">
 <link rel="import" href="../unit-card/unit-card.html">
-
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<!-- Component registeration -->
 <dom-module id="customeradditem-card">
   <template>
     <style is="custom-style">
@@ -46,12 +45,12 @@
       font-family: calibri;
       font-size: 16px;
       }
-   .input,.type,.drop{
-   @apply(--layout-horizontal);
-   }
-   :host{
-    --paper-input-container-label: {
-    color:red;
+     .input,.type,.drop{
+     @apply(--layout-horizontal);
+     }
+     :host{
+     --paper-input-container-label: {
+     color:red;
       }}
       paper-dropdown-menu{
       margin-left:5%;
@@ -65,26 +64,24 @@
       margin-top:2%;
       }
       paper-button{
-              text-align: center;
-              width: 35%;           
-              background-color: #A0A0A0;
-              font-family: calibri;
-              font-size: 17px;
-              color: black;
-              height: 35px;
-              margin-top: 4%;
-              margin-left:5%;
+      text-align: center;
+      width: 35%;           
+      background-color: #A0A0A0;
+      font-family: calibri;
+      font-size: 17px;
+      color: black;
+      height: 35px;
+      margin-top: 4%;
+      margin-left:5%;
       }
       .storescard{
         margin-left:5%;
       }
       .containercard{
-        margin-left: 4%;
-        //width:80%;
+        margin-left: 4%;      
       }
       .unitcard{
-        margin-left: 13%;
-        //width:80%;
+        margin-left: 13%;        
       }
       .container,.unit{
         width: 133%;
@@ -96,11 +93,8 @@
       <div class="card">
         <div class="input">
       <itemsearch-card itemid="{{itemid}}"></itemsearch-card>
-            <!--<paper-input  label="{{item.Item_Id}}" name="itemid" value="{{itemid}}" required id="itemid"  error-message="{{item.Item_Id_error}}"></paper-input>
-            <paper-input label="{{item.Item_Name}}" name="itemname" value="{{itemname}}" required id="itemname"  error-message="{{item.Item_Name_error}}"></paper-input>-->
-
         </div>
-    <div class="input">
+        <div class="input">
 
           <paper-input readonly="{{read}}" label="{{item.Item_Description}}" name="itemdes" value="{{itemdes}}" required  on-change="FnDesChange" id="itemdes" error-message="{{item.Item_Description_error}}"></paper-input>
           <paper-input readonly="true" label="{{item.Supplier}}" name="supplier" value="{{supplier}}" required id="supplier" error-message="{{item.Supplier_error}}"></paper-input>
@@ -125,12 +119,7 @@
             </paper-menu>
          </paper-dropdown-menu>
          </div>
-        <!-- <container-card containerarr="{{containerarr}}" containertype="{{id}}"></container-card> -->
-        <!-- <unit-card unitarr="{{unitarr}}" unittype="{{selected}}"></unit-card> -->
-          <!--<paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>-->
-
-        </div>
+         </div>
         <div class="drop">
           <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>
             <paper-menu class="dropdown-content"  on-iron-select="FnSelecttype"  attr-for-selected="value" selected="{{itemtype}}" required>
@@ -147,9 +136,6 @@
             </paper-menu>
           </paper-dropdown-menu>
         </div>
-        <!--<div class="storescard">
-          <stores-card id="storescard"></stores-card>
-        </div>-->
         <div class="type" hidden>
           <paper-item class="ptype" value="{{item.Purchase_Type}}">{{item.Purchase_Type}}</paper-item>
           <div class="radio">

@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
@@ -6,6 +6,7 @@
 <link rel="import" href="../../bower_components/supplier-list/supplier-list.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../admin-service/admin-service.html">
+<!-- Component registeration -->
 <dom-module id="supplierattacheditem-card">
   <template>
     <style>
@@ -25,6 +26,7 @@
        <paper-item id="name">{{itemname}}</paper-item>
        <paper-icon-button icon="delete" on-click="FnDelete"></paper-icon-button>
     </div>
+    <!-- Component to call the service -->
     <admin-service id="adminservice"></admin-service>
   </template>
   <script>
@@ -33,6 +35,7 @@
     Polymer({
       is: 'supplierattacheditem-card',
       FnDelete:function(){
+        // Function which calls service to delete the slected supplier attached against the item
         this.$.adminservice.calldeleteitemsupplierService(this.itemid,this.supplierid);
       }
     });

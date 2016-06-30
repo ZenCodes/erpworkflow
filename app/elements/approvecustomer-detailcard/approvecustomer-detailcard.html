@@ -1,12 +1,12 @@
 
-
+<!-- Components import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\..\bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../customer-read-page/customer-read-page.html">
 <link rel="import" href="../customer-service/customer-service.html">
-
+<!-- Component registeraion -->
 <dom-module id="approvecustomer-detailcard">
   <template>
     <style>
@@ -15,10 +15,10 @@
       <paper-button id="btn{{customername}}"  name="customername" value="{{customername}}" noink>{{customername}}</paper-button>
       <paper-button hidden id="customerid"  name="customerid" value="{{customerid}}" noink>{{customerid}}</paper-button>    
     </div>
+    <!-- Service component for the customer approval -->
     <customer-service id="cs"></customer-service>
   </template>
   <script>
-
     (function() {
       var arr=[];
       var id="true";
@@ -30,8 +30,8 @@
         ready:function(){
           this.icons="icons:arrow-drop-down";
         },
+        // Function which fetch the selected customer info
         FnFetchInfo:function(){
-
           if(clr=="true") {
             this.customername=(this.customername).replace(" ","");
             document.querySelector('#btn'+this.customername).style.color = '#ff6789';
@@ -49,7 +49,5 @@
         }
       });
     })();
-
-
   </script>
 </dom-module>

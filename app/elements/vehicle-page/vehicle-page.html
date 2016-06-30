@@ -17,8 +17,7 @@
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-        /*background-color: rgb(255, 255, 255);*/
+        position: relative;        
         color: black;
         width: 80%;
         left: 5%;
@@ -79,7 +78,6 @@
       <paper-button on-click="FnVehicleInfoSubmit">Next</paper-button>
     </div>
     </template>
-
     <!--Component included here for  calling webcomponnet service to fetch labels-->
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
   </template>

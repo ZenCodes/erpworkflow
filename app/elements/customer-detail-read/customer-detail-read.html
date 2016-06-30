@@ -14,14 +14,13 @@
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
 <link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
-
+<!-- Component registeration -->
 <dom-module id="customer-detail-read" on-keypress="{{keypress}}">
   <template>
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-      //background-color: rgb(255, 255, 255);
+        position: relative;      
         color: black;
         width: 80%;
         left: 10%;
@@ -50,12 +49,10 @@
         color: white;
         margin-top: 4%;
       }
-
       #suppliername,#location,#district,#country,#phoneno,#emailid,#address2,#streetno,#website,#aliasname{
         margin-left: 5%;
       }
       paper-listbox{
-      //width: 100%;
       }
       paper-listbox{
         width: 70%;
@@ -72,9 +69,6 @@
         margin-left: -1%;
       }
       #supplierid{
-      //margin-top:5%;
-      //height:3%;
-      //background-color: whitesmoke;
       }
       #aliasname{
         width: 70%;
@@ -89,7 +83,6 @@
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
     <!--This template binding dynamic labels and error messages-->
     <!--<template is="dom-repeat" items="{{label}}">-->
-
       <div class="card">
         <div class="driver">
           <div class="drop">
@@ -145,17 +138,8 @@
             </paper-listbox>
           </paper-dropdown-menu>
         </div>
-        <!-- <gold-email-input id="emailinput"  error-message="Email required"></gold-email-input> -->
-        <!--<paper-button readonly="{{Btn_disable_flag}}" on-click="FnSupplierInfoSubmit" id="save">Next</paper-button>-->
       </div>
-    <!--</template>-->
-
-
-    <!--Component included here for  calling webcomponnet service to fetch labels-->
-    <!--<webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>-->
-
   </template>
   <!--JS File import-->
   <script src="../../scripts/customer-detail-read.js"> </script>
-
 </dom-module>

@@ -1,3 +1,4 @@
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../viewintent-page/viewintent-page.html">
@@ -12,8 +13,7 @@
       #created,#approved,#supplied,#accepted,#POCreated{
       @apply(--layout-horizontal);
       width: 95%;
-      border-radius: 2px;
-      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      border-radius: 2px;      
       margin-top:3%;
       margin-left: 2%;
       font-size: 16px;
@@ -28,14 +28,11 @@
       }
       #promote{
         margin-left: 90%;
-        border-radius: 2px;
-        //margin-top: 1%;
-        height: 4%;
-        //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        border-radius: 2px;        
+        height: 4%;        
         background-color: whitesmoke;
       }
-    </style>
-    
+    </style>    
     <div id="Created" on-click="expand">Intent Create</div>
      <iron-collapse id="Createdcollapse">
       <div class="collapse" >

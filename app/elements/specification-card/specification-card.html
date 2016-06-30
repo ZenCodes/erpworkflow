@@ -1,10 +1,10 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../specification-item-crd/specification-item-crd.html">
 <link rel="import" href="../grn-service/grn-service.html">
-
+<!-- component registeration -->
 <dom-module id="specification-card">
   <template>
     <style>
@@ -18,8 +18,7 @@
       #number{
         margin-left: 10%;
       }
-      #test,#submittest{
-        /*margin-left: 75%;*/
+      #test,#submittest{        
         text-transform: none;
         text-align: center;
         background-color: #A0A0A0;
@@ -27,7 +26,7 @@
         font-size: 17px;
         color: black;
         height: 35px;
-        }
+      }
       paper-button{
         text-transform: none;
       }
@@ -57,7 +56,7 @@
         <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
       </div>
-
+    <!-- Component which make request to read the specification parameters for the item -->
     <iron-ajax
       method="post"
       id="specificationitemreadajax"
@@ -67,7 +66,7 @@
       content-type="application/json"
       on-response="FnspecificationitemreadResponse">
     </iron-ajax>
-
+    <!-- Component to call the service -->
     <grn-service id="grnservice"></grn-service>
   </template>
   <script>
@@ -89,6 +88,7 @@
           this.hidetest=true;
         }
       },
+      // Function which make request to fetch the specification parameters
       FnspecificationitemreadService:function(){
         var obj={"inwardregno":"","checkstatus":"","productid":""};
         obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
@@ -98,22 +98,17 @@
         this.specificationitemreadurl=sessionStorage.getItem("curr_sess_url")+"specificationitemread-service";
         this.$.specificationitemreadajax.generateRequest();
       },
-      FnspecificationitemreadResponse:function(e){
-        // alert(JSON.stringify(e.detail.response));
+      FnspecificationitemreadResponse:function(e){        
         this.finalarr=[];
         this.arr=[];
         this.temp="true";
         this.noparameter=0;
-        if(e.detail.response=="no items"){
-          // alert('yes');
+        if(e.detail.response=="no items"){          
           this.noparameter=1;
           this.hidediv=true;
-          // this.submitread=true;
-          //this.specarr=e.detail.response;
         }
         else{
-          this.hidediv=false;
-          // this.submitread=false;
+          this.hidediv=false;          
           this.specarr=e.detail.response;
           for(var i=0;i<this.specarr.length;i++){
             if(this.specarr[i].Quality_Flag=='1'){
@@ -128,8 +123,7 @@
           }
           for(var i=0;i<this.specarr.length;i++) {
             this.flag = 0;
-            if (this.specarr[i].Quality_Flag == '1') {
-              //alert(this.specarr[i].Quality_Parameter_ID+'1');
+            if (this.specarr[i].Quality_Flag == '1') {              
               this.specarr[i].dropflag = false;
               this.specarr[i].inputflag = true;
               this.specarr[i].droparr = this.arr;
@@ -138,8 +132,7 @@
                 repeatflag = 1;
               }
             }
-            else {
-              //alert(this.specarr[i].Quality_Parameter_ID+'0');
+            else {              
               this.specarr[i].dropflag = true;
               this.specarr[i].inputflag = false;
               this.flag = 1;
@@ -148,12 +141,14 @@
               this.finalarr.push(this.specarr[i]);
             }
           }
-            this.itemArray = this.finalarr;
+              this.itemArray = this.finalarr;
           }
       },
+      // Function which set quality parameters
       FnSetValue:function(qualityarray){
         qualityarr=qualityarray;
       },
+      // Function invokes while submitting the test
       FnSubmittest:function(){
         if((qualityarr).length==(this.itemArray).length)
         {
@@ -167,6 +162,7 @@
           alert('Please enter all the quality parameters!');
         }
       },
+      // Function invokes while adding test
       FnAddtest:function(){
         this.speccardhide=false;
         this.hidesubmit=false;
@@ -177,6 +173,7 @@
           alert("No Quality Parameter Exists!");
         }
       },
+      // Function to hide the specification card
       FnHideSpeccard:function(){
         this.speccardhide=true;
       },

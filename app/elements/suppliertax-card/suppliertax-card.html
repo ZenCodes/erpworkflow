@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
@@ -48,7 +48,6 @@
     </style>
     <div class="card">
       <div class="outer">
-
         <div class="card1">
           <paper-item>Income Tax:</paper-item>
           <div class="incometax">
@@ -85,15 +84,19 @@
           document.querySelector('#cinno').validate();
           if(this.tinno==""||this.tinno==null){}
           else {
+            // Condition will invoke to add the supplier tax info
             if (localStorage.getItem("curr_sess_searchtypeflag") == "nothing") {
               this.$.adminsupplierservice.FnCustomerTaxAddService(this.tinno, this.cstno, this.panno, this.tanno, this.cinno);
             }
             else if (localStorage.getItem("curr_sess_addsuppliereditflag") == "1" && localStorage.getItem("curr_sess_searchtypeflag") == "1") {
+              // Condition will invoke to update the supplier tax info
               this.$.adminsupplierservice.updatesuppliertaxService(this.tinno, this.cstno, this.panno, this.tanno, this.cinno);
+              // Condition will invoke to fetch the supplier exciseinfo
               this.$.adminsupplierservice.callExcisereadService();
               document.querySelector('supplier-page').setPage('Add Excise');
             }
             else {
+              // Condition will invoke to fetch the supplier exciseinfo
               this.$.adminsupplierservice.callExcisereadService();
               document.querySelector('supplier-page').setPage('Add Excise');
             }

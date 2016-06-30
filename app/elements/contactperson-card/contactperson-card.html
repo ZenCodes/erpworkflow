@@ -1,19 +1,20 @@
 
-
+<!-- Components import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../contactperson-display-card/contactperson-display-card.html">
-<!-- <link rel="import" href="../../bower_components/supplier-list/supplier-list.html"> -->
 <link rel="import" href="../customer-service/customer-service.html">
+<!-- Component registeration -->
 <dom-module id="contactperson-card">
   <template>
+  <!-- Style for the component -->
     <style>
       :host {
         display: block;
       }
-      .card{
+      .card{       
         @apply(--layout-vertical);
         position: relative;
         color: black;
@@ -41,18 +42,16 @@
       }
     </style>
     <div class="card">
-
       <template is="dom-repeat" items="{{itemArray}}" as="item">
         <contactperson-display-card designation="{{item.Designation}}" mobileno="{{item.Mobile_No}}" emailid="{{item.Email_ID}}"></contactperson-display-card>
       </template>
-
       <div class="create">
         <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateContact">Add Contact</paper-button>
         <paper-button disabled="{{Btn_disable_flag}}" id="next" on-click="FnNextContact">Next</paper-button>
       </div>
       <customer-service id="customerservice"></customer-service>
     </div>
-
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/contactperson-card.js"></script>
 </dom-module>

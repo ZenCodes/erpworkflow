@@ -84,9 +84,7 @@
     </style>
     <!--Component for listenen to keyboard enter event-->
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnVehicleInfoSubmit"></iron-a11y-keys>
-    <!--This template binding dynamic labels and error messages-->
-    <!--<template is="dom-repeat" items="{{label}}">-->
-
+    <!--This template binding dynamic labels and error messages--> 
     <div class="card">
       <div class="driver">
         <div class="drop">
@@ -117,24 +115,19 @@
         <paper-input readonly="{{read}}" label="State" name="state" value="{{state}}" required  id="state" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.State_error}}"></paper-input>
         <paper-input readonly="{{read}}" label="Country" name="country" value="{{country}}" required  id="country" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Country_error}}"></paper-input>
       </div>
-
       <div class="owner">
-        <paper-input readonly="{{read}}" label="Pincode" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="[0-9 ]" error-message="{{item.Pincode_error}}"></paper-input>
-        <!--<gold-zip-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" error-message="{{item.Pincode_error}}"></gold-zip-input>-->
+        <paper-input readonly="{{read}}" label="Pincode" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="[0-9 ]" error-message="{{item.Pincode_error}}"></paper-input>        
         <paper-input readonly="{{read}}" label="Phone_Number" name="phoneno" value="{{phoneno}}" required  id="phoneno" error-message="{{item.Phone_Number_error}}"></paper-input>
       </div>
       <div class="owner">
         <paper-input readonly="{{read}}" label="Mobile_Number" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="[0-9 ]" error-message="{{item.Mobile_Number_error}}"></paper-input>
-        <!-- <paper-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" required  id="emailid" error-message="{{item.Email_ID_error}}"></paper-input> -->
         <gold-email-input readonly="{{read}}" label=".Email_ID" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
       </div>
       <div class="owner">
         <paper-input readonly="{{read}}" label="Fax_No" name="faxno" value="{{faxno}}" required  id="faxno" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Faxno_error}}"></paper-input>
         <paper-input readonly="{{read}}" label="Website" name="website" id="website" value="{{website}}" required  allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="{{item.Website_error}}"></paper-input>
       </div>
-
      </div>
-
   </template>
   <!--JS File import-->
   <script src="../../scripts/supplier-detail-read.js"> </script>

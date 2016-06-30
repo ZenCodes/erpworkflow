@@ -1,10 +1,10 @@
 
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\..\bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
-
+<!-- Component Registeration -->
 <dom-module id="approvesupplier-detailcard">
   <template>
     <style>
@@ -22,8 +22,8 @@
     var clr="true";
     Polymer({
       is: 'approvesupplier-detailcard',
-      FnFetchInfo:function(){
-        //alert(this.suppliername);
+      // Function which fetch the supplier to approve
+      FnFetchInfo:function(){              
         if(clr=="true") {
           this.suppliername=(this.suppliername).replace(" ","");
           document.querySelector('#btn'+this.suppliername).style.color = '#ff6789';

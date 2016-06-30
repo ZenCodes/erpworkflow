@@ -18,12 +18,12 @@
 <link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="autocompleteitemlist-card">
   <style>
     .repeatcard{
       @apply(--layout-vertical);
       width: 120%;
-
     }
     paper-listbox{
       width: 72%;
@@ -31,8 +31,7 @@
       box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
     }
     paper-input{
-      width: 72%;
-    //margin-top: -6%;
+      width: 72%;    
     }
   </style>
   <template>
@@ -44,7 +43,6 @@
           <paper-item >{{item.itemdes}}</paper-item>          
         </template>
       </paper-listbox>
-
     </div>
     <!--Component which read and bind data from item json file and bind to the dropdown card-->
     <iron-ajax
@@ -57,11 +55,7 @@
       content-type="application/json"
       on-response="itemlistreadResponse">
     </iron-ajax>
-
   </template>
   <!--Importing JS file-->
-  <script src="../../scripts/autocompleteitemlist-card.js">
-
-  </script>
-
+  <script src="../../scripts/autocompleteitemlist-card.js"></script>
 </dom-module>

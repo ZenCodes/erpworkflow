@@ -1,11 +1,11 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="..\..\bower_components/paper-item/paper-iem.html">
 <link rel="import" href="../customer-service/customer-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
-
+<!-- Component registeration -->
 <dom-module id="customer-tax-read">
   <template>
     <style>
@@ -41,8 +41,7 @@
       }
 
     </style>
-    <div class="card">
-      <!--<template is="dom-repeat" items="{{label}}" as="lbl">-->
+    <div class="card">      
       <div class="outer">
         <div class="card1">
           <paper-item>Income Tax:</paper-item>
@@ -60,11 +59,9 @@
           </div>
         </div>
       </div>
-      <!--<paper-button on-click="FnTaxNext">Next</paper-button>-->
-      <!--</template>-->
     </div>
-    <customer-service id="customerservice"></customer-service>
-    <!--<webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>-->
+    <!-- Component to access the service to add customer tax info -->
+    <customer-service id="customerservice"></customer-service>    
   </template>
   <script>
     (function() {

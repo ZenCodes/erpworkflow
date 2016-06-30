@@ -16,8 +16,7 @@
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-      /*//background-color: rgb(255, 255, 255);*/
+        position: relative;      
         color: black;
         width: 80%;
         left: 10%;
@@ -38,10 +37,6 @@
       paper-button{
         text-align: center;
         width: 35%;
-        /*border-radius: 2px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        /*background-color: #3d6868;*/
-        /*color: white;*/
         background-color: #A0A0A0;
         font-family: calibri;
         font-size: 17px;
@@ -102,7 +97,6 @@
         <paper-item id="datetitle" noink>{{item.Out_Date}}</paper-item>
       </div>
       <div class="topbanner">
-        <!--<paper-input label="Out Time" value="{{outtime}}" style="font-size:15px;" id="outtime" required  error-message="Enter Outtime"></paper-input>-->
         <timepicker-card></timepicker-card>
         <datepicker-card></datepicker-card>
       </div>
@@ -124,8 +118,6 @@
         <paper-input label="{{item.Owner_Name}}" name="ownername" value="{{ownername}}" required  id="ownername" allowed-pattern="[ A-Za-z_@./#&+-]" error-message="{{item.Owner_Name_error}}"></paper-input>
         <paper-input label="{{item.Owner_Number}}" name="ownerphone" value="{{ownerphone}}" required  id="ownerphone" error-message="{{item.Owner_Number_error}}"></paper-input>
       </div>
-
-
       <paper-button on-click="FnVehicleInfoSubmit">Next</paper-button>
     </div>
     </template>
@@ -134,5 +126,4 @@
   </template>
   <!--JS File import-->
   <script src="../../scripts/vehicleinfo-page.js"> </script>
-
 </dom-module>

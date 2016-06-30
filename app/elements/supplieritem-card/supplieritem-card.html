@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
@@ -25,14 +25,14 @@
       @apply(--layout-horizontal);
       }
       paper-button{
-	  	        text-align: center;
-	  	        width: 12%;
-	  	        background-color: #A0A0A0;
-              font-family: calibri;
-              font-size: 17px;
-              color: black;
-              height: 35px;
-	  	        margin-top: 4%;
+	  	      text-align: center;
+	  	      width: 12%;
+	  	      background-color: #A0A0A0;
+            font-family: calibri;
+            font-size: 17px;
+            color: black;
+            height: 35px;
+	  	      margin-top: 4%;
       }
       .create{
       margin-left:-70%;
@@ -44,16 +44,13 @@
 	<template is="dom-repeat" items="{{itemArray}}" as="name">
   <supplierattacheditem-card supplierid="{{name.Item_Supplier_ID}}" itemname="{{name.Item_Name}}" itemid={{name.Item_ID}}></supplierattacheditem-card>
   </template>
-
-	  <div class="create">
-	    <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateItemSupplier">Add Item</paper-button>
-    </div>
-
+  <div class="create">
+	 <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnCreateItemSupplier">Add Item</paper-button>
+  </div>
 	</div>
-
-    <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
+  <!-- Component to call the service -->
+  <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
   </template>
-  <script src="../../scripts/supplieritem-card.js">
-
-  </script>
+  <!-- JS file import -->
+  <script src="../../scripts/supplieritem-card.js">/script>
 </dom-module>

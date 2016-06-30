@@ -21,9 +21,10 @@
 <link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- Component registeration -->
 <dom-module id="approvecustomer-card">
   <template>
+    <!-- Internal style for the component -->
     <style is="custom-style">
       .card{
         margin-top: 3%;
@@ -51,7 +52,6 @@
         background-color: transparent;
       }
     </style>
-
     <!--Template which has card template-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
       <div class="card">
@@ -66,7 +66,6 @@
         <customer-read-page></customer-read-page>
       </div>
     </template>
-
     <!--Calling webcomponent service to bind label info-->
     <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
     <!--Binding items to the above template-->

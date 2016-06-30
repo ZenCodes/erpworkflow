@@ -5,11 +5,13 @@
   Polymer({
     is: "approvecustomer-card",
     ready:function(){
-    // if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
+      
       localStorage.setItem("curr_sess_showpage","approvecustomer-card");
+      // Calling webcomponent service to fetch the label for the components
       this.$.ID_Webcomponent_Service.callWebcomponentService();
+      // Calling service to fetch the customer created for approve
       this.$.customerservice.readcustomertoapproveService();
-    // }
+    
     }
   });
 })();

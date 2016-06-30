@@ -17,16 +17,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../customer-service/customer-service.html">
-
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<!-- Component registeration -->
 <dom-module id="customer-payment-read">
   <template>
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
         position: relative;
-        color: black;
-        /*width: 80%;*/
+        color: black;        
         left: 10%;
         margin-top:0%;
       }
@@ -60,19 +59,19 @@
         margin-top: 4%;
       }
        .type{
-            @apply(--layout-horizontal);
-            color:red;
-            margin-top: 1%;
-            margin-left: -7%;
-            width: 100%;
+        @apply(--layout-horizontal);
+        color:red;
+        margin-top: 1%;
+        margin-left: -7%;
+        width: 100%;
       }
       .radio{
-            margin-top:0%;
-            margin-left: -5%;
+        margin-top:0%;
+        margin-left: -5%;
       }
       :host{
         --paper-input-container-label: {
-          color:red;
+        color:red;
         }}
       .outer{
         @apply(--layout-horizontal);
@@ -117,8 +116,7 @@
                 </paper-radio-group>
               </div>
           </div>
-        </div>
-        <!--<paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddPaymentInfoSubmit">Next</paper-button>-->
+        </div>        
       </div>
     <!--</template>-->
     <customer-service id="customerservice"></customer-service>

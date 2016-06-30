@@ -22,8 +22,9 @@
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="import" href="../supplier-read-page/supplier-read-page.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- Component registeration -->
 <dom-module id="approvesupplier-card">
+<!-- Internal style for the component -->
   <template>
     <style is="custom-style">
       .card{
@@ -52,7 +53,6 @@
         background-color: transparent;
       }
     </style>
-
     <!--Template which has card template-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
       <div class="card">
@@ -67,7 +67,6 @@
         <supplier-read-page></supplier-read-page>
      </div>
     </template>
-
     <!--Calling webcomponent service to bind label info-->
     <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
     <!--Binding items to the above template-->
@@ -75,5 +74,4 @@
   </template>
   <!--JS file import-->
   <script src="../../scripts/approvesupplier-card.js"></script>
-
 </dom-module>

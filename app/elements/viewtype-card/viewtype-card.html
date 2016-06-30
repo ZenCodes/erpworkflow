@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
@@ -10,21 +10,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Componnet registeration -->
 <dom-module id="viewtype-card">
   <template>
     <style is="custom-style">
       .card,.buttoncard{
         @apply(--layout-horizontal);
-        position: relative;
-        //width: 100%;
+        position: relative;        
       }
       .create,.edit{
         text-align: center;
-      /*//width: 65%;*/
-        /*border-radius: 2px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        /*background-color: #bfbfbf;*/
-        /*color: black;*/
         background-color: #A0A0A0;
         font-family: calibri;
         font-size: 17px;
@@ -39,13 +34,11 @@
       <div class="buttoncard">
         <paper-button on-click="edit" class="edit" id="edit" style="width:80px;" readonly="{{read}}">Edit</paper-button>
         <paper-button on-click="create" class="create" id="create" style="width:80px;" >Create</paper-button>
-
       </div>
     </div>
+    <!-- Component to call the service -->
     <grn-service id="gs"></grn-service>
   </template>
-  <script src="../../scripts/viewtype-card.js">
-
-  </script>
-
+  <!-- JS file import -->
+  <script src="../../scripts/viewtype-card.js"></script>
 </dom-module>

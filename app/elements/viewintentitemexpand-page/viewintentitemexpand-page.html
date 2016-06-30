@@ -38,21 +38,10 @@
       .repeatcard{
         @apply(--layout-horizontal);
         width: 90%;
-
       }
-
-      #card1{
-        /*//border-bottom: groove;*/
+      #card1{        
         margin-top: 0.5%;
-      /*//border-radius: 2px;*/
-      /*//box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
         width: 100%;
-      /*//margin-left:10%;*/
-      /*//height:50%;*/
-        /*background-color:white;*/
-      /*//border:2px solid #bcd6b3;*/
-        /*border-bottom:2px solid #e6e6e6;*/
-      /*//border-color:#dbe9d6;*/
         border-bottom: 1px solid #dedede;
         overflow-x:hidden;
       }
@@ -138,8 +127,7 @@
       }
     </style>
     <!--Expanded card template-->
-    <div class="card">
-    <!-- <paper-item>Created By:</paper-item> -->
+    <div class="card">    
     <paper-input label="Created By" name="createdby" value="{{createdby}}" readonly>{{createdby}}</paper-input>
     <div class="supplierdiv" hidden$="{{hidesupplier}}">
     <paper-dropdown-menu label="Select">
@@ -150,58 +138,13 @@
        </paper-menu>
     </paper-dropdown-menu>
     </div>
-    
-    <!-- <paper-item>PO Request:</paper-item> -->
-    <!--<paper-input label="PO Request" name="poreq" value="{{poreq}}" readonly>{{poreq}}</paper-input>
-    <paper-input id="pono" name="pono" value="{{pono}}" label="PO Number" readonly="{{read}}" hidden$="{{hide}}" required></paper-input>-->
     <paper-button id="promote"  name="promote" value="{{promote}}" on-click="FnPromoteState">{{promote}}</paper-button>
     <div hidden$="{{hideprintpdf}}" id="pdf">
     <printpdf-card></printpdf-card>
     </div>
     </div>     
-
-    <!--<paper-dialog id="Fn_PoItem_dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
-    <div class="dialogdiv">
-    <template is="dom-repeat" items="{{suppliernamearr}}" as="out">
-    <div class="innerdialog">
-    <paper-item>{{out.itemdes}}</paper-item>   
-    <paper-dropdown-menu label="Select">
-    <paper-menu class="dropdown-content">
-      <template is="dom-repeat" items="{{out.suppliername}}">
-        <paper-item value="{{item.name}}">{{item.name}}</paper-item>
-      </template>
-    </paper-menu>
-    </paper-dropdown-menu>
-    </div>  
-    </template>
-    </div>
-    <paper-button dialog-dismiss autofocus on-click="FnClickOk">OK</paper-button>
-    </paper-dialog>-->
-
-
-
-   <!-- <template is="dom-repeat" items="{{label}}" as="lbl">
-
-      <paper-tabs selected="0" noink id="ptab">
-        <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
-          <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>
-        </template>
-      </paper-tabs>
-
-      <div id="div2">
-
-    <template is="dom-repeat" items="{{itemArray}}" as="item">
-      <div class="repeatcard">
-        <viewintentexpanditem-page  itemdes="{{item.itemdes}}" specification="{{item.specification}}" unit="{{item.unit}}" quantity="{{item.quantity}}" remarks="{{item.remarks}}"></viewintentexpanditem-page>
-      </div>
-    </template>
-
-    </div>
-    </div>
-  </template>-->
-  <!--Component which reads currently expanding card-->
-  <iron-ajax
-   
+  <!-- component which make req to read the intent item info -->
+  <iron-ajax   
     id="intentexpanditemreadajax"
     url="{{intentexpandurl}}"
     method="post"
@@ -210,10 +153,8 @@
     content-type="application/json"
     on-response="FnIntentexpanditemreadResponse">
   </iron-ajax>
-
-   <!--Component which make request to display the Intent items based on INT no-->
-    <iron-ajax
-    
+  <!--Component which make request to display the Intent items based on INT no-->
+  <iron-ajax    
       id="intentpoitemajax"
       url="{{intentpourl}}"
       params='{{intentpoparam}}'
@@ -221,22 +162,19 @@
       handle-as="json"
       content-type="application/json"
       on-response="FnintentpoitemResponse">
-    </iron-ajax>
-
+  </iron-ajax>
   <!--Component to read Labels for the components from webcomponents.json file-->
   <iron-ajax
-    auto
-    id="webcomponentreadajax"
-    url="../../config/webcomponents.json"
-    handle-as="json"
-    content-type="application/json"
-    on-response="FnWebcomponentreadResponse">
+      auto
+      id="webcomponentreadajax"
+      url="../../config/webcomponents.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnWebcomponentreadResponse">
   </iron-ajax>
-
+  <!-- Component to call the service -->
   <intent-service id="intentservice"></intent-service>
-
   </template>
   <!--Importing JS file-->
   <script src="../../scripts/viewintentitemexpand-page.js"></script>
-
 </dom-module>
