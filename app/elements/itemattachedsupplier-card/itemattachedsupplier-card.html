@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
@@ -39,6 +39,7 @@
     </div>
 
     </div>
+    <!--Component to call the service  -->
     <admin-service id="adminservice"></admin-service>
   </template>
   <script>
@@ -57,12 +58,13 @@
         this.hideedit=true;
         this.hidesave=false;
       },
+      // Function which update theitem price of the item which attached against the supplier
       FnSave:function(){
         this.$.adminservice.callupdateitempricesupplierService(this.itemid,this.supplierid,this.supplierprice);
       },
+      // Function which delete the supplier who attached againt the item
       FnDelete:function(e){
-        this.$.adminservice.calldeleteitemsupplierService(this.itemid,this.supplierid);
-        //alert(this.itemid+" "+this.supplierid);
+        this.$.adminservice.calldeleteitemsupplierService(this.itemid,this.supplierid);        
       }
     });
   })();

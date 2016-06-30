@@ -1,9 +1,9 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../customer-service/customer-service.html">
-
+<!-- Component registeration -->
 <dom-module id="dynamicbutton-card">
   <template>
     <style>
@@ -28,13 +28,14 @@
       <paper-button hidden$="{{viewresend}}" on-click="FnResend">{{label2}}</paper-button>
       <paper-button hidden$="{{viewreject}}" on-click="FnReject">{{label3}}</paper-button>
     </div>
+    <!-- Component to call the supplier service -->
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
+    <!-- Component to call the customer service -->
     <customer-service id="customerservice"></customer-service>
   </template>
   <script>
   (function() {
     'use strict';
-
     Polymer({
       is: 'dynamicbutton-card',
       ready:function(){
@@ -50,38 +51,43 @@
           this.viewreject=false;
         }
       },
-      FnApprove:function(){
-        //alert('approve');
+      // Function which invoke to approve supplier/customer service
+      FnApprove:function(){ 
+        //Function which calls service to approve the supplier       
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
         this.$.adminsupplierservice.approvesupplierforpurchaseService("Approved");
         }
+        //Function which calls service to approve the customer
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
         this.$.customerservice.approvecustomerforsalesService("Approved");
         }
       },
-      FnResend:function(){
-        //alert('approve');
+      // Function which invoke to resend supplier/customer service
+      FnResend:function(){  
+        //Function which calls service to resend the supplier      
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
           this.$.adminsupplierservice.approvesupplierforpurchaseService("Resend");
         }
+        //Function which calls service to resend the customer
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
           this.$.customerservice.approvecustomerforsalesService("Resend");
         }
       },
-      FnReject:function(){
-        //alert('approve');
+      // Function which invoke to reject supplier/customer service
+      FnReject:function(){ 
+        //Function which calls service to reject the supplier       
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"){
           this.$.adminsupplierservice.approvesupplierforpurchaseService("Reject");
         }
+        //Function which calls service to reject the customer
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
           this.$.customerservice.approvecustomerforsalesService("Reject");
         }
       },
-
+      // Function which is used to change the label
       FnSetLabel:function(label){
         this.label1=label;
       }
-
     });
   })();
   </script>

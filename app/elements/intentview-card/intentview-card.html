@@ -14,7 +14,7 @@
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!-- Component registeration -->
 <dom-module id="intentview-card">
   <template>
     <style is="custom-style">
@@ -47,7 +47,6 @@
             <div><intentviewitem-card intentregno="{{item.intentregno}}" intentdate="{{item.intentdate}}"></intentviewitem-card>
             </div></div>
         </template>
-
       </div>
     </template>
     <!--Calling webcomponent service to bind label info-->
@@ -57,5 +56,4 @@
   </template>
   <!--JS file import-->
   <script src="../../scripts/intentview-card.js"></script>
-
 </dom-module>

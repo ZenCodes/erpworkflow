@@ -13,8 +13,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="drawermenu-card">
   <style>
     .card{
@@ -27,17 +27,11 @@
       font-family: "Arial";
     }
   </style>
-
   <template>
     <div class="card">
-
       <paper-button on-tap="selectedMenu" noink id="{{itemvalue}}">{{itemvalue}}</paper-button>
-
     </div>
   </template>
-
-  <script src="../../scripts/drawermenu-card.js">
-
-  </script>
-
+  <!-- JS file import -->
+  <script src="../../scripts/drawermenu-card.js"></script>
 </dom-module>

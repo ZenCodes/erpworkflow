@@ -1,3 +1,4 @@
+<!-- Component import -->
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
@@ -16,6 +17,7 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="itemlist-card">
   <style>
     .repeatcard{
@@ -30,7 +32,6 @@
     }
   </style>
   <template>
-
     <div class="repeatcard">
       <paper-dropdown-menu label="" on-iron-select="select">
         <paper-listbox class="dropdown-content">
@@ -40,20 +41,20 @@
         </paper-listbox>
       </paper-dropdown-menu>
     </div>
+    <!-- Component which fetches the item information -->
     <iron-ajax
       auto
       id="itemlistreadajax"
       url="../../config/items.json"
-
       handle-as="json"
       content-type="application/json"
       on-response="itemlistreadResponse">
     </iron-ajax>
+    <!-- Function which fetches the outward item information -->
     <iron-ajax
       auto
       id="outitemlistreadajax"
       url="../../config/outwarditems.json"
-
       handle-as="json"
       content-type="application/json"
       on-response="outitemlistreadResponse">
@@ -61,39 +62,29 @@
     <!--Service call to invoke search information-->
     <grn-service id="gs"></grn-service>
   </template>
-
   <script>
     (function() {
       var item=[
         {"name":"---SELECT---","measure":"","unit":""}];
       Polymer({is:"itemlist-card",
         ready:function(){
-          //alert('hi');
           this.selectedItem=null;
-          //this.url="../../config/items.json";
         },
         itemlistreadResponse:function(e)
         {
-          //alert('hi');
-          var arr=e.detail.response.items;
-          //alert(JSON.stringify(e.detail.response));
+          var arr=e.detail.response.items;          
           this.itemArray1=arr;
-          //alert(JSON.stringify(this.itemArray1));
-
         },
         outitemlistreadResponse:function(e)
-        {
-          //alert('hi');
-          var arr=e.detail.response.items;
-          //alert(JSON.stringify(e.detail.response));
+        {          
+          var arr=e.detail.response.items;          
           this.itemArray2=arr;
-          this.itemArray=item.concat((this.itemArray1).concat(this.itemArray2));
-          //alert(JSON.stringify(this.itemArray));
+          this.itemArray=item.concat((this.itemArray1).concat(this.itemArray2));          
         },
+        // Function which read the selected item information while searching
         select:function(e){
           this.selectedItem=(e.target.selectedItem.textContent).trim();
-          this.$.gs.searchService("","",this.selectedItem,"");
-          //localStorage.setItem("localsess_curr_itemdes",this.selectedItem);
+          this.$.gs.searchService("","",this.selectedItem,"");          
         }
       });
     })();

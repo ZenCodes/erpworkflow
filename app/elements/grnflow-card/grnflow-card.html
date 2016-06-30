@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
@@ -11,6 +11,7 @@
 <link rel="import" href="../physicqualified-service/physicqualified-service.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="grnflow-card">
   <template>
     <style is="custom-style">
@@ -61,7 +62,7 @@
         top: -1px;
         position: absolute;
         z-index: 1;
-		border-color: transparent transparent transparent #123456;
+		    border-color: transparent transparent transparent #123456;
       }
       ol > li > div:before {
         border-width: 20px;
@@ -163,8 +164,9 @@
         </li>
       </ol>
     </div>
-
+    <!-- Component to call the service -->
     <grn-service ></grn-service>
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/grnflow-card.js"></script>
 </dom-module>

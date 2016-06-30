@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
+<!-- Component registeration -->
 <dom-module id="datepicker-card">
   <template>
     <style is="custom-style" include="paper-date-picker-dialog-style">
@@ -31,10 +32,9 @@
         </div>
       </paper-dialog>
     </div>
+    <!--Calling dialog control-->
     <dialog-page id="ID_Show_Dialog"></dialog-page>
   </template>
-  <!--Calling dialog control-->
-
   <!--JS file import-->
   <script src="../../scripts/datepicker-card.js"></script>
 </dom-module>

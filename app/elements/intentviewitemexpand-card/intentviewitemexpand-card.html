@@ -15,10 +15,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-
 <link rel="import" href="../intentviewexpanditem-card/intentviewexpanditem-card.html">
 <link rel="import" href="../intent-service/intent-service.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="intentviewitemexpand-card">
   <template>
@@ -30,21 +28,11 @@
         @apply(--layout-horizontal);
         width: 90%;
       }
-      #card1{
-        /*//border-bottom: groove;*/
+      #card1{        
         margin-top: 0.5%;
-      /*//border-radius: 2px;*/
-      /*//box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
         width: 100%;
-      /*//margin-left:10%;*/
-      /*//height:50%;*/
-        /*background-color:white;*/
-      /*//border:2px solid #bcd6b3;*/
-        /*border-bottom:2px solid #e6e6e6;*/
-      /*//border-color:#dbe9d6;*/
         overflow-x:hidden;
       }
-
       .topright{
         @apply(--layout-horizontal);
         width: 100%;
@@ -102,8 +90,7 @@
         <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
           <paper-tab><paper-button >{{tabs.tab}}</paper-button></paper-tab>
         </template>
-      </paper-tabs>
-         
+      </paper-tabs>     
     <div id="div2">
     <template is="dom-repeat" items="{{itemArray}}" as="item">
       <div class="repeatcard">
@@ -112,11 +99,9 @@
     </template>
     </div>
     </div>
-
   </template>
   <!--Component which reads currently expanding card-->
-  <iron-ajax
-    
+  <iron-ajax    
     id="intentviewexpanditemreadajax"
     url="{{intentviewexpandurl}}"
     method="post"
@@ -125,7 +110,6 @@
     content-type="application/json"
     on-response="FnIntentviewexpanditemreadResponse">
   </iron-ajax>
-
   <!--Component to read Labels for the components from webcomponents.json file-->
   <iron-ajax
     auto
@@ -135,10 +119,9 @@
     content-type="application/json"
     on-response="FnWebcomponentreadResponse">
   </iron-ajax>
-
+  <!-- Component which calls the service -->
   <intent-service id="intentservice"></intent-service>
   </template>
   <!--Importing JS file-->
   <script src="../../scripts/intentviewitemexpand-card.js"></script>
-
 </dom-module>

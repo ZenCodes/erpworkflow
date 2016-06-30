@@ -1,5 +1,4 @@
 <!--Component import-->
-
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
@@ -19,15 +18,14 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
 <link rel="import" href="../supplier-list/supplier-list.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="item-page">
   <template>
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-      //background-color: rgb(255, 255, 255);
+        position: relative;      
         width: 85%;
         left: 0%;
         margin-top: 2%;
@@ -52,7 +50,6 @@
       paper-button{
         font-size: 15px;
         text-transform: none;
-
       }
       paper-input{
         text-align: left;
@@ -128,8 +125,7 @@
             <div class="delete"><paper-icon-button icon="icons:delete" on-click="FnDeleteItem" style="right:10px;height:40px;"></paper-icon-button></div>
           </div>
         </template>
-        <div layout horizontal class="buttons">
-          <!-- <paper-button disabled="{{Btn_disable_flag}}" on-click="FnAddItem" class="additem" id="additem" >Add Item</paper-button> -->
+        <div layout horizontal class="buttons">          
           <paper-button disabled="{{Btn_disable_flag}}" on-click="FnSaveItem" class="save" id="save" >Save</paper-button>
         </div>
       </div>
@@ -144,5 +140,4 @@
   </template>
   <!--Calling component JS file-->
   <script src="../../scripts/item-page.js"></script>
-
 </dom-module>

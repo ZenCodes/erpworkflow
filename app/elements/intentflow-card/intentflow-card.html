@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="intentflow-card">
   <template>
     <style is="custom-style">
@@ -147,7 +148,9 @@
         </li>
       </ol>
     </div>
+    <!-- Component which calls the service -->
     <grn-service id="grnservice"></grn-service>
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/intentflow-card.js"></script>
 </dom-module>

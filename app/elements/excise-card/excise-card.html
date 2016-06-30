@@ -1,7 +1,9 @@
+<!-- Compoenent import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="../customer-service/customer-service.html">
+<!-- Component registeration -->
 <dom-module id="excise-card">
   <template>
     <style>
@@ -44,6 +46,7 @@
         <paper-input readonly="{{read}}" label="Service Tax No" value="{{servicetax}}" id="servicetaxno" required allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message="Enter Service Tax No"></paper-input>
         <paper-button on-click="FnExciseNext">Next</paper-button>
     </div>
+    <!-- Component which calls the service -->
     <customer-service id="customerservice"></customer-service>
   </template>
   <script>
@@ -54,7 +57,9 @@
       ready:function(){
         this.read=false;
       },
+      // Function which invokes when click on next button
       FnExciseNext:function(){
+        // Function which validates the input fields while submitting next button
         document.querySelector('#regno').validate();
         document.querySelector('#eccno').validate();
         document.querySelector('#range').validate();
@@ -63,21 +68,26 @@
         document.querySelector('#servicetaxno').validate();
         if(this.regno==""||this.regno==null){}
         else {
-          //this.$.customerservice.FnCustomerExciseAddService(this.regno,this.eccno,this.range,this.division,this.commission,this.servicetax);
+          //Function which calls service to add the customer excise information           
           if (localStorage.getItem("curr_sess_searchtypeflag") == "nothing") {
             this.$.customerservice.FnCustomerExciseAddService(this.regno, this.eccno, this.range, this.division, this.commission, this.servicetax);
           }
+          //Function which calls service to update the customer excise information
           else if (localStorage.getItem("curr_sess_addcustomereditflag") == "1" && localStorage.getItem("curr_sess_searchtypeflag") == "1") {
             this.$.customerservice.updatecustomerexciseService(this.regno, this.eccno, this.range, this.division, this.commission, this.servicetax);
             this.$.customerservice.callPaymentService();
+            // Showing payment page while navigating from excise page
             document.querySelector('customer-page').setPage('Add Payment');
           }
+          //Function which calls service to search the customer excise information
           else {
             this.$.customerservice.callPaymentService();
+            // Showing payment page while navigating from excise page
             document.querySelector('customer-page').setPage('Add Payment');
           }
         }
       },
+      // Function which toggle the input fields editable feature
       FnEnableFields:function(){
         if(localStorage.getItem("curr_sess_addcustomereditflag")=="1")
           this.read=false;

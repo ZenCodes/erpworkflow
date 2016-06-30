@@ -1,4 +1,4 @@
-<!--Component import-->
+<!-- Component import -->
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
@@ -19,15 +19,14 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
 <link rel="import" href="../intent-service/intent-service.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="intent-page">
   <template>
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-      //background-color: rgb(255, 255, 255);
+        position: relative;      
         width: 85%;
         left: 3%;
         margin-top: -5%;
@@ -92,14 +91,12 @@
 
       }
       .additem,.save{
-        text-align: center;
-      //width: 35%;
+        text-align: center;      
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
         background-color: #3d6868;
         color: white;
-        height: 30px;
-      //margin-top: 4%;
+        height: 30px;      
       }
       datepicker-card{
         margin-left: 66%;
@@ -116,8 +113,7 @@
     <!--Card for displaying item page-->
     <!--Template which binds dynamic label to this card-->
     <template is="dom-repeat" items="{{label}}" as="lbl">
-      <div class="card">
-        <!-- <div class="datetitle"><paper-item id="datetitle" label="Intent date" noink>{{lbl.Intent_date}}</paper-item></div> -->
+      <div class="card">        
         <div class="filter">
         <div class="itemtype">
           <paper-dropdown-menu label="Select Item Type" disabled="{{typedisable}}">
@@ -164,5 +160,4 @@
   </template>
   <!--Calling component JS file-->
   <script src="../../scripts/intent-page.js"></script>
-
 </dom-module>

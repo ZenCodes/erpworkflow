@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
@@ -14,17 +14,16 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="dynamic-menu-card">
   <style>
     .card{
       @apply(--layout-horizontal);
-      @apply(--layout-center);
-    //width: 111.5%;
+      @apply(--layout-center);    
     }
     paper-button{
       font-size: 16px;
-      text-transform: none;
-      //width: 450px;
+      text-transform: none;      
     }
     paper-tab{
       margin-left: 3%;
@@ -35,9 +34,7 @@
     <div class="card">
       <paper-button id="{{menulabel}}" label="{{menulabel}}" on-click="FnSelectMenu">{{menulabel}}</paper-button>
     </div>
-
   </template>
     <!--Loading script file for the dynamic menu card-->
   <script src="../../scripts/dynamic-menu-card.js"></script>
-
 </dom-module>

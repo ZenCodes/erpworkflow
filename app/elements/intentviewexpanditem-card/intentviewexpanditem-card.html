@@ -15,8 +15,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="intentviewexpanditem-card">
   <template>
     <style>
@@ -78,8 +78,7 @@
       <div class="repeatcard">
         <div id="itemdes" ><paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item></div>
         <div id="specification" ><paper-item name="specification" value="{{specification}}">{{specification}}</paper-item></div>
-        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}/{{unit}}</paper-item></div>
-        <!-- <div id="qta" ><paper-item name="unit" value="{{unit}}">{{unit}}</paper-item></div> -->
+        <div id="qtr" ><paper-item name="quantity" value="{{quantity}}">{{quantity}}/{{unit}}</paper-item></div>        
         <div id="status" ><paper-item name="status" value="{{intentstatus}}">{{intentstatus}}</paper-item></div>
         <div id="due" ><paper-item name="due" value="{{duedate}}">{{duedate}}</paper-item></div>       
         <div id="promot" ><paper-button id="promote" disabled="{{disableflag}}" hidden$="{{hideadd}}" name="promote" value="Add" on-click="FnCreatePo" noink>Add</paper-button></div>
@@ -94,9 +93,7 @@
         </div>
       </div>
     </form>
-
-
- <!--Component which make request to display the Intent items based on INT no-->
+    <!--Component which make request to display the Intent items based on INT no-->
     <iron-ajax
       id="intentpoitemajax"
       url="{{intentpourl}}"
@@ -106,13 +103,7 @@
       content-type="application/json"
       on-response="FnintentpoitemResponse">
     </iron-ajax>
-
-
-
   </template>
   <!--JS file import-->
-  <script src="../../scripts/intentviewexpanditem-card.js">
-
-  </script>
-
+  <script src="../../scripts/intentviewexpanditem-card.js"></script>
 </dom-module>

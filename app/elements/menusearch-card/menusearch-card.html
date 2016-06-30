@@ -19,20 +19,15 @@
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../searchitem-card/searchitem-card.html">
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
-<!--<link rel="import" href="../itemlist-card/itemlist-card.html">-->
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="menusearch-card">
   <style>
     .card{
-    //width: 100%;
-    //background-color: #dbe9d6;
-      margin-top:100%;
-    //overflow: hidden;
+    margin-top:100%;    
     margin-left: 5%;
     }
-    paper-menu{
-    //background-color: #dbe9d6;
+    paper-menu{    
       overflow:hidden;
       margin-left: 5%;
       font-size: 10px;
@@ -73,12 +68,6 @@
     <div class="card">
       <paper-item class="search" noink>GRN Search</paper-item>
       <paper-menu attr-for-item-title="label" >
-        <!--<paper-submenu label="grnflow">-->
-          <!--<paper-item class="menu-trigger" noink>GRN Flow</paper-item>-->
-          <!--<paper-menu class="menu-content sublist">-->
-            <!--<paper-submenu label="Search">-->
-              <!--<paper-item class="menu-trigger" noink>GRN Search</paper-item>-->
-              <!--<paper-menu class="menu-content sublist" >-->
                 <paper-submenu label="IRN/ORN Number" id="irnno">
                   <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="IRNORN">IRN/ORN Number</paper-item>
                   <paper-menu class="menu-content sublist2">
@@ -95,14 +84,8 @@
                   <paper-item class="menu-trigger" noink on-tap="FnMenuExpand" id="item">Item Name</paper-item>
                   <paper-menu class="menu-content sublist2" noink>
                    <div id="auto"> <autocompleteitemlist-card id="ID_accard"></autocompleteitemlist-card></div>
-                    <!--<itemlist-card></itemlist-card>-->
-                    <!--<paper-input label="Item Name" value="{{item}}"><paper-icon-button suffix icon="search" on-click="itemsearch"></paper-icon-button></paper-input>-->
-                  </paper-menu>
+                </paper-menu>
                 </paper-submenu>
-              <!--</paper-menu>-->
-            <!--</paper-submenu>-->
-          <!--</paper-menu>-->
-        <!--</paper-submenu>-->
       </paper-menu>
     </div>
     <!--Service call to invoke search information-->
@@ -111,5 +94,4 @@
   </template>
   <!--JS file import-->
   <script src="../../scripts/menusearch-card.js"></script>
-
 </dom-module>

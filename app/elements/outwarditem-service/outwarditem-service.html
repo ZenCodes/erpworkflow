@@ -1,8 +1,10 @@
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
 <dom-module id="outwarditem-service">
   <template>
+    <!-- Component to call service tocreate seq no for outward item creation -->
     <iron-ajax
       id="seqitemwriteAjax"
       url="{{sequrl}}"
@@ -12,6 +14,7 @@
       content-type="application/json"
       on-response="FnSeqitemwriteResponse">
     </iron-ajax>
+    <!-- Component which fetches the outward item info-->
     <iron-ajax
       id="outwarditemwriteAjax"
       url="{{outwardurl}}"
@@ -23,7 +26,6 @@
     </iron-ajax>
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
   </template>
-  <script src="../../scripts/outwarditem-service.js">
-
-  </script>
+  <!-- JS file import -->
+  <script src="../../scripts/outwarditem-service.js"></script>
 </dom-module>

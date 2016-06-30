@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="..\..\bower_components/paper-tab/paper-tab.html">
@@ -10,7 +10,7 @@
 <link rel="import" href="../fromtopicker-card/fromtopicker-card.html">
 <link rel="import" href="../report-service/report-service.html">
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
-
+<!-- Component registeration -->
 <dom-module id="outwardreport-card">
   <template>
     <style>
@@ -64,13 +64,6 @@
         //width:50%;
         margin-left: 65%;
       }
-
-      /*#quantity{
-        margin-left: -3%;
-      }
-      #description,#customer,#city{
-        margin-left: -5%;
-      }*/
       #invoice{
         margin-left: 5%;
       }
@@ -93,7 +86,6 @@
         width:30%;
       }
       .itemcard:nth-child(odd) {
-       /* color 'em red */
        background-color: #f1f1f1;
       }
       .itemcard:nth-child(even) {
@@ -115,37 +107,17 @@
       }
 
     </style>
-     <!-- <div class="label"> -->
-       <!-- <iron-label value="From date">From Date</iron-label>  -->
-       <!-- <iron-label value="To date">To Date</iron-label> -->
-      <!-- </div> -->
+
     <div class="topcard">
-      <!-- <div class="icon"> -->
-      <!-- <paper-fab id="back" mini icon="arrow-back" on-click="backward"></paper-fab> -->
-      <!-- <paper-fab id="forward" mini icon="arrow-forward" on-click="forward"></paper-fab> -->
-      <!-- <iron-icon icon="icons:arrow-back"></iron-icon> -->
-      <!-- <iron-icon icon="icons:arrow-forward"></iron-icon> -->
-      <!-- </div>       -->
       <div class="input">
-      <fromtopicker-card></fromtopicker-card>
-      <!-- <paper-input id="from" label="From date" name="from" value="{{fromdate}}"></paper-input> -->
-      <!-- <paper-input id="to" label="To date" name="to" value="{{todate}}"></paper-input> -->
       </div>
     </div>
-    <!-- <template is="dom-repeat" items="{{label}}">
-      <div class="tabcard">
-        <paper-tabs selected="0" no-bar>
-          <paper-tab>{{item.tab}}</paper-tab>
-           <paper-tab>Container/Quantity</paper-tab><paper-tab>Customer Name</paper-tab><paper-tab>Destination</paper-tab><paper-tab>Invoice Number</paper-tab><paper-tab>Date</paper-tab>
-        </paper-tabs>
-      </div>
-    </template>-->
-    <template is="dom-repeat" items="{{label}}" as="lbl">
+     <template is="dom-repeat" items="{{label}}" as="lbl">
       <paper-tabs selected="0" noink id="ptab" no-bar>
           <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
           <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
           </template>
-        </paper-tabs>
+      </paper-tabs>
     </template>
       <hr/>
       <paper-item id="noitem" value="No item found for this search!!" hidden$="{{hidenoitem}}">No item found for this search!!</paper-item>
@@ -165,6 +137,7 @@
           </template>
 
     </div>
+    <!-- Function to call the service -->
     <report-service id="reportservice" itemarr="{{itemarr}}"></report-service>
     <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
   </template>
@@ -176,9 +149,7 @@
       is: 'outwardreport-card',
      ready:function(){
 
-      this.hidenoitem=true;
-
-      //alert(localStorage.getItem("curr_sess_showpage"));
+      this.hidenoitem=true;      
        if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
          if(localStorage.getItem("curr_sess_wardflag")=="7")
          localStorage.setItem("curr_sess_showpage","approvesupplier-card");
@@ -189,8 +160,7 @@
          localStorage.setItem("curr_sess_showpage","retest-card");
        }
       if(sessionStorage.getItem("curr_sess_roleflag")=="10"||sessionStorage.getItem("curr_sess_roleflag")=="11") {
-        localStorage.setItem("curr_sess_showpage","Outward Report");
-        //localStorage.setItem("curr_sess_wardflag","5");
+        localStorage.setItem("curr_sess_showpage","Outward Report");        
         this.$.reportservice.callOutwardService("current");
       }
      },
@@ -198,8 +168,7 @@
      forward:function(){
         this.$.reportservice.callOutwardService("forward");
      },
-     backward:function(){
-      //alert('back');
+     backward:function(){      
         this.$.reportservice.callOutwardService("backward");
      },
      FnEnableHide:function(flag){

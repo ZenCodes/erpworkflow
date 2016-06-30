@@ -15,23 +15,21 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="searchexpanditem-card">
   <template>
     <style>
       .repeatcard{
         @apply(--layout-horizontal);
         width: 110%;
-        margin-top: -1%;
-      // height:50%;
+        margin-top: -1%;      
         text-align: center;
       }
       paper-item{
         width: 180px;
         margin-left:2%;
-        font-family: Calibri;
-      //text-align: center;
+        font-family: Calibri;      
       }
       paper-input{
         margin-top:-2%;
@@ -45,20 +43,16 @@
       textarea{
         width: 20%;
         height:4%;
-        margin-top:2%;
-      //margin-left:5%;
+        margin-top:2%;      
       }
       .custom {
         margin-left: 5%;
         --paper-tooltip-background: #dce775;
         --paper-tooltip-text-color: black;
         font-size: 14px;
-        width: 150px;
-
-       /*// box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
+        width: 150px;       
       }
     </style>
-
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
       <div class="repeatcard">
         <paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>

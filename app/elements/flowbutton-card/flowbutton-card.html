@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
@@ -10,18 +10,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="import" href="../physicqualified-service/physicqualified-service.html">
 <link rel="import" href="../intent-service/intent-service.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="flowbutton-card">
   <template>
     <style is="custom-style">
       paper-button{
         text-transform: none;
-        font-size: 16px;
-        /*border-radius: 1px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 3px 3px 3px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;*/
-        width: 100%;
-        /*//height: 20%;*/
+        font-size: 16px;        
+        width: 100%;       
         margin-top: 1%;
         background-color: #A0A0A0;
         font-family: Calibri;
@@ -31,8 +28,10 @@
     <div class="main">
       <paper-button id="{{label}}" label="" on-click="click">{{label}}</paper-button>
     </div>
+    <!-- Component to call the service -->
     <physicqualified-service id="pqs"></physicqualified-service>
     <intent-service id="ints"></intent-service>
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/flowbutton-card.js"></script>
 </dom-module>

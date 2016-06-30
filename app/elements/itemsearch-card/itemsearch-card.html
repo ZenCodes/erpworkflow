@@ -19,12 +19,9 @@
 <link rel="import" href="../admin-service/admin-service.html">
 <link rel="import" href="../itemsummary-page/itemsummary-page.html">
 <link rel="import" href="../supplier-list/supplier-list.html">
-
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
-
-
-
+<!-- Component import -->
 <dom-module id="itemsearch-card">
   <template>
     <style>
@@ -43,9 +40,9 @@
 	    width: 135%;
       }
       paper-listbox{
-	          width: 130%;
-	          background-color: whitesmoke;
-	          box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+	    width: 130%;
+	    background-color: whitesmoke;
+	    box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
       #itemid{
       margin-left:55%;
@@ -55,7 +52,6 @@
       }
     </style>
       <div class="card">
-
       		<div class="drop">
 	  	          <div>
 	  	            <paper-input label="Enter Item Name" name="itemname" value="{{itemname}}" required on-change="FnItemNameChange" id="itemname"  error-message="Enter item name">
@@ -69,7 +65,7 @@
 	  	             </template>
 	  	             </paper-listbox>
 	           	 </div>
-         	 </div>
+        	 </div>
 
 	         <div class="drop">
 	           <div>
@@ -85,11 +81,9 @@
 	           </paper-listbox>
 	           </div>
 	         </div>
-
-
      </div>
 
-<!--Component to fetch item info to the dropdown-->
+    <!--Component to fetch item info to the dropdown-->
     <iron-ajax
       method="post"
       params='{{param}}'
@@ -99,7 +93,9 @@
       content-type="application/json"
       on-response="itemlistreadResponse">
     </iron-ajax>
-  <admin-service id="adminservice"></admin-service>
+    <!-- Component to call the service -->
+    <admin-service id="adminservice"></admin-service>
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/itemsearch-card.js"></script>
 </dom-module>

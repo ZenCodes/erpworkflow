@@ -1,7 +1,7 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
-
+<!-- Component registeration -->
 <dom-module id="itemprice-card">
   <template>
     <style>
@@ -20,13 +20,12 @@
   <script>
   (function() {
     'use strict';
-
     Polymer({
       is: 'itemprice-card',
-
-     ready:function(){
+    ready:function(){
       this.price="";
-     },
+    },
+    // Functiom which invoke while changing the item price and binding to the respoective cards
     FnInputChanged:function(){
     document.querySelector('supplier-detail').FnSetPrice(this.price);
     document.querySelector('supplieradditem-card').FnSetPrice(this.price);

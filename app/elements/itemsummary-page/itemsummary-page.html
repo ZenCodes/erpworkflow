@@ -1,6 +1,5 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
-
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
@@ -8,20 +7,16 @@
 <link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
 <link rel="stylesheet" href="../../bower_components/paper-styles/demo.css">
-
+<!-- Component registeration -->
 <dom-module id="itemsummary-page">
   <template>
     <style>
-      paper-button{
-        //margin-left: 40%;
+      paper-button{        
         border-radius: 2px;
-        //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
-      //background-color: #bfbfbf;
       }
       p{
         text-align: left;
         font-size: 17px;
-        //font-weight: bold;
         font-family: 'Lustria', serif;
       }
       paper-dialog{
@@ -30,15 +25,12 @@
         border-radius: 2px;
         border-color: darkslategrey;
         background-color: whitesmoke;
-        //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
       }
       paper-dialog.colored {
-
         border: 2px solid;
         border-color: darkslategrey;
         background-color: lightsteelblue;
         color: black;
-
       }
       .no{
         text-align: center;
@@ -70,5 +62,6 @@
       </div>
     </paper-dialog>
   </template>
+  <!-- JS file import -->
   <script src="../../scripts/itemsummary-page.js">  </script>
 </dom-module>

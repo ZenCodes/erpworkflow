@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
@@ -8,40 +8,33 @@
     <style>
       :host {
         display: block;
-      }
- 
+      } 
     </style>
-    <div>
-    <!-- <paper-button noink><iron-icon icon="menu" title="Intent View" on-click="FnShowIntentView"></iron-icon></paper-button> -->
+    <div>    
       <paper-icon-button noink icon="menu" title="Intent View" on-click="FnShowIntentView"></paper-icon-button>
     </div>
   </template>
   <script>
   (function() {
     'use strict';
-    var toggleflag=0;
-    //localStorage.setItem("curr_sess_intenttoggleflag","0"); 
+    var toggleflag=0;     
     Polymer({
       is: 'intentviewtype-card',
       ready:function(){
-
       },
+      // Function which toggle the intent view eithr item based view or intent based view
       FnShowIntentView:function(){
         if(toggleflag==0){
-          document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
+        document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
         localStorage.setItem("curr_sess_intenttoggleflag","1"); 
         document.querySelector('intenthome-page').setPage('Intent View');
-        toggleflag=1;
-        
-        //window.location.href="../elements/indexhome.html";
+        toggleflag=1;        
         }
         else if(toggleflag==1){
-          document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("true");
+        document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("true");
         localStorage.setItem("curr_sess_intenttoggleflag","0");
         document.querySelector('intenthome-page').setPage('View Intent');
-        toggleflag=0; 
-        
-        //window.location.href="../elements/indexhome.html";
+        toggleflag=0;        
         }
       }
     });
