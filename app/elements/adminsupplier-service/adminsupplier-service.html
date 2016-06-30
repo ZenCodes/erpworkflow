@@ -2,7 +2,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
-
+<!-- Component registeration -->
 <dom-module id="adminsupplier-service">
   <template>
     <!--Component which makes update req to update the supplier info-->
@@ -15,27 +15,26 @@
       content-type="application/json"
       on-response="addsupplierResponse">
     </iron-ajax>
-     <!--Component which makes update req to update the supplier info-->
-	    <iron-ajax
-	      id="addpaymentajax"
-	      url="{{paymenturl}}"
-	      params='{{paymentparam}}'
-	      method="post"
-	      handle-as="json"
-	      content-type="application/json"
-	      on-response="addpaymentResponse">
+    <!--Component which makes update req to update the supplier info-->
+	  <iron-ajax
+	    id="addpaymentajax"
+	    url="{{paymenturl}}"
+	    params='{{paymentparam}}'
+	    method="post"
+	    handle-as="json"
+	    content-type="application/json"
+	    on-response="addpaymentResponse">
     </iron-ajax>
-     <!--Component which makes update req to update the supplier info-->
-	<iron-ajax
-	      id="additemajax"
-	      url="{{itemurl}}"
-	      params='{{itemparam}}'
-	      method="post"
-	      handle-as="json"
-	      content-type="application/json"
-	      on-response="additemResponse">
+    <!--Component which makes update req to update the supplier info-->
+	  <iron-ajax
+	    id="additemajax"
+	    url="{{itemurl}}"
+	    params='{{itemparam}}'
+	    method="post"
+	    handle-as="json"
+	    content-type="application/json"
+	    on-response="additemResponse">
     </iron-ajax>
-
     <!--Component which makes req to add tax to supplier-->
     <iron-ajax
       id="customertaxaddajax"
@@ -56,33 +55,32 @@
       content-type="application/json"
       on-response="customerexciseaddResponse">
     </iron-ajax>
-
-     <iron-ajax
-	      id="readsupplierajax"
-	      url="{{supplierreadurl}}"
-	      params='{{supplierreadparam}}'
-	      method="post"
-	      handle-as="json"
-	      content-type="application/json"
-	      on-response="readsupplierResponse">
+    <iron-ajax
+	    id="readsupplierajax"
+	    url="{{supplierreadurl}}"
+	    params='{{supplierreadparam}}'
+	    method="post"
+	    handle-as="json"
+	    content-type="application/json"
+	    on-response="readsupplierResponse">
     </iron-ajax>
-     <iron-ajax
-		      id="readpaymentajax"
-		      url="{{paymentreadurl}}"
-		      params='{{paymentreadparam}}'
-		      method="post"
-		      handle-as="json"
-		      content-type="application/json"
-		      on-response="readpaymentResponse">
+    <iron-ajax
+		  id="readpaymentajax"
+		  url="{{paymentreadurl}}"
+		  params='{{paymentreadparam}}'
+		  method="post"
+		  handle-as="json"
+		  content-type="application/json"
+		  on-response="readpaymentResponse">
     </iron-ajax>
-     <iron-ajax
-			      id="readitemajax"
-			      url="{{itemreadurl}}"
-			      params='{{itemreadparam}}'
-			      method="post"
-			      handle-as="json"
-			      content-type="application/json"
-			      on-response="readitemResponse">
+    <iron-ajax
+		  id="readitemajax"
+		  url="{{itemreadurl}}"
+		  params='{{itemreadparam}}'
+		  method="post"
+		  handle-as="json"
+		  content-type="application/json"
+		  on-response="readitemResponse">
     </iron-ajax>
     <!--Reading tax info-->
     <iron-ajax
@@ -103,9 +101,7 @@
       content-type="application/json"
       on-response="readexciseResponse">
     </iron-ajax>
-
-
-     <!--Component which makes update req to update the supplier info-->
+    <!--Component which makes update req to update the supplier info-->
     <iron-ajax
       id="updatesupplierajax"
       url="{{updatesupplierurl}}"
@@ -115,17 +111,16 @@
       content-type="application/json"
       on-response="updatesupplierResponse">
     </iron-ajax>
-     <!--Component which makes update req to update the payment info-->
-	    <iron-ajax
-	      id="updatepaymentajax"
-	      url="{{updatepaymenturl}}"
-	      params='{{updatepaymentparam}}'
-	      method="post"
-	      handle-as="json"
-	      content-type="application/json"
-	      on-response="updatepaymentResponse">
+    <!--Component which makes update req to update the payment info-->
+    <iron-ajax
+      id="updatepaymentajax"
+      url="{{updatepaymenturl}}"
+      params='{{updatepaymentparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updatepaymentResponse">
     </iron-ajax>
-
     <!--Component which makes update req to update customer-->
     <iron-ajax
       id="updatetaxajax"
@@ -176,8 +171,6 @@
       content-type="application/json"
       on-response="FnreadsuppliertoapproveResponse">
     </iron-ajax>
-
-
      <!--Component to appreov newly created supplier for purchase-->
     <iron-ajax
       id="approvesupplierforpurchaseajax"

@@ -1,18 +1,13 @@
 /**
  * Created by praba on 2/12/2016.
  */
-
-//JS file for the home-page
+//JS file for the admin-page
 Polymer({
   is: "admin-page",
   ready:function()
   {
-    localStorage.setItem("curr_sess_showpage","additem-card");
-    //if(localStorage.getItem("curr_sess_showpage")=="additem-card")
+    localStorage.setItem("curr_sess_showpage","additem-card");    
     this.page="additem-card";
-    //if(localStorage.getItem("curr_sess_showpage")=="addsupplier-card")
-    //this.page="addsupplier-card";
-
   },
   //Method to change the page view in base page ie home page
   setPage:function(page)

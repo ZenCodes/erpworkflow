@@ -1,8 +1,8 @@
-//Component import
+<!-- Component import -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
-
+<!-- Component registeration -->
 <dom-module id="admin-service">
   <template>
     <!--Component which makes write req to write the item info-->
@@ -15,6 +15,7 @@
       content-type="application/json"
       on-response="additemwriteResponse">
     </iron-ajax>
+    <!--Component to write supplier information-->
     <iron-ajax
 	      id="additemwritesupplierajax"
 	      url="{{writesupplierurl}}"
@@ -25,8 +26,7 @@
 	      on-response="additemwritesupplierResponse">
     </iron-ajax>
     <!--Component which makes read req to fetch the purchase type info-->
-    <iron-ajax
-      
+    <iron-ajax      
       id="purchasetypereadajax"
       url="{{purchasetypeurl}}"
       params='{{purchasetypeparam}}'
@@ -36,8 +36,7 @@
       on-response="purchasetypereadResponse">
     </iron-ajax>
     <!--Component which makes read req to fetch the item type info-->
-    <iron-ajax
-      
+    <iron-ajax      
       id="additemreadajax"
       url="{{readurl}}"
       params='{{readparam}}'
@@ -47,8 +46,7 @@
       on-response="additemreadResponse">
     </iron-ajax>
     <!--Component which makes read req to fetch the group type info-->
-    <iron-ajax
-      
+    <iron-ajax      
       id="additemgroupreadajax"
       url="{{groupurl}}"
       params='{{groupparam}}'
@@ -57,10 +55,8 @@
       content-type="application/json"
       on-response="additemgroupreadResponse">
     </iron-ajax>
-
     <!--Component which makes read req to fetch the Supplier info-->
-    <iron-ajax
-      
+    <iron-ajax      
       id="itemsupplierreadajax"
       url="{{supplierurl}}"
       params='{{supplierparam}}'
@@ -69,7 +65,6 @@
       content-type="application/json"
       on-response="itemsupplierreadResponse">
     </iron-ajax>
-
     <!--Component which makes write req to write the item info-->
     <iron-ajax
       id="additemsearchajax"
@@ -80,7 +75,6 @@
       content-type="application/json"
       on-response="additemsearchResponse">
     </iron-ajax>
-
     <!--Component which makes update req to update the item info-->
     <iron-ajax
       id="additemupdateajax"
@@ -91,18 +85,7 @@
       content-type="application/json"
       on-response="additemupdateResponse">
     </iron-ajax>
-    <!--Component which makes update req to update the supplier info-->
-    <!--<iron-ajax
-      id="addsupplierajax"
-      url="{{supplierurl}}"
-      params='{{supplierparam}}'
-      method="post"
-      handle-as="json"
-      content-type="application/json"
-      on-response="addsupplierResponse">
-    </iron-ajax>-->
-
-     <!--Component which makes write req to write the item info-->
+    <!--Component which makes write req to write the item info-->
     <iron-ajax
       id="addcustomeritemwriteajax"
       url="{{customerurl}}"
@@ -112,6 +95,7 @@
       content-type="application/json"
       on-response="addcustomeritemwriteResponse">
     </iron-ajax>
+    <!-- Component which make write request for writing customer information -->
     <iron-ajax
         id="additemwritecustomerajax"
         url="{{writecustomerurl}}"
@@ -122,8 +106,7 @@
         on-response="additemwritecustomerResponse">
     </iron-ajax>
     <!--Component which makes read req to fetch the container info-->
-    <iron-ajax
-      
+    <iron-ajax      
       id="containerreadajax"
       url="{{containerreadurl}}"
       params='{{containerreadparam}}'
@@ -133,8 +116,7 @@
       on-response="containerreadResponse">
     </iron-ajax>
     <!--Component which makes read req to fetch the unit info-->
-    <iron-ajax
-      
+    <iron-ajax      
       id="unitreadajax"
       url="{{unitreadurl}}"
       params='{{unitreadparam}}'

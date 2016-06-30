@@ -1,6 +1,7 @@
 /**
  * Created by praba on 2/26/2016.
  */
+ // JS component for adminsupplier-service
 (function() {
 	var supplierid;
    var obj1;
@@ -15,8 +16,9 @@
     ready: function () {
 
     },
-    callSearchService:function(supplierid,suppliername){
-	  this.supplierreadurl=sessionStorage.getItem("curr_sess_url")+"readsupplierinfo-service";
+  //Method which make req to fetch the supplier information while searching 
+  callSearchService:function(supplierid,suppliername){
+	    this.supplierreadurl=sessionStorage.getItem("curr_sess_url")+"readsupplierinfo-service";
       var obj={"supplierid":"","suppliername":""};
       obj.supplierid=supplierid;
       obj.suppliername=suppliername;
@@ -26,6 +28,7 @@
 	readsupplierResponse:function(e){
 		var arr= e.detail.response.itemarr;
     localStorage.setItem('curr_sess_supplierloggedid',arr[0].Supplier_ID);
+    // Method which bind the searched supplier information to the supplier card
     document.querySelector("addsupplier-card").suppliername=arr[0].Supplier_Name;
     document.querySelector("addsupplier-card").aliasname=arr[0].Alias_Name;
     document.querySelector("addsupplier-card").address1=arr[0].Address1;
@@ -48,16 +51,17 @@
     document.querySelector("supplieradditem-card").FnSetValue(arr[0].Supplier_ID,arr[0].Supplier_Name);
     document.querySelector("supplieritem-card").FnFetchItemInfo(arr[0].Supplier_ID,arr[0].Supplier_Name);
 	},
+  // Method which make request to search the payment information of the searched supplier
 	callPaymentService:function(){
 		this.paymentreadurl=sessionStorage.getItem("curr_sess_url")+"readpaymentinfo-service";
-		      var obj={"supplierid":"","suppliername":""};
-		      obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-		      //obj.suppliername=supname;
-		      this.paymentreadparam=obj;
-      this.$.readpaymentajax.generateRequest();
+		var obj={"supplierid":"","suppliername":""};
+		obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');		      
+		this.paymentreadparam=obj;
+    this.$.readpaymentajax.generateRequest();
 	},
 	readpaymentResponse:function(e){
 		var arr= e.detail.response.itemarr;
+    // Binding payment information of the searched supplier to payment card 
     document.querySelector("payment-card").accountname=arr[0].Account_Name;
     document.querySelector("payment-card").accountno=arr[0].Account_No;
     document.querySelector("payment-card").accounttype=arr[0].Account_Type;
@@ -69,36 +73,33 @@
     document.querySelector("payment-card").swiftcode=arr[0].Swift_Code;
     document.querySelector("payment-card").term=arr[0].Payment_Term;
     document.querySelector("payment-card"). setSelectType(arr[0].Payment_Type,arr[0].Payment_Term);
-
 	},
-    callItemService:function(supplierid){
-      // alert('display.....'+supplierid);
-	        this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
-		      var obj={"supplierid":""};
-		      this.supplierid=supplierid;
-		      obj.supplierid=supplierid;
-		      this.itemreadparam=obj;
-          this.$.readitemajax.generateRequest();
-    },
-    readitemResponse:function(e){
+  // Fetching item information against the supplier
+  callItemService:function(supplierid){
+    this.itemreadurl=sessionStorage.getItem("curr_sess_url")+"readiteminfo-service";
+	  var obj={"supplierid":""};
+	  this.supplierid=supplierid;
+	  obj.supplierid=supplierid;
+	  this.itemreadparam=obj;
+    this.$.readitemajax.generateRequest();
+  },
+  readitemResponse:function(e){
 			var arr= e.detail.response.itemarr;
-			// alert(JSON.stringify(arr));
 			if(this.supplierid!="")
-		    document.querySelector("supplieritem-card").itemArray=arr;
+	    document.querySelector("supplieritem-card").itemArray=arr;
 	},
-
-    callTaxreadService:function(){
+  // Fetching tax information for the searched supplier
+  callTaxreadService:function(){
     this.readtaxurl=sessionStorage.getItem("curr_sess_url")+"suppliertaxread-service";
     var obj={"supplierid":""};
     this.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
     obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-    //alert(obj.customerid);
     this.readtaxparam=obj;
     this.$.readtaxajax.generateRequest();
   },
   readtaxResponse:function(e){
     var arr= e.detail.response.itemarr;
-    //alert("tax...."+JSON.stringify(arr));
+    // Binding tax information to the supplier tax card for the searched supplier
     document.querySelector("suppliertax-card").tinno=arr[0].TIN;
     document.querySelector("suppliertax-card").cstno=arr[0].CST;
     document.querySelector("suppliertax-card").panno=arr[0].PAN;
@@ -106,18 +107,18 @@
     document.querySelector("suppliertax-card").cinno=arr[0].CIN;
     document.querySelector("suppliertax-card").FnEnableFields();
   },
+  // Fetching excise information for the searched supplier
   callExcisereadService:function(){
     this.readexciseurl=sessionStorage.getItem("curr_sess_url")+"supplierexciseread-service";
     var obj={"supplierid":""};
     this.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-    obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-    //alert(obj.customerid);
+    obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');    
     this.readexciseparam=obj;
     this.$.readexciseajax.generateRequest();
   },
   readexciseResponse:function(e){
     var arr= e.detail.response.itemarr;
-    //alert("excise....."+JSON.stringify(arr));
+    // Binding excise information to the supplier excise card for the searched supplier
     document.querySelector("supplierexcise-card").regno=arr[0].Reg_No;
     document.querySelector("supplierexcise-card").eccno=arr[0].Ecc_No;
     document.querySelector("supplierexcise-card").range=arr[0].Range;
@@ -126,7 +127,8 @@
     document.querySelector("supplierexcise-card").servicetax=arr[0].Service_Tax;
     document.querySelector("supplierexcise-card").FnEnableFields();
   },
-    addsupplierService:function(supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
+  // Method which make request to add the supplier
+  addsupplierService:function(supplieridd,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       obj1={
         "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
         "faxno":"","website":""
@@ -150,11 +152,9 @@
       obj1.mobileno=mobileno;
       obj1.emailid=emailid;
       obj1.faxno=faxno;
-      obj1.website=website;
-      //alert(JSON.stringify(obj1));
-      },
-    addsupplierResponse:function(e){
-      //alert("supplier..."+e.detail.response.returnval);
+      obj1.website=website;      
+  },
+  addsupplierResponse:function(e){
       if(e.detail.response.returnval=="succ"){
         localStorage.setItem('curr_sess_supplierloggedid',e.detail.response.id);
         obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
@@ -163,33 +163,29 @@
         this.$.customertaxaddajax.generateRequest();
       }
       else{
-        //alert("Customer ID already exists!..Create new customer...");
-        //window.location.href="../elements/indexhome.html";
       }
-    },
-
-    FnCustomerTaxAddService:function(tin,cst,pan,tan,cin){
+  },
+  // Function which make request to add the supplier tax info
+  FnCustomerTaxAddService:function(tin,cst,pan,tan,cin){
       obj3={"supplierid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
-      obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-      //alert(obj3.customerid);
+      obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');      
       obj3.tin=tin;
       obj3.cst=cst;
       obj3.pan=pan;
       obj3.tan=tan;
-      obj3.cin=cin;
-      //alert(JSON.stringify(obj3));
+      obj3.cin=cin;      
       document.querySelector('supplier-page').setPage('Add Excise');
-    },
-    customertaxaddResponse:function(e){
-      //alert('tax'+e.detail.response.returnval);
+  },
+  customertaxaddResponse:function(e){
       if(e.detail.response.returnval=="succ") {
         obj4.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
         this.customerexciseaddparam = obj4;
         this.customerexciseaddurl = sessionStorage.getItem("curr_sess_url") + "supplierexciseadd-service";
         this.$.customeraddexciseajax.generateRequest();
       }
-    },
-    FnSupplierExciseAddService:function(regno,eccno,range,division,commission,servicetax){
+  },
+  // Function which make request to add the supplier excise info
+  FnSupplierExciseAddService:function(regno,eccno,range,division,commission,servicetax){
       obj4={"supplierid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
       obj4.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
       obj4.regno=regno;
@@ -197,12 +193,10 @@
       obj4.range=range;
       obj4.division=division;
       obj4.commission=commission;
-      obj4.servicetax=servicetax;
-      //alert(JSON.stringify(obj4));
+      obj4.servicetax=servicetax;      
       document.querySelector('supplier-page').setPage('Add Payment');
     },
     customerexciseaddResponse:function(e) {
-      //alert('excise' + e.detail.response.returnval);
       if (e.detail.response.returnval=="succ"){
         obj5.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
         this.paymentparam = obj5;
@@ -210,9 +204,8 @@
         this.$.addpaymentajax.generateRequest();
       }
     },
-
+    // Function which make request to add the supplier payment info
     addpaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
-      //alert('in payment!');
       obj5={
         "supplierid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
         "branch":"","ifsccode":"","micrcode":"","swiftcode":"","paymentterm":""
@@ -228,21 +221,20 @@
       obj5.micrcode=micrcode;
       obj5.swiftcode=swiftcode;
       obj5.paymentterm=paymentterm;
-      this.supplierparam=obj1;
-      //alert(JSON.stringify(obj5));
+      this.supplierparam=obj1;      
       if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
         this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
         this.$.addsupplierajax.generateRequest();
       }
     },
-    addpaymentResponse:function(e){
-      //alert("payment..."+e.detail.response.returnval);
+    addpaymentResponse:function(e){      
       if(e.detail.response.returnval=="succ"){
         alert("Supplier Added successfully!!");
       }
       else
         alert("Unable to add payment!");
     },
+    // Function which make request to add item to the supplier
     additemService:function(itemflag,itemid, itemname, itemdes, container, quantity, itemgroup, itemtype,supplier, purchasetype){
 		 obj3={
 		        "itemflag":"","supplierid":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","itemsupplier":"","purchasetype":""
@@ -258,33 +250,29 @@
 		      obj3.itemsupplier=supplier;
 		      obj3.purchasetype=purchasetype;
 		      obj3.itemflag=itemflag;
-			  this.supplierparam=obj1;
+			    this.supplierparam=obj1;
 
-			  if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
-              this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
-		      this.$.addsupplierajax.generateRequest();
+			    if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
+            this.supplierurl=sessionStorage.getItem("curr_sess_url")+"addsupplier-service";
+		        this.$.addsupplierajax.generateRequest();
 		  	  }
 		  	  else
 		  	  {
-				this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
-				this.itemparam=obj3;
+				    this.itemurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
+				    this.itemparam=obj3;
         		this.$.additemajax.generateRequest();
 			  }
 
 	},
-	additemResponse:function(e){
-		//this.$.addpaymentajax.generateRequest();
+	additemResponse:function(e){		
       if(e.detail.response.returnval=="succ"){
-		  //alert("Supplier Added!");
-		  //document.querySelector('supplieradditem-card').FnBtnDisable();
-          this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
+        this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
       }
       else
-      	  alert("Unable to add suppliers!");
-       // this.$.dialogpage.FnShowDialog("Failed to Add Supplier!!","");
-    },
-    updatesupplierService:function(supplierid,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
-      //alert(supplierid+" "+suppliername+" "+landmark+" "+location+" "+city+" "+district+" "+state+" "+country+" "+pincode+" "+phoneno+" "+mobileno+" "+emailid)
+      	alert("Unable to add suppliers!");       
+  },
+  // // Function which make request to update the supplier info
+  updatesupplierService:function(supplierid,suppliername,aliasname,address1,address2,doorno,streetno,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid,faxno,website){
       obj1={
         "supplierid":"","suppliername":"","aliasname":"","address1":"","address2":"","doorno":"","streetno":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":"",
         "faxno":"","website":""
@@ -309,11 +297,9 @@
       obj1.emailid=emailid;
       obj1.faxno=faxno;
       obj1.website=website;
-      //alert(JSON.stringify(obj1));
-    },
+     },
     updatesupplierResponse:function(e){
-      //alert("update customer...."+e.detail.response.returnval);
-      if(e.detail.response.returnval=="succ"){
+       if(e.detail.response.returnval=="succ"){
         this.updatetaxparam=obj3;
         this.updatetaxurl=sessionStorage.getItem("curr_sess_url")+"supplierupdatetax-service";
         this.$.updatetaxajax.generateRequest();
@@ -323,26 +309,24 @@
         window.location.href="../elements/indexhome.html";
       }
     },
-
+    // Function which make request to add the supplier tax info
     updatesuppliertaxService:function(tin,cst,pan,tan,cin){
       obj3={"supplierid":"","tin":"","cst":"","pan":"","tan":"","cin":""};
-      obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-      //alert(obj3.customerid);
+      obj3.supplierid=localStorage.getItem('curr_sess_supplierloggedid');      
       obj3.tin=tin;
       obj3.cst=cst;
       obj3.pan=pan;
       obj3.tan=tan;
-      obj3.cin=cin;
-      //alert(JSON.stringify(obj3));
+      obj3.cin=cin;      
     },
-    updatetaxResponse:function(e){
-      //alert('tax update'+e.detail.response.returnval);
+    updatetaxResponse:function(e){      
       if(e.detail.response.returnval=="succ") {
         this.updateexciseparam = obj4;
         this.updateexciseurl = sessionStorage.getItem("curr_sess_url") + "supplierupdateexcise-service";
         this.$.updateexciseajax.generateRequest();
       }
     },
+    // Function which make request to update the supplier excise info
     updatesupplierexciseService:function(regno,eccno,range,division,commission,servicetax){
       obj4={"supplierid":"","regno":"","eccno":"","range":"","division":"","commission":"","servicetax":""};
       obj4.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
@@ -351,17 +335,16 @@
       obj4.range=range;
       obj4.division=division;
       obj4.commission=commission;
-      obj4.servicetax=servicetax;
-      //alert(JSON.stringify(obj4));
+      obj4.servicetax=servicetax;      
     },
-    updateexciseResponse:function(e) {
-      //alert('update excise' + e.detail.response.returnval);
+    updateexciseResponse:function(e) {      
       if (e.detail.response.returnval=="succ"){
         this.updatepaymentparam=obj5;
         this.updatepaymenturl=sessionStorage.getItem("curr_sess_url")+"updatepayment-service";
         this.$.updatepaymentajax.generateRequest();
       }
     } ,
+    // Function which make request to update the supplier payment info
     updatepaymentService:function(accountname,accountno,accounttype,paymenttype,bankname,branch,ifsccode,micrcode,swiftcode,paymentterm){
       obj5={
         "supplierid":"","accountname":"","accountno":"","accounttype":"","paymenttype":"","bankname":"",
@@ -377,33 +360,32 @@
       obj5.ifsccode=ifsccode;
       obj5.micrcode=micrcode;
       obj5.swiftcode=swiftcode;
-      obj5.paymentterm=paymentterm;
-      //alert(JSON.stringify(obj5));
+      obj5.paymentterm=paymentterm;      
       this.updatesupplierparam=obj1;
       this.updatesupplierurl=sessionStorage.getItem("curr_sess_url")+"updatesupplier-service";
       this.$.updatesupplierajax.generateRequest();
     },
-    updatepaymentResponse:function(e){
-      //alert(e.detail.response.returnval);
+    updatepaymentResponse:function(e){      
       if(e.detail.response.returnval=="succ"){
         alert("Supplier Info Updated successfully!!");
       }
       else
         alert("Unable to add payment!");
     },
-    readsuppliertoapproveService:function(){
-    	//alert("call");
+    // Function which fetch the created supplier for approval
+    readsuppliertoapproveService:function(){    	
       this.readsuppliertoapproveurl=sessionStorage.getItem("curr_sess_url")+"readsuppliertoapprove-service";
       this.$.readsuppliertoapproveajax.generateRequest();
     },
-    FnreadsuppliertoapproveResponse:function(e){
-      // alert(JSON.stringify(e.detail.response.itemarr));
+    FnreadsuppliertoapproveResponse:function(e){      
       document.querySelector('approvesupplier-card').itemArray=e.detail.response.itemarr;
     },
+    // Function which receive all the suppliers who have accepted for approve
     FnSetSupplierforApprove:function(supplierid){
     	approvesupplierarr.push(supplierid);
     },
-     approvesupplierforpurchaseService:function(status){
+    // Function which make request to approve the created supplier
+    approvesupplierforpurchaseService:function(status){
       var obj={"supplierid":"","status":""};
       obj.status=status;      
       obj.supplierid=sessionStorage.getItem("sess_curr_supplierid");
@@ -413,13 +395,13 @@
     },
     FnapprovesupplierforpurchaseResponse:function(e){
       if(e.detail.response.itemarr=="succ"){
-      	//alert("Suppliers are approved!!");
         this.$.dialogpage.FnShowDialog(sessionStorage.getItem("sess_curr_suppliername")+" Approved Successfully!!","");
       	window.location.href="../elements/indexhome.html";
       }
       else
       	alert("Failed to approve the supplier!!");
     },
+    // Function which make request to add the supplier contact info
     FnAddContactService:function(designation,mobileno,emailid){
       obj2={"supplierid":"","designation":"","mobileno":"","emailid":""};
       obj2.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
@@ -432,38 +414,35 @@
     },
     supplieraddcontactResponse:function(e){
       if(e.detail.response.itemarr=="succ") {
-        alert('Contact Added!');
-        //this.$.customerdialogcard.FnShowDialog("Contact Added!");
+        alert('Contact Added!');        
         this.FnsupplierreadcontactService();
       }
       else
         alert("Problem in adding contact!");
     },
+    // Function which make request to fetch the supplier contact info
     FnsupplierreadcontactService:function(){
       document.querySelector("supplier-page").setPage("Add Contact");
       var obj={"supplierid":""};
-      obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');
-      //alert("In customer..."+obj.customerid);
+      obj.supplierid=localStorage.getItem('curr_sess_supplierloggedid');      
       this.supplierreadcontactparam=obj;
       this.supplierreadcontacturl=sessionStorage.getItem("curr_sess_url")+"supplierreadcontact-service";
       this.$.supplierreadcontactajax.generateRequest();
     },
-    supplierreadcontactResponse:function(e) {
-      //alert(JSON.stringify(e.detail.response.itemarr));
+    supplierreadcontactResponse:function(e) {      
       document.querySelector('suppliercontactperson-card').itemArray=e.detail.response.itemarr;
     },
+    // Function which make request to read the supplier info
     FnSupplierinforeadService:function(){
       var obj={"supplierid":""};
-      obj.supplierid=sessionStorage.getItem("sess_curr_supplierid");
-      //alert(obj.customerid);
+      obj.supplierid=sessionStorage.getItem("sess_curr_supplierid");      
       this.supplierinforeadparam=obj;
       this.supplierinforeadurl=sessionStorage.getItem("curr_sess_url")+"supplierinforead-service";
       this.$.supplierinforeadajax.generateRequest();
     },
     FnsupplierinforeadResponse:function(e){
       var arr=e.detail.response;
-      //alert(JSON.stringify(arr))
-      //document.querySelector("supplier-detail-read").suppliername=arr[0].Category;
+      // Binding supplier info to the card in approve supplier page
       document.querySelector("supplier-detail-read").suppliername=arr[0].Supplier_Name;
       document.querySelector("supplier-detail-read").aliasname=arr[0].Alias_Name;
       document.querySelector("supplier-detail-read").address1=arr[0].Address1;
@@ -482,7 +461,7 @@
       document.querySelector("supplier-detail-read").emailid=arr[0].Email;
       document.querySelector("supplier-detail-read").faxno=arr[0].Faxno;
       document.querySelector("supplier-detail-read").website=arr[0].Website;
-
+      // Binding supplier payment info to the card in approve supplier page
       document.querySelector("customer-payment-read").accountname=arr[0].Account_Name;
       document.querySelector("customer-payment-read").accountno=arr[0].Account_No;
       document.querySelector("customer-payment-read").accounttype=arr[0].Account_Type;
@@ -493,13 +472,13 @@
       document.querySelector("customer-payment-read").micrcode=arr[0].MICR_Code;
       document.querySelector("customer-payment-read").swiftcode=arr[0].Swift_Code;
       document.querySelector("customer-payment-read").term=arr[0].Payment_Term;
-
+      // Binding supplier tax info to the card in approve supplier page
       document.querySelector("customer-tax-read").tinno=arr[0].TIN;
       document.querySelector("customer-tax-read").cstno=arr[0].CST;
       document.querySelector("customer-tax-read").panno=arr[0].PAN;
       document.querySelector("customer-tax-read").tanno=arr[0].TAN;
       document.querySelector("customer-tax-read").cinno=arr[0].CIN;
-
+      // Binding supplier excise info to the card in approve supplier page
       document.querySelector("customer-excise-read").regno=arr[0].Reg_No;
       document.querySelector("customer-excise-read").eccno=arr[0].Ecc_No;
       document.querySelector("customer-excise-read").range=arr[0].Range;

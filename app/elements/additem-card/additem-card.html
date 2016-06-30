@@ -22,16 +22,16 @@
 <link rel="import" href="../stores-card/stores-card.html">
 <link rel="import" href="../container-card/container-card.html">
 <link rel="import" href="../unit-card/unit-card.html">
-
 <link rel="import" href="../autocompleteitemlist-card/autocompleteitemlist-card.html">
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<!-- Registering component-->
 <dom-module id="additem-card">
   <template>
+    <!-- Internal style for this component -->
     <style is="custom-style">
       .card{
         @apply(--layout-vertical);
-        position: relative;
-      //background-color: rgb(255, 255, 255);
+        position: relative;      
         color: black;
         width: 80%;
         left: 10%;
@@ -77,8 +77,7 @@
       #quantity,#itemtype{
         margin-left: 5%;
       }
-      #itemdes{
-        //width: 45%;
+      #itemdes{        
         margin-left: 8%;
         margin-top: 2%;
       }
@@ -98,8 +97,7 @@
       .radio{
         margin-top:2%;
       }
-      paper-dropdown-menu{
-        //background-color: red;
+      paper-dropdown-menu{        
       }
       :host{
         --paper-input-container-label: {
@@ -121,19 +119,11 @@
       }
       #searchname{
       width: 35%;
-      }
-     
-      unit-card{
-        
+      }     
+      unit-card{        
         margin-left: 10%;
-      }
-
-      
+      }      
     </style>
-    <!--Component for listenen to keyboard enter event-->
-    <!--<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnAddItemInfoSubmit"></iron-a11y-keys>-->
-    <!--This template binding dynamic labels and error messages-->
-
     <!--Template to show card for entering item info-->
     <template is="dom-repeat" items="{{label}}">
       <div class="card">
@@ -150,7 +140,6 @@
 		            </template>
 		            </paper-listbox>
               </div>
-
         </div>
         <div class="driver">
         <div class="drop">
@@ -172,8 +161,6 @@
         <div class="owner">
         <container-card></container-card>
         <unit-card></unit-card>
-          <!--<paper-input readonly="{{read}}" label="{{item.Container}}" name="container" value="{{container}}" required on-change="FnContainerChange" id="container" error-message="{{item.Container_error}}"></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Quantity}}" name="quantity" value="{{quantity}}" required on-change="FnQuantityChange" id="quantity" error-message="{{item.Quantity_error}}"></paper-input>-->
         </div>
         <div class="owner">
           <paper-dropdown-menu id="dropitemtype" label="Select Item Type" disabled="{{read}}" required>

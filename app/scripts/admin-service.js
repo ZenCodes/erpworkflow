@@ -1,6 +1,7 @@
 /**
  * Created by praba on 2/26/2016.
  */
+ // JS component for admin service component
 (function() {
 	var suparr=[];
 	var flag=0;
@@ -12,12 +13,10 @@
     },
     //Method invokes while making write req from the additem card
     callItemWriteService:function(price,itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-		// alert("yes"+itemoptionalsupplier);
-    var obj={
+		var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
     };
-     supobj={"supplierid" :"","price":""};
-      //obj.itemoptionalsupplier=itemoptionalsupplier,
+      supobj={"supplierid" :"","price":""};
       supobj.price=price;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
@@ -29,41 +28,43 @@
       obj.itemtype=itemtype;
       obj.storeslocation=storeslocation;
       obj.purchasetype=purchasetype;
-		//alert(localStorage.getItem("curr_sess_additemsupplierwrite"));
+		 
       if(localStorage.getItem("curr_sess_additemsupplierwrite")=="1"){
-      supobj.supplierid=itemoptionalsupplier;
-      // alert(supobj.supplierid);
+      supobj.supplierid=itemoptionalsupplier;      
       if(suparr.length>0){
-      for(var i=0;i<suparr.length;i++){
-		  //alert(supobj.supplierid+"  "+suparr[i].supplierid);
+      // Adding suppliers againt the item which is not already attached with the supplier
+      for(var i=0;i<suparr.length;i++){		  
 		  if((supobj.supplierid)!=(suparr[i].supplierid))
 		  suparr.push(supobj);
-	  }
+	    }
   	  }
   	  else
   	  {
-		suparr.push(supobj);
-	  }
+		  suparr.push(supobj);
+	    }
       this.callItemWriteSupplierService(itemid,suparr);
   	  }
       this.param=obj;
+      // Making request to write item information
       this.url=sessionStorage.getItem("curr_sess_url")+"additem-service";
       this.$.additemwriteajax.generateRequest();
     },
     //Response receiving after making write request
     additemwriteResponse:function(e){
-
+      // Condition will invoke when item added successfully
       if(e.detail.response.returnval=="succ"){
   		this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
       }
-     else if(e.detail.response.returnval=="duplicate entry"){
-        if(localStorage.getItem("curr_sess_supplieritemsearchflag")!="1")
-        this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
+      // Condition will invoke when duplicate item entry
+      else if(e.detail.response.returnval=="duplicate entry"){
+      if(localStorage.getItem("curr_sess_supplieritemsearchflag")!="1")
+      this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
       }
+      // Condition will invoke when item failed to add
       else
-        this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
+      this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
     },
-	callItemWriteSupplierService:function(itemid,itemArray){
+	  callItemWriteSupplierService:function(itemid,itemArray){
 		var arr=itemArray;
 		arrlength=arr.length;
 		for(var i=0;i<arr.length;i++){
@@ -71,23 +72,30 @@
 			obj.itemid=itemid;
 			obj.supplierid=arr[i].supplierid;
       obj.price=arr[i].price;
-		this.writesupplierparam=obj;
-		this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
-        this.$.additemwritesupplierajax.generateRequest();
-        }
-	},
+		  this.writesupplierparam=obj;
+      // Making request to add item against the supplier
+		  this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
+      this.$.additemwritesupplierajax.generateRequest();
+    }
+	  },
     additemwritesupplierResponse:function(e){
+    //Condition will invoke when item added against the supplier 
 		if(e.detail.response.returnval=="succ"){
 		flag=flag+1;
 		if(arrlength==flag){
 		alert("Item Added with supplier successfully!!");
+    // After adding item which shows the item added
     document.querySelector('supplier-page').setPage('Show Item');
+    // Fetching item added against the supplier
     document.querySelector('supplieritem-card').FnFetchItemInfo(supobj.supplierid,"");
-		document.querySelector('supplieradditem-card').FnSetClearFields();
+		// Clearing additem card field inforamation after adding items
+    document.querySelector('supplieradditem-card').FnSetClearFields();
+    // Clearing item search field after adding item
 		document.querySelector('itemsearch-card').FnSetClearFields();
 		flag=0;
 	  }
 		}
+    // Condition will invoke while making duplicate entry
 		else if(e.detail.response.returnval=="duplicate entry"){
       alert("Item already exists against this supplier!!");
 		}
@@ -97,8 +105,10 @@
       this.purchasetypeurl=sessionStorage.getItem("curr_sess_url")+"additempurchasetype-service";
       this.$.purchasetypereadajax.generateRequest();
     },
+    // Method will retrieve purchase types 
     purchasetypereadResponse:function(e) {
-      var itemarray=e.detail.response.itemarr;
+    var itemarray=e.detail.response.itemarr;
+    // Purchase will be added to all the cards
     document.querySelector('additem-card').purchasearr=itemarray;
  	  document.querySelector('supplieradditem-card').purchasearr=itemarray;
     document.querySelector('customeradditem-card').purchasearr=itemarray;
@@ -108,6 +118,7 @@
       this.readurl=sessionStorage.getItem("curr_sess_url")+"additemread-service";
       this.$.additemreadajax.generateRequest();
     },
+    // Fetching item inforamtion and binding to the respective cards
     additemreadResponse:function(e) {
       var itemarray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemarr=itemarray;
@@ -119,6 +130,7 @@
       this.groupurl=sessionStorage.getItem("curr_sess_url")+"additemgroupread-service";
       this.$.additemgroupreadajax.generateRequest();
     },
+    // Fectching itemgroup information an dbinding to the respective cards
     additemgroupreadResponse:function(e) {
       var itemgrouparray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemgrouparr=itemgrouparray;
@@ -130,6 +142,7 @@
       this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
       this.$.itemsupplierreadajax.generateRequest();
     },
+    // Fetching and binding supplier information 
     itemsupplierreadResponse:function(e) {
       var itemsupplierarray=e.detail.response.itemarr;
       document.querySelector('additem-card').itemsupplierarr=itemsupplierarray;
@@ -140,12 +153,12 @@
       this.containerreadurl=sessionStorage.getItem("curr_sess_url")+"containerread-service";
       this.$.containerreadajax.generateRequest();
     },
+    // Fetching and binding container information to the respective cards
     containerreadResponse:function(e) {
       var containerarray=e.detail.response.itemarr;
       if(document.querySelector('container-card')==null){}
-        else
-      document.querySelector('container-card').containerarr=containerarray;
-      //document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
+      else
+      document.querySelector('container-card').containerarr=containerarray;      
       document.querySelector('customeradditem-card').containerarr=containerarray;
     },
      //Method invokes while making req to fetch container info
@@ -153,12 +166,12 @@
       this.unitreadurl=sessionStorage.getItem("curr_sess_url")+"unitread-service";
       this.$.unitreadajax.generateRequest();
     },
+    //Method invokes while making req to fetch unit info
     unitreadResponse:function(e) {
       var unitarray=e.detail.response.itemarr;
       if(document.querySelector('unit-card')==null){}
-        else
-      document.querySelector('unit-card').unitarr=unitarray;
-      // document.querySelector('supplieradditem-card').itemgrouparr=itemgrouparray;
+      else
+      document.querySelector('unit-card').unitarr=unitarray;      
       document.querySelector('customeradditem-card').unitarr=unitarray;
     },
     //Method invokes while making req for fetch all the info of the currently selected item in listbox
@@ -170,13 +183,10 @@
       this.searchparam=obj;
       this.$.additemsearchajax.generateRequest();
     },
-    additemsearchResponse:function(e){
-		//alert(localStorage.getItem("curr_sess_wardflag"));
-    var arr= e.detail.response.itemarr;
-    //alert(JSON.stringify(arr));
+    additemsearchResponse:function(e){		
+    var arr= e.detail.response.itemarr;    
+    // Condition will invoke to bind the searched item info to the supplier page add itemcard
     if(localStorage.getItem("curr_sess_wardflag")=="4"){
-    //alert('4');
-    //document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
 	  document.querySelector("itemsearch-card").itemid=arr[0].itemid;
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
     document.querySelector("container-card").FnSetContainer(arr[0].container);
@@ -184,9 +194,8 @@
  	  document.querySelector("supplieradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
     document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }
-    if(localStorage.getItem("curr_sess_wardflag")=="6"){
-    //alert('6');
-
+    // Condition will invoke to bind the searched item info to the customer page add itemcard
+    if(localStorage.getItem("curr_sess_wardflag")=="6"){  
     document.querySelector("itemsearch-card").FnSetItemId(arr[0].itemid);
     document.querySelector("itemsearch-card").itemname=arr[0].itemname;
     document.querySelector("container-card").FnSetContainer(arr[0].container);
@@ -194,8 +203,8 @@
     document.querySelector("customeradditem-card").FnSetItemValue(arr[0].itemid,arr[0].itemname,arr[0].itemdes,arr[0].container,arr[0].quantity,arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
     document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
     }
-	 if(localStorage.getItem("curr_sess_wardflag")==""){
-    //alert('empty');
+    // Condition will invoke to bind the searched item info to the additem page add itemcard
+	  if(localStorage.getItem("curr_sess_wardflag")==""){    
       document.querySelector('supplier-list').FnSpecificSupplierReadService(arr[0].itemid);
       document.querySelector('customer-list').FnSpecificSupplierReadService(arr[0].itemid);
       document.querySelector("additem-card").itemid=arr[0].itemid;
@@ -208,17 +217,13 @@
       document.querySelector("stores-card").FnSetDefaultValue(arr[0].storeslocation);
       document.querySelector("additem-card").setSelectedItem(arr[0].itemtype,arr[0].itemgroup,arr[0].purchasetype);
       document.querySelector("supplier-detail").FnSetItemid(arr[0].itemid,arr[0].itemtype);
-
 	  }
     },
     //Method invokes while making update request from item card
     callItemUpdateService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-
       var obj={
         "itemoptionalsupplier":"","itemsupplier":"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
       };
-      //obj.itemoptionalsupplier=itemoptionalsupplier,
-      //obj.itemsupplier=itemsupplier;
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;
@@ -229,34 +234,24 @@
       obj.itemtype=itemtype;
       obj.storeslocation=storeslocation;
       obj.purchasetype=purchasetype;
-
       this.updateparam=obj;
       this.updateurl=sessionStorage.getItem("curr_sess_url")+"additemupdate-service";
       this.$.additemupdateajax.generateRequest();
     },
     //Response for item update req
     additemupdateResponse:function(e){
-
       if(e.detail.response.returnval=="succ"){
-        //document.querySelector("additem-card").FnBtnDisable();
-        //document.querySelector("additem-card").FnClear();
-        //document.querySelector("viewtype-card").FnEnableEdit();
-        this.$.dialogpage.FnShowDialog("Item updated successfully!!","");
-       // window.location.href = "indexhome.html";
+        this.$.dialogpage.FnShowDialog("Item updated successfully!!","");       
       }
       else
         this.$.dialogpage.FnShowDialog("Failed to update the item!!","");
     },
-      //Method invokes while making write req from the additem card
+    //Method invokes while making write req from the additem card
     callCustomerItemWriteService:function(itemoptionalsupplier,itemsupplier,itemflag,itemid,itemname,itemdes,container,quantity,itemgroup,itemtype,storeslocation,purchasetype){
-    //alert("yes");
-
     var obj={
       "itemoptionalsupplier" :"","itemsupplier" :"","itemflag":"","itemid":"","itemname":"","itemdes":"","container":"","quantity":"","itemgroup":"","itemtype":"","storeslocation":"","purchasetype":""
     };
-     supobj={"supplierid" :""};
-      //obj.itemoptionalsupplier=itemoptionalsupplier,
-      //obj.itemsupplier=itemsupplier;
+      supobj={"supplierid" :""};
       obj.itemflag=itemflag;
       obj.itemid=itemid;
       obj.itemname=itemname;
@@ -267,56 +262,43 @@
       obj.itemtype=itemtype;
       obj.storeslocation=storeslocation;
       obj.purchasetype=purchasetype;
-      //alert(JSON.stringify(obj));
+      // Adding customer against the item
       if(localStorage.getItem("curr_sess_additemcustomerwrite")=="1"){
       supobj.supplierid=itemoptionalsupplier;
+      // Adding customer against the item who is not already attached to the item
       if(suparr.length>0){
-      for(var i=0;i<suparr.length;i++){
-      //alert(supobj.supplierid+"  "+suparr[i].supplierid);
+      for(var i=0;i<suparr.length;i++){      
       if((supobj.supplierid)!=(suparr[i].supplierid))
       suparr.push(supobj);
-    }
+      }
       }
       else
       {
-    suparr.push(supobj);
-    }
+      suparr.push(supobj);
+      }
+      // Calling service to write the customer against the item
       this.callItemWriteCustomerService(itemid,suparr);
       }
       this.customerparam=obj;
+      // Function will make request to additem against
       this.customerurl=sessionStorage.getItem("curr_sess_url")+"additem-service";
       this.$.addcustomeritemwriteajax.generateRequest();
     },
     //Response receiving after making write request
     addcustomeritemwriteResponse:function(e){
-
+      // Condition will invoke when added item successfully
       if(e.detail.response.returnval=="succ"){
-    //alert("Item saved successfully!!");
-    //document.querySelector('admin-page').setPage('supplier-detail');
-    this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
-    //alert("new item");
-        //document.querySelector("additem-card").FnBtnDisable();
-        //document.querySelector("additem-card").FnClear();
-        //this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
-        /*flag=1;
-        this.writesupplierparam=supobj;
-    this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
-        this.$.additemwritesupplierajax.generateRequest();*/
+      this.$.dialogpage.FnShowDialog("Item saved successfully!!","");
       }
-     else if(e.detail.response.returnval=="duplicate entry"){
-     //alert("old item");
-      /* this.writesupplierparam=supobj;
-       this.writesupplierurl=sessionStorage.getItem("curr_sess_url")+"additemsupplier-service";
-           this.$.additemwritesupplierajax.generateRequest();*/
-        if(localStorage.getItem("curr_sess_supplieritemsearchflag")!="1")
-        this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
+      // Condition will invoke when found duplicate item 
+      else if(e.detail.response.returnval=="duplicate entry"){
+      if(localStorage.getItem("curr_sess_supplieritemsearchflag")!="1")
+      this.$.dialogpage.FnShowDialog("Item ID already exists!!","duplicate entry");
       }
       else
-        this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
+      this.$.dialogpage.FnShowDialog("Failed to add the item!!","");
     },
-  callItemWriteCustomerService:function(itemid,itemArray){
-    //alert(itemid);
-    //alert(JSON.stringify(itemArray));
+    callItemWriteCustomerService:function(itemid,itemArray){
     var arr=itemArray;
     arrlength=arr.length;
     for(var i=0;i<arr.length;i++){
@@ -324,38 +306,28 @@
       obj.itemid=itemid;
       obj.supplierid=arr[i].supplierid;
       this.writecustomerparam=obj;
+      // Making request to the service to add item against the customer
       this.writecustomerurl=sessionStorage.getItem("curr_sess_url")+"additemcustomer-service";
       this.$.additemwritecustomerajax.generateRequest();
     }
-  },
+    },
     additemwritecustomerResponse:function(e){
-    //alert(e.detail.response.returnval);
-    //alert(arrlength+"  "+flag);
-
     if(e.detail.response.returnval=="succ"){
     flag=flag+1;
     if(arrlength==flag){
     alert("Item Added with customer successfully!!");
-    //alert(localStorage.getItem("curr_sess_writesupplierfromadditem"));
-    /*if(localStorage.getItem("curr_sess_writesupplierfromadditem")=="1"){
-         window.location.href="../elements/indexhome.html";
-    }*/
-    //alert(supobj.supplierid);
+    // After successful adding of customer showing the previously added customer to that item
     document.querySelector('customer-page').setPage('Show Item');
+    // Fetching already added customer info against the item
     document.querySelector('customeritem-card').FnFetchItemInfo(supobj.supplierid,"");
+    // Clearing fields after adding the item
     document.querySelector('customeradditem-card').FnSetClearFields();
     document.querySelector('itemsearch-card').FnSetClearFields();
-    flag=0;
-        //window.location.href = "indexhome.html";
-      }
-    //this.$.dialogpage.FnShowDialog("Supplier Added successfully!!","");
-    //else
-    //this.$.dialogpage.FnShowDialog("Failed to add the items!!","");
+    flag=0;        
+    }
     }
     else if(e.detail.response.returnval=="duplicate entry"){
       alert("Item already exists against this customer!!");
-    //this.$.dialogpage.FnShowDialog("Item already exists!!","duplicate entry");
-
     }
   },
   callCustomerSupplierService:function(itemid,itemtype){
@@ -366,8 +338,7 @@
     this.customersupplierurl=sessionStorage.getItem("curr_sess_url")+"customersupplier-service";
     this.$.customersupplierajax.generateRequest();
   },
-  customersupplierResponse:function(e){
-    //alert(JSON.stringify(e.detail.response));
+  customersupplierResponse:function(e){    
     if(e.detail.response.returntype=="FG"){
       document.querySelector('customersupplier-card').itemCusArray=e.detail.response.itemarr;
     }
@@ -376,6 +347,7 @@
     }
 
   },
+  // Method to delete the supplier who already attached with the item
   calldeleteitemsupplierService:function(itemid,supplierid){
     var obj={"supplierid":"","itemid":""};
     obj.itemid=itemid;
@@ -385,10 +357,9 @@
     this.$.deleteitemsupplierajax.generateRequest();
   },
   deleteitemsupplierResponse:function(e){
-    //alert(e.detail.response.itemarr);
-    //document.querySelector('apphome-page').setPage('admin-page');
-    //document.querySelector('admin-page').setPage('supplier-detail');
+    alert(e.detail.response.itemarr);
   },
+  // Method to update the price against the each supplier for that item
   callupdateitempricesupplierService:function(itemid,supplierid,supplierprice){
     var obj={"supplierid":"","itemid":"","supplierprice":""};
     obj.itemid=itemid;
@@ -401,6 +372,7 @@
   updateitempricesupplierResponse:function(e){
     alert(JSON.stringify(e.detail.response.itemarr));
   },
+  // Method to delete the customer who already attached against the item
    calldeleteitemcustomerService:function(itemid,customerid){
     var obj={"customerid":"","itemid":""};
     obj.itemid=itemid;
@@ -411,9 +383,6 @@
   },
   deleteitemcustomerResponse:function(e){
     alert(e.detail.response.itemarr);
-    //document.querySelector('apphome-page').setPage('admin-page');
-    //document.querySelector('admin-page').setPage('supplier-detail');
   }
-
   });
 })();

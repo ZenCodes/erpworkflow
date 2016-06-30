@@ -7,7 +7,7 @@ Polymer({
   is: "additem-card",
   ready:function()
   {
-
+    // Initial resetting of the parameters
     this.itemid="";
     this.itemname="";
     this.container="";
@@ -154,12 +154,10 @@ Polymer({
       this.querySelector('#searchid').style.visibility = 'visible';
       var arr = [];
       arr.push({"itemid": "-----Select-----"});
-      var item = e.detail.response.itemarr;
-      //alert(this.itemval);
+      var item = e.detail.response.itemarr;      
       if (this.itemid.length > 0) {
         for (var i = 0; i < item.length; i++) {
           var subval = ((item[i].itemid).trim()).substring(0, this.itemid.length);
-
           if ((subval).toLowerCase() == (this.itemid).toLowerCase()) {
             var obj = {"itemid": ""};
             obj.itemid = item[i].itemid;
@@ -200,7 +198,7 @@ Polymer({
         this.$.adminservice.callSearchService(this.itemid, "");
       }
     }
-    else   {
+    else{
       this.read=false;
       this.itemidArray="";
       this.querySelector('#searchid').style.visibility='hidden';
@@ -208,12 +206,10 @@ Polymer({
     }
   },
   //Function which invokes when selecting item type name in dropdown
-  FnItemSelected:function(e){
-    
+  FnItemSelected:function(e){    
     //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
     if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
       this.itemname = e.target.selectedItem.textContent.trim();
-
       //Making invisible and deselection in dropdown of item name search list box
       this.querySelector('#searchname').style.visibility='hidden';
       this.querySelector('#searchname').selected=-1;
@@ -223,8 +219,8 @@ Polymer({
         this.$.adminservice.callSearchService("", this.itemname);
       }
     }
-    else   {
-      this.read=false;
+    else{
+    this.read=false;
     this.itemArray="";
     this.querySelector('#searchname').style.visibility='hidden';
     this.querySelector('#searchname').selected=-1;
@@ -239,7 +235,7 @@ Polymer({
     for(var i=0;i<itemarray.length;i++)
     {
        if(itemarray[i].itemtypename==this.itemtypename) {
-        this.itemtype = itemarray[i].itemtypeid;
+         this.itemtype = itemarray[i].itemtypeid;
       }
     }
   },
@@ -259,34 +255,21 @@ Polymer({
   },
   //Method invokes to fetch item supplier id of the currently selected supplier name in dropdown
   FnSelectSupplier:function(supplierid,suppliername){
-    //Flag is used to identify the supplier name drop down change and it is later refered in update mode
-/*    localStorage.setItem("curr_sess_supplierchangeflag","1");
-    this.itemsuppliername=suppliername;
-    this.itemsupplier=supplierid;*/
   },
   //Method invokes to fetch optional item supplier id of the currently selected optional supplier name in dropdown
   FnSelectOptionalSupplier:function(supplierid,suppliername){
-    //Flag is used to identify the optional supplier name drop down change and it is later refered in update mode
-   /* localStorage.setItem("curr_sess_optionalsupplierchangeflag","1");
-    this.itemoptionalsuppliername=suppliername;
-    this.itemoptionalsupplier=supplierid;*/
   },
   //Function invokes when performing save button click
   FnAddItemInfoSubmit:function()
   {
-
     //Fields mandatory validation performing here
     document.querySelector('#itemid').validate();
     document.querySelector('#itemname').validate();
     document.querySelector('#itemdes').validate();
-    //document.querySelector('#container').validate();
-    //document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
-    //document.querySelector('supplier-list').FnValidate();
   //Fetching selected radio button value
   var purchasetype=document.querySelector('#radio').selected;
-
   if(this.container==null||this.container==""||this.quantity==null||this.quantity==""||this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""||purchasetype==""||purchasetype==null){
   }
     else {
@@ -294,28 +277,14 @@ Polymer({
     for(var i=0;i<this.purchasearr.length;i++)
     if(document.querySelector('#radio').selected==this.purchasearr[i].purchasetypename)
     this.itemflag=this.purchasearr[i].purchasetypeid;
-
     //While upadting if not changing item type name it would fetch item type id
     if(localStorage.getItem("curr_sess_itemtypechangeflag")!="1"){
-
       this.itemtype=localStorage.getItem("curr_sess_ItemTypeId");
     }
     //While upadting if not changing item group name it would fetch item group id
     if(localStorage.getItem("curr_sess_grouptypechangeflag")!="1"){
-
       this.itemgroup=localStorage.getItem("curr_sess_ItemTypeGroup");
     }
-    //While upadting if not changing item supplier name it would fetch item supplier id
-    /*if(localStorage.getItem("curr_sess_supplierchangeflag")!="1"){
-
-      this.itemsupplier=localStorage.getItem("curr_sess_ItemTypeSupplier");
-    }
-    //While upadting if not changing item supplier name it would fetch item supplier id
-    if(localStorage.getItem("curr_sess_optionalsupplierchangeflag")!="1"){
-
-      this.itemoptionalsupplier=localStorage.getItem("curr_sess_ItemTypeOptionalSupplier");
-    }*/
-
     //Condition will invoke and calling save service by ensuring the searchflag is 0,if it is 0 it would in create mode
     if(localStorage.getItem("curr_sess_searchitemflag")=="0") {
       //Calling dialog ensure  the save item details
@@ -331,8 +300,6 @@ Polymer({
     }
     localStorage.setItem("curr_sess_ItemTypeId","");
     localStorage.setItem("curr_sess_ItemTypeGroup","");
-    //localStorage.setItem("curr_sess_ItemTypeSupplier","");
-    //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
   },
   FnSetStoresInfo:function(storesarr,storesid){    
     this.storesarr=storesarr;
@@ -340,11 +307,8 @@ Polymer({
   },
   //Clearing fields after save / edit
   FnClear:function(){
-
     localStorage.setItem("curr_sess_ItemTypeId","");
     localStorage.setItem("curr_sess_ItemTypeGroup","");
-    //localStorage.setItem("curr_sess_ItemTypeSupplier","");
-    //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier","");
   },
   //Function to diable Save button,once after search or save
   FnBtnDisable:function(){
@@ -356,19 +320,18 @@ Polymer({
     localStorage.setItem("curr_sess_storeschangeflag","0");
     localStorage.setItem("curr_sess_itemtypechangeflag","0");
     localStorage.setItem("curr_sess_grouptypechangeflag","0");
-    //localStorage.setItem("curr_sess_supplierchangeflag","0");
-    //localStorage.setItem("curr_sess_optionalsupplierchangeflag","0");
     localStorage.setItem("curr_sess_itemidflag","0");
     localStorage.setItem("curr_sess_itemnameflag","0");
     localStorage.setItem("curr_sess_itemdesflag","0");
     localStorage.setItem("curr_sess_itemcontainerflag","0");
     localStorage.setItem("curr_sess_itemquantityflag","0");
     localStorage.setItem("curr_sess_itempurchasetypeflag","0");
-
     this.read=false;
+    // Functions to call the methods of corresponding card to enable the fields
     document.querySelector('stores-card').FnEnableFields(false);
     document.querySelector('supplier-list').FnEnableFields(false);
     this.Btn_disable_flag=false;
+    // Changing Button color
     document.querySelector('#save').style.backgroundColor='#A0A0A0';
   },
   //Function to set selected item info like itemtype name,itemgroup name once after click on search icon
@@ -376,8 +339,6 @@ Polymer({
     //Setting itemid,group and supplier info in local storage
     localStorage.setItem("curr_sess_ItemTypeId",itemtype);
     localStorage.setItem("curr_sess_ItemTypeGroup",itemgroup);
-    //localStorage.setItem("curr_sess_ItemTypeSupplier",itemsupplier);
-    //localStorage.setItem("curr_sess_ItemTypeOptionalSupplier",itemoptionalsupplier);
     for(var i=0;i<this.itemarr.length;i++){
       if(this.itemarr[i].itemtypeid==itemtype)
         this.itemtype=this.itemarr[i].itemtypename;
@@ -386,30 +347,11 @@ Polymer({
       if(this.itemgrouparr[i].itemgroupid==itemgroup)
         this.itemgroup=this.itemgrouparr[i].itemgroupname;
     }
-    /*for(var i=0;i<this.itemsupplierarr.length;i++){
-      if(this.itemsupplierarr[i].itemsupplierid==itemsupplier)
-        this.itemsupplier=this.itemsupplierarr[i].itemsuppliername;
-    }
-    for(var i=0;i<this.itemoptionalsupplierarr.length;i++){
-      if(this.itemoptionalsupplierarr[i].itemsupplierid==itemoptionalsupplier) {
-        this.itemoptionalsupplier = this.itemoptionalsupplierarr[i].itemsuppliername;
-      }
-    }*/
     for(var i=0;i<this.purchasearr.length;i++){
       if(this.purchasearr[i].purchasetypeid==selection)
         this.selection=this.purchasearr[i].purchasetypename;
     }
-    //alert(this.itemsupplier+" "+this.itemoptionalsupplier);
-    /*if(itemoptionalsupplier=="")
-      document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,"");
-    else
-    document.querySelector("supplier-list").setDefaultValue(this.itemsupplier,this.itemoptionalsupplier);*/
-    //this.selection=selection;
   },
   FnSetValue:function(suppliername,supplierid){
-	//alert(suppliername+"  "+supplierid);
-	 //this.itemsupplier=suppliername;
-	 //alert(document.querySelector('supplier-list'));
-	 //this.$.supplier.setDefaultValue(suppliername);
   }
 });
