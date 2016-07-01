@@ -1,10 +1,11 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-item/paper-item.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<!-- Component registeration -->
 <dom-module id="quality-parameter-displaycard">
   <template>
     <style>
@@ -83,6 +84,7 @@
       ready:function(){
       this.itemArray=[];
       },
+      // Function to display the Quality parameteres
       FnparameterdisplayService:function(){
         var obj={"inwardregno":"","containerid":""};
         obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
@@ -92,19 +94,14 @@
         this.$.qualityparameterdisplayajax.generateRequest();
       },
       FnqualityparameterdisplayResponse:function(e){
-//        alert(JSON.stringify(e.detail.response));
-//        alert(JSON.stringify(this.itemArray));
         var arr = e.detail.response;
-        //alert(arr);
         if(arr!="no items") {
-
           var temparr = [];
           var finalarr = [];
           var flag = "true";
           var testdate="";
           for (var i = 0; i < arr.length; i++) {
             if (flag == "true") {
-              //alert('yes');
               temparr.push(arr[i]);
               flag = arr[i].Test_ID;
               testdate = arr[i].Test_Date;
@@ -125,15 +122,11 @@
             }
           }
           finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
-          //alert(JSON.stringify(finalarr));
-
           if (finalarr.length > 0) {
-            //alert('false');
             this.itemArray = finalarr;
             document.querySelector('physicqualifyitem-card').Fnhidequality("false");
           }
           else{
-            //alert('true');
             document.querySelector('physicqualifyitem-card').Fnhidequality("true");
           }
         }

@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="../purchaseorder-card/purchaseorder-card.html">
@@ -11,15 +11,9 @@
       }
       .card{
         @apply(--layout-horizontal);
-
       }
-       paper-button{
+      paper-button{
         text-align: center;      
-        /*border-radius: 2px;*/
-        /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        /*background-color: #3d6868;*/
-        /*color: white;*/
-        /*height: 30px;*/
         background-color: #A0A0A0;
         font-family: calibri;
         font-size: 17px;
@@ -33,7 +27,7 @@
     <div class="card">
       <paper-button id="ViewPO"  name="viewpo" on-click="FnViewPO">View PO</paper-button>
     </div>
-    <!-- <purchaseorder-card id="purchase"></purchaseorder-card> -->
+    <!-- Component to call the service -->
     <intent-service id="intentservice"></intent-service>
   </template>
   <script>
@@ -43,23 +37,14 @@
       ready:function(){
 
       },
-      mail:function(){
-        //alert("mail");
+      mail:function(){        
       },
+      // Function which calls service to show the PO
       FnViewPO:function(){  
-        // document.querySelector('app-homepage').setPage('intenthome-page');
-        // document.querySelector('app-homepage').FnSetIntentFlowVisibility("false");
-        // document.querySelector('app-homepage').FnSetIntentFlowcardVisibility("false");
-        // document.querySelector('intenthome-page').setPage('purchaseorder-card');   
         this.$.intentservice.FnPurchaseorderService();
-        // setTimeout(document.querySelector('purchaseorder-card').click(), 1000);
         window.open('../elements/printhome.html', '_blank');
-        // window.close();
-        //window.location.href="../elements/printhome.html";
-        // this.$.purchase.FnToggle();
       }
- 
-    });
+     });
   })();
   </script>
 </dom-module>

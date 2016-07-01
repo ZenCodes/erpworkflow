@@ -1,4 +1,4 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="..\..\bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
@@ -8,7 +8,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
 <script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
-
+<!-- Component Registeration -->
 <dom-module id="purchaseorder-card">
   <template>
     <style>
@@ -21,26 +21,16 @@
         line-height: 110%;
         font-family: calibri;
       }
-      .card{
-        /*margin-top: -3%;*/
+      .card{        
         @apply(--layout-vertical);
         width: 700px;
         height: 1050px;
         margin-left: 15%;
-        /*border-radius: 1px;*/
-        /*border-style: groove;*/
-        /*border-style: solid;*/
-        /*border-width: 1px;*/
         padding-bottom: -10%;
         background-color: #ffffff;
-
         border: 1px solid #dedede;
-    /*border-top-left-radius: 5px;*/
-    /*border-top-right-radius: 5px;*/
-  
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
- 
-      }
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
       .title{
         margin-top: 7%;
         font-size: 24px;
@@ -133,7 +123,6 @@
         text-transform:none;
         margin-left: 30%;
         width: 20%;
-
       }
       .align{
        @apply(--layout-horizontal);
@@ -155,18 +144,15 @@
       }
       .grandalign{
         @apply(--layout-horizontal);
-
         margin-left: -10%;
       }
       .gp1{
         width: 80%;
       }
       .img{
-        /*margin-top: 2%;*/
       }
       p{
         font-size: 17px;
-        /*color: white;*/
       }
       .logohead{
         @apply(--layout-horizontal);
@@ -180,16 +166,13 @@
       <div><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
       <div class="title">Purchase Order</div>
       </div>
-
       <div class="cheader">
         <div class="companyheader">
         <div class="company">
-          
-          <div class="address">
+         <div class="address">
           <p class="comp">{{cmpname}}</p>
           <p class="comp">{{cmpaddr1}}</p>
-          <p class="comp">{{cmpaddr2}}</p>
-          <!-- <p class="comp">{{cmpaddr3}}</p> -->
+          <p class="comp">{{cmpaddr2}}</p>          
           <p class="comp">{{cmpemail}}</p>
           <p class="comp">{{cmpphone}}</p>
           </div>
@@ -219,8 +202,7 @@
           <tr><th>S.No</th><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
           <tr><td>1</td><td>{{poitem.Product_ID}}</td><td>{{poitem.Quantity}} {{poitem.Quantity_Measure}}</td>
           <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td>{{poitem.total}}</td></tr>
-        </table>
-      <!-- </div> -->
+        </table>      
       <div class="summary">
       <div>
         <textarea>Notes....</textarea>
@@ -233,16 +215,14 @@
         <hr/>
         <div class="align"><p class="p1">Grand Total: </p><p class="img"><img src="../../images/rupee.png" width="8px" height="8px"/></p><p class="p2">{{poitem.grandtot}}</p></div>
       </div>
-
       </div>
       </div>
       </template>
-
     </div>
     </div>
     <paper-button id="pdf" on-click="click">View PDF</paper-button>
     </div>
-
+    <!-- Component to fetch the company profile for PO creation -->
     <iron-ajax
       auto
       id="companyprofilereadAjax"
@@ -251,8 +231,8 @@
       content-type="application/json"
       on-response="companyprofilereadResponse">
     </iron-ajax>
-
-     <iron-ajax
+    <!-- Function which fetch partial item information for PO creation of that item -->
+    <iron-ajax
       id="purchaseorderajax"
       url="{{purchaseorderurl}}"
       params='{{purchaseorderparam}}'
@@ -261,8 +241,8 @@
       content-type="application/json"
       on-response="FnPurchaseorderResponse">
     </iron-ajax>
-
-     <iron-ajax
+    <!-- Function which fetch item information for PO creation of that item -->
+    <iron-ajax
       id="purchaseorderitemajax"
       url="{{purchaseorderitemurl}}"
       params='{{purchaseorderitemparam}}'
@@ -271,7 +251,7 @@
       content-type="application/json"
       on-response="FnPurchaseorderitemResponse">
     </iron-ajax>
-
+    <!-- Function which fetch item tax information for PO creation of that item -->
     <iron-ajax
       id="purchaseorderitemtaxajax"
       url="{{purchaseorderitemtaxurl}}"
@@ -281,7 +261,7 @@
       content-type="application/json"
       on-response="FnPurchaseorderitemtaxResponse">
     </iron-ajax>
-
+    <!-- Function which fetch item price for PO creation of that item -->
     <iron-ajax
       id="purchaseorderitempriceajax"
       url="{{purchaseorderitempriceurl}}"
@@ -291,25 +271,8 @@
       content-type="application/json"
       on-response="FnPurchaseorderitempriceResponse">
     </iron-ajax>
-
   </template>
-
   <script>
-   /*$(window).load(function(){
-    $(document).ready(function() {
-     $('#pdf').click(function() {
-        html2canvas($("#canvas"), {
-            onrendered: function(canvas) {
-                var imgData = canvas.toDataURL('image/png');
-                $("#imgRes").attr("src", imgData);
-                var doc = new jsPDF('p', 'mm');
-                doc.addImage(imgData, 'PNG', 10, 8);
-                doc.save('sample.pdf');
-            }
-        });
-    });
-    });
-    });*/
   (function() {
     'use strict';
     var productid="";
@@ -326,14 +289,10 @@
     Polymer({
       is: 'purchaseorder-card',
       ready:function(){
-      // alert('yes');
       this.FnPurchaseorderService();
-
       },
       companyprofilereadResponse:function(e){
-        // this.click();
         var cmparr=e.detail.response;
-        //alert(JSON.stringify(cmparr));
         this.cmpname=cmparr[0].name;
         this.cmpaddr1=cmparr[0].addressline1;
         this.cmpaddr2=cmparr[0].addressline2;
@@ -341,37 +300,34 @@
         this.cmpemail=cmparr[0].email;
         this.cmpphone=cmparr[0].phoneno;
       },
+      // Function which calls service to fetch item info
        FnPurchaseorderService:function(){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderurl=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
          this.purchaseorderparam=obj;
-         // alert(JSON.stringify(obj));
          this.$.purchaseorderajax.generateRequest();
-
       },
       FnPurchaseorderResponse:function(e){
           poarr=e.detail.response.itemarr;
          if(poarr.length>0){
-         var d=new Date(poarr[0].PO_Date);
-         //alert(d);
+         var d=new Date(poarr[0].PO_Date);         
          var y=d.getFullYear();
          var m=d.getMonth();
          var d=d.getDate();
          poarr[0].PO_Date=d+"/"+m+"/"+y;
-         this.poarray=poarr;
-         // document.querySelector("purchaseorder-home").poarray=poarr;
+         this.poarray=poarr;         
          document.querySelector("purchaseorder-card").poarray=poarr;
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderitemurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
          this.purchaseorderitemparam=obj;
-         this.$.purchaseorderitemajax.generateRequest();
-         //alert(JSON.stringify(poarr));
+         this.$.purchaseorderitemajax.generateRequest();         
          }
       },
+      // Function which calls item info for po creation
       FnPurchaseorderitemResponse:function(e){
          poitemarr=e.detail.response.itemarr;
          if(poitemarr.length>0){
@@ -380,108 +336,66 @@
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderitemtaxurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
          this.purchaseorderitemtaxparam=obj;
-         this.$.purchaseorderitemtaxajax.generateRequest();
-         //alert(JSON.stringify(poitemarr));
+         this.$.purchaseorderitemtaxajax.generateRequest();         
          }
       },
       FnPurchaseorderitemtaxResponse:function(e){
-         poitemtax=e.detail.response.itemarr;
-         //alert(JSON.stringify(poitemtax));
+         poitemtax=e.detail.response.itemarr;         
          if(poitemtax.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
          this.purchaseorderitempriceurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
          this.purchaseorderitempriceparam=obj;
-         this.$.purchaseorderitempriceajax.generateRequest();
-         //alert(JSON.stringify(poitemarr));
+         this.$.purchaseorderitempriceajax.generateRequest();         
          }
       },
       FnPurchaseorderitempriceResponse:function(e){
           poitemprice=e.detail.response.itemarr;
-          if(poitemprice.length>0){
-          //alert(JSON.stringify(poitemprice));
+          if(poitemprice.length>0){          
           var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
           var tax2=((parseFloat(poitemtax[0].VAT))/100);
           var tax3=((parseFloat(poitemtax[0].CST))/100);
-          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
-          //alert(total);
+          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
           var exduty=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity).toFixed(2);
           poitemarr[(poitemarr.length)-1].price=(poitemprice[0].Item_Supplier_price).toFixed(2);
           poitemarr[(poitemarr.length)-1].total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
           poitemarr[(poitemarr.length)-1].exduty=((parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity)).toFixed(2);
-
-          if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){
-            //alert(parseInt(poitemprice[0].Item_Supplier_price));
-            //alert(parseFloat(tax2));
-            //alert(parseInt(poitemarr[0].Quantity));
-            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
+          if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){ 
           poitemarr[(poitemarr.length)-1].vat=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
           poitemarr[(poitemarr.length)-1].cst=parseFloat("0").toFixed(2);
           poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
           else{
-            //alert(parseInt(poitemprice[0].Item_Supplier_price));
-            //alert(parseFloat(tax3));
-            //alert(parseInt(poitemarr[0].Quantity));
-            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));
           poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
           poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
           poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
-
-
-          //poitemarr.push(poitemprice[0].Item_Supplier_price);
-          //alert(JSON.stringify(poitemarr));
           }
           this.poitemarray=poitemarr;
-          // document.querySelector("purchaseorder-home").poitemarray=poitemarr;
           document.querySelector("purchaseorder-card").poitemarray=poitemarr;
-
-
- // alert('converting....');
-        var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
-        //window.location.href="../elements/printhome.html";
-        //window.print();
-        // alert(document.querySelector('#card'));
-         html2canvas(document.querySelector('#card'), {
+          var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
+           html2canvas(document.querySelector('#card'), {
             onrendered: function(canvas) {
-                var imgData = canvas.toDataURL('image/jpeg');
-                //alert(imgData);
+                var imgData = canvas.toDataURL('image/jpeg');                
                 $("#imgRes").attr("src", imgData);
-                var doc = new jsPDF('p', 'mm');
-                //alert(JSON.stringify(doc));
+                var doc = new jsPDF('p', 'mm');                
                 doc.addImage(imgData, 'JPEG', 10, 8);
-                // doc.save(porder+'.pdf');
-                // doc.output('dataurlnewwindow');
-                // window.location.href="../elements/indexhome.html";
                 doc.output('datauri');
             }
           });
-
-
       },
       FnToggle:function(){
-        // alert('calling');
         this.$.dialog.toggle();
       },
-      click:function(){
-        // alert('converting....');
+      click:function(){        
         var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
-        //window.location.href="../elements/printhome.html";
-        //window.print();
-        // alert(document.querySelector('#card'));
          html2canvas(document.querySelector('#card'), {
             onrendered: function(canvas) {
-                var imgData = canvas.toDataURL('image/jpeg');
-                //alert(imgData);
+                var imgData = canvas.toDataURL('image/jpeg');                
                 $("#imgRes").attr("src", imgData);
-                var doc = new jsPDF('p', 'mm');
-                //alert(JSON.stringify(doc));
+                var doc = new jsPDF('p', 'mm');                
                 doc.addImage(imgData, 'JPEG', 10, 8);
-                // doc.save(porder+'.pdf');
-                // doc.output('dataurlnewwindow');
-                // window.location.href="../elements/indexhome.html";
                 doc.output('datauri');
             }
           });

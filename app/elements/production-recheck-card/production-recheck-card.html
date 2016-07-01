@@ -1,8 +1,7 @@
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
-
-
+<!-- Comonent registeration -->
 <dom-module id="production-recheck-card">
   <template>
     <style>
@@ -21,24 +20,23 @@
     <div>
       <paper-button on-click="FnRecheck">Recheck</paper-button>
     </div>
-
   </template>
   <script>
   (function() {
     'use strict';
-
     Polymer({
       is: 'production-recheck-card',
       ready:function(){
         localStorage.setItem("curr_sess_retestflag","0");
       },
+      // Function which shows the cards who came for quality recheck
       FnRecheck:function(){
         localStorage.setItem("curr_sess_retestflag","1");
         document.querySelector('retest-card').FnCallPage();
+        // Showing recheck cards
         document.querySelector('app-homepage').setPage('retest-card');
         document.querySelector('specification-card').ready();
       }
-
     });
   })();
   </script>

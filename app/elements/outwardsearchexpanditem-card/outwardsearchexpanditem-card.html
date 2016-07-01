@@ -1,3 +1,4 @@
+<!-- Component import -->
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
@@ -13,8 +14,8 @@
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component regsteration -->
 <dom-module id="outwardsearchexpanditem-card">
   <template>
     <style>
@@ -47,25 +48,18 @@
       //margin-left:5%;
       }
     </style>
-
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="Response">
       <div class="repeatcard">
-
         <paper-item name="itemdes" value="{{itemdes}}">{{itemdes}}</paper-item>
         <paper-item name="qtyreceived" value="{{quantity}}">{{quantity}}</paper-item>
         <paper-item name="qtyaccepted" value="{{weight}}">{{weight}}</paper-item>
-
-
       </div>
     </form>
   </template>
   <script>
     Polymer({is:"outwardsearchexpanditem-card",
       ready:function(){
-
-
       }
     });
   </script>
-
 </dom-module>

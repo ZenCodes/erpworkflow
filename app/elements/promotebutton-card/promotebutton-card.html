@@ -1,8 +1,8 @@
-
-
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/intent-service/intet-service.html">
+<!-- Component registeration -->
 <dom-module id="promotebutton-card">
   <template>
     <style>
@@ -20,11 +20,11 @@
         color: black;
         height: 30px;
       }
-
     </style>
     <div class="promotebtn">
     <paper-button id="promote"  name="promote" value="Create PO" on-click="FnPromoteState" noink>Create PO</paper-button>
     </div>
+    <!-- Component to call the service -->
     <intent-service id="intentservice"></intent-service>
   </template>
   <script>
@@ -33,9 +33,11 @@
     var poarray;
     Polymer({
       is: 'promotebutton-card',
+    // Function which receives item for PO 
     FnPOArrayInfo:function(poarr){
     poarray=poarr;
     },
+    // Function which calls service to create the PO for the item in intent view
     FnPromoteState:function(){
     this.$.intentservice.FnIntentViewPoCreateService(poarray);
     }

@@ -14,10 +14,10 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="outwardsearchread-page">
   <template>
     <style is="custom-style">
-
       paper-tabs{
         background-color: #e6e6e6;
         width: 80%;
@@ -44,7 +44,8 @@
           </div></div>
       </template>
     </div>
-    </template>    <!--Calling webcomponent service to bind label info-->
+    </template>    
+    <!--Calling webcomponent service to bind label info-->
     <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
     <!--Service component to bind search card info-->
     <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
@@ -56,7 +57,5 @@
       {
       }
     });
-
   </script>
-
 </dom-module>

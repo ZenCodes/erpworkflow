@@ -21,6 +21,7 @@
 <link rel="import" href="../quality-parameter-displaycard/quality-parameter-displaycard.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="retestqualify-item-card">
   <template>
     <style>
@@ -58,8 +59,7 @@
         --paper-tooltip-background: #dce775;
         --paper-tooltip-text-color: black;
         font-size: 14px;
-        width: 150px;
-      //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        width: 150px;      
       }
       .containerid{
         margin-left: 2%;
@@ -89,7 +89,6 @@
         <paper-input name="productid" value="{{productid}}" hidden></paper-input>
         <paper-input name="inwardregno" value="{{inwardregno}}" hidden></paper-input>
         <paper-input name="inspectionstatus" value="{{inspectionstatus}}" hidden></paper-input>
-
         <paper-radio-button id="radio{{containerid}}" on-change="FnExpandInnerCard"></paper-radio-button>
         <paper-input readonly class="containerid" name="containerid" label="Container ID" value="{{containerid}}" id="cont{{inwardno}}" required></paper-input>
         <paper-input readonly class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" required></paper-input>
@@ -109,10 +108,8 @@
       </iron-collapse>
     </form>
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
-
   </template>
   <!--JS file import-->
   <script src="../../scripts/retestqualify-item-card.js"></script>
-
 </dom-module>
 

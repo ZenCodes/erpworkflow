@@ -20,6 +20,7 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../specification-card/specification-card.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Component registeration -->
 <dom-module id="retestqualify-card">
   <template>
     <style>
@@ -38,12 +39,8 @@
       }
       #card1{
         margin-top: 0.5%;
-      //border-radius: 2px;
-      //box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
-        width: 100%;
-      //height:50%;
-        background-color:white;
-      //border-color:#dbe9d6;
+        width: 100%;      
+        background-color:white;      
         overflow-x:hidden;
       }
       .topright{
@@ -121,11 +118,6 @@
             </div>
           </div>
         </div>
-        <!--<paper-tabs selected="0" noink id="ptab">
-          <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
-          <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
-          </template>
-        </paper-tabs>-->
         <div id="div2">
           <!--template which shows the no of items under expended IRN card-->
           <template is="dom-repeat" items="{{specificationArray1}}" as="item">
@@ -157,5 +149,4 @@
   </template>
   <!--Import JS file-->
   <script src="../../scripts/retestqualify-card.js"></script>
-
 </dom-module>
