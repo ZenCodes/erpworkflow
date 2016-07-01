@@ -1,7 +1,3 @@
-/**
- * Created by praba on 2/12/2016.
- */
-
 //JS file for the supplier-page
 Polymer({
   is: "customer-payment-read",

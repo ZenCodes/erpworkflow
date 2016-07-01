@@ -1,7 +1,3 @@
-/**
- * Created by praba on 2/12/2016.
- */
-
 //JS file for the supplier-page
 Polymer({
   is: "customeradditem-card",
@@ -60,37 +56,28 @@ Polymer({
       }
   },
 FnAddItemSubmit:function(){
-  //alert('click');
 //Fields mandatory validation performing here
     document.querySelector('#itemid').validate();
     document.querySelector('#itemname').validate();
     document.querySelector('#itemdes').validate();
-    //document.querySelector('#container').validate();
-    //document.querySelector('#quantity').validate();
     document.querySelector('#dropitemtype').validate();
     document.querySelector('#dropgrouptype').validate();
     document.querySelector('#supplier').validate();
 	//Fetching selected radio button value
 	var purchasetype=this.querySelector('#radio').selected;
-  //alert(purchasetype);
-  //alert(JSON.stringify(this.purchasearr));
 	for(var i=0;i<this.purchasearr.length;i++){
     if(this.querySelector('#radio').selected==this.purchasearr[i].purchasetypename)
     this.itemflag=this.purchasearr[i].purchasetypeid;
-	}
-  //alert(this.itemflag);
-  // alert(this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
+	}  
 	if(this.itemid==null||this.itemid==""||this.itemname==null||this.itemname==""||this.itemdes==null||this.itemdes==""||this.container==null||this.container==""||this.itemgroup==null||this.itemgroup==""||this.itemtype==null||this.itemtype==""){
-	// alert('empty');
-  }
+	}
 	else
-	{
-    // alert('save');
-	//this.$.adminsupplierservice.additemService(this.itemflag,this.itemid, this.itemname, this.itemdes, this.container, this.quantity, this.itemgroup, this.itemtype, this.supplier,purchasetype);
-	//alert(this.supplier+" "+this.itemflag+"  "+this.itemid+"  "+this.itemname+"  "+this.itemdes+"  "+this.container+"  "+this.quantity+"  "+this.itemgroup+" "+this.itemtype+" "+purchasetype);
-  localStorage.setItem("curr_sess_additemcustomerwrite","1");
+	{   
+	localStorage.setItem("curr_sess_additemcustomerwrite","1");
+  // Function which calls service to add the customer information
 	this.$.adminservice.callCustomerItemWriteService(localStorage.getItem('curr_sess_customerloggedid'),this.supplier,this.itemflag,this.itemid,this.itemname,this.itemdes,this.container,this.quantity,this.itemgroup,this.itemtype,this.storesid,purchasetype);
 	}
+  // After adding customer info which clear the field info
   document.querySelector('stores-card').FnClear();
   document.querySelector('itemsearch-card').FnSetClearFields();
   this.itemdes="";
@@ -101,18 +88,18 @@ FnAddItemSubmit:function(){
   document.querySelector('#radio').selected=-1;
   this.read=false;
 },
+// Function which receives the customer id and name from customer card
 FnSetValue:function(supplierid,suppliername){
 	this.supplierid=supplierid;
-	this.supplier=suppliername;
- // this.supplierid=localStorage.getItem("curr_sess_supplieradditemtab_supplierid");
- // this.suppliern=localStorage.getItem("curr_sess_supplieradditemtab_suppliername");
+	this.supplier=suppliername; 
 },
+// Function which disable the buttons
 FnBtnDisable:function(){
 	document.querySelector('#save').style.backgroundColor='grey';
 	this.Btn_disable_flag=true;
 },
+// Function which receives the item info
 FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,itemgroup,selection){
-
 	this.itemid=itemid;
 	this.itemname=itemname;
 	this.itemdes=itemdes;
@@ -132,23 +119,21 @@ FnSetItemValue:function(itemid,itemname,itemdes,container,quantity,itemtype,item
 	   if(this.purchasearr[i].purchasetypeid==selection)
 	      this.selection=this.purchasearr[i].purchasetypename;
     }
-
 },
- FnSetStoresInfo:function(storesarr,storesid){
- //alert(storesid);
+// Function which receives stores info from stores card
+FnSetStoresInfo:function(storesarr,storesid){
     this.storesarr=storesarr;
     this.storesid=storesid;
-  },
+},
+// Function which receives the item id
 FnSetItemId:function(itemid){
-  //alert(itemid);
 	this.itemid=itemid;
-
 },
+// Function which receives the item name
 FnSetItemName:function(itemname){
-
 	this.itemname=itemname;
-
 },
+// Function which used to reset the fields
 FnSetClearFields:function(){
 	this.itemid="";
 	this.itemname="";
@@ -158,15 +143,17 @@ FnSetClearFields:function(){
 	this.itemtype="";
 	this.itemgroup="";
 	this.selection="";
-
 },
+// Function which toggle the read state of the stores card in search and edit mode
 FnSetEnableDisableFields:function(flag){
   document.querySelector("stores-card"). FnEnableFields(flag);
   this.read=flag;
 },
+// Function which receive the container value from container card
 FnContainerChange:function(container){
 this.container=container;
 },
+// Function which receive the container value from quantity card
 FnQuantityChange:function(quantity){
 this.quantity=quantity;
 }

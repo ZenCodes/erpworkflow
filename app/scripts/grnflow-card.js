@@ -22,18 +22,13 @@
         if (role[i].rolename == sessionStorage.getItem("loggedrole")) {
           this.flowenableflag = role[i].index;
         }
-      }
-
-      // alert(this.flowenableflag);
+      }      
       var buttongroup = this.querySelectorAll('paper-button');
 
       //Logged as general role for search disable all state
-      if (this.flowenableflag == 4) {
-        // alert("true");
-        for (var i = 0; i < buttongroup.length; i++) {
-          //alert("in"+  this.querySelector("#"+buttongroup[i].id));
-          this.querySelector("#" + buttongroup[i].id).disabled = true;
-          //this.querySelector("#"+buttongroup[i].id).style.backgroundColor="#e5efe2";
+      if (this.flowenableflag == 4) {        
+        for (var i = 0; i < buttongroup.length; i++) {          
+          this.querySelector("#" + buttongroup[i].id).disabled = true;          
           this.querySelector("#" + buttongroup[i].id).style.backgroundColor = "transparent";
         }
       }
@@ -52,8 +47,7 @@
 
       if (sessionStorage.getItem("curr_sess_roleflag") == "1") {
         this.querySelector("#" + this.idval[0] + "1").id = this.idval[0];
-        this.querySelector("#" + this.idval[0]).style.backgroundColor = '#bfbfbf';
-        //this.querySelector("#"+this.idval[0]).style.color='white';
+        this.querySelector("#" + this.idval[0]).style.backgroundColor = '#bfbfbf';        
         this.flag = this.idval[0];
       }
       else if (sessionStorage.getItem("curr_sess_roleflag") == "2") {
@@ -72,8 +66,7 @@
         this.flag = this.idval[3];
       }
     },
-    click: function (e) {
-      //alert(this.flag+"  "+e.target.id);
+    click: function (e) {      
       if (this.flag == "true") {
         this.querySelector("#" + e.target.id + "1").id = e.target.id;
         this.querySelector("#" + e.target.id).style.backgroundColor = '#bfbfbf';
@@ -152,14 +145,9 @@
         if (e.target.id == 'Purchase' && flowflag == "0") {
           document.querySelector('app-homepage').setVisible("true");
           document.querySelector('home-page').setPage('Inward Items');
-          //localStorage.setItem("curr_sess_expandstate",'qualified');
-          //localStorage.setItem("curr_sess_forwardstate",'1');
-          //document.querySelector('physicinsread-page').setState('qualified');
         }
         if (e.target.id == 'Purchase' && flowflag == "1") {
           window.location.href = "indexhome.html";
-          //document.querySelector('home-page').setPage('Inward Items');
-          //document.querySelector('grn-service').physicreadService();
         }
       }
 
@@ -196,13 +184,7 @@
     },
     disableBackstate: function () {
       var flowflag = localStorage.getItem('curr_sess_flowstate');
-
-      /*var alldiv=this.querySelectorAll('.div');
-       for(var i=0;i<alldiv.length;i++)
-       alert(this.querySelector("#"+alldiv[i].id));*/
-
-      if (flowflag == "1") {
-        // alert(this.flowenableflag);
+      if (flowflag == "1") {        
         var buttongroup = this.querySelectorAll('paper-button');
         for (var i = 0; i < buttongroup.length; i++) {
           if (i == (parseInt(this.flowenableflag)) || i == (parseInt(this.flowenableflag) + 1)) {
@@ -210,8 +192,7 @@
             if (i == (parseInt(this.flowenableflag) + 1)) {
               this.querySelector("#" + buttongroup[i].id).disabled = false;
               this.querySelector("#" + buttongroup[i].id).style.backgroundColor = "transparent";
-            }
-            //this.querySelector("#Purchase").innerHTML = "hello";
+            }            
           }
 
           else {
@@ -241,15 +222,12 @@
       var buttongroup = this.querySelectorAll('paper-button');
       //alert(flowflag);
       this.flowenableflag = parseInt(sessionStorage.getItem("curr_sess_roleflag")) - 1;
-      if (flowflag == "0") {
-        //alert(this.flowenableflag);
+      if (flowflag == "0") {        
         //Logged as general role for search disable all state
         if (this.flowenableflag == 4) {
           // alert("true");
-          for (var i = 0; i < buttongroup.length; i++) {
-            //alert("in"+  this.querySelector("#"+buttongroup[i].id));
-            this.querySelector("#" + buttongroup[i].id).disabled = true;
-            //this.querySelector("#"+buttongroup[i].id).style.backgroundColor="#e5efe2";
+          for (var i = 0; i < buttongroup.length; i++) {            
+            this.querySelector("#" + buttongroup[i].id).disabled = true;            
             this.querySelector("#" + buttongroup[i].id).style.backgroundColor = "transparent";
           }
         }
@@ -267,12 +245,9 @@
         }
       }
       else if(flowflag=="1"){
-        if (this.flowenableflag == 4) {
-          // alert("true");
-          for (var i = 0; i < buttongroup.length; i++) {
-            //alert("in"+  this.querySelector("#"+buttongroup[i].id));
-            this.querySelector("#" + buttongroup[i].id).disabled = true;
-            //this.querySelector("#"+buttongroup[i].id).style.backgroundColor="#e5efe2";
+        if (this.flowenableflag == 4) {          
+          for (var i = 0; i < buttongroup.length; i++) {            
+            this.querySelector("#" + buttongroup[i].id).disabled = true;            
             this.querySelector("#" + buttongroup[i].id).style.backgroundColor = "transparent";
           }
         }

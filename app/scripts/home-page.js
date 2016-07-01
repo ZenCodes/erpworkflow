@@ -1,7 +1,3 @@
-/**
- * Created by praba on 2/12/2016.
- */
-
 //JS file for the home-page
 Polymer({
   is: "home-page",

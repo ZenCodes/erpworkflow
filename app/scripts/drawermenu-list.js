@@ -1,6 +1,4 @@
-/**
- * Created by praba on 2/17/2016.
- */
+
 //JS file for drawer menu list
 Polymer({is:"drawermenu-list",
   ready:function(){

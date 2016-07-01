@@ -1,6 +1,3 @@
-/**
- * Created by praba on 2/12/2016.
- */
 //JS file for the supplierlist page
 //The same card is reused in inwardslip page and the additem card
 (function() {
@@ -19,10 +16,8 @@
       this.isHidden=true;
       else
       this.isHidden=false;
-
       //Initially making all fields are editable
       this.read = false;
-
       this.suppliername="";
       this.supplierid="";
       this.itemval="";
@@ -32,8 +27,7 @@
       this.itemval1="";
       this.itemflag1="false";
       //calling service to fetch and bind supplier names to the auto complete list
-      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";
-      //this.$.itemsupplierreadajax.generateRequest();
+      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemsupplierread-service";      
       //Initially hiding dropdown boxes while not search for supplier names
       this.querySelector('#pl1').style.visibility='hidden';
       this.querySelector('#pl2').style.visibility='hidden';
@@ -42,8 +36,7 @@
     FnEnableFields:function(enableflag){
     this.read=enableflag;
     },
-    FnSpecificSupplierReadService:function(itemid){
-      //alert(itemname);
+    FnSpecificSupplierReadService:function(itemid){      
       var obj={"itemid":""};
       obj.itemid=itemid;
       this.supplierparam=obj;
@@ -56,11 +49,9 @@
         document.querySelector('item-page').FnEnableHide();
         this.read=true;
         document.querySelector('item-card').FnChangeField();
-
       }
       //Condition to bind when no item found
       if(e.target.selectedItem.textContent.trim()!="-----Select-----"||e.target.selectedItem.textContent.trim()!="Others") {
-
         this.value = e.target.selectedItem.textContent.trim();
         for (var i = 0; i < item.length; i++) {
           if (item[i].itemsuppliername == this.value) {
@@ -74,17 +65,13 @@
           document.querySelector('autocompleteitemlist-card').FnFetchSpecificItem(this.supplierid,this.suppliername);
           this.read=true;
         }
-        //else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="")
-		//  document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
-		else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""){
+  		else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")==""){
       if(e.target.selectedItem.textContent.trim()!="-----Select-----")
 		  document.querySelector('supplier-detail').FnSelectSupplier(this.supplierid,this.suppliername);
       else
       alert("Please choose valid Supplier...");
-		}
-       // else
-       // document.querySelector('additem-card').FnSelectSupplier(this.supplierid,this.suppliername);
-       }
+	    }
+      }
       else{
         alert("Please choose valid item...");
         this.value="";
@@ -161,8 +148,7 @@
           }
           else
             this.itemval = this.itemval + String.fromCharCode((e.keyCode));
-          //alert(this.itemval);
-          if (this.itemval.length > 0) {
+           if (this.itemval.length > 0) {
             for (var i = 0; i < item.length; i++) {
               var subval = ((item[i].itemsuppliername).trim()).substring(0, this.itemval.length);
 
@@ -197,8 +183,7 @@
       if(e.keyCode==8){
         this.itemflag1="true";
         this.itemval1="";
-        //alert('yes');
-        var len=(this.optionalvalue).length;
+         var len=(this.optionalvalue).length;
         if(len<=1){
           this.querySelector('#pl2').style.visibility='hidden';
           this.itemOptionalArray="";
@@ -231,8 +216,7 @@
         }
         else
           this.itemval1 = this.itemval1 +String.fromCharCode((e.keyCode));
-        //alert(this.itemval);
-        if(this.itemval1.length>0)
+         if(this.itemval1.length>0)
         {
           for(var i=0;i<item1.length;i++){
             var subval=((item1[i].itemsuppliername).trim()).substring(0,this.itemval1.length);
@@ -260,7 +244,6 @@
     //Fetches and binding to the auto complete dropdown list dynamically
     itemsupplierreadResponse:function(e) {
        item=e.detail.response.itemarr;
-      //alert(JSON.stringify(item));
        item1=e.detail.response.itemarr;
     },
     setDefaultValue:function(supplier1,supplier2){

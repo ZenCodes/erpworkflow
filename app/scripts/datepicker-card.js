@@ -1,6 +1,3 @@
-/**
- * Created by praba on 2/13/2016.
- */
 //JS file for datepicker card
 Polymer({
   is: "datepicker-card",
@@ -15,8 +12,8 @@ Polymer({
       else
     this.$.dialog.toggle();
   },
+  // Function calls while closing the datepicker dialog
   FnDismissDialog:function(e){
-
     if (e.detail.confirmed) {
       var pickdate=moment(this.$.picker.date).format('L');
       var dd1=new Date();
@@ -26,8 +23,7 @@ Polymer({
       if(days>0)
       {
         if(days>60)
-          this.$.ID_Show_Dialog.FnShowDialog("You can add only recent entries within 60 days!","");
-          //alert("You can add only recent entries within 60 days!");
+          this.$.ID_Show_Dialog.FnShowDialog("You can add only recent entries within 60 days!","");          
         else{
           this.showdate = moment(this.$.picker.date).format('L');
           localStorage.setItem("localsess_curr_inwarddate",this.showdate);
@@ -35,8 +31,7 @@ Polymer({
         }
       }
       else
-        this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
-        //alert("Date shouldn't exceed the run date!");
+        this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");        
       }
       else{
         if(days>0)

@@ -10,12 +10,10 @@ Polymer({
     this.fromshowdate=moment(new Date()).format('L');    
     this.toshowdate=moment(new Date()).format('L');    
   },
-  FnForward:function(){
-    //alert('forward');
+  FnForward:function(){    
     this.$.reportservice.callOutwardService("forward");
   },
-  FnBackward:function(){
-    //alert('backward');
+  FnBackward:function(){    
     this.forward=false;
     this.$.reportservice.callOutwardService("backward");
   },
@@ -33,16 +31,9 @@ Polymer({
       var pickdate=moment(this.$.frompicker.date).format('L');      
       var dd1=new Date();
       var dd2=new Date(pickdate);
-      var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));
-      //alert(days);
+      var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));      
       if(days<0)
       {
-        //if(days>60)
-          //this.$.ID_Show_Dialog.FnShowDialog("You can see 60 days!","");
-          //alert("You can add only recent entries within 60 days!");
-        //else{
-  
-          //alert('no');
           if(this.fromshowdate>this.toshowdate) { 
            this.fromshowdate=moment(new Date()).format('L');
            this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");    
@@ -50,33 +41,25 @@ Polymer({
           else{
           this.fromshowdate=moment(new Date()).format('L');
           this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!",""); 
-          }   
-              
-        //}
+          }             
+        
       }
       else if(days==0&&(this.fromshowdate==this.toshowdate)){
           this.fromshowdate = moment(this.$.frompicker.date).format('L');
-          localStorage.setItem("curr_sess_todaydate",this.fromshowdate);  
-          
-          //alert(this.fromshowdate+"  "+this.toshowdate)
+          localStorage.setItem("curr_sess_todaydate",this.fromshowdate);        
           if(this.fromshowdate>this.toshowdate) { 
           this.fromshowdate=moment(new Date()).format('L');
           this.$.ID_Show_Dialog.FnShowDialog("From date shouldn't exceed the to date!","");    
-          }     
-          
+          }               
       }
-      else{
-        // alert('infrom');
+      else{        
           this.fromshowdate = moment(this.$.frompicker.date).format('L');
-          localStorage.setItem("curr_sess_todaydate",this.fromshowdate); 
-          //alert(this.fromshowdate+"  "+this.toshowdate)
-          if(this.fromshowdate<this.toshowdate) {   
-          //alert('yes');     
+          localStorage.setItem("curr_sess_todaydate",this.fromshowdate);          
+          if(this.fromshowdate<this.toshowdate) {           
           document.querySelector('report-service').FnFromToDateChange(this.fromshowdate,this.toshowdate);
-          }
-        // this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
+          }        
       }
-        //alert("Date shouldn't exceed the run date!");
+        
     }
   },
   FnDismissToDialog:function(e){
@@ -85,8 +68,7 @@ Polymer({
       var pickdate=moment(this.$.topicker.date).format('L');
       var dd1=new Date();
       var dd2=new Date(pickdate);
-      var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));
-      // alert(days);
+      var days=parseInt((dd1 - dd2) / (1000 * 60 * 60 * 24));      
     if(days<0)
       {
        

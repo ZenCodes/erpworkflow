@@ -1,7 +1,3 @@
-/**
- * Created by praba on 2/18/2016.
- */
-
 /*JS file for intent-page*/
 (function(){
   var itemarr=[];
@@ -10,9 +6,6 @@
     is: "intent-page",
     ready:function()
     {
-      //this.Supplier_Name="Supplier Name";
-      //this.Supplier_Name_error="Enter supplier name";
-      //this.nullflag=0;
       this.flag=0;
       this.itemflag=0;
       this.idd=0;

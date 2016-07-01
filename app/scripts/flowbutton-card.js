@@ -15,8 +15,6 @@ Polymer({
       this.label='Quality Inspection';
     else if(sessionStorage.getItem("curr_sess_roleflag")=="4")
       this.label='Confirm purchase';
-    //else if(sessionStorage.getItem("curr_sess_roleflag")=="9")
-      //this.label='Approve';
   },
   click:function(){
    if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
@@ -36,16 +34,10 @@ Polymer({
       else{
         this.$.pqs.physicqualifyacceptcheckService(sessionStorage.getItem("sess_curr_inwardregno"));
       }
-      /*else{
-        document.querySelector('physicinsitem-card').setToggle();
-        this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
-      }*/
     }
     else
     {
       this.$.pqs.physicqualifyacceptcheckService(sessionStorage.getItem("sess_curr_inwardregno"));
-      //document.querySelector('physicinsitem-card').setToggle();
-      //this.$.pqs.physicupdateService(sessionStorage.getItem("sess_curr_inwardregno"));
     }
   }
 });

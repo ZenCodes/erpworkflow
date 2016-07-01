@@ -1,19 +1,11 @@
-/**
- * Created by praba on 2/12/2016.
- */
 
 //JS file for the supplier-page
 Polymer({
   is: "supplier-page",
   ready:function()
   {
-
-    localStorage.setItem("curr_sess_showpage","Add Supplier");
-    //if(localStorage.getItem("curr_sess_showpage")=="additem-card")
+    localStorage.setItem("curr_sess_showpage","Add Supplier");    
     this.page="Add Supplier";
-    //if(localStorage.getItem("curr_sess_showpage")=="addsupplier-card")
-    //this.page="addsupplier-card";
-
   },
   //Method to change the page view in base page ie home page
   setPage:function(page)

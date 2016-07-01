@@ -18,8 +18,6 @@
       }
 
       value=this.menulabel;
-      //alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag")+"  "+value);
-      //Setting page views in Inwardslip page according to the tab selection made in the Inwardslip page
       if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&value=="Vehicle Info"&&localStorage.getItem("curr_sess_wardflag")!="1")
         document.querySelector("inwardslip-page").setPage(this.menulabel);
       else if(sessionStorage.getItem("curr_sess_roleflag")=="0"&&value=="Item Detail"&&localStorage.getItem("curr_sess_wardflag")!="1"){
@@ -90,14 +88,6 @@
         document.querySelector("supplier-read-page").setPage("Excise Detail");
       else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"&&value=="Payment Detail")
         document.querySelector("supplier-read-page").setPage("Payment Detail");
-      /*else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Payment Detail")
-        document.querySelector("addsupplier-card").FnSupplierInfoSubmit();
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")=="nothing"&&value=="Item Detail")
-        document.querySelector("payment-card").FnAddPaymentInfoSubmit();
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&localStorage.getItem("curr_sess_searchtypeflag")!="nothing"&&value=="Item Detail")
-        document.querySelector("supplier-page").setPage("Show Item");
-      else if(sessionStorage.getItem("curr_sess_roleflag")=="4"&&localStorage.getItem("curr_sess_wardflag")=="4"&&value=="Supplier Detail")
-        document.querySelector("supplier-page").setPage("Add Supplier");*/
     }
   });
 })();
