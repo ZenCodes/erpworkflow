@@ -50,7 +50,11 @@
       this.$.passwordchangeajax.generateRequest();
       },
       passwordchangeResponse:function(e){
-        alert(JSON.stringify(e.detail.response));
+        // alert(JSON.stringify(e.detail.response));
+        if(e.detail.response=="succ")
+          alert("Password changed successfully!");
+        else
+          alert("Please try again!");
       },
       callResetpasswordservice:function(empid,newpassword){
       var obj={"empid":"","newpassword":""};
@@ -61,7 +65,10 @@
       this.$.resetpasswordajax.generateRequest();
       },
       resetpasswordResponse:function(e){
-        alert(JSON.stringify(e.detail.response));
+        if(e.detail.response=="succ")
+          alert("Password changed successfully!");
+        else
+          alert("Please try again!");
       },
       callMailService:function(empid,code){
         // alert(empid+" "+code);
