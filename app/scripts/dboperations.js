@@ -3211,3 +3211,87 @@ exports.Fnsupplierinforead=function(pagename,supplierid,callback) {
 
 }
 
+exports.Fnpasswordchange=function(pagename,empid,oldpass,newpass,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  // console.log(JSON.stringify(empid));
+  // console.log(JSON.stringify(oldpass));
+  // console.log(JSON.stringify(newpass));
+  connection.query('UPDATE OD_HR_Employee_Job_Desc set ? where ? and ?',[newpass,empid,oldpass] ,function(err, rows) {
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.Fnresetpassword=function(pagename,empid,newpass,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  // console.log(JSON.stringify(empid));
+  // console.log(JSON.stringify(oldpass));
+  // console.log(JSON.stringify(newpass));
+  connection.query('UPDATE OD_HR_Employee_Job_Desc set ? where ?',[newpass,empid] ,function(err, rows) {
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.Fnverifymail=function(pagename,empid,code,callback) {
+
+  var server  = email.server.connect({
+   user:    "mlzssamsidh@yahoo.com",
+   password:"bgl12345",
+   host:    "smtp.mail.yahoo.com",
+   ssl:     true
+  });
+   connection.query('select * from MD_HR_Employee where ?',[empid] ,function(err, rows) {
+    if(!err)
+    {
+      console.log(rows[0].Email);
+      // send the message and get a callback with an error or details of the message that was sent
+   server.send({
+   text:    "Verification code",
+   from:    "mlzssamsidh@yahoo.com",
+   to:       rows[0].Email,
+   subject: "Verification Code",
+    attachment:
+   [
+      {data:"<html>Verification code: "+code+"</html>", alternative:true}
+   ]
+  }, function(err, message) { console.log(err || message); });
+  return callback('mail sent');
+     return callback('mail sent') 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}

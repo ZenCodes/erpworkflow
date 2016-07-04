@@ -15,12 +15,36 @@
 <link rel="import" href="../webcomponent-service/webcomponent-service.html">
 <link rel="import" href="../url-service/url-service.html">
 <link rel="stylesheet" href="../../styles/login-card.css">
-<link rel="stylesheet" href="../../styles/component.css">
+<!-- <link rel="stylesheet" href="../../styles/component.css"> -->
 <!-- For responsive UI -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Importing style sheet for login card -->
 
 <dom-module id="login-card">
+<style>
+#login{
+  text-transform: none;
+  text-align: center;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+  background-color: #3d6868;
+  color: white;
+  }
+
+.link{
+  margin-top: 5%;
+  @apply(--layout-vertical);
+}
+paper-button{
+  width: 100%;
+}
+.link1{
+margin-top: 5%;
+}
+.link2{
+margin-top: 10%;
+}
+</style>
   <template>
     <iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="FnLoginSubmit"></iron-a11y-keys>
     <div class="card">
@@ -33,8 +57,12 @@
           <paper-input label="{{item.user_name}}" name="username" id="username" value="{{username}}"
                        required error-message="{{item.user_name_error}}"></paper-input>
           <paper-input label="{{item.pass_word}}" type="password" name="password" id="password" value="{{password}}" required error-message="{{item.pass_word_error}}"></paper-input>
+          <paper-button id="login" on-click="FnLoginSubmit">Login</paper-button>
         </div>
-        <paper-button on-click="FnLoginSubmit">Login</paper-button>
+        <div class="link">
+        <u><ahref on-click="FnPasswordChange" class="link1">Password Change?</ahref></u><br>
+        <u><ahref on-click="FnForgotPassword" class="link2">Forgot Password?</ahref></u>
+        </div>
         <paper-item></paper-item>
         </template>
       </form>

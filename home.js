@@ -1587,6 +1587,32 @@ app.post('/supplierinforead-service',urlencodedParser, function (req, res) {
   });
 });
 
+app.post('/passwordchange-service',urlencodedParser, function (req, res) {
+  var empid={Emp_ID:req.query.empid};
+  var oldpass={Password:req.query.oldpassword};
+  var newpass={Password:req.query.newpassword};
+  var Fnpasswordchangecall = require("./app/scripts/dboperations.js");
+  Fnpasswordchangecall.Fnpasswordchange("passwordchange-service",empid,oldpass,newpass,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/resetpassword-service',urlencodedParser, function (req, res) {
+  var empid={Emp_ID:req.query.empid};
+  var newpass={Password:req.query.newpassword};
+  var Fnresetpasswordcall = require("./app/scripts/dboperations.js");
+  Fnresetpasswordcall.Fnresetpassword("resetpassword-service",empid,newpass,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/verifymail-service',urlencodedParser, function (req, res) {
+  var empid={Employee_ID:req.query.empid};
+  var Fnverifymailcall = require("./app/scripts/dboperations.js");
+  Fnverifymailcall.Fnverifymail("verifymail-service",empid,req.query.code,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
 //Node server running port number
 app.listen(4000);
 

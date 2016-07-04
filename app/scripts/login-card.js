@@ -50,5 +50,11 @@ Polymer({
       this.$.Form_Login.submit();
 
    // this.$.Form_Login.submit();
+  },
+  FnPasswordChange:function(){
+    document.querySelector('app-card').setPage('passwordchange-card');
+  },
+  FnForgotPassword:function(){
+    document.querySelector('app-card').setPage('resetpassword-card');
   }
 });

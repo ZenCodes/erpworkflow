@@ -1,0 +1,81 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="user-service">
+  <template>
+   <!-- Component which make request to call the url -->
+    <iron-ajax      
+      id="passwordchangeajax"
+      url="{{passwordchangeurl}}"
+      params="{{passwordchangeparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="passwordchangeResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="resetpasswordajax"
+      url="{{resetpasswordurl}}"
+      params="{{resetpasswordparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="resetpasswordResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="verifymailajax"
+      url="{{verifymailurl}}"
+      params="{{verifymailparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="verifymailResponse">
+    </iron-ajax> 
+    
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'user-service',
+      callPasswordchangeservice:function(empid,oldpassword,newpassword){
+      var obj={"empid":"","oldpassword":"","newpassword":""};
+      obj.empid=empid;
+      obj.oldpassword=oldpassword;
+      obj.newpassword=newpassword;
+      this.passwordchangeurl=sessionStorage.getItem("curr_sess_url")+"passwordchange-service";
+      this.passwordchangeparam=obj;
+      this.$.passwordchangeajax.generateRequest();
+      },
+      passwordchangeResponse:function(e){
+        alert(JSON.stringify(e.detail.response));
+      },
+      callResetpasswordservice:function(empid,newpassword){
+      var obj={"empid":"","newpassword":""};
+      obj.empid=empid;
+      obj.newpassword=newpassword;
+      this.resetpasswordurl=sessionStorage.getItem("curr_sess_url")+"resetpassword-service";
+      this.resetpasswordparam=obj;
+      this.$.resetpasswordajax.generateRequest();
+      },
+      resetpasswordResponse:function(e){
+        alert(JSON.stringify(e.detail.response));
+      },
+      callMailService:function(empid,code){
+        // alert(empid+" "+code);
+      var obj={"empid":"","code":""};
+      obj.empid=empid;
+      obj.code=code;
+      this.verifymailurl=sessionStorage.getItem("curr_sess_url")+"verifymail-service";
+      this.verifymailparam=obj;
+      this.$.verifymailajax.generateRequest();
+      },
+      verifymailResponse:function(e){
+      alert(JSON.stringify(e.detail.response));
+      }
+    });
+  })();
+  </script>
+</dom-module>

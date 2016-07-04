@@ -151,4 +151,7 @@ Quality parameter display: items found
 Quality parameter read: Items found
 Quality parameter display: items found
 Quality parameter read: Items found
-Quality parameter display: items founddb connection:Error: connect ECONNREFUSED 127.0.0.1:3307
+Quality parameter display: items founddb connection:Error: connect ECONNREFUSED 127.0.0.1:3307db connection:Error: connect ECONNREFUSED 127.0.0.1:3307
+no user
+no user
+no userdb connection:Error: Connection lost: The server closed the connection.db connection:Error: Connection lost: The server closed the connection.

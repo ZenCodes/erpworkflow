@@ -1,0 +1,42 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="..\login-card/login-card.html">
+<link rel="import" href="..\passwordchange-card/passwordchange-card.html">
+<link rel="import" href="..\resetpassword-card/resetpassword-card.html">
+
+<dom-module id="app-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+     <iron-pages selected="{{page}}" attr-for-selected="data-category">
+        <section data-category="login-card">
+          <login-card></login-card>
+        </section>
+        <section data-category="passwordchange-card">
+          <passwordchange-card></passwordchange-card>
+        </section>
+        <section data-category="resetpassword-card">
+          <resetpassword-card></resetpassword-card>
+        </section>
+    </iron-pages>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'app-card',
+      ready:function(){
+        this.page='login-card';
+      },
+      setPage:function(page){
+        this.page=page;
+      }
+    });
+  })();
+  </script>
+</dom-module>

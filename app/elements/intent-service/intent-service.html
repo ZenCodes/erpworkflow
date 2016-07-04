@@ -1,8 +1,8 @@
+<!-- Component import -->
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <link rel="import" href="../dialog-page/dialog-page.html">
-
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -13,7 +13,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="stylesheet" href="../../bower_components/paper-styles/demo.css">
-
+<!-- Component registeration -->
 <dom-module id="intent-service">
   <template>
     <style>
@@ -38,8 +38,7 @@
         @apply(--layout-horizontal);
       }
     </style>
-
-    
+   
   <!--Component which make request to display the Intent items based on INT no-->
     <iron-ajax
       id="intentstateupdateajax"
@@ -85,7 +84,8 @@
       on-response="FnitempocreateResponse">
     </iron-ajax>
 
-     <iron-ajax
+     <!-- component to view the pocreated intentem it -->
+    <iron-ajax
       id="viewintentpocreateajax"
       url="{{viewintentpocreateurl}}"
       params='{{viewintentpocreateparam}}'
@@ -95,8 +95,8 @@
       on-response="FnviewintentpocreateResponse">
     </iron-ajax>
 
-
-     <iron-ajax
+    <!-- Component to promote the intent -->
+    <iron-ajax
       id="viewintentpromoteajax"
       url="{{viewintentpromoteurl}}"
       params='{{viewintentpromoteparam}}'
@@ -106,7 +106,8 @@
       on-response="FnviewintentpromoteResponse">
     </iron-ajax>
 
-      <iron-ajax
+    <!-- Component to update the po sequence no -->
+    <iron-ajax
       id="posequpdateajax"
       url="{{posequpdateurl}}"
       params='{{posequpdateparam}}'
@@ -116,6 +117,7 @@
       on-response="FnposequpdateResponse">
     </iron-ajax>
 
+    <!-- Comonent which fetching the intent items based on the type -->
     <iron-ajax
       id="intenttypelistajax"
       url="{{intenttypelisturl}}"
@@ -136,7 +138,8 @@
       on-response="FnPurchaseorderResponse">
     </iron-ajax>
 
-     <iron-ajax
+    <!-- Function which fetching the item info for creating po -->
+    <iron-ajax
       id="purchaseorderitemajax"
       url="{{purchaseorderitemurl}}"
       params='{{purchaseorderitemparam}}'
@@ -146,6 +149,7 @@
       on-response="FnPurchaseorderitemResponse">
     </iron-ajax>
 
+    <!-- Component which read the tax component for the item -->
     <iron-ajax
       id="purchaseorderitemtaxajax"
       url="{{purchaseorderitemtaxurl}}"
@@ -156,6 +160,7 @@
       on-response="FnPurchaseorderitemtaxResponse">
     </iron-ajax>
 
+    <!-- Component which fetches the item price while creating po for the intnt item -->
     <iron-ajax
       id="purchaseorderitempriceajax"
       url="{{purchaseorderitempriceurl}}"
@@ -170,7 +175,7 @@
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
   </template>
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/dojo/1.6.3/dojo/dojo.xd.js"></script> -->
+  
   <script>
   (function() {
     'use strict';
@@ -190,6 +195,7 @@
       ready:function(){
         this.flag=0;
       },
+      // Function which make request to call the item for PO creation 
       FnPurchaseorderService:function(){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -197,13 +203,11 @@
          this.purchaseorderurl=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
          this.purchaseorderparam=obj;
          this.$.purchaseorderajax.generateRequest(); 
-
       },
       FnPurchaseorderResponse:function(e){
           poarr=e.detail.response.itemarr;
          if(poarr.length>0){
-         var d=new Date(poarr[0].PO_Date);
-         //alert(d);
+         var d=new Date(poarr[0].PO_Date);         
          var y=d.getFullYear();
          var m=d.getMonth();
          var d=d.getDate();
@@ -215,8 +219,7 @@
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
          this.purchaseorderitemurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
          this.purchaseorderitemparam=obj;
-         this.$.purchaseorderitemajax.generateRequest(); 
-         //alert(JSON.stringify(poarr));
+         this.$.purchaseorderitemajax.generateRequest();          
          }
       },
       FnPurchaseorderitemResponse:function(e){
@@ -227,63 +230,47 @@
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
          this.purchaseorderitemtaxurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
          this.purchaseorderitemtaxparam=obj;
-         this.$.purchaseorderitemtaxajax.generateRequest(); 
-         //alert(JSON.stringify(poitemarr));
+         this.$.purchaseorderitemtaxajax.generateRequest();          
          }
       },
       FnPurchaseorderitemtaxResponse:function(e){
-         poitemtax=e.detail.response.itemarr;  
-         //alert(JSON.stringify(poitemtax));       
+         poitemtax=e.detail.response.itemarr;                 
          if(poitemtax.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
          obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
          this.purchaseorderitempriceurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
          this.purchaseorderitempriceparam=obj;
-         this.$.purchaseorderitempriceajax.generateRequest(); 
-         //alert(JSON.stringify(poitemarr));
+         this.$.purchaseorderitempriceajax.generateRequest();          
          }
       },
       FnPurchaseorderitempriceResponse:function(e){
           poitemprice=e.detail.response.itemarr;
-          if(poitemprice.length>0){
-          //alert(JSON.stringify(poitemprice));
+          if(poitemprice.length>0){          
           var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
           var tax2=((parseFloat(poitemtax[0].VAT))/100);
           var tax3=((parseFloat(poitemtax[0].CST))/100);
-          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
-          //alert(total);
+          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
           var exduty=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity).toFixed(2);
           poitemarr[(poitemarr.length)-1].price=(poitemprice[0].Item_Supplier_price).toFixed(2);
           poitemarr[(poitemarr.length)-1].total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
           poitemarr[(poitemarr.length)-1].exduty=((parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity)).toFixed(2);
 
           if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){
-            //alert(parseInt(poitemprice[0].Item_Supplier_price));
-            //alert(parseFloat(tax2));
-            //alert(parseInt(poitemarr[0].Quantity));
-            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseInt(poitemarr[0].Quantity));
           poitemarr[(poitemarr.length)-1].vat=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
           poitemarr[(poitemarr.length)-1].cst=parseFloat("0").toFixed(2);
           poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
-          else{
-            //alert(parseInt(poitemprice[0].Item_Supplier_price));
-            //alert(parseFloat(tax3));
-            //alert(parseInt(poitemarr[0].Quantity));
-            //alert(parseInt(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseInt(poitemarr[0].Quantity));
+          else{           
           poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
           poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
           poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
-         
-
-          //poitemarr.push(poitemprice[0].Item_Supplier_price);
-          //alert(JSON.stringify(poitemarr));
-          }
+        }
           document.querySelector("purchaseorder-home").poitemarray=poitemarr;
           document.querySelector("purchaseorder-card").poitemarray=poitemarr;
       },
+      // Selecting supplier to raise po for the intent item
       FnSelectSupplier:function(e){
         var selecteditem=e.target.selectedItem.textContent.trim();
         for(var i=0;i<this.suppliernamearr.length;i++){
@@ -297,6 +284,7 @@
         else
           alert('Go with another supplier');      
       },
+      // showing items for intent creation based on the logged user role
       FnIntentTypeListService:function(){
          var obj={"loggeduser":""};
          obj.loggeduser=sessionStorage.getItem("loggeduser");        
@@ -304,10 +292,10 @@
          this.intenttypelistparam=obj;
          this.$.intenttypelistajax.generateRequest(); 
       },
-      FnintenttypelistResponse:function(e){
-        //alert(JSON.stringify(e.detail.response.itemarr));
+      FnintenttypelistResponse:function(e){        
         document.querySelector('intent-page').FnSetIntentType(e.detail.response.itemarr);
       },
+      // Function which read the item information for the po creation
       FnIntentPoItemRead:function(){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -316,31 +304,24 @@
          this.intentpoparam=obj;
          this.$.intentpoitemajax.generateRequest();      
       },
-      FnintentpoitemResponse:function(e){
-        // alert(JSON.stringify(e.detail.response.itemarr));
+      FnintentpoitemResponse:function(e){        
         document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
-        //alert(document.querySelector('viewintentitemexpand-page').suppliernamearr);
         document.querySelector('viewintentitemexpand-page').FnShowSupplierDiv();
       },
-   
-      FnIntentStateUpdate:function(updatestate){
-        //alert(updatestate);
-        intentno=sessionStorage.getItem("sess_curr_intentregno");
-        //alert(intentno);
+      // Function which invoke while promoting intent state
+      FnIntentStateUpdate:function(updatestate){        
+        intentno=sessionStorage.getItem("sess_curr_intentregno");        
         promotestate=updatestate;
         this.intentupdateurl=sessionStorage.getItem("curr_sess_url")+"intentstateupdate-service";     
         var obj={"itemdes":"","intentregno":"","loggedrole":"","updatestate":""};
         obj.loggedrole=sessionStorage.getItem("loggedrole");
         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
-        obj.updatestate=updatestate;
-        //obj.pono=pono;
-        this.intentupdateparam=obj;
-        //alert(JSON.stringify(obj));
+        obj.updatestate=updatestate;        
+        this.intentupdateparam=obj;        
         this.$.intentstateupdateajax.generateRequest();
       } ,
-      intentstateupdateResponse:function(e){
-        //alert(JSON.stringify(e.detail.response));
+      intentstateupdateResponse:function(e){        
         if(e.detail.response.returnval=="succ"){
           alert("done");
           this.promoterolereadurl=sessionStorage.getItem("curr_sess_url")+"promoteroleread-service";
@@ -356,8 +337,7 @@
       },
       FnPromoteRolereadResponse:function(e){  
           var pstate;             
-          var arr=e.detail.response.itemarr;
-          //alert("Inward Register Note is created! Sent for the Approval with  "+arr[0].Intent_PO);
+          var arr=e.detail.response.itemarr;          
           if(arr[0].state=="external"){
           if(promotestate=="Approved") 
            pstate="Item Promoted! Sent for the Approval with  "+arr[0].Intent_PO;       
@@ -376,16 +356,15 @@
           else if(promotestate=="Accepted")          
             pstate="Item Accepted!";
           }
-
           if(arr[0].state=="spot"){
             pstate="Item Approved!";
           }
           this.$.ID_Show_Dialog.FnShowDialog(pstate,"");
           this.$.gs.FnIntentitemReadService();
-          document.querySelector('viewintentitem-page').setToggle();
-          //document.querySelector('drawermenu-card').FnSetRefereshPage();
+          document.querySelector('viewintentitem-page').setToggle();          
           window.location.href="../elements/indexhome.html";
       },
+      // Function which invokes to create po for the item based intent view
       FnCreatePO:function(supplier){
         var obj={"supplier":"","itemdes":"","intentregno":""};
         obj.supplier=supplier;
@@ -395,21 +374,18 @@
         this.itempocreateurl=sessionStorage.getItem("curr_sess_url")+"itempocreate-service"
         this.$.itempocreateajax.generateRequest();
       },
-      FnitempocreateResponse:function(e){
-        //alert(e.detail.response.itemarr);
+      FnitempocreateResponse:function(e){        
         if(e.detail.response.itemarr=='succ')
           document.querySelector('viewintentitemexpand-page').FnSetPoRaiseFlag();
         else
           alert('Unable to craete PO!');
       },
-      FnIntentViewPoCreateService:function(poarr){
-              //alert(JSON.stringify(poarray));
+      // Function which invokes to create po for the intent based intent view
+      FnIntentViewPoCreateService:function(poarr){              
         poarray=poarr;
-        arrlength=poarray.length;
- 
+        arrlength=poarray.length; 
         this.viewintentpocreateurl=sessionStorage.getItem("curr_sess_url")+"viewintentpocreate-service";
         this.$.viewintentpocreateajax.generateRequest();
-
       },
       FnviewintentpocreateResponse:function(e){
         var temparr=[];
@@ -428,23 +404,20 @@
           this.FnViewIntentPromoteService(temparr);
          }
       },
-      FnViewIntentPromoteService:function(temparr){
-         //alert(JSON.stringify(temparr));
+      // Funtion to promote intent items to the next state
+      FnViewIntentPromoteService:function(temparr){         
          for(var i=0;i<temparr.length;i++){
           var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
           obj.itemdes=temparr[i].itemdes;
           obj.supplier=temparr[i].supplier;
           obj.intentregno=temparr[i].intentregno;
-          obj.ponumber=temparr[i].ponumber;
-          //alert(JSON.stringify(obj));
-         this.viewintentpromoteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromote-service";
-         this.viewintentpromoteparam=obj;
-         //alert(this.$.viewintentpromteajax);
-         this.$.viewintentpromoteajax.generateRequest();
+          obj.ponumber=temparr[i].ponumber;          
+          this.viewintentpromoteurl=sessionStorage.getItem("curr_sess_url")+"viewintentpromote-service";
+          this.viewintentpromoteparam=obj;         
+          this.$.viewintentpromoteajax.generateRequest();
          }
       },
-      FnviewintentpromoteResponse:function(e){
-        //alert(e.detail.response.itemarr);
+      FnviewintentpromoteResponse:function(e){        
         if(JSON.stringify(e.detail.response.itemarr=='succ'))
         {
         no=no+1;
@@ -458,8 +431,7 @@
         else
           alert('PO is not created succ!');
       },
-      FnposequpdateResponse:function(e){
-        //alert(JSON.stringify(e.detail.response.itemarr));
+      FnposequpdateResponse:function(e){        
         if(e.detail.response.itemarr=='succ'){
           alert("Po created!");
           window.location.href="../elements/indexhome.html";
@@ -467,6 +439,7 @@
         else
           alert('PO not created!');
       }
+
     });
   })();
   </script>

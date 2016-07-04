@@ -7,7 +7,7 @@
   width: 23%;
   height: 100%;
   left: 10%;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 27%;
   text-align: center;
 }
@@ -21,7 +21,7 @@ paper-button{
 }
 .input{
   margin-left: 20%;
-  margin-top: 10%;
+  margin-top: 5%;
   width: 60%;
 }
 .LoginImg{
