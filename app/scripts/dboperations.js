@@ -3512,7 +3512,7 @@ exports.Fnapproveuser=function(pagename,employeeid,status,callback) {
     }
   }
   var queryy="UPDATE MD_HR_Employee SET Status='"+status+"' where Employee_ID='"+employeeid+"'";
-   console.log(queryy);
+   // console.log(queryy);
   connection.query(queryy, function(err, rows) {
     if(!err)
     {
@@ -3525,3 +3525,190 @@ exports.Fnapproveuser=function(pagename,employeeid,status,callback) {
   });
 
 }
+
+
+exports.Fnupdateuserinfo=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+
+  connection.query("UPDATE MD_HR_Employee set ?",[response], function(err, rows) {
+    if(!err)
+    {
+      return callback('succ');     
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.Fnupdateuseraccount=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+ 
+  connection.query("UPDATE MD_HR_Employee_Account set ?",[response], function(err, rows) {
+    if(!err)
+    {
+      return callback('succ');
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.Fnuserrole=function(pagename,employeeid,departmentname,rolename,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  // var qur="";
+  // console.log(qur);
+  var qur1="select Department_ID from MD_HR_Department where Department_Name='"+departmentname+"'";
+  connection.query(qur1, function(err, rows) {
+  if(!err){
+    if(rows.length>0){
+    var deptid=rows[0].Department_ID;
+  var qur="UPDATE OD_HR_Employee_Job_Desc set Department_ID='"+deptid+"',Role_ID='"+rolename+"' where Employee_ID='"+employeeid+"'";
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback('succ');
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+}
+else
+console.log(err);
+});
+}
+
+exports.Fnuserread=function(pagename,employeeid,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  var qur="SELECT * FROM MD_HR_Employee";
+  // console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+
+}
+
+exports.Fnusersearch=function(pagename,employeename,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  var qur="SELECT * FROM MD_HR_Employee where Employee_Name='"+employeename+"'";
+  // console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+
+}
+
+exports.Fnuseraccount1=function(pagename,employeeid,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  var qur="SELECT * FROM MD_HR_Employee_Account where Employee_ID='"+employeeid+"'";
+  // console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+
+}
+
+exports.Fnrole=function(pagename,employeeid,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  var qur="SELECT * FROM OD_HR_Employee_Job_Desc where Employee_ID='"+employeeid+"'";
+  // console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+
+}
+
+

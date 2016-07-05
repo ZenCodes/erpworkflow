@@ -56,26 +56,26 @@
          document.querySelector("usercreation-home-card").setPage("Account Detail");
      }
      // Condition will invoke while searching existing customer and updating
-     else if(localStorage.getItem("curr_sess_addemployeeeditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+     else if(localStorage.getItem("curr_sess_addusereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
        // Caalling service to fetch the customer information
        // this.$.customerservice.updatesupplierService(this.category,localStorage.getItem('curr_sess_customerloggedid'),this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
         this.$.userservice.updateemployeeService(localStorage.getItem('curr_sess_employeeloggedid'),this.employeename,this.dob,this.sex,this.age,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
          // Calling service to fetch the tax information
          this.$.userservice.callAccountService();
          // Showing tax page with values while moving from customer page
-         document.querySelector("customer-page").setPage("Account Detail"); 
+         document.querySelector("usercreation-home-card").setPage("Account Detail"); 
       }   
      // Condition will invoke while searching existing customer
      else{
       // Calling service to fetch the tax information
          this.$.userservice.callAccountService();
          // Showing tax page with values while moving from customer page
-         document.querySelector("customer-page").setPage("Account Detail");   
+         document.querySelector("usercreation-home-card").setPage("Account Detail");   
      }
     }
     },
     // Method will invoke while searching customer
-  FnSearchSupplierName:function(){
+  FnSearchEmployeeName:function(){
     //The flag is used to ensure the search is performed by using item name
       localStorage.setItem("curr_sess_searchtypeflag","1");
       // While searching existing customer which shows the edit button
@@ -85,24 +85,26 @@
       // While searching customer making all the fields as readonly
       this.read=true;
       // Making ajax call to fetch the customer names
-      this.supplierurl=sessionStorage.getItem("curr_sess_url")+"itemcustomerread-service";
-      this.$.supplierlistreadajax.generateRequest();
+      this.userreadurl=sessionStorage.getItem("curr_sess_url")+"userread-service";
+      this.$.userreadajax.generateRequest();
   },
   // Method will list/load all the customer names in the listbox while search for the customer
-  supplierlistreadResponse:function(e){
+  userreadResponse:function(e){
     //Fetching items matching with searc items to populate it in listbox
     //Condition will invoke if we performed item search using name
     if(localStorage.getItem("curr_sess_searchtypeflag")=="1") {
     this.querySelector('#searchname').style.visibility = 'visible';
     var arr = [];
     arr.push({"itemname": "-----Select-----"});
-    var item = e.detail.response.itemarr;
-    if (this.suppliername.length > 0) {
+    var item = e.detail.response;
+    // alert(JSON.stringify(e.detail.response));
+    if (this.employeename.length > 0) {
         for (var i = 0; i < item.length; i++) {
-            var subval = ((item[i].itemsuppliername).trim()).substring(0, this.suppliername.length);
-            if ((subval).toLowerCase() == (this.suppliername).toLowerCase()) {
+          // alert((item[i].Employee_Name));
+            var subval = ((item[i].Employee_Name).trim()).substring(0, this.employeename.length);
+            if ((subval).toLowerCase() == (this.employeename).toLowerCase()) {
             var obj = {"itemname": ""};
-            obj.itemname = item[i].itemsuppliername;
+            obj.itemname = item[i].Employee_Name;
             arr.push(obj);
             }
         }
@@ -147,25 +149,26 @@
     }
   },
   // Method will invoke while selecting name in the listbox
-  FnSupplierNameSelected:function(e){
+  FnEmployeeNameSelected:function(e){
         //if selecting item from dropdown apart from no items found it will invoke the search servcie and fetching currently selected item info
         if(e.target.selectedItem.textContent.trim()!="-----Select-----") {
-          this.suppliername = e.target.selectedItem.textContent.trim();
+          this.employeename = e.target.selectedItem.textContent.trim();
+          // alert(this.employeename);
           //Making invisible and deselection in dropdown of item name search list box
           this.querySelector('#searchname').style.visibility='hidden';
           this.querySelector('#searchname').selected=-1;
           this.itemArray="";
           //if selected item id is not null invoking service to fetch item info
-          if(this.suppliername!=""||this.suppliername!="-----Select-----") {
+          if(this.employeename!=""||this.employeename!="-----Select-----") {
 
-            this.$.customerservice.callSearchService("", this.suppliername);
+            this.$.userservice.callUsersearchService("", this.employeename);
 
           }
         }
         else{         
         this.read=false;
-        this.suppliername="";
-        this.supplierid="";
+        this.employeename="";
+        // this.supplierid="";
         this.itemArray="";
         this.querySelector('#searchname').style.visibility='hidden';
         this.querySelector('#searchname').selected=-1;

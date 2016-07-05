@@ -108,6 +108,65 @@
       content-type="application/json"
       on-response="approveuserResponse">
     </iron-ajax> 
+
+     <iron-ajax      
+      id="updateuserinfoajax"
+      url="{{updateinfourl}}"
+      params="{{updateinfoparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="updateinfoResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="updateuseraccountajax"
+      url="{{updateuseraccounturl}}"
+      params="{{updateuseraccountparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="updateuseraccountResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="updateuserroleajax"
+      url="{{updateuserroleurl}}"
+      params="{{updateuserroleparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="updateuserroleResponse">
+    </iron-ajax> 
+    
+
+     <iron-ajax      
+      id="accountajax"
+      url="{{accounturl}}"
+      params="{{accountparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="accountResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="roleajax"
+      url="{{roleurl}}"
+      params="{{roleparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="roleResponse">
+    </iron-ajax> 
+   
+    <iron-ajax      
+      id="usersearchajax"
+      url="{{usersearchurl}}"
+      params="{{usersearchparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="usersearchResponse">
+    </iron-ajax> 
+
   </template>
   <script>
   (function() {
@@ -309,7 +368,124 @@
       }
       else
         alert("Failed to approve the user!!");
-    }
+    },
+    updateemployeeService:function(employeename,dob,sex,age,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid){        
+      var obj={"employeename":"","dob":"","sex":"","age":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""};
+      obj.employeename=employeename;
+      obj.dob=dob;
+      obj.sex=sex;
+      obj.age=age;
+      obj.streetname=streetname;
+      obj.location=location;
+      obj.city=city;
+      obj.district=district;
+      obj.state=state;
+      obj.country=country;
+      obj.pincode=pincode;
+      obj.phoneno=phoneno;
+      obj.mobileno=mobileno;
+      obj.emailid=emailid;
+      this.updateuserinfourl=sessionStorage.getItem("curr_sess_url")+"updateuserinfo-service";
+      this.updateuserinfoparam=obj;
+      this.$.updateuserinfoajax.generateRequest();
+      },
+      updateuserinfoResponse:function(e){
+      alert(JSON.stringify(e.detail.response.val));
+      // localStorage.setItem("curr_sess_employeeloggedid",e.detail.response.val);
+      },
+      updatepaymentService:function(accountname,accountno,accounttype,bankname,branch,ifsccode){
+         var obj1={
+            "employeeid":"","accountname":"","accountno":"","accounttype":"","bankname":"",
+            "branch":"","ifsccode":""
+          };
+          obj1.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+          obj1.accountname=accountname;
+          obj1.accountno=accountno;
+          obj1.accounttype=accounttype;          
+          obj1.bankname=bankname;
+          obj1.branch=branch;
+          obj1.ifsccode=ifsccode;
+          
+      this.updateuseraccounturl=sessionStorage.getItem("curr_sess_url")+"updateuseraccount-service";
+      this.updateuseraccountparam=obj1;
+      this.$.updateuseraccountajax.generateRequest();
+      },
+      updateuseraccountResponse:function(e){
+      alert(JSON.stringify(e.detail.response));
+      },
+      updateuserroleService:function(departmentname,rolename){        
+      var obj={"employeeid":"","departmentname":"","rolename":""};
+      obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+      obj.departmentname=departmentname;
+      obj.rolename=rolename;
+      this.updateuserroleurl=sessionStorage.getItem("curr_sess_url")+"updateuserrole-service";
+      this.updateuserroleparam=obj;
+      this.$.updateuserroleajax.generateRequest();
+      },
+      updateuserroleResponse:function(e){
+      alert(JSON.stringify(e.detail.response));
+      // alert("Employee Code: "+localStorage.getItem('curr_sess_employeeloggedid'));
+      },
+      callAccountService:function(){
+         var obj={"employeeid":""};
+      obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+      // obj.departmentname=departmentname;
+      // obj.rolename=rolename;
+      this.accounturl=sessionStorage.getItem("curr_sess_url")+"useraccount1-service";
+      this.accountparam=obj;
+      this.$.accountajax.generateRequest();
+      },
+      accountResponse:function(e){
+        var arr=e.detail.response;
+      document.querySelector("useraccount-info-card").accountname=arr[0].Account_Name;
+      document.querySelector("useraccount-info-card").accountno=arr[0].Account_No;
+      document.querySelector("useraccount-info-card").accounttype=arr[0].Account_Type;
+      // document.querySelector("useraccount-read-card").paymenttype=arr[0].Payment_Type;
+      document.querySelector("useraccount-info-card").bankname=arr[0].Bank_Name;
+      document.querySelector("useraccount-info-card").branch=arr[0].Branch;
+      document.querySelector("useraccount-info-card").ifsccode=arr[0].IFSC_Code;
+      },
+      FnRoleService:function(){
+         var obj={"employeeid":""};
+      obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+      // obj.departmentname=departmentname;
+      // obj.rolename=rolename;
+      this.roleurl=sessionStorage.getItem("curr_sess_url")+"role-service";
+      this.roleparam=obj;
+      this.$.roleajax.generateRequest();
+      },
+      roleResponse:function(e){
+        var arr=e.detail.response;
+      document.querySelector("userrole-info-card").departmentname=arr[0].Department_Name;
+      document.querySelector("userrole-info-card").rolename=arr[0].Role_ID;
+      },
+      callUsersearchService:function(empid,employeename){
+      var obj={"employeename":""};
+      obj.employeename=employeename;
+      // obj.departmentname=departmentname;
+      // obj.rolename=rolename;
+      this.usersearchurl=sessionStorage.getItem("curr_sess_url")+"usersearch-service";
+      this.usersearchparam=obj;
+      this.$.usersearchajax.generateRequest();
+      },
+      usersearchResponse:function(e){
+        var arr=e.detail.response;
+        localStorage.setItem('curr_sess_employeeloggedid',arr[0].Employee_ID);
+       document.querySelector("user-info-card").employeename=arr[0].Employee_Name;
+      document.querySelector("user-info-card").dob=arr[0].Date_Of_Birth;
+      document.querySelector("user-info-card").age=arr[0].Age;
+      document.querySelector("user-info-card").sex=arr[0].Sex;      
+      document.querySelector("user-info-card").streetname=arr[0].Street_Name;
+      document.querySelector("user-info-card").location=arr[0].Location;
+      document.querySelector("user-info-card").city=arr[0].City;
+      document.querySelector("user-info-card").district=arr[0].District;
+      document.querySelector("user-info-card").state=arr[0].State;
+      document.querySelector("user-info-card").country=arr[0].Country;
+      // document.querySelector("userinfo-read-card").pincode=arr[0].Pincode;
+      document.querySelector("user-info-card").phoneno=arr[0].Phone;
+      document.querySelector("user-info-card").mobileno=arr[0].Mobile;
+      document.querySelector("user-info-card").emailid=arr[0].Email;
+      }
     });
   })();
   </script>

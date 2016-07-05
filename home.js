@@ -1714,6 +1714,91 @@ app.post('/approveuser-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
+
+app.post('/updateuserinfo-service',urlencodedParser, function (req, res) {
+  response = {
+   Employee_Name:req.query.employeename,
+   Date_Of_Birth:req.query.dob,
+   Sex:req.query.sex,
+   Age:req.query.age,
+   Street_Name:req.query.streetname,
+   Location:req.query.location,
+   City:req.query.city,
+   District:req.query.district,
+   State:req.query.state,
+   Country:req.query.country,
+   // Pincode:req.query.pincode,
+   Phone:req.query.phoneno,
+   Mobile:req.query.mobileno,
+   Email:req.query.emailid,
+   Status:'Created'
+ }
+
+  
+  var Fnupdateuserinfocall = require("./app/scripts/dboperations.js");
+  Fnupdateuserinfocall.Fnupdateuserinfo("updateuserinfo-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/updateuseraccount-service',urlencodedParser, function (req, res) {
+  
+  response = {
+    Employee_ID:req.query.employeeid,
+    Account_Name:req.query.accountname,
+    Account_Number:req.query.accountno,
+    Account_Type:req.query.accounttype,
+    Bank_Name:req.query.bankname,
+    Branch:req.query.branch,
+    IFSC_Code:req.query.ifsccode
+      };
+
+  var Fnupdateuseraccountcall = require("./app/scripts/dboperations.js");
+  Fnupdateuseraccountcall.Fnupdateuseraccount("updateuseraccount-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/updateuserrole-service',urlencodedParser, function (req, res) {  
+ 
+  var Fnupdateuserrolecall = require("./app/scripts/dboperations.js");
+  Fnupdateuserrolecall.Fnupdateuserrole("updateuserrole-service",req.query.employeeid,req.query.departmentname,req.query.rolename,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/userread-service',urlencodedParser, function (req, res) {
+  var employeeid={Employee_ID:req.query.employeeid};
+  var Fnuserreadcall = require("./app/scripts/dboperations.js");
+  Fnuserreadcall.Fnuserread("userread-service",req.query.employeeid,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/usersearch-service',urlencodedParser, function (req, res) {
+  var employeename={Employee_Name:req.query.employeename};
+  var Fnusersearchcall = require("./app/scripts/dboperations.js");
+  Fnusersearchcall.Fnusersearch("usersearch-service",req.query.employeename,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/useraccount1-service',urlencodedParser, function (req, res) {
+  var employeeid={Employee_ID:req.query.employeeid};
+  var Fnuseraccount1call = require("./app/scripts/dboperations.js");
+  Fnuseraccount1call.Fnuseraccount1("useraccount1-service",req.query.employeeid,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/role-service',urlencodedParser, function (req, res) {
+  var employeeid={Employee_ID:req.query.employeeid};
+  var Fnrolecall = require("./app/scripts/dboperations.js");
+  Fnrolecall.Fnuserrole("role-service",req.query.employeeid,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
 //Node server running port number
 app.listen(4000);
 

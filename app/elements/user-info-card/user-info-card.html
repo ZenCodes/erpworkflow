@@ -69,6 +69,7 @@
         width: 70%;
         background-color: whitesmoke;
         box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        color:black;
       }
       #supplierid,#suppliername{
         width: 70%;
@@ -103,7 +104,7 @@
             <div hidden$="{{isHidden}}">
               <paper-listbox id="searchname" class="dropdown-content" on-iron-select="FnEmployeeNameSelected">
                 <template is="dom-repeat" items="{{itemArray}}" as="name">
-                  <paper-item>{{name.Employee_name}}</paper-item>
+                  <paper-item>{{name.itemname}}</paper-item>
                 </template>
               </paper-listbox>
             </div>
@@ -144,12 +145,12 @@
     <!--Component to fetch item info to the dropdown-->
     <iron-ajax
       method="post"
-      params='{{employeereadparam}}'
-      id="employeereadajax"
-      url="{{employeereadurl}}"
+      params='{{userreadparam}}'
+      id="userreadajax"
+      url="{{userreadurl}}"
       handle-as="json"
       content-type="application/json"
-      on-response="employeereadResponse">
+      on-response="userreadResponse">
     </iron-ajax>
     <!-- Service component to invoke the supplier related ajax calls -->
     <user-service id="userservice"></user-service>

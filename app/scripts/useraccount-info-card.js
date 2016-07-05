@@ -30,7 +30,7 @@ Polymer({
 	 document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
  	 }
     //Function which calls service to update payment info of the customer while searching customer 
- 		else if(localStorage.getItem("curr_sess_addemployeeeditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
+ 		else if(localStorage.getItem("curr_sess_addusereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
  		this.$.userservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode);
     	this.$.userservice.FnRoleService();
     	document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
