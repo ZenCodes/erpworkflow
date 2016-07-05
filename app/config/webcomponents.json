@@ -269,6 +269,28 @@
         "Payment_Terms":"Payment Terms","Term1":"15 days","Term2":"30 days","Term3":"45 days","Term4":"60 days"
       }]}
     ,{"title":["Payment Detail"]}
+    ]},
+     {"Page":[
+      {"page":["Employee Detail","user-info-card"]},
+      {"Label":[{"Employee_Name":"Employee Name","Date_Of_Birth":"Date Of Birth",
+        "Sex":"Sex","Age":"Age","Employment_Type":"Employment Type",
+        "Street_Name":"Street Name",
+        "Landmark":"Landmark","Location":"Location",
+        "City":"City","District":"District","State":"State",
+        "Country":"Country","Pincode":"Pincode",
+        "Phone_Number":"Phone Number","Mobile_Number":"Mobile Number",
+        "Email_ID":"Email ID"
+      }]}
+    ,{"title":["Employee Detail"]}
+    ]},
+    {"Page":[
+      {"page":["Account Detail","useraccount-info-card"]},
+       {"Label":[{"Account_Name":"Account Name","Account_Type":"Account Type",
+        "Bank_Name":"Bank Name","Account_Number":"Account Number","Bank_Address":"Bank Address",
+        "Branch":"Branch","IFSC_Code":"IFSC Code","MICR_Code":"MICR Code","Swift_Code":"Swift Code",
+        "Payment_Terms":"Payment Terms","Term1":"15 days","Term2":"30 days","Term3":"45 days","Term4":"60 days"
+      }]}
+    ,{"title":["Account Detail"]}
     ]}
   ]
 

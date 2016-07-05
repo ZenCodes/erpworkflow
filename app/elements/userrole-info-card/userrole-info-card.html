@@ -1,0 +1,73 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../user-service/user-service.html">
+<dom-module id="userrole-info-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+      }
+      paper-dropdown-menu,paper-button{
+        width: 25%;
+        margin-left: 20%;
+      }
+      paper-button{
+        text-align: center;
+        /*width: 35%;*/
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+        margin-top: 4%;
+      }
+    </style>
+    <div class="card">
+          <paper-dropdown-menu id="grade" label="Select Department" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectDepartment"  attr-for-selected="value" required>     
+              <template is="dom-repeat" items="{{departmentarr}}">
+                <paper-item value="{{item.Department_Name}}">{{item.Department_Name}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-dropdown-menu id="grade" label="Select Role" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  on-iron-select="FnSelectRole"  attr-for-selected="value" required>     
+              <template is="dom-repeat" items="{{rolearr}}">
+                <paper-item value="{{item.Role_ID}}">{{item.Role_ID}}</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+          <paper-button on-click="FnSave">Submit</paper-button>
+    </div>
+    <user-service id="userservice"></user-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'userrole-info-card',
+
+      ready:function(){
+        this.$.userservice.callreaddepartment();
+        this.$.userservice.callreadrole();
+      },
+      FnSelectDepartment:function(e){
+        this.departmentname = e.target.selectedItem.textContent.trim();
+      },
+      FnSelectRole:function(e){
+        this.rolename = e.target.selectedItem.textContent.trim();
+      },
+      FnSave:function(){
+        this.$.userservice.calluserroleService(this.departmentname,this.rolename);
+      }
+    });
+  })();
+  </script>
+</dom-module>

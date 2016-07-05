@@ -88,6 +88,13 @@
         document.querySelector("supplier-read-page").setPage("Excise Detail");
       else if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="7"&&value=="Payment Detail")
         document.querySelector("supplier-read-page").setPage("Payment Detail");
+
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="11"&&value=="Employee Detail")
+        document.querySelector("usercreation-home-card").setPage("Employee Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="11"&&value=="Account Detail")
+        document.querySelector("usercreation-home-card").setPage("Account Detail");
+      else if(sessionStorage.getItem("curr_sess_roleflag")=="6"&&localStorage.getItem("curr_sess_wardflag")=="11"&&value=="Role/Department Detail")
+        document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
     }
   });
 })();

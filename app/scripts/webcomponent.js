@@ -14,7 +14,7 @@
     },
     FnWebcomponentreadResponse:function(e) {
       this.current_page=localStorage.getItem("curr_sess_showpage");
-      //alert(this.current_page);
+      // alert(this.current_page);
       var arr = e.detail.response;
       //alert(JSON.stringify(arr));
       var labelvalue=[];

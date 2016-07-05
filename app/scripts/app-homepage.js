@@ -44,9 +44,9 @@ Polymer({
         localStorage.setItem("curr_sess_showpage", "additem-card");
         this.page = "admin-page";
       }
-      if(localStorage.getItem("curr_sess_wardflag")=="4") {
-        localStorage.setItem("curr_sess_showpage", "Add Supplier");        
-		    this.page = "supplier-page";
+      if(localStorage.getItem("curr_sess_wardflag")=="11") {
+        localStorage.setItem("curr_sess_showpage", "Employee Detail");        
+		    this.page = "usercreation-home-card";
       }
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='visible';

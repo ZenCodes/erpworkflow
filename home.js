@@ -1613,6 +1613,83 @@ app.post('/verifymail-service',urlencodedParser, function (req, res) {
     res.status(200).json(returnval);
   });
 });
+
+app.post('/readdepartment-service',urlencodedParser, function (req, res) {
+  
+  var Fnreaddepartmentcall = require("./app/scripts/dboperations.js");
+  Fnreaddepartmentcall.Fnreaddepartment("readdepartment-service",function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/readrole-service',urlencodedParser, function (req, res) {
+  
+  var Fnreadrolecall = require("./app/scripts/dboperations.js");
+  Fnreadrolecall.Fnreadrole("readrole-service",function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/readdepartment-service',urlencodedParser, function (req, res) {
+  
+  var Fnreaddepartmentcall = require("./app/scripts/dboperations.js");
+  Fnreaddepartmentcall.Fnreaddepartment("readdepartment-service",function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/userinfo-service',urlencodedParser, function (req, res) {
+  response = {
+   Employee_Name:req.query.employeename,
+   Date_Of_Birth:req.query.dob,
+   Sex:req.query.sex,
+   Age:req.query.age,
+   Street_Name:req.query.streetname,
+   Location:req.query.location,
+   City:req.query.city,
+   District:req.query.district,
+   State:req.query.state,
+   Country:req.query.country,
+   // Pincode:req.query.pincode,
+   Phone:req.query.phoneno,
+   Mobile:req.query.mobileno,
+   Email:req.query.emailid,
+   Status:'Created'
+ }
+
+  
+  var Fnuserinfocall = require("./app/scripts/dboperations.js");
+  Fnuserinfocall.Fnuserinfo("userinfo-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/useraccount-service',urlencodedParser, function (req, res) {
+  
+  response = {
+    Employee_ID:req.query.employeeid,
+    Account_Name:req.query.accountname,
+    Account_Number:req.query.accountno,
+    Account_Type:req.query.accounttype,
+    Bank_Name:req.query.bankname,
+    Branch:req.query.branch,
+    IFSC_Code:req.query.ifsccode
+      };
+
+  var Fnuseraccountcall = require("./app/scripts/dboperations.js");
+  Fnuseraccountcall.Fnuseraccount("useraccount-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/userrole-service',urlencodedParser, function (req, res) {  
+ 
+  var Fnuserrolecall = require("./app/scripts/dboperations.js");
+  Fnuserrolecall.Fnuserrole("userrole-service",req.query.employeeid,req.query.departmentname,req.query.rolename,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
 //Node server running port number
 app.listen(4000);
 

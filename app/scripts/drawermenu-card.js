@@ -73,6 +73,10 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","4");        
         window.location.href="../elements/indexhome.html";        
       }
+      if(e.target.id=="User Management"){
+        localStorage.setItem("curr_sess_wardflag","11");       
+        window.location.href="../elements/indexhome.html";              
+      }
     }
     else if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
       if(e.target.id=="Add Intent"){        
@@ -107,8 +111,8 @@ Polymer({is:"drawermenu-card",
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');       
       }
+     
     }
-
     else if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
       if(e.target.id=="Outward Items Report"){
         localStorage.setItem("curr_sess_wardflag","5");

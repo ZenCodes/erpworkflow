@@ -6,6 +6,7 @@
 Polymer({is:"dynamic-card",
   ready:function(){
     /*It loads the security menu json configurable file*/
+    // alert(localStorage.getItem("curr_sess_wardflag"));
     if(sessionStorage.getItem("curr_sess_roleflag")=="0"){
       //Reading labels according to the inward or outward page view
       if(localStorage.getItem("curr_sess_wardflag")!="1")
@@ -15,8 +16,10 @@ Polymer({is:"dynamic-card",
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="6"){
 
-         if(localStorage.getItem("curr_sess_wardflag")=="")
+       if(localStorage.getItem("curr_sess_wardflag")=="")
         this.url="../../config/itemmenu.json";
+       if(localStorage.getItem("curr_sess_wardflag")=="11")
+        this.url="../../config/usercreationmenu.json";
     }
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
     if(localStorage.getItem("curr_sess_wardflag")=="6")
@@ -32,6 +35,7 @@ Polymer({is:"dynamic-card",
       if(localStorage.getItem("curr_sess_wardflag")=="7")
         this.url="../../config/supplierreadmenu.json";
     }
+  
   },
   /*which receives the menu response of security menu json file,bind it to the dynamic card*/
   menureadResponse:function(e){

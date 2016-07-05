@@ -32,7 +32,54 @@
       content-type="application/json"
       on-response="verifymailResponse">
     </iron-ajax> 
+
+    <iron-ajax      
+      id="userinfoajax"
+      url="{{userinfourl}}"
+      params="{{userinfoparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="userinfoResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="useraccountajax"
+      url="{{useraccounturl}}"
+      params="{{useraccountparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="useraccountResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="userroleajax"
+      url="{{userroleurl}}"
+      params="{{userroleparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="userroleResponse">
+    </iron-ajax> 
     
+
+     <iron-ajax      
+      id="readdepartmentajax"
+      url="{{readdepartmenturl}}"
+      params="{{readdepartmentparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="readdepartmentResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="readroleajax"
+      url="{{readroleurl}}"
+      params="{{readroleparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="readroleResponse">
+    </iron-ajax> 
   </template>
   <script>
   (function() {
@@ -40,6 +87,26 @@
 
     Polymer({
       is: 'user-service',
+      callreaddepartment:function(){
+      this.readdepartmenturl=sessionStorage.getItem("curr_sess_url")+"readdepartment-service";
+      // this.readdepartmentparam=obj;
+      this.$.readdepartmentajax.generateRequest();
+      },
+      readdepartmentResponse:function(e){
+        var deparray=e.detail.response;
+        alert(JSON.stringify(deparray));
+        document.querySelector('userrole-info-card').departmentarr=deparray;
+      },
+      callreadrole:function(){
+      this.readroleurl=sessionStorage.getItem("curr_sess_url")+"readrole-service";
+      // this.readroleparam=obj;
+      this.$.readroleajax.generateRequest();
+      },
+      readroleResponse:function(e){
+        var rolearray=e.detail.response;
+        alert(JSON.stringify(rolearray));
+        document.querySelector('userrole-info-card').rolearr=rolearray;
+      },
       callPasswordchangeservice:function(empid,oldpassword,newpassword){
       var obj={"empid":"","oldpassword":"","newpassword":""};
       obj.empid=empid;
@@ -70,8 +137,7 @@
         else
           alert("Please try again!");
       },
-      callMailService:function(empid,code){
-        // alert(empid+" "+code);
+      callMailService:function(empid,code){        
       var obj={"empid":"","code":""};
       obj.empid=empid;
       obj.code=code;
@@ -81,7 +147,65 @@
       },
       verifymailResponse:function(e){
       alert(JSON.stringify(e.detail.response));
+      },
+      addemployeeService:function(employeename,dob,sex,age,streetname,location,city,district,state,country,pincode,phoneno,mobileno,emailid){        
+      var obj={"employeename":"","dob":"","sex":"","age":"","streetname":"","location":"","city":"","district":"","state":"","country":"","pincode":"","phoneno":"","mobileno":"","emailid":""};
+      obj.employeename=employeename;
+      obj.dob=dob;
+      obj.sex=sex;
+      obj.age=age;
+      obj.streetname=streetname;
+      obj.location=location;
+      obj.city=city;
+      obj.district=district;
+      obj.state=state;
+      obj.country=country;
+      obj.pincode=pincode;
+      obj.phoneno=phoneno;
+      obj.mobileno=mobileno;
+      obj.emailid=emailid;
+      this.userinfourl=sessionStorage.getItem("curr_sess_url")+"userinfo-service";
+      this.userinfoparam=obj;
+      this.$.userinfoajax.generateRequest();
+      },
+      userinfoResponse:function(e){
+      // alert(JSON.stringify(e.detail.response.val));
+      localStorage.setItem("curr_sess_employeeloggedid",e.detail.response.val);
+      },
+      addpaymentService:function(accountname,accountno,accounttype,bankname,branch,ifsccode){
+         var obj1={
+            "employeeid":"","accountname":"","accountno":"","accounttype":"","bankname":"",
+            "branch":"","ifsccode":""
+          };
+          obj1.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+          obj1.accountname=accountname;
+          obj1.accountno=accountno;
+          obj1.accounttype=accounttype;          
+          obj1.bankname=bankname;
+          obj1.branch=branch;
+          obj1.ifsccode=ifsccode;
+          
+      this.useraccounturl=sessionStorage.getItem("curr_sess_url")+"useraccount-service";
+      this.useraccountparam=obj1;
+      this.$.useraccountajax.generateRequest();
+      },
+      useraccountResponse:function(e){
+      // alert(JSON.stringify(e.detail.response));
+      },
+      calluserroleService:function(departmentname,rolename){        
+      var obj={"employeeid":"","departmentname":"","rolename":""};
+      obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+      obj.departmentname=departmentname;
+      obj.rolename=rolename;
+      this.userroleurl=sessionStorage.getItem("curr_sess_url")+"userrole-service";
+      this.userroleparam=obj;
+      this.$.userroleajax.generateRequest();
+      },
+      userroleResponse:function(e){
+      // alert(JSON.stringify(e.detail.response));
+      alert("Employee Code: "+localStorage.getItem('curr_sess_employeeloggedid'));
       }
+
     });
   })();
   </script>
