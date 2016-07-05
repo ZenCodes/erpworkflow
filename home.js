@@ -1690,6 +1690,30 @@ app.post('/userrole-service',urlencodedParser, function (req, res) {
   });
 });
 
+app.post('/readusertoapprove-service',urlencodedParser, function (req, res) {
+  var Fnreadusertoapprovecall = require("./app/scripts/dboperations.js");
+  Fnreadusertoapprovecall.Fnreadusertoapprove("readusertoapprove-service",function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
+
+
+app.post('/userinforead-service',urlencodedParser, function (req, res) {
+  var employeeid={Employee_ID:req.query.employeeid};
+  var Fnuserinforeadcall = require("./app/scripts/dboperations.js");
+  Fnuserinforeadcall.Fnuserinforead("userinforead-service",req.query.employeeid,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
+app.post('/approveuser-service',urlencodedParser, function (req, res) {
+  var employeeid=req.query.employeeid;
+  var status=req.query.status;
+  var Fnapproveusercall = require("./app/scripts/dboperations.js");
+  Fnapproveusercall.Fnapproveuser("approveuser-service",employeeid,status,function(returnval){
+    res.status(200).json({'itemarr': returnval});
+  });
+});
 //Node server running port number
 app.listen(4000);
 

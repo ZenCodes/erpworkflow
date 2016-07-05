@@ -3,6 +3,7 @@
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
 <link rel="import" href="../adminsupplier-service/adminsupplier-service.html">
 <link rel="import" href="../customer-service/customer-service.html">
+<link rel="import" href="../user-service/user-service.html">
 <!-- Component registeration -->
 <dom-module id="dynamicbutton-card">
   <template>
@@ -32,6 +33,8 @@
     <adminsupplier-service id="adminsupplierservice"></adminsupplier-service>
     <!-- Component to call the customer service -->
     <customer-service id="customerservice"></customer-service>
+
+    <user-service id="userservice"></user-service>
   </template>
   <script>
   (function() {
@@ -61,6 +64,10 @@
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
         this.$.customerservice.approvecustomerforsalesService("Approved");
         }
+        //Function which calls service to approve the customer
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="12"){
+        this.$.userservice.approveuserService("Approved");
+        }
       },
       // Function which invoke to resend supplier/customer service
       FnResend:function(){  
@@ -72,6 +79,10 @@
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
           this.$.customerservice.approvecustomerforsalesService("Resend");
         }
+        //Function which calls service to approve the customer
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="12"){
+        this.$.userservice.approveuserService("Resend");
+        }
       },
       // Function which invoke to reject supplier/customer service
       FnReject:function(){ 
@@ -82,6 +93,10 @@
         //Function which calls service to reject the customer
         if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="8"){
           this.$.customerservice.approvecustomerforsalesService("Reject");
+        }
+        //Function which calls service to approve the customer
+        if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="12"){
+        this.$.userservice.approveuserService("Reject");
         }
       },
       // Function which is used to change the label

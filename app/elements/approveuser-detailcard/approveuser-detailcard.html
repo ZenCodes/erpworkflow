@@ -1,0 +1,45 @@
+
+<!-- Component import -->
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../user-service/user-service.html">
+<!-- Component Registeration -->
+<dom-module id="approveuser-detailcard">
+  <template>
+    <style>
+    </style>
+    <div class="card" on-click="FnFetchInfo">
+     <paper-button id="btn{{employeename}}"  name="employeename" value="{{employeename}}">{{employeename}}</paper-button>
+     <paper-button id="employeeid"  name="employeeid" value="{{employeeid}}" noink hidden>{{employeeid}}</paper-button>     
+    </div>
+    <user-service id="userservice"></user-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var approvearr=[];
+    var clr="true";
+    Polymer({
+      is: 'approveuser-detailcard',
+      // Function which fetch the supplier to approve
+      FnFetchInfo:function(){              
+        if(clr=="true") {
+          this.employeename=(this.employeename).replace(" ","");
+          document.querySelector('#btn'+this.employeename).style.color = '#ff6789';
+          clr=this.employeename;
+        }
+        else if(clr!=this.employeename){
+          this.employeename=(this.employeename).replace(" ","");
+          document.querySelector('#btn'+clr).style.color = '#000000';
+          document.querySelector('#btn'+this.employeename).style.color = '#ff6789';
+          clr=this.employeename;
+        }
+        sessionStorage.setItem("sess_curr_employeeid",this.employeeid);
+        sessionStorage.setItem("sess_curr_employeename",this.employeename);
+        this.$.userservice.FnUserinforeadService();
+      }
+    });
+  })();
+  </script>
+</dom-module>

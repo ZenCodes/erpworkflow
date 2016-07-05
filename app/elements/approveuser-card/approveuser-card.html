@@ -1,0 +1,76 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../supplier-read-page/supplier-read-page.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../approveuser-detailcard/approveuser-detailcard.html">
+<link rel="import" href="../user-service/user-service.html">
+<link rel="import" href="../user-read-page/user-read-page.html">
+<!-- Component registeration -->
+<dom-module id="approveuser-card">
+<!-- Internal style for the component -->
+  <template>
+    <style is="custom-style">
+      .card{
+        margin-top: 3%;
+        @apply(--layout-horizontal);
+        width: 100%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 80%;
+        height: 4%;
+        margin-left: 10%;
+        text-align: start;
+      }
+      paper-button{
+        font-size: 15px;
+        text-transform: none;
+      }
+      .itemcard{
+        margin-left: 2%;
+        width: 15%;
+        border: 1px solid #dedede;
+        text-align: center;
+      }
+      #dialog{
+        background-color: transparent;
+      }
+    </style>
+    <!--Template which has card template-->
+    <!-- <template is="dom-repeat" items="{{label}}" as="lbl"> -->
+      <div class="card">
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <div class="itemcard">
+            <approveuser-detailcard employeeid="{{item.Employee_ID}}" employeename="{{item.Employee_Name}}"></approveuser-detailcard>
+          </div>
+        </template>
+      </div>
+      <div class="customer">
+        <user-read-page></user-read-page>
+     </div>
+    <!-- </template> -->
+    <!--Calling webcomponent service to bind label info-->
+    <!-- <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service> -->
+    <!--Binding items to the above template-->
+    <user-service id="userservice" itemArray="{{itemArray}}"></user-service>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/approveuser-card.js"></script>
+</dom-module>

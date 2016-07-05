@@ -1,0 +1,148 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../user-service/user-service.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
+<link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
+<!-- Add supplier component registeration added keypress event to respond for key board enter while submitting form-->
+<dom-module id="userinfo-read-card" on-keypress="{{keypress}}">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+      /*//background-color: rgb(255, 255, 255);*/
+        color: black;
+        width: 80%;
+        left: 10%;
+        margin-top:-2%;
+      }
+      .drop{
+        width: 100%;
+        @apply(--layout-vertical);
+      }
+      .driver{
+        @apply(--layout-horizontal);
+      }
+      .owner{
+        @apply(--layout-horizontal);
+      }
+      paper-input,gold-email-input{
+        text-align: left;
+        width: 35%;
+        font-family: calibri;
+        font-size: 16px;
+      }
+      paper-button{
+        text-align: center;
+        width: 35%;
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+        margin-top: 4%;
+      }
+
+      #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno,#address1,#doorno,#streetno,#streetname{
+        --paper-input-container-label: { color: red };
+      }
+      #suppliername,#location,#district,#country,#phoneno,#emailid,#address2,#streetno,#website,#aliasname{
+        margin-left: 5%;
+      }
+      paper-listbox{
+      //width: 100%;
+      }
+      paper-listbox{
+        font-family: calibri;
+        font-size: 17px;
+        width: 70%;
+        background-color: whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+      }
+      #supplierid,#suppliername{
+        width: 70%;
+      }
+      #supplierid,#searchid{
+        margin-left:-20%;
+      }
+      #suppliername{
+        margin-left: -1%;
+      }
+      #supplierid{
+      //margin-top:5%;
+      //height:3%;
+      //background-color: whitesmoke;
+      }
+      #aliasname{
+        width: 70%;
+        margin-left: -20%;
+        margin-top: 4%;
+      }
+    </style>
+
+    <!--This template binding dynamic labels and error messages-->
+    <template is="dom-repeat" items="{{label}}">
+
+      <div class="card">
+        <div class="driver">
+          <div class="drop">
+            <paper-input label="{{item.Employee_Name}}" name="suppliername" value="{{employeename}}" required  on-change="FnInputChange" id="suppliername" error-message="">
+              <!-- <paper-icon-button suffix icon="search" on-click="FnSearchEmployeeName"></paper-icon-button> -->
+            </paper-input>
+           
+          </div>
+          <div class="drop">
+            <paper-input readonly="{{read}}" label="{{item.Date_Of_Birth}}" name="aliasname" value="{{dob}}" id="aliasname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+          </div>
+        </div>
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.Sex}}" name="address1" value="{{sex}}" required  id="address1" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Age}}" name="address2" value="{{age}}" required  id="address2" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+        </div>
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.Street_Name}}" name="streetname" value="{{streetname}}" required  id="streetname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Location}}" name="location" value="{{location}}" required  id="location" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+        </div>
+        <div class="driver">
+          <paper-input readonly="{{read}}" label="{{item.City}}" name="city" value="{{city}}" required  id="city" allowed-pattern="[ A-Za-z_@./#&+-]" error-message=""></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.District}}" name="district" value="{{district}}" required  id="district" allowed-pattern="[ A-Za-z_@./#&+-]" error-message=""></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.State}}" name="state" value="{{state}}" required  id="state" allowed-pattern="[ A-Za-z_@./#&+-]" error-message=""></paper-input>
+          <paper-input readonly="{{read}}" label="{{item.Country}}" name="country" value="{{country}}" required  id="country" allowed-pattern="[ A-Za-z_@./#&+-]" error-message=""></paper-input>
+        </div>
+
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.Pincode}}" name="pincode" value="{{pincode}}" required  id="pincode" allowed-pattern="[0-9 ]" error-message=""></paper-input>          
+          <paper-input readonly="{{read}}" label="{{item.Phone_Number}}" name="phoneno" value="{{phoneno}}" required  id="phoneno" error-message=""></paper-input>
+        </div>
+        <div class="owner">
+          <paper-input readonly="{{read}}" label="{{item.Mobile_Number}}" name="mobileno" value="{{mobileno}}" required  id="mobileno" allowed-pattern="[0-9 ]" error-message="{{item.Mobile_Number_error}}"></paper-input>          
+          <gold-email-input readonly="{{read}}" label="{{item.Email_ID}}" name="emailid" value="{{emailid}}" id="emailid" error-message="{{item.Email_ID_error}}" on-change={{FnEmailChange}}></gold-email-input>
+        </div>
+             
+        <paper-button readonly="{{Btn_disable_flag}}" on-click="FnEmployeeInfoSubmit" id="save">Next</paper-button>
+      </div>
+    </template>
+    
+    <!-- Service component to invoke the supplier related ajax calls -->
+    <user-service id="userservice"></user-service>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <webcomponent-service id="webcomponentservice" label="{{label}}"></webcomponent-service>
+
+  </template>
+  <!--JS File import-->
+  <script src="../../scripts/userinfo-read-card.js"> </script>
+
+</dom-module>

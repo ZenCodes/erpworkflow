@@ -97,6 +97,10 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","8");
         window.location.href="../elements/indexhome.html";
       }
+      if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&e.target.id=="Approve User"){        
+        localStorage.setItem("curr_sess_wardflag","12");
+        window.location.href="../elements/indexhome.html";
+      }
     }
      //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
     else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){

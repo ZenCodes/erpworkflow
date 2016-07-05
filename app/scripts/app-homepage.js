@@ -136,6 +136,13 @@ Polymer({
       this.$.dynamicbutton.style.visibility='visible';
       document.querySelector('app-homepage').setPage('approvecustomer-card');
     }
+     // Condition which shows the customer approve card
+    if(sessionStorage.getItem("curr_sess_roleflag")=="9"&&localStorage.getItem("curr_sess_wardflag")=="12"){
+      this.$.flow.style.visibility='hidden';
+      this.$.intentflow.style.visibility='hidden';
+      this.$.dynamicbutton.style.visibility='visible';
+      document.querySelector('app-homepage').setPage('approveuser-card');
+    }
     // Function which shows the intent page according to the category
     if(sessionStorage.getItem("curr_sess_roleflag")=="4"){      
       if(localStorage.getItem("curr_sess_wardflag")=="3")

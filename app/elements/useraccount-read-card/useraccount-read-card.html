@@ -1,0 +1,110 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../user-service/user-service.html">
+
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<dom-module id="useraccount-read-card">
+  <template>
+    <style is="custom-style">
+      .card{
+        @apply(--layout-vertical);
+        position: relative;
+        color: black;        
+        left: 10%;
+        margin-top:0%;
+      }
+      .card1,.card2{
+        @apply(--layout-vertical);
+      }
+      paper-dropdown-menu{
+      width: 80%;
+      text-align:left;
+      }
+      .card1{
+        width:35%;
+      }
+      .card2{
+       width: 35%;
+      }
+      paper-input{
+        width: 80%;
+        text-align: left;
+        font-family: calibri;
+        font-size: 16px;
+      }
+      paper-dropdown-menu{
+      margin-left: -20%;
+      font-family: calibri;
+      font-size: 16px;
+      }
+    paper-button{
+          text-align: center;
+          width: 30%;          
+          background-color: #A0A0A0;
+          font-family: calibri;
+          font-size: 17px;
+          color: black;
+          height: 35px;
+          margin-top: 4%;
+      }
+      .type{
+            @apply(--layout-horizontal);
+            color:red;
+            margin-top: 1%;
+            margin-left: -7%;
+            width: 100%;
+      }
+      .radio{
+            margin-top:0%;
+            margin-left: -5%;
+      }
+    
+      .outer{
+        @apply(--layout-horizontal);
+      }
+    </style>
+
+    
+      <div class="card">
+        <div class="outer">
+        <div class="card1">
+        <paper-input readonly="{{read}}" label="Account_Name" name="accountname" value="{{accountname}}" required id="accountname" error-message=""></paper-input>
+        <paper-input readonly="{{read}}" label="Account_Number" name="accountno" value="{{accountno}}" required id="accountno" error-message=""></paper-input>
+        <paper-input readonly="{{read}}" label="Account_Type" name="accounttype" value="{{accounttype}}" required id="accounttype" error-message=""></paper-input>
+        
+          <paper-input readonly="{{read}}" label="Bank_Name" name="bankname" value="{{bankname}}" required id="bankname" error-message=""></paper-input>
+        
+        </div>
+        <div class="card2">
+
+          <paper-input readonly="{{read}}" label="Branch" name="branch" value="{{branch}}" required id="branch" error-message=""></paper-input>
+          <paper-input readonly="{{read}}" label="IFSC_Code" name="ifsccode" value="{{ifsccode}}" required id="ifsccode" error-message=""></paper-input>         
+        </div>
+        </div>
+        <paper-button disabled="{{Btn_disable_flag}}" id="save" on-click="FnAddPaymentInfoSubmit">Next</paper-button>
+      </div>
+    
+    <!-- Component to callthe service -->
+    <user-service id="userservice"></user-service>
+    <!--Component included here for  calling webcomponnet service to fetch labels-->
+    <!-- <webcomponent-service id="ID_Webcomponent_Service" label="{{label}}"></webcomponent-service> -->
+    </template>
+  <!--JS File import-->
+  <script src="../../scripts/useraccount-read-card.js"> </script>
+</dom-module>

@@ -3432,6 +3432,7 @@ exports.Fnuserrole=function(pagename,employeeid,departmentname,rolename,callback
   var qur1="select Department_ID from MD_HR_Department where Department_Name='"+departmentname+"'";
   connection.query(qur1, function(err, rows) {
   if(!err){
+    if(rows.length>0){
     var deptid=rows[0].Department_ID;
   var qur="Insert into OD_HR_Employee_Job_Desc values('"+employeeid+"','"+deptid+"','"+rolename+"','','','')";
   connection.query(qur, function(err, rows) {
@@ -3445,7 +3446,82 @@ exports.Fnuserrole=function(pagename,employeeid,departmentname,rolename,callback
     }
   });
 }
+}
 else
 console.log(err);
 });
+}
+
+exports.Fnreadusertoapprove=function(pagename,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  var queryy="SELECT * FROM MD_HR_Employee where Status='Created'";
+   //console.log(queryy);
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("fail");
+      //console.log(err);
+    }
+  });
+
+}
+
+exports.Fnuserinforead=function(pagename,employeeid,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  //console.log(customerid);
+  var qur="SELECT * FROM MD_HR_Employee e JOIN MD_HR_Employee_Account ea ON ( e.Employee_ID = ea.Employee_ID ) JOIN OD_HR_Employee_Job_Desc jd on (ea.Employee_ID=jd.Emp_ID) WHERE e.Employee_ID='"+employeeid+"'";
+  // console.log(qur);
+  connection.query(qur, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      return callback("no items");
+    }
+  });
+
+}
+
+exports.Fnapproveuser=function(pagename,employeeid,status,callback) {
+  // console.log('coming');
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+  var queryy="UPDATE MD_HR_Employee SET Status='"+status+"' where Employee_ID='"+employeeid+"'";
+   console.log(queryy);
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      return callback("fail");
+      //console.log(err);
+    }
+  });
+
 }

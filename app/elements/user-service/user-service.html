@@ -80,6 +80,34 @@
       content-type="application/json"
       on-response="readroleResponse">
     </iron-ajax> 
+
+    <iron-ajax      
+      id="readusertoapproveajax"
+      url="{{readusertoapproveurl}}"
+      params="{{readusertoapproveparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="readusertoapproveResponse">
+    </iron-ajax> 
+    <iron-ajax      
+      id="userinforeadajax"
+      url="{{userinforeadurl}}"
+      params="{{userinforeadparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="userinforeadResponse">
+    </iron-ajax> 
+     <iron-ajax      
+      id="approveuserajax"
+      url="{{approveuserurl}}"
+      params="{{approveuserparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="approveuserResponse">
+    </iron-ajax> 
   </template>
   <script>
   (function() {
@@ -94,7 +122,7 @@
       },
       readdepartmentResponse:function(e){
         var deparray=e.detail.response;
-        alert(JSON.stringify(deparray));
+        // alert(JSON.stringify(deparray));
         document.querySelector('userrole-info-card').departmentarr=deparray;
       },
       callreadrole:function(){
@@ -104,7 +132,7 @@
       },
       readroleResponse:function(e){
         var rolearray=e.detail.response;
-        alert(JSON.stringify(rolearray));
+        // alert(JSON.stringify(rolearray));
         document.querySelector('userrole-info-card').rolearr=rolearray;
       },
       callPasswordchangeservice:function(empid,oldpassword,newpassword){
@@ -204,8 +232,84 @@
       userroleResponse:function(e){
       // alert(JSON.stringify(e.detail.response));
       alert("Employee Code: "+localStorage.getItem('curr_sess_employeeloggedid'));
+      },
+      readusertoapproveService:function(){
+       this.readusertoapproveurl=sessionStorage.getItem("curr_sess_url")+"readusertoapprove-service";
+       this.$.readusertoapproveajax.generateRequest();
+      },
+      readusertoapproveResponse:function(e){      
+       document.querySelector('approveuser-card').itemArray=e.detail.response.itemarr;
+      },
+ // Function which make request to read the supplier info
+    FnUserinforeadService:function(){
+      var obj={"employeeid":""};
+      obj.employeeid=sessionStorage.getItem("sess_curr_employeeid");      
+      this.userinforeadparam=obj;
+      this.userinforeadurl=sessionStorage.getItem("curr_sess_url")+"userinforead-service";
+      this.$.userinforeadajax.generateRequest();
+    },
+    userinforeadResponse:function(e){
+      var arr=e.detail.response;
+      // Binding supplier info to the card in approve supplier page
+      document.querySelector("userinfo-read-card").employeename=arr[0].Employee_Name;
+      document.querySelector("userinfo-read-card").dob=arr[0].Date_Of_Birth;
+      document.querySelector("userinfo-read-card").age=arr[0].Age;
+      document.querySelector("userinfo-read-card").sex=arr[0].Sex;      
+      document.querySelector("userinfo-read-card").streetname=arr[0].Street_Name;
+      document.querySelector("userinfo-read-card").location=arr[0].Location;
+      document.querySelector("userinfo-read-card").city=arr[0].City;
+      document.querySelector("userinfo-read-card").district=arr[0].District;
+      document.querySelector("userinfo-read-card").state=arr[0].State;
+      document.querySelector("userinfo-read-card").country=arr[0].Country;
+      // document.querySelector("userinfo-read-card").pincode=arr[0].Pincode;
+      document.querySelector("userinfo-read-card").phoneno=arr[0].Phone;
+      document.querySelector("userinfo-read-card").mobileno=arr[0].Mobile;
+      document.querySelector("userinfo-read-card").emailid=arr[0].Email;
+      // document.querySelector("supplier-detail-read").faxno=arr[0].Faxno;
+      // document.querySelector("supplier-detail-read").website=arr[0].Website;
+      // Binding supplier payment info to the card in approve supplier page
+      document.querySelector("useraccount-read-card").accountname=arr[0].Account_Name;
+      document.querySelector("useraccount-read-card").accountno=arr[0].Account_No;
+      document.querySelector("useraccount-read-card").accounttype=arr[0].Account_Type;
+      // document.querySelector("useraccount-read-card").paymenttype=arr[0].Payment_Type;
+      document.querySelector("useraccount-read-card").bankname=arr[0].Bank_Name;
+      document.querySelector("useraccount-read-card").branch=arr[0].Branch;
+      document.querySelector("useraccount-read-card").ifsccode=arr[0].IFSC_Code;
+      // document.querySelector("useraccount-read-card").micrcode=arr[0].MICR_Code;
+      // document.querySelector("useraccount-read-card").swiftcode=arr[0].Swift_Code;
+      // document.querySelector("useraccount-read-card").term=arr[0].Payment_Term;
+      // Binding supplier tax info to the card in approve supplier page
+      document.querySelector("userrole-read-card").departmentname=arr[0].Department_Name;
+      document.querySelector("userrole-read-card").rolename=arr[0].Role_ID;
+      // document.querySelector("userrole-read-card").panno=arr[0].PAN;
+      // document.querySelector("userrole-read-card").tanno=arr[0].TAN;
+      // document.querySelector("userrole-read-card").cinno=arr[0].CIN;
+      // Binding supplier excise info to the card in approve supplier page
+      // document.querySelector("customer-excise-read").regno=arr[0].Reg_No;
+      // document.querySelector("customer-excise-read").eccno=arr[0].Ecc_No;
+      // document.querySelector("customer-excise-read").range=arr[0].Range;
+      // document.querySelector("customer-excise-read").division=arr[0].Division;
+      // document.querySelector("customer-excise-read").commission=arr[0].Commission;
+      // document.querySelector("customer-excise-read").servicetax=arr[0].Service_Tax;
+    },
+     // Function which receive all customer who have accepted for approve
+    approveuserService:function(status){
+        var obj={"employeeid":"","status":""};
+        obj.status=status;
+        obj.employeeid=sessionStorage.getItem("sess_curr_employeeid");        
+        this.approveuserparam=obj;
+        this.approveuserurl=sessionStorage.getItem("curr_sess_url")+"approveuser-service";
+        this.$.approveuserajax.generateRequest();      
+    },
+    approveuserResponse:function(e){      
+      if(e.detail.response.itemarr=="succ"){  
+      alert("Approved Successfully!!")      
+        //this.$.dialogpage.FnShowDialog(sessionStorage.getItem("sess_curr_employeename")+" Approved Successfully!!","");
+        window.location.href="../elements/indexhome.html";
       }
-
+      else
+        alert("Failed to approve the user!!");
+    }
     });
   })();
   </script>
