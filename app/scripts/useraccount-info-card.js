@@ -10,6 +10,7 @@ Polymer({
  
   // Function invokes while submitting payment info page of the customer
   FnAddPaymentInfoSubmit:function(){
+
     // Function whic validates the input fields
     /*document.querySelector('#droppaymentmode').validate();
     document.querySelector('#bankname').validate();
@@ -26,12 +27,12 @@ Polymer({
 	 else{
    if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
    //Function which calls service to add payment info of the customer 
-	 this.$.userservice.addpaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode);
+	 this.$.userservice.addpaymentService(this.accountname,this.accountno,this.accounttype,this.bankname,this.branch,this.ifsccode);
 	 document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
  	 }
     //Function which calls service to update payment info of the customer while searching customer 
  		else if(localStorage.getItem("curr_sess_addusereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
- 		this.$.userservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.paymenttype,this.bankname,this.branch,this.ifsccode);
+ 		this.$.userservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.bankname,this.branch,this.ifsccode);
     	this.$.userservice.FnRoleService();
     	document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
  		}

@@ -271,7 +271,7 @@
           obj1.bankname=bankname;
           obj1.branch=branch;
           obj1.ifsccode=ifsccode;
-          
+          // alert(bankname);
       this.useraccounturl=sessionStorage.getItem("curr_sess_url")+"useraccount-service";
       this.useraccountparam=obj1;
       this.$.useraccountajax.generateRequest();
@@ -438,7 +438,7 @@
       accountResponse:function(e){
         var arr=e.detail.response;
       document.querySelector("useraccount-info-card").accountname=arr[0].Account_Name;
-      document.querySelector("useraccount-info-card").accountno=arr[0].Account_No;
+      document.querySelector("useraccount-info-card").accountno=arr[0].Account_Number;
       document.querySelector("useraccount-info-card").accounttype=arr[0].Account_Type;
       // document.querySelector("useraccount-read-card").paymenttype=arr[0].Payment_Type;
       document.querySelector("useraccount-info-card").bankname=arr[0].Bank_Name;
@@ -448,6 +448,7 @@
       FnRoleService:function(){
          var obj={"employeeid":""};
       obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
+      alert(obj.employeeid);
       // obj.departmentname=departmentname;
       // obj.rolename=rolename;
       this.roleurl=sessionStorage.getItem("curr_sess_url")+"role-service";
@@ -456,6 +457,7 @@
       },
       roleResponse:function(e){
         var arr=e.detail.response;
+        alert(JSON.stringify(arr));
       document.querySelector("userrole-info-card").departmentname=arr[0].Department_Name;
       document.querySelector("userrole-info-card").rolename=arr[0].Role_ID;
       },
@@ -470,6 +472,7 @@
       },
       usersearchResponse:function(e){
         var arr=e.detail.response;
+        // alert(arr[0].Date_Of_Birth);
         localStorage.setItem('curr_sess_employeeloggedid',arr[0].Employee_ID);
        document.querySelector("user-info-card").employeename=arr[0].Employee_Name;
       document.querySelector("user-info-card").dob=arr[0].Date_Of_Birth;
