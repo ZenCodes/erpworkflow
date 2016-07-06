@@ -30,14 +30,14 @@
     </style>
     <div class="card">
           <paper-dropdown-menu id="grade" label="Select Department" disabled="{{read}}" required>
-            <paper-menu class="dropdown-content"  on-iron-select="FnSelectDepartment"  attr-for-selected="value" required>     
+            <paper-menu class="dropdown-content"  selected="{{department}}" on-iron-select="FnSelectDepartment"  attr-for-selected="value" required>     
               <template is="dom-repeat" items="{{departmentarr}}">
                 <paper-item value="{{item.Department_Name}}">{{item.Department_Name}}</paper-item>
               </template>
             </paper-menu>
           </paper-dropdown-menu>
           <paper-dropdown-menu id="grade" label="Select Role" disabled="{{read}}" required>
-            <paper-menu class="dropdown-content"  on-iron-select="FnSelectRole"  attr-for-selected="value" required>     
+            <paper-menu class="dropdown-content" selected="{{role}}"  on-iron-select="FnSelectRole"  attr-for-selected="value" required>     
               <template is="dom-repeat" items="{{rolearr}}">
                 <paper-item value="{{item.Role_ID}}">{{item.Role_ID}}</paper-item>
               </template>

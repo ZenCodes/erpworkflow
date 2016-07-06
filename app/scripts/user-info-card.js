@@ -16,7 +16,7 @@
       this.isHiddenid=true;
       this.IDread=true;
       localStorage.setItem("curr_sess_searchtypeflag", "nothing");
-      localStorage.setItem("curr_sess_addemployeeeditflag","0");
+      localStorage.setItem("curr_sess_addusereditflag","0");
   },
     // Function which invokes while changing the email
   FnEmailChange:function(){

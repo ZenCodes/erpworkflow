@@ -3434,7 +3434,7 @@ exports.Fnuserrole=function(pagename,employeeid,departmentname,rolename,callback
   if(!err){
     if(rows.length>0){
     var deptid=rows[0].Department_ID;
-  var qur="Insert into OD_HR_Employee_Job_Desc values('"+employeeid+"','"+deptid+"','"+rolename+"','','','')";
+  var qur="Insert into OD_HR_Employee_Job_Desc values('"+employeeid+"','"+deptid+"','"+rolename+"','','','password')";
   connection.query(qur, function(err, rows) {
     if(!err)
     {
@@ -3575,7 +3575,7 @@ exports.Fnupdateuseraccount=function(pagename,response,callback) {
 
 }
 
-exports.Fnuserrole=function(pagename,employeeid,departmentname,rolename,callback) {
+exports.Fnupdateuserrole=function(pagename,employeeid,departmentname,rolename,callback) {
 
   var Config_tables=[];
   var Config_columnvalues=[];
@@ -3697,7 +3697,7 @@ exports.Fnrole=function(pagename,employeeid,callback) {
     }
   }
   //console.log(customerid);
-  var qur="SELECT * FROM OD_HR_Employee_Job_Desc where Employee_ID='"+employeeid+"'";
+  var qur="SELECT jd.Emp_ID,jd.Department_ID,jd.Role_ID,d.Department_Name FROM OD_HR_Employee_Job_Desc jd join MD_HR_Department d on(jd.Department_ID=d.Department_ID) where jd.Emp_ID='"+employeeid+"'";
   // console.log(qur);
   connection.query(qur, function(err, rows) {
     if(!err)

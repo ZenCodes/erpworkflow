@@ -448,7 +448,7 @@
       FnRoleService:function(){
          var obj={"employeeid":""};
       obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
-      alert(obj.employeeid);
+      // alert(obj.employeeid);
       // obj.departmentname=departmentname;
       // obj.rolename=rolename;
       this.roleurl=sessionStorage.getItem("curr_sess_url")+"role-service";
@@ -457,9 +457,9 @@
       },
       roleResponse:function(e){
         var arr=e.detail.response;
-        alert(JSON.stringify(arr));
-      document.querySelector("userrole-info-card").departmentname=arr[0].Department_Name;
-      document.querySelector("userrole-info-card").rolename=arr[0].Role_ID;
+        // alert("readrole info"+JSON.stringify(arr));
+      document.querySelector("userrole-info-card").department=arr[0].Department_Name;
+      document.querySelector("userrole-info-card").role=arr[0].Role_ID;
       },
       callUsersearchService:function(empid,employeename){
       var obj={"employeename":""};

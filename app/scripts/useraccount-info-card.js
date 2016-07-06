@@ -32,13 +32,15 @@ Polymer({
  	 }
     //Function which calls service to update payment info of the customer while searching customer 
  		else if(localStorage.getItem("curr_sess_addusereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
- 		this.$.userservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.bankname,this.branch,this.ifsccode);
+ 		// alert('in edit');
+    this.$.userservice.updatepaymentService(this.accountname,this.accountno,this.accounttype,this.bankname,this.branch,this.ifsccode);
     	this.$.userservice.FnRoleService();
     	document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
  		}
     //Function which calls service to search payment info of the customer while searching
  		else
- 		{      
+ 		{    
+    // alert('in search');  
         this.$.userservice.FnRoleService();
     	document.querySelector("usercreation-home-card").setPage("Role/Department Detail");
 		}

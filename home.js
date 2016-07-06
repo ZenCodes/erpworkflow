@@ -1794,7 +1794,7 @@ app.post('/useraccount1-service',urlencodedParser, function (req, res) {
 app.post('/role-service',urlencodedParser, function (req, res) {
   var employeeid={Employee_ID:req.query.employeeid};
   var Fnrolecall = require("./app/scripts/dboperations.js");
-  Fnrolecall.Fnuserrole("role-service",req.query.employeeid,function(returnval){
+  Fnrolecall.Fnrole("role-service",req.query.employeeid,function(returnval){
     res.status(200).json(returnval);
   });
 });
