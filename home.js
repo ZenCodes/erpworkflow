@@ -137,6 +137,7 @@ app.post('/itemsave-service',urlencodedParser, function (req, res) {
     Unit_measure:req.query.unitmeasure,
     Remarks:req.query.remark,
     new_Inward_Register_Number:'',
+    Created_by:req.query.createdby,
     state: statevalue
   };
   //importing js file to invoke the function
@@ -423,6 +424,7 @@ app.post('/outwarditem-service',urlencodedParser, function (req, res) {
     Product_ID:req.query.itemdes,
     Quantity:req.query.quantity,
     Weight:req.query.weight,
+    Created_by:req.query.createdby,
     state:'outward'
   };
   var FnOutwardItemSavecall = require("./app/scripts/dboperations.js");

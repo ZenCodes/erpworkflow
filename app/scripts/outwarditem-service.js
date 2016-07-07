@@ -66,6 +66,7 @@
           obj.unit=this.items[i].unit;
           obj.quantity=this.items[i].quantity;
           obj.weight=this.items[i].weight;
+          obj.createdby=sessionStorage.getItem("loggeduser");
           this.params=obj;
           this.$.outwarditemwriteAjax.generateRequest();
         }
