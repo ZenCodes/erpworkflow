@@ -77,6 +77,14 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","11");       
         window.location.href="../elements/indexhome.html";              
       }
+      if(e.target.id=="Department Creation"){
+        localStorage.setItem("curr_sess_wardflag","13");       
+        window.location.href="../elements/indexhome.html";              
+      }
+      if(e.target.id=="Role Creation"){
+        localStorage.setItem("curr_sess_wardflag","14");       
+        window.location.href="../elements/indexhome.html";              
+      }
     }
     else if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
       if(e.target.id=="Add Intent"){        

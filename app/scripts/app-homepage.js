@@ -48,6 +48,14 @@ Polymer({
         localStorage.setItem("curr_sess_showpage", "Employee Detail");        
 		    this.page = "usercreation-home-card";
       }
+      if(localStorage.getItem("curr_sess_wardflag")=="13") {
+        // localStorage.setItem("curr_sess_showpage", "Employee Detail");        
+        this.page = "departmentcreation-card";
+      }
+      if(localStorage.getItem("curr_sess_wardflag")=="14") {
+        // localStorage.setItem("curr_sess_showpage", "Employee Detail");        
+        this.page = "rolecreation-card";
+      }
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='visible';
       this.$.flowbutton.style.visibility='hidden';

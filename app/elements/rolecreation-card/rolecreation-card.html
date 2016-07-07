@@ -1,0 +1,53 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+
+<dom-module id="rolecreation-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+      }
+       .card{
+        @apply(--layout-vertical);
+        margin-top: 5%;
+        width: 25%;
+        margin-left: 20%;
+
+      }
+      paper-button{
+        text-align: center;
+        /*width: 20%;*/
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+        margin-top: 7%;
+      }
+    </style>
+    <div class="card">
+      <paper-input value="{{rolename}}" label="Enter Role Name"></paper-input>
+      <paper-button on-click="FnCreateRole">Create</paper-button>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'rolecreation-card',
+      ready:function(){
+
+      },
+      FnCreateRole:function(){
+
+      }
+    });
+  })();
+  </script>
+</dom-module>

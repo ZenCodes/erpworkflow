@@ -1,0 +1,59 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\user-service/user-service.html">
+
+<dom-module id="departmentcreation-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-vertical);
+        margin-top: 5%;
+        width: 25%;
+        margin-left: 20%;
+
+      }
+      paper-button{
+        text-align: center;
+        /*width: 20%;*/
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+        margin-top: 7%;
+      }
+    </style>
+     <div class="card">
+      <paper-input value="{{departmentname}}" label="Enter Department Name"></paper-input>
+      <paper-button on-click="FnCreateDepartment">Create</paper-button>
+     </div>
+     <user-service id="userservice"></user-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'departmentcreation-card',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'departmentcreation-card',
+          notify: true
+        }
+      },
+      FnCreateDepartment:function(){
+        var departmentid=((this.departmentname).substring(0,4)).toUpperCase();
+        // alert(departmentid);
+        this.$.userservice.callcreateDepartmentService(departmentid,this.departmentname);
+      }
+    });
+  })();
+  </script>
+</dom-module>

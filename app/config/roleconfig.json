@@ -50,7 +50,7 @@
       {
         "rolename": "Administration admin",
         "RoleFlag": "6",
-        "menu" : ["Add Item","User Management"]
+        "menu" : ["Add Item","User Management","Department Creation","Role Creation"]
       },
       {
         "rolename": "Maintenance manager",

@@ -3711,4 +3711,26 @@ exports.Fnrole=function(pagename,employeeid,callback) {
 
 }
 
+exports.Fncreatedepartment=function(pagename,response,callback) {
 
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+
+  connection.query('INSERT into MD_HR_Department SET ?',[response], function(err, rows) {
+    if(!err)
+    {
+      return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}

@@ -23,7 +23,7 @@
         margin-top: -2%;
       }
       paper-input{
-        margin-left: 3%;
+        /*margin-left: 3%;*/
         margin-top: -2%;      
       }
       #minmeasure,#maxmeasure,#actualmeasure{
@@ -37,6 +37,12 @@
       paper-button{
         text-transform: none;
         text-align: left;
+        margin-left: 2%;
+      }
+      #actvalue{
+        margin-left: -3%;
+      }
+      #remarks{
         margin-left: 2%;
       }
     </style>
@@ -54,7 +60,7 @@
       <paper-button id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-button>
       <paper-button readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-button>
       <paper-input id="actvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
-      <paper-input id="{{name}}remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
+      <paper-input id="remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
     </div>
   </template>
   <script>

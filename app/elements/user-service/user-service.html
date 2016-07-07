@@ -167,6 +167,27 @@
       on-response="usersearchResponse">
     </iron-ajax> 
 
+
+    <iron-ajax      
+      id="createdepartmentajax"
+      url="{{createdepartmenturl}}"
+      params="{{createdepartmentparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="createdepartmentResponse">
+    </iron-ajax> 
+
+    <iron-ajax      
+      id="createuserajax"
+      url="{{createuserurl}}"
+      params="{{createuserparam}}"
+      handle-as="json"
+      method="post"
+      content-type="application/json"
+      on-response="createuserResponse">
+    </iron-ajax> 
+
   </template>
   <script>
   (function() {
@@ -464,17 +485,14 @@
       callUsersearchService:function(empid,employeename){
       var obj={"employeename":""};
       obj.employeename=employeename;
-      // obj.departmentname=departmentname;
-      // obj.rolename=rolename;
       this.usersearchurl=sessionStorage.getItem("curr_sess_url")+"usersearch-service";
       this.usersearchparam=obj;
       this.$.usersearchajax.generateRequest();
       },
       usersearchResponse:function(e){
-        var arr=e.detail.response;
-        // alert(arr[0].Date_Of_Birth);
+        var arr=e.detail.response;        
         localStorage.setItem('curr_sess_employeeloggedid',arr[0].Employee_ID);
-       document.querySelector("user-info-card").employeename=arr[0].Employee_Name;
+      document.querySelector("user-info-card").employeename=arr[0].Employee_Name;
       document.querySelector("user-info-card").dob=arr[0].Date_Of_Birth;
       document.querySelector("user-info-card").age=arr[0].Age;
       document.querySelector("user-info-card").sex=arr[0].Sex;      
@@ -488,6 +506,26 @@
       document.querySelector("user-info-card").phoneno=arr[0].Phone;
       document.querySelector("user-info-card").mobileno=arr[0].Mobile;
       document.querySelector("user-info-card").emailid=arr[0].Email;
+      },
+      callcreateDepartmentService:function(departmentid,departmentname){
+      var obj={"departmentid":"","departmentname":""};
+      obj.departmentname=departmentname;
+      obj.departmentid=departmentid;
+      this.createdepartmenturl=sessionStorage.getItem("curr_sess_url")+"createdepartment-service";
+      this.createdepartmentparam=obj;
+      this.$.createdepartmentajax.generateRequest();
+      },
+      createdepartmentResponse:function(e){
+        if(e.detail.response=="succ")
+          alert("Department created successfully!");
+        else
+          alert("Unable to create department!");
+      },
+      callcreateRoleService:function(){
+        
+      },
+      createroleResponse:function(){
+
       }
     });
   })();
