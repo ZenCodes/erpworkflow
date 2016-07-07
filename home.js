@@ -47,6 +47,18 @@ app.post('/login-card', urlencodedParser, function (req, res) {
   });
 });
 
+
+//Receiving request to read the logged username
+app.post('/usernameread-service', urlencodedParser, function (req, res) {
+  // console.log(req.query.loggeduserid);
+  //Loading JS file to call the login check function
+  var usernamereadcall = require("./app/scripts/dboperations.js");
+  //calling loginchcek function with connection,username and password to validate the user,here defined callback method to get the asynchronous response
+  usernamereadcall.Fnusernameread("usernameread-service",req.query.loggeduserid,function(returnval){
+      res.status(200).json(returnval);
+  });
+});
+
 //Method to fetch the items
 app.post("/itemlist-service",urlencodedParser,function(req,res){
   //console.log('itemlist service...');

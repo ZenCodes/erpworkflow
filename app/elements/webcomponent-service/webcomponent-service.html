@@ -5,7 +5,6 @@
   <template>
     <!--Component to read Labels for the components from webcomponents.json file-->
     <iron-ajax
-
       id="webcomponentreadajax"
       url="../../config/webcomponents.json"
       handle-as="json"
@@ -27,6 +26,16 @@
       handle-as="json"
       content-type="application/json"
       on-response="drawermenureadResponse">
+    </iron-ajax>
+
+    <iron-ajax
+      id="usernamereadajax"
+      url="{{usernamereadurl}}"
+      params="{{usernamereadparam}}"
+      method="POST"
+      handle-as="json"
+      content-type="application/json"
+      on-response="usernamereadResponse">
     </iron-ajax>
 
   </template>

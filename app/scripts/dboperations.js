@@ -157,6 +157,30 @@ exports.FnLoginDBCheck=function(pagename,username,password,callback){
 
 }
 
+//Method to fetch the logged user name
+exports.Fnusernameread=function(pagename,userid,callback){
+
+  //To fetch tables for this card from dbconfig file
+  var Config_tables=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+    }
+  }
+var queryy="SELECT Employee_Name FROM MD_HR_Employee where Employee_ID='"+userid+"'";
+connection.query(queryy, function (err, rows) {
+if(!err){
+  console.log(rows);
+  return callback(rows);
+}
+else{
+  console.log(err);
+  return callback('fail');
+}
+});
+
+}
+
 
 //Method to fetch the item names from master table according to the logged user role
 exports.FnFetchIntenttypelist=function(pagename,loggeduser,callback) {

@@ -13,14 +13,17 @@ Polymer({
   //Response received after authenticating user,if it is valid user navigating to indexhome.html page otherwise it will give alert message to the user
   Response:function(e){
     var logflag=e.detail.response.returnval;
+   
     if(logflag!="invalid")
     {
       // document.querySelector('app-homepage').setUsername(this.username);
       localStorage.setItem("curr_sess_wardflag","0");
       sessionStorage.setItem("loggeduser",this.username);      
-      sessionStorage.setItem("loggedrole",logflag);
+      sessionStorage.setItem("loggedrole",logflag); 
+      // Calling service to read the logged username
+      document.querySelector("webcomponent-service").FnusernamereadService();      
       /*Calling webcomponent service for reading role from roleconfig json file*/
-      document.querySelector("webcomponent-service").roleconfigreadService();      
+      // document.querySelector("webcomponent-service").roleconfigreadService();      
     }
     else
       alert("Invalid user!!");

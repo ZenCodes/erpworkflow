@@ -75,11 +75,25 @@
       var sessrole=sessionStorage.getItem("curr_sess_roleflag");
       for(var i=0;i<arr[0].role.length;i++) {
         if (arr[0].role[i].RoleFlag == sessrole) {
-          //alert(JSON.stringify(arr[0].role[i].menu));
-          //Binding response to the drawer menulist card
           document.querySelector('drawermenu-list').itemArray = arr[0].role[i].menu;
         }
       }
+    },
+    FnusernamereadService:function(){
+      // alert('hi');
+      this.usernamereadurl=sessionStorage.getItem("curr_sess_url")+"usernameread-service";
+      var obj={"loggeduserid":""};      
+      obj.loggeduserid=sessionStorage.getItem("loggeduser");
+      // alert(sessionStorage.getItem("loggeduser"));
+      this.usernamereadparam=obj;
+      this.$.usernamereadajax.generateRequest();
+    },
+    usernamereadResponse:function(e){      
+      // alert(JSON.stringify(e.detail.response));
+      var arr=e.detail.response;
+      sessionStorage.setItem("curr_sess_loggeduser",arr[0].Employee_Name);
+      this.roleconfigreadService();
+      // document.querySelector('app-homepage').FnSetUsername(e.detail.response);
     }
   });
 })();
