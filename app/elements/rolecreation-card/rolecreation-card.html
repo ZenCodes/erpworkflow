@@ -2,6 +2,10 @@
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
 <link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../user-service/user-service.html">
 
 <dom-module id="rolecreation-card">
   <template>
@@ -29,23 +33,37 @@
         height: 35px;
         margin-top: 7%;
       }
+      paper-dropdown-menu{
+        text-align: center;
+      }
     </style>
     <div class="card">
-      <paper-input value="{{rolename}}" label="Enter Role Name"></paper-input>
+      <paper-dropdown-menu id="grade" label="Select Department" disabled="{{read}}" required>
+        <paper-menu class="dropdown-content"  selected="{{department}}" on-iron-select="FnSelectDepartment"  attr-for-selected="value" required>     
+          <template is="dom-repeat" items="{{departmentarr}}">
+            <paper-item value="{{item.Department_Name}}">{{item.Department_Name}}</paper-item>
+          </template>
+        </paper-menu>
+      </paper-dropdown-menu>
+      <paper-input value="{{roleid}}" label="Enter Role Name"></paper-input>
       <paper-button on-click="FnCreateRole">Create</paper-button>
     </div>
+    <user-service id="userservice"></user-service>
   </template>
   <script>
   (function() {
     'use strict';
-
     Polymer({
       is: 'rolecreation-card',
       ready:function(){
-
+        this.$.userservice.callreaddepartment();
+      },
+      FnSelectDepartment:function(e){
+        this.departmentname = e.target.selectedItem.textContent.trim();
       },
       FnCreateRole:function(){
-
+        this.rolename = this.departmentname+" "+this.roleid;
+        this.$.userservice.callcreateroleService(this.roleid,this.rolename); 
       }
     });
   })();

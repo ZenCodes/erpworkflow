@@ -1811,6 +1811,18 @@ app.post('/createdepartment-service',urlencodedParser, function (req, res) {
   });
 });
 
+app.post('/createrole-service',urlencodedParser, function (req, res) {
+  var response={
+    Role_ID:req.query.roleid,
+    Role_Name:req.query.rolename
+  };
+
+  var Fncreaterolecall = require("./app/scripts/dboperations.js");
+  Fncreaterolecall.Fncreaterole("createrole-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
 //Node server running port number
 app.listen(4000);
 

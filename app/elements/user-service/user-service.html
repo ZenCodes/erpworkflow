@@ -179,13 +179,13 @@
     </iron-ajax> 
 
     <iron-ajax      
-      id="createuserajax"
-      url="{{createuserurl}}"
-      params="{{createuserparam}}"
+      id="createroleajax"
+      url="{{createroleurl}}"
+      params="{{createroleparam}}"
       handle-as="json"
       method="post"
       content-type="application/json"
-      on-response="createuserResponse">
+      on-response="createroleResponse">
     </iron-ajax> 
 
   </template>
@@ -204,6 +204,7 @@
         var deparray=e.detail.response;
         // alert(JSON.stringify(deparray));
         document.querySelector('userrole-info-card').departmentarr=deparray;
+        document.querySelector('rolecreation-card').departmentarr=deparray;
       },
       callreadrole:function(){
       this.readroleurl=sessionStorage.getItem("curr_sess_url")+"readrole-service";
@@ -340,37 +341,18 @@
       document.querySelector("userinfo-read-card").city=arr[0].City;
       document.querySelector("userinfo-read-card").district=arr[0].District;
       document.querySelector("userinfo-read-card").state=arr[0].State;
-      document.querySelector("userinfo-read-card").country=arr[0].Country;
-      // document.querySelector("userinfo-read-card").pincode=arr[0].Pincode;
+      document.querySelector("userinfo-read-card").country=arr[0].Country;      
       document.querySelector("userinfo-read-card").phoneno=arr[0].Phone;
       document.querySelector("userinfo-read-card").mobileno=arr[0].Mobile;
       document.querySelector("userinfo-read-card").emailid=arr[0].Email;
-      // document.querySelector("supplier-detail-read").faxno=arr[0].Faxno;
-      // document.querySelector("supplier-detail-read").website=arr[0].Website;
-      // Binding supplier payment info to the card in approve supplier page
       document.querySelector("useraccount-read-card").accountname=arr[0].Account_Name;
       document.querySelector("useraccount-read-card").accountno=arr[0].Account_No;
-      document.querySelector("useraccount-read-card").accounttype=arr[0].Account_Type;
-      // document.querySelector("useraccount-read-card").paymenttype=arr[0].Payment_Type;
+      document.querySelector("useraccount-read-card").accounttype=arr[0].Account_Type;      
       document.querySelector("useraccount-read-card").bankname=arr[0].Bank_Name;
       document.querySelector("useraccount-read-card").branch=arr[0].Branch;
       document.querySelector("useraccount-read-card").ifsccode=arr[0].IFSC_Code;
-      // document.querySelector("useraccount-read-card").micrcode=arr[0].MICR_Code;
-      // document.querySelector("useraccount-read-card").swiftcode=arr[0].Swift_Code;
-      // document.querySelector("useraccount-read-card").term=arr[0].Payment_Term;
-      // Binding supplier tax info to the card in approve supplier page
       document.querySelector("userrole-read-card").departmentname=arr[0].Department_Name;
       document.querySelector("userrole-read-card").rolename=arr[0].Role_ID;
-      // document.querySelector("userrole-read-card").panno=arr[0].PAN;
-      // document.querySelector("userrole-read-card").tanno=arr[0].TAN;
-      // document.querySelector("userrole-read-card").cinno=arr[0].CIN;
-      // Binding supplier excise info to the card in approve supplier page
-      // document.querySelector("customer-excise-read").regno=arr[0].Reg_No;
-      // document.querySelector("customer-excise-read").eccno=arr[0].Ecc_No;
-      // document.querySelector("customer-excise-read").range=arr[0].Range;
-      // document.querySelector("customer-excise-read").division=arr[0].Division;
-      // document.querySelector("customer-excise-read").commission=arr[0].Commission;
-      // document.querySelector("customer-excise-read").servicetax=arr[0].Service_Tax;
     },
      // Function which receive all customer who have accepted for approve
     approveuserService:function(status){
@@ -383,8 +365,7 @@
     },
     approveuserResponse:function(e){      
       if(e.detail.response.itemarr=="succ"){  
-      alert("Approved Successfully!!")      
-        //this.$.dialogpage.FnShowDialog(sessionStorage.getItem("sess_curr_employeename")+" Approved Successfully!!","");
+      alert("Approved Successfully!!")   
         window.location.href="../elements/indexhome.html";
       }
       else
@@ -411,14 +392,13 @@
       this.$.updateuserinfoajax.generateRequest();
       },
       updateuserinfoResponse:function(e){
-      alert(JSON.stringify(e.detail.response.val));
-      // localStorage.setItem("curr_sess_employeeloggedid",e.detail.response.val);
+      alert(JSON.stringify(e.detail.response.val));      
       },
       updatepaymentService:function(accountname,accountno,accounttype,bankname,branch,ifsccode){
-         var obj1={
+      var obj1={
             "employeeid":"","accountname":"","accountno":"","accounttype":"","bankname":"",
             "branch":"","ifsccode":""
-          };
+      };
           obj1.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
           obj1.accountname=accountname;
           obj1.accountno=accountno;
@@ -444,14 +424,11 @@
       this.$.updateuserroleajax.generateRequest();
       },
       updateuserroleResponse:function(e){
-      alert(JSON.stringify(e.detail.response));
-      // alert("Employee Code: "+localStorage.getItem('curr_sess_employeeloggedid'));
+      alert(JSON.stringify(e.detail.response));      
       },
       callAccountService:function(){
-         var obj={"employeeid":""};
-      obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
-      // obj.departmentname=departmentname;
-      // obj.rolename=rolename;
+      var obj={"employeeid":""};
+      obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');      
       this.accounturl=sessionStorage.getItem("curr_sess_url")+"useraccount1-service";
       this.accountparam=obj;
       this.$.accountajax.generateRequest();
@@ -460,25 +437,20 @@
         var arr=e.detail.response;
       document.querySelector("useraccount-info-card").accountname=arr[0].Account_Name;
       document.querySelector("useraccount-info-card").accountno=arr[0].Account_Number;
-      document.querySelector("useraccount-info-card").accounttype=arr[0].Account_Type;
-      // document.querySelector("useraccount-read-card").paymenttype=arr[0].Payment_Type;
+      document.querySelector("useraccount-info-card").accounttype=arr[0].Account_Type;      
       document.querySelector("useraccount-info-card").bankname=arr[0].Bank_Name;
       document.querySelector("useraccount-info-card").branch=arr[0].Branch;
       document.querySelector("useraccount-info-card").ifsccode=arr[0].IFSC_Code;
       },
       FnRoleService:function(){
-         var obj={"employeeid":""};
+      var obj={"employeeid":""};
       obj.employeeid=localStorage.getItem('curr_sess_employeeloggedid');
-      // alert(obj.employeeid);
-      // obj.departmentname=departmentname;
-      // obj.rolename=rolename;
       this.roleurl=sessionStorage.getItem("curr_sess_url")+"role-service";
       this.roleparam=obj;
       this.$.roleajax.generateRequest();
       },
       roleResponse:function(e){
-        var arr=e.detail.response;
-        // alert("readrole info"+JSON.stringify(arr));
+      var arr=e.detail.response;        
       document.querySelector("userrole-info-card").department=arr[0].Department_Name;
       document.querySelector("userrole-info-card").role=arr[0].Role_ID;
       },
@@ -490,8 +462,8 @@
       this.$.usersearchajax.generateRequest();
       },
       usersearchResponse:function(e){
-        var arr=e.detail.response;        
-        localStorage.setItem('curr_sess_employeeloggedid',arr[0].Employee_ID);
+      var arr=e.detail.response;        
+      localStorage.setItem('curr_sess_employeeloggedid',arr[0].Employee_ID);
       document.querySelector("user-info-card").employeename=arr[0].Employee_Name;
       document.querySelector("user-info-card").dob=arr[0].Date_Of_Birth;
       document.querySelector("user-info-card").age=arr[0].Age;
@@ -521,12 +493,21 @@
         else
           alert("Unable to create department!");
       },
-      callcreateRoleService:function(){
-        
+      callcreateroleService:function(roleid,rolename){
+      var obj={"roleid":"","rolename":""};
+      obj.roleid=roleid;
+      obj.rolename=rolename;      
+      this.createroleurl=sessionStorage.getItem("curr_sess_url")+"createrole-service";
+      this.createroleparam=obj;
+      this.$.createroleajax.generateRequest();
       },
-      createroleResponse:function(){
-
+      createroleResponse:function(e){
+        if(e.detail.response=="succ")
+          alert("Role created successfully!");
+        else
+          alert("Unable to create role!");
       }
+      
     });
   })();
   </script>

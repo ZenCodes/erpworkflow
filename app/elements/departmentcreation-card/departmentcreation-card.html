@@ -49,8 +49,7 @@
         }
       },
       FnCreateDepartment:function(){
-        var departmentid=((this.departmentname).substring(0,4)).toUpperCase();
-        // alert(departmentid);
+        var departmentid=((this.departmentname).substring(0,4)).toUpperCase();        
         this.$.userservice.callcreateDepartmentService(departmentid,this.departmentname);
       }
     });
