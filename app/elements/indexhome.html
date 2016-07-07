@@ -205,6 +205,14 @@
       margin-left: -20%;
       margin-top: -2%;
     }
+    #username{
+      text-transform: none;
+      margin-top: -4%;
+      margin-left: -20%;
+    }
+    #signin{
+      margin-top: -4%;
+    }
 
   </style>
   <template>
@@ -234,14 +242,11 @@
           </div>
           <div class="flex"></div>
           <!-- Component for the signin signout button -->
-          <paper-icon-button id="signin" icon="icons:arrow-drop-down" on-click="FnToggleSignin" style="margin-top:-10px;" ></paper-icon-button>
+          <paper-button id="username">{{loggedusername}}</paper-button>
+          <paper-icon-button id="signin" icon="icons:arrow-drop-down" on-click="FnToggleSignin" ></paper-icon-button>
           <paper-tooltip for="signin" offset="0">{{userlabel}}</paper-tooltip>
         </paper-toolbar>
         <!-- Top Toolbar for search and cart-->
-       <!-- <paper-toolbar class="top1">
-          <div><paper-item class="pagetitle">{{pagetitle}}</paper-item></div>
-          <div class="flex"></div>
-        </paper-toolbar>-->
         <paper-toolbar class="top2">
           <div id="intentview">
             <!--Component for create button in UI-->
@@ -251,12 +256,9 @@
             <!--Component for create button in UI-->
             <viewtype-card></viewtype-card>
           </div>
-
           <div id="dynamicbutton">
             <dynamicbutton-card></dynamicbutton-card>
           </div>
-
-
           <div class="flex"></div>
 
         </paper-toolbar>
@@ -293,9 +295,7 @@
             <section data-category="intenthome-page">
               <intenthome-page></intenthome-page>
             </section>
-            <!-- <section data-category="viewintenthome-page"> -->
-              <!-- <viewintenthome-page></viewintenthome-page> -->
-            <!-- </section> -->
+            
             <section data-category="no-items">
               <no-items></no-items>
             </section>
@@ -333,7 +333,6 @@
             <section data-category="rolecreation-card">
               <rolecreation-card></rolecreation-card>
             </section>
-
           </iron-pages>
         </div>
         <div class="bottom">

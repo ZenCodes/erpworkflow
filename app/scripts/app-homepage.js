@@ -5,6 +5,8 @@ Polymer({
   is: "app-homepage",
   ready: function() {
     this.userlabel="Signout";
+    this.loggedusername="Welcome! "+sessionStorage.getItem("loggeduser");
+
     this.$.intentview.style.visibility='hidden';
     this.$.promotebutton.style.visibility='hidden';
     this.$.intentflow.style.visibility='hidden';

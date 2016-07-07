@@ -15,41 +15,24 @@ Polymer({
     var logflag=e.detail.response.returnval;
     if(logflag!="invalid")
     {
-      //alert(logflag);
-
+      // document.querySelector('app-homepage').setUsername(this.username);
       localStorage.setItem("curr_sess_wardflag","0");
-      
-      sessionStorage.setItem("loggeduser",this.username);
+      sessionStorage.setItem("loggeduser",this.username);      
       sessionStorage.setItem("loggedrole",logflag);
       /*Calling webcomponent service for reading role from roleconfig json file*/
-      document.querySelector("webcomponent-service").roleconfigreadService();
-      //window.location.href="elements/indexhome.html";
+      document.querySelector("webcomponent-service").roleconfigreadService();      
     }
     else
       alert("Invalid user!!");
   },
   //It is a method which receives Global Url from url.json file
   setUrl:function(url){
-    this.url=url+"login-card";
-    //alert(this.url);
+    this.url=url+"login-card";    
   },
   //Function which invokes for keyboard enter of the login card
   FnLoginSubmit:function()
   {
-   /* if(this.username=='manager'&&this.password=='manager'){
-      sessionStorage.setItem("loggeduser",this.username);
-      sessionStorage.setItem("curr_sess_roleflag",'manager');
-      window.location.href="elements/indexhome.html";
-    }
-    else if(this.username=='admin'&&this.password=='admin'){
-      sessionStorage.setItem("loggeduser",this.username);
-      sessionStorage.setItem("curr_sess_roleflag",'admin');
-      window.location.href="elements/indexhome.html";
-    }
-    else*/
       this.$.Form_Login.submit();
-
-   // this.$.Form_Login.submit();
   },
   FnPasswordChange:function(){
     document.querySelector('app-card').setPage('passwordchange-card');
