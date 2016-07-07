@@ -529,7 +529,8 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     state:req.query.state,
     PO_Number:'',
     Intent_Created_By:req.query.loggedrole,
-    Created_by:req.query.createdby,
+    Intent_Created_By_ID:req.query.createdby,
+    Intent_Created_By_Date:req.query.createddate,
     Intent_State:'',
     Item_Type_ID:''
   };
@@ -566,19 +567,34 @@ app.post("/intentstateupdate-service",urlencodedParser,function(req,res){
   //ponumber={PO_Number:req.query.pono}
   //updatecolumn={Intent_State:req.query.updatestate};
   //updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
-  if(req.query.updatestate=="Approved")
+  if(req.query.updatestate=="Approved"){
   updaterolecolumn={Intent_Approved_By:req.query.loggedrole};
-  if(req.query.updatestate=="Supplied")
+  updatebycolumn={Intent_Approved_By_ID:req.query.createdby};
+  updatebydate={Intent_Approved_By_Date:req.query.createddate};
+  }
+  if(req.query.updatestate=="Supplied"){
   updaterolecolumn={Intent_Supplied_By:req.query.loggedrole};
-  if(req.query.updatestate=="POCreated")
+  updatebycolumn={Intent_Supplied_By_ID:req.query.createdby};
+  updatebydate={Intent_Supplied_By_Date:req.query.createddate};
+  }
+  if(req.query.updatestate=="POCreated"){
   updaterolecolumn={PO_Created_By:req.query.loggedrole};
-  if(req.query.updatestate=="POSent")
-  updaterolecolumn={PO_Created_By:req.query.loggedrole};
-  if(req.query.updatestate=="Accepted")
+  updatebycolumn={PO_Created_By_ID:req.query.createdby};
+  updatebydate={PO_Created_By_Date:req.query.createddate};
+  }
+  if(req.query.updatestate=="POSent"){
+  updaterolecolumn={PO_Sent_By:req.query.loggedrole};
+  updatebycolumn={PO_Sent_By_ID:req.query.createdby};
+  updatebydate={PO_Sent_By_Date:req.query.createddate};
+  }
+  if(req.query.updatestate=="Accepted"){
   updaterolecolumn={Intent_Accepted_By:req.query.loggedrole};
+  updatebycolumn={Intent_Accepted_By_ID:req.query.createdby};
+  updatebydate={Intent_Accepted_By_Date:req.query.createddate};
+  }  
   updatecolumn={Intent_State:req.query.updatestate};
   var Fnintentstateupdatecall = require("./app/scripts/dboperations.js");
-  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,updatecolumn,updaterolecolumn,function(returnval){
+  Fnintentstateupdatecall.FnIntentStateUpdate("intentstateupdate-service",cond,cond1,updatecolumn,updaterolecolumn,updatebycolumn,updatebydate,function(returnval){
     res.status(200).json(returnval);
   });
 });

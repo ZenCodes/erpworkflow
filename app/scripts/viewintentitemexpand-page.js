@@ -157,10 +157,6 @@ Polymer({is:"viewintentitemexpand-page",
       FnintentpoitemResponse:function(e){
         this.suppliernamearr=e.detail.response.itemarr;
         this.hidesupplier=false;
-        // alert(JSON.stringify(e.detail.response.itemarr));
-        //document.querySelector('viewintentitemexpand-page').suppliernamearr=e.detail.response.itemarr;
-        //alert(document.querySelector('viewintentitemexpand-page').suppliernamearr);
-        //document.querySelector('viewintentitemexpand-page').FnShowSupplierDiv();
       },
   FnShowSupplierDiv:function(){
     //alert("hi");
@@ -173,7 +169,6 @@ Polymer({is:"viewintentitemexpand-page",
       this.$.intentservice.FnCreatePO(selectedsupplier);      
   },
   FnSetPoRaiseFlag:function(){
-
     this.poraiseflag=1;
   }
 });

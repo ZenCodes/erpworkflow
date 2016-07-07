@@ -86,9 +86,16 @@ var intentregno;
       //alert(sessionStorage.getItem("loggeduser"));
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"createdby":"","state":"","loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"createdby":"","createddate":"","state":"","loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           obj.loggedrole=sessionStorage.getItem("loggedrole");
           obj.loggeduser=sessionStorage.getItem("loggeduser");
+          obj.createdby=sessionStorage.getItem("loggeduser");
+          var dt=new Date();
+          var d = dt.getDate();
+          var m = dt.getMonth();
+          var y = dt.getFullYear();
+          var dmy = d + "/" + (m+1) + "/" + y;
+          obj.createddate=dmy;
           obj.duedate=this.items[i].duedate;
           obj.state=this.items[i].state;
           obj.intentdate=this.items[i].invoicedate;
@@ -99,7 +106,7 @@ var intentregno;
           obj.qtymeasure=this.items[i].qtymeasure;
           obj.unitmeasure=this.items[i].unitmeasure;
           obj.remark=this.items[i].remark;
-          obj.createdby=sessionStorage.getItem("loggeduser");
+          // obj.createdby=sessionStorage.getItem("loggeduser");
           this.intentwrite=obj;
           this.intentwriteurl=sessionStorage.getItem("curr_sess_url")+"intentitemwrite-service";
           this.$.intentitemwriteAjax.generateRequest();

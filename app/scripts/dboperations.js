@@ -1327,7 +1327,7 @@ exports.FnIntentExpandItemFetch=function(pagename,cond,cond1,callback) {
 }
 
 //Function to promote intent
-exports.FnIntentStateUpdate=function(pagename,cond,cond1,updatecolumn,updaterolecolumn,callback) {
+exports.FnIntentStateUpdate=function(pagename,cond,cond1,updatecolumn,updaterolecolumn,updatebycolumn,updatebydate,callback) {
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
     if(obj[i].name==pagename){
@@ -1338,7 +1338,7 @@ exports.FnIntentStateUpdate=function(pagename,cond,cond1,updatecolumn,updaterole
   //console.log(updaterolecolumn);
 
   //console.log(JSON.stringify(ponumber)+" "+JSON.stringify(updatecolumn)+" "+JSON.stringify(updaterolecolumn)+" "+JSON.stringify(cond)+" "+JSON.stringify(cond1));
-  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,cond,cond1], function(err, rows) {
+  connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? , ? ,? WHERE ? and ?',[updatecolumn,updaterolecolumn,updatebycolumn,updatebydate,cond,cond1], function(err, rows) {
     if(!err)
     {
       //console.log('updated');

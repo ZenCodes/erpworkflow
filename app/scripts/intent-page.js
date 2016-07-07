@@ -234,7 +234,7 @@
             obj.unit=this.container;
             obj.unitmeasure=this.measure;
             obj.remark=this.remark;
-            obj.createdby=sessionStorage.getItem("loggeduser");
+            // obj.createdby=sessionStorage.getItem("loggeduser");
             if(deleteflag!=1)
               itemarr.push(obj);
             //alert(JSON.stringify(itemarr));
