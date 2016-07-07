@@ -86,7 +86,7 @@ var intentregno;
       //alert(sessionStorage.getItem("loggeduser"));
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"state":"","loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"createdby":"","state":"","loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           obj.loggedrole=sessionStorage.getItem("loggedrole");
           obj.loggeduser=sessionStorage.getItem("loggeduser");
           obj.duedate=this.items[i].duedate;
@@ -99,6 +99,7 @@ var intentregno;
           obj.qtymeasure=this.items[i].qtymeasure;
           obj.unitmeasure=this.items[i].unitmeasure;
           obj.remark=this.items[i].remark;
+          obj.createdby=sessionStorage.getItem("loggeduser");
           this.intentwrite=obj;
           this.intentwriteurl=sessionStorage.getItem("curr_sess_url")+"intentitemwrite-service";
           this.$.intentitemwriteAjax.generateRequest();

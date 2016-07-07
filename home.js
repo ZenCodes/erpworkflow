@@ -529,6 +529,7 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     state:req.query.state,
     PO_Number:'',
     Intent_Created_By:req.query.loggedrole,
+    Created_by:req.query.createdby,
     Intent_State:'',
     Item_Type_ID:''
   };

@@ -219,7 +219,7 @@
             }
           }
           if(existflag==0){
-            var obj={"state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            var obj={"createdby":"","state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
             if(localStorage.getItem("curr_sess_spotorderflag")=='true')
             obj.state='spot';
             else
@@ -234,6 +234,7 @@
             obj.unit=this.container;
             obj.unitmeasure=this.measure;
             obj.remark=this.remark;
+            obj.createdby=sessionStorage.getItem("loggeduser");
             if(deleteflag!=1)
               itemarr.push(obj);
             //alert(JSON.stringify(itemarr));
