@@ -60,28 +60,33 @@
       }
     },
     oldphysicinsertService:function(){
-      var arg={"inwardregno":"","status":"","checkstatus":""};
+      var arg={"inwardregno":"","status":"","checkstatus":"","createdby":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
 
       if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       this.oldphysicinsertparam=arg;
       this.oldphysicinserturl=sessionStorage.getItem("curr_sess_url")+"oldphysicinsert-service";
@@ -118,9 +123,10 @@
             "Quantity_Measure": "",
             "Remarks": "",
             "status": "",
-            "Inspection_Status": ""
+            "Inspection_Status": "",
+            "createdby":""
           };
-          //alert('container update:'+localStorage.getItem("curr_sess_PO_Number"));
+          
           obj.Inward_Register_Number = oldcontainerarr[i].Inward_Register_Number;
           obj.Product_ID = oldcontainerarr[i].Product_ID;
           obj.PO_Number = oldcontainerarr[i].PO_Number;
@@ -133,9 +139,7 @@
           obj.Remarks = oldcontainerarr[i].Remarks;
           obj.status = localStorage.getItem("curr_sess_currflownewstatus");
           obj.Inspection_Status = oldcontainerarr[i].Inspection_Status;
-          //obj.updatestatus=localStorage.getItem("curr_sess_currflowupdatestatus");
-          //obj.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
-          //alert(JSON.stringify(obj));
+          obj.createdby = sessionStorage.getItem("loggeduser");          
           this.oldcontainerupdateparam = obj;
           this.oldcontainerupdateurl = sessionStorage.getItem("curr_sess_url") + "oldcontainerupdate-service";
           this.$.oldcontainerupdateajax.generateRequest();
@@ -156,28 +160,33 @@
       }
     },
     physicupdateService:function(){
-      var arg={"inwardregno":"","status":"","checkstatus":""};
+      var arg={"inwardregno":"","status":"","checkstatus":"","createdby":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
 
       if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
         arg.status=localStorage.getItem("curr_sess_currflowupdatestatus");
         arg.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        arg.createdby=sessionStorage.getItem("loggeduser");
       }
       this.physicupdateparam=arg;
       //alert(JSON.stringify(arg));

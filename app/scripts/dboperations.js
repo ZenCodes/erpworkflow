@@ -170,11 +170,11 @@ exports.Fnusernameread=function(pagename,userid,callback){
 var queryy="SELECT Employee_Name FROM MD_HR_Employee where Employee_ID='"+userid+"'";
 connection.query(queryy, function (err, rows) {
 if(!err){
-  console.log(rows);
+  // console.log(rows);
   return callback(rows);
 }
 else{
-  console.log(err);
+  // console.log(err);
   return callback('fail');
 }
 });
@@ -367,7 +367,7 @@ exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
         }
         else{
           //On failing insert operation error message revert
-          //console.log("Not Inserted!"+idd);
+        // console.log("Not Inserted!"+err);
           return callback("not okay");
           //res.status(200).json({'inwardregno': 'not okay'});
         }
@@ -517,7 +517,7 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
             if (!err)
               return callback("updated");
             else {
-              // console.log(err);
+              console.log(err);
               return callback("not updated");
             }
           });
@@ -537,13 +537,13 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
             if (!err)
               return callback("updated");
             else {
-              // console.log("error!" + err);
+              console.log("error!" + err);
               return callback("not updated");
             }
           });
         }
         else {
-          // console.log(err);
+          console.log(err);
           return callback("not updated");
         }
       });
@@ -641,13 +641,14 @@ exports.Fnphysicqualifyinwardacceptcheck=function(pagename,inwardregno,status,ch
   }
 }
 
-exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callback) {
+exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,createdby,callback) {
   var queryy="select * from OD_Sales_Inward_Material where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "'";
   //console.log(queryy);
   connection.query(queryy, function (err, rows) {
   //console.log(rows);
     if(!err){
     var response= {
+      Created_By:createdby,
       Purchase_Type: rows[0].Purchase_Type,
       Inward_Bill_Number: rows[0].Inward_Bill_Number,
       Inward_Register_Date: rows[0].Inward_Register_Date,
@@ -679,8 +680,8 @@ exports.Fnoldphysicinsert=function(pagename,inwardregno,checkstatus,status,callb
   });
 }
 
-exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callback) {
-  var queryy="update OD_Sales_Inward_Material set Unit_Accepted=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + status + "' and Inspection_Status='Approved'),Qty_Accepted=(select sum(Quantity) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + status + "' and Inspection_Status='Approved'),state='"+status+"' where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' ";
+exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,createdby,callback) {
+  var queryy="update OD_Sales_Inward_Material set Unit_Accepted=(select count(*) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + status + "' and Inspection_Status='Approved'),Qty_Accepted=(select sum(Quantity) from OD_Inward_Material_Inspection where Inward_Register_Number='" + inwardregno + "' and status='" + status + "' and Inspection_Status='Approved'),state='"+status+"',Created_by='"+createdby+"' where new_Inward_Register_Number='" + inwardregno + "' and state='" + checkstatus + "' ";
   //console.log(queryy);
   connection.query(queryy, function (err, rows) {
     if(!err) {
@@ -692,6 +693,7 @@ exports.Fnphysicqualified=function(pagename,inwardregno,checkstatus,status,callb
       //}
     else
       {
+        console.log(err);
         return callback({"flag": "not updated"});
       }
 

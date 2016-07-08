@@ -14,18 +14,17 @@ var flag="true";
     },
 
     FnSaveItem: function () {
-      document.querySelector("#cont" + this.inwardno).validate();
-      //document.querySelector("#heat" + this.inwardno).validate();
+      document.querySelector("#cont" + this.inwardno).validate();      
       document.querySelector("#qty" + this.inwardno).validate();
       if ((this.ponumber == null || this.ponumber == "") && (localStorage.getItem("curr_sess_POchangeflag") != 1)) {
         alert("PO number should be filled out!");
       }
       else {
         this.inspectionstatus = "1";
+        this.createdby= sessionStorage.getItem("loggeduser");
         this.podate = localStorage.getItem("localsess_curr_inwarddate");
-        this.ponumber = localStorage.getItem("curr_sess_PONumber");
-        //alert("session:"+localStorage.getItem("curr_sess_PONumber"));
-        //alert(this.ponumber);
+        this.ponumber = localStorage.getItem("curr_sess_PONumber");        
+        
         switch (parseInt(sessionStorage.getItem("curr_sess_roleflag"))) {
           case 1:
             this.status = localStorage.getItem("curr_sess_currflowstatus");
@@ -44,18 +43,21 @@ var flag="true";
             this.updatestatus = localStorage.getItem("curr_sess_currflowupdatestatus");
             break;
         }
-        //alert(this.status+"  "+this.newstatus);
+        
         this.$.form.submit();
       }
-      //}
+      
     },
     FnRejectItem: function () {
       if ((this.ponumber == null || this.ponumber == "") && (localStorage.getItem("curr_sess_POchangeflag") != 1)) {
         alert("PO number should be filled out!");
       }
       else {
-        //alert(this.containerid);
+        // alert(this.containerid);
+        var containerid=this.containerid;
+        this.containerid=containerid;
         this.inspectionstatus = "0";
+        this.createdby= sessionStorage.getItem("loggeduser");
         this.podate = localStorage.getItem("localsess_curr_inwarddate");
         this.ponumber = localStorage.getItem("curr_sess_PONumber");
         switch (parseInt(sessionStorage.getItem("curr_sess_roleflag"))) {

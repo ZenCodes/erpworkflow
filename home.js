@@ -208,6 +208,7 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   inspectionstatus="Rejected";
 
   var  response={
+    Created_By:req.body.createdby,
     Serial_No:req.body.serialno,
     Inward_Register_Number:req.body.inwardregno,
     Product_ID:req.body.productid,
@@ -223,7 +224,7 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
     Inspection_Status:inspectionstatus
   };
 
-  //console.log(response);
+  // console.log(response);
 
   var cond1={Inward_Register_Number:req.body.inwardregno};
   var cond2={status:req.body.updatestatus};
@@ -233,7 +234,7 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   var cond6={Container_ID:req.body.containerid};
   var cond7={Serial_No:req.body.serialno};
 
-  console.log(JSON.stringify(cond1)+"  "+JSON.stringify(cond2)+"  "+JSON.stringify(cond3)+"  "+JSON.stringify(cond4)+"  "+JSON.stringify(cond5)+"  "+JSON.stringify(cond6)+"  "+JSON.stringify(cond7));
+  // console.log(JSON.stringify(cond1)+"  "+JSON.stringify(cond2)+"  "+JSON.stringify(cond3)+"  "+JSON.stringify(cond4)+"  "+JSON.stringify(cond5)+"  "+JSON.stringify(cond6)+"  "+JSON.stringify(cond7));
 
   var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
@@ -277,7 +278,8 @@ app.post("/oldcontainerupdate-service",urlencodedParser,function(req,res){
   Quantity_Measure : req.query.Quantity_Measure,
   Remarks : req.query.Remarks,
   status : req.query.status,
-  Inspection_Status :req.query.Inspection_Status
+  Inspection_Status :req.query.Inspection_Status,
+  Created_By: req.query.createdby
   }
   var inwardregno={Inward_Register_Number:req.query.Inward_Register_Number};
   //var newupdatestatus={status:"Old"+req.query.checkstatus};
@@ -311,9 +313,10 @@ app.post("/oldphysicinsert-service",urlencodedParser,function(req,res) {
   var inwardregno=req.query.inwardregno;
   var checkstatus=req.query.checkstatus;
   var status=req.query.status;
+  var createdby=req.query.createdby;
   var Fnoldphysicinsertcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  Fnoldphysicinsertcall.Fnoldphysicinsert("oldphysicinsert-service",inwardregno,checkstatus,status,function(returnval){
+  Fnoldphysicinsertcall.Fnoldphysicinsert("oldphysicinsert-service",inwardregno,checkstatus,status,createdby,function(returnval){
     if(returnval=="succ")
       res.status(200).json({"flag":returnval});
     else if(returnval=="fail")
@@ -325,9 +328,10 @@ app.post("/physicqualified-service",urlencodedParser,function(req,res) {
   var inwardregno=req.query.inwardregno;
   var checkstatus=req.query.checkstatus;
   var status=req.query.status;
+  var createdby=req.query.createdby;
   var Fnphysicqualifiedcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  Fnphysicqualifiedcall.Fnphysicqualified("physicqualified-service",inwardregno,checkstatus,status,function(returnval){
+  Fnphysicqualifiedcall.Fnphysicqualified("physicqualified-service",inwardregno,checkstatus,status,createdby,function(returnval){
     res.status(200).json({"flag":returnval.flag,"state":returnval.state});
   });
 });
@@ -356,7 +360,7 @@ app.post("/updatequalityparameter-service",urlencodedParser,function(req,res) {
     Test_Date:req.query.testdate,
     Unit_Measure:req.query.measure
   };
-  console.log(response);
+  // console.log(response);
   var Fnupdatequalityparametercall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
   Fnupdatequalityparametercall.Fnupdatequalityparameter("updatequalityparameter-service",response,function(returnval){
