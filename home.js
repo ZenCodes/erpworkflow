@@ -1169,17 +1169,21 @@ app.post("/viewintentpromote-service",urlencodedParser,function(req,res){
   intentno={Intent_Register_Number:req.query.intentregno};
   itemdes={Product_ID:req.query.itemdes};
   updaterolecolumn={PO_Created_By:'Purchase manager'};
+  updateroleid={PO_Created_By_ID:req.query.createdby};
+  updatedate={PO_Created_By_Date:req.query.createddate};
   updatecolumn={Intent_State:'POCreated'};
   oldcolumn={Intent_State:'Approved'};
+  // createdby={Created_By:req.query.createdby};
   var response={
     Supplier_Name:req.query.supplier,
     Intent_Register_Number:req.query.intentregno,
     Product_ID:req.query.itemdes,
+    Created_By:req.query.createdby,
     PO_Number:req.query.ponumber
    };
 
   var FnViewintentpromotecall = require("./app/scripts/dboperations.js");
-  FnViewintentpromotecall.FnViewintentpromote("viewintentpromote-service",response,intentno,itemdes,updaterolecolumn,updatecolumn,oldcolumn,function(returnval){
+  FnViewintentpromotecall.FnViewintentpromote("viewintentpromote-service",response,intentno,itemdes,updaterolecolumn,updateroleid,updatedate,updatecolumn,oldcolumn,function(returnval){
     res.status(200).json({"itemarr":returnval});
   });
 });

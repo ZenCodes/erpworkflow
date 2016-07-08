@@ -414,7 +414,14 @@
       // Funtion to promote intent items to the next state
       FnViewIntentPromoteService:function(temparr){         
          for(var i=0;i<temparr.length;i++){
-          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber"};
+          var obj={"itemdes":"","supplier":"","intentregno":"","":"ponumber","createdby":"","createddate":""};
+          var dt=new Date();
+          var d = dt.getDate();
+          var m = dt.getMonth();
+          var y = dt.getFullYear();
+          var dmy = d + "/" + (m+1) + "/" + y;
+          obj.createddate=dmy;
+          obj.createdby=sessionStorage.getItem("loggeduser");          
           obj.itemdes=temparr[i].itemdes;
           obj.supplier=temparr[i].supplier;
           obj.intentregno=temparr[i].intentregno;

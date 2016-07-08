@@ -2403,7 +2403,7 @@ exports.FnIntentviewPocreate=function(pagename,callback) {
  }
 
 //Function to promote intent
-exports.FnViewintentpromote=function(pagename,response,intentno,itemdes,updaterolecolumn,updatecolumn,oldcolumn,callback) {
+exports.FnViewintentpromote=function(pagename,response,intentno,itemdes,updaterolecolumn,updateroleid,updatedate,updatecolumn,oldcolumn,callback) {
 
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -2414,7 +2414,7 @@ exports.FnViewintentpromote=function(pagename,response,intentno,itemdes,updatero
 
     connection.query('INSERT INTO OD_Purchase_Order SET ?',[response],function(err,fields) {
         if(!err){
-          connection.query('UPDATE OD_Stores_Intent_Items SET ? , ? WHERE ? and ?',[updatecolumn,updaterolecolumn,intentno,itemdes], function(err, rows) {
+          connection.query('UPDATE OD_Stores_Intent_Items SET ? , ?,?,? WHERE ? and ?',[updatecolumn,updaterolecolumn,updateroleid,updatedate,intentno,itemdes], function(err, rows) {
 
           if(!err){
             return callback("succ");
