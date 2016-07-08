@@ -1123,6 +1123,7 @@ app.post('/itempocreate-service',urlencodedParser, function (req, res) {
     Supplier_Name:req.query.supplier,
     Intent_Register_Number:req.query.intentregno,
     Product_ID:req.query.itemdes,
+    Created_By:req.query.createdby,
     PO_Number:''
   };
 

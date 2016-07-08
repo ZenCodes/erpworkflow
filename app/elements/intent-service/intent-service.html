@@ -322,7 +322,7 @@
         var d = dt.getDate();
         var m = dt.getMonth();
         var y = dt.getFullYear();
-        var dmy = d + "/" + m + "/" + y;          
+        var dmy = d + "/" + (m+1) + "/" + y;          
         obj.createddate=dmy;
         obj.updatestate=updatestate;        
         this.intentupdateparam=obj;        
@@ -373,8 +373,10 @@
       },
       // Function which invokes to create po for the item based intent view
       FnCreatePO:function(supplier){
-        var obj={"supplier":"","itemdes":"","intentregno":""};
+        var obj={"supplier":"","itemdes":"","intentregno":"","createdby":"","createddate":""};
         obj.supplier=supplier;
+        obj.createdby=sessionStorage.getItem("loggeduser");
+
         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
         this.itempocreateparam=obj;
