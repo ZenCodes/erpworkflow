@@ -32,6 +32,45 @@ app.post('/mailservice-service',urlencodedParser, function (req, res) {
   });
 });
 
+
+app.post('/purchaseordersendmail-service',urlencodedParser, function (req, res) {
+
+        var response={
+        cmpname:req.query.cmpname,
+        cmpaddr1:req.query.cmpaddr1,
+        cmpaddr2:req.query.cmpaddr2,
+        cmpaddr3:req.query.cmpaddr3,
+        cmpemail:req.query.email,
+        cmpphone:req.query.cmpphone,
+        ponumber:req.query.ponumber,
+        podate:req.query.podate,
+        suppliername:req.query.suppliername,
+        location:req.query.location,
+        city:req.query.city,
+        district:req.query.district,
+        state:req.query.state,
+        mobileno:req.query.mobileno,
+        email:req.query.email,
+        productid:req.query.productid,
+        quantity:req.query.quantity,
+        qtymeasure:req.query.qtymeasure,
+        unit:req.query.unit,
+        unitmeasure:req.query.unitmeasure,
+        itemid:req.query.itemid,
+        total:req.query.total,
+        exduty:req.query.exduty,
+        vat:req.query.vat,
+        cst:req.query.cst,
+        grandtot:req.query.grandtot,
+        itemsupplierprice:req.query.itemsupplierprice
+      };
+
+  var Fnpurchaseordersendmailcall = require("./app/scripts/dboperations.js");
+  Fnpurchaseordersendmailcall.Fnpurchaseordersendmail("purchaseordersendmail-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });
+});
+
 //Receiving post request from login card
 app.post('/login-card', urlencodedParser, function (req, res) {
   //Loading JS file to call the login check function

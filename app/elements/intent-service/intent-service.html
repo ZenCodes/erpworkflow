@@ -171,6 +171,69 @@
       on-response="FnPurchaseorderitempriceResponse">
     </iron-ajax>
 
+
+    <iron-ajax
+      id="purchaseorderajaxmail"
+      url="{{purchaseorderurlmail}}"
+      params='{{purchaseorderparammail}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderResponsemail">
+    </iron-ajax>
+
+    <!-- Function which fetching the item info for creating po -->
+    <iron-ajax
+      id="purchaseorderitemajaxmail"
+      url="{{purchaseorderitemurlmail}}"
+      params='{{purchaseorderitemparammail}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemResponsemail">
+    </iron-ajax>
+
+    <!-- Component which read the tax component for the item -->
+    <iron-ajax
+      id="purchaseorderitemtaxajaxmail"
+      url="{{purchaseorderitemtaxurlmail}}"
+      params='{{purchaseorderitemtaxparammail}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemtaxResponsemail">
+    </iron-ajax>
+
+    <!-- Component which fetches the item price while creating po for the intnt item -->
+    <iron-ajax
+      id="purchaseorderitempriceajaxmail"
+      url="{{purchaseorderitempriceurlmail}}"
+      params='{{purchaseorderitempriceparammail}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitempriceResponsemail">
+    </iron-ajax>
+
+    <iron-ajax
+      id="purchaseordersendmailajax"
+      url="{{purchaseordersendmailurl}}"
+      params='{{purchaseordersendmailparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnpurchaseordersendmailResponse">
+    </iron-ajax>
+
+    <!-- Component to fetch the company profile for PO creation -->
+    <iron-ajax      
+      id="companyprofilereadAjax"
+      url="../../config/companyprofile.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="companyprofilereadResponse">
+    </iron-ajax>
+
     <grn-service id="gs"></grn-service>
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
@@ -190,6 +253,7 @@
     var poitemarr=[];
     var poitemtax=[];
     var poitemprice=[];
+    var cmparr=[];
     Polymer({
       is: 'intent-service',
       ready:function(){
@@ -454,8 +518,129 @@
         }
         else
           alert('PO not created!');
-      }
+      },
+      // Function which make request to call the item for PO creation 
+      FnPurchaseorderServicemail:function(){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderurlmail=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
+         this.purchaseorderparammail=obj;
+         this.$.purchaseorderajaxmail.generateRequest(); 
+      },
+      FnPurchaseorderResponsemail:function(e){
+          poarr=e.detail.response.itemarr;
+          alert(JSON.stringify(poarr));
+         if(poarr.length>0){
+         var d=new Date(poarr[0].PO_Date);         
+         var y=d.getFullYear();
+         var m=d.getMonth();
+         var d=d.getDate();
+         poarr[0].PO_Date=d+"/"+(m+1)+"/"+y;
+         // document.querySelector("purchaseorder-home").poarray=poarr;
+         // document.querySelector("purchaseorder-card").poarray=poarr;
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitemurlmail=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
+         this.purchaseorderitemparammail=obj;
+         this.$.purchaseorderitemajaxmail.generateRequest();          
+         }
+      },
+      FnPurchaseorderitemResponsemail:function(e){
+         poitemarr=e.detail.response.itemarr;
+         alert(JSON.stringify(poitemarr));         
+         if(poitemarr.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitemtaxurlmail=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
+         this.purchaseorderitemtaxparammail=obj;
+         this.$.purchaseorderitemtaxajaxmail.generateRequest();          
+         }
+      },
+      FnPurchaseorderitemtaxResponsemail:function(e){
+         poitemtax=e.detail.response.itemarr;
+         alert(JSON.stringify(poitemtax));                 
+         if(poitemtax.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");       
+         this.purchaseorderitempriceurlmail=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
+         this.purchaseorderitempriceparammail=obj;
+         this.$.purchaseorderitempriceajaxmail.generateRequest();          
+         }
+      },
+      FnPurchaseorderitempriceResponsemail:function(e){
+          poitemprice=e.detail.response.itemarr;
+          alert(JSON.stringify(poitemprice));
+          if(poitemprice.length>0){          
+          var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
+          var tax2=((parseFloat(poitemtax[0].VAT))/100);
+          var tax3=((parseFloat(poitemtax[0].CST))/100);
+          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
+          var exduty=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity).toFixed(2);
+          poitemarr[(poitemarr.length)-1].price=(poitemprice[0].Item_Supplier_price).toFixed(2);
+          poitemarr[(poitemarr.length)-1].total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].exduty=((parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity)).toFixed(2);
 
+          if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){
+          poitemarr[(poitemarr.length)-1].vat=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
+          }
+          else{           
+          poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
+          }
+        }
+        this.$.companyprofilereadAjax.generateRequest();
+      },
+      companyprofilereadResponse:function(e){
+        cmparr=e.detail.response;
+        this.purchaseordersendmailService();
+      },
+      purchaseordersendmailService:function(){
+        var obj={"total":"","exduty":"","vat":"","cst":"","grandtot":"","email":"","cmpname":"","cmpaddr1":"","cmpaddr2":"","cmpaddr3":"","cmpemail":"","cmpphone":"","ponumber":"","podate":"","suppliername":"","location":"","city":"","district":"","state":"","mobileno":"",
+         "productid":"","quantity":"","qtymeasure":"","unit":"","unitmeasure":"","itemid":"","exciseduty":"","vat":"","cst":"",
+         "itemsupplierprice":""
+        };
+        obj.cmpname=cmparr[0].name;
+        obj.cmpaddr1=cmparr[0].addressline1;
+        obj.cmpaddr2=cmparr[0].addressline2;
+        obj.cmpaddr3=cmparr[0].addressline3;
+        obj.cmpemail=cmparr[0].email;
+        obj.cmpphone=cmparr[0].phoneno;
+        obj.email=poarr[0].Email;
+        obj.ponumber=poarr[0].PO_Number;
+        obj.podate=poarr[0].PO_Date;
+        obj.suppliername=poarr[0].Supplier_Name;
+        obj.location=poarr[0].Location;
+        obj.city=poarr[0].City;
+        obj.district=poarr[0].District;
+        obj.state=poarr[0].State;
+        obj.mobileno=poarr[0].Mobileno;
+        obj.productid=poitemarr[0].Product_ID;
+        obj.quantity=poitemarr[0].Quantity;
+        obj.qtymeasure=poitemarr[0].Quantity_Measure;
+        obj.unit=poitemarr[0].unit;
+        obj.unitmeasure=poitemarr[0].Unit_Measure;
+        obj.total=poitemarr[0].total;
+        obj.exduty=poitemarr[0].exduty;
+        obj.vat=poitemarr[0].vat;
+        obj.cst=poitemarr[0].cst;
+        obj.grandtot=poitemarr[0].grandtot;
+        obj.itemid=poitemtax[0].Item_ID;       
+        obj.itemsupplierprice=poitemprice[0].Item_Supplier_price;
+
+        this.purchaseordersendmailurl=sessionStorage.getItem("curr_sess_url")+"purchaseordersendmail-service";
+        this.purchaseordersendmailparam=obj;
+        this.$.purchaseordersendmailajax.generateRequest(); 
+      },
+      FnpurchaseordersendmailResponse:function(e){
+        alert(JSON.stringify('mail sent'));
+      }
     });
   })();
   </script>

@@ -7,12 +7,24 @@ var fs = require('fs');
 var logfile;
 
 var credential=[];
+var emailcredential=[];
 //Fetching credential information
 exports.FnReadCredentials=function() {
   require('fs').readFile('./app/config/credentials.json', 'utf8', function (err, data) {
     if (err) throw err; // we'll not consider error handling for now
     credential = JSON.parse(data);
+    exports.FnEmailReadCredentials();
     exports.FnDBConnection();
+    //console.log(obj);
+  });
+}
+
+//Fetching credential information
+exports.FnEmailReadCredentials=function() {
+  require('fs').readFile('./app/config/emailcredential.json', 'utf8', function (err, data) {
+    if (err) throw err; // we'll not consider error handling for now
+    emailcredential = JSON.parse(data);
+    
     //console.log(obj);
   });
 }
@@ -53,11 +65,10 @@ exports.FnDBConnection=function(){
 }
 
 
-
 exports.Fnmailservice=function() {
 var server  = email.server.connect({
-   user:    "rmpraba@gmail.com",
-   password:"rmpraba90raja",
+   user:    emailcredential[0].email,
+   password:emailcredential[0].password,
    host:    "smtp.gmail.com",
    ssl:     true
 
@@ -65,7 +76,7 @@ var server  = email.server.connect({
 // send the message and get a callback with an error or details of the message that was sent
 server.send({
    text:    "Purchase Order",
-   from:    "rmpraba@gmail.com",
+   from:    emailcredential[0].email,
    to:      "rmpraba@gmail.com",
    cc:      "prabha@niit-karur.com",
    subject: "testing po",
@@ -76,6 +87,55 @@ server.send({
    ]
 }, function(err, message) { console.log(err || message); });
   return callback('mail sent');
+}
+
+
+exports.Fnpurchaseordersendmail=function(pagename,response,callback) {    
+
+// console.log(JSON.stringify(response));   
+
+// console.log(response.ponumber+" "+response.podate+" "+response.suppliername);
+
+
+var server  = email.server.connect({
+   user:    emailcredential[0].email,
+   password:emailcredential[0].password,
+   host:    "smtp.gmail.com",
+   ssl:     true
+
+});
+// send the message and get a callback with an error or details of the message that was sent
+server.send({
+   text:    "Purchase Order",
+   from:    response.cmpemail,
+   to:      response.email,   
+   subject: "PO Test",
+    attachment:
+   [
+      {data:"<html><body style='width:70%; margin:0 20%; font-family: sans-serif;'><div style=' border: 1px solid black; border-collapse: collapse;'>"+
+      "<table style='border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;'>"+
+      "<tr><table align='center' border='0' cellpadding='0' cellspacing='0' style='max-width:100%; min-width:100%;' width='100%' class='mcnTextContentContainer'>"+
+      "<tbody><tr><td valign='top' class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;'>  <div style='display:flex;'>"+
+      "<img style='width: 150px; height: 150px; padding: 10px;' src='logo.jpg'>"+
+      "<h2 style='margin-left:50px'>Purchase Order</h2> </div></td></tr></tbody></table></tr><tr>"+
+      "<table align='left' border='0' cellpadding='0' cellspacing='0' style='max-width:100%; min-width:100%; text-align:center;' width='100%' class='mcnTextContentContainer'>"+
+      "<tbody><tr><td class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:3px; padding-left:18px;'>"+
+      "<div style='margin:10px 120px 20px 75px;width:100%;'><div style='float:right; margin-top: 10px; margin-right:200px;''>"+
+      "PO Date : "+response.podate+"</div><div style='display:flex;'><p> "+response.cmpname+"</p></div><div style='float:right; margin-top: 10px; margin-right:200px;''>"+
+      "PO NUmber : "+response.ponumber+"</div><div style='display:flex;'><p>"+response.cmpaddr1+"</p></div><div style='display:flex;'>"+
+      "<p>"+response.cmpaddr2+"</p></div> <div style='display:flex;'><p>"+response.cmpemail+"</p></div><div style='display:flex;'>"+
+      "<p>"+response.cmpphone+"</p></div></div><div style='margin:20px 120px 20px 50px;width:100%;'><div style='display:flex;'><p>To</p></div></div>"+
+      "<div style='margin:20px 120px 20px 75px;width:100%;'><div style='display:flex;'><p> "+response.suppliername+"</p>"+
+      "</div><div style='display:flex;'><p> "+response.location+"</p></div><div style='display:flex;'><p>"+response.email+"</p>"+
+      "</div><div style='display:flex;'><p>"+response.mobileno+"</p></div></div><table style='margin:20px 120px 20px 50px;width:90%; border-collapse: collapse;' border='1'>"+
+      "<thead style=' padding: 5px;'><tr><td>S. No</td><td>Item Description</td><td>Qty</td><td>UOM</td><td>Rate</td><td>Amount</td>"+
+      "</tr></thead><tbody><tr><td>1</td><td>"+response.productid+"</td><td>"+response.quantity+" "+response.qtymeasure+"</td><td>"+response.unit+" "+response.unitmeasure+"</td><td>"+response.itemsupplierprice+"</td><td>"+response.total+"</td></tr></tbody>"+
+      "</table><div style='float:left; margin-left: 50px;'>Notes .. .</div><div style='float:right; text-align:left;'><div><p>Total:"+response.total+"</p>"+
+      "<p>Excess Duty(12.5%):"+response.exduty+"</p><p>VAT(5%):"+response.vat+"</p><p>CST(2%):"+response.cst+"</p><p>Grand Total:"+response.grandtot+"</p></div></div></td></tr></tbody></table></tr></table></div></body></html>", alternative:true}                    
+   ]
+}, function(err, message) { console.log(err || message); });
+  return callback('mail sent');
+
 }
 
 
@@ -2876,7 +2936,7 @@ exports.Fnpurchaseorder=function(pagename,intentno,itemdes,callback) {
       Config_tables=obj[i].value;
     }
   }
-  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.State,ps.Mobileno from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
+  var queryy="select po.PO_Number,po.PO_Date,ps.Supplier_Name,ps.Location,ps.City,ps.District,ps.State,ps.Mobileno,ps.Email from OD_Purchase_Order po join MD_Purchase_Supplier ps on(po.Supplier_Name=ps.Supplier_Name) where Intent_Register_Number='"+intentno+"' and Product_ID='"+itemdes+"'";
   connection.query(queryy, function(err, rows) {
     if(!err)
     {
@@ -3291,9 +3351,9 @@ exports.Fnresetpassword=function(pagename,empid,newpass,callback) {
 exports.Fnverifymail=function(pagename,empid,code,callback) {
 
   var server  = email.server.connect({
-   user:    "mlzssamsidh@yahoo.com",
-   password:"bgl12345",
-   host:    "smtp.mail.yahoo.com",
+   user:    emailcredential[0].email,
+   password:emailcredential[0].password,
+   host:    "smtp.gmail.com",
    ssl:     true
   });
    connection.query('select * from MD_HR_Employee where ?',[empid] ,function(err, rows) {
@@ -3303,7 +3363,7 @@ exports.Fnverifymail=function(pagename,empid,code,callback) {
       // send the message and get a callback with an error or details of the message that was sent
    server.send({
    text:    "Verification code",
-   from:    "mlzssamsidh@yahoo.com",
+   from:    emailcredential[0].email,
    to:       rows[0].Email,
    subject: "Verification Code",
     attachment:
@@ -3312,7 +3372,7 @@ exports.Fnverifymail=function(pagename,empid,code,callback) {
    ]
   }, function(err, message) { console.log(err || message); });
   return callback('mail sent');
-     return callback('mail sent') 
+     
     }
     else{
       console.log(err);

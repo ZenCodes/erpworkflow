@@ -273,7 +273,7 @@
      {"Page":[
       {"page":["Employee Detail","user-info-card"]},
       {"Label":[{"Employee_Name":"Employee Name","Date_Of_Birth":"Date Of Birth",
-        "Sex":"Sex","Age":"Age","Employment_Type":"Employment Type",
+        "Sex":"Gender","Age":"Age","Employment_Type":"Employment Type",
         "Street_Name":"Street Name",
         "Landmark":"Landmark","Location":"Location",
         "City":"City","District":"District","State":"State",
@@ -295,7 +295,7 @@
      {"Page":[
       {"page":["Employee Detail","userinfo-read-card"]},
       {"Label":[{"Employee_Name":"Employee Name","Date_Of_Birth":"Date Of Birth",
-        "Sex":"Sex","Age":"Age","Employment_Type":"Employment Type",
+        "Sex":"Gender","Age":"Age","Employment_Type":"Employment Type",
         "Street_Name":"Street Name",
         "Landmark":"Landmark","Location":"Location",
         "City":"City","District":"District","State":"State",
