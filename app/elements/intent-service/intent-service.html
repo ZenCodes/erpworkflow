@@ -432,8 +432,11 @@
           }
           this.$.ID_Show_Dialog.FnShowDialog(pstate,"");
           this.$.gs.FnIntentitemReadService();
-          document.querySelector('viewintentitem-page').setToggle();          
+           
+          if(promotestate!="POSent") { 
+          document.querySelector('viewintentitem-page').setToggle();       
           window.location.href="../elements/indexhome.html";
+          }
       },
       // Function which invokes to create po for the item based intent view
       FnCreatePO:function(supplier){
@@ -639,7 +642,9 @@
         this.$.purchaseordersendmailajax.generateRequest(); 
       },
       FnpurchaseordersendmailResponse:function(e){
-        alert(JSON.stringify('mail sent'));
+        alert('PO Sent');
+        // document.querySelector('viewintentitem-page').setToggle();       
+        window.location.href="../elements/indexhome.html";
       }
     });
   })();
