@@ -18,7 +18,10 @@
       localStorage.setItem("curr_sess_searchtypeflag", "nothing");
       localStorage.setItem("curr_sess_addusereditflag","0");
   },
-    // Function which invokes while changing the email
+  FnSelectGender:function(e){ 
+  this.sex = e.target.selectedItem.textContent.trim();   
+  },
+  // Function which invokes while changing the email
   FnEmailChange:function(){
     document.querySelector('#emailid').validate();
   },
@@ -51,7 +54,7 @@
      if(localStorage.getItem("curr_sess_searchtypeflag")=="nothing"){
          // localStorage.setItem('curr_sess_loggedemployee',this.employeename);
          // Calling service to store the customer information
-         this.$.userservice.addemployeeService(this.employeename,this.dob,this.sex,this.age,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+         this.$.userservice.addemployeeService(this.employeename,localStorage.getItem("curr_sess_dobdate"),this.sex,this.age,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
          // After submitting customer it would show the tax page to enter
          document.querySelector("usercreation-home-card").setPage("Account Detail");
      }
@@ -59,7 +62,7 @@
      else if(localStorage.getItem("curr_sess_addusereditflag")=="1"&&localStorage.getItem("curr_sess_searchtypeflag")=="1"){
        // Caalling service to fetch the customer information
        // this.$.customerservice.updatesupplierService(this.category,localStorage.getItem('curr_sess_customerloggedid'),this.suppliername,this.aliasname,this.address1,this.address2,this.doorno,this.streetno,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid,this.faxno,this.website);
-        this.$.userservice.updateemployeeService(localStorage.getItem('curr_sess_employeeloggedid'),this.employeename,this.dob,this.sex,this.age,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
+        this.$.userservice.updateemployeeService(localStorage.getItem('curr_sess_employeeloggedid'),this.employeename,localStorage.getItem("curr_sess_dobdate"),this.sex,this.age,this.streetname,this.location,this.city,this.district,this.state,this.country,this.pincode,this.phoneno,this.mobileno,this.emailid);
          // Calling service to fetch the tax information
          this.$.userservice.callAccountService();
          // Showing tax page with values while moving from customer page
@@ -177,6 +180,9 @@
   // Function to change fields as editable while cicking edit button
   FnEnableFields:function(){
     this.read=false;
+  },
+  setDOB:function(age){
+    this.age=age;
   }
   });
 })();

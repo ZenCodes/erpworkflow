@@ -14,6 +14,7 @@
 <link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="../../bower_components/gold-zip-input/gold-zip-input.html">
 <link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../dobpicker-card/dobpicker-card.html">
 <!-- Add supplier component registeration added keypress event to respond for key board enter while submitting form-->
 <dom-module id="user-info-card" on-keypress="{{keypress}}">
   <template>
@@ -37,7 +38,7 @@
       .owner{
         @apply(--layout-horizontal);
       }
-      paper-input,gold-email-input{
+      paper-input,gold-email-input,paper-dropdown-menu{
         text-align: left;
         width: 35%;
         font-family: calibri;
@@ -55,6 +56,9 @@
       }
 
       #supplierid,#suppliername,#location,#city,#district,#state,#country,#pincode,#mobileno,#address1,#doorno,#streetno,#streetname,#emailid{
+        --paper-input-container-label: { color: red };
+      }
+      paper-dropdown-menu{
         --paper-input-container-label: { color: red };
       }
       #suppliername,#location,#district,#country,#phoneno,#emailid,#address2,#streetno,#website,#aliasname{
@@ -90,6 +94,10 @@
         margin-left: -20%;
         margin-top: 4%;
       }
+      dobpicker-card{
+        margin-left: -20%;
+        margin-top: 4%;
+      }
     </style>
 
     <!--This template binding dynamic labels and error messages-->
@@ -110,12 +118,22 @@
             </div>
           </div>
           <div class="drop">
-            <paper-input readonly="{{read}}" label="{{item.Date_Of_Birth}}" name="aliasname" value="{{dob}}" id="aliasname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+          <dobpicker-card></dobpicker-card>
+            <!-- <paper-input readonly="{{read}}" label="{{item.Date_Of_Birth}}" name="aliasname" value="{{dob}}" id="aliasname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input> -->
           </div>
         </div>
         <div class="driver">
-          <paper-input readonly="{{read}}" label="{{item.Sex}}" name="address1" value="{{sex}}" required  id="address1" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
-          <paper-input readonly="{{read}}" label="{{item.Age}}" name="address2" value="{{age}}" required  id="address2" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
+          
+        <paper-dropdown-menu id="sex" label="Select Gender" disabled="{{read}}" required>
+            <paper-menu class="dropdown-content"  selected="{{sex}}" on-iron-select="FnSelectGender"  attr-for-selected="value" required>              
+                <paper-item value="Male">Male</paper-item>
+                <paper-item value="Female">Female</paper-item>              
+            </paper-menu>
+        </paper-dropdown-menu>
+
+          <!-- <paper-input readonly="{{read}}" label="{{item.Sex}}" name="address1" value="{{sex}}" required  id="address1" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input> -->
+
+          <paper-input readonly label="{{item.Age}}" name="address2" value="{{age}}" required  id="address2" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>
         </div>
         <div class="driver">
           <paper-input readonly="{{read}}" label="{{item.Street_Name}}" name="streetname" value="{{streetname}}" required  id="streetname" allowed-pattern="[ A-Za-z0-9_@./#&+-]" error-message=""></paper-input>

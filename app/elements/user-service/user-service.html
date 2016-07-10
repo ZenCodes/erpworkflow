@@ -478,6 +478,9 @@
       document.querySelector("user-info-card").phoneno=arr[0].Phone;
       document.querySelector("user-info-card").mobileno=arr[0].Mobile;
       document.querySelector("user-info-card").emailid=arr[0].Email;
+
+
+      document.querySelector("dobpicker-card").setDate(arr[0].Date_Of_Birth);
       },
       callcreateDepartmentService:function(departmentid,departmentname){
       var obj={"departmentid":"","departmentname":""};
