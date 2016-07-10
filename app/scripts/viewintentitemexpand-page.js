@@ -106,7 +106,7 @@ Polymer({is:"viewintentitemexpand-page",
     }
   },
   FnPromoteState:function(e){
-  alert(this.promote); 
+  // alert(this.promote); 
 
   if(this.promote=="Send PO"){
     this.$.intentservice.FnPurchaseorderServicemail();

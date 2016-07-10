@@ -530,7 +530,7 @@
       },
       FnPurchaseorderResponsemail:function(e){
           poarr=e.detail.response.itemarr;
-          alert(JSON.stringify(poarr));
+          // alert(JSON.stringify(poarr));
          if(poarr.length>0){
          var d=new Date(poarr[0].PO_Date);         
          var y=d.getFullYear();
@@ -549,7 +549,7 @@
       },
       FnPurchaseorderitemResponsemail:function(e){
          poitemarr=e.detail.response.itemarr;
-         alert(JSON.stringify(poitemarr));         
+         // alert(JSON.stringify(poitemarr));         
          if(poitemarr.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -561,7 +561,7 @@
       },
       FnPurchaseorderitemtaxResponsemail:function(e){
          poitemtax=e.detail.response.itemarr;
-         alert(JSON.stringify(poitemtax));                 
+         // alert(JSON.stringify(poitemtax));                 
          if(poitemtax.length>0){
          var obj={"intentregno":"","itemdes":""};
          obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
@@ -573,7 +573,7 @@
       },
       FnPurchaseorderitempriceResponsemail:function(e){
           poitemprice=e.detail.response.itemarr;
-          alert(JSON.stringify(poitemprice));
+          // alert(JSON.stringify(poitemprice));
           if(poitemprice.length>0){          
           var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
           var tax2=((parseFloat(poitemtax[0].VAT))/100);

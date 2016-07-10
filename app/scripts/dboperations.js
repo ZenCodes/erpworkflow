@@ -78,7 +78,7 @@ server.send({
    text:    "Purchase Order",
    from:    emailcredential[0].email,
    to:      "rmpraba@gmail.com",
-   cc:      "prabha@niit-karur.com",
+   
    subject: "testing po",
     attachment:
    [
@@ -116,7 +116,7 @@ server.send({
       "<table style='border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;'>"+
       "<tr><table align='center' border='0' cellpadding='0' cellspacing='0' style='max-width:100%; min-width:100%;' width='100%' class='mcnTextContentContainer'>"+
       "<tbody><tr><td valign='top' class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;'>  <div style='display:flex;'>"+
-      "<img style='width: 150px; height: 150px; padding: 10px;' src='logo.jpg'>"+
+      "<img style='width: 150px; height: 100px; padding: 10px;' src='logo.jpg'>"+
       "<h2 style='margin-left:50px'>Purchase Order</h2> </div></td></tr></tbody></table></tr><tr>"+
       "<table align='left' border='0' cellpadding='0' cellspacing='0' style='max-width:100%; min-width:100%; text-align:center;' width='100%' class='mcnTextContentContainer'>"+
       "<tbody><tr><td class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:3px; padding-left:18px;'>"+
