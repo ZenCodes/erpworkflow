@@ -1,50 +1,343 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-styles/typography.html">
-
+<!-- Component import -->
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="..\..\bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/iron-ajax/iron-ajax.html">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+<script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+<!-- Component Registeration -->
 <dom-module id="my-greeting">
   <template>
-    <style include="shared-styles">
+    <style>
       :host {
         display: block;
+        line-height: 110%;
+        font-family: calibri;
+      }
+      #canvas{
+        margin-top: 5%;
+      }
+      .card{        
+        @apply(--layout-vertical);
+        width: 700px;
+        height: 1050px;
+        margin-left: 15%;
+        padding-bottom: -10%;
+        background-color: #ffffff;
+        border: 1px solid #dedede;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        margin-top: 0%;        
+      }
+      .header{
+        width:100%;
+        @apply(--layout-horizontal);
+        margin-left: 5%;
+      }
+      .title{
+        margin-top: 3%;
+        text-align: center;
+        margin-left: 10%;
+        /*border: 1px solid black;*/
+        /*height: 10%;*/
+      }
+      p{
+        font-size: 17px;
+        font-family: Calibri;
+      }
+      .address{
+        /*margin-left: 5%;*/
+        margin-top: 5%;        
+        width:120%;
+      }
+      .dateheader{
+        margin-left: 7%;
+        margin-top: 5%;
+      }
+      .toheader{
+        margin-top: 5%;
+        margin-left: 5%;
+        @apply(--layout-vertical);
+        text-align: left;
+      }
+      .todetail{
+        @apply(--layout-vertical);
+        border: 1px solid black;
+        width: 50%;
+      }
+      .reference{
+        margin-left: 5%;
+        width:90%;
+        margin-top: 5%;
+      }
+      .itemdetail{
+        margin-top: 8%;
+        margin-left: 5%;
+        width:90%;
+      }
+      td{
+        font-size: 18px;
+        height: 40px;
       }
 
-      span,
-      input {
-        @apply(--paper-font-body2);
-      }
     </style>
+    <div>
+    <div class="card" id="card">
+    <div id="canvas">
 
-    <h2 class="page-title">{{greeting}}</h2>
-    <span>Update text to change the greeting.</span>
-    <!-- Listens for "input" event and sets greeting to <input>.value -->
-    <input value="{{greeting::input}}">
+      <div class="header">
+      <div class="companyheader">
+        <!-- <div class="company"> -->
+         <!-- <div class="address"> -->
+         <table class="address">
+          <tr><td align="left" style="height:25px"><h3>xyz company limited</h3></td></tr>
+          <tr><td align="left" style="height:25px">address1</td></tr>
+          <tr><td align="left" style="height:25px">address2</td></tr>          
+          <tr><td align="left" style="height:25px">xyz@mail.com</td></tr>
+          <tr><td align="left" style="height:25px">9876548752</td></tr>
+         </table>
+         <!-- </div> -->
+        <!-- </div> -->
+      </div>      
+      <div class="title"><h2>Purchase Order</h2></div>
+      <!-- <div class="dateheader"> -->
+        <table class="dateheader" border="1" style="border-collapse: collapse;">
+          <tr><td align="center" style="height:40px">Date<br>29/7/2016</td><td align="center">Page<br>1</td></tr>
+          <tr><td align="center" colspan="2" height="40px">Purchase Order Number <br> PO1234</td>
+        </table>
+      <!-- </div> -->
+      </div>
+      
+      
+      <!-- <template is="dom-repeat" items="{{poarray}}" as="po"> -->
+      <div class="toheader">
+        <div class="to"><p>Vendor Address</p></div>
+        <div class="todetail">
+        <table boder="1">
+        <tr><td align="left" style="height:25px">Sample supplier</td></tr>
+        <tr><td align="left" style="height:25px">Location</td></tr>
+        <tr><td align="left" style="height:25px">City</td></tr>
+        <tr><td align="left" style="height:25px">District</td></tr>
+        </table>
+        </div>
+      </div>
+
+      <div class="reference">
+      <table border="1" style="border-collapse: collapse;width: 100%;">
+        <tr>
+          <td align="left" height="40px">Reference<br><br>value</td>
+          <td align="left" height="40px">Contact<br><br>value</td>
+          <td align="left" height="40px">Vendor Number<br><br>value</td>
+          <td align="left" height="40px">PO Date<br><br>value</td>
+          <td align="left" height="40px">Terms<br><br>value</td>
+          <td align="left" height="40px">Ship via<br><br>value</td>
+          <td align="left" height="40px">Expected Arrival<br><br>value</td>
+        </tr>
+      </table>
+      </div>
+
+      <!-- </template> -->
+      <!-- <template is="dom-repeat" items="{{poitemarray}}" as="poitem"> -->
+      <div class="itemdetail">
+        <table border="1" style="border-collapse: collapse;width: 100%;">
+          <tr><th>Quantity Ordered</th><th>Vendor Item Description</th><th>Unit Cost</th><th>UOM</th><th>Extended Price</th></tr>
+          <tr rowspan="2"><td>Quantity Quantity_Measure</td><td>Product_ID</td><td>Unit cost</td><td>unit Unit_Measure</td>
+          <td>total</td></tr>
+          <tr rowspan="10">
+          <td colspan="3">Tax Summary<br><br>Excise Duty (12.5%):<img src="../../images/rupee.png" width="8px" height="8px"/>exduty<br><br>VAT (5%):<img src="../../images/rupee.png" width="8px" height="8px"/>vat<br><br>
+          CST (2%):<img src="../../images/rupee.png" width="8px" height="8px"/>cst</td>
+          <td>Subtotal<br><br>Total Tax</td><td>total<br><br>vat+cst</td></tr>
+          <tr><td colspan="3"></td><td>Total Purchase Order</td><td>grandtot</td></tr>
+        </table>      
+      
+      </div>
+      </div>
+      <!-- </template> -->
+    </div>
+    </div>
+    <paper-button id="pdf" on-click="click">View PDF</paper-button>
+    </div>
+    <!-- Component to fetch the company profile for PO creation -->
+    <iron-ajax
+      auto
+      id="companyprofilereadAjax"
+      url="../../config/companyprofile.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="companyprofilereadResponse">
+    </iron-ajax>
+    <!-- Function which fetch partial item information for PO creation of that item -->
+    <iron-ajax
+      id="purchaseorderajax"
+      url="{{purchaseorderurl}}"
+      params='{{purchaseorderparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderResponse">
+    </iron-ajax>
+    <!-- Function which fetch item information for PO creation of that item -->
+    <iron-ajax
+      id="purchaseorderitemajax"
+      url="{{purchaseorderitemurl}}"
+      params='{{purchaseorderitemparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemResponse">
+    </iron-ajax>
+    <!-- Function which fetch item tax information for PO creation of that item -->
+    <iron-ajax
+      id="purchaseorderitemtaxajax"
+      url="{{purchaseorderitemtaxurl}}"
+      params='{{purchaseorderitemtaxparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitemtaxResponse">
+    </iron-ajax>
+    <!-- Function which fetch item price for PO creation of that item -->
+    <iron-ajax
+      id="purchaseorderitempriceajax"
+      url="{{purchaseorderitempriceurl}}"
+      params='{{purchaseorderitempriceparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnPurchaseorderitempriceResponse">
+    </iron-ajax>
   </template>
-
   <script>
-    (function() {
-      'use strict';
-
-      Polymer({
-        is: 'my-greeting',
-
-        properties: {
-          greeting: {
-            type: String,
-            value: 'Welcome!',
-            notify: true
+  (function() {
+    'use strict';
+    var productid="";
+    var intentno;
+    var promotestate;
+    var no=0;
+    var arrlength=0;
+    var poarray=[];
+    var largestpono=0;
+    var poarr=[];
+    var poitemarr=[];
+    var poitemtax=[];
+    var poitemprice=[];
+    Polymer({
+      is: 'my-greeting',
+      ready:function(){
+      // this.FnPurchaseorderService();
+      }/*,
+      companyprofilereadResponse:function(e){
+        var cmparr=e.detail.response;
+        this.cmpname=cmparr[0].name;
+        this.cmpaddr1=cmparr[0].addressline1;
+        this.cmpaddr2=cmparr[0].addressline2;
+        this.cmpaddr3=cmparr[0].addressline3;
+        this.cmpemail=cmparr[0].email;
+        this.cmpphone=cmparr[0].phoneno;
+      },
+      // Function which calls service to fetch item info
+       FnPurchaseorderService:function(){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
+         this.purchaseorderurl=sessionStorage.getItem("curr_sess_url")+"purchaseorder-service";
+         this.purchaseorderparam=obj;
+         this.$.purchaseorderajax.generateRequest();
+      },
+      FnPurchaseorderResponse:function(e){
+          poarr=e.detail.response.itemarr;
+         if(poarr.length>0){
+         var d=new Date(poarr[0].PO_Date);         
+         var y=d.getFullYear();
+         var m=d.getMonth();
+         var d=d.getDate();
+         poarr[0].PO_Date=d+"/"+m+"/"+y;
+         this.poarray=poarr;         
+         document.querySelector("purchaseorder-card").poarray=poarr;
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
+         this.purchaseorderitemurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitem-service";
+         this.purchaseorderitemparam=obj;
+         this.$.purchaseorderitemajax.generateRequest();         
+         }
+      },
+      // Function which calls item info for po creation
+      FnPurchaseorderitemResponse:function(e){
+         poitemarr=e.detail.response.itemarr;
+         if(poitemarr.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
+         this.purchaseorderitemtaxurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemtax-service";
+         this.purchaseorderitemtaxparam=obj;
+         this.$.purchaseorderitemtaxajax.generateRequest();         
+         }
+      },
+      FnPurchaseorderitemtaxResponse:function(e){
+         poitemtax=e.detail.response.itemarr;         
+         if(poitemtax.length>0){
+         var obj={"intentregno":"","itemdes":""};
+         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+         obj.itemdes=sessionStorage.getItem("sess_curr_itemdes");
+         this.purchaseorderitempriceurl=sessionStorage.getItem("curr_sess_url")+"purchaseorderitemprice-service";
+         this.purchaseorderitempriceparam=obj;
+         this.$.purchaseorderitempriceajax.generateRequest();         
+         }
+      },
+      FnPurchaseorderitempriceResponse:function(e){
+          poitemprice=e.detail.response.itemarr;
+          if(poitemprice.length>0){          
+          var tax1=((parseFloat(poitemtax[0].Excise_Duty))/100);
+          var tax2=((parseFloat(poitemtax[0].VAT))/100);
+          var tax3=((parseFloat(poitemtax[0].CST))/100);
+          var total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);          
+          var exduty=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity).toFixed(2);
+          poitemarr[(poitemarr.length)-1].price=(poitemprice[0].Item_Supplier_price).toFixed(2);
+          poitemarr[(poitemarr.length)-1].total=(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].exduty=((parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax1))*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          if(poarr[0].State=="Tamilnadu"||poarr[0].State=="tamilnadu"||poarr[0].State=="Tamil nadu"||poarr[0].State=="tamil nadu"){ 
+          poitemarr[(poitemarr.length)-1].vat=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax2)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax2))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
           }
-        }
-      });
-    })();
+          else{
+          poitemarr[(poitemarr.length)-1].vat=parseFloat("0").toFixed(2);
+          poitemarr[(poitemarr.length)-1].cst=parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*parseFloat(tax3)*parseFloat(poitemarr[0].Quantity)).toFixed(2);
+          poitemarr[(poitemarr.length)-1].grandtot=(parseFloat(total)+parseFloat(exduty)+parseFloat(parseFloat(poitemprice[0].Item_Supplier_price)*(parseFloat(tax3))*parseFloat(poitemarr[0].Quantity))).toFixed(2);
+          }
+          }
+          this.poitemarray=poitemarr;
+          document.querySelector("purchaseorder-card").poitemarray=poitemarr;
+          var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
+           html2canvas(document.querySelector('#card'), {
+            onrendered: function(canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');                
+                $("#imgRes").attr("src", imgData);
+                var doc = new jsPDF('p', 'mm');                
+                doc.addImage(imgData, 'JPEG', 10, 8);
+                doc.output('datauri');
+            }
+          });
+      },
+      FnToggle:function(){
+        this.$.dialog.toggle();
+      },
+      click:function(){        
+        var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
+         html2canvas(document.querySelector('#card'), {
+            onrendered: function(canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');                
+                $("#imgRes").attr("src", imgData);
+                var doc = new jsPDF('p', 'mm');                
+                doc.addImage(imgData, 'JPEG', 10, 8);
+                doc.output('datauri');
+            }
+          });
+      }*/
+    });
+  })();
   </script>
 </dom-module>
