@@ -11,7 +11,7 @@
         "RoleFlag": "1",
         "status":"Stores",
         "newstatus":"OldStores",
-        "updatestatus":"Production",
+        "updatestatus":"Quality",
         "containerstatus":"",
         "menu" : ["GRN Flow","Add Intent","View Intent"]
       },
@@ -30,7 +30,7 @@
         "status":"Quality",
         "newstatus":"OldQuality",
         "updatestatus":"Purchase",
-        "containerstatus":"OldProduction",
+        "containerstatus":"OldStores",
         "menu" : ["GRN Flow"]
       },
       {
