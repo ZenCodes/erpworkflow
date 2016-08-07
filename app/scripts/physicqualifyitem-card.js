@@ -92,6 +92,7 @@ var flag="true";
     },
     FnExpandInnerCard: function () {
       //alert(this.containerid);
+      this.containerid=(this.containerid).replace(/\s/g, '');
     if(flag=="true") {
       if (document.querySelector('#radio' + this.containerid).checked == true && sessionStorage.getItem("curr_sess_roleflag") == "3") {
         localStorage.setItem("curr_sess_expandedcontainer", this.containerid);
