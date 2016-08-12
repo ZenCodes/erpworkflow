@@ -218,7 +218,7 @@
     forwardDisableBackState: function () {
       var flowflag = localStorage.getItem('curr_sess_forwarddisablestate');
       var buttongroup = this.querySelectorAll('paper-button');
-      alert(flowflag+" "+buttongroup.length);
+      // alert(flowflag+" "+buttongroup.length);
       this.flowenableflag = parseInt(sessionStorage.getItem("curr_sess_roleflag")) - 1;
       if (flowflag == "0") {        
         //Logged as general role for search disable all state
