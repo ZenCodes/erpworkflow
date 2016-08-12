@@ -20,8 +20,6 @@
       },
       callOutwardService:function(dayval){
         //alert(todayTime);
-
-
         var flag=true;
         var obj={"outdate":""};
         if(dayval=="current"){
@@ -36,7 +34,7 @@
         document.querySelector('fromtopicker-card').FnSetToDate(this.FnGetFormattedDate(todayTime));
         }
         else{
-          flag=false;
+        flag=false;
         this.$.ID_Show_Dialog.FnShowDialog("Date shouldn't exceed the run date!","");
         }
         }
@@ -79,7 +77,7 @@
         this.$.outwarditemfromtofetchajax.generateRequest();
       },
       outwardfromtoResponse:function(e){
-        alert(JSON.stringify(e.detail.response.itemarr));
+        // alert(JSON.stringify(e.detail.response.itemarr));
         if((e.detail.response.itemarr).length==0){
           var arr=[];
           document.querySelector('outwardreport-card').FnEnableHide(true);

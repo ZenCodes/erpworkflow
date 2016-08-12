@@ -24,7 +24,6 @@
       }
       .card{
         @apply(--layout-vertical);
-
       }
       .itemcard,.icon{
         @apply(--layout-horizontal);
@@ -109,8 +108,9 @@
     </style>
 
     <div class="topcard">
-      <div class="input">
-      </div>
+    <div class="input">
+      <fromtopicker-card></fromtopicker-card>
+    </div>
     </div>
      <template is="dom-repeat" items="{{label}}" as="lbl">
       <paper-tabs selected="0" noink id="ptab" no-bar>
@@ -135,7 +135,6 @@
 
             </div>
           </template>
-
     </div>
     <!-- Function to call the service -->
     <report-service id="reportservice" itemarr="{{itemarr}}"></report-service>
@@ -150,13 +149,13 @@
      ready:function(){
 
       this.hidenoitem=true;      
-       if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
+      if(sessionStorage.getItem("curr_sess_roleflag")=="9"){
          if(localStorage.getItem("curr_sess_wardflag")=="7")
          localStorage.setItem("curr_sess_showpage","approvesupplier-card");
          if(localStorage.getItem("curr_sess_wardflag")=="8")
          localStorage.setItem("curr_sess_showpage","approvecustomer-card");
        }
-       if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
+      if(sessionStorage.getItem("curr_sess_roleflag")=="2"){
          localStorage.setItem("curr_sess_showpage","retest-card");
        }
       if(sessionStorage.getItem("curr_sess_roleflag")=="10"||sessionStorage.getItem("curr_sess_roleflag")=="11") {

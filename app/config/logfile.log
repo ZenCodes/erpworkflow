@@ -223,4 +223,4 @@ no user
 Quality parameter read: Items found
 Quality parameter display: no items
 Quality parameter read: Items found
-Quality parameter display: no items
+Quality parameter display: no itemsdb connection:Error: connect ECONNREFUSED 127.0.0.1:3307db connection:Error: Connection lost: The server closed the connection.
