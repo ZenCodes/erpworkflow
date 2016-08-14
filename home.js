@@ -151,6 +151,18 @@ app.post('/inwardregnoseq-service',urlencodedParser, function (req, res) {
   });
 
 });
+
+app.post('/generatebatchno-service',urlencodedParser, function (req, res) {
+  //Loading JS file to call seq generation
+  var FnGeneratebatchnocall = require("./app/scripts/dboperations.js");
+  /*Function call to generate sequence*/
+  console.log('................................................');
+  console.log(req.query.heatno);
+  FnGeneratebatchnocall.FnGeneratebatchno("generatebatchno-service",req.query.heatno,function(returnval){
+      res.status(200).json({'returnval': returnval});
+  });
+});
+
 app.post('/itemsave-service',urlencodedParser, function (req, res) {
   /*receiving values from item page*/
   //console.log(req.query.qtymeasure);
@@ -260,10 +272,18 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
     Quantity_Measure:req.body.qtymeasure,
     Remarks:req.body.remark,
     status:req.body.updatestatus,
-    Inspection_Status:inspectionstatus
+    Inspection_Status:inspectionstatus,
+    Batch_No:req.body.batchno
   };
 
   // console.log(response);
+
+  var batchresponse={
+    Heat_No:req.body.heatno,
+    Batch_No:req.body.batchno,
+    Container_Id:req.body.containerid,
+    Inward_Register_Number:req.body.inwardregno
+  };
 
   var cond1={Inward_Register_Number:req.body.inwardregno};
   var cond2={status:req.body.updatestatus};
@@ -272,12 +292,14 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   var cond5={state:req.body.status};
   var cond6={Container_ID:req.body.containerid};
   var cond7={Serial_No:req.body.serialno};
+  var cond8={Batch_No:req.body.batchno};
+  var cond9={Heat_Number:req.body.heatno};
 
   // console.log(JSON.stringify(cond1)+"  "+JSON.stringify(cond2)+"  "+JSON.stringify(cond3)+"  "+JSON.stringify(cond4)+"  "+JSON.stringify(cond5)+"  "+JSON.stringify(cond6)+"  "+JSON.stringify(cond7));
 
   var FnPhysicqualifyitemcall = require("./app/scripts/dboperations.js");
   //Invoking function to update the item info
-  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,cond6,cond7,function(returnval){
+  FnPhysicqualifyitemcall.FnPhysicqualifyitem("physicqualifyitem-card",response,cond1,cond2,cond3,cond4,cond5,cond6,cond7,batchresponse,function(returnval){
     if(returnval=="updated")
       res.status(200).json({"flag":returnval});
     else if(returnval=="exist")

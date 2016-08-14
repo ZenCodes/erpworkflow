@@ -20,6 +20,7 @@
 <link rel="import" href="../specification-card/specification-card.html">
 <link rel="import" href="../quality-parameter-displaycard/quality-parameter-displaycard.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <dom-module id="physicqualifyitem-card">
   <template>
@@ -32,12 +33,12 @@
         /*border-bottom: 1px solid #dedede;*/
         /*border-radius: 2px;*/
         /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        margin-left: 3%;
+        margin-left: -3%;
         height: 7%;
       }
       .itemdes,.ctr,.ctinput,.qtinput,.remark{
-        width:15%;
-        margin-left:2%;
+        width:13%;
+        margin-left:1%;
       }
       .ctmeasure,.qtunit{
         width:5%;
@@ -48,7 +49,7 @@
       .remark{
         height:60%;
         margin-top:1%;
-        width: 18%;
+        width: 16%;
       }
       .save,.reject{
         margin-top: 0%;
@@ -60,14 +61,14 @@
         --paper-tooltip-text-color: black;
         font-size: 14px;
         width: 150px;
-        //box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        /*box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
       }
       .containerid{
         margin-left: 2%;
-        width: 20%;
+        width: 16%;
       }
       .heatno{
-        margin-left: 5%;
+        margin-left: 2%;
       }
       paper-input{
         margin-top: -1%;
@@ -102,14 +103,14 @@
 
         <paper-radio-button readonly="{{read}}" hidden$="{{hideradio}}" id="radio{{containerid}}" on-change="FnExpandInnerCard"></paper-radio-button>
         <paper-input readonly="{{read}}" class="containerid" name="containerid" label="Container ID" value="{{containerid}}" id="cont{{inwardno}}" required></paper-input>
-        <paper-input readonly="{{read}}" hidden$="{{hideflg}}" class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}"></paper-input>
+        <paper-input readonly="{{read}}" hidden$="{{hideflg}}" class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" on-change="FnGenerateBatchno"></paper-input>
         <paper-input readonly="{{read}}" class="qtinput" name="qtyaccept" label="Quantity" value="{{qtyaccept}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
         <paper-input readonly="{{read}}" class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
+        <paper-input readonly hidden$="{{hideflg}}" class="batchno" name="batchno" value="{{batchno}}" label="Batch Number" id="heat{{batchno}}"></paper-input>
         <textarea readonly="{{read}}" class="remark" name="remark" placeholder="Remarks here...." value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
         <paper-tooltip readonly="{{read}}" for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
         <paper-icon-button disabled="{{read}}" icon="icons:check" on-click="FnSaveItem" class="save"></paper-icon-button>
-        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button>
-        
+        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button>        
       </div>
       <!--Expand item collapse card-->
       <iron-collapse id="inner{{containerid}}">
@@ -120,7 +121,17 @@
       </iron-collapse>
     </form>
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
-
+    <grn-service id="grnservice"></grn-service>
+    <!--Component which generate batch number-->
+    <iron-ajax
+      id="generatebatchnoajax"
+      url="{{generatebatchnourl}}"
+      params='{{generatebatchnoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="generatebatchnoResponse">
+    </iron-ajax>
   </template>
   <!--JS file import-->
   <script src="../../scripts/physicqualifyitem-card.js"></script>

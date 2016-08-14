@@ -8,7 +8,7 @@
     is: "grn-service",
     ready:function()
     {
-    },
+    },    
     updatequalityparameterService:function(qualityarray){
       arrlength=0;
       no=0;

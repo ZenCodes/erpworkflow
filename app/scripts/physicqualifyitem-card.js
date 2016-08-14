@@ -12,7 +12,22 @@ var flag="true";
       if(sessionStorage.getItem("curr_sess_roleflag") == "3")
       this.hideradio=false;
     },
-
+    FnGenerateBatchno:function(e){
+      // alert(this.heatno);
+      this.callGenerateBatchnoService();
+    },
+    callGenerateBatchnoService:function(){
+      var obj={"heatno":""};
+      obj.heatno=this.heatno;
+      this.generatebatchnourl=sessionStorage.getItem("curr_sess_url")+"generatebatchno-service";
+      this.generatebatchnoparam=obj;
+      this.$.generatebatchnoajax.generateRequest();
+    },
+    generatebatchnoResponse:function(e){      
+      // alert(JSON.stringify(e.detail.response.returnval));
+      this.batchno=e.detail.response.returnval;
+      // document.querySelector('physicqualifyitem-card').batchno=e.detail.response.returnval;
+    },
     FnSaveItem: function () {
       document.querySelector("#cont" + this.inwardno).validate();      
       document.querySelector("#qty" + this.inwardno).validate();
@@ -144,8 +159,8 @@ var flag="true";
     FnComponentSize:function(){
       // alert('calling'+this.querySelector('paper-input'));
       this.querySelector('.repeatcard').style.width='120%';
-      this.querySelector('#cont'+this.inwardno).style.width='35%';
-      this.querySelector('#qty'+this.inwardno).style.width='35%';
+      this.querySelector('#cont'+this.inwardno).style.width='25%';
+      this.querySelector('#qty'+this.inwardno).style.width='25%';
       this.querySelector('textarea').style.width='40%'; 
       // this.querySelector('paper-icon-button').style.width='5%';      
     },

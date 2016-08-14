@@ -397,6 +397,50 @@ exports.FnInwardRegNoGeneration=function(pagename,response,cond,callback){
   // });
 }
 
+//Function which generate batch no 
+exports.FnGeneratebatchno=function(pagename,heatno,callback){
+  //Fetching tables from config file
+  var Config_tables=[];
+  var Config_columns=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columns=obj[i].columns;
+    }   
+  }
+
+  // var heatno={"Heat_No":heatno};
+  var qur="SELECT * FROM OD_Heat_To_Batch WHERE Heat_No='"+heatno+"'";
+  console.log(qur);
+  //Generating and updating batch number
+  connection.query(qur,function(err,rows,result){
+  if(!err)
+  {
+    if(rows.length>0){
+    return callback(rows[0].Batch_No);
+    }
+    else
+    {
+    connection.query('SELECT Batch_No FROM Auto_Batch_Number',function(err,rows,result){
+    if(rows.length>0){
+      var batchno=parseInt(rows[0].Batch_No)+1;
+      var newbatchno={"Batch_No":batchno};
+      connection.query('UPDATE Auto_Batch_Number SET ?',[newbatchno],function(err,rows,result){
+        return callback(batchno);
+      });
+    }
+    // return callback("no match");
+    });
+    }
+  }
+  else
+  {
+    return callback("not okay");
+  }
+  });
+   
+}
+
 //Function which register the Inward items
 exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
   //Fetching tables from config file
@@ -406,8 +450,7 @@ exports.FnRegisterInwardItemDetail=function(pagename,response,callback){
     if(obj[i].name==pagename){
       Config_tables=obj[i].value;
       Config_columns=obj[i].columns;
-    }
-    //console.log(Config_tables);
+    }   
   }
   //Fetching inward register no and adding IRN to this no
   connection.query('SELECT '+Config_columns[0]+' FROM '+Config_tables[0]+' ORDER BY Inward_Register_Number DESC LIMIT 1', function(err, rows, fields) {
@@ -560,7 +603,7 @@ exports.Fnphysicqualifyexpanditemread=function(pagename,cond,status,callback) {
 }
 
 //Function fetches the item info and update the status of the specific item
-exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,cond6,cond7,callback) {
+exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,cond5,cond6,cond7,batchresponse,callback) {
   //fetching tables for this page
   var Config_tables=[];
   for(var i=0;i<obj.length;i++){
@@ -568,6 +611,8 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
       Config_tables=obj[i].value;
     }
   }
+
+
   connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? ',[cond1,cond2,cond6], function(err, rows) {
     if(rows.length>0) {
       connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? and ?', [cond1, cond2, cond6, cond7], function (err, rows) {
@@ -594,8 +639,11 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
       connection.query('INSERT INTO OD_Inward_Material_Inspection SET ? ', [response], function (err, result) {
         if (!err) {
           connection.query('UPDATE OD_Sales_Inward_Material SET ? where ? and ?', [cond3, cond4, cond5], function (err, result) {
-            if (!err)
+            if (!err){
+              connection.query('INSERT INTO OD_Heat_To_Batch SET ? ', [batchresponse], function (err, result) {
               return callback("updated");
+              });
+            }
             else {
               console.log("error!" + err);
               return callback("not updated");

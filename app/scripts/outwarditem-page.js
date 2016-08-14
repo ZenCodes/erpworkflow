@@ -25,7 +25,6 @@
       this.supid=supplierid;
       this.customername=suppliername;
       this.nullflag=1;
-
     },
     FnRefreshPage:function(){
       this.flag=0;
