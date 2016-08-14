@@ -62,11 +62,11 @@
       this.$.physicqualifyexpanditemreadajax.generateRequest();
     },
     FnphysicqualifyexpanditemreadResponse:function(e){
-/*if(containermeasure.toUpperCase()==('Coil').toUpperCase())      
-document.querySelector('physicqualifyitem-card').FnComponentReSize();
-else
-document.querySelector('physicqualifyitem-card').FnComponentSize();*/
-//alert(JSON.stringify(e.detail.response));
+    if(containermeasure.toUpperCase()==('Coil').toUpperCase())      
+    document.querySelector('physicqualifyitem-card').FnComponentReSize();
+    else
+    document.querySelector('physicqualifyitem-card').FnComponentSize();
+    //alert(JSON.stringify(e.detail.response));
       if(e.detail.response=="no items")
       {
         //alert('yeas');

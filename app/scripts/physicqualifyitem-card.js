@@ -157,19 +157,27 @@ var flag="true";
         this.hidequality=false;
     },
     FnComponentSize:function(){
+      // alert('no coil');
       // alert('calling'+this.querySelector('paper-input'));
       this.querySelector('.repeatcard').style.width='120%';
-      this.querySelector('#cont'+this.inwardno).style.width='25%';
-      this.querySelector('#qty'+this.inwardno).style.width='25%';
-      this.querySelector('textarea').style.width='40%'; 
+      // this.querySelector('#cont'+this.inwardno).style.marginLeft='10%';
+      // this.querySelector('.repeatcard').style.marginLeft='10%';
+      this.querySelector('#cont'+this.inwardno).style.width='20%';
+      this.querySelector('#cont'+this.inwardno).style.marginLeft='13%';
+      this.querySelector('#qty'+this.inwardno).style.width='20%';
+      this.querySelector('textarea').style.width='25%'; 
       // this.querySelector('paper-icon-button').style.width='5%';      
     },
     FnComponentReSize:function(){
+      // alert('coil');
       // alert('calling'+this.querySelector('paper-input'));
       this.querySelector('.repeatcard').style.width='100%';
-      this.querySelector('#cont'+this.inwardno).style.width='20%';
-      this.querySelector('#qty'+this.inwardno).style.width='15%';
-      this.querySelector('textarea').style.width='18%'; 
+      // this.querySelector('#cont'+this.inwardno).style.marginLeft='0%';
+      // this.querySelector('.repeatcard').style.marginLeft='0%';
+      this.querySelector('#cont'+this.inwardno).style.width='15%';
+      this.querySelector('#qty'+this.inwardno).style.width='8%';
+      // this.querySelector('#unit'+this.inwardno).style.marginLeft='-5%';
+      // this.querySelector('textarea').style.width='15%'; 
       }
   });
 })();
