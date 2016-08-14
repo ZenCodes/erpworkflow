@@ -335,6 +335,7 @@ app.post("/oldcontainerupdate-service",urlencodedParser,function(req,res){
   Supplier_ID : req.query.Supplier_ID,
   Container_ID : req.query.Container_ID,
   Heat_Number : req.query.Heat_Number,
+  Batch_No : req.query.Batch_No,
   Quantity : req.query.Quantity,
   Quantity_Measure : req.query.Quantity_Measure,
   Remarks : req.query.Remarks,

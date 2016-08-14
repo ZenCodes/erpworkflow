@@ -84,6 +84,7 @@
         <paper-input disabled="{{read}}" hidden$="{{hideflg}}" class="heatno" name="heatno" value="{{heatno}}" label="Heat Number" id="heat{{inwardno}}" required></paper-input>
         <paper-input disabled="{{read}}" class="qtinput" name="qtyaccept" label="Quantity" value="{{qtyaccept}}" required id="qty{{inwardno}}" allowed-pattern="[/^\d+(.\d{1,4})?$/]" ></paper-input>
         <paper-input disabled="{{read}}" class="qtunit" name="qtymeasure" value="{{qtymeasure}}" readonly></paper-input>
+        <paper-input disabled="{{read}}" hidden$="{{hideflg}}" class="batchno" name="batchno" value="{{batchno}}" label="Batch Number" id="batch{{inwardno}}" required></paper-input>
         <textarea disabled="{{read}}" class="remark" name="remark" placeholder="Remarks here...." value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
         <paper-tooltip disabled="{{read}}" for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
       </div>

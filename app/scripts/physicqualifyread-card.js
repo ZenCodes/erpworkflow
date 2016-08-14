@@ -47,6 +47,7 @@ Polymer({is:"physicqualifyread-card",
     }
     else{
       var arr=e.detail.response;
+      // alert(JSON.stringify(arr));
       for(var i=0;i<arr.length;i++) {
         if(arr[i].Inspection_Status=="Approved")
           arr[i].readflag=false;

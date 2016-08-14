@@ -134,6 +134,7 @@
           obj.Supplier_ID = oldcontainerarr[i].Supplier_ID;
           obj.Container_ID = oldcontainerarr[i].Container_ID;
           obj.Heat_Number = oldcontainerarr[i].Heat_Number;
+          obj.Batch_No = oldcontainerarr[i].Batch_No;
           obj.Quantity = oldcontainerarr[i].Quantity;
           obj.Quantity_Measure = oldcontainerarr[i].Quantity_Measure;
           obj.Remarks = oldcontainerarr[i].Remarks;
