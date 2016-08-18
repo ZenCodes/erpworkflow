@@ -5,7 +5,7 @@ Polymer({
   is: "app-homepage",
   ready: function() {
     this.userlabel="Signout"; 
-
+    // alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag"));
     this.loggedusername="Hello! "+sessionStorage.getItem("curr_sess_loggeduser");   
 
     this.$.intentview.style.visibility='hidden';
