@@ -228,13 +228,14 @@ exports.Fnusernameread=function(pagename,userid,callback){
     }
   }
 var queryy="SELECT Employee_Name FROM MD_HR_Employee where Employee_ID='"+userid+"'";
+console.log(queryy);
 connection.query(queryy, function (err, rows) {
 if(!err){
-  // console.log(rows);
+  console.log(rows);
   return callback(rows);
 }
 else{
-  // console.log(err);
+  console.log(err);
   return callback('fail');
 }
 });
@@ -3884,6 +3885,90 @@ exports.Fncreaterole=function(pagename,response,callback) {
     if(!err)
     {
       return callback("succ");
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.FnInventoryupdate=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+
+  var insertqur="INSERT INTO OD_Item_Inventory SELECT Item_ID,"+
+  "Product_ID,unit,Unit_measure,Qty_Accepted,Qty_measure,'Stores'  FROM "+ 
+  "OD_Sales_Inward_Material WHERE new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm'";
+
+  var updatecheck="SELECT Item_ID,Product_ID,unit,Unit_measure,Qty_Accepted,Qty_measure FROM "+
+  "OD_Sales_Inward_Material WHERE new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm'";
+
+  var updatequr="UPDATE OD_Item_Inventory SET ?,? WHERE Item_ID=(SELECT Item_ID FROM "+
+  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm')";
+
+  var qurcheck="SELECT * FROM OD_Item_Inventory WHERE Item_ID=(SELECT Item_ID FROM "+
+  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm')";
+ 
+  var res={
+    quantity:'',
+    container:''
+  };
+
+  connection.query(qurcheck,function(err, rows) {
+    if(!err)
+    {
+      console.log('.............................................................');
+      console.log('check for existence'); 
+      console.log(qurcheck);      
+      if(rows.length>0)
+      {
+        response.quantity=rows[0].Quantity;
+        response.container=rows[0].Container;
+        console.log('.............................................................');
+        console.log(response.quantity+"  "+response.container);
+        console.log(updatecheck); 
+        connection.query(updatecheck,function(err, rows) {
+          if(rows.length> 0){
+            console.log(rows[0].Qty_Accepted+" "+rows[0].unit);
+            var quantity=parseInt(response.quantity)+parseInt(rows[0].Qty_Accepted);
+            var container=parseInt(response.container)+parseInt(rows[0].unit);
+            var quan={"Quantity":quantity};
+            var cont={"Container":container};
+            console.log('.............................................................');
+            console.log(response.quantity+"  "+response.container);
+            console.log(updatequr); 
+            console.log(JSON.stringify(quan)+" "+JSON.stringify(cont));
+            connection.query(updatequr,[quan,cont],function(err, rows) {
+              if(!err){
+                return callback("updated");          
+              }
+              else
+                return callback("not updated");
+            });
+          }
+        });
+      }
+      else
+      {
+         connection.query(insertqur,function(err, rows) {
+          if(!err){
+              console.log('.............................................................');
+              console.log("Insertion");
+              return callback("inserted");          
+          }
+          else
+              return callback("not inserted");
+         });
+      }
     }
     else{
       console.log(err);
