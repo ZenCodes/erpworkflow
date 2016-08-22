@@ -60,6 +60,17 @@
       content-type="application/json"
       on-response="oldcontainerupdateResponse">
     </iron-ajax>
+
+    <!--Updating coil info-->
+    <iron-ajax
+      id="inventoryupdateajax"
+      url="{{inventoryupdateurl}}"
+      method="post"
+      params='{{inventoryupdateparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="inventoryupdateResponse">
+    </iron-ajax>
     <grn-service id="gs"></grn-service>
   </template>
 

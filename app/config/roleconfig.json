@@ -13,7 +13,7 @@
         "newstatus":"OldStores",
         "updatestatus":"Quality",
         "containerstatus":"",
-        "menu" : ["GRN Flow","Add Intent","View Intent"]
+        "menu" : ["GRN Flow","Add Intent","View Intent","Internal Intent"]
       },
       {
         "rolename": "Production manager",

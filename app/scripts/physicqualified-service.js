@@ -5,6 +5,7 @@
  var oldcontainerarr=[];
  var arrlength=0;
  var countno=0;
+ var retstate;
   Polymer({
     is: "physicqualified-service",
     ready:function()
@@ -195,19 +196,52 @@
       this.$.physicupdateajax.generateRequest();
     },
     physicupdateResponse:function(e){
-      //alert(e.detail.response.flag+"  "+e.detail.response.state);
+      retstate=e.detail.response.state;
+      // alert(e.detail.response.flag+"  "+e.detail.response.state);
       if(e.detail.response.flag=="updated"){
+        // alert(sessionStorage.getItem("curr_sess_roleflag"));
+        if(sessionStorage.getItem("curr_sess_roleflag")=="4")
+        this.callInventoryService();  
+      else
+        {
         localStorage.setItem('curr_sess_flowstate',"1");
         document.querySelector('grnflow-card').disableBackstate();
         document.querySelector('grnflow-card').setFlag();
-        document.querySelector('physicinsread-page').setState(e.detail.response.state);
+        document.querySelector('physicinsread-page').setState(retstate);
         localStorage.setItem("curr_sess_forwardstate",'0');
-        localStorage.setItem('curr_sess_expandstate',e.detail.response.state);
+        localStorage.setItem('curr_sess_expandstate',retstate);
+        document.querySelector('home-page').setPage("Inward Flow");
+        document.querySelector('app-homepage').setVisible("false");
+        localStorage.setItem("curr_sess_PONumber",null);
+        }
+      }
+      else {
+
+      }
+    },
+    callInventoryService:function(){
+      var arg={"inwardregno":"","state":"","createdby":""};
+      arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+      arg.state="Stores";
+      this.inventoryupdateparam=arg;      
+      this.inventoryupdateurl=sessionStorage.getItem("curr_sess_url")+"inventoryupdate-service";
+      this.$.inventoryupdateajax.generateRequest();
+    },
+    inventoryupdateResponse:function(e){
+      // alert(e.detail.response);
+      if(e.detail.response=='succ'||e.detail.response=='inserted'||e.detail.response=='updated'){
+        localStorage.setItem('curr_sess_flowstate',"1");
+        document.querySelector('grnflow-card').disableBackstate();
+        document.querySelector('grnflow-card').setFlag();
+        document.querySelector('physicinsread-page').setState(retstate);
+        localStorage.setItem("curr_sess_forwardstate",'0');
+        localStorage.setItem('curr_sess_expandstate',retstate);
         document.querySelector('home-page').setPage("Inward Flow");
         document.querySelector('app-homepage').setVisible("false");
         localStorage.setItem("curr_sess_PONumber",null);
       }
-      else {
+      else
+      {
 
       }
     }

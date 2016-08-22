@@ -189,7 +189,8 @@ app.post('/itemsave-service',urlencodedParser, function (req, res) {
     Remarks:req.query.remark,
     new_Inward_Register_Number:'',
     Created_by:req.query.createdby,
-    state: statevalue
+    state: statevalue,
+    Item_ID:req.query.itemid
   };
   //importing js file to invoke the function
   var FnRegisterInwardItemDetailcall = require("./app/scripts/dboperations.js");
@@ -1924,6 +1925,20 @@ app.post('/createrole-service',urlencodedParser, function (req, res) {
     res.status(200).json(returnval);
   });  
 });
+
+app.post('/inventoryupdate-service',urlencodedParser, function (req, res) {
+  var response={
+  new_Inward_Register_Number:req.query.inwardregno,
+  State: req.query.state    
+  };
+
+  var FnInventoryupdatecall = require("./app/scripts/dboperations.js");
+  FnInventoryupdatecall.FnInventoryupdate("inventoryupdate-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+
 
 //Node server running port number
 app.listen(4000);

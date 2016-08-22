@@ -25,6 +25,7 @@
       this.splice('itemArray',1,1);
     },
     FnSetCustomInputValue:function(itemdes,container,qtyreceived,remark,unit,measure,itemid,ponumber,purchasetypeflag){
+      
       this.flag=1;
       this.itemflag=1;
       this.container=container;
@@ -65,6 +66,7 @@
     },
     FnSetMenuinfo:function(itemdes,unit,measure,itemid,ponumber,purchasetypeflag){
       //alert(itemdes+"  "+unit);
+      // alert(itemid);
       this.unit=unit;
       this.measure=measure;
       this.itemid=itemid;
@@ -142,8 +144,9 @@
           }
         }
         if(existflag==0){
-          var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"itemid":"","purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           //obj.purchasetype=this.purchasetype;
+          obj.itemid=this.itemid;
           obj.purchasetypeflag=this.purchasetypeflag;
           obj.podate=this.podate;
           obj.ponumber=this.ponumber;
@@ -230,6 +233,7 @@
           if(existflag==0){
             var obj={"purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
             //obj.purchasetype=this.purchasetype;
+            obj.itemid=this.itemid;
             obj.purchasetypeflag=this.purchasetypeflag;
             obj.podate=this.podate;
             obj.ponumber=this.ponumber;

@@ -49,8 +49,9 @@ var intentregno;
       //Sending row by row of item info to the server
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"createdby":"","purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"itemid":"","createdby":"","purchasetype":"","purchasetypeflag":"","podate":"","ponumber":"","invoiceno":"","invoicedate":"","supplier":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           //obj.purchasetype=this.items[i].purchasetype;
+          obj.itemid=this.items[i].itemid;
           obj.purchasetypeflag=this.items[i].purchasetypeflag;
           obj.podate=this.items[i].podate;
           obj.ponumber=this.items[i].ponumber;
