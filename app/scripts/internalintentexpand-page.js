@@ -22,7 +22,7 @@ Polymer({is:"internalintentexpand-page",
   FnInternalintentexpandreadResponse:function(e)
   {
     var arr=e.detail.response;
-    alert(JSON.stringify(arr));
+    // alert(JSON.stringify(arr));
     this.intentregno=arr[0].Intent_Register_Number;
     this.intentdate=arr[0].Intent_Date;  
     this.itemdes=arr[0].Product_ID;

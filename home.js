@@ -1964,6 +1964,18 @@ app.post('/internalintentexpandread-service',urlencodedParser, function (req, re
   });  
 });
 
+app.post('/intentsupply-service',urlencodedParser, function (req, res) {
+  var response={
+  itemid:req.query.itemid,
+  intentregno: req.query.intentregno  
+  };
+
+  var FnIntentsupplycall = require("./app/scripts/dboperations.js");
+  FnIntentsupplycall.FnIntentsupply("intentsupply-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
 //Node server running port number
 app.listen(4000);
 

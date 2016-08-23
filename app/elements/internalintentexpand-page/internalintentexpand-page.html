@@ -124,13 +124,15 @@
     </style>
     <!--Expanded card template-->
     <div class="card">    
-    <paper-item>{{intentregno}}</paper-item>
+    <!--<paper-item>{{intentregno}}</paper-item>
     <paper-item>{{intentdate}}</paper-item>
-    <paper-item>{{itemdes}}</paper-item>
-    <paper-item>{{requnit}}/{{requnitmeasure}}</paper-item>
-    <paper-item>{{reqquantity}}/{{reqquantitymeasure}}</paper-item>
-    <paper-item>{{availunit}}/{{availunitmeasure}}</paper-item>
-    <paper-item>{{availquantity}}/{{availquantitymeasure}}</paper-item>
+    <paper-item>{{itemdes}}</paper-item>-->
+    
+    Available Unit: <paper-item>{{availunit}}</paper-item>&nbsp;<paper-item>{{availunitmeasure}}</paper-item>
+    Available Quantity: <paper-item>{{availquantity}}</paper-item>&nbsp;<paper-item>{{availquantitymeasure}}</paper-item>
+    Requested Unit: <paper-item>{{requnit}}</paper-item>&nbsp;<paper-item> {{requnitmeasure}}</paper-item>
+    Requested Quantity: <paper-item>{{reqquantity}}</paper-item>&nbsp;<paper-item>{{reqquantitymeasure}}</paper-item>
+    
     </div>     
   <!-- component which make req to read the intent item info -->
   <iron-ajax   

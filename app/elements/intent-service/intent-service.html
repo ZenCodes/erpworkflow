@@ -234,6 +234,16 @@
       on-response="companyprofilereadResponse">
     </iron-ajax>
 
+    <iron-ajax
+      id="intentsupplyajax"
+      url="{{intentsupplyurl}}"
+      params='{{intentsupplyparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="intentsupplyResponse">
+    </iron-ajax>
+
     <grn-service id="gs"></grn-service>
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
@@ -645,6 +655,18 @@
         alert('PO Sent');
         // document.querySelector('viewintentitem-page').setToggle();       
         window.location.href="../elements/indexhome.html";
+      },
+      FnIntentSupplyService:function(){
+        var obj={"itemid":"","intentregno":""};
+        obj.itemid=sessionStorage.getItem("sess_curr_itemno"); 
+        // alert(obj.itemid);     
+        obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+        this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupply-service";
+        this.intentsupplyparam=obj;
+        this.$.intentsupplyajax.generateRequest(); 
+      },
+      intentsupplyResponse:function(e){
+        alert(e.detail.response);
       }
     });
   })();

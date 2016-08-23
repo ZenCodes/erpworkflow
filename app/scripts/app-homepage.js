@@ -15,6 +15,7 @@ Polymer({
     this.$.searchmenu.style.visibility='hidden';
     this.$.dynamicbutton.style.visibility='hidden';
     this.$.flowbutton.style.visibility='hidden';
+    this.$.supplybutton.style.visibility='hidden';
     // Condition which shows the outward report card
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
       if(localStorage.getItem("curr_sess_wardflag")=="5") {
@@ -225,6 +226,13 @@ Polymer({
       this.$.promotebutton.style.visibility='visible';
     if(flag=="false")
       this.$.promotebutton.style.visibility='hidden';
+  },
+   // Function which toggle the view of supply button
+  FnSetSupplyVisibility:function(flag){
+    if(flag=="true")
+      this.$.supplybutton.style.visibility='visible';
+    if(flag=="false")
+      this.$.supplybutton.style.visibility='hidden';
   },
   // Function to toggle the view of intent flow card
   FnSetIntentFlowcardVisibility:function(flag){    

@@ -260,6 +260,5 @@
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
       document.querySelector('internalintent-page').itemArray=arr;
     }
-
   });
 })();

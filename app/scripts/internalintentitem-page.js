@@ -19,21 +19,19 @@
 
       var n=1;
       var x=-4;
-      //alert(this.intentregno);
-      // this.$.intentservice.FnPurchaseorderService();
+
       sessionStorage.setItem("sess_curr_itemno",this.itemno);
       sessionStorage.setItem("sess_curr_intentregno",this.intentregno);
       sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
-      //document.querySelector('my-app').setVisible("true");
-      //this.$.ps.intentexpanditemreadService(this.itemdes,this.intentregno);
-      //this.$.ps.callWebcomponentService();
-      //this.$.sc.callWebcomponentService();
+
       this.$.ps.internalintentexpandreadService(this.itemno,this.intentregno);
       var all=document.querySelectorAll('.internalintentexpandcard');
+
+
       if(id=="true")
       {
-        id= document.querySelector("#"+this.itemno);
-        //alert(id);
+        document.querySelector('app-homepage').FnSetSupplyVisibility('true');
+        id= document.querySelector("#"+this.itemno);        
         id.toggle();
       }
       else
@@ -42,23 +40,17 @@
         {
           id.opened=false;
         }
-
+        document.querySelector('app-homepage').FnSetSupplyVisibility('false');
         id= document.querySelector("#"+this.itemno);
         id.toggle();
       }
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
-
+          document.querySelector('app-homepage').FnSetSupplyVisibility('true');
           if(all[i].id==document.querySelector("#card"+this.itemno).id){
             if(i!=0) {
               all[i].style.marginTop=((i*(x))-i-(i))+"%";
-              // if(i!=0){
-                // all[i].style.marginTop=((i*(x))-i)+"%";
-              // }
-              // if(i>10){
-                // all[i].style.marginTop=((i*(x+(-.5)))-i)+"%";
-              // }
             }
             all[i].style.visibility='visible';
           }
@@ -73,6 +65,7 @@
         if(clrid!=document.querySelector("#card"+this.itemno))
         {
           //document.querySelector('my-app').setVisible("true");
+          document.querySelector('app-homepage').FnSetSupplyVisibility('true');
           for(var i=0;i<all.length;i++){
             if(all[i].id==document.querySelector("#card"+this.itemno).id){
               all[i].style.visibility='visible';
@@ -85,7 +78,7 @@
         }
         else
         {
-
+          document.querySelector('app-homepage').FnSetSupplyVisibility('false');
           for(var i=0;i<all.length;i++){
             if(i!=0)
               all[i].style.marginTop=(n)+"%";

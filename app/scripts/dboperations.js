@@ -4042,3 +4042,58 @@ exports.FnInternalintentexpandread=function(pagename,response,callback) {
   });
 
 }
+
+
+exports.FnIntentsupply=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+
+  var selectqur="select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
+  " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
+
+  var insertqur="INSERT INTO OD_Item_Inventory select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
+  " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
+
+  
+  console.log('...................................................................');
+  console.log(selectqur);
+  console.log(insertqur);  
+  connection.query(selectqur, function(err, rows) {
+    if(!err)
+    {
+      response.unit=rows[0].unit;
+      response.quantity=rows[0].Quantity;
+      console.log('...................................................................');
+      console.log(response.unit+"  "+response.quantity);
+      // return callback(rows);
+  connection.query(insertqur, function(err, rows) {
+    if(!err)
+    {
+      var updatequr="update OD_Item_Inventory set Container=(Container-'"+response.unit+"'),Quantity=(Quantity-'"+response.quantity+"') where Item_ID='"+response.itemid+"' and State='Stores'";
+      console.log('...................................................................');
+      console.log(updatequr);
+      connection.query(updatequr, function(err, rows) {
+      if(!err)
+      {
+      return callback("succ");
+      }
+      else
+      return callback("fail");  
+      });
+    }
+  });
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
