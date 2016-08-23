@@ -1,0 +1,160 @@
+<!--Compponent import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="stylesheet" href="../../bower_components/paper-styles/demo.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="internalintentexpand-page">
+  <template>
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .repeatcard{
+        @apply(--layout-horizontal);
+        width: 90%;
+      }
+      #card1{        
+        margin-top: 0.5%;
+        width: 100%;
+        border-bottom: 1px solid #dedede;
+        overflow-x:hidden;
+      }
+
+      .topright{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-left: 7%;
+        margin-top: -5%;
+      }
+      .topright1{
+        @apply(--layout-horizontal);
+        width: 100%;
+        margin-top: 0%;
+      }
+      .set{
+        @apply(--layout-horizontal);
+        margin-left:10%;
+      }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 92%;
+        margin-left: 8%;
+        height: 3%;
+        margin-top: 5%;
+      }
+      paper-button{
+        text-align: center;      
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;        
+        margin-top: 1%;
+        text-transform:none;
+        margin-left: 3%;
+      }
+      #div2{
+        width: 100%;
+        margin-top: 1%;
+        border-bottom:2px solid #e6e6e6;
+        margin-left:6%;
+      }
+      datepicker-card{
+        width: 30%;
+      }
+      .polbl{
+        margin-left:17%;
+      }
+      .podate{
+        font-size:12px;
+      }
+      #supplier{
+        margin-left:3%;
+      }
+      #pinput{
+        margin-left: 5%;
+      }
+      .card{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        margin-left: 20%;
+        margin-top: 2%;
+      }
+      paper-tabs{
+        margin-top: 0%;
+      }
+      paper-input{
+        margin-left: 2%;
+      }
+      .dialogdiv{
+        @apply(--layout-vertical);
+      }
+      .innerdialog{
+        @apply(--layout-horizontal);
+      }
+      .supplierdiv{
+        margin-left: 3%;
+      }
+      #pdf{
+        margin-top: 1%;
+        margin-left: 3%;
+      }
+    </style>
+    <!--Expanded card template-->
+    <div class="card">    
+    <paper-item>{{intentregno}}</paper-item>
+    <paper-item>{{intentdate}}</paper-item>
+    <paper-item>{{itemdes}}</paper-item>
+    <paper-item>{{requnit}}/{{requnitmeasure}}</paper-item>
+    <paper-item>{{reqquantity}}/{{reqquantitymeasure}}</paper-item>
+    <paper-item>{{availunit}}/{{availunitmeasure}}</paper-item>
+    <paper-item>{{availquantity}}/{{availquantitymeasure}}</paper-item>
+    </div>     
+  <!-- component which make req to read the intent item info -->
+  <iron-ajax   
+    id="internalintentexpandreadajax"
+    url="{{internalintentexpandreadurl}}"
+    method="post"
+    params='{{internalintentexpandreadparam}}'
+    handle-as="json"
+    content-type="application/json"
+    on-response="FnInternalintentexpandreadResponse">
+  </iron-ajax>
+  
+  <!--Component to read Labels for the components from webcomponents.json file-->
+  <iron-ajax
+      auto
+      id="webcomponentreadajax"
+      url="../../config/webcomponents.json"
+      handle-as="json"
+      content-type="application/json"
+      on-response="FnWebcomponentreadResponse">
+  </iron-ajax>
+  <!-- Component to call the service -->
+  <!-- <intent-service id="intentservice"></intent-service> -->
+  </template>
+  <!--Importing JS file-->
+  <script src="../../scripts/internalintentexpand-page.js"></script>
+</dom-module>

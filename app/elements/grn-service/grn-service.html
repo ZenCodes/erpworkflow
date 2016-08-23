@@ -119,6 +119,17 @@
       on-response="resenditemtoqualityResponse">
     </iron-ajax>
 
+    <!--Fetching retesting items-->
+    <iron-ajax
+      id="internalintentitemreadajax"
+      url="{{internalintentitemreadurl}}"
+      params='{{internalintentitemreadparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="internalintentitemreadResponse">
+    </iron-ajax>
+
   </template>
   <!-- JS file import -->
   <script src="../../scripts/grn-service.js"></script>

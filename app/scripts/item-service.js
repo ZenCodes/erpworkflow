@@ -87,7 +87,7 @@ var intentregno;
       //alert(sessionStorage.getItem("loggeduser"));
       if(e.detail.response.returnval=="succ"){
         for(var i=0;i<this.items.length;i++){
-          var obj={"createdby":"","createddate":"","state":"","loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"itemid":"","createdby":"","createddate":"","state":"","loggedrole":"","loggeduser":"","duedate":"","intentdate":"","specification":"","itemdes":"","qtyreceived":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           obj.loggedrole=sessionStorage.getItem("loggedrole");
           obj.loggeduser=sessionStorage.getItem("loggeduser");
           obj.createdby=sessionStorage.getItem("loggeduser");
@@ -97,6 +97,7 @@ var intentregno;
           var y = dt.getFullYear();
           var dmy = d + "/" + (m+1) + "/" + y;
           obj.createddate=dmy;
+          obj.itemid=this.items[i].itemid;
           obj.duedate=this.items[i].duedate;
           obj.state=this.items[i].state;
           obj.intentdate=this.items[i].invoicedate;

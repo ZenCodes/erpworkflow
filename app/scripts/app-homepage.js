@@ -98,6 +98,12 @@ Polymer({
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('View Intent');
       }
+      else if(localStorage.getItem("curr_sess_wardflag")=="15"){
+      this.$.flow.style.visibility='hidden';
+      this.$.intentflow.style.visibility='visible';
+      document.querySelector('app-homepage').setPage('intenthome-page');
+      document.querySelector('intenthome-page').setPage('Internal Intent');
+      }
       else{
       localStorage.setItem("curr_sess_showpage","physicins-page");
       this.page="home-page";

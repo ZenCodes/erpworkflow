@@ -1235,10 +1235,11 @@ exports.FnIntentItemWrite=function(pagename,response,loggeduser,itemdes,callback
     }
   }
 var query="SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID =  '"+loggeduser+"' AND department_ID = (SELECT DISTINCT department_ID FROM MD_Item m JOIN OD_Intent_Item_Type o USING ( Item_Type_ID ) WHERE m.Item_Name =  '"+itemdes+"' ) ";
-
+console.log('..........................................................................');
+console.log(query);
   connection.query(query,function(err,rows,result){
    if(response.state!='spot'){
-   if(rows.length==1){
+   if(rows.length==0){
      response.state='external';
    }
    else{
@@ -1363,7 +1364,7 @@ exports.FnIntentSupplyItemRead=function(pagename,loggeduser,intentstate,state,ca
 
     var queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','POCreated') and state='external'))";
 
-    var queryy1="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved') and state='intenal'))";
+    var queryy1="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved') and state='internal'))";
 
      // console.log(queryy);
     //cond={"state":state};
@@ -3969,6 +3970,70 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
               return callback("not inserted");
          });
       }
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
+
+exports.FnInternalintentitemread=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+
+  var queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,"+
+  "os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os "+
+  "join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) "+
+  "where os.Intent_State in('"+response.intentstate+"') and state='"+response.state+"'";
+
+  console.log(queryy);
+  
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
+exports.FnInternalintentexpandread=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+
+  var queryy="select si.Intent_Register_Number,si.Intent_Date,si.Product_ID,si.unit as requnit,si.Unit_measure as requnitmeasure,"+
+  "si.Quantity as reqquantity,si.Quantity_Measure as reqquantitymeasure,ii.Container as availunit,ii.Container_Measure as availunitmeasure, "+
+  "ii.Quantity as availquantity,ii.Quantity_Measure as availquantitymeasure "+
+  " FROM OD_Stores_Intent_Items si join OD_Item_Inventory ii on(si.Item_ID=ii.Item_ID) "+
+  "and si.Intent_Register_Number='"+response.intentregno+"' and si.Item_ID='"+response.itemid+"'";
+
+  console.log(queryy);
+  
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
     }
     else{
       console.log(err);

@@ -70,8 +70,9 @@
       this.qtyreceived=qtyreceived;
       this.remark=remark;
     },
-    FnSetMenuinfo:function(itemdes,unit,measure){
+    FnSetMenuinfo:function(itemdes,itemid,unit,measure){
       //alert(itemdes+"  "+unit);
+      this.itemid=itemid;
       this.unit=unit;
       this.measure=measure;
       localStorage.setItem("curr_sess_showunitvalue",unit);
@@ -141,11 +142,12 @@
         }
         if(existflag==0){
           //alert('okay');
-          var obj={"state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+          var obj={"itemid":"","state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
           if(localStorage.getItem("curr_sess_spotorderflag")=='true')
           obj.state='spot';
           else
-          obj.state=''; 
+          obj.state='';
+          obj.itemid=this.itemid; 
           obj.duedate=localStorage.getItem("localsess_curr_inwarddate");
           obj.invoicedate=this.invoicedate;
           obj.itemdes=this.itemdes;
@@ -219,11 +221,12 @@
             }
           }
           if(existflag==0){
-            var obj={"createdby":"","state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
+            var obj={"itemid":"","createdby":"","state":"","invoicedate":"","duedate":"","specification":"","itemdes":"","qtyreceive":"","remark":"","unit":"","qtymeasure":"","unitmeasure":""};
             if(localStorage.getItem("curr_sess_spotorderflag")=='true')
             obj.state='spot';
             else
             obj.state='';
+            obj.itemid=this.itemid;
             obj.duedate=localStorage.getItem("localsess_curr_inwarddate");
             obj.specification=this.specification;
             obj.invoicedate=this.invoicedate;

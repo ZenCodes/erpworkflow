@@ -154,7 +154,6 @@
       }
     },
     FnIntentitemReadService:function(){
-
       this.intenturl=sessionStorage.getItem("curr_sess_url")+"intentitemread-service";
       var arg={"loggeduser":"","state":"","loggedrole":""};
       arg.loggeduser=sessionStorage.getItem("loggeduser");
@@ -164,6 +163,8 @@
     },
     intentitemreadResponse:function(e){      
       var itemarr=e.detail.response.itemarr;
+      // alert(JSON.stringify(itemarr));
+      // alert(localStorage.getItem('curr_sess_postate'));
       var items=[];
       if(sessionStorage.getItem("curr_sess_roleflag")=="4"){
         for(var i=0;i<itemarr.length;i++){
@@ -235,6 +236,29 @@
       }
       else
       alert("Failed to send item!");
+    },
+    FnFetchInternalIntentService:function(){
+      // alert('calling.......');
+      this.internalintentitemreadurl=sessionStorage.getItem("curr_sess_url")+"internalintentitemread-service";
+      var arg={"loggeduser":"","intentstate":"","state":""};
+      arg.loggeduser=sessionStorage.getItem("loggeduser");
+      if(sessionStorage.getItem("loggedrole")=="Stores manager")
+      {
+      arg.intentstate="Approved";
+      arg.state="internal";
+      }
+      this.internalintentitemreadparam=arg;      
+      this.$.internalintentitemreadajax.generateRequest();
+    },
+    internalintentitemreadResponse:function(e){
+      var arr=e.detail.response;
+      // alert(JSON.stringify(arr));
+      for(var i=0;i<arr.length;i++){
+        arr[i].Quantity=arr[i].Quantity+" "+arr[i].Quantity_Measure;
+        arr[i].unit=arr[i].unit+" "+arr[i].Unit_Measure;
+      }
+      if(sessionStorage.getItem("loggedrole")=="Stores manager")
+      document.querySelector('internalintent-page').itemArray=arr;
     }
 
   });

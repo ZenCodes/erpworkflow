@@ -1,0 +1,70 @@
+<!--Component import-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../internalintentitem-page/internalintentitem-page.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../webcomponent-service/webcomponent-service.html">
+<link rel="import" href="../intentviewtype-card/intentviewtype-card.html">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<dom-module id="internalintent-page">
+  <template>
+    <style is="custom-style">
+    .card{
+      margin-top: 2%;
+    }
+      paper-tabs{
+        background-color: #e6e6e6;
+        width: 90%;
+        margin-top: -5%;
+        height: 4%;
+        margin-left: 5%;
+        text-align: start;
+      }
+      paper-button{
+        font-size: 15px;
+        text-transform: none;
+      }
+      .intentview{
+        margin-left: 90%;
+        margin-top: -6%;
+      }
+
+    </style>
+
+    <!--Template which has card template-->
+    <template is="dom-repeat" items="{{label}}" as="lbl">
+      <div class="card">
+        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
+          <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
+            <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
+          </template>
+        </paper-tabs>
+        <!--Template which bind items under the current logged role state-->
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+          <div class="itemcard">
+            <div><internalintentitem-page itemno="{{item.Item_ID}}" intentregno="{{item.Intent_Register_Number}}" itemdes="{{item.Product_ID}}" quantity="{{item.Quantity}}" unit="{{item.unit}}" duedate="{{item.Due_Date}}" itemlocation="{{item.Store_Location_Name}}"></internalintentitem-page></div>
+          </div>
+        </template>
+      </div>
+    </template>
+    <!--Calling webcomponent service to bind label info-->
+    <webcomponent-service label="{{label}}" id="ID_Webcomponent_Service"></webcomponent-service>
+    <!--Binding items to the above template-->
+    <grn-service id="gs" itemArray="{{itemArray}}"></grn-service>
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/internalintent-page.js"></script>
+
+</dom-module>

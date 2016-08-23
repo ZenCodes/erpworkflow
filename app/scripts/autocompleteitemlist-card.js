@@ -105,7 +105,7 @@
         }
         if(localStorage.getItem("curr_sess_wardflag")=="2") {
           //Binding values to the intent page value and unit
-          document.querySelector('intent-page').FnSetMenuinfo(this.value, this.unit, this.measure);          
+          document.querySelector('intent-page').FnSetMenuinfo(this.value,this.itemid, this.unit, this.measure);          
         }
         if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
           //Binding values to the grn page value and unit

@@ -587,6 +587,7 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     Due_Date:req.query.duedate,
     Intent_Date:req.query.intentdate,
     Product_ID:req.query.itemdes,
+    Item_ID:req.query.itemid,
     Specification:req.query.specification,
     unit:req.query.unit,
     Unit_Measure:req.query.unitmeasure,
@@ -1938,7 +1939,30 @@ app.post('/inventoryupdate-service',urlencodedParser, function (req, res) {
   });  
 });
 
+app.post('/internalintentitemread-service',urlencodedParser, function (req, res) {
+  var response={
+  loggeduser:req.query.loggeduser,
+  intentstate: req.query.intentstate, 
+  state: req.query.state   
+  };
 
+  var FnInternalintentitemreadcall = require("./app/scripts/dboperations.js");
+  FnInternalintentitemreadcall.FnInternalintentitemread("internalintentitemread-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/internalintentexpandread-service',urlencodedParser, function (req, res) {
+  var response={
+  itemid:req.query.itemno,
+  intentregno: req.query.intentregno  
+  };
+
+  var FnInternalintentexpandreadcall = require("./app/scripts/dboperations.js");
+  FnInternalintentexpandreadcall.FnInternalintentexpandread("internalintentexpandread-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
 
 //Node server running port number
 app.listen(4000);

@@ -313,6 +313,12 @@
         "Payment_Terms":"Payment Terms","Term1":"15 days","Term2":"30 days","Term3":"45 days","Term4":"60 days"
       }]}
     ,{"title":["Account Detail"]}
+    ]},
+    {"Page":[
+      {"page":["Internal Intent","internalintent-page"]},
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Quantity"},{"tab":"Container"},
+      {"tab":"Location"},{"tab":"Intent Register No"}]}]}
+    ,{"title":["Internal Intent"]}
     ]}
   ]
 
