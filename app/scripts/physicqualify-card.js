@@ -31,7 +31,6 @@
     this.podate=localStorage.getItem("localsess_curr_inwarddate");
   },
     FnexpandcardreadService:function(){
-
       //alert("calling");
       var arg={"inwardregno":"","status":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
@@ -62,11 +61,12 @@
       this.$.physicqualifyexpanditemreadajax.generateRequest();
     },
     FnphysicqualifyexpanditemreadResponse:function(e){
+    // alert(JSON.stringify(e.detail.response));
     if(containermeasure.toUpperCase()==('Coil').toUpperCase())      
     document.querySelector('physicqualifyitem-card').FnComponentReSize();
     else
     document.querySelector('physicqualifyitem-card').FnComponentSize();
-    //alert(JSON.stringify(e.detail.response));
+    // alert(JSON.stringify(e.detail.response));
       if(e.detail.response=="no items")
       {
         //alert('yeas');
@@ -95,7 +95,7 @@
           this.specarr.push(obj);
         }
         this.specificationArray=this.specarr;
-        //alert(JSON.stringify(this.specificationArray));
+        // alert(JSON.stringify(this.specificationArray));
         document.querySelector('physicqualified-service').FnSetOldContainerArray(this.specificationArray);
       }
       else{
@@ -116,7 +116,7 @@
          arr[i].hideflag=true;
          }
         }
-        //alert(JSON.stringify(arr));
+        // alert(JSON.stringify(arr));
         this.specificationArray = arr;
         localStorage.setItem("curr_sess_productid",this.specificationArray[0].Product_ID);
         localStorage.setItem("curr_sess_PONumber",this.specificationArray[0].PO_Number);
@@ -129,7 +129,6 @@
     localStorage.setItem("curr_sess_containermeasure",containermeasure);
     this.speccardlength=contreceived;
     this.specarr=[];
-
 
     if(contmeasure.toUpperCase()==('Coil').toUpperCase()){
       localStorage.setItem("curr_sess_repeatitementry","1");

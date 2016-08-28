@@ -613,7 +613,6 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
     }
   }
 
-
   connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? ',[cond1,cond2,cond6], function(err, rows) {
     if(rows.length>0) {
       connection.query('SELECT * from OD_Inward_Material_Inspection WHERE ? and ? and ? and ?', [cond1, cond2, cond6, cond7], function (err, rows) {
@@ -627,7 +626,6 @@ exports.FnPhysicqualifyitem=function(pagename,response,cond1,cond2,cond3,cond4,c
               return callback("not updated");
             }
           });
-
         }
         else
         {
@@ -3895,6 +3893,36 @@ exports.Fncreaterole=function(pagename,response,callback) {
 
 }
 
+
+exports.FnFetchbatchno=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+
+  var fetchbatchno="SELECT * from OD_Inward_Material_Inspection where Inward_Register_Number='"+response.Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved'";  
+  console.log('.................fetchbatchno..................');
+  console.log(fetchbatchno);
+  console.log('...............................................');
+  
+  connection.query(fetchbatchno, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+
 exports.FnInventoryupdate=function(pagename,response,callback) {
 
   var Config_tables=[];
@@ -3906,18 +3934,19 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
     }
   }  
 
-  var insertqur="INSERT INTO OD_Item_Inventory SELECT Item_ID,"+
-  "Product_ID,unit,Unit_measure,Qty_Accepted,Qty_measure,'Stores'  FROM "+ 
-  "OD_Sales_Inward_Material WHERE new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm'";
+  var insertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Container_ID,Batch_No,PO_Number,PO_Date,Inward_Register_Number) SELECT Item_ID,"+
+  "Product_ID,unit,Unit_measure,Quantity,Quantity_Measure,'Stores',Container_ID,Batch_No,PO_Number,PO_Date,Inward_Register_Number  FROM "+ 
+  "OD_Inward_Material_Inspection WHERE Inward_Register_Number='"+response.new_Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved' and Batch_No='"+response.Batch_No+"'";
 
-  var updatecheck="SELECT Item_ID,Product_ID,unit,Unit_measure,Qty_Accepted,Qty_measure FROM "+
-  "OD_Sales_Inward_Material WHERE new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm'";
+  var updatecheck="SELECT Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,Batch_No FROM "+
+  "OD_Inward_Material_Inspection WHERE Batch_No='"+response.Batch_No+"' and Inward_Register_Number='"+response.new_Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved'";
 
   var updatequr="UPDATE OD_Item_Inventory SET ?,? WHERE Item_ID=(SELECT Item_ID FROM "+
-  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm')";
+  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm') and Batch_No='"+response.Batch_No+"'";
 
   var qurcheck="SELECT * FROM OD_Item_Inventory WHERE Item_ID=(SELECT Item_ID FROM "+
-  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm')";
+  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm') "+
+  " and Batch_No='"+response.Batch_No+"'";
  
   var res={
     quantity:'',
@@ -3925,12 +3954,7 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
   };
 
   connection.query(qurcheck,function(err, rows) {
-    if(!err)
-    {
-      console.log('.............................................................');
-      console.log('check for existence'); 
-      console.log(qurcheck);      
-      if(rows.length>0)
+  if(rows.length>0)
       {
         response.quantity=rows[0].Quantity;
         response.container=rows[0].Container;
@@ -3939,9 +3963,10 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
         console.log(updatecheck); 
         connection.query(updatecheck,function(err, rows) {
           if(rows.length> 0){
-            console.log(rows[0].Qty_Accepted+" "+rows[0].unit);
-            var quantity=parseInt(response.quantity)+parseInt(rows[0].Qty_Accepted);
-            var container=parseInt(response.container)+parseInt(rows[0].unit);
+            console.log(rows[0].Quantity+" "+rows[0].unit);
+            var quantity=parseInt(response.quantity)+parseInt(rows[0].Quantity);
+            // var container=parseInt(response.container)+parseInt(rows[0].unit);
+            var container=parseInt(response.container)+1;
             var quan={"Quantity":quantity};
             var cont={"Container":container};
             console.log('.............................................................');
@@ -3970,11 +3995,7 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
               return callback("not inserted");
          });
       }
-    }
-    else{
-      console.log(err);
-      return callback("fail");
-    }
+    
   });
 
 }

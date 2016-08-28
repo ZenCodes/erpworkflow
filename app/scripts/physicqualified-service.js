@@ -125,9 +125,10 @@
             "Remarks": "",
             "status": "",
             "Inspection_Status": "",
-            "createdby":""
+            "createdby":"",
+            "Item_ID":""
           };
-          
+          obj.Item_ID = oldcontainerarr[i].Item_ID;
           obj.Inward_Register_Number = oldcontainerarr[i].Inward_Register_Number;
           obj.Product_ID = oldcontainerarr[i].Product_ID;
           obj.PO_Number = oldcontainerarr[i].PO_Number;
@@ -201,7 +202,7 @@
       if(e.detail.response.flag=="updated"){
         // alert(sessionStorage.getItem("curr_sess_roleflag"));
         if(sessionStorage.getItem("curr_sess_roleflag")=="4")
-        this.callInventoryService();  
+        this.callFetchBatchService(); 
       else
         {
         localStorage.setItem('curr_sess_flowstate',"1");
@@ -219,10 +220,25 @@
 
       }
     },
-    callInventoryService:function(){
-      var arg={"inwardregno":"","state":"","createdby":""};
+    callFetchBatchService:function(){
+      var arg={"inwardregno":""};
+      arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno"); 
+      this.fetchbatchnourl=sessionStorage.getItem("curr_sess_url")+"fetchbatchno-service";
+      this.fetchbatchnoparam=arg;
+      this.$.fetchbatchnoajax.generateRequest();
+    },
+    fetchbatchnoResponse:function(e){
+      var arr=e.detail.response;
+      alert(JSON.stringify(arr));
+      for(var i=0;i<arr.length;i++){
+        this.callInventoryService(arr[i].Batch_No); 
+      }
+    },
+    callInventoryService:function(batchno){
+      var arg={"inwardregno":"","state":"","batchno":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
       arg.state="Stores";
+      arg.batchno=batchno;
       this.inventoryupdateparam=arg;      
       this.inventoryupdateurl=sessionStorage.getItem("curr_sess_url")+"inventoryupdate-service";
       this.$.inventoryupdateajax.generateRequest();

@@ -114,20 +114,17 @@
         <div class="polbl" hidden$="{{isHidden}}"><paper-item class="podate">{{lbl.PO_Date}}</paper-item></div>
         <div class="topright">
           <div id="datepick" hidden$="{{isHidden}}"><datepicker-card></datepicker-card></div>
-          <div id="ponbr" hidden$="{{isHidden}}"><paper-input name="ponumber" label="{{lbl.PO_Number}}"  value="{{ponumber}}" required auto-validate id="pono" error-message="{{lbl.PO_Number_error}}" on-change="FnInputChanged" readonly="{{read}}"></paper-input></div>
+          <div id="ponbr" hidden$="{{isHidden}}">
+          <paper-input name="ponumber" label="{{lbl.PO_Number}}"  value="{{ponumber}}" required auto-validate id="pono" error-message="{{lbl.PO_Number_error}}" on-change="FnInputChanged" readonly="{{read}}"></paper-input>
+          </div>
         </div>
         </div>
     </div>
-    <!--<paper-tabs selected="0" noink id="ptab">
-      <template is="dom-repeat" items="{{lbl.tabs}}" as="tabs">
-      <paper-tab><paper-button>{{tabs.tab}}</paper-button></paper-tab>
-      </template>
-    </paper-tabs>-->
     <div id="div2">
       <!--template which shows the no of items under expended IRN card-->
       <template is="dom-repeat" items="{{specificationArray}}" as="item">
       <div class="repeatcard">
-        <physicqualifyitem-card hideflg="{{item.hideflag}}" serialno="{{item.serialno}}" read="{{item.readflag}}" containerid="{{item.Container_ID}}" heatno="{{item.Heat_Number}}" batchno="{{item.Batch_No}}" qtyaccept="{{item.Quantity}}" inspectionstatus="{{item.Inspection_Status}}" inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{item.Remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></physicqualifyitem-card>
+        <physicqualifyitem-card itemid="{{itemid}}" hideflg="{{item.hideflag}}" serialno="{{item.serialno}}" read="{{item.readflag}}" containerid="{{item.Container_ID}}" heatno="{{item.Heat_Number}}" batchno="{{item.Batch_No}}" qtyaccept="{{item.Quantity}}" inspectionstatus="{{item.Inspection_Status}}" inwardregno="{{inwardregno}}"  inwardno="{{inwardno}}" ponumber="{{ponumber}}" podate="{{podate}}" suppliername="{{suppliername}}" productid="{{productid}}" contreceived="{{contreceived}}" contaccepted="{{contaccepted}}" qtyreceived="{{qtyreceived}}" qtyaccepted="{{qtyaccepted}}" remarks="{{item.Remarks}}" qtymeasure="{{qtymeasure}}" contmeasure="{{contmeasure}}"></physicqualifyitem-card>
       </div>
       </template>
     </div>

@@ -57,11 +57,9 @@ var flag="true";
             this.status = localStorage.getItem("curr_sess_currflowstatus");
             this.updatestatus = localStorage.getItem("curr_sess_currflowupdatestatus");
             break;
-        }
-        
+        }        
         this.$.form.submit();
-      }
-      
+      }      
     },
     FnRejectItem: function () {
       if ((this.ponumber == null || this.ponumber == "") && (localStorage.getItem("curr_sess_POchangeflag") != 1)) {

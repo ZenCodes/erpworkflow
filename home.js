@@ -165,8 +165,7 @@ app.post('/generatebatchno-service',urlencodedParser, function (req, res) {
 
 app.post('/itemsave-service',urlencodedParser, function (req, res) {
   /*receiving values from item page*/
-  //console.log(req.query.qtymeasure);
-  //console.log(req.query.unitmeasure);
+
   if(req.query.ponumber=="others")
   statevalue='Purchase';
   else
@@ -260,6 +259,7 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
   inspectionstatus="Rejected";
 
   var  response={
+    Item_ID:req.body.itemid,
     Created_By:req.body.createdby,
     Serial_No:req.body.serialno,
     Inward_Register_Number:req.body.inwardregno,
@@ -274,10 +274,12 @@ app.post("/physicqualifyitem-card",urlencodedParser,function(req,res) {
     Remarks:req.body.remark,
     status:req.body.updatestatus,
     Inspection_Status:inspectionstatus,
-    Batch_No:req.body.batchno
+    Batch_No:req.body.batchno,
+    unit:req.body.contaccepted,
+    Unit_Measure:req.body.contmeasure
   };
 
-  // console.log(response);
+  console.log(response);
 
   var batchresponse={
     Heat_No:req.body.heatno,
@@ -1927,9 +1929,25 @@ app.post('/createrole-service',urlencodedParser, function (req, res) {
   });  
 });
 
+
+app.post('/fetchbatchno-service',urlencodedParser, function (req, res) {
+  var response={
+  Inward_Register_Number:req.query.inwardregno    
+  };
+
+  console.log(req.query.inwardregno);
+
+  var FnFetchbatchnocall = require("./app/scripts/dboperations.js");
+  FnFetchbatchnocall.FnFetchbatchno("fetchbatchno-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+
 app.post('/inventoryupdate-service',urlencodedParser, function (req, res) {
   var response={
   new_Inward_Register_Number:req.query.inwardregno,
+  Batch_No:req.query.batchno,
   State: req.query.state    
   };
 

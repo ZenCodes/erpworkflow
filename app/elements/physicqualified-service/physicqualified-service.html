@@ -71,6 +71,17 @@
       content-type="application/json"
       on-response="inventoryupdateResponse">
     </iron-ajax>
+
+      <!--fetching batch no-->
+    <iron-ajax
+      id="fetchbatchnoajax"
+      url="{{fetchbatchnourl}}"
+      method="post"
+      params='{{fetchbatchnoparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchbatchnoResponse">
+    </iron-ajax>
     <grn-service id="gs"></grn-service>
   </template>
 
