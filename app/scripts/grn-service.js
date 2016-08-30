@@ -259,6 +259,26 @@
       }
       if(sessionStorage.getItem("loggedrole")=="Stores manager")
       document.querySelector('internalintent-page').itemArray=arr;
+    },
+     FnFetchInternalIntentViewService:function(){
+      // alert('calling.......');
+      this.internalintentviewitemreadurl=sessionStorage.getItem("curr_sess_url")+"internalintentviewitemread-service";
+      var arg={"loggeduser":"","intentstate":"","state":""};
+      arg.loggeduser=sessionStorage.getItem("loggeduser");
+     
+      this.internalintentviewitemreadparam=arg;      
+      this.$.internalintentviewitemreadajax.generateRequest();
+    },
+    internalintentviewitemreadResponse:function(e){
+      var arr=e.detail.response;
+      // alert(JSON.stringify(arr));
+      for(var i=0;i<arr.length;i++){
+        arr[i].Quantity=arr[i].Quantity+" "+arr[i].Quantity_Measure;
+        arr[i].unit=arr[i].Container+" "+arr[i].Container_Measure;
+      }
+      // alert(JSON.stringify(arr));
+      if(sessionStorage.getItem("loggedrole")=="Production manager")
+      document.querySelector('internalintentview-page').itemArray=arr;
     }
   });
 })();

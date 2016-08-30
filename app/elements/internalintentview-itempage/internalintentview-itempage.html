@@ -1,0 +1,89 @@
+<!--Component imports-->
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../internalintentexpand-page/internalintentexpand-page.html">
+<link rel="import" href="../intent-service/intent-service.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<dom-module id="internalintentview-itempage">
+  <style>
+    .internalintentexpandcard{
+      @apply(--layout-horizontal);
+      width: 90%;
+      border-bottom: 1px solid #dedede;
+      margin-top:2%;
+      margin-left: 5%;
+    }
+    paper-button{
+      width: 35%;
+      text-transform: none;
+      font-size: 16px;
+      font-family: calibri;
+    }
+    paper-item{
+      width: 20%;
+      margin-left: 10%;
+    }
+    paper-input{
+      width: 35%;
+      margin-top: -2%;
+      font-size: 17px;
+      font-family: calibri;
+    }
+    paper-checkbox{
+      margin-top: 1%;
+    }
+    paper-icon-button{
+      width:15%;
+    }
+    a{
+      text-decoration: none;
+      width: 20%;
+    }
+    .collapse{
+      width:90%;
+    }
+    #regno{
+      margin-left: 5%;
+    }
+    #date{
+      margin-left: 10%;
+    }
+  </style>
+  <template>
+    <!--Expand Itemcard-->
+    <div class="internalintentexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">     
+     <paper-button id="itemdes"  name="itemdes" value="{{itemdes}}" noink>{{itemdes}}</paper-button> 
+     <paper-button id="batchno"  name="batchno" value="{{batchno}}" noink>{{batchno}}</paper-button>   
+     <paper-button id="quantity"  name="quantity" value="{{quantity}}" noink>{{quantity}}</paper-button>
+     <paper-button id="unit"  name="unit" value="{{unit}}" noink>{{unit}}</paper-button>
+     
+     <!-- <paper-button id="itemlocation"  name="itemlocation" value="{{itemlocation}}" noink>{{itemlocation}}</paper-button> -->
+     <paper-button id="intentregno"  name="intentregno" value="{{intentregno}}" noink>{{intentregno}}</paper-button>
+    </div>
+    <!--Expand item collapse card-->
+   <!--  <iron-collapse id="{{intentregno}}">
+      <div class="collapse">      
+        <internalintentexpand-page id="ps" itemid="{{itemno}}" itemdes="{{itemdes}}" reqquantity="{{quantity}}" requnit="{{unit}}" intentregno="{{intentregno}}"></internalintentexpand-page>
+      </div>
+    </iron-collapse> -->
+  <!-- Component to call the service -->
+  <!-- <intent-service id="intentservice"></intent-service> -->
+  </template>
+  <!--JS file import-->
+  <script src="../../scripts/internalintentview-itempage.js"></script>
+</dom-module>

@@ -666,7 +666,7 @@
         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
         this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupply-service";
         this.intentsupplyparam=obj;
-        alert(JSON.stringify(obj));
+        // alert(JSON.stringify(obj));
         this.$.intentsupplyajax.generateRequest(); 
       },
       intentsupplyResponse:function(e){

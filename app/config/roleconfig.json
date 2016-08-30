@@ -22,7 +22,7 @@
         "newstatus":"OldProduction",
         "updatestatus":"Quality",
         "containerstatus":"OldStores",
-        "menu" : ["GRN Flow","Add Intent","View Intent"]
+        "menu" : ["GRN Flow","Add Intent","View Intent","Internal Intent"]
       },
       {
         "rolename": "Quality manager",

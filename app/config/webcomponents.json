@@ -317,7 +317,13 @@
     {"Page":[
       {"page":["Internal Intent","internalintent-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Quantity"},{"tab":"Container"},
-      {"tab":"Location"},{"tab":"Intent Register No"}]}]}
+      {"tab":"Intent Register No"}]}]}
+    ,{"title":["Internal Intent"]}
+    ]},
+    {"Page":[
+      {"page":["internalintentview-page","internalintentview-page"]},
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Batch No"},{"tab":"Quantity"},{"tab":"Container"},
+      {"tab":"Intent Register No"}]}]}
     ,{"title":["Internal Intent"]}
     ]}
   ]

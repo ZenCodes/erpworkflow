@@ -4182,3 +4182,32 @@ exports.FnFetchcontainer=function(pagename,response,callback) {
 
 }
 
+
+
+exports.FnInternalintentviewitemread=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+
+  var queryy="SELECT * FROM OD_Item_Inventory WHERE State='Production'";
+
+  console.log(queryy);
+  
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}

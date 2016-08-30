@@ -46,6 +46,11 @@ Polymer({is:"drawermenu-card",
        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
        window.location.href="../elements/indexhome.html";
       }
+      if(e.target.id=="Internal Intent"){        
+        localStorage.setItem("curr_sess_wardflag","15");
+        // sessionStorage.setItem("curr_sess_intentrefreshflag","1");
+        window.location.href="../elements/indexhome.html";
+      }
     }
     //Roleflag 1 is for the role who may do GRN Flow and Intent items
     else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){

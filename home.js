@@ -2019,6 +2019,17 @@ app.post('/fetchcontainer-service',urlencodedParser, function (req, res) {
     res.status(200).json(returnval);
   });  
 });
+
+
+app.post('/internalintentviewitemread-service',urlencodedParser, function (req, res) {
+  var response={
+  loggeduser:req.query.loggeduser};
+
+  var FnInternalintentviewitemreadcall = require("./app/scripts/dboperations.js");
+  FnInternalintentviewitemreadcall.FnInternalintentviewitemread("internalintentviewitemread-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
 //Node server running port number
 app.listen(4000);
 

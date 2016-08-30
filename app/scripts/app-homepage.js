@@ -103,8 +103,13 @@ Polymer({
       this.$.flow.style.visibility='hidden';
       this.$.intentflow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
-      document.querySelector('intenthome-page').setPage('Internal Intent');
+      
+      if(sessionStorage.getItem("curr_sess_roleflag"))
+        document.querySelector('intenthome-page').setPage('internalintentview-page');
+      else
+        document.querySelector('intenthome-page').setPage('Internal Intent');
       }
+      
       else{
       localStorage.setItem("curr_sess_showpage","physicins-page");
       this.page="home-page";
