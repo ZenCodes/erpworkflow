@@ -101,7 +101,7 @@ Polymer({
       }
       else if(localStorage.getItem("curr_sess_wardflag")=="15"){
       this.$.flow.style.visibility='hidden';
-      this.$.intentflow.style.visibility='visible';
+      this.$.intentflow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Internal Intent');
       }
