@@ -4050,7 +4050,7 @@ exports.FnInternalintentexpandread=function(pagename,response,callback) {
   // " FROM OD_Stores_Intent_Items si join OD_Item_Inventory ii on(si.Item_ID=ii.Item_ID) "+
   // "and si.Intent_Register_Number='"+response.intentregno+"' and si.Item_ID='"+response.itemid+"'";
 
-  var queryy="select sum(Quantity) as availquantity,sum(Container) as availcontainer,Quantity_Measure,Container_Measure from OD_Item_Inventory where Item_ID='"+response.itemid+"'";
+  var queryy="select sum(Quantity) as availquantity,sum(Container) as availcontainer,Quantity_Measure,Container_Measure from OD_Item_Inventory where Item_ID='"+response.itemid+"' and State='Stores'";
 
   console.log(queryy);
   
@@ -4082,7 +4082,7 @@ exports.FnIntentsupply=function(pagename,response,callback) {
   // var selectqur="select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
   // " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
 
-  var selectqur="select sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"'";
+  var selectqur="select sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'";
   
   var insertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
   " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
@@ -4095,8 +4095,8 @@ exports.FnIntentsupply=function(pagename,response,callback) {
   if(!err)
   {      
     console.log(response.reqquantity+" < "+rows[0].quantity);
-  if(response.reqquantity<rows[0].quantity){
-    connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"'", function(err, rows) {
+  if(response.reqquantity<=rows[0].quantity){
+    connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'", function(err, rows) {
     connection.query(insertqur, function(err, rows) {
       if(!err){
         // return callback("Supplied!");
@@ -4134,7 +4134,7 @@ exports.FnFetchbatchnos=function(pagename,response,callback) {
     }
   }
 
-  var fetchbatchno="SELECT distinct Batch_No,sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.Item_ID+"' group by Batch_No";  
+  var fetchbatchno="SELECT distinct Batch_No,sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.Item_ID+"' and State='Stores' group by Batch_No";  
   console.log('.................fetchbatchno..................');
   console.log(fetchbatchno);
   console.log('...............................................');
@@ -4164,7 +4164,7 @@ exports.FnFetchcontainer=function(pagename,response,callback) {
     }
   }
 
-  var fetchcontainer="SELECT Container_ID,sum(Quantity) as quantity from OD_Item_Inventory where Batch_No='"+response.Batch_No+"' group by Container_ID";  
+  var fetchcontainer="SELECT Container_ID,sum(Quantity) as quantity from OD_Item_Inventory where Batch_No='"+response.Batch_No+"' and state='Stores' and Quantity!='0' group by Container_ID";  
   console.log('.................fetchbatchno..................');
   console.log(fetchcontainer);
   console.log('...............................................');

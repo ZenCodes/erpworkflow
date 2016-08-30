@@ -99,7 +99,7 @@
       .card{
         @apply(--layout-vertical);
         @apply(--layout-center);
-        margin-left: 20%;
+        margin-left: 10%;
         margin-top: 2%;
       }
       paper-tabs{
@@ -124,6 +124,12 @@
       .card1,.card2{
        @apply(--layout-horizontal); 
       }
+      .cont{
+        @apply(--layout-horizontal); 
+      }
+      .out{
+        @apply(--layout-vertical); 
+      }
     </style>
     <!--Expanded card template-->
     <div class="card">    
@@ -131,28 +137,35 @@
     <paper-item>{{intentdate}}</paper-item>
     <paper-item>{{itemdes}}</paper-item>-->
     <div class="card1">
-    Available Unit: <paper-item>{{availunit}}</paper-item>&nbsp;<paper-item>{{availunitmeasure}}</paper-item>
-    Available Quantity: <paper-item>{{availquantity}}</paper-item>&nbsp;<paper-item>{{availquantitymeasure}}</paper-item>
-    Requested Unit: <paper-item>{{requnit}}</paper-item>&nbsp;<paper-item> {{requnitmeasure}}</paper-item>
-    Requested Quantity: <paper-item>{{reqquantity}}</paper-item>&nbsp;<paper-item>{{reqquantitymeasure}}</paper-item>
+    <div class="out">
+    <div class="cont">
+    <paper-item>Available Unit: </paper-item>&nbsp;<paper-item>{{availunit}}</paper-item>&nbsp;<paper-item>{{availunitmeasure}}</paper-item></div>
+    <div class="cont"><paper-item>Available Quantity: </paper-item>&nbsp;<paper-item>{{availquantity}}</paper-item>&nbsp;<paper-item>{{availquantitymeasure}}</paper-item></div>
+    </div>
+    <div class="out">
+    <div class="cont"><paper-item>Requested Unit: </paper-item>&nbsp;<paper-item>{{requnit}}</paper-item>&nbsp;<paper-item> {{requnitmeasure}}</paper-item></div>
+    <div class="cont"><paper-item>Requested Quantity: </paper-item>&nbsp;<paper-item>{{reqquantity}}</paper-item>&nbsp;<paper-item>{{reqquantitymeasure}}</paper-item></div>
+    </div>
+    </div>
     <div>
+    <br>
     <div class="card2">
-    Select Batch to Supply: 
-    <paper-dropdown-menu id="dropitemtype" label="Select Batch" disabled="{{read}}" required>
+    <paper-item>Select Batch to Supply: </paper-item>&nbsp;
+    <div><paper-dropdown-menu id="dropitemtype" label="Select Batch" disabled="{{read}}" required>
       <paper-menu class="dropdown-content"  on-iron-select="FnSelectBatch"  attr-for-selected="value" selected="{{batch}}" required>
         <template is="dom-repeat" items="{{batcharr}}">
           <paper-item value="{{item.Batch_No}}">{{item.Batch_No}}</paper-item>
         </template>
     </paper-menu>
-    </paper-dropdown-menu>
+    </paper-dropdown-menu></div>&nbsp;&nbsp;&nbsp;
 
-     <paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
+     <div><paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
       <paper-menu class="dropdown-content"  on-iron-select="FnSelectContainer"  attr-for-selected="value" selected="{{containerid}}" required>
         <template is="dom-repeat" items="{{containerarr}}">
           <paper-item value="{{item.Container_ID}}">{{item.Container_ID}}</paper-item>
         </template>
     </paper-menu>
-    </paper-dropdown-menu>
+    </paper-dropdown-menu></div>
     </div>
     </div>     
   <!-- component which make req to read the intent item info -->

@@ -602,7 +602,8 @@ app.post('/intentitemwrite-service',urlencodedParser, function (req, res) {
     Intent_Created_By_ID:req.query.createdby,
     Intent_Created_By_Date:req.query.createddate,
     Intent_State:'',
-    Item_Type_ID:''
+    Item_Type_ID:'',
+    intent_status:'Open'
   };
   var FnIntentItemWritecall = require("./app/scripts/dboperations.js");
   FnIntentItemWritecall.FnIntentItemWrite("intentitemwrite-service",response,loggeduser,itemdes,function(returnval){
