@@ -97,7 +97,7 @@
         margin-left: 5%;
       }
       .card{
-        @apply(--layout-horizontal);
+        @apply(--layout-vertical);
         @apply(--layout-center);
         margin-left: 20%;
         margin-top: 2%;
@@ -121,18 +121,39 @@
         margin-top: 1%;
         margin-left: 3%;
       }
+      .card1,.card2{
+       @apply(--layout-horizontal); 
+      }
     </style>
     <!--Expanded card template-->
     <div class="card">    
     <!--<paper-item>{{intentregno}}</paper-item>
     <paper-item>{{intentdate}}</paper-item>
     <paper-item>{{itemdes}}</paper-item>-->
-    
+    <div class="card1">
     Available Unit: <paper-item>{{availunit}}</paper-item>&nbsp;<paper-item>{{availunitmeasure}}</paper-item>
     Available Quantity: <paper-item>{{availquantity}}</paper-item>&nbsp;<paper-item>{{availquantitymeasure}}</paper-item>
     Requested Unit: <paper-item>{{requnit}}</paper-item>&nbsp;<paper-item> {{requnitmeasure}}</paper-item>
     Requested Quantity: <paper-item>{{reqquantity}}</paper-item>&nbsp;<paper-item>{{reqquantitymeasure}}</paper-item>
-    
+    <div>
+    <div class="card2">
+    Select Batch to Supply: 
+    <paper-dropdown-menu id="dropitemtype" label="Select Batch" disabled="{{read}}" required>
+      <paper-menu class="dropdown-content"  on-iron-select="FnSelectBatch"  attr-for-selected="value" selected="{{batch}}" required>
+        <template is="dom-repeat" items="{{batcharr}}">
+          <paper-item value="{{item.Batch_No}}">{{item.Batch_No}}</paper-item>
+        </template>
+    </paper-menu>
+    </paper-dropdown-menu>
+
+     <paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
+      <paper-menu class="dropdown-content"  on-iron-select="FnSelectContainer"  attr-for-selected="value" selected="{{containerid}}" required>
+        <template is="dom-repeat" items="{{containerarr}}">
+          <paper-item value="{{item.Container_ID}}">{{item.Container_ID}}</paper-item>
+        </template>
+    </paper-menu>
+    </paper-dropdown-menu>
+    </div>
     </div>     
   <!-- component which make req to read the intent item info -->
   <iron-ajax   
@@ -145,6 +166,28 @@
     on-response="FnInternalintentexpandreadResponse">
   </iron-ajax>
   
+    <!--fetching batch no-->
+    <iron-ajax
+      id="fetchbatchnoajax"
+      url="{{fetchbatchnourl}}"
+      method="post"
+      params='{{fetchbatchnoparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchbatchnoResponse">
+    </iron-ajax>
+
+    <!--fetching container id-->
+    <iron-ajax
+      id="fetchcontainerajax"
+      url="{{fetchcontainerurl}}"
+      method="post"
+      params='{{fetchcontainerparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchcontainerResponse">
+    </iron-ajax>
+
   <!--Component to read Labels for the components from webcomponents.json file-->
   <iron-ajax
       auto

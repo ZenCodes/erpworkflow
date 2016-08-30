@@ -63,22 +63,21 @@
     #date{
       margin-left: 10%;
     }
-
   </style>
   <template>
     <!--Expand Itemcard-->
-    <div class="internalintentexpandcard" id="card{{itemno}}" on-click="FnExpandItemCard">     
+    <div class="internalintentexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">     
      <paper-button id="itemdes"  name="itemdes" value="{{itemdes}}" noink>{{itemdes}}</paper-button>    
      <paper-button id="quantity"  name="quantity" value="{{quantity}}" noink>{{quantity}}</paper-button>
      <paper-button id="unit"  name="unit" value="{{unit}}" noink>{{unit}}</paper-button>
      <paper-button id="duedate"  name="duedate" value="{{duedate}}" noink>{{duedate}}</paper-button>
-     <paper-button id="itemlocation"  name="itemlocation" value="{{itemlocation}}" noink>{{itemlocation}}</paper-button>
+     <!-- <paper-button id="itemlocation"  name="itemlocation" value="{{itemlocation}}" noink>{{itemlocation}}</paper-button> -->
      <paper-button id="intentregno"  name="intentregno" value="{{intentregno}}" noink>{{intentregno}}</paper-button>
     </div>
     <!--Expand item collapse card-->
-    <iron-collapse id="{{itemno}}">
-      <div class="collapse">
-        <internalintentexpand-page id="ps"></internalintentexpand-page>
+    <iron-collapse id="{{intentregno}}">
+      <div class="collapse">      
+        <internalintentexpand-page id="ps" itemid="{{itemno}}" itemdes="{{itemdes}}" reqquantity="{{quantity}}" requnit="{{unit}}" intentregno="{{intentregno}}"></internalintentexpand-page>
       </div>
     </iron-collapse>
   <!-- Component to call the service -->

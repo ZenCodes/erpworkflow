@@ -16,7 +16,7 @@
     },
     //Function which invokes when click on expand icon button
     FnExpandItemCard:function(){
-
+      // alert(this.itemno);
       var n=1;
       var x=-4;
 
@@ -27,28 +27,27 @@
       this.$.ps.internalintentexpandreadService(this.itemno,this.intentregno);
       var all=document.querySelectorAll('.internalintentexpandcard');
 
-
       if(id=="true")
       {
         document.querySelector('app-homepage').FnSetSupplyVisibility('true');
-        id= document.querySelector("#"+this.itemno);        
+        id= document.querySelector("#"+this.intentregno);        
         id.toggle();
       }
       else
       {
-        if(id!=document.querySelector("#"+this.itemno))
+        if(id!=document.querySelector("#"+this.intentregno))
         {
           id.opened=false;
         }
         document.querySelector('app-homepage').FnSetSupplyVisibility('false');
-        id= document.querySelector("#"+this.itemno);
+        id= document.querySelector("#"+this.intentregno);
         id.toggle();
       }
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
           document.querySelector('app-homepage').FnSetSupplyVisibility('true');
-          if(all[i].id==document.querySelector("#card"+this.itemno).id){
+          if(all[i].id==document.querySelector("#card"+this.intentregno).id){
             if(i!=0) {
               all[i].style.marginTop=((i*(x))-i-(i))+"%";
             }
@@ -57,24 +56,24 @@
           else
             all[i].style.visibility='hidden';
         }
-        clrid= document.querySelector("#card"+this.itemno);
+        clrid= document.querySelector("#card"+this.intentregno);
 
       }
       else
       {
-        if(clrid!=document.querySelector("#card"+this.itemno))
+        if(clrid!=document.querySelector("#card"+this.intentregno))
         {
           //document.querySelector('my-app').setVisible("true");
           document.querySelector('app-homepage').FnSetSupplyVisibility('true');
           for(var i=0;i<all.length;i++){
-            if(all[i].id==document.querySelector("#card"+this.itemno).id){
+            if(all[i].id==document.querySelector("#card"+this.intentregno).id){
               all[i].style.visibility='visible';
             }
             else
               all[i].style.visibility='hidden';
           }
 
-          clrid= document.querySelector("#card"+this.itemno);
+          clrid= document.querySelector("#card"+this.intentregno);
         }
         else
         {

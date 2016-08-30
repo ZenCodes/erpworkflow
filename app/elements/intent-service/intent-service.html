@@ -657,16 +657,22 @@
         window.location.href="../elements/indexhome.html";
       },
       FnIntentSupplyService:function(){
-        var obj={"itemid":"","intentregno":""};
-        obj.itemid=sessionStorage.getItem("sess_curr_itemno"); 
+        var obj={"itemid":"","batchno":"","containerid":"","reqquantity":"","intentregno":""};
+        obj.itemid=sessionStorage.getItem("sess_curr_itemno");
+        obj.batchno=localStorage.getItem("curr_sess_batchno");
+        obj.containerid=localStorage.getItem("curr_sess_containerid");
+        obj.reqquantity=localStorage.getItem("curr_sess_reqquantity"); 
         // alert(obj.itemid);     
         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
         this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupply-service";
         this.intentsupplyparam=obj;
+        alert(JSON.stringify(obj));
         this.$.intentsupplyajax.generateRequest(); 
       },
       intentsupplyResponse:function(e){
         alert(e.detail.response);
+        if(e.detail.response=="Supplied!")
+          window.location.href="../elements/indexhome.html";
       }
     });
   })();

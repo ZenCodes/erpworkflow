@@ -3936,17 +3936,17 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
 
   var insertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Container_ID,Batch_No,PO_Number,PO_Date,Inward_Register_Number) SELECT Item_ID,"+
   "Product_ID,unit,Unit_measure,Quantity,Quantity_Measure,'Stores',Container_ID,Batch_No,PO_Number,PO_Date,Inward_Register_Number  FROM "+ 
-  "OD_Inward_Material_Inspection WHERE Inward_Register_Number='"+response.new_Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved' and Batch_No='"+response.Batch_No+"'";
+  "OD_Inward_Material_Inspection WHERE Inward_Register_Number='"+response.new_Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved' and Batch_No='"+response.Batch_No+"' and Container_ID='"+response.Container_ID+"'";
 
   var updatecheck="SELECT Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,Batch_No FROM "+
-  "OD_Inward_Material_Inspection WHERE Batch_No='"+response.Batch_No+"' and Inward_Register_Number='"+response.new_Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved'";
+  "OD_Inward_Material_Inspection WHERE Container_ID='"+response.Container_ID+"' and Batch_No='"+response.Batch_No+"' and Inward_Register_Number='"+response.new_Inward_Register_Number+"' and status='Confirm' and Inspection_Status='Approved'";
 
   var updatequr="UPDATE OD_Item_Inventory SET ?,? WHERE Item_ID=(SELECT Item_ID FROM "+
-  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm') and Batch_No='"+response.Batch_No+"'";
+  "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm') and Batch_No='"+response.Batch_No+"' and Container_ID='"+response.Container_ID+"'";
 
   var qurcheck="SELECT * FROM OD_Item_Inventory WHERE Item_ID=(SELECT Item_ID FROM "+
   "OD_Sales_Inward_Material where new_Inward_Register_Number='"+response.new_Inward_Register_Number+"' and state='Confirm') "+
-  " and Batch_No='"+response.Batch_No+"'";
+  " and Batch_No='"+response.Batch_No+"' and Container_ID='"+response.Container_ID+"'";
  
   var res={
     quantity:'',
@@ -3961,6 +3961,7 @@ exports.FnInventoryupdate=function(pagename,response,callback) {
         console.log('.............................................................');
         console.log(response.quantity+"  "+response.container);
         console.log(updatecheck); 
+        console.log('.............................................................');
         connection.query(updatecheck,function(err, rows) {
           if(rows.length> 0){
             console.log(rows[0].Quantity+" "+rows[0].unit);
@@ -4015,7 +4016,7 @@ exports.FnInternalintentitemread=function(pagename,response,callback) {
   var queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,"+
   "os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os "+
   "join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) "+
-  "where os.Intent_State in('"+response.intentstate+"') and state='"+response.state+"'";
+  "where os.Intent_State in('"+response.intentstate+"') and state='"+response.state+"' and os.Intent_Status='Open'";
 
   console.log(queryy);
   
@@ -4043,11 +4044,13 @@ exports.FnInternalintentexpandread=function(pagename,response,callback) {
     }
   }  
 
-  var queryy="select si.Intent_Register_Number,si.Intent_Date,si.Product_ID,si.unit as requnit,si.Unit_measure as requnitmeasure,"+
-  "si.Quantity as reqquantity,si.Quantity_Measure as reqquantitymeasure,ii.Container as availunit,ii.Container_Measure as availunitmeasure, "+
-  "ii.Quantity as availquantity,ii.Quantity_Measure as availquantitymeasure "+
-  " FROM OD_Stores_Intent_Items si join OD_Item_Inventory ii on(si.Item_ID=ii.Item_ID) "+
-  "and si.Intent_Register_Number='"+response.intentregno+"' and si.Item_ID='"+response.itemid+"'";
+  // var queryy="select si.Intent_Register_Number,si.Intent_Date,si.Product_ID,si.unit as requnit,si.Unit_measure as requnitmeasure,"+
+  // "si.Quantity as reqquantity,si.Quantity_Measure as reqquantitymeasure,ii.Container as availunit,ii.Container_Measure as availunitmeasure, "+
+  // "ii.Quantity as availquantity,ii.Quantity_Measure as availquantitymeasure "+
+  // " FROM OD_Stores_Intent_Items si join OD_Item_Inventory ii on(si.Item_ID=ii.Item_ID) "+
+  // "and si.Intent_Register_Number='"+response.intentregno+"' and si.Item_ID='"+response.itemid+"'";
+
+  var queryy="select sum(Quantity) as availquantity,sum(Container) as availcontainer,Quantity_Measure,Container_Measure from OD_Item_Inventory where Item_ID='"+response.itemid+"'";
 
   console.log(queryy);
   
@@ -4076,10 +4079,12 @@ exports.FnIntentsupply=function(pagename,response,callback) {
     }
   }  
 
-  var selectqur="select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
-  " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
+  // var selectqur="select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
+  // " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
 
-  var insertqur="INSERT INTO OD_Item_Inventory select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
+  var selectqur="select sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"'";
+  
+  var insertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
   " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
 
   
@@ -4087,29 +4092,57 @@ exports.FnIntentsupply=function(pagename,response,callback) {
   console.log(selectqur);
   console.log(insertqur);  
   connection.query(selectqur, function(err, rows) {
-    if(!err)
-    {
-      response.unit=rows[0].unit;
-      response.quantity=rows[0].Quantity;
-      console.log('...................................................................');
-      console.log(response.unit+"  "+response.quantity);
-      // return callback(rows);
-  connection.query(insertqur, function(err, rows) {
-    if(!err)
-    {
-      var updatequr="update OD_Item_Inventory set Container=(Container-'"+response.unit+"'),Quantity=(Quantity-'"+response.quantity+"') where Item_ID='"+response.itemid+"' and State='Stores'";
-      console.log('...................................................................');
-      console.log(updatequr);
-      connection.query(updatequr, function(err, rows) {
-      if(!err)
-      {
-      return callback("succ");
+  if(!err)
+  {      
+    console.log(response.reqquantity+" < "+rows[0].quantity);
+  if(response.reqquantity<rows[0].quantity){
+    connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"'", function(err, rows) {
+    connection.query(insertqur, function(err, rows) {
+      if(!err){
+        // return callback("Supplied!");
+        connection.query("UPDATE OD_Stores_Intent_Items SET Quantity=(Quantity-('"+response.reqquantity+"')),Intent_Status='Closed' where Item_ID='"+response.itemid+"' and Intent_Register_Number='"+response.intentregno+"'", function(err, rows) {
+          if(!err){
+          return callback("Supplied!");
+          }
+          else{
+          console.log(err);
+          return callback("Not supplied!"); 
+          }
+        });
       }
-      else
-      return callback("fail");  
-      });
-    }
+      else{
+        console.log(err);
+        return callback("Not able to supply!");
+      }
+    });
+    });
+  }
+  else
+  return callback("No Available Quantity!");  
+  }
   });
+}
+
+exports.FnFetchbatchnos=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+
+  var fetchbatchno="SELECT distinct Batch_No,sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.Item_ID+"' group by Batch_No";  
+  console.log('.................fetchbatchno..................');
+  console.log(fetchbatchno);
+  console.log('...............................................');
+  
+  connection.query(fetchbatchno, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
     }
     else{
       console.log(err);
@@ -4118,3 +4151,34 @@ exports.FnIntentsupply=function(pagename,response,callback) {
   });
 
 }
+
+
+exports.FnFetchcontainer=function(pagename,response,callback) {
+
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+
+  var fetchcontainer="SELECT Container_ID,sum(Quantity) as quantity from OD_Item_Inventory where Batch_No='"+response.Batch_No+"' group by Container_ID";  
+  console.log('.................fetchbatchno..................');
+  console.log(fetchcontainer);
+  console.log('...............................................');
+  
+  connection.query(fetchcontainer, function(err, rows) {
+    if(!err)
+    {
+      return callback(rows);
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
+

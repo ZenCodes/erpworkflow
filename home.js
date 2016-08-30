@@ -1934,9 +1934,7 @@ app.post('/fetchbatchno-service',urlencodedParser, function (req, res) {
   var response={
   Inward_Register_Number:req.query.inwardregno    
   };
-
-  console.log(req.query.inwardregno);
-
+  // console.log(req.query.inwardregno);
   var FnFetchbatchnocall = require("./app/scripts/dboperations.js");
   FnFetchbatchnocall.FnFetchbatchno("fetchbatchno-service",response,function(returnval){
     res.status(200).json(returnval);
@@ -1948,6 +1946,7 @@ app.post('/inventoryupdate-service',urlencodedParser, function (req, res) {
   var response={
   new_Inward_Register_Number:req.query.inwardregno,
   Batch_No:req.query.batchno,
+  Container_ID:req.query.containerid,
   State: req.query.state    
   };
 
@@ -1985,6 +1984,9 @@ app.post('/internalintentexpandread-service',urlencodedParser, function (req, re
 app.post('/intentsupply-service',urlencodedParser, function (req, res) {
   var response={
   itemid:req.query.itemid,
+  batchno:req.query.batchno,
+  containerid:req.query.containerid,
+  reqquantity:req.query.reqquantity,
   intentregno: req.query.intentregno  
   };
 
@@ -1994,6 +1996,28 @@ app.post('/intentsupply-service',urlencodedParser, function (req, res) {
   });  
 });
 
+
+app.post('/fetchbatchnos-service',urlencodedParser, function (req, res) {
+  var response={
+  Item_ID:req.query.itemno    
+  };
+  // console.log(req.query.inwardregno);
+  var FnFetchbatchnoscall = require("./app/scripts/dboperations.js");
+  FnFetchbatchnoscall.FnFetchbatchnos("fetchbatchnos-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/fetchcontainer-service',urlencodedParser, function (req, res) {
+  var response={
+  Batch_No:req.query.batchno    
+  };
+  // console.log(req.query.inwardregno);
+  var FnFetchcontainercall = require("./app/scripts/dboperations.js");
+  FnFetchcontainercall.FnFetchcontainer("fetchcontainer-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
 //Node server running port number
 app.listen(4000);
 

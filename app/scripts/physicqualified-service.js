@@ -229,16 +229,17 @@
     },
     fetchbatchnoResponse:function(e){
       var arr=e.detail.response;
-      alert(JSON.stringify(arr));
+      // alert(JSON.stringify(arr));
       for(var i=0;i<arr.length;i++){
-        this.callInventoryService(arr[i].Batch_No); 
+        this.callInventoryService(arr[i].Batch_No,arr[i].Container_ID); 
       }
     },
-    callInventoryService:function(batchno){
-      var arg={"inwardregno":"","state":"","batchno":""};
+    callInventoryService:function(batchno,containerid){
+      var arg={"inwardregno":"","state":"","batchno":"","containerid":""};
       arg.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
       arg.state="Stores";
       arg.batchno=batchno;
+      arg.containerid=containerid;
       this.inventoryupdateparam=arg;      
       this.inventoryupdateurl=sessionStorage.getItem("curr_sess_url")+"inventoryupdate-service";
       this.$.inventoryupdateajax.generateRequest();
