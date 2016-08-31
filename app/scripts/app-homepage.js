@@ -104,7 +104,7 @@ Polymer({
       this.$.intentflow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
       
-      if(sessionStorage.getItem("curr_sess_roleflag"))
+      if(sessionStorage.getItem("curr_sess_roleflag")=='2')
         document.querySelector('intenthome-page').setPage('internalintentview-page');
       else
         document.querySelector('intenthome-page').setPage('Internal Intent');
