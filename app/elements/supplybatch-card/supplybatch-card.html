@@ -1,0 +1,191 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="supplybatch-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .cont{
+        @apply(--layout-horizontal); 
+      }
+    </style>
+    <div hidden>
+      <paper-input value="{{no}}"></paper-input>
+      <paper-input value="{{availunit}}"></paper-input>
+      <paper-input value="{{availunitmeasure}}"></paper-input>
+      <paper-input value="{{avalquantity}}"></paper-input>
+      <paper-input value="{{availquantitymeasure}}"></paper-input>
+    </div>
+    <div class='cont'>
+    <div ><paper-dropdown-menu id="dropitemtype" label="Select Batch" disabled="{{read}}" required>
+      <paper-menu class="dropdown-content"  on-iron-select="FnSelectBatch"  attr-for-selected="value" selected="{{batch}}" required>
+        <template is="dom-repeat" items="{{batcharr}}">
+          <paper-item value="{{item.Batch_No}}">{{item.Batch_No}}</paper-item>
+        </template>
+    </paper-menu>
+    </paper-dropdown-menu></div>&nbsp;&nbsp;&nbsp;
+
+     <div><paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
+      <paper-menu class="dropdown-content"  on-iron-select="FnSelectContainer"  attr-for-selected="value" selected="{{containerid}}" required>
+        <template is="dom-repeat" items="{{containerarr}}">
+          <paper-item value="{{item.Container_ID}}">{{item.Container_ID}}</paper-item>
+        </template>
+    </paper-menu>
+    </paper-dropdown-menu></div>
+    </div>
+     <!--fetching batch no-->
+    <iron-ajax
+      id="fetchbatchnoajax"
+      url="{{fetchbatchnourl}}"
+      method="post"
+      params='{{fetchbatchnoparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchbatchnoResponse">
+    </iron-ajax>
+    <!--fetching container id-->
+    <iron-ajax
+      id="fetchcontainerajax"
+      url="{{fetchcontainerurl}}"
+      method="post"
+      params='{{fetchcontainerparam}}'
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchcontainerResponse">
+    </iron-ajax>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+ var batchno,container;
+      var supplyarr=[];
+    var choosenquantity=0;
+    Polymer({
+      is: 'supplybatch-card',
+     
+      properties: {
+        foo: {
+          type: String,
+          value: 'supplybatch-card',
+          notify: true
+        }
+      },
+      ready:function(){
+        this.callBatchnoService(); 
+      },
+      FnCallService:function(availunit,availunitmeasure,availquantity,availquantitymeasure){
+        this.availunit=availunit;
+        this.availunitmeasure=availunitmeasure;
+        this.availquantity=availquantity;
+        this.availquantitymeasure=availquantitymeasure;
+           
+      },
+      
+  callBatchnoService:function(){
+    var arg={"itemno":""};
+    arg.itemno=sessionStorage.getItem("sess_curr_itemno");
+    // arg.intentregno=intentregno;
+    this.fetchbatchnoparam=arg;
+    this.fetchbatchnourl=sessionStorage.getItem("curr_sess_url")+"fetchbatchnos-service";
+    this.$.fetchbatchnoajax.generateRequest();    
+  },
+  fetchbatchnoResponse:function(e){    
+    var arr=e.detail.response;
+    var temparr=[];
+    for(var i=0;i<arr.length;i++){
+    temparr.push({"Batch_No":arr[i].Batch_No+"-"+arr[i].quantity+" "+this.availquantitymeasure});
+    }
+    // alert(JSON.stringify(temparr));
+    this.batcharr=temparr;
+  },
+  FnSelectBatch:function(e){
+     batchno = e.target.selectedItem.textContent.trim();
+    batchno=(batchno.substring(0,batchno.indexOf('-'))).trim();
+    localStorage.setItem("curr_sess_batchno",batchno);
+    var arg={"batchno":""};
+    arg.batchno=batchno;    
+    this.fetchcontainerparam=arg;
+    this.fetchcontainerurl=sessionStorage.getItem("curr_sess_url")+"fetchcontainer-service";
+    this.$.fetchcontainerajax.generateRequest(); 
+  },
+  fetchcontainerResponse:function(e){
+    var arr=e.detail.response;
+    var ctemparr=[];
+    for(var i=0;i<arr.length;i++){
+    ctemparr.push({"Container_ID":arr[i].Container_ID+"-"+arr[i].quantity+" "+this.availquantitymeasure});
+    }
+    this.containerarr=ctemparr;
+  },
+  FnSelectContainer:function(e){
+    // alert(this.no);
+    // alert(e.target.index);
+    container = e.target.selectedItem.textContent.trim();
+    var containerid=(container.substring(0,container.indexOf('-'))).trim();
+    var quantity=(container.substring((container.indexOf('-')+1),container.indexOf(' '))).trim();
+    var reqquantity=this.reqquantity.substring(0,this.reqquantity.indexOf(' ')).trim();
+    var requnit=this.requnit.substring(0,this.requnit.indexOf(' ')).trim();  
+
+    var obj={"batchno":"","containerid":"","quantity":"","no":""};
+    obj.batchno=batchno;
+    obj.containerid=containerid;
+    obj.quantity=quantity;
+    obj.no=this.no;
+    // alert(supplyarr.length);
+    if(supplyarr.length==0){
+    supplyarr.push(obj);
+    choosenquantity=parseInt(choosenquantity)+parseInt(quantity);
+    }
+    else{
+
+      for(var i=0;i<supplyarr.length;i++){
+
+        if(supplyarr[i].no==this.no)
+          // alert('thr');
+        supplyarr[i].splice(this.no,1);
+        else{
+        // alert(supplyarr[i].batchno+" "+batchno+" "+supplyarr[i].containerid+" "+containerid);
+        if(supplyarr[i].batchno==batchno&&supplyarr[i].containerid==containerid)
+        {
+          alert("Same Batch with the same container already added!!");
+          break;
+        }
+        else{
+
+        supplyarr.push(obj); 
+        choosenquantity=parseInt(choosenquantity)+parseInt(quantity);
+        break;
+        
+        }
+      }
+    }
+
+    }
+    document.querySelector('supplybutton-card').FnSetSupplyContainer(supplyarr,choosenquantity,reqquantity,supplyarr.length,requnit);
+    
+    // alert(choosenquantity);
+
+    // alert(JSON.stringify(supplyarr));
+
+    /*if(parseInt(reqquantity)>parseInt(quantity)){
+      alert("Requested quantity more than the available quantity!!Do you want to supply??");
+    }
+    else{      
+      localStorage.setItem("curr_sess_containerid",containerid);
+      localStorage.setItem("curr_sess_reqquantity",reqquantity);
+    }*/
+  }
+    });
+  })();
+  </script>
+</dom-module>

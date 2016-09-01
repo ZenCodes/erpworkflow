@@ -34,72 +34,25 @@ Polymer({is:"internalintentexpand-page",
     this.availunitmeasure=arr[0].Container_Measure;
     this.availquantity=arr[0].availquantity;
     this.availquantitymeasure=arr[0].Quantity_Measure;
-    this.callBatchnoService();    
-  },
-  callBatchnoService:function(){
-    var arg={"itemno":""};
-    arg.itemno=sessionStorage.getItem("sess_curr_itemno");
-    // arg.intentregno=intentregno;
-    this.fetchbatchnoparam=arg;
-    this.fetchbatchnourl=sessionStorage.getItem("curr_sess_url")+"fetchbatchnos-service";
-    this.$.fetchbatchnoajax.generateRequest();    
-  },
-  fetchbatchnoResponse:function(e){    
-    var arr=e.detail.response;
-    var temparr=[];
-    for(var i=0;i<arr.length;i++){
-    temparr.push({"Batch_No":arr[i].Batch_No+"-"+arr[i].quantity+" "+this.availquantitymeasure});
-    }
-    // alert(JSON.stringify(temparr));
-    this.batcharr=temparr;
-  },
-  FnSelectBatch:function(e){
-    var batchno = e.target.selectedItem.textContent.trim();
-    batchno=(batchno.substring(0,batchno.indexOf('-'))).trim();
-    localStorage.setItem("curr_sess_batchno",batchno);
-    var arg={"batchno":""};
-    arg.batchno=batchno;    
-    this.fetchcontainerparam=arg;
-    this.fetchcontainerurl=sessionStorage.getItem("curr_sess_url")+"fetchcontainer-service";
-    this.$.fetchcontainerajax.generateRequest(); 
-  },
-  fetchcontainerResponse:function(e){
-    var arr=e.detail.response;
-    var ctemparr=[];
-    for(var i=0;i<arr.length;i++){
-    ctemparr.push({"Container_ID":arr[i].Container_ID+"-"+arr[i].quantity+" "+this.availquantitymeasure});
-    }
-    this.containerarr=ctemparr;
-  },
-  FnSelectContainer:function(e){
-    var container = e.target.selectedItem.textContent.trim();
-    var containerid=(container.substring(0,container.indexOf('-'))).trim();
-    var quantity=(container.substring((container.indexOf('-')+1),container.indexOf(' '))).trim();
-    var reqquantity=this.reqquantity.substring(0,this.reqquantity.indexOf(' ')).trim();
-    // alert(reqquantity+"  "+quantity);
-    if(parseInt(reqquantity)>parseInt(quantity)){
-      alert("Requested quantity more than the available quantity!!");
-    }
-    else{
-      // alert("Ok!");
-      localStorage.setItem("curr_sess_containerid",containerid);
-      localStorage.setItem("curr_sess_reqquantity",reqquantity);
-    }
+    var temp=[];
+    // alert(this.requnit);
+    for(var i=0;i<parseInt(this.requnit);i++)
+    temp.push(i);
+    // alert(temp);
+    this.itemArray=temp;
+    // document.querySelector('supplybatch-card').FnCallService(this.availunit,this.availunitmeasure,this.availquantity,this.availquantitymeasure);
   },
   //Function to fetch labels for the card
   callWebcomponentService:function(){
     this.$.webcomponentreadajax.generateRequest();
   },
   FnWebcomponentreadResponse:function(e) {
-    this.current_page="viewintentitemexpand-page";
-    //alert(this.current_page);
-    var arr = e.detail.response;
-    //alert(arr.length);
+    this.current_page="viewintentitemexpand-page";    
+    var arr = e.detail.response;    
     var labelvalue=[];
     var errorlabelvalue=[];
     //Binding labels to login-card
-    for(var i=1;i<arr.length;i++) {
-      //alert(arr[i].Page[0].page[0]);
+    for(var i=1;i<arr.length;i++) {      
       if ((arr[i].Page[0].page[0]) == this.current_page) {
         labelvalue = arr[i].Page[1].Label;
         /*Binding Labels and error message to the respective card*/

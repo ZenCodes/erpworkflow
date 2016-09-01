@@ -1304,11 +1304,11 @@ exports.FnIntentItemRead=function(pagename,loggeduser,loggedrole,state,callback)
         queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where (os.Intent_State in('Approved','POCreated','POSent') and os.state='external') or (os.Intent_State in('SpotCreated') and os.state='spot') order by os.Intent_Register_Number DESC";
       else if(loggedrole=="Stores manager")
         //queryy="SELECT distinct os.Intent_Register_Number,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where (os.Intent_State in('Approved','Supplied') and os.state='internal')";
-        queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')) or (os.Intent_State in('Approved') and os.state='internal') order by os.Intent_Register_Number DESC";
+        queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Approved','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')) or (os.Intent_State in('Approved') and os.state='internal') order by os.Intent_Register_Number DESC";
       else
-        queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Created','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Owner=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')) order by os.Intent_Register_Number DESC";
+        queryy="SELECT distinct os.Intent_Register_Number,os.Due_Date,os.Intent_Date,os.Intent_State,os.state,os.Unit_Measure,os.Quantity_Measure,os.Product_ID,os.unit,os.Quantity,item.Item_ID,wh.Store_Location_Name from OD_Stores_Intent_Items os join MD_Item item on(os.Product_ID=item.Item_Name) join MD_WH_Store_Location wh on(item.Store_Location_ID=wh.Store_Location_ID) where os.Intent_State in('Created','Supplied') and os.Item_Type_ID in(select distinct Item_Type_ID from OD_Stores_Intent_Items where (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='external') or (Item_Type_ID in(SELECT Item_Type_ID FROM OD_Intent_Item_Type where Intent_Approver=(SELECT department_ID FROM OD_HR_Employee_Job_Desc WHERE Emp_ID = '"+loggeduser+"')) and state='internal')) order by os.Intent_Register_Number DESC";
 
-      //console.log(queryy);
+      console.log(queryy);
 
       connection.query(queryy,function(err, rows, fields) {
 
@@ -4067,9 +4067,7 @@ exports.FnInternalintentexpandread=function(pagename,response,callback) {
 
 }
 
-
 exports.FnIntentsupply=function(pagename,response,callback) {
-
   var Config_tables=[];
   var Config_columnvalues=[];
   for(var i=0;i<obj.length;i++){
@@ -4077,51 +4075,57 @@ exports.FnIntentsupply=function(pagename,response,callback) {
       Config_tables=obj[i].value;
       Config_columnvalues=obj[i].columnvalues;
     }
-  }  
-
-  // var selectqur="select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number "+
-  // " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
-
-  var selectqur="select sum(Quantity) as quantity from OD_Item_Inventory where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'";
-  
-  var insertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,unit,Unit_Measure,Quantity,Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
+  }
+  var eqinsertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,'1',Unit_Measure,'"+response.contquantity+"',Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
   " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
+  if(response.selunit==response.requnit&&response.selquantity==response.reqquantity){
 
-  
-  console.log('...................................................................');
-  console.log(selectqur);
-  console.log(insertqur);  
-  connection.query(selectqur, function(err, rows) {
-  if(!err)
-  {      
-    console.log(response.reqquantity+" < "+rows[0].quantity);
-  if(response.reqquantity<=rows[0].quantity){
-    connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'", function(err, rows) {
-    connection.query(insertqur, function(err, rows) {
+    connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')),Container=(Container-1) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'", function(err, rows) {
       if(!err){
-        // return callback("Supplied!");
-        connection.query("UPDATE OD_Stores_Intent_Items SET Quantity=(Quantity-('"+response.reqquantity+"')),Intent_Status='Closed' where Item_ID='"+response.itemid+"' and Intent_Register_Number='"+response.intentregno+"'", function(err, rows) {
-          if(!err){
-          return callback("Supplied!");
-          }
-          else{
-          console.log(err);
-          return callback("Not supplied!"); 
-          }
+        connection.query(eqinsertqur, function(err, rows) {
+          if(!err)
+                  return callback('succ');
+                  else
+                  {
+                    console.log(err);
+                          return callback('fail');
+                  }
         });
       }
-      else{
-        console.log(err);
-        return callback("Not able to supply!");
-      }
     });
-    });
+
   }
-  else
-  return callback("No Available Quantity!");  
-  }
-  });
+
+
 }
+
+
+exports.Fnintentsupplystatus=function(pagename,response,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }
+
+  if(response.selunit==response.requnit&&response.selquantity==response.reqquantity){
+
+   connection.query("UPDATE OD_Stores_Intent_Items SET Quantity=(Quantity-('"+response.reqquantity+"')),unit=(unit-('"+response.requnit+"')),Intent_Status='Closed' where Item_ID='"+response.itemid+"' and Intent_Register_Number='"+response.intentregno+"'", function(err, rows) {
+            if(!err)
+            return callback('supplied!');
+            else{
+              console.log(err);
+              return callback('not supplied!');
+            }
+            });
+
+  }
+
+
+}
+
 
 exports.FnFetchbatchnos=function(pagename,response,callback) {
 

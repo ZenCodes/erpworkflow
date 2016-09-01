@@ -30,12 +30,23 @@
   <script>
   (function() {
     'use strict';
-    var poarray;
+    var supplyarr,reqquantity,selquantity,requnit,selunit;
     Polymer({
     is: 'supplybutton-card',
+
+    FnSetSupplyContainer:function(supplyarray,choosenquantity,quantity,choosenunit,unit){
+      supplyarr=supplyarray;
+      reqquantity=quantity;
+      selquantity=choosenquantity;
+      requnit=unit;
+      selunit=choosenunit;
+    },
     // Function which calls service to create the PO for the item in intent view
     FnSupply:function(){
-    this.$.intentservice.FnIntentSupplyService();
+      // alert(JSON.stringify(supplyarr));
+      // alert(selquantity+" "+reqquantity+" "+selunit+" "+requnit);
+      this.$.intentservice.FnIntentSupplyService(supplyarr,selquantity,reqquantity,selunit,requnit);
+      this.$.intentservice.intentsupplystatusService(supplyarr,selquantity,reqquantity,selunit,requnit);
     }
     });
   })();

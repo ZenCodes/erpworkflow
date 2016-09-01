@@ -1987,8 +1987,12 @@ app.post('/intentsupply-service',urlencodedParser, function (req, res) {
   itemid:req.query.itemid,
   batchno:req.query.batchno,
   containerid:req.query.containerid,
+  contquantity:req.query.contquantity,
+  intentregno: req.query.intentregno,
+  selunit:req.query.selunit,
+  selquantity:req.query.selquantity,
   reqquantity:req.query.reqquantity,
-  intentregno: req.query.intentregno  
+  requnit:req.query.requnit 
   };
 
   var FnIntentsupplycall = require("./app/scripts/dboperations.js");
@@ -1997,6 +2001,25 @@ app.post('/intentsupply-service',urlencodedParser, function (req, res) {
   });  
 });
 
+
+app.post('/intentsupplystatus-service',urlencodedParser, function (req, res) {
+  var response={
+  itemid:req.query.itemid,
+  batchno:req.query.batchno,
+  containerid:req.query.containerid,
+  contquantity:req.query.contquantity,
+  intentregno: req.query.intentregno,
+  selunit:req.query.selunit,
+  selquantity:req.query.selquantity,
+  reqquantity:req.query.reqquantity,
+  requnit:req.query.requnit 
+  };
+
+  var Fnintentsupplystatuscall = require("./app/scripts/dboperations.js");
+  Fnintentsupplystatuscall.Fnintentsupplystatus("intentsupplystatus-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
 
 app.post('/fetchbatchnos-service',urlencodedParser, function (req, res) {
   var response={

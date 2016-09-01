@@ -22,6 +22,7 @@
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/paper-styles/demo-pages.html">
 <link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../supplybatch-card/supplybatch-card.html">
 <link rel="stylesheet" href="../../bower_components/paper-styles/demo.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,7 +100,7 @@
       .card{
         @apply(--layout-vertical);
         @apply(--layout-center);
-        margin-left: 10%;
+        margin-left: %;
         margin-top: 2%;
       }
       paper-tabs{
@@ -121,13 +122,13 @@
         margin-top: 1%;
         margin-left: 3%;
       }
-      .card1,.card2{
+      .card1{
        @apply(--layout-horizontal); 
       }
       .cont{
         @apply(--layout-horizontal); 
       }
-      .out{
+      .out,.card2{
         @apply(--layout-vertical); 
       }
     </style>
@@ -138,7 +139,7 @@
     <paper-item>{{itemdes}}</paper-item>-->
     <div class="card1">
     <div class="out">
-    <div class="cont">
+    <!-- <div class="cont">
     <paper-item>Available Unit: </paper-item>&nbsp;<paper-item>{{availunit}}</paper-item>&nbsp;<paper-item>{{availunitmeasure}}</paper-item></div>
     <div class="cont"><paper-item>Available Quantity: </paper-item>&nbsp;<paper-item>{{availquantity}}</paper-item>&nbsp;<paper-item>{{availquantitymeasure}}</paper-item></div>
     </div>
@@ -146,26 +147,21 @@
     <div class="cont"><paper-item>Requested Unit: </paper-item>&nbsp;<paper-item>{{requnit}}</paper-item>&nbsp;<paper-item> {{requnitmeasure}}</paper-item></div>
     <div class="cont"><paper-item>Requested Quantity: </paper-item>&nbsp;<paper-item>{{reqquantity}}</paper-item>&nbsp;<paper-item>{{reqquantitymeasure}}</paper-item></div>
     </div>
-    </div>
+    </div> -->
+
+    <table border="1"  style="width:120%;border-collapse: collapse;">
+      <tr><td><paper-item>Available Unit: </paper-item></td><td><paper-item>{{availunit}}&nbsp;{{availunitmeasure}}</paper-item></td><td><paper-item>Requested Unit: </paper-item></td><td><paper-item>{{requnit}}</paper-item></td></tr>
+      <tr><td><paper-item>Available Quantity: </paper-item></td><td><paper-item>{{availquantity}}&nbsp;{{availquantitymeasure}}</paper-item></td><td><paper-item>Requested Quantity: </paper-item></td><td><paper-item>{{reqquantity}}</paper-item></td></tr>
+    </table>
+
     <div>
     <br>
     <div class="card2">
     <paper-item>Select Batch to Supply: </paper-item>&nbsp;
-    <div><paper-dropdown-menu id="dropitemtype" label="Select Batch" disabled="{{read}}" required>
-      <paper-menu class="dropdown-content"  on-iron-select="FnSelectBatch"  attr-for-selected="value" selected="{{batch}}" required>
-        <template is="dom-repeat" items="{{batcharr}}">
-          <paper-item value="{{item.Batch_No}}">{{item.Batch_No}}</paper-item>
-        </template>
-    </paper-menu>
-    </paper-dropdown-menu></div>&nbsp;&nbsp;&nbsp;
-
-     <div><paper-dropdown-menu id="dropitemtype" label="Select Container" disabled="{{read}}" required>
-      <paper-menu class="dropdown-content"  on-iron-select="FnSelectContainer"  attr-for-selected="value" selected="{{containerid}}" required>
-        <template is="dom-repeat" items="{{containerarr}}">
-          <paper-item value="{{item.Container_ID}}">{{item.Container_ID}}</paper-item>
-        </template>
-    </paper-menu>
-    </paper-dropdown-menu></div>
+    <template is="dom-repeat" items="{{itemArray}}" as="name">
+    
+    <supplybatch-card no="{{name}}" id='supplybatchcard' availunit="{{availunit}}" availunitmeasure="{{availunitmeasure}}" requnit="{{requnit}}" availquantity="{{availquantity}}" availquantitymeasure="{{availquantitymeasure}}" reqquantity="{{reqquantity}}"></supplybatch-card>
+    </template>
     </div>
     </div>     
   <!-- component which make req to read the intent item info -->
@@ -179,27 +175,9 @@
     on-response="FnInternalintentexpandreadResponse">
   </iron-ajax>
   
-    <!--fetching batch no-->
-    <iron-ajax
-      id="fetchbatchnoajax"
-      url="{{fetchbatchnourl}}"
-      method="post"
-      params='{{fetchbatchnoparam}}'
-      handle-as="json"
-      content-type="application/json"
-      on-response="fetchbatchnoResponse">
-    </iron-ajax>
+   
 
-    <!--fetching container id-->
-    <iron-ajax
-      id="fetchcontainerajax"
-      url="{{fetchcontainerurl}}"
-      method="post"
-      params='{{fetchcontainerparam}}'
-      handle-as="json"
-      content-type="application/json"
-      on-response="fetchcontainerResponse">
-    </iron-ajax>
+    
 
   <!--Component to read Labels for the components from webcomponents.json file-->
   <iron-ajax

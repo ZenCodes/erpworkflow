@@ -244,6 +244,16 @@
       on-response="intentsupplyResponse">
     </iron-ajax>
 
+    <iron-ajax
+      id="intentsupplystatusajax"
+      url="{{intentsupplystatusurl}}"
+      params='{{intentsupplystatusparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="intentsupplystatusResponse">
+    </iron-ajax>
+
     <grn-service id="gs"></grn-service>
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
@@ -264,6 +274,7 @@
     var poitemtax=[];
     var poitemprice=[];
     var cmparr=[];
+    var cntno=0;
     Polymer({
       is: 'intent-service',
       ready:function(){
@@ -656,23 +667,56 @@
         // document.querySelector('viewintentitem-page').setToggle();       
         window.location.href="../elements/indexhome.html";
       },
-      FnIntentSupplyService:function(){
-        var obj={"itemid":"","batchno":"","containerid":"","reqquantity":"","intentregno":""};
+      FnIntentSupplyService:function(supplyarr,selquantity,reqquantity,selunit,requnit){
+        var obj={"itemid":"","batchno":"","containerid":"","contquantity":"","reqquantity":"","requnit":"","selquantity":"","selunit":"","intentregno":""};
+        for(var i=0;i<supplyarr.length;i++){
         obj.itemid=sessionStorage.getItem("sess_curr_itemno");
-        obj.batchno=localStorage.getItem("curr_sess_batchno");
-        obj.containerid=localStorage.getItem("curr_sess_containerid");
-        obj.reqquantity=localStorage.getItem("curr_sess_reqquantity"); 
+        obj.selunit=selunit;
+        obj.selquantity=selquantity;
+        obj.reqquantity=reqquantity;
+        obj.requnit=requnit;
+        this.requnit=requnit;
+
+        obj.batchno=supplyarr[i].batchno;
+        obj.containerid=supplyarr[i].containerid;
+        obj.contquantity=supplyarr[i].quantity; 
         // alert(obj.itemid);     
         obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
         this.intentsupplyurl=sessionStorage.getItem("curr_sess_url")+"intentsupply-service";
         this.intentsupplyparam=obj;
         // alert(JSON.stringify(obj));
         this.$.intentsupplyajax.generateRequest(); 
+        }
       },
       intentsupplyResponse:function(e){
         alert(e.detail.response);
-        if(e.detail.response=="Supplied!")
+        cntno++;
+        if(cntno==requnit)
+        // if(e.detail.response=="Supplied!")
           window.location.href="../elements/indexhome.html";
+      },
+      intentsupplystatusService:function(supplyarr,selquantity,reqquantity,selunit,requnit){
+      var obj={"itemid":"","batchno":"","containerid":"","contquantity":"","reqquantity":"","requnit":"","selquantity":"","selunit":"","intentregno":""};
+        // for(var i=0;i<supplyarr.length;i++){
+        obj.itemid=sessionStorage.getItem("sess_curr_itemno");
+        obj.selunit=selunit;
+        obj.selquantity=selquantity;
+        obj.reqquantity=reqquantity;
+        obj.requnit=requnit;
+
+        // obj.batchno=supplyarr[i].batchno;
+        // obj.containerid=supplyarr[i].containerid;
+        // obj.reqquantity=supplyarr[i].contquantity; 
+        // alert(obj.itemid);     
+        obj.intentregno=sessionStorage.getItem("sess_curr_intentregno");
+        this.intentsupplystatusurl=sessionStorage.getItem("curr_sess_url")+"intentsupplystatus-service";
+        this.intentsupplystatusparam=obj;
+        // alert(JSON.stringify(obj));
+        this.$.intentsupplystatusajax.generateRequest(); 
+        // }
+      },
+      intentsupplystatusResponse:function(e){
+        alert(e.detail.response);
       }
     });
   })();
