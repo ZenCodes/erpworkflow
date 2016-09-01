@@ -4078,7 +4078,7 @@ exports.FnIntentsupply=function(pagename,response,callback) {
   }
   var eqinsertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,'1',Unit_Measure,'"+response.contquantity+"',Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
   " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
-  if(response.selunit==response.requnit&&response.selquantity==response.reqquantity){
+  if(response.selunit==response.requnit){
 
     connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')),Container=(Container-1) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'", function(err, rows) {
       if(!err){
@@ -4110,7 +4110,7 @@ exports.Fnintentsupplystatus=function(pagename,response,callback) {
     }
   }
 
-  if(response.selunit==response.requnit&&response.selquantity==response.reqquantity){
+  if(response.selunit==response.requnit){
 
    connection.query("UPDATE OD_Stores_Intent_Items SET Quantity=(Quantity-('"+response.reqquantity+"')),unit=(unit-('"+response.requnit+"')),Intent_Status='Closed' where Item_ID='"+response.itemid+"' and Intent_Register_Number='"+response.intentregno+"'", function(err, rows) {
             if(!err)
