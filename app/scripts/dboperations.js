@@ -4,6 +4,7 @@
 var mysql      = require('mysql');
 var email   = require("emailjs/email");
 var fs = require('fs');
+var htmlToPdf = require('html-to-pdf');
 var logfile;
 
 var credential=[];
@@ -65,37 +66,47 @@ exports.FnDBConnection=function(){
 }
 
 
-exports.Fnmailservice=function() {
-var server  = email.server.connect({
-   user:    emailcredential[0].email,
-   password:emailcredential[0].password,
-   host:    "smtp.gmail.com",
-   ssl:     true
+exports.Fnpurchaseordercreatepdf=function(pagename,response,callback) {
 
-});
-// send the message and get a callback with an error or details of the message that was sent
-server.send({
-   text:    "Purchase Order",
-   from:    emailcredential[0].email,
-   to:      "rmpraba@gmail.com",
-   
-   subject: "testing po",
-    attachment:
-   [
-      {data:"<html>i <i>hope</i> this works!</html>", alternative:true},
-      {path:"F:\\NodeJS\\Doc1.pdf", type:"application/pdf", name:"sample.pdf"}
-   ]
-}, function(err, message) { console.log(err || message); });
-  return callback('mail sent');
+
+  var content = "<table width='700px'><tr><td><img src='./app/images/logo.jpg' height='100px' width='100px'></td><td><h1>Purchase Order</h1></td></tr></table><br><br><br><br>"
+  content += "<table width='700px' border='1'><tr><td>"+response.cmpname+"</td><td align='right'>Po Date</td><td>"+response.podate+"</td></tr><tr><td>"+response.cmpaddr1+"</td><td align='right'>Po Number</td><td>"+response.ponumber+"</td></tr>"
+  content += "<tr><td>"+response.cmpaddr2+"</td></tr><tr><td>"+response.cmpemail+"</td></tr><tr><td>"+response.cmpphone+"</td></tr></table><br><br><br><br><br>"
+
+  content += "<table width='700px' border='1'><tr><td>To</td></tr></table><table style='margin-left:5%'><tr style='margin-left:5%'><td>xyz company</td></tr>"
+  content += "<tr style='margin-left:5%'><td>"+response.suppliername+"</td></tr><tr style='margin-left:5%'><td>"+response.location+"</td></tr>"
+  content += "<tr style='margin-left:5%'><td>"+response.email+"</td></tr><tr style='margin-left:5%'><td>"+response.mobileno+"</td></tr></table><br><br><br><br>"
+
+
+  content += "<table width='700px' border='1'><tr><td>S.No</td><td>Item description</td><td>Qty</td><td>UOM</td><td>Rate</td><td>Amount</td></tr>"
+  content += "<tr><td>1</td><td>"+response.productid+"</td><td>"+response.quantity+" "+response.qtymeasure+"</td><td>"+response.unit+" "+response.unitmeasure+"</td><td>"+response.itemsupplierprice+"</td><td>"+response.total+"</td></tr></table><br><br><br><br>"
+
+  content += "<table style='margin-left:65%'><tr><td>Total :</td><td><img src='public/rupee.png' width='5px' height='5px'>"+response.total+"</td></tr><tr><td>Excess Duty (12.5%):</td><td><img src='public/rupee.png' width='5px' height='5px'>"+response.exduty+"</td></tr>"
+  content += "<tr><td>VAT (5%):</td><td><img src='public/rupee.png' width='5px' height='5px'>"+response.vat+"</td></tr><tr><td>CST (2%):</td><td><img src='public/rupee.png' width='5px' height='5px'>"+response.cst+"</td></tr>"
+  content += "<tr><td colspan='2'>---------------------------------------</td></tr><tr><td>Grand Total :</td><td><img src='public/rupee.png' width='5px' height='5px'>"+response.grandtot+"</td></tr></table>";
+
+
+    htmlToPdf.convertHTMLString(content, './app/images/Purchaseorder.pdf',
+    function (error, success) {
+       if (error) {
+        response.flag=0;
+            console.log('Oh noes! Errorz!');
+            console.log(error);
+        } else {
+          response.flag=1;
+          console.log('Converted');
+          // res.status(200).json({'returnval': 'converted'});   
+          return callback('converted');  
+        }
+    });
+    // if(response.flag==1)
+    // return callback('converted'); 
 }
 
 
 exports.Fnpurchaseordersendmail=function(pagename,response,callback) {    
 
 // console.log(JSON.stringify(response));   
-
-// console.log(response.ponumber+" "+response.podate+" "+response.suppliername);
-
 
 var server  = email.server.connect({
    user:    emailcredential[0].email,
@@ -110,32 +121,14 @@ server.send({
    from:    response.cmpemail,
    to:      response.email,   
    subject: "PO Test",
-    attachment:
-   [
-      {data:"<html><body style='width:70%; margin:0 20%; font-family: sans-serif;'><div style=' border: 1px solid black; border-collapse: collapse;'>"+
-      "<table style='border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;'>"+
-      "<tr><table align='center' border='0' cellpadding='0' cellspacing='0' style='max-width:100%; min-width:100%;' width='100%' class='mcnTextContentContainer'>"+
-      "<tbody><tr><td valign='top' class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;'>  <div style='display:flex;'>"+
-      "<img style='width: 150px; height: 100px; padding: 10px;' src='logo.jpg'>"+
-      "<h2 style='margin-left:50px'>Purchase Order</h2> </div></td></tr></tbody></table></tr><tr>"+
-      "<table align='left' border='0' cellpadding='0' cellspacing='0' style='max-width:100%; min-width:100%; text-align:center;' width='100%' class='mcnTextContentContainer'>"+
-      "<tbody><tr><td class='mcnTextContent' style='padding-top:0; padding-right:18px; padding-bottom:3px; padding-left:18px;'>"+
-      "<div style='margin:10px 120px 20px 75px;width:100%;'><div style='float:right; margin-top: 10px; margin-right:200px;''>"+
-      "PO Date : "+response.podate+"</div><div style='display:flex;'><p> "+response.cmpname+"</p></div><div style='float:right; margin-top: 10px; margin-right:200px;''>"+
-      "PO NUmber : "+response.ponumber+"</div><div style='display:flex;'><p>"+response.cmpaddr1+"</p></div><div style='display:flex;'>"+
-      "<p>"+response.cmpaddr2+"</p></div> <div style='display:flex;'><p>"+response.cmpemail+"</p></div><div style='display:flex;'>"+
-      "<p>"+response.cmpphone+"</p></div></div><div style='margin:20px 120px 20px 50px;width:100%;'><div style='display:flex;'><p>To</p></div></div>"+
-      "<div style='margin:20px 120px 20px 75px;width:100%;'><div style='display:flex;'><p> "+response.suppliername+"</p>"+
-      "</div><div style='display:flex;'><p> "+response.location+"</p></div><div style='display:flex;'><p>"+response.email+"</p>"+
-      "</div><div style='display:flex;'><p>"+response.mobileno+"</p></div></div><table style='margin:20px 120px 20px 50px;width:90%; border-collapse: collapse;' border='1'>"+
-      "<thead style=' padding: 5px;'><tr><td>S. No</td><td>Item Description</td><td>Qty</td><td>UOM</td><td>Rate</td><td>Amount</td>"+
-      "</tr></thead><tbody><tr><td>1</td><td>"+response.productid+"</td><td>"+response.quantity+" "+response.qtymeasure+"</td><td>"+response.unit+" "+response.unitmeasure+"</td><td>"+response.itemsupplierprice+"</td><td>"+response.total+"</td></tr></tbody>"+
-      "</table><div style='float:left; margin-left: 50px;'>Notes .. .</div><div style='float:right; text-align:left;'><div><p>Total:"+response.total+"</p>"+
-      "<p>Excess Duty(12.5%):"+response.exduty+"</p><p>VAT(5%):"+response.vat+"</p><p>CST(2%):"+response.cst+"</p><p>Grand Total:"+response.grandtot+"</p></div></div></td></tr></tbody></table></tr></table></div></body></html>", alternative:true}                    
-   ]
+   attachment:
+   [{
+    filename: 'Purchaseorder.pdf',
+    path: './app/images/Purchaseorder.pdf',
+    type: 'application/pdf'
+   }]
 }, function(err, message) { console.log(err || message); });
   return callback('mail sent');
-
 }
 
 

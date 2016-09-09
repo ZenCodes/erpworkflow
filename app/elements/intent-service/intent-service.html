@@ -254,6 +254,16 @@
       on-response="intentsupplystatusResponse">
     </iron-ajax>
 
+    <iron-ajax
+      id="purchaseordercreatepdfajax"
+      url="{{purchaseordercreatepdfurl}}"
+      params='{{purchaseordercreatepdfparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="purchaseordercreatepdfResponse">
+    </iron-ajax>
+
     <grn-service id="gs"></grn-service>
 
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
@@ -623,6 +633,51 @@
       },
       companyprofilereadResponse:function(e){
         cmparr=e.detail.response;
+        this.purchaseordercreatepdf();
+      },
+      purchaseordercreatepdf:function(){
+        // alert('calling service......');
+
+
+         var obj={"total":"","exduty":"","vat":"","cst":"","grandtot":"","email":"","cmpname":"","cmpaddr1":"","cmpaddr2":"","cmpaddr3":"","cmpemail":"","cmpphone":"","ponumber":"","podate":"","suppliername":"","location":"","city":"","district":"","state":"","mobileno":"",
+         "productid":"","quantity":"","qtymeasure":"","unit":"","unitmeasure":"","itemid":"","exciseduty":"","vat":"","cst":"",
+         "itemsupplierprice":""
+        };
+        obj.cmpname=cmparr[0].name;
+        obj.cmpaddr1=cmparr[0].addressline1;
+        obj.cmpaddr2=cmparr[0].addressline2;
+        obj.cmpaddr3=cmparr[0].addressline3;
+        obj.cmpemail=cmparr[0].email;
+        obj.cmpphone=cmparr[0].phoneno;
+        obj.email=poarr[0].Email;
+        obj.ponumber=poarr[0].PO_Number;
+        obj.podate=poarr[0].PO_Date;
+        obj.suppliername=poarr[0].Supplier_Name;
+        obj.location=poarr[0].Location;
+        obj.city=poarr[0].City;
+        obj.district=poarr[0].District;
+        obj.state=poarr[0].State;
+        obj.mobileno=poarr[0].Mobileno;
+        obj.productid=poitemarr[0].Product_ID;
+        obj.quantity=poitemarr[0].Quantity;
+        obj.qtymeasure=poitemarr[0].Quantity_Measure;
+        obj.unit=poitemarr[0].unit;
+        obj.unitmeasure=poitemarr[0].Unit_Measure;
+        obj.total=poitemarr[0].total;
+        obj.exduty=poitemarr[0].exduty;
+        obj.vat=poitemarr[0].vat;
+        obj.cst=poitemarr[0].cst;
+        obj.grandtot=poitemarr[0].grandtot;
+        obj.itemid=poitemtax[0].Item_ID;       
+        obj.itemsupplierprice=poitemprice[0].Item_Supplier_price;
+
+        this.purchaseordercreatepdfurl=sessionStorage.getItem("curr_sess_url")+"purchaseordercreatepdf-service";
+        this.purchaseordercreatepdfparam=obj;
+        this.$.purchaseordercreatepdfajax.generateRequest(); 
+      },
+      purchaseordercreatepdfResponse:function(e){
+        // alert('calling mail service....');
+        if(e.detail.response=="converted")
         this.purchaseordersendmailService();
       },
       purchaseordersendmailService:function(){
@@ -664,7 +719,8 @@
       },
       FnpurchaseordersendmailResponse:function(e){
         alert('PO Sent');
-        // document.querySelector('viewintentitem-page').setToggle();       
+        // document.querySelector('viewintentitem-page').setToggle();
+        if(e.detail.response=='mail sent')       
         window.location.href="../elements/indexhome.html";
       },
       FnIntentSupplyService:function(supplyarr,selquantity,reqquantity,selunit,requnit){
