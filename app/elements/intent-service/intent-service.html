@@ -723,7 +723,7 @@
         if(e.detail.response=='mail sent')       
         window.location.href="../elements/indexhome.html";
       },
-      FnIntentSupplyService:function(supplyarr,selquantity,reqquantity,selunit,requnit){
+      FnIntentSupplyService:function(supplyarr,selquantity,reqquantity,selunit,requnit,aunit,aquantity){
         var obj={"itemid":"","batchno":"","containerid":"","contquantity":"","reqquantity":"","requnit":"","selquantity":"","selunit":"","intentregno":""};
         for(var i=0;i<supplyarr.length;i++){
         obj.itemid=sessionStorage.getItem("sess_curr_itemno");
@@ -751,7 +751,7 @@
         // if(e.detail.response=="Supplied!")
           window.location.href="../elements/indexhome.html";
       },
-      intentsupplystatusService:function(supplyarr,selquantity,reqquantity,selunit,requnit){
+      intentsupplystatusService:function(supplyarr,selquantity,reqquantity,selunit,requnit,aunit,aquantity){
       var obj={"itemid":"","batchno":"","containerid":"","contquantity":"","reqquantity":"","requnit":"","selquantity":"","selunit":"","intentregno":""};
         // for(var i=0;i<supplyarr.length;i++){
         obj.itemid=sessionStorage.getItem("sess_curr_itemno");
