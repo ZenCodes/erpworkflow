@@ -141,6 +141,39 @@
       on-response="internalintentviewitemreadResponse">
     </iron-ajax>
 
+    <!--Inserting chemical test-->
+    <iron-ajax
+      id="insertchemicaltestajax"
+      url="{{insertchemicaltesturl}}"
+      params='{{insertchemicaltestparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="insertchemicaltestResponse">
+    </iron-ajax>
+
+    <!--Inserting mechanical test-->
+    <iron-ajax
+      id="insertmechanicaltestajax"
+      url="{{insertmechanicaltesturl}}"
+      params='{{insertmechanicaltestparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="insertmechanicaltestResponse">
+    </iron-ajax>
+
+    <!--Fetch TC Info-->
+    <iron-ajax
+      id="fetchtcinfoajax"
+      url="{{fetchtcinfourl}}"
+      params='{{fetchtcinfoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchtcinfoResponse">
+    </iron-ajax>
+
   </template>
   <!-- JS file import -->
   <script src="../../scripts/grn-service.js"></script>

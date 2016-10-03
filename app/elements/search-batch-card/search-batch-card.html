@@ -1,0 +1,63 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../grn-service/grn-service.html">
+
+<dom-module id="search-batch-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div>
+    <paper-dropdown-menu label="Select Batch No">
+    <paper-listbox class="dropdown-content" on-iron-select="FnSelectBatch">
+    <template is="dom-repeat" items="{{batchArray}}" as="item">
+    <paper-item>{{item.Batch_No}}</paper-item> 
+    </template> 
+    </paper-listbox>
+    </paper-dropdown-menu>
+    </div>
+    <iron-ajax
+      auto
+      method="post"
+      id="searchbatchajax"
+      url="{{searchbatchurl}}"
+      params="{{searchbatchparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="searchbatchResponse">
+    </iron-ajax>
+    <grn-service id="grnservice"></grn-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'search-batch-card',
+      ready:function(){
+        // this.searchbatchparam=obj;
+        this.searchbatchurl=sessionStorage.getItem("curr_sess_url")+"searchbatch-service";
+        // this.$.searchbatchajax.generateRequest();
+      },
+      FnsearchbatchService:function(){
+        // this.searchbatchparam=obj;
+        this.searchbatchurl=sessionStorage.getItem("curr_sess_url")+"searchbatch-service";
+        this.$.searchbatchajax.generateRequest();
+      },
+      searchbatchResponse:function(e){
+        var arr=e.detail.response;
+        // alert(JSON.stringify(arr));
+        this.batchArray=arr;
+      },
+      FnSelectBatch:function(e){
+        var batchno=e.target.selectedItem.textContent.trim();
+        this.$.grnservice.Fnfetchtcinfo(batchno);
+        document.querySelector('app-homepage').setPage('test-certificate');
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

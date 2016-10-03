@@ -1,0 +1,241 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../chemical-propery-card/chemical-propery-card.html">
+<link rel="import" href="../mechanical-propery-card/mechanical-propery-card.html">
+
+<link rel="import" href="../mechanical-property-itemcard/mechanical-property-itemcard.html">
+<link rel="import" href="../chemical-property-itemcard/chemical-property-itemcard.html">
+<dom-module id="internalintentview-expandpage">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .chemic,.mechanic {
+        padding: 10px 15px;
+        margin-top: 20px;
+        /*background-color: #f3f3f3;*/
+        border:  1px solid #dedede;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 100%;
+        text-align: left;
+        margin-left: 5%;
+
+      }
+
+      .content {
+        padding: 15px;
+        width: 50%;
+        margin-left: 10%;
+        /*border: 1px solid #dedede;*/
+        /*border-top: none;*/
+        /*border-bottom-left-radius: 5px;*/
+        /*border-bottom-right-raius: 5px;*/
+        /*@apply(--shadow-elevation-2dp);*/
+      }
+      paper-input{
+        margin-top: -5%;
+      }
+      paper-button{
+        text-align: center;
+        width: 30%;
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+        margin-top: 4%;
+        text-transform: none;
+      }
+      button{
+       font-family: calibri;
+        font-size: 20px; 
+      }
+      .btncard{
+        margin-left: 10%;
+      }
+    </style>
+    <div>
+    <button class="chemic" on-click="FnExpandChemic">Chemical Test</button>
+    <iron-collapse id="collapse1">
+      <div class="content">
+        <div class="outcard">
+        <div hidden>
+        <paper-input value="{{intentregno}}"></paper-input><paper-input value="{{containerid}}"></paper-input>
+        <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
+        <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
+        </div>
+        <div class="speccard" hidden$="{{speccardhide}}">
+        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
+          <paper-tab>Parameter Name</paper-tab>
+          <paper-tab>Actual Value</paper-tab>      
+          <paper-tab>Remarks</paper-tab>
+        </paper-tabs>
+        <template is="dom-repeat" items="{{chemicalArray}}" as="item">
+        <chemical-property-itemcard hidediv="{{hidediv}}" containerid="{{containerid}}" intentregno="{{intentregno}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></chemical-property-itemcard>
+        </template>
+        </div>
+        <div class="btncard" hidden$="{{hidebtns}}">
+        <paper-button id="submittest" on-click="FnSubmitChemictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
+        <paper-button id="test" on-click="FnAddChemictest"  hidden$="{{hidetest}}">Add Test</paper-button>
+        </div>
+        </div>
+        <!-- <div>
+          <chemical-propery-card id="chemicproperty" itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}"></chemical-propery-card>
+        </div>-->
+      </div>
+    </iron-collapse>
+
+    <button class="mechanic" on-click="FnExpandMechanic">Mechanical Test</button>
+    <iron-collapse id="collapse2">
+      <div class="content">
+        <div class="outcard">
+        <div hidden>
+        <paper-input value="{{intentregno}}"></paper-input><paper-input value="{{containerid}}"></paper-input>
+        <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
+        <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
+        </div>
+        <div class="speccard" hidden$="{{speccardhide}}">
+        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
+          <paper-tab>Parameter Name</paper-tab>
+          <paper-tab>Actual Value</paper-tab>      
+          <paper-tab>Remarks</paper-tab>
+        </paper-tabs>
+        <template is="dom-repeat" items="{{mechanicalArray}}" as="item">
+        <mechanical-property-itemcard hidediv="{{hidediv}}" containerid="{{containerid}}" intentregno="{{intentregno}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></mechanical-property-itemcard>
+        </template>
+        </div>
+        <div class="btncard" hidden$="{{hidebtns}}">
+        <paper-button id="submittest" on-click="FnSubmitMechanictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
+        <paper-button id="test" on-click="FnAddMechanictest"  hidden$="{{hidetest}}">Add Test</paper-button>
+        </div>
+        </div>
+        <!-- <div>
+          <mechanical-propery-card itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}"></mechanical-propery-card>
+        </div> -->
+      </div>
+    </iron-collapse>
+
+    <!-- Component which make request to read the chemical parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="chemicalpropertyreadajax"
+      url="{{chemicalpropertyreadurl}}"
+      params="{{chemicalpropertyreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="chemicalpropertyreadResponse">
+    </iron-ajax>
+
+    <!-- Component which make request to read the mechanical parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="mechanicalpropertyreadajax"
+      url="{{mechanicalpropertyreadurl}}"
+      params="{{mechanicalpropertyreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="mechanicalpropertyreadResponse">
+    </iron-ajax>
+    <!-- Component to call the service -->
+    <grn-service id="grnservice"></grn-service>
+
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var chemicarr=[];
+    var mechanicarr=[];
+    Polymer({
+      is: 'internalintentview-expandpage',
+      ready:function(){
+        this.temparr=[];
+        var obj={"Property_Name":"","actualval":"","remark":""};
+        this.temparr.push(obj);
+        this.chemicalArray=this.temparr;
+        this.mechanicalArray=this.temparr;
+        // alert(JSON.stringify((this.itemArray).length));
+      },
+      FnExpandChemic:function(){
+        this.$.collapse1.toggle();
+        
+      },
+      FnExpandMechanic:function(){
+        this.$.collapse2.toggle();
+      },
+      FnchemicalpropertyreadService:function(){
+        var obj={"batchno":""};
+        obj.batchno=sessionStorage.getItem("sess_curr_batchno");
+        this.chemicalpropertyreadparam=obj;
+        this.chemicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"chemicalpropertyread-service";
+        this.$.chemicalpropertyreadajax.generateRequest();
+      },
+      chemicalpropertyreadResponse:function(e){        
+        this.chemicalArray=e.detail.response;
+        // alert(JSON.stringify(this.itemArray));
+      },
+      FnmechanicalpropertyreadService:function(){
+        var obj={"batchno":""};
+        obj.batchno=sessionStorage.getItem("sess_curr_batchno");
+        this.mechanicalpropertyreadparam=obj;
+        this.mechanicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"mechanicalpropertyread-service";
+        this.$.mechanicalpropertyreadajax.generateRequest();
+      },
+      mechanicalpropertyreadResponse:function(e){        
+        this.mechanicalArray=e.detail.response;
+        // alert(JSON.stringify(this.itemArray));
+      },
+      FnSetChemicarr:function(chemicarray){
+        
+        chemicarr=chemicarray;
+      },
+      FnSetMechanicarr:function(mechanicarray){
+        
+        mechanicarr=mechanicarray;
+      },
+      FnSubmitChemictest:function(){
+        // alert(JSON.stringify(chemicarr));
+        alert((chemicarr).length+" "+(this.chemicalArray).length);
+         if((chemicarr).length==(this.chemicalArray).length)
+        {
+          alert('Test submit!');
+          this.$.grnservice.FncallinsertchemicalService(chemicarr);
+          // this.speccardhide=true;
+          // this.hidesubmit=true;
+          // this.hidetest=false;
+        }
+        else{
+          alert('Please enter all the quality parameters!');
+        }
+        
+      },
+      FnAddChemictest:function(){
+      },
+      FnSubmitMechanictest:function(){
+        // alert(JSON.stringify(mechanicarr));
+        // this.$.grnservice.FncallinsertmechanicalService(mechanicarr);
+         if((mechanicarr).length==(this.mechanicalArray).length)
+        {
+          alert('Test submit!');
+          this.$.grnservice.FncallinsertmechanicalService(mechanicarr);
+          // this.speccardhide=true;
+          // this.hidesubmit=true;
+          // this.hidetest=false;
+        }
+        else{
+          alert('Please enter all the quality parameters!');
+        }
+      },
+      FnAddMechanictest:function(){
+      }
+    });
+  })();
+  </script>
+</dom-module>

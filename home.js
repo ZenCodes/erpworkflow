@@ -6,6 +6,7 @@ var express    = require("express");
 var mysql      = require('mysql');
 var bodyParser = require('body-parser');
 var htmlToPdf = require('html-to-pdf');
+var fs = require('fs');
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -32,8 +33,6 @@ app.post('/mailservice-service',urlencodedParser, function (req, res) {
     res.status(200).json({'itemarr': returnval});
   });
 });
-
-
 
 app.post('/purchaseordercreatepdf-service',urlencodedParser, function (req, res) {
   var response={
@@ -86,23 +85,7 @@ app.post('/purchaseordercreatepdf-service',urlencodedParser, function (req, res)
   content += "<tr><td style='font-size:17px;font-family:Calibri;color:darkgrey;text-align:left;'>VAT (5%)</td><td style='font-size:17px;font-family:Calibri;color:darkgrey;text-align:right;'><img src='./app/images/rupee.png' width='5px' height='5px'>"+response.vat+"</td></tr><tr><td style='font-size:17px;font-family:Calibri;color:darkgrey;text-alig:left;'>CST (2%)</td><td style='font-size:17px;font-family:Calibri;color:darkgrey;text-align:right;'><img src='./app/images/rupee.png' width='5px' height='5px'>"+response.cst+"</td></tr>"
   content += "<tr><td colspan='2'>---------------------------------------</td></tr><tr><td style='font-size:17px;font-family:Calibri;color:darkgrey;text-align:margin-left;'>Grand Total </td><td style='font-size:17px;font-family:Calibri;color:darkgrey;text-align:right;'><img src='./app/images/rupee.png' width='5px' height='5px'>"+response.grandtot+"</td></tr></table>";
 
-  // var content = "<table width='700px'><tr><td><img src='./app/images/logo.jpg' height='100px' width='100px'></td><td><h1>Purchase Order</h1></td></tr></table><br><br><br><br>"
-  // content += "<table width='700px' style='margin-left:5%;'><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.cmpname+"</td><td align='right' style='font-size:18px;font-family:Calibri;color:grey;'>Po Date: </td><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.podate+"</td></tr><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.cmpaddr1+"</td><td align='right' style='font-size:18px;font-family:Calibri;color:grey;'>Po Number: </td><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.ponumber+"</td></tr>"
-  // content += "<tr><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.cmpaddr2+"</td></tr><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.cmpemail+"</td></tr><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.cmpphone+"</td></tr></table><br><br><br><br><br>"
-
-  // content += "<table width='700px' style='margin-left:5%;'><tr><td>To</td></tr></table><table style='margin-left:10%'><tr style='margin-left:5%'><td style='font-size:18px;font-family:Calibri;color:grey;'>xyz company</td></tr>"
-  // content += "<tr style='margin-left:5%'><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.suppliername+"</td></tr><tr style='margin-left:5%'><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.location+"</td></tr>"
-  // content += "<tr style='margin-left:5%'><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.email+"</td></tr><tr style='margin-left:5%'><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.mobileno+"</td></tr></table><br><br><br><br>"
-
-
-  // content += "<table width='600px' style='margin-left:5%;border-collapse:collapse;' border='1'><tr height='40px'><td height='40px' style='font-size:18px;font-family:Calibri;color:grey;'>S.No</td><td style='font-size:18px;font-family:Calibri;color:grey;'>Item description</td><td style='font-size:18px;font-family:Calibri;color:grey;'>Quantity</td><td style='font-size:18px;font-family:Calibri;color:grey;'>UOM</td><td style='font-size:18px;font-family:Calibri;color:grey;'>Rate</td><td style='font-size:18px;font-family:Calibri;color:grey;'>Amount</td></tr>"
-  // content += "<tr height='40px'><td height='40px'>1</td><td style='font-size:18px;font-family:Calibri;color:grey;'>"+response.productid+"</td><td>"+response.quantity+" "+response.qtymeasure+"</td><td>"+response.unit+" "+response.unitmeasure+"</td><td>"+response.itemsupplierprice+"</td><td>"+response.total+"</td></tr></table><br><br><br><br>"
-
-  // content += "<table style='margin-left:55%'><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>Total :</td><td style='font-size:18px;font-family:Calibri;color:grey;'><img src='public/rupee.png' width='5px' height='5px'></td></t"+response.total+"r><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>Excess Duty (12.5%):</td><td style='font-size:18px;font-family:Calibri;color:grey;'><img src='public/rupee.png' width='5px' height='5px'>"+response.exduty+"</td></tr>"
-  // content += "<tr><td style='font-size:18px;font-family:Calibri;color:grey;'>VAT (5%):</td><td style='font-size:18px;font-family:Calibri;color:grey;'><img src='public/rupee.png' width='5px' height='5px'>"+response.vat+"</td></tr><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>CST (2%):</td><td style='font-size:18px;font-family:Calibri;color:grey;'><img src='public/rupee.png' width='5px' height='5px'>"+response.cst+"</td></tr>"
-  // content += "<tr><td colspan='2'>---------------------------------------</td></tr><tr><td style='font-size:18px;font-family:Calibri;color:grey;'>Grand Total :</td><td style='font-size:18px;font-family:Calibri;color:grey;'><img src='public/rupee.png' width='5px' height='5px'>"+response.grandtot+"</td></tr></table>";
-
-
+  
     htmlToPdf.convertHTMLString(content, './app/images/Purchaseorder.pdf',
     function (error, success) {
        if (error) {
@@ -116,12 +99,7 @@ app.post('/purchaseordercreatepdf-service',urlencodedParser, function (req, res)
           // return callback('converted');  
         }
     });
-    // if(response.flag==1)
-    // return callback('converted'); 
-/*  var Fnpurchaseordercreatepdfcall = require("./app/scripts/dboperations.js");
-  Fnpurchaseordercreatepdfcall.Fnpurchaseordercreatepdf("purchaseordercreatepdf-service",function(returnval){
-    res.status(200).json(returnval);
-  });*/
+
 });
 
 
@@ -2146,6 +2124,109 @@ app.post('/internalintentviewitemread-service',urlencodedParser, function (req, 
     res.status(200).json(returnval);
   });  
 });
+
+
+app.post('/fetchheatproperty-service',urlencodedParser, function (req, res) {
+  var heatno=req.query.heatno;
+  var FnFetchheatpropertycall = require("./app/scripts/dboperations.js");
+  FnFetchheatpropertycall.FnFetchheatproperty("fetchheatproperty-service",heatno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/checkheatproperty-service',urlencodedParser, function (req, res) {
+  var heatno=req.query.heatno;
+  var FnCheckheatpropertycall = require("./app/scripts/dboperations.js");
+  FnCheckheatpropertycall.FnCheckheatproperty("checkheatproperty-service",heatno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/mapheatproperty-service',urlencodedParser, function (req, res) {
+  var heatno=req.query.heatno;
+  var propertyid=req.query.property;
+  var FnMapheatpropertycall = require("./app/scripts/dboperations.js");
+  FnMapheatpropertycall.FnMapheatproperty("mapheatproperty-service",heatno,propertyid,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/chemicalpropertyread-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  
+  var FnChemicalpropertyreadcall = require("./app/scripts/dboperations.js");
+  FnChemicalpropertyreadcall.FnChemicalpropertyread("chemicalpropertyread-service",batchno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/mechanicalpropertyread-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  
+  var FnMechanicalpropertyreadcall = require("./app/scripts/dboperations.js");
+  FnMechanicalpropertyreadcall.FnMechanicalpropertyread("mechanicalpropertyread-service",batchno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/insertchemicaltest-service',urlencodedParser, function (req, res) {
+  var response={
+     Intent_Register_No:req.query.intentregno,
+     Container_ID:req.query.containerid,
+     Item_ID:req.query.itemid,
+     Item_Name:req.query.itemname,
+     Batch_No:req.query.batchno,
+     Lot_No:req.query.lotno,
+     Property_Name:req.query.propertyname,
+     Property_Value:req.query.actualvalue,
+     Remarks:req.query.remarks,
+     Test_Date:req.query.testdate,
+     Created_By:req.query.createdby
+  };
+  
+  var Fninsertchemicaltestcall = require("./app/scripts/dboperations.js");
+  Fninsertchemicaltestcall.Fninsertchemicaltest("insertchemicaltest-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/insertmechanicaltest-service',urlencodedParser, function (req, res) {
+  
+  var response={
+     Intent_Register_No:req.query.intentregno,
+     Container_ID:req.query.containerid,
+     Item_ID:req.query.itemid,
+     Item_Name:req.query.itemname,
+     Batch_No:req.query.batchno,
+     Lot_No:req.query.lotno,
+     Property_Name:req.query.propertyname,
+     Property_Value:req.query.actualvalue,
+     Remarks:req.query.remarks,
+     Test_Date:req.query.testdate,
+     Created_By:req.query.createdby
+  };
+  var Fninsertmechanicaltestcall = require("./app/scripts/dboperations.js");
+  Fninsertmechanicaltestcall.Fninsertmechanicaltest("insertmechanicaltest-service",response,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/searchbatch-service',urlencodedParser, function (req, res) {
+
+  var Fnsearchbatchcall = require("./app/scripts/dboperations.js");
+  Fnsearchbatchcall.Fnsearchbatch("searchbatch-service",function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/fetchtcinfo-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  var Fnfetchtcinfocall = require("./app/scripts/dboperations.js");
+  Fnfetchtcinfocall.Fnfetchtcinfo("fetchtcinfo-service",batchno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
 //Node server running port number
 app.listen(4000);
 

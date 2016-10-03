@@ -1,0 +1,130 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../chemical-property-itemcard/chemical-property-itemcard.html">
+
+
+<dom-module id="chemical-property-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .outcard{
+        @apply(--layout-verical);
+        margin-left: 6%;
+      }
+      #id{
+        margin-left: 20%;
+      }
+      #number{
+        margin-left: 10%;
+      }
+      #test,#submittest{        
+        text-transform: none;
+        text-align: center;
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+      }
+      paper-button{
+        text-transform: none;
+      }
+      paper-tabs{
+        width: 70%;
+      }
+      .btncard{
+        margin-left: -80%;
+        margin-top: 2%;
+      }
+    </style>
+    <div class="outcard">
+        <div hidden>
+        <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
+        <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
+        </div>
+        <div class="speccard" hidden$="{{speccardhide}}">
+        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
+          <paper-tab><paper-button>Parameter Name</paper-button></paper-tab>
+          <paper-tab><paper-button>Actual Value</paper-button></paper-tab>          
+          <!-- <paper-tab><paper-button>Obtained Value</paper-button></paper-tab> -->
+          <paper-tab><paper-button>Remarks</paper-button></paper-tab>
+        </paper-tabs>
+        <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <chemical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></chemical-property-itemcard>
+        </template>
+        </div>
+        <div class="btncard" hidden$="{{hidebtns}}">
+        <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
+        <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
+        </div>
+      </div>
+    <!-- Component which make request to read the specification parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="chemicalpropertyreadajax"
+      url="{{chemicalpropertyreadurl}}"
+      params="{{chemicalpropertyreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="chemicalpropertyreadResponse">
+    </iron-ajax>
+    <!-- Component to call the service -->
+    <grn-service id="grnservice"></grn-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var chemicarr=[];
+    Polymer({
+      is: 'chemical-property-card',
+      ready:function(){
+      },
+       // Function which make request to fetch the specification parameters
+      FnspecificationitemreadService:function(){
+        var obj={"batchno":""};
+        // obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
+        // obj.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
+        obj.batchno=sessionStorage.getItem("sess_curr_batchno");
+        this.chemicalpropertyreadparam=obj;
+        this.chemicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"chemicalpropertyread-service";
+        this.$.chemicalpropertyreadajax.generateRequest();
+      },
+      chemicalpropertyreadResponse:function(e){
+        this.itemArray=e.detail.response;
+      },
+      // Function invokes while submitting the test
+      FnSubmittest:function(){
+        // if((qualityarr).length==(this.itemArray).length)
+        // {
+        //   alert('Test submit!');
+        //   this.$.grnservice.updatequalityparameterService(qualityarr);
+        //   this.speccardhide=true;
+        //   this.hidesubmit=true;
+        //   this.hidetest=false;
+        // }
+        // else{
+        //   alert('Please enter all the quality parameters!');
+        // }
+      },
+      // Function invokes while adding test
+      FnAddtest:function(){
+        // this.speccardhide=false;
+        // this.hidesubmit=false;
+        // this.hidetest=true;
+        // if(this.noparameter==1){
+        //   this.hidesubmit=true;
+        //   this.hidetest=false;
+        //   alert("No Quality Parameter Exists!");
+        // }
+      },
+      FnSetValue:function(chemicarray){
+        chemicarr=chemicarray;
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

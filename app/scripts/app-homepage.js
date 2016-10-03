@@ -109,7 +109,11 @@ Polymer({
       else
         document.querySelector('intenthome-page').setPage('Internal Intent');
       }
-      
+      else if(localStorage.getItem("curr_sess_wardflag")=="16"){
+      this.$.flow.style.visibility='hidden';
+      this.$.intentflow.style.visibility='hidden';
+      document.querySelector('app-homepage').setPage('search-batch-card'); 
+      }
       else{
       localStorage.setItem("curr_sess_showpage","physicins-page");
       this.page="home-page";

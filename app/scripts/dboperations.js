@@ -4069,21 +4069,44 @@ exports.FnIntentsupply=function(pagename,response,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }
+  var lotresponse={"lotnumber":""};
   var eqinsertqur="INSERT INTO OD_Item_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,'1',Unit_Measure,'"+response.contquantity+"',Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
   " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
+
+
+  // var eqinsertqur="INSERT INTO OD_Production_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No) select Item_ID,Product_ID,'1',Unit_Measure,'"+response.contquantity+"',Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"' "+
+  // " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'";
+  
+  var selectlotno="SELECT * from Auto_Lot_Number";
+  var updatelotno="UPDATE Auto_Lot_Number SET Lot_Number=?";
+
   if(response.selunit==response.requnit){
 
     connection.query("UPDATE OD_Item_Inventory SET Quantity=(Quantity-('"+response.reqquantity+"')),Container=(Container-1) where Item_ID='"+response.itemid+"' and Container_ID='"+response.containerid+"' and State='Stores'", function(err, rows) {
       if(!err){
-        connection.query(eqinsertqur, function(err, rows) {
-          if(!err)
+        connection.query(selectlotno, function(err, rows) { 
+        if(rows.length>0){
+          lotresponse.lotnumber=rows[0].Lot_Number;
+          var newlotno=parseInt(rows[0].Lot_Number)+1;
+          connection.query("UPDATE Auto_Lot_Number SET Lot_Number='"+newlotno+"'", function(err, result) {
+            if(result.affectedRows==1){
+               connection.query("INSERT INTO OD_Production_Inventory(Item_ID,Item_Name,Container,Container_Measure,Quantity,Quantity_Measure,State,Intent_Register_No,Container_ID,Batch_No,Lot_Number) select Item_ID,Product_ID,'1',Unit_Measure,'"+response.contquantity+"',Quantity_Measure,'Production',Intent_Register_Number,'"+response.containerid+"','"+response.batchno+"','"+lotresponse.lotnumber+"' "+
+               " FROM OD_Stores_Intent_Items where Intent_Register_Number='"+response.intentregno+"' and Item_ID='"+response.itemid+"'", function(err, rows) {
+                 if(!err)
                   return callback('succ');
                   else
                   {
                     console.log(err);
                           return callback('fail');
                   }
-        });
+                 });
+            }
+          });
+
+        }       
+
+       
+      });
       }
     });
 
@@ -4179,8 +4202,6 @@ exports.FnFetchcontainer=function(pagename,response,callback) {
 
 }
 
-
-
 exports.FnInternalintentviewitemread=function(pagename,response,callback) {
 
   var Config_tables=[];
@@ -4192,7 +4213,7 @@ exports.FnInternalintentviewitemread=function(pagename,response,callback) {
     }
   }  
 
-  var queryy="SELECT * FROM OD_Item_Inventory WHERE State='Production'";
+  var queryy="SELECT * FROM OD_Production_Inventory WHERE State='Production'";
 
   console.log(queryy);
   
@@ -4207,4 +4228,266 @@ exports.FnInternalintentviewitemread=function(pagename,response,callback) {
     }
   });
 
+}
+
+
+exports.FnFetchheatproperty=function(pagename,heatno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  var checkqur="SELECT * FROM OD_Heat_To_Property WHERE Heat_No='"+heatno+"'";
+  var queryy="SELECT * FROM MD_Heat_Property";
+  connection.query(queryy, function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+
+exports.FnCheckheatproperty=function(pagename,heatno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  var checkqur="SELECT * FROM OD_Heat_To_Property WHERE Heat_No='"+heatno+"'";
+  console.log(checkqur);
+  connection.query(checkqur, function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+
+
+exports.FnMapheatproperty=function(pagename,heatno,propertyid,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  var query1="SELECT * FROM OD_Heat_To_Property WHERE Heat_No='"+heatno+"' and Property_ID='"+propertyid+"'";
+  var query2="INSERT INTO OD_Heat_To_Property VALUES('"+heatno+"','"+propertyid+"')";
+
+  console.log(query1);
+  console.log(query2);
+
+  connection.query(query1, function(err, rows) {
+    if(rows.length==0){
+  connection.query(query2, function(err, rows) {
+    if(!err)
+    {      
+      return callback('succ'); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+  }
+});
+}
+
+exports.FnChemicalpropertyread=function(pagename,batchno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  var query1="SELECT Heat_No FROM OD_Heat_To_Batch WHERE Batch_No='"+batchno+"'";
+  var query2="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No=?) and Property_Category=?";
+  var response={
+    "heatno":""
+  };
+  console.log(query1);
+  console.log(query2);
+
+  connection.query(query1, function(err, rows) {
+    if(rows.length>0){
+      response.heatno=rows[0].Heat_No;
+      console.log(response.heatno);
+  connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Chemical'", function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+  }
+});
+}
+
+exports.FnMechanicalpropertyread=function(pagename,batchno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  var query1="SELECT Heat_No FROM OD_Heat_To_Batch WHERE Batch_No='"+batchno+"'";
+  var query2="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No=?) and Property_Category=?";
+  var response={
+    "heatno":""
+  };
+  console.log(query1);
+  console.log(query2);
+
+  connection.query(query1, function(err, rows) {
+    if(rows.length>0){
+      response.heatno=rows[0].Heat_No;
+      console.log(response.heatno);
+  connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'", function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+  }
+});
+}
+
+exports.Fninsertchemicaltest=function(pagename,response,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  
+  var query1="INSERT INTO OD_Chemical_Test SET ?";
+
+  console.log(query1);
+
+  connection.query(query1, [response],function(err, rows) {
+    if(!err)
+    {      
+      return callback('succ'); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+  
+}
+
+exports.Fninsertmechanicaltest=function(pagename,response,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  
+  var query1="INSERT INTO OD_Mechanical_Test SET ?";
+
+  console.log(query1);
+
+  connection.query(query1, [response],function(err, rows) {
+    if(!err)
+    {      
+      return callback('succ'); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+exports.Fnsearchbatch=function(pagename,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+    
+  var query1="SELECT distinct ct.Batch_No FROM OD_Chemical_Test ct join OD_Mechanical_Test mt on(ct.Batch_No=mt.Batch_No)";
+
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+
+exports.Fnfetchtcinfo=function(pagename,batchno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+    
+  var query1="SELECT * FROM OD_Chemical_Test ct join OD_Mechanical_Test mt on(ct.Batch_No=mt.Batch_No) where ct.Batch_No='"+batchno+"' and mt.Batch_No='"+batchno+"'";
+
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
 }

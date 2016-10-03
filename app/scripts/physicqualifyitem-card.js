@@ -6,6 +6,7 @@ var flag="true";
   Polymer({
     is: "physicqualifyitem-card",
     ready: function () {
+      this.propertymaparr=[];
       this.updateflag = "false";
       this.hideradio=true;
       this.url = sessionStorage.getItem("curr_sess_url") + "physicqualifyitem-card";
@@ -157,25 +158,60 @@ var flag="true";
     FnComponentSize:function(){
       // alert('no coil');
       // alert('calling'+this.querySelector('paper-input'));
-      this.querySelector('.repeatcard').style.width='120%';
-      // this.querySelector('#cont'+this.inwardno).style.marginLeft='10%';
-      // this.querySelector('.repeatcard').style.marginLeft='10%';
-      this.querySelector('#cont'+this.inwardno).style.width='20%';
-      this.querySelector('#cont'+this.inwardno).style.marginLeft='13%';
-      this.querySelector('#qty'+this.inwardno).style.width='20%';
-      this.querySelector('textarea').style.width='25%'; 
+      // this.querySelector('.repeatcard').style.width='120%';
+      // // this.querySelector('#cont'+this.inwardno).style.marginLeft='10%';
+      // // this.querySelector('.repeatcard').style.marginLeft='10%';
+      // this.querySelector('#cont'+this.inwardno).style.width='20%';
+      // this.querySelector('#cont'+this.inwardno).style.marginLeft='13%';
+      // this.querySelector('#qty'+this.inwardno).style.width='20%';
+      // this.querySelector('textarea').style.width='25%'; 
       // this.querySelector('paper-icon-button').style.width='5%';      
     },
     FnComponentReSize:function(){
       // alert('coil');
       // alert('calling'+this.querySelector('paper-input'));
-      this.querySelector('.repeatcard').style.width='100%';
-      // this.querySelector('#cont'+this.inwardno).style.marginLeft='0%';
-      // this.querySelector('.repeatcard').style.marginLeft='0%';
-      this.querySelector('#cont'+this.inwardno).style.width='15%';
-      this.querySelector('#qty'+this.inwardno).style.width='8%';
+      // this.querySelector('.repeatcard').style.width='100%';
+      // // this.querySelector('#cont'+this.inwardno).style.marginLeft='0%';
+      // // this.querySelector('.repeatcard').style.marginLeft='0%';
+      // this.querySelector('#cont'+this.inwardno).style.width='15%';
+      // this.querySelector('#qty'+this.inwardno).style.width='8%';
       // this.querySelector('#unit'+this.inwardno).style.marginLeft='-5%';
       // this.querySelector('textarea').style.width='15%'; 
+      },
+      FnAddProperty:function(){
+        if(this.heatno==""||this.heatno==null){
+          alert("Please enter the heatno to map properties!!");
+        }
+        else
+        this.$.testservice.callfectchheatProperty(this.heatno);
+      },
+      FnMapProperty:function(){
+        this.$.showpropertydialog.toggle();
+        // alert(JSON.stringify(this.propertymaparr));
+        this.$.testservice.callMapheatproperty(this.heatno,this.propertymaparr);
+      },
+      FnToggleDialog:function(){
+        this.$.showpropertydialog.toggle();
+      },
+      FnChemicChange:function(e){
+        if(document.querySelector("#"+e.target.id).checked==true){
+          // alert(e.target.id);
+          this.propertymaparr.push(e.target.id);
+        }
+        // alert(e.target.id);
+      },
+      FnMechanicChange:function(e){
+        // alert(e.target.id);
+        if(document.querySelector("#"+e.target.id).checked==true){
+          // alert(e.target.id);
+          this.propertymaparr.push(e.target.id);
+        }
+      },
+      FnSetMappedProperty:function(arr){
+        // alert(JSON.stringify(arr));
+        for(var i=0;i<arr.length;i++){
+          document.querySelector("#"+arr[i].Property_ID).checked=true;
+        }
       }
   });
 })();

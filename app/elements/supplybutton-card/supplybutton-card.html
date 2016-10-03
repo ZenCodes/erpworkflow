@@ -45,7 +45,7 @@
     },
     // Function which calls service to create the PO for the item in intent view
     FnSupply:function(){
-      alert(JSON.stringify(supplyarr));
+      // alert(JSON.stringify(supplyarr));
       // alert(selquantity+" "+reqquantity+" "+selunit+" "+requnit);
       this.$.intentservice.FnIntentSupplyService(supplyarr,selquantity,reqquantity,selunit,requnit,aunit,aquantity);
       this.$.intentservice.intentsupplystatusService(supplyarr,selquantity,reqquantity,selunit,requnit,aunit,aquantity);

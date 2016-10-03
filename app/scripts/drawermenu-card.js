@@ -52,6 +52,19 @@ Polymer({is:"drawermenu-card",
         window.location.href="../elements/indexhome.html";
       }
     }
+
+    else if(sessionStorage.getItem("curr_sess_roleflag")=="3"){
+       if(e.target.id=="GRN Flow"){
+        localStorage.setItem("curr_sess_wardflag","");
+        window.location.href="../elements/indexhome.html";
+      }
+      if(e.target.id=="Test Certificate"){        
+        localStorage.setItem("curr_sess_wardflag","16");
+        // sessionStorage.setItem("curr_sess_intentrefreshflag","0");
+        // document.querySelector('search-batch-card').FnsearchbatchService();
+        window.location.href="../elements/indexhome.html";
+      }
+    }
     //Roleflag 1 is for the role who may do GRN Flow and Intent items
     else if(sessionStorage.getItem("curr_sess_roleflag")=="1"){
       if(e.target.id=="GRN Flow"){

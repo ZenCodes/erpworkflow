@@ -1,0 +1,84 @@
+
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="..\..\bower_components/paper-button/paper-button.html">
+<link rel="import" href="..\..\bower_components/paper-input/paper-input.html">
+
+<dom-module id="mechanical-property-itemcard">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card{
+        @apply(--layout-horizontal);
+      }
+      paper-button{
+        width: 10%;
+        margin-left: 10%;
+        text-transform: none;
+      }
+      paper-input{        
+        width: 25%;
+        margin-top: -5%;
+      }
+      #actvalue{
+        margin-left: 20%;
+      }
+      #remarks{
+        margin-left: 10%;
+      }
+    </style>
+    <div hidden>
+      <paper-input value="{{containerid}}"></paper-input>
+      <paper-input value="{{intentregno}}"></paper-input>
+      <paper-input value="{{itemid}}"></paper-input>
+      <paper-input value="{{itemdes}}"></paper-input>
+      <paper-input value="{{lotno}}"></paper-input>
+      <paper-input value="{{batchno}}"></paper-input>
+    </div>
+    <div class="card">
+      <paper-button id="propertyname">{{propertyname}}</paper-button>      
+      <paper-input id="actvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input>
+      <paper-input id="remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    var testarr=[];
+    Polymer({
+      is: 'mechanical-property-itemcard',
+      ready:function(){
+        this.flag=0;
+      },
+      FnChange:function(){
+      var obj={"intentregno":"","itemid":"","itemname":"","batchno":"","lotno":"","containerid":"","propertyname":"","actualvalue":"","remarks":"","testdate":""};
+      obj.intentregno=this.intentregno;
+      obj.containerid=this.containerid;
+      obj.itemid=this.itemid;
+      obj.itemname=this.itemdes;
+      obj.batchno=this.batchno;
+      obj.lotno=this.lotno;
+      obj.propertyname=this.propertyname;
+      obj.actualvalue=this.actualvalue;
+      obj.remarks=this.remarks;
+      var dat=new Date();
+      obj.testdate=dat.getDate()+"/"+(dat.getMonth()+1)+"/"+dat.getFullYear();
+      for(var i=0;i<testarr.length;i++){
+        if(testarr[i].propertyname==obj.propertyname){          
+          this.flag=1;
+          testarr[i].actualvalue=this.actualvalue;
+          testarr[i].remarks=this.remarks;
+        }
+      }
+      if(this.flag==0) {
+        testarr.push(obj);
+        document.querySelector('internalintentview-expandpage').FnSetMechanicarr(testarr);
+      }
+      }
+     
+    });
+  })();
+  </script>
+</dom-module>

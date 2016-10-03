@@ -279,6 +279,66 @@
       // alert(JSON.stringify(arr));
       if(sessionStorage.getItem("loggedrole")=="Production manager")
       document.querySelector('internalintentview-page').itemArray=arr;
+    },
+    FncallinsertchemicalService:function(chemicarr){
+      // arrlength=chemicarr.length;
+      for(var i=0;i<chemicarr.length;i++){
+        var obj={"intentregno":"","itemid":"","itemname":"","batchno":"","lotno":"","containerid":"","propertyname":"","actualvalue":"","remarks":"","testdate":""};
+      obj.intentregno=chemicarr[i].intentregno;
+      obj.containerid=chemicarr[i].containerid;
+      obj.itemid=chemicarr[i].itemid;
+      obj.itemname=chemicarr[i].itemname;
+      obj.batchno=chemicarr[i].batchno;
+      obj.lotno=chemicarr[i].lotno;
+      obj.propertyname=chemicarr[i].propertyname;
+      obj.actualvalue=chemicarr[i].actualvalue;
+      obj.remarks=chemicarr[i].remarks;
+      obj.testdate=chemicarr[i].testdate;
+      obj.createdby=sessionStorage.getItem("loggeduser");
+
+        this.insertchemicaltesturl=sessionStorage.getItem("curr_sess_url")+"insertchemicaltest-service";
+        this.insertchemicaltestparam=obj;
+        this.$.insertchemicaltestajax.generateRequest();
+      }
+    },
+    insertchemicaltestResponse:function(e){
+      alert(e.detail.response);
+    },
+    FncallinsertmechanicalService:function(mechanicarr){
+      
+      for(var i=0;i<mechanicarr.length;i++){
+        var obj={"intentregno":"","itemid":"","itemname":"","batchno":"","lotno":"","containerid":"","propertyname":"","actualvalue":"","remarks":"","testdate":""};
+      obj.intentregno=mechanicarr[i].intentregno;
+      obj.containerid=mechanicarr[i].containerid;
+      obj.itemid=mechanicarr[i].itemid;
+      obj.itemname=mechanicarr[i].itemname;
+      obj.batchno=mechanicarr[i].batchno;
+      obj.lotno=mechanicarr[i].lotno;
+      obj.propertyname=mechanicarr[i].propertyname;
+      obj.actualvalue=mechanicarr[i].actualvalue;
+      obj.remarks=mechanicarr[i].remarks;
+      obj.testdate=mechanicarr[i].testdate;
+      obj.createdby=sessionStorage.getItem("loggeduser");
+        
+        this.insertmechanicaltesturl=sessionStorage.getItem("curr_sess_url")+"insertmechanicaltest-service";
+        this.insertmechanicaltestparam=obj;
+        this.$.insertmechanicaltestajax.generateRequest();
+      }
+      
+    },
+    insertmechanicaltestResponse:function(e){
+      alert(e.detail.response);
+    },
+    Fnfetchtcinfo:function(batchno){
+      var obj={"batchno":""};
+      obj.batchno=batchno;
+      this.fetchtcinfourl=sessionStorage.getItem("curr_sess_url")+"fetchtcinfo-service";
+      this.fetchtcinfoparam=obj;
+      this.$.fetchtcinfoajax.generateRequest();
+    },
+    fetchtcinfoResponse:function(e){
+      alert(JSON.stringify(e.detail.response));
+      
     }
   });
 })();

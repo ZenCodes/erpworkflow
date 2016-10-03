@@ -1,0 +1,131 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="..\bower_components/iron-ajax/iron-ajax.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<dom-module id="test-certificate">
+  <template>
+  <style>
+  .head{
+    @apply(--layout-horizontal);
+  }
+
+  th,h3,h4{
+    font-family: verdana;
+    color: darkgrey;
+  }
+  td{
+    font-family: Calibri;
+    color: darkgrey;
+    font-size: 17px;
+  }
+  .outcard{
+    width: 60%;
+    margin-left: 20%;
+    border: 1px solid #000;
+  }
+  </style>
+  <div class="outcard">
+  <div class='head' width="100%" style="margin-top: 2%;">
+    <div width="25%" style="margin-left: 5%;"><img src="" width="100px" height="100px"></div>
+    <div class="" style="margin-left: 18%;" width="75%">
+      <table>
+
+        <tr style="text-align: center;"><th>COO Test Certificate</th></tr>
+        <tr style="text-align: center;"><td></td></tr>
+        <tr style="text-align: center;"><td>Company Name</td></tr>
+        <tr style="text-align: center;"><td># Street Name, Area</td></tr>
+        <tr style="text-align: center;"><td>City - Pincode</td>
+        <tr style="text-align: center;"><td>Tel 000-xxxxxxxx  Fax 000-xxxxxxx</td></tr>
+        <tr style="text-align: center;"><td>e.mail:xxxxxxxxxx@email.com</td></tr>
+      
+      </table>
+    </div>
+  </div>
+  <div>
+  <br><br><br>
+    <table>
+    <tr><th>Customer Name</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Customer Name</td></tr>
+    </table>
+
+    <br><br>
+
+    <table>
+    <tr style="text-align: left;"><th>Product</th><td>: Customer Name</td><td style="width: 10%;"></td><th>T.C.No.</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th>AWS Classification</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Invoice No</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th>Brand</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Page</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th>yyyyyyy</th><td>: Customer Name</td><td style="width: 10%;"></td><th>T.C.No.</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th>xxxxxxx</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Size</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th>zzzzzzzzz</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Quantity</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th>vvvvvvv</th><td>: Customer Name</td><td style="width: 10%;"></td><th>No Of Sp</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th colspan="2"></th><td style="width: 10%;"></td><th>Batch No</th><td>: Customer Name</td></tr>
+    </table>
+  </div>
+
+  <br></br>
+
+  <div>
+    <h3 style='text-align: center;'>CHEMICAL COMPOSITION  OF THE WIRE</h3>
+    <br>
+    <table border="1" style="border-collapse: collapse;width: 100%;">
+      <tr style="text-align: center;"><th>C</th><th>Mn</th><th>Si</th><th>S</th><th>P</th><th>AI</th><th>CU</th><th>Mo</th><th>Ni</th></tr>
+      <tr style="text-align: center;"><td>{{C}}</td><td>{{Mn}}</td><td>{{Si}}</td><td>{{S}}</td><td>{{P}}</td><td>{{AI}}</td><td>{{CU}}</td><td>{{Mo}}</td><td>{{Ni}}</td></tr>
+    </table>
+  </div>
+
+  <br><br><br>
+
+  <div>
+    <h3 style='text-align: center;'>MECHANICAL PROPERTIES  METAL (BRAND + F5RR)</h3>
+    <br>
+    <table border="1" style="border-collapse: collapse;width: 100%">
+      <tr style="text-align: center;"><th>Ultimate Strength (Mpa)</th><th>Yield Strength</th><th>Elongation</th><th>Impact @   -40º C</th></tr>
+      <tr style="text-align: center;"><td>{{US}}</td><td>{{YS}}</td><td>{{El}}</td><td>{{Impact}}</td></tr>
+    </table>
+  </div>
+
+  <br><br><br>
+
+  <div>
+    <h3 style='text-align: center;'>TEST NAME</h3>
+    <br>
+    <table border="1" style="border-collapse: collapse;width: 100%;">
+      <tr style="text-align: center;"><th>H1</th><th>H2</th><th>H3</th><th>H4</th><th>H5</th><th>H6</th></tr>
+      <tr style="text-align: center;"><td>55555</td><td>5555</td><td>55555</td><td>888</td><td>555</td><td>88888</td></tr>
+    </table>
+  </div>
+
+  <div>
+    <h4>We certify that the supply made against this TC Conform to all requirements of XXXX Section – II                
+    Part-C Edition 2015.                
+    </h4>
+  </div>
+
+  <div>
+    <h4>Special Remarks :</h4>
+  </div>
+
+  <div>
+    <table>
+    <tr><th>Prepared By</th><th style="width: 70%;"></th><th> Approved By</th></tr>
+    </table>
+  </div>
+  <br><br><br>
+  </div>
+  </template>
+  <script>
+
+    Polymer({
+      is: "test-certificate",
+    
+    });
+
+  </script>
+
+</dom-module>

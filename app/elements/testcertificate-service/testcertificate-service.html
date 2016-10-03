@@ -1,0 +1,92 @@
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="testcertificate-service">
+  <template>
+  <!-- Component to fetch the properties for the specific heat number -->
+    <iron-ajax
+      id="fetchheatpropertyajax"
+      url="{{fetchheatpropertyurl}}"
+      params='{{fetchheatpropertyparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchheatpropertyResponse">
+    </iron-ajax> 
+    <iron-ajax
+      id="mapheatpropertyajax"
+      url="{{mapheatpropertyurl}}"
+      params='{{mapheatpropertyparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="mapheatpropertyResponse">
+    </iron-ajax> 
+    <iron-ajax
+      id="checkheatpropertyajax"
+      url="{{checkheatpropertyurl}}"
+      params='{{checkheatpropertyparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="checkheatpropertyResponse">
+    </iron-ajax>    
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'testcertificate-service',
+      callfectchheatProperty:function(heatno){
+        this.heatno=heatno;
+         var obj={"heatno":""};               
+         this.fetchheatpropertyurl=sessionStorage.getItem("curr_sess_url")+"fetchheatproperty-service";
+         this.fetchheatpropertyparam=obj;
+         this.$.fetchheatpropertyajax.generateRequest(); 
+      },
+      fetchheatpropertyResponse:function(e){
+        // alert(JSON.stringify(e.detail.response));
+        var arr=e.detail.response;
+        var chemicarr=[];
+        var mecharr=[];
+        for(var i=0;i<arr.length;i++){
+          if(arr[i].Property_Category=="Chemical")
+            chemicarr.push(arr[i]);
+          if(arr[i].Property_Category=="Mechanical")
+            mecharr.push(arr[i]);
+        }
+        document.querySelector('physicqualifyitem-card').chemicpropertyarr=chemicarr;
+        document.querySelector('physicqualifyitem-card').mechpropertyarr=mecharr;
+        document.querySelector('physicqualifyitem-card').FnToggleDialog();
+        this.callCheckheatproperty(this.heatno);
+      },
+      callMapheatproperty:function(heatno,maparr){
+        for(var i=0;i<maparr.length;i++){
+         var obj={"heatno":"","property":""}; 
+         obj.heatno=heatno;
+         obj.property=maparr[i];              
+         this.mapheatpropertyurl=sessionStorage.getItem("curr_sess_url")+"mapheatproperty-service";
+         this.mapheatpropertyparam=obj;
+         this.$.mapheatpropertyajax.generateRequest(); 
+        }
+      },
+      mapheatpropertyResponse:function(e){
+        alert(e.detail.response);
+      },
+      callCheckheatproperty:function(heatno){
+        var obj={"heatno":""};  
+        obj.heatno=heatno;             
+         this.checkheatpropertyurl=sessionStorage.getItem("curr_sess_url")+"checkheatproperty-service";
+         this.checkheatpropertyparam=obj;
+         this.$.checkheatpropertyajax.generateRequest(); 
+      },
+      checkheatpropertyResponse:function(e){
+        var arr=e.detail.response;
+        // alert(JSON.stringify(arr));
+        document.querySelector('physicqualifyitem-card').FnSetMappedProperty(arr);
+      }  
+    });
+  })();
+  </script>
+</dom-module>

@@ -19,6 +19,7 @@
 <link rel="import" href="../dialog-page/dialog-page.html">
 <link rel="import" href="../specification-card/specification-card.html">
 <link rel="import" href="../quality-parameter-displaycard/quality-parameter-displaycard.html">
+<link rel="import" href="../testcertificate-service/testcertificate-service.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../grn-service/grn-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +28,7 @@
     <style>
       .repeatcard{
         @apply(--layout-horizontal);
-        width: 100%;
+        width: 90%;
         margin-top: 0%;
         text-align: center;
         /*border-bottom: 1px solid #dedede;*/
@@ -37,7 +38,7 @@
         height: 7%;
       }
       .itemdes,.ctr,.ctinput,.qtinput,.remark{
-        width:8%;
+        width:7%;
         margin-left:1%;
       }
       .ctmeasure,.qtunit{
@@ -51,9 +52,10 @@
         margin-top:1%;
         width: 14%;
       }
-      .save,.reject{
+      .save,.reject,.add{
         margin-top: 0%;
-        margin-left: 1%;
+        margin-left: 0%;
+        width:3%;
       }
       .custom {
         margin-left: 5%;
@@ -85,6 +87,27 @@
         text-align: center;
         margin-left: 15%;
       }
+      #showpropertydialog{
+      margin-top: -10%;
+      background-color: #f3f3f3;
+      border: 1px solid #dedede;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-size: 16px;
+      padding: 5px 5px;
+      font-family: verdana;
+      width: 50%;      
+      }
+      .chemical,.mechanical{
+        @apply(--layout-vertical);
+      }
+      .chemic,.mechanic{
+        @apply(--layout-vertical);
+      }
+      .property{
+        @apply(--layout-horizontal);
+      }
+
     </style>
     <!--card which has expanded card item template-->
     <form is="iron-form" id="form" method='POST' action="{{url}}" on-iron-form-response="FnResponse">
@@ -112,9 +135,34 @@
         <paper-input readonly hidden$="{{hideflg}}" class="batchno" name="batchno" value="{{batchno}}" label="Batch Number" id="heat{{batchno}}"></paper-input>
         <textarea readonly="{{read}}" class="remark" name="remark" placeholder="Remarks here...." value="{{remarks::input}}" id="remark">{{remarks}}</textarea>
         <paper-tooltip readonly="{{read}}" for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
+        <paper-icon-button icon="icons:add" on-click="FnAddProperty" class="add"></paper-icon-button> 
         <paper-icon-button disabled="{{read}}" icon="icons:check" on-click="FnSaveItem" class="save"></paper-icon-button>
-        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button>        
+        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button> 
       </div>
+
+       <paper-dialog id="showpropertydialog" modal>        
+        <div class="property" id="property">
+        <div class="chemic" style="margin-left: 5%;">
+        <P>Chemical Properties</P>
+        <div class="chemical">        
+        <template is="dom-repeat" items="{{chemicpropertyarr}}" as="p">
+        <paper-checkbox id="{{p.Property_ID}}" on-change="FnChemicChange">{{p.Property_Name}}</paper-checkbox><br>
+        </template>
+        </div>
+        </div>
+        <br><br>
+        <div class="mechanic" style="margin-left: 5%;">
+        <P>Mechanical Properties</P>
+        <div class="mechanical" style="margin-left: 5%;">        
+        <template is="dom-repeat" items="{{mechpropertyarr}}" as="p">
+        <paper-checkbox id="{{p.Property_ID}}" on-change="FnMechanicChange">{{p.Property_Name}}</paper-checkbox><br>
+        </template>
+        </div>
+        </div>        
+        </div> 
+        <paper-button on-click="FnMapProperty">Add</paper-button>
+       </paper-dialog>
+
       <!--Expand item collapse card-->
       <iron-collapse id="inner{{containerid}}">
         <div class="collapse">
@@ -123,8 +171,13 @@
         </div>
       </iron-collapse>
     </form>
+
     <div><dialog-page id="ID_Show_Dialog"></dialog-page></div>
+
     <grn-service id="grnservice"></grn-service>
+
+    <testcertificate-service id="testservice"></testcertificate-service>
+
     <!--Component which generate batch number-->
     <iron-ajax
       id="generatebatchnoajax"
@@ -136,6 +189,7 @@
       on-response="generatebatchnoResponse">
     </iron-ajax>
   </template>
+  <!--  Service to -->
   <!--JS file import-->
   <script src="../../scripts/physicqualifyitem-card.js"></script>
 

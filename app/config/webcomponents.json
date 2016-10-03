@@ -322,7 +322,7 @@
     ]},
     {"Page":[
       {"page":["internalintentview-page","internalintentview-page"]},
-      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Batch No"},{"tab":"Quantity"},{"tab":"Container"},
+      {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Batch No"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Lot Number"},
       {"tab":"Intent Register No"}]}]}
     ,{"title":["Internal Intent"]}
     ]}

@@ -15,13 +15,13 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="../internalintentexpand-page/internalintentexpand-page.html">
+<link rel="import" href="../internalintentview-expandpage/internalintentview-expandpage.html">
 <link rel="import" href="../intent-service/intent-service.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <dom-module id="internalintentview-itempage">
   <style>
-    .internalintentexpandcard{
+    .internalviewexpandcard{
       @apply(--layout-horizontal);
       width: 90%;
       border-bottom: 1px solid #dedede;
@@ -66,21 +66,21 @@
   </style>
   <template>
     <!--Expand Itemcard-->
-    <div class="internalintentexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">     
+    <div class="internalviewexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">     
      <paper-button id="itemdes"  name="itemdes" value="{{itemdes}}" noink>{{itemdes}}</paper-button> 
      <paper-button id="batchno"  name="batchno" value="{{batchno}}" noink>{{batchno}}</paper-button>   
      <paper-button id="quantity"  name="quantity" value="{{quantity}}" noink>{{quantity}}</paper-button>
      <paper-button id="unit"  name="unit" value="{{unit}}" noink>{{unit}}</paper-button>
-     
-     <!-- <paper-button id="itemlocation"  name="itemlocation" value="{{itemlocation}}" noink>{{itemlocation}}</paper-button> -->
+     <paper-button id="containerid"  name="containerid" value="{{containerid}}" noink>{{containerid}}</paper-button>
+     <paper-button id="lotno"  name="lotno" value="{{lotno}}" noink>{{lotno}}</paper-button>
      <paper-button id="intentregno"  name="intentregno" value="{{intentregno}}" noink>{{intentregno}}</paper-button>
     </div>
-    <!--Expand item collapse card-->
-   <!--  <iron-collapse id="{{intentregno}}">
+    <!-- Expand item collapse card -->
+    <iron-collapse id="{{intentregno}}">
       <div class="collapse">      
-        <internalintentexpand-page id="ps" itemid="{{itemno}}" itemdes="{{itemdes}}" reqquantity="{{quantity}}" requnit="{{unit}}" intentregno="{{intentregno}}"></internalintentexpand-page>
+        <internalintentview-expandpage id="ps" containerid="{{containerid}}" itemid="{{itemno}}" itemdes="{{itemdes}}" intentregno="{{intentregno}}" lotno="{{lotno}}" batchno="{{batchno}}"></internalintentview-expandpage>
       </div>
-    </iron-collapse> -->
+    </iron-collapse>
   <!-- Component to call the service -->
   <!-- <intent-service id="intentservice"></intent-service> -->
   </template>

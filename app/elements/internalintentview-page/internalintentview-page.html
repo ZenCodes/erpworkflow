@@ -54,7 +54,7 @@
         <!--Template which bind items under the current logged role state-->
         <template is="dom-repeat" items="{{itemArray}}" as="item">
           <div class="itemcard">
-            <div><internalintentview-itempage itemno="{{item.Item_ID}}" intentregno="{{item.Intent_Register_No}}" itemdes="{{item.Item_Name}}" batchno="{{item.Batch_No}}" quantity="{{item.Quantity}}" unit="{{item.unit}}" duedate="{{item.Due_Date}}" itemlocation="{{item.Store_Location_Name}}"></internalintentview-itempage></div>
+            <div><internalintentview-itempage itemno="{{item.Item_ID}}" intentregno="{{item.Intent_Register_No}}" itemdes="{{item.Item_Name}}" batchno="{{item.Batch_No}}" quantity="{{item.Quantity}}" unit="{{item.unit}}" duedate="{{item.Due_Date}}" itemlocation="{{item.Store_Location_Name}}" lotno="{{item.Lot_Number}}" containerid="{{item.Container_ID}}"></internalintentview-itempage></div>
           </div>
         </template>
       </div>
