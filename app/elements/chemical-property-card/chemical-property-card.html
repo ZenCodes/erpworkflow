@@ -14,54 +14,54 @@
         @apply(--layout-verical);
         margin-left: 6%;
       }
-      #id{
-        margin-left: 20%;
+      paper-input{
+        margin-top: -5%;
       }
-      #number{
-        margin-left: 10%;
-      }
-      #test,#submittest{        
-        text-transform: none;
+      paper-button{
         text-align: center;
+        width: 30%;
         background-color: #A0A0A0;
         font-family: calibri;
         font-size: 17px;
         color: black;
         height: 35px;
-      }
-      paper-button{
+        margin-top: 4%;
         text-transform: none;
+      }
+      button{
+       font-family: calibri;
+        font-size: 20px; 
+      }
+      .btncard{
+        margin-left: -25%;
       }
       paper-tabs{
         width: 70%;
       }
-      .btncard{
-        margin-left: -80%;
-        margin-top: 2%;
-      }
+     
     </style>
     <div class="outcard">
         <div hidden>
         <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
         <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
         </div>
-        <div class="speccard" hidden$="{{speccardhide}}">
+        <div class="speccard" hidden$="{{propertycardhide}}">
         <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
-          <paper-tab><paper-button>Parameter Name</paper-button></paper-tab>
-          <paper-tab><paper-button>Actual Value</paper-button></paper-tab>          
+          <paper-tab>Parameter Name</paper-tab>
+          <paper-tab>Actual Value</paper-tab>          
           <!-- <paper-tab><paper-button>Obtained Value</paper-button></paper-tab> -->
-          <paper-tab><paper-button>Remarks</paper-button></paper-tab>
+          <paper-tab>Remarks</paper-tab>
         </paper-tabs>
-        <template is="dom-repeat" items="{{itemArray}}" as="item">
+        <template is="dom-repeat" items="{{chemicalArray}}" as="item">
         <chemical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></chemical-property-itemcard>
         </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
-        <paper-button id="submittest" on-click="FnSubmittest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
-        <paper-button id="test" on-click="FnAddtest"  hidden$="{{hidetest}}">Add Test</paper-button>
+        <paper-button id="submittest" on-click="FnSubmitChemictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
+        <paper-button id="test" on-click="FnAddChemictest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
       </div>
-    <!-- Component which make request to read the specification parameters for the item -->
+     <!-- Component which make request to read the chemical parameters for the item -->
     <iron-ajax
       method="post"
       id="chemicalpropertyreadajax"
@@ -81,46 +81,50 @@
     Polymer({
       is: 'chemical-property-card',
       ready:function(){
+        this.propertycardhide=true;
+        this.hidesubmit=true;
+        this.temparr=[];
+        var obj={"Property_Name":"","actualval":"","remark":""};
+        this.temparr.push(obj);
+        this.chemicalArray=this.temparr;
+        // this.mechanicalArray=this.temparr;
       },
-       // Function which make request to fetch the specification parameters
-      FnspecificationitemreadService:function(){
+      FnchemicalpropertyreadService:function(){
         var obj={"batchno":""};
-        // obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
-        // obj.checkstatus=localStorage.getItem("curr_sess_currflowstatus");
-        obj.batchno=sessionStorage.getItem("sess_curr_batchno");
+        obj.batchno=this.batchno;
         this.chemicalpropertyreadparam=obj;
         this.chemicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"chemicalpropertyread-service";
         this.$.chemicalpropertyreadajax.generateRequest();
       },
       chemicalpropertyreadResponse:function(e){
-        this.itemArray=e.detail.response;
+        this.chemicalArray=e.detail.response;
+        // alert(JSON.stringify(this.chemicalArray));
       },
-      // Function invokes while submitting the test
-      FnSubmittest:function(){
-        // if((qualityarr).length==(this.itemArray).length)
-        // {
-        //   alert('Test submit!');
-        //   this.$.grnservice.updatequalityparameterService(qualityarr);
-        //   this.speccardhide=true;
-        //   this.hidesubmit=true;
-        //   this.hidetest=false;
-        // }
-        // else{
-        //   alert('Please enter all the quality parameters!');
-        // }
+      FnSubmitChemictest:function(){
+        // alert(JSON.stringify(chemicarr));
+        // alert((chemicarr).length+" "+(this.chemicalArray).length);
+         if((chemicarr).length==(this.chemicalArray).length)
+        {
+          alert('Test submit!');
+          document.querySelector('internalintentview-expandpage').FnToggleChemic();
+          this.$.grnservice.FncallinsertchemicalService(chemicarr);
+          this.propertycardhide=true;
+          this.hidesubmit=true;
+          this.hidetest=false;
+          this.chemicalArray=[];
+        }
+        else{
+          alert('Please enter all the quality parameters!');
+        }
+        
       },
-      // Function invokes while adding test
-      FnAddtest:function(){
-        // this.speccardhide=false;
-        // this.hidesubmit=false;
-        // this.hidetest=true;
-        // if(this.noparameter==1){
-        //   this.hidesubmit=true;
-        //   this.hidetest=false;
-        //   alert("No Quality Parameter Exists!");
-        // }
+      FnAddChemictest:function(){
+        this.propertycardhide=false;
+        this.hidesubmit=false;
+        this.hidetest=true;
       },
-      FnSetValue:function(chemicarray){
+      FnSetChemicarr:function(chemicarray){
+        
         chemicarr=chemicarray;
       }
 

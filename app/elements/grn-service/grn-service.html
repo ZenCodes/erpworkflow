@@ -163,6 +163,17 @@
       on-response="insertmechanicaltestResponse">
     </iron-ajax>
 
+    <!--Make Progress of production item-->
+    <iron-ajax
+      id="updateproductionstatusajax"
+      url="{{updateproductionstatusurl}}"
+      params='{{updateproductionstatusparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="updateproductionstatusResponse">
+    </iron-ajax>
+
     <!--Fetch TC Info-->
     <iron-ajax
       id="fetchtcinfoajax"

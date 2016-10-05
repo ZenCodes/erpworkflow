@@ -31,7 +31,7 @@
         "newstatus":"OldQuality",
         "updatestatus":"Purchase",
         "containerstatus":"OldStores",
-        "menu" : ["GRN Flow","Test Certificate"]
+        "menu" : ["GRN Flow","Test Certificate","Internal Intent"]
       },
       {
         "rolename": "Purchase manager",

@@ -2117,7 +2117,7 @@ app.post('/fetchcontainer-service',urlencodedParser, function (req, res) {
 
 app.post('/internalintentviewitemread-service',urlencodedParser, function (req, res) {
   var response={
-  loggeduser:req.query.loggeduser};
+  loggedrole:req.query.loggedrole};
 
   var FnInternalintentviewitemreadcall = require("./app/scripts/dboperations.js");
   FnInternalintentviewitemreadcall.FnInternalintentviewitemread("internalintentviewitemread-service",response,function(returnval){
@@ -2223,6 +2223,19 @@ app.post('/fetchtcinfo-service',urlencodedParser, function (req, res) {
   var batchno=req.query.batchno;
   var Fnfetchtcinfocall = require("./app/scripts/dboperations.js");
   Fnfetchtcinfocall.Fnfetchtcinfo("fetchtcinfo-service",batchno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+
+app.post('/updateproductionstatus-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  var lotno=req.query.lotno;
+  var containerid=req.query.containerid;
+  var intentregno=req.query.intentregno;
+  var loggedrole=req.query.loggedrole;
+  var Fnupdateproductionstatuscall = require("./app/scripts/dboperations.js");
+  Fnupdateproductionstatuscall.Fnupdateproductionstatus("updateproductionstatus-service",loggedrole,batchno,lotno,containerid,intentregno,function(returnval){
     res.status(200).json(returnval);
   });  
 });

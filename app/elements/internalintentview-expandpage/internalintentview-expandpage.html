@@ -2,8 +2,8 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="../chemical-propery-card/chemical-propery-card.html">
-<link rel="import" href="../mechanical-propery-card/mechanical-propery-card.html">
+<link rel="import" href="../chemical-property-card/chemical-property-card.html">
+<link rel="import" href="../mechanical-property-card/mechanical-property-card.html">
 
 <link rel="import" href="../mechanical-property-itemcard/mechanical-property-itemcard.html">
 <link rel="import" href="../chemical-property-itemcard/chemical-property-itemcard.html">
@@ -65,7 +65,7 @@
     <button class="chemic" on-click="FnExpandChemic">Chemical Test</button>
     <iron-collapse id="collapse1">
       <div class="content">
-        <div class="outcard">
+        <!--<div class="outcard">
         <div hidden>
         <paper-input value="{{intentregno}}"></paper-input><paper-input value="{{containerid}}"></paper-input>
         <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
@@ -85,17 +85,17 @@
         <paper-button id="submittest" on-click="FnSubmitChemictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
         <paper-button id="test" on-click="FnAddChemictest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
-        </div>
-        <!-- <div>
-          <chemical-propery-card id="chemicproperty" itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}"></chemical-propery-card>
         </div>-->
+         <div>
+          <chemical-property-card id="chemicproperty" chemicalArray="{{chemicalArray}}" itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}"></chemical-property-card>
+        </div>
       </div>
     </iron-collapse>
 
     <button class="mechanic" on-click="FnExpandMechanic">Mechanical Test</button>
     <iron-collapse id="collapse2">
       <div class="content">
-        <div class="outcard">
+        <!--<div class="outcard">
         <div hidden>
         <paper-input value="{{intentregno}}"></paper-input><paper-input value="{{containerid}}"></paper-input>
         <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
@@ -115,10 +115,10 @@
         <paper-button id="submittest" on-click="FnSubmitMechanictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
         <paper-button id="test" on-click="FnAddMechanictest"  hidden$="{{hidetest}}">Add Test</paper-button>
         </div>
+        </div>-->
+        <div>
+          <mechanical-property-card id="mechanicproperty" mechanicalArray="{{mechanicalArray}}" itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}"></mechanical-property-card>
         </div>
-        <!-- <div>
-          <mechanical-propery-card itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}"></mechanical-propery-card>
-        </div> -->
       </div>
     </iron-collapse>
 
@@ -164,10 +164,12 @@
         // alert(JSON.stringify((this.itemArray).length));
       },
       FnExpandChemic:function(){
+        this.$.chemicproperty.FnchemicalpropertyreadService();
         this.$.collapse1.toggle();
         
       },
       FnExpandMechanic:function(){
+        this.$.mechanicproperty.FnmechanicalpropertyreadService();
         this.$.collapse2.toggle();
       },
       FnchemicalpropertyreadService:function(){
@@ -179,7 +181,7 @@
       },
       chemicalpropertyreadResponse:function(e){        
         this.chemicalArray=e.detail.response;
-        // alert(JSON.stringify(this.itemArray));
+        // alert(JSON.stringify(this.chemicalArray));
       },
       FnmechanicalpropertyreadService:function(){
         var obj={"batchno":""};
@@ -190,7 +192,7 @@
       },
       mechanicalpropertyreadResponse:function(e){        
         this.mechanicalArray=e.detail.response;
-        // alert(JSON.stringify(this.itemArray));
+        // alert(JSON.stringify(this.mechanicalArray));
       },
       FnSetChemicarr:function(chemicarray){
         
@@ -234,6 +236,13 @@
         }
       },
       FnAddMechanictest:function(){
+      },
+      FnToggleChemic:function(){
+        this.$.collapse1.opened=true;
+      },
+      FnToggleMechanic:function(){
+        // alert('toggle'+this.$.collapse2);
+        this.$.collapse2.opened=true;
       }
     });
   })();

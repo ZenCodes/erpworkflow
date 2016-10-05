@@ -16,6 +16,7 @@ Polymer({
     this.$.dynamicbutton.style.visibility='hidden';
     this.$.flowbutton.style.visibility='hidden';
     this.$.supplybutton.style.visibility='hidden';
+    this.$.inproductionbutton.style.visibility='hidden';
     // Condition which shows the outward report card
     if(sessionStorage.getItem("curr_sess_roleflag")=="10"){
       if(localStorage.getItem("curr_sess_wardflag")=="5") {
@@ -104,8 +105,10 @@ Polymer({
       this.$.intentflow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
       
-      if(sessionStorage.getItem("curr_sess_roleflag")=='2')
-        document.querySelector('intenthome-page').setPage('internalintentview-page');
+      if(sessionStorage.getItem("curr_sess_roleflag")=='2'||sessionStorage.getItem("curr_sess_roleflag")=='3'){
+        // alert('yes');
+        document.querySelector('intenthome-page').setPage('internalintentview-page');        
+      }
       else
         document.querySelector('intenthome-page').setPage('Internal Intent');
       }
@@ -255,5 +258,12 @@ Polymer({
       this.$.dynamicbutton.style.visibility='visible';
     if(flag=="false")
       this.$.dynamicbutton.style.visibility='hidden';
-  }
+  },
+   // Function which toggle the view of Production promote button
+  FnSetInProductionVisibility:function(flag){
+    if(flag=="true")
+      this.$.inproductionbutton.style.visibility='visible';
+    if(flag=="false")
+      this.$.inproductionbutton.style.visibility='hidden';
+  },
 });

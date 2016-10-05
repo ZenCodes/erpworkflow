@@ -15,7 +15,7 @@
       }
       paper-button{
         width: 10%;
-        margin-left: 10%;
+        margin-left: 0%;
         text-transform: none;
       }
       paper-input{        
@@ -23,7 +23,7 @@
         margin-top: -5%;
       }
       #actvalue{
-        margin-left: 20%;
+        margin-left: 10%;
       }
       #remarks{
         margin-left: 10%;
@@ -74,7 +74,9 @@
       }
       if(this.flag==0) {
         testarr.push(obj);
-        document.querySelector('internalintentview-expandpage').FnSetMechanicarr(testarr);
+        // alert(JSON.stringify(testarr));
+        // alert(document.querySelector('mechanical-property-card'));
+        document.querySelector('mechanical-property-card').FnSetMechanicarr(testarr);
       }
       }
      

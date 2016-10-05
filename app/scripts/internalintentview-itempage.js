@@ -26,13 +26,14 @@
       sessionStorage.setItem("sess_curr_lotno",this.lotno);
       sessionStorage.setItem("sess_curr_batchno",this.batchno);
 
-      this.$.ps.FnchemicalpropertyreadService();
-      this.$.ps.FnmechanicalpropertyreadService();
+      document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno);
+      // document.querySelector('chemical-property-card').FnchemicalpropertyreadService();
+      // document.querySelector('mechanical-property-card').FnmechanicalpropertyreadService();
       var all=document.querySelectorAll('.internalviewexpandcard');
 
       if(id=="true")
       {
-        document.querySelector('app-homepage').FnSetSupplyVisibility('true');
+        document.querySelector('app-homepage').FnSetInProductionVisibility('true');
         id= document.querySelector("#"+this.intentregno);        
         id.toggle();
       }
@@ -42,14 +43,14 @@
         {
           id.opened=false;
         }
-        document.querySelector('app-homepage').FnSetSupplyVisibility('false');
+        document.querySelector('app-homepage').FnSetInProductionVisibility('false');
         id= document.querySelector("#"+this.intentregno);
         id.toggle();
       }
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
-          document.querySelector('app-homepage').FnSetSupplyVisibility('true');
+          document.querySelector('app-homepage').FnSetInProductionVisibility('true');
           if(all[i].id==document.querySelector("#card"+this.intentregno).id){
             if(i!=0) {
               all[i].style.marginTop=((i*(x))-i-(i))+"%";
@@ -67,7 +68,7 @@
         if(clrid!=document.querySelector("#card"+this.intentregno))
         {
           //document.querySelector('my-app').setVisible("true");
-          document.querySelector('app-homepage').FnSetSupplyVisibility('true');
+          document.querySelector('app-homepage').FnSetInProductionVisibility('true');
           for(var i=0;i<all.length;i++){
             if(all[i].id==document.querySelector("#card"+this.intentregno).id){
               all[i].style.visibility='visible';
@@ -80,7 +81,7 @@
         }
         else
         {
-          document.querySelector('app-homepage').FnSetSupplyVisibility('false');
+          document.querySelector('app-homepage').FnSetInProductionVisibility('false');
           for(var i=0;i<all.length;i++){
             if(i!=0)
               all[i].style.marginTop=(n)+"%";

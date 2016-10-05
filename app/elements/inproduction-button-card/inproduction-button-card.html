@@ -1,0 +1,57 @@
+<!-- Component import -->
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<!-- Component registeration -->
+<dom-module id="inproduction-button-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button{
+        text-transform: none;
+      }
+      paper-button{
+        text-align: center;
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;
+        background-color: #bfbfbf;
+        color: black;
+        height: 30px;
+      }
+    </style>
+    <div class="promotebtn">
+    <paper-button id="promote"  name="promote" on-click="FnProduce" noink>{{btnname}}</paper-button>
+    </div>
+    <!-- Component to call the service -->
+    <grn-service id="grnservice"></grn-service>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+    is: 'inproduction-button-card',
+    ready:function(){
+      if(sessionStorage.getItem("loggedrole")=="Production manager"){
+        this.btnname="In Progress";
+      }
+      if(sessionStorage.getItem("loggedrole")=="Quality manager"){
+        this.btnname="Done";
+      }
+    },
+    FnSetBatchInfo:function(batchno,lotno,continerid,intentregno){
+    this.batchno=batchno;
+    this.lotno=lotno;
+    this.continerid=continerid;
+    this.intentregno=intentregno; 
+    },
+    // Function which calls service to create the PO for the item in intent view
+    FnProduce:function(){
+      // alert(this.batchno+"  "+this.lotno+"  "+this.continerid+"  "+this.intentregno);
+      this.$.grnservice.updateproductionstatusService(this.batchno,this.lotno,this.continerid,this.intentregno);
+    }
+    });
+  })();
+  </script>
+</dom-module>

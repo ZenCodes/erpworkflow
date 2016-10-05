@@ -8,7 +8,22 @@
     is: "grn-service",
     ready:function()
     {
-    },    
+    }, 
+    updateproductionstatusService:function(batchno,lotno,containerid,intentregno){
+      var obj={"batchno":"","lotno":"","containerid":"","intentregno":"","loggedrole":""};
+        obj.batchno=batchno;
+        obj.containerid=containerid;
+        obj.lotno=lotno;
+        obj.intentregno=intentregno;
+        obj.loggedrole=sessionStorage.getItem("loggedrole");  
+        this.updateproductionstatusurl=sessionStorage.getItem("curr_sess_url")+"updateproductionstatus-service";
+        this.updateproductionstatusparam=obj;
+        this.$.updateproductionstatusajax.generateRequest();
+    },
+    updateproductionstatusResponse:function(e){
+      alert(e.detail.response);
+      window.location.href="../elements/indexhome.html";
+    },   
     updatequalityparameterService:function(qualityarray){
       arrlength=0;
       no=0;
@@ -263,8 +278,8 @@
      FnFetchInternalIntentViewService:function(){
       // alert('calling.......');
       this.internalintentviewitemreadurl=sessionStorage.getItem("curr_sess_url")+"internalintentviewitemread-service";
-      var arg={"loggeduser":"","intentstate":"","state":""};
-      arg.loggeduser=sessionStorage.getItem("loggeduser");
+      var arg={"loggedrole":"","intentstate":"","state":""};
+      arg.loggedrole=sessionStorage.getItem("loggedrole");
      
       this.internalintentviewitemreadparam=arg;      
       this.$.internalintentviewitemreadajax.generateRequest();
@@ -277,7 +292,7 @@
         arr[i].unit=arr[i].Container+" "+arr[i].Container_Measure;
       }
       // alert(JSON.stringify(arr));
-      if(sessionStorage.getItem("loggedrole")=="Production manager")
+      if(sessionStorage.getItem("loggedrole")=="Production manager"||sessionStorage.getItem("loggedrole")=="Quality manager")
       document.querySelector('internalintentview-page').itemArray=arr;
     },
     FncallinsertchemicalService:function(chemicarr){

@@ -4212,8 +4212,10 @@ exports.FnInternalintentviewitemread=function(pagename,response,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }  
-
+  if(response.loggedrole=="Production manager")
   var queryy="SELECT * FROM OD_Production_Inventory WHERE State='Production'";
+  if(response.loggedrole=="Quality manager")
+  var queryy="SELECT * FROM OD_Production_Inventory WHERE State='InProgress'";
 
   console.log(queryy);
   
@@ -4334,6 +4336,8 @@ exports.FnChemicalpropertyread=function(pagename,batchno,callback) {
     if(rows.length>0){
       response.heatno=rows[0].Heat_No;
       console.log(response.heatno);
+      var q="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'";
+      console.log(q);
   connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Chemical'", function(err, rows) {
     if(!err)
     {      
@@ -4370,6 +4374,8 @@ exports.FnMechanicalpropertyread=function(pagename,batchno,callback) {
     if(rows.length>0){
       response.heatno=rows[0].Heat_No;
       console.log(response.heatno);
+      var q="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'";
+      console.log(q);
   connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'", function(err, rows) {
     if(!err)
     {      
@@ -4490,4 +4496,35 @@ exports.Fnfetchtcinfo=function(pagename,batchno,callback) {
       return callback("fail");
     }
   });
+
+}
+
+
+exports.Fnupdateproductionstatus=function(pagename,loggedrole,batchno,lotno,containerid,intentregno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  if(loggedrole=="Production manager")
+  var query1="UPDATE OD_Production_Inventory SET State='InProgress' WHERE Batch_No='"+batchno+"' and Lot_Number='"+lotno+"' and Container_ID='"+containerid+"' and Intent_Register_No='"+intentregno+"'";
+  if(loggedrole=="Quality manager")
+  var query1="UPDATE OD_Production_Inventory SET State='Done' WHERE Batch_No='"+batchno+"' and Lot_Number='"+lotno+"' and Container_ID='"+containerid+"' and Intent_Register_No='"+intentregno+"'";
+
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback('updated'); 
+    }
+    else{
+      console.log(err);
+      return callback("not updated");
+    }
+  });
+
 }

@@ -58,6 +58,11 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","");
         window.location.href="../elements/indexhome.html";
       }
+      if(e.target.id=="Internal Intent"){        
+        localStorage.setItem("curr_sess_wardflag","15");
+        // sessionStorage.setItem("curr_sess_intentrefreshflag","1");
+        window.location.href="../elements/indexhome.html";
+      }
       if(e.target.id=="Test Certificate"){        
         localStorage.setItem("curr_sess_wardflag","16");
         // sessionStorage.setItem("curr_sess_intentrefreshflag","0");

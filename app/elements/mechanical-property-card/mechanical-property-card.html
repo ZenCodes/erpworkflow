@@ -1,5 +1,8 @@
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../grn-service/grn-service.html">
+<link rel="import" href="../mechanical-property-itemcard/mechanical-property-itemcard.html">
+
 
 <dom-module id="mechanical-property-card">
   <template>
@@ -7,17 +10,122 @@
       :host {
         display: block;
       }
+      .outcard{
+        @apply(--layout-verical);
+        margin-left: 6%;
+      }
+      paper-input{
+        margin-top: -5%;
+      }
+      paper-button{
+        text-align: center;
+        width: 30%;
+        background-color: #A0A0A0;
+        font-family: calibri;
+        font-size: 17px;
+        color: black;
+        height: 35px;
+        margin-top: 4%;
+        text-transform: none;
+      }
+      button{
+       font-family: calibri;
+        font-size: 20px; 
+      }
+      .btncard{
+        margin-left: -25%;
+      }
+      paper-tabs{
+        width: 70%;
+      }
     </style>
-    <div>
-      
-    </div>
+    <div class="outcard">
+        <div hidden>
+        <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
+        <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
+        </div>
+        <div class="speccard" hidden$="{{propertycardhide}}">
+        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
+          <paper-tab>Parameter Name</paper-tab>
+          <paper-tab>Actual Value</paper-tab>          
+          <!-- <paper-tab><paper-button>Obtained Value</paper-button></paper-tab> -->
+          <paper-tab>Remarks</paper-tab>
+        </paper-tabs>
+        <template is="dom-repeat" items="{{mechanicalArray}}" as="item">
+        <mechanical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></mechanical-property-itemcard>
+        </template>
+        </div>
+        <div class="btncard" hidden$="{{hidebtns}}">
+        <paper-button id="submittest" on-click="FnSubmitMechanictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
+        <paper-button id="test" on-click="FnAddMechanictest"  hidden$="{{hidetest}}">Add Test</paper-button>
+        </div>
+      </div>
+    <!-- Component which make request to read the mechanical parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="mechanicalpropertyreadajax"
+      url="{{mechanicalpropertyreadurl}}"
+      params="{{mechanicalpropertyreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="mechanicalpropertyreadResponse">
+    </iron-ajax>
+    <!-- Component to call the service -->
+    <grn-service id="grnservice"></grn-service>
   </template>
   <script>
   (function() {
     'use strict';
-
+    var mechanicarr=[];
     Polymer({
       is: 'mechanical-property-card',
+      ready:function(){
+        this.propertycardhide=true;
+        this.hidesubmit=true;
+        this.temparr=[];
+        var obj={"Property_Name":"","actualval":"","remark":""};
+        this.temparr.push(obj);
+        this.mechanicalArray=this.temparr;
+      },
+      FnmechanicalpropertyreadService:function(){
+        var obj={"batchno":""};
+        obj.batchno=this.batchno;
+        this.mechanicalpropertyreadparam=obj;
+        this.mechanicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"mechanicalpropertyread-service";
+        this.$.mechanicalpropertyreadajax.generateRequest();
+      },
+      mechanicalpropertyreadResponse:function(e){        
+        this.mechanicalArray=e.detail.response;
+        // alert(JSON.stringify(this.mechanicalArray));
+      },
+      FnSubmitMechanictest:function(){
+        // alert(JSON.stringify(mechanicarr));
+        // this.$.grnservice.FncallinsertmechanicalService(mechanicarr);
+        // alert((mechanicarr).length+" "+(this.mechanicalArray).length);
+         if((mechanicarr).length==(this.mechanicalArray).length)
+        {
+          alert('Test submit!');
+          document.querySelector('internalintentview-expandpage').FnToggleMechanic();
+          this.$.grnservice.FncallinsertmechanicalService(mechanicarr);
+
+          this.propertycardhide=true;
+          this.hidesubmit=true;
+          this.hidetest=false;
+          this.mechanicalArray=[];
+        }
+        else{
+          alert('Please enter all the quality parameters!');
+        }
+      },
+      FnAddMechanictest:function(){
+        this.propertycardhide=false;
+        this.hidesubmit=false;
+        this.hidetest=true;
+      },
+      FnSetMechanicarr:function(mechanicarray){
+        // alert(JSON.stringify(mechanicarray));
+        mechanicarr=mechanicarray;
+      }
 
     });
   })();
