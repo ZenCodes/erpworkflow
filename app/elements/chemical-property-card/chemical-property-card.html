@@ -53,7 +53,7 @@
           <paper-tab>Remarks</paper-tab>
         </paper-tabs>
         <template is="dom-repeat" items="{{chemicalArray}}" as="item">
-        <chemical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></chemical-property-itemcard>
+        <chemical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}" containerid="{{containerid}}" intentregno="{{intentregno}}"></chemical-property-itemcard>
         </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
@@ -103,8 +103,8 @@
       FnSubmitChemictest:function(){
         // alert(JSON.stringify(chemicarr));
         // alert((chemicarr).length+" "+(this.chemicalArray).length);
-         if((chemicarr).length==(this.chemicalArray).length)
-        {
+        //  if((chemicarr).length==(this.chemicalArray).length)
+        // {
           alert('Test submit!');
           document.querySelector('internalintentview-expandpage').FnToggleChemic();
           this.$.grnservice.FncallinsertchemicalService(chemicarr);
@@ -112,10 +112,10 @@
           this.hidesubmit=true;
           this.hidetest=false;
           this.chemicalArray=[];
-        }
-        else{
-          alert('Please enter all the quality parameters!');
-        }
+        // }
+        // else{
+        //   alert('Please enter all the quality parameters!');
+        // }
         
       },
       FnAddChemictest:function(){

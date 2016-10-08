@@ -2219,14 +2219,32 @@ app.post('/searchbatch-service',urlencodedParser, function (req, res) {
   });  
 });
 
-app.post('/fetchtcinfo-service',urlencodedParser, function (req, res) {
+
+app.post('/searchbatchcontainer-service',urlencodedParser, function (req, res) {
   var batchno=req.query.batchno;
-  var Fnfetchtcinfocall = require("./app/scripts/dboperations.js");
-  Fnfetchtcinfocall.Fnfetchtcinfo("fetchtcinfo-service",batchno,function(returnval){
+  var Fnsearchbatchcontainercall = require("./app/scripts/dboperations.js");
+  Fnsearchbatchcontainercall.Fnsearchbatchcontainer("searchbatchcontainer-service",batchno,function(returnval){
     res.status(200).json(returnval);
   });  
 });
 
+app.post('/fetchtcchemicinfo-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  var containerid=req.query.containerid;
+  var Fnfetchtcchemicinfocall = require("./app/scripts/dboperations.js");
+  Fnfetchtcchemicinfocall.Fnfetchtcchemicinfo("fetchtcchemicinfo-service",batchno,containerid,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+app.post('/fetchtcmechinfo-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  var containerid=req.query.containerid;
+  var Fnfetchtcmechinfocall = require("./app/scripts/dboperations.js");
+  Fnfetchtcmechinfocall.Fnfetchtcmechinfo("fetchtcmechinfo-service",batchno,containerid,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
 
 app.post('/updateproductionstatus-service',urlencodedParser, function (req, res) {
   var batchno=req.query.batchno;

@@ -176,13 +176,46 @@
 
     <!--Fetch TC Info-->
     <iron-ajax
-      id="fetchtcinfoajax"
-      url="{{fetchtcinfourl}}"
-      params='{{fetchtcinfoparam}}'
+      id="fetchtcchemicinfoajax"
+      url="{{fetchtcchemicinfourl}}"
+      params='{{fetchtcchemicinfoparam}}'
       method="post"
       handle-as="json"
       content-type="application/json"
-      on-response="fetchtcinfoResponse">
+      on-response="fetchtcchemicinfoResponse">
+    </iron-ajax>
+
+    <!--Fetch TC Info-->
+    <iron-ajax
+      id="fetchtcmechinfoajax"
+      url="{{fetchtcmechinfourl}}"
+      params='{{fetchtcmechinfoparam}}'
+      method="post"
+      handle-as="json"
+      content-type="application/json"
+      on-response="fetchtcmechinfoResponse">
+    </iron-ajax>
+
+    <!-- Component which make request to read the chemical parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="chemicalpropertyreadajax"
+      url="{{chemicalpropertyreadurl}}"
+      params="{{chemicalpropertyreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="chemicalpropertyreadResponse">
+    </iron-ajax>
+
+    <!-- Component which make request to read the mechanical parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="mechanicalpropertyreadajax"
+      url="{{mechanicalpropertyreadurl}}"
+      params="{{mechanicalpropertyreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="mechanicalpropertyreadResponse">
     </iron-ajax>
 
   </template>

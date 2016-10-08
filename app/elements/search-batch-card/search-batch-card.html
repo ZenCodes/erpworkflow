@@ -17,6 +17,14 @@
     </template> 
     </paper-listbox>
     </paper-dropdown-menu>
+
+    <paper-dropdown-menu label="Select Container">
+    <paper-listbox class="dropdown-content" on-iron-select="FnSelectContainer">
+    <template is="dom-repeat" items="{{containerArray}}" as="item">
+    <paper-item>{{item.Container_ID}}</paper-item> 
+    </template> 
+    </paper-listbox>
+    </paper-dropdown-menu>
     </div>
     <iron-ajax
       auto
@@ -28,12 +36,22 @@
       content-type="application/json"
       on-response="searchbatchResponse">
     </iron-ajax>
+     <iron-ajax
+      auto
+      method="post"
+      id="searchbatchcontainerajax"
+      url="{{searchbatchcontainerurl}}"
+      params="{{searchbatchcontainerparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="searchbatchcontainerResponse">
+    </iron-ajax>
     <grn-service id="grnservice"></grn-service>
   </template>
   <script>
   (function() {
     'use strict';
-
+    var batchno,containerid;
     Polymer({
       is: 'search-batch-card',
       ready:function(){
@@ -52,8 +70,25 @@
         this.batchArray=arr;
       },
       FnSelectBatch:function(e){
-        var batchno=e.target.selectedItem.textContent.trim();
-        this.$.grnservice.Fnfetchtcinfo(batchno);
+        batchno=e.target.selectedItem.textContent.trim();
+        this.searchbatchcontainerService();
+        // this.$.grnservice.Fnfetchtcinfo(batchno);
+        // document.querySelector('app-homepage').setPage('test-certificate');
+      },
+      searchbatchcontainerService:function(){
+        this.searchbatchcontainerurl=sessionStorage.getItem("curr_sess_url")+"searchbatchcontainer-service";
+        var obj={"batchno":""};
+        obj.batchno=batchno;
+        this.searchbatchcontainerparam=obj;
+        this.$.searchbatchcontainerajax.generateRequest();
+      },
+      searchbatchcontainerResponse:function(e){
+        var arr=e.detail.response;        
+        this.containerArray=arr;
+      },
+      FnSelectContainer:function(e){
+        containerid=e.target.selectedItem.textContent.trim();
+        this.$.grnservice.Fnfetchtcchemicinfo(batchno,containerid);
         document.querySelector('app-homepage').setPage('test-certificate');
       }
 

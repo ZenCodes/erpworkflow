@@ -4,6 +4,14 @@
   var intentstate;
   var arrlength=0;
   var no=0;
+  var tcmecharr=[];
+  var tcchemicarr=[];
+  var tcchemic=[];
+  var tcmechanic=[];
+  var mechtitle=[];
+  var chemictitle=[];
+  var mechvalue=[];
+  var chemicvalue=[];
   Polymer({
     is: "grn-service",
     ready:function()
@@ -344,16 +352,115 @@
     insertmechanicaltestResponse:function(e){
       alert(e.detail.response);
     },
-    Fnfetchtcinfo:function(batchno){
-      var obj={"batchno":""};
+    Fnfetchtcchemicinfo:function(batchno,containerid){
+      var obj={"batchno":"","containerid":""};
       obj.batchno=batchno;
-      this.fetchtcinfourl=sessionStorage.getItem("curr_sess_url")+"fetchtcinfo-service";
-      this.fetchtcinfoparam=obj;
-      this.$.fetchtcinfoajax.generateRequest();
+      obj.containerid=containerid;
+      this.batchno=batchno;
+      this.containerid=containerid;
+      this.fetchtcchemicinfourl=sessionStorage.getItem("curr_sess_url")+"fetchtcchemicinfo-service";
+      this.fetchtcchemicinfoparam=obj;
+      this.$.fetchtcchemicinfoajax.generateRequest();
+
     },
-    fetchtcinfoResponse:function(e){
-      alert(JSON.stringify(e.detail.response));
-      
+    fetchtcchemicinfoResponse:function(e){
+      tcchemicarr=e.detail.response;
+      if(tcchemicarr.length>0)
+      {
+        this.Fnfetchtcmechinfo(this.batchno,this.containerid);
+      }
+      // alert(JSON.stringify(e.detail.response));      
+    },
+    Fnfetchtcmechinfo:function(batchno,containerid){
+      var obj={"batchno":"","containerid":""};
+      obj.batchno=batchno;
+      obj.containerid=containerid;
+      this.fetchtcmechinfourl=sessionStorage.getItem("curr_sess_url")+"fetchtcmechinfo-service";
+      this.fetchtcmechinfoparam=obj;
+      this.$.fetchtcmechinfoajax.generateRequest();
+    },
+    fetchtcmechinfoResponse:function(e){
+      tcmecharr=e.detail.response;
+      if(tcmecharr.length>0)
+      {
+        this.fetchtcchemic();
+      }
+      // alert(JSON.stringify(e.detail.response));      
+    },
+    fetchtcchemic:function(){
+      this.chemicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"chemicalpropertyread-service";
+      // this.chemicalpropertyreadparam=obj;
+      this.$.chemicalpropertyreadajax.generateRequest();
+    },
+    chemicalpropertyreadResponse:function(e){
+      tcchemic=e.detail.response;
+      // alert(JSON.stringify(tcchemic));
+      if(tcchemic.length>0)
+      {
+        document.querySelector('test-certificate').chemicTitle=tcchemic;
+        this.fetchtcmechanic();
+      }
+    },
+    fetchtcmechanic:function(){
+      this.mechanicalpropertyreadurl=sessionStorage.getItem("curr_sess_url")+"mechanicalpropertyread-service";
+      // this.mechanicalpropertyreadparam=obj;
+      this.$.mechanicalpropertyreadajax.generateRequest();
+    },
+    mechanicalpropertyreadResponse:function(e){
+      tcmechanic=e.detail.response;
+      document.querySelector('test-certificate').mechanicTitle=tcmechanic;
+      // alert(JSON.stringify(tcmechanic));
+      var k=0;
+
+      for(var j=0;j<tcchemic.length;j++){
+          var obj={};
+          var flag=0;
+          var temp="";
+          for(var i=0;i<tcchemicarr.length;i++){ 
+
+          // alert(tcchemicarr[i].Property_Name+"   "+tcchemic[j].Property_Name);                 
+          if((tcchemicarr[i].Property_Name).trim()==(tcchemic[j].Property_Name).trim()){
+            // alert('eq');
+            obj['property'+(k+1)]=tcchemicarr[i].Property_Value;
+            temp=tcchemicarr[i].Property_Value;
+            flag=1;
+          }
+          // else
+          //   obj['property'+(k+1)]="Nil";
+        }
+        if(flag==1)
+          chemicvalue.push(temp);
+        else
+          chemicvalue.push("Nil");
+      }
+
+
+       for(var j=0;j<tcmechanic.length;j++){
+          var obj={};
+          var flag=0;
+          var temp="";
+          for(var i=0;i<tcmecharr.length;i++){  
+          // alert(tcmecharr[i].Property_Name+"   "+tcmechanic[j].Property_Name);                  
+          if((tcmecharr[i].Property_Name).trim()==(tcmechanic[j].Property_Name).trim()){
+            // alert('eq');
+            obj['property'+(k+1)]=tcmecharr[i].Property_Value;
+            temp=tcmecharr[i].Property_Value;
+            flag=1;
+          }
+          // else
+          //   obj['property'+(k+1)]="Nil";
+        }
+        if(flag==1)
+          mechvalue.push(temp);
+        else
+          mechvalue.push("Nil");
+        // mechvalue.push(obj);
+      }
+
+      document.querySelector('test-certificate').chemicValue=chemicvalue;
+      document.querySelector('test-certificate').mechanicValue=mechvalue;
+      // alert(JSON.stringify(chemicvalue));
+      // alert(JSON.stringify(mechvalue));
     }
   });
 })();

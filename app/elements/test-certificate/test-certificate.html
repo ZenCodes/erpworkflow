@@ -64,7 +64,7 @@
     <tr style="text-align: left;"><th>xxxxxxx</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Size</th><td>: Customer Name</td></tr>
     <tr style="text-align: left;"><th>zzzzzzzzz</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Quantity</th><td>: Customer Name</td></tr>
     <tr style="text-align: left;"><th>vvvvvvv</th><td>: Customer Name</td><td style="width: 10%;"></td><th>No Of Sp</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th colspan="2"></th><td style="width: 10%;"></td><th>Batch No</th><td>: Customer Name</td></tr>
+    <tr style="text-align: left;"><th colspan="2"></th><td style="width: 10%;"></td><th>Batch No</th><td>: {{batchno}}</td></tr>
     </table>
   </div>
 
@@ -74,8 +74,18 @@
     <h3 style='text-align: center;'>CHEMICAL COMPOSITION  OF THE WIRE</h3>
     <br>
     <table border="1" style="border-collapse: collapse;width: 100%;">
-      <tr style="text-align: center;"><th>C</th><th>Mn</th><th>Si</th><th>S</th><th>P</th><th>AI</th><th>CU</th><th>Mo</th><th>Ni</th></tr>
-      <tr style="text-align: center;"><td>{{C}}</td><td>{{Mn}}</td><td>{{Si}}</td><td>{{S}}</td><td>{{P}}</td><td>{{AI}}</td><td>{{CU}}</td><td>{{Mo}}</td><td>{{Ni}}</td></tr>
+    <tr>
+    <template is="dom-repeat" items="{{chemicTitle}}" as="item">
+    <th>{{item.Property_Name}}</th>
+    </template>
+    </tr>
+     <tr>
+    <template is="dom-repeat" items="{{chemicValue}}" as="item">
+    <th>{{item}}</th>
+    </template>
+    </tr>
+     <!--  <tr style="text-align: center;"><th>C</th><th>Mn</th><th>Si</th><th>S</th><th>P</th><th>AI</th><th>CU</th><th>Mo</th><th>Ni</th></tr>
+      <tr style="text-align: center;"><td>{{C}}</td><td>{{Mn}}</td><td>{{Si}}</td><td>{{S}}</td><td>{{P}}</td><td>{{AI}}</td><td>{{CU}}</td><td>{{Mo}}</td><td>{{Ni}}</td></tr> -->
     </table>
   </div>
 
@@ -85,9 +95,19 @@
     <h3 style='text-align: center;'>MECHANICAL PROPERTIES  METAL (BRAND + F5RR)</h3>
     <br>
     <table border="1" style="border-collapse: collapse;width: 100%">
-      <tr style="text-align: center;"><th>Ultimate Strength (Mpa)</th><th>Yield Strength</th><th>Elongation</th><th>Impact @   -40º C</th></tr>
+    <tr>
+    <template is="dom-repeat" items="{{mechanicTitle}}" as="item">
+    <th>{{item.Property_Name}}</th>
+    </template>
+    </tr>
+     <tr>
+    <template is="dom-repeat" items="{{mechanicValue}}" as="item">
+    <th>{{item}}</th>
+    </template>
+    </tr>
+     <!--  <tr style="text-align: center;"><th>Ultimate Strength (Mpa)</th><th>Yield Strength</th><th>Elongation</th><th>Impact @   -40º C</th></tr>
       <tr style="text-align: center;"><td>{{US}}</td><td>{{YS}}</td><td>{{El}}</td><td>{{Impact}}</td></tr>
-    </table>
+ --></table>
   </div>
 
   <br><br><br>

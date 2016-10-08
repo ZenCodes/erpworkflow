@@ -52,7 +52,7 @@
           <paper-tab>Remarks</paper-tab>
         </paper-tabs>
         <template is="dom-repeat" items="{{mechanicalArray}}" as="item">
-        <mechanical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></mechanical-property-itemcard>
+        <mechanical-property-itemcard hidediv="{{hidediv}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}" containerid="{{containerid}}" intentregno="{{intentregno}}"></mechanical-property-itemcard>
         </template>
         </div>
         <div class="btncard" hidden$="{{hidebtns}}">
@@ -102,8 +102,8 @@
         // alert(JSON.stringify(mechanicarr));
         // this.$.grnservice.FncallinsertmechanicalService(mechanicarr);
         // alert((mechanicarr).length+" "+(this.mechanicalArray).length);
-         if((mechanicarr).length==(this.mechanicalArray).length)
-        {
+        //  if((mechanicarr).length==(this.mechanicalArray).length)
+        // {
           alert('Test submit!');
           document.querySelector('internalintentview-expandpage').FnToggleMechanic();
           this.$.grnservice.FncallinsertmechanicalService(mechanicarr);
@@ -112,10 +112,10 @@
           this.hidesubmit=true;
           this.hidetest=false;
           this.mechanicalArray=[];
-        }
-        else{
-          alert('Please enter all the quality parameters!');
-        }
+        // }
+        // else{
+        //   alert('Please enter all the quality parameters!');
+        // }
       },
       FnAddMechanictest:function(){
         this.propertycardhide=false;

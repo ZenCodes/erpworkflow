@@ -4323,22 +4323,10 @@ exports.FnChemicalpropertyread=function(pagename,batchno,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }  
-  
-  var query1="SELECT Heat_No FROM OD_Heat_To_Batch WHERE Batch_No='"+batchno+"'";
-  var query2="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No=?) and Property_Category=?";
-  var response={
-    "heatno":""
-  };
-  console.log(query1);
-  console.log(query2);
-
-  connection.query(query1, function(err, rows) {
-    if(rows.length>0){
-      response.heatno=rows[0].Heat_No;
-      console.log(response.heatno);
-      var q="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'";
-      console.log(q);
-  connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Chemical'", function(err, rows) {
+ var qur="SELECT Property_Name FROM MD_Heat_Property WHERE Property_Category='Chemical'";
+ console.log('---------------------------------------------------');
+ console.log(qur);
+  connection.query(qur, function(err, rows) {
     if(!err)
     {      
       return callback(rows); 
@@ -4348,8 +4336,33 @@ exports.FnChemicalpropertyread=function(pagename,batchno,callback) {
       return callback("fail");
     }
   });
-  }
-});
+  
+//   var query1="SELECT Heat_No FROM OD_Heat_To_Batch WHERE Batch_No='"+batchno+"'";
+//   var query2="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No=?) and Property_Category=?";
+//   var response={
+//     "heatno":""
+//   };
+//   console.log(query1);
+//   console.log(query2);
+
+//   connection.query(query1, function(err, rows) {
+//     if(rows.length>0){
+//       response.heatno=rows[0].Heat_No;
+//       console.log(response.heatno);
+//       var q="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'";
+//       console.log(q);
+//   connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Chemical'", function(err, rows) {
+//     if(!err)
+//     {      
+//       return callback(rows); 
+//     }
+//     else{
+//       console.log(err);
+//       return callback("fail");
+//     }
+//   });
+//   }
+// });
 }
 
 exports.FnMechanicalpropertyread=function(pagename,batchno,callback) {
@@ -4361,22 +4374,10 @@ exports.FnMechanicalpropertyread=function(pagename,batchno,callback) {
       Config_columnvalues=obj[i].columnvalues;
     }
   }  
-  
-  var query1="SELECT Heat_No FROM OD_Heat_To_Batch WHERE Batch_No='"+batchno+"'";
-  var query2="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No=?) and Property_Category=?";
-  var response={
-    "heatno":""
-  };
-  console.log(query1);
-  console.log(query2);
-
-  connection.query(query1, function(err, rows) {
-    if(rows.length>0){
-      response.heatno=rows[0].Heat_No;
-      console.log(response.heatno);
-      var q="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'";
-      console.log(q);
-  connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'", function(err, rows) {
+  var qur="SELECT Property_Name FROM MD_Heat_Property WHERE Property_Category='Mechanical'";
+  console.log('---------------------------------------------------');
+  console.log(qur);
+  connection.query(qur, function(err, rows) {
     if(!err)
     {      
       return callback(rows); 
@@ -4386,8 +4387,33 @@ exports.FnMechanicalpropertyread=function(pagename,batchno,callback) {
       return callback("fail");
     }
   });
-  }
-});
+  
+//   var query1="SELECT Heat_No FROM OD_Heat_To_Batch WHERE Batch_No='"+batchno+"'";
+//   var query2="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No=?) and Property_Category=?";
+//   var response={
+//     "heatno":""
+//   };
+//   console.log(query1);
+//   console.log(query2);
+
+//   connection.query(query1, function(err, rows) {
+//     if(rows.length>0){
+//       response.heatno=rows[0].Heat_No;
+//       console.log(response.heatno);
+//       var q="SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'";
+//       console.log(q);
+//   connection.query("SELECT Property_Name FROM MD_Heat_Property WHERE Property_ID in(SELECT Property_ID FROM OD_Heat_To_Property WHERE Heat_No='"+response.heatno+"') and Property_Category='Mechanical'", function(err, rows) {
+//     if(!err)
+//     {      
+//       return callback(rows); 
+//     }
+//     else{
+//       console.log(err);
+//       return callback("fail");
+//     }
+//   });
+//   }
+// });
 }
 
 exports.Fninsertchemicaltest=function(pagename,response,callback) {
@@ -4472,7 +4498,7 @@ exports.Fnsearchbatch=function(pagename,callback) {
 }
 
 
-exports.Fnfetchtcinfo=function(pagename,batchno,callback) {
+exports.Fnsearchbatchcontainer=function(pagename,batchno,callback) {
   var Config_tables=[];
   var Config_columnvalues=[];
   for(var i=0;i<obj.length;i++){
@@ -4482,7 +4508,34 @@ exports.Fnfetchtcinfo=function(pagename,batchno,callback) {
     }
   }  
     
-  var query1="SELECT * FROM OD_Chemical_Test ct join OD_Mechanical_Test mt on(ct.Batch_No=mt.Batch_No) where ct.Batch_No='"+batchno+"' and mt.Batch_No='"+batchno+"'";
+  var query1="SELECT distinct ct.Container_ID FROM OD_Chemical_Test ct join OD_Mechanical_Test mt on(ct.Container_ID=mt.Container_ID) and ct.Batch_No='"+batchno+"' and mt.Batch_No='"+batchno+"'";
+
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+}
+
+
+exports.Fnfetchtcchemicinfo=function(pagename,batchno,containerid,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+    
+  var query1="SELECT * FROM OD_Chemical_Test WHERE Batch_No='"+batchno+"' and Container_ID='"+containerid+"'";
 
   console.log(query1);
 
@@ -4499,6 +4552,33 @@ exports.Fnfetchtcinfo=function(pagename,batchno,callback) {
 
 }
 
+
+exports.Fnfetchtcmechinfo=function(pagename,batchno,containerid,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+    
+  var query1="SELECT * FROM OD_Mechanical_Test WHERE Batch_No='"+batchno+"' and Container_ID='"+containerid+"'";
+
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("fail");
+    }
+  });
+
+}
 
 exports.Fnupdateproductionstatus=function(pagename,loggedrole,batchno,lotno,containerid,intentregno,callback) {
   var Config_tables=[];
