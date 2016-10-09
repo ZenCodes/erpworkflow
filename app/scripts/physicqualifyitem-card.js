@@ -3,6 +3,7 @@
  */
 (function() {
 var flag="true";
+var heattobatcharr=[];
   Polymer({
     is: "physicqualifyitem-card",
     ready: function () {
@@ -15,7 +16,38 @@ var flag="true";
     },
     FnGenerateBatchno:function(e){
       // alert(this.heatno);
+      var flag=0;
+      if(heattobatcharr.length==0)
+        this.callGenerateBatchnoService();
+      else{
+      var obj={"heatno":"","batchno":""};
+      obj.heatno=this.heatno;
+      obj.batchno=this.batchno;
+       if(heattobatcharr.length==0)
+        heattobatcharr.push(obj);
+      
+      else{
+        for(var i=0;i<heattobatcharr.length;i++){
+          // alert(this.heatno+"  "+heattobatcharr[i].heatno);
+          // alert(heattobatcharr[i].batchno);
+          if(this.heatno==heattobatcharr[i].heatno)
+          {
+            flag=1;            
+            this.batchno=heattobatcharr[i].batchno;
+            // break;
+          }
+        }
+
+      }
+      // alert(flag);
+     
+      if(flag!=1){
+      heattobatcharr.push(obj);
       this.callGenerateBatchnoService();
+      }
+      flag=0;
+      }
+     
     },
     callGenerateBatchnoService:function(){
       var obj={"heatno":""};
@@ -27,6 +59,14 @@ var flag="true";
     generatebatchnoResponse:function(e){      
       // alert(JSON.stringify(e.detail.response.returnval));
       this.batchno=e.detail.response.returnval;
+      if(e.detail.response.returnval!="not okay"){
+      // if(heattobatcharr.length==0){
+        var obj={"heatno":"","batchno":""};
+        obj.heatno=this.heatno;
+        obj.batchno=this.batchno;
+        heattobatcharr.push(obj);
+      // }
+      }
       // document.querySelector('physicqualifyitem-card').batchno=e.detail.response.returnval;
     },
     FnSaveItem: function () {
