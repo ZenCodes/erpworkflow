@@ -13,10 +13,33 @@
       //alert("call");
       this.icons="icons:arrow-drop-down";
       //this.$.osc.outwardsearchreadService(this.inwardregno);
+      if(sessionStorage.getItem("loggedrole")=="Quality manager"){
+        this.hidecheck=true;
+      }
+      if(sessionStorage.getItem("loggedrole")=="Production manager"){
+        this.hidecheck=false;
+      }
+    },
+    //Function which invokes when we change the checkbox state
+    FnSelectCard:function(e){
+      // alert('yes');
+      document.querySelector('app-homepage').FnSetInProductionVisibility('true');
+      sessionStorage.setItem("sess_curr_itemno",this.itemno);
+      sessionStorage.setItem("sess_curr_intentregno",this.intentregno);
+      sessionStorage.setItem("sess_curr_itemdes",this.itemdes);
+      sessionStorage.setItem("sess_curr_lotno",this.lotno);
+      sessionStorage.setItem("sess_curr_batchno",this.batchno);
+
+      if(document.querySelector('#check'+this.intentregno).checked==true)
+      document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno,true);
+      else
+      document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno,false);
     },
     //Function which invokes when click on expand icon button
     FnExpandItemCard:function(){
-      // alert(this.itemno);
+        // alert('call');
+      if(sessionStorage.getItem("loggedrole")=="Quality manager"){
+        // alert('yes');
       var n=1;
       var x=-4;
 
@@ -26,7 +49,7 @@
       sessionStorage.setItem("sess_curr_lotno",this.lotno);
       sessionStorage.setItem("sess_curr_batchno",this.batchno);
 
-      document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno);
+      document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno,true);
       // document.querySelector('chemical-property-card').FnchemicalpropertyreadService();
       // document.querySelector('mechanical-property-card').FnmechanicalpropertyreadService();
       var all=document.querySelectorAll('.internalviewexpandcard');
@@ -91,6 +114,7 @@
 
         }
       }
+    }
     }
   });
 })();

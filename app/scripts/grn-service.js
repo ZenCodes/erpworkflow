@@ -12,25 +12,36 @@
   var chemictitle=[];
   var mechvalue=[];
   var chemicvalue=[];
+  var batchcount=0;
   Polymer({
     is: "grn-service",
     ready:function()
     {
     }, 
-    updateproductionstatusService:function(batchno,lotno,containerid,intentregno){
+    // updateproductionstatusService:function(batchno,lotno,containerid,intentregno){
+      updateproductionstatusService:function(batcharr){
+        this.batcharrlength=batcharr.length;
       var obj={"batchno":"","lotno":"","containerid":"","intentregno":"","loggedrole":""};
-        obj.batchno=batchno;
-        obj.containerid=containerid;
-        obj.lotno=lotno;
-        obj.intentregno=intentregno;
+        for(var i=0;i<batcharr.length;i++){
+        obj.batchno=batcharr[i].batchno;
+        obj.containerid=batcharr[i].containerid;
+        obj.lotno=batcharr[i].lotno;
+        obj.intentregno=batcharr[i].intentregno;
         obj.loggedrole=sessionStorage.getItem("loggedrole");  
         this.updateproductionstatusurl=sessionStorage.getItem("curr_sess_url")+"updateproductionstatus-service";
         this.updateproductionstatusparam=obj;
         this.$.updateproductionstatusajax.generateRequest();
+        }
     },
     updateproductionstatusResponse:function(e){
-      alert(e.detail.response);
+      // alert(e.detail.response);
+      batchcount++;
+      if(batchcount==this.batcharrlength){
+      alert("Updated!!");
       window.location.href="../elements/indexhome.html";
+      batchcount=0;
+      this.batcharrlength=0;
+      }
     },   
     updatequalityparameterService:function(qualityarray){
       arrlength=0;

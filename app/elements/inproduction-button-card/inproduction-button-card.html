@@ -30,6 +30,7 @@
   <script>
   (function() {
     'use strict';
+    var batcharr=[];
     Polymer({
     is: 'inproduction-button-card',
     ready:function(){
@@ -40,16 +41,29 @@
         this.btnname="Done";
       }
     },
-    FnSetBatchInfo:function(batchno,lotno,continerid,intentregno){
-    this.batchno=batchno;
-    this.lotno=lotno;
-    this.continerid=continerid;
-    this.intentregno=intentregno; 
+    FnSetBatchInfo:function(batchno,lotno,containerid,intentregno,flag){
+    var obj={"batchno":"","lotno":"","containerid":"","intentregno":""};
+    // alert(batchno+"  "+lotno+"  "+containerid+"  "+intentregno);
+    obj.batchno=batchno;
+    obj.lotno=lotno;
+    obj.containerid=containerid;
+    obj.intentregno=intentregno; 
+
+    if(flag==true)
+      batcharr.push(obj);
+    if(flag==false){
+      for(var i=0;i<batcharr.length;i++){
+        if(batcharr[i].intentregno==intentregno)
+          batcharr.splice(i,1);
+      }
+    }
     },
     // Function which calls service to create the PO for the item in intent view
     FnProduce:function(){
       // alert(this.batchno+"  "+this.lotno+"  "+this.continerid+"  "+this.intentregno);
-      this.$.grnservice.updateproductionstatusService(this.batchno,this.lotno,this.continerid,this.intentregno);
+      // this.$.grnservice.updateproductionstatusService(this.batchno,this.lotno,this.continerid,this.intentregno);
+      // alert(JSON.stringify(batcharr));
+      this.$.grnservice.updateproductionstatusService(batcharr);
     }
     });
   })();

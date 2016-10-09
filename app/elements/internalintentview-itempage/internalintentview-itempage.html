@@ -66,7 +66,9 @@
   </style>
   <template>
     <!--Expand Itemcard-->
-    <div class="internalviewexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">     
+
+    <div class="internalviewexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">   
+     <paper-checkbox id="check{{intentregno}}" on-change="FnSelectCard" hidden$="{{hidecheck}}"></paper-checkbox>  
      <paper-button id="itemdes"  name="itemdes" value="{{itemdes}}" noink>{{itemdes}}</paper-button> 
      <paper-button id="batchno"  name="batchno" value="{{batchno}}" noink>{{batchno}}</paper-button>   
      <paper-button id="quantity"  name="quantity" value="{{quantity}}" noink>{{quantity}}</paper-button>
