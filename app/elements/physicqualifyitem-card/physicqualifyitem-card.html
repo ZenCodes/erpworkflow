@@ -28,13 +28,13 @@
     <style>
       .repeatcard{
         @apply(--layout-horizontal);
-        width: 90%;
+        width: 100%;
         margin-top: 0%;
         text-align: center;
         /*border-bottom: 1px solid #dedede;*/
         /*border-radius: 2px;*/
         /*box-shadow: rgba(0, 0, 0, 0.0980392) 5px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
-        margin-left: 0%;
+        margin-left:0%;
         height: 7%;
       }
       .itemdes,.ctr,.ctinput,.qtinput,.remark{
@@ -66,7 +66,7 @@
         /*box-shadow: rgba(0, 0, 0, 0.0980392) 10px 5px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 10px;*/
       }
       .containerid{
-        margin-left: 2%;
+
         width: 15%;
       }
       .heatno,.batchno{
@@ -85,7 +85,7 @@
       .collapse{
         margin-top: 3%;
         text-align: center;
-        margin-left: 15%;
+        margin-left: 0%;
       }
       #showpropertydialog{
       margin-top: -10%;
@@ -96,7 +96,7 @@
       font-size: 16px;
       padding: 5px 5px;
       font-family: verdana;
-      width: 50%;      
+      width: 50%;
       }
       .chemical,.mechanical{
         @apply(--layout-vertical);
@@ -137,14 +137,14 @@
         <paper-tooltip readonly="{{read}}" for="remark" offset="0" animation-delay="0" class="custom" position="top">{{remarks}}</paper-tooltip>
         <!-- <paper-icon-button icon="icons:add" on-click="FnAddProperty" class="add"></paper-icon-button>  -->
         <paper-icon-button disabled="{{read}}" icon="icons:check" on-click="FnSaveItem" class="save"></paper-icon-button>
-        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button> 
+        <paper-icon-button icon="icons:close" on-click="FnRejectItem" class="reject"></paper-icon-button>
       </div>
 
-       <paper-dialog id="showpropertydialog" modal>        
+       <paper-dialog id="showpropertydialog" modal>
         <div class="property" id="property">
         <div class="chemic" style="margin-left: 5%;">
         <P>Chemical Properties</P>
-        <div class="chemical">        
+        <div class="chemical">
         <template is="dom-repeat" items="{{chemicpropertyarr}}" as="p">
         <paper-checkbox id="{{p.Property_ID}}" on-change="FnChemicChange">{{p.Property_Name}}</paper-checkbox><br>
         </template>
@@ -153,13 +153,13 @@
         <br><br>
         <div class="mechanic" style="margin-left: 5%;">
         <P>Mechanical Properties</P>
-        <div class="mechanical" style="margin-left: 5%;">        
+        <div class="mechanical" style="margin-left: 5%;">
         <template is="dom-repeat" items="{{mechpropertyarr}}" as="p">
         <paper-checkbox id="{{p.Property_ID}}" on-change="FnMechanicChange">{{p.Property_Name}}</paper-checkbox><br>
         </template>
         </div>
-        </div>        
-        </div> 
+        </div>
+        </div>
         <paper-button on-click="FnMapProperty">Add</paper-button>
        </paper-dialog>
 
@@ -168,6 +168,7 @@
         <div class="collapse">
           <div class="spec"><specification-card id="specificationcard"></specification-card></div>
           <div class="quality" hidden$="{{hidequality}}"><quality-parameter-displaycard id="qualityparameterdisplay"></quality-parameter-displaycard></div>
+          <br>
         </div>
       </iron-collapse>
     </form>

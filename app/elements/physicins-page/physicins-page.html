@@ -30,6 +30,10 @@
         font-size: 15px;
         text-transform: none;
       }
+   .itemcard{
+    width: 120%;
+
+     }
 
     </style>
 
@@ -44,8 +48,8 @@
       <!--Template to bind the current state cards according to the role logged in-->
       <template is="dom-repeat" items="{{itemArray}}" as="item">
         <div class="itemcard">
-          <div><physicinsitem-card itemid="{{item.Item_ID}}" productid="{{item.Product_ID}}" suppliername="{{item.Supplier_ID}}" contreceived="{{item.unit}}" contmeasure="{{item.Unit_measure}}" qtyreceived="{{item.Qty_Received}}" qtymeasure="{{item.Qty_measure}}" inwardregno="{{item.new_Inward_Register_Number}}" inwardno="{{item.Inward_Bill_Number}}" inwarddate="{{item.Inward_Register_Date}}" ponumber="{{item.PO_Number}}" qtyaccepted="{{item.Qty_Accepted}}" contaccepted="{{item.Unit_Accepted}}" remarks="{{item.Remarks}}"></physicinsitem-card>
-          </div></div>
+         <physicinsitem-card itemid="{{item.Item_ID}}" productid="{{item.Product_ID}}" suppliername="{{item.Supplier_ID}}" contreceived="{{item.unit}}" contmeasure="{{item.Unit_measure}}" qtyreceived="{{item.Qty_Received}}" qtymeasure="{{item.Qty_measure}}" inwardregno="{{item.new_Inward_Register_Number}}" inwardno="{{item.Inward_Bill_Number}}" inwarddate="{{item.Inward_Register_Date}}" ponumber="{{item.PO_Number}}" qtyaccepted="{{item.Qty_Accepted}}" contaccepted="{{item.Unit_Accepted}}" remarks="{{item.Remarks}}"></physicinsitem-card>
+        </div>
       </template>
     </div>
     </template>

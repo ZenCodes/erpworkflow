@@ -14,25 +14,26 @@
         @apply(--layout-horizontal);
       }
       paper-input,paper-button,paper-dropdown-menu,paper-item{
-        width: 12%;        
+        width: 12%;
         font-family: calibri;
         font-size: 16px;
       }
       paper-dropdown-menu{
-        margin-left: 2%;
+        margin-left: 4%;
         margin-top: -2%;
+        width:9.5%;
       }
       paper-input{
         /*margin-left: 3%;*/
-        margin-top: -2%;      
+        margin-top: -2%;
       }
       #minmeasure,#maxmeasure,#actualmeasure{
         width: 5%;
         margin-left: -5%;
       }
       #minvalue,#maxvalue{
-        margin-left: 1%;
-	      width: 5%;
+        margin-left: 3%;
+        width: 10%;
       }
       paper-button{
         text-transform: none;
@@ -40,10 +41,10 @@
         margin-left: 2%;
       }
       #actvalue{
-        margin-left: -3%;
+        margin-left: 2%;
       }
       #remarks{
-        margin-left: 2%;
+        margin-left: 3%;
       }
     </style>
     <div class="card" hidden$="{{hidediv}}">
@@ -56,10 +57,11 @@
         </paper-listbox>
       </paper-dropdown-menu>
       <paper-button id="minvalue" value="{{minvalue}}" hidden$="{{inputflag}}" readonly>{{minvalue}}</paper-button>
-      <paper-button readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-button>
+      <!--<paper-button readonly hidden$="{{inputflag}}" id="minmeasure" value="{{measure}}">{{measure}}</paper-button>-->
       <paper-button id="maxvalue" value="{{maxvalue}}" readonly>{{maxvalue}}</paper-button>
-      <paper-button readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-button>
-      <paper-input id="actvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input><paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
+      <!--<paper-button readonly id="maxmeasure" value="{{measure}}">{{measure}}</paper-button>-->
+      <paper-input id="actvalue" value="{{actualvalue}}" on-change="FnChange"></paper-input>
+      <paper-input readonly id="actualmeasure" value="{{measure}}"></paper-input>
       <paper-input id="remarks" value="{{remarks}}" on-change="FnChange"></paper-input>
     </div>
   </template>
@@ -78,7 +80,7 @@
         this.actualvalue = e.target.selectedItem.textContent.trim();
       },
       // Function which invoke when changing input fields
-      FnChange:function(){     
+      FnChange:function(){
       var obj={"inwardregno":"","containerid":"","name":"","minvalue":"","maxvalue":"","actualvalue":"","remarks":"","testdate":"","measure":""};
       obj.inwardregno=sessionStorage.getItem("sess_curr_inwardregno");
       obj.containerid=localStorage.getItem("curr_sess_expandedcontainer");
@@ -91,7 +93,7 @@
       var dat=new Date();
       obj.testdate=dat.getDate()+"/"+(dat.getMonth()+1)+"/"+dat.getFullYear();
       for(var i=0;i<testarr.length;i++){
-        if(testarr[i].name==obj.name){          
+        if(testarr[i].name==obj.name){
           this.flag=1;
           testarr[i].actualvalue=this.actualvalue;
           testarr[i].remarks=this.remarks;
