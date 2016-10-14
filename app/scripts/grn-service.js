@@ -379,6 +379,7 @@
       document.querySelector('test-certificate').itemid=tcchemicarr[0].Item_ID;
       document.querySelector('test-certificate').itemname=tcchemicarr[0].Item_Name;
       document.querySelector('test-certificate').batchno=tcchemicarr[0].Batch_No;
+      document.querySelector('test-certificate').testdate=tcchemicarr[0].Test_Date;
       if(tcchemicarr.length>0)
       {
         this.Fnfetchtcmechinfo(this.batchno,this.containerid);
