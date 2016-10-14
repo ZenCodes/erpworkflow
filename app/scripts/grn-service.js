@@ -474,6 +474,7 @@
 
       document.querySelector('test-certificate').chemicValue=chemicvalue;
       document.querySelector('test-certificate').mechanicValue=mechvalue;
+      
       // alert(JSON.stringify(chemicvalue));
       // alert(JSON.stringify(mechvalue));
     }

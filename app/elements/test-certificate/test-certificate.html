@@ -9,6 +9,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+<script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
 
 <dom-module id="test-certificate">
   <template>
@@ -45,6 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       table{
         border-collapse: collapse;
+        border-color: grey;
       }
       .card{
         @apply(--layout-horizontal);
@@ -53,9 +58,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: grey;
       }
     </style>
-    <div class="bbox">
+    <!-- <paper-button on-click="click">PDF</paper-button> -->
+    <div class="bbox" id='card'>
+    <div id='canvas'>
     <div class="card">
-    <div><img src="" height="100px" weight="100px"></img></div>
+    <div><img src="../../images/logo.jpg" height="100px" weight="100px"></img></div>
     <div style="margin-left: 20px;"><h2><center>Certificate of Conformance to Requirements for Welding Electrode</center></h2></div>
     </div>
   <br><br>
@@ -113,7 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
     </tr>
     </table>
-
+    </tr>
       <!--<table id="tb2" border="1">
              <tr ><td colspan="12"> <p>This is to certify that the product named above and supplied on the referenced order number is of the same classification, manufacturing process, and material requirements as the
              performed at that time and the material tested met all requirements. It was manufactured and supplied by the Quality System Program of Hobart Brothers, which meets the
@@ -187,6 +194,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'demo1-card',
           notify: true
         }
+      },
+       click:function(){        
+        // var porder="PO"+sessionStorage.getItem("sess_curr_intentregno");
+         html2canvas(document.querySelector('#card'), {
+            onrendered: function(canvas) {
+                var imgData = canvas.toDataURL('image/jpeg');                
+                $("#imgRes").attr("src", imgData);
+                var doc = new jsPDF('p', 'mm');                
+                doc.addImage(imgData, 'JPEG', 10, 8);
+                doc.output('datauri');
+            }
+      });
       }
     });
   })();
