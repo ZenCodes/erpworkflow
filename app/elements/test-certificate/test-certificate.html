@@ -1,151 +1,184 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="..\bower_components/iron-ajax/iron-ajax.html">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
 <dom-module id="test-certificate">
   <template>
-  <style>
-  .head{
-    @apply(--layout-horizontal);
-  }
+    <style>
+      :host {
+        display: block;
+      }
+      #tb1{
+    position: relative;
+    width: 450px;
+    height: 150px;
+    top:60px;
+    left: 10px
 
-  th,h3,h4{
-    font-family: verdana;
-    color: darkgrey;
-  }
-  td{
-    font-family: Calibri;
-    color: darkgrey;
-    font-size: 17px;
-  }
-  .outcard{
-    width: 60%;
-    margin-left: 20%;
-    border: 1px solid #000;
-  }
-  </style>
-  <div class="outcard">
-  <div class='head' width="100%" style="margin-top: 2%;">
-    <div width="25%" style="margin-left: 5%;"><img src="" width="100px" height="100px"></div>
-    <div class="" style="margin-left: 18%;" width="75%">
-      <table>
+      }
+      #tb2{
+        position: relative;
+    width:850px;
+    height:150px;
+    top:100px;
+    left: 10px 
+      }
+      .bbox{
+    position: relative;
+    width: 900px;
+    height: 1400px;
+    border: 2px solid black;
+    top:90px;
+    left: 20px
 
-        <tr style="text-align: center;"><th>COO Test Certificate</th></tr>
-        <tr style="text-align: center;"><td></td></tr>
-        <tr style="text-align: center;"><td>Company Name</td></tr>
-        <tr style="text-align: center;"><td># Street Name, Area</td></tr>
-        <tr style="text-align: center;"><td>City - Pincode</td>
-        <tr style="text-align: center;"><td>Tel 000-xxxxxxxx  Fax 000-xxxxxxx</td></tr>
-        <tr style="text-align: center;"><td>e.mail:xxxxxxxxxx@email.com</td></tr>
-      
+      }
+      tr{
+        text-align: left;
+      }
+      table{
+        border-collapse: collapse;
+      }
+    </style>
+    <div class="bbox">
+  <h2><img src="" height="100px" weight="100px"></img><center>Certificate of Conformance to Requirements for Welding Electrode</center></h2>
+  <br><br>
+      <table id="tb1">
+      <tr><th colspan="6">product type:</th><th>{{productid}}</th><tr>
+      <tr><th colspan="6">Classification:</th><th>E120T5-K4C H4</th></tr> 
+      <tr><th colspan="6">Specifications</th><th>AWS A5.29; ASME SFA5.29</th></tr> 
+      <tr><th colspan="6">Diameter Tested:</th><th>1/16, 3/32</th></tr> 
+      <tr><th colspan="6">Date Tested:</th><th>8/17/2015</th></tr> 
+      <tr><th colspan="6">Date Generated:</th><th>8/20/2015</th></tr>
       </table>
-    </div>
-  </div>
-  <div>
-  <br><br><br>
-    <table>
-    <tr><th>Customer Name</th><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Customer Name</td></tr>
-    </table>
+<br><br><br><br><br><br><br>
+      <table>
+        <tr>
+        <td>
+        This is to certify that the product named above and supplied on the referenced order number is of the same classification, manufacturing process, and material requirements as the
+        performed at that time and the material tested met all requirements. It was manufactured and supplied by the Quality System Program of Hobart Brothers, which meets the
+        requirements of ISO 9001, ANSI/AWS A5.01, and other specification and Military requirements, as applicable. This document  supplies actual test results of non-specific inspection in
+        conformance with the requirements of EN 10204, type 2.2 certification
+        </td>
+        </tr>
+        <tr></tr>
+        <tr>THE STEEL USED IN THIS LOT OF MATERIAL WAS MELTED AND MANUFACTURED IN THE U.S.A.</tr>
+      </table>
+<br><br>
+      <h3><center>Mechanical Properties</center></h3>
+<br>
 
-    <br><br>
-
-    <table>
-    <tr style="text-align: left;"><th>Product</th><td>: Customer Name</td><td style="width: 10%;"></td><th>T.C.No.</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th>AWS Classification</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Invoice No</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th>Brand</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Page</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th>yyyyyyy</th><td>: Customer Name</td><td style="width: 10%;"></td><th>T.C.No.</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th>xxxxxxx</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Size</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th>zzzzzzzzz</th><td>: Customer Name</td><td style="width: 10%;"></td><th>Quantity</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th>vvvvvvv</th><td>: Customer Name</td><td style="width: 10%;"></td><th>No Of Sp</th><td>: Customer Name</td></tr>
-    <tr style="text-align: left;"><th colspan="2"></th><td style="width: 10%;"></td><th>Batch No</th><td>: {{batchno}}</td></tr>
-    </table>
-  </div>
-
-  <br></br>
-
-  <div>
-    <h3 style='text-align: center;'>CHEMICAL COMPOSITION  OF THE WIRE</h3>
-    <br>
-    <table border="1" style="border-collapse: collapse;width: 100%;">
-    <tr>
-    <template is="dom-repeat" items="{{chemicTitle}}" as="item">
-    <th>{{item.Property_Name}}</th>
-    </template>
-    </tr>
-     <tr>
-    <template is="dom-repeat" items="{{chemicValue}}" as="item">
-    <th>{{item}}</th>
-    </template>
-    </tr>
-     <!--  <tr style="text-align: center;"><th>C</th><th>Mn</th><th>Si</th><th>S</th><th>P</th><th>AI</th><th>CU</th><th>Mo</th><th>Ni</th></tr>
-      <tr style="text-align: center;"><td>{{C}}</td><td>{{Mn}}</td><td>{{Si}}</td><td>{{S}}</td><td>{{P}}</td><td>{{AI}}</td><td>{{CU}}</td><td>{{Mo}}</td><td>{{Ni}}</td></tr> -->
-    </table>
-  </div>
-
-  <br><br><br>
-
-  <div>
-    <h3 style='text-align: center;'>MECHANICAL PROPERTIES  METAL (BRAND + F5RR)</h3>
-    <br>
     <table border="1" style="border-collapse: collapse;width: 100%">
-    <tr>
+    <tr height="40px">
     <template is="dom-repeat" items="{{mechanicTitle}}" as="item">
     <th>{{item.Property_Name}}</th>
     </template>
     </tr>
-     <tr>
+     <tr height="40px">
     <template is="dom-repeat" items="{{mechanicValue}}" as="item">
     <th>{{item}}</th>
     </template>
     </tr>
-     <!--  <tr style="text-align: center;"><th>Ultimate Strength (Mpa)</th><th>Yield Strength</th><th>Elongation</th><th>Impact @   -40º C</th></tr>
-      <tr style="text-align: center;"><td>{{US}}</td><td>{{YS}}</td><td>{{El}}</td><td>{{Impact}}</td></tr>
- --></table>
-  </div>
+    </table>
 
-  <br><br><br>
-
-  <div>
-    <h3 style='text-align: center;'>TEST NAME</h3>
-    <br>
+<br><br>
+      <h3><center>Chemical Analysis</center></h3>
+<br>
     <table border="1" style="border-collapse: collapse;width: 100%;">
-      <tr style="text-align: center;"><th>H1</th><th>H2</th><th>H3</th><th>H4</th><th>H5</th><th>H6</th></tr>
-      <tr style="text-align: center;"><td>55555</td><td>5555</td><td>55555</td><td>888</td><td>555</td><td>88888</td></tr>
+    <tr height="40px">
+    <template is="dom-repeat" items="{{chemicTitle}}" as="item">
+    <th>{{item.Property_Name}}</th>
+    </template>
+    </tr>
+     <tr height="40px">
+    <template is="dom-repeat" items="{{chemicValue}}" as="item">
+    <th>{{item}}</th>
+    </template>
+    </tr>
     </table>
-  </div>
 
-  <div>
-    <h4>We certify that the supply made against this TC Conform to all requirements of XXXX Section – II                
-    Part-C Edition 2015.                
-    </h4>
-  </div>
+      <!--<table id="tb2" border="1">
+             <tr ><td colspan="12"> <p>This is to certify that the product named above and supplied on the referenced order number is of the same classification, manufacturing process, and material requirements as the
+             performed at that time and the material tested met all requirements. It was manufactured and supplied by the Quality System Program of Hobart Brothers, which meets the
+             requirements of ISO 9001, ANSI/AWS A5.01, and other specification and Military requirements, as applicable. This document  supplies actual test results of non-specific inspection in
+              conformance with the requirements of EN 10204, type 2.2 certification</p></td></tr>
+<tr><td colspan="12">THE STEEL USED IN THIS LOT OF MATERIAL WAS MELTED AND MANUFACTURED IN THE U.S.A.</td></tr>
+<tr><td colspan="12">Test Settings</td></tr>
+<tr><td colspan="2">Shielding Medium</td><td colspan="2">Amps / Polarity</td><td colspan="2">Volts</td><td colspan="2">WFS/IN/min(m/mim)</td><td>ESO in(mm)</td><td>Preheat F(C)</td><td>Interpass F(C)</td><td>Travel Speedin/min(cm/min)</td></tr>
+<tr><td colspan="2">SG-C 100%CO2</td><td colspan="2">275 / DCEP</td><td colspan="2">27</td><td colspan="2">275 (7)</td><td>75 (19)</td><td>300(149)</td><td>300(149)</td><td>10 (25.4)</td></tr>
+<tr><td colspan="2">SG-C 100%CO2</td><td colspan="2">400 / DCEP</td><td colspan="2">27</td><td colspan="2">170 (4.3)</td><td>1(25)</td><td>300(149)</td><td>300(149)</td><td>13 (33)</td></tr>
+<tr><td colspan="12">Mechanical Properties - Tensile</td></tr>
+<tr><td colspan="2">Shielding Medium</td><td colspan="2">Ref. No</td><td colspan="2">Testing Conditions</td><td colspan="2">Ult. Tensile Strength ps(mpa)</td><td colspan="2">Yield Strength psi (MPa)</td><td colspan="2">Elong.% in 2"</td></tr>
+<tr><td colspan="2">SG-C 100%CO2</td><td colspan="2">PC7098</td><td colspan="2">Aged 48 Hrs 200F</td><td colspan="2">135,000 ( 931 )</td><td colspan="2">111,000 ( 765 )</td><td colspan="2">20</td></tr>
+<tr><td colspan="2">SG-C 100%CO2</td><td colspan="2">PC6976</td><td colspan="2">Aged 48 Hrs 200F</td><td colspan="2">126,000 ( 869 )</td><td colspan="2">115,000 ( 793 )</td><td colspan="2">21</td></tr>
+<tr><td colspan="12">Mechanical Properties - Impact</td></tr>
+<tr><td colspan="2">Shielding Medium</td><td colspan="2">Ref. No.</td><td colspan="2">Testing Conditions</td><td colspan="2">Temp. F (C)</td><td colspan="2">Individuals ft.lb.(J)</td><td>Avg. ft.lb.(J)</td><td>Type</td></tr>
+<tr><td colspan="2">SG-C 100%CO2</td><td colspan="2">PC6976</td><td colspan="2">As Welded</td><td colspan="2"> -60 (-51)</td><td colspan="2">52,52,53 (70,70,72)</td><td>52 ( 71 )</td><td>Charpy-V-Notch</td></tr>
+<tr><td colspan="2">SG-C 100%CO2</td><td colspan="2">PC7098</td><td colspan="2">As Welded</td><td colspan="2">-60 (-51)</td><td colspan="2">44,45,42 (60,61,57)</td><td>44 ( 59 )</td><td> Charpy-V-Notch</td></tr>
+<tr><td colspan="4">Ref. No.</td><td colspan="4">Radiographic Inspection </td><td colspan="4">Fillet Weld Test</td></tr>
+<tr><td colspan="2">PC7098</td><td colspan="2">Conforms</td><td colspan="2">Horizontal:</td><td colspan="2">Conforms</td><td>Overhead </td><td></td><td>Vertical</td><td></td></tr>
+<tr><td colspan="2">PC6976</td><td colspan="2">Conforms</td><td colspan="2">Horizontal:</td><td colspan="2">Conforms</td><td>Overhead </td><td></td><td>Vertical</td><td></td></tr>
+<tr><td colspan="12">Chemical Analysis</td></tr>
 
-  <div>
-    <h4>Special Remarks :</h4>
-  </div>
+<tr>
+  <td colspan="0.5">Shielding Medium / Ref. No</td>
+  <td colspan="0.5">C</td>
+  <td colspan="0.5">Mn</td>
+  <td colspan="0.5">p</td>
+  <td colspan="0.5">S</td>
+  <td colspan="0.5">Si</td>
+  <td colspan="0.5">Cu</td>
+  <td colspan="0.5">Cr</td>
+  <td colspan="0.5">V</td>
+  <td colspan="0.5">Ni</td>
+  <td colspan="0.5">Mo</td>
+  <td colspan="0.5">Al</td>
+ <!-- <td colspan="0.5">Ti</td>
+  <td colspan="0.5">Nb</td>
+  <td colspan="0.5">Co</td>
+  <td colspan="0.5">B</td>
+  <td colspan="0.5">W</td>
+  <td colspan="0.5">Sn</td>
+  <td colspan="0.5">Fe</td>
+  <td colspan="0.5">Sb</td>
+  <td colspan="0.5">N</td>
+  <td colspan="0.5">Mg</td>
+  <td colspan="0.5">Zn</td>
+  <td colspan="0.5">Be</td>  -->
+<!--</tr>
+<tr><td>SG-C 100%CO2 / CB98133</td><td>0.06</td><td>1.55</td><td>0.010</td><td>0.012</td><td>0.44</td><td>0.05</td><td>0.48</td><td>< .01</td><td>2.33</td><td>0.54</td><td></td>
+</tr>
+<tr><td>SG-C 100%CO2 / CD00554</td><td>0.07</td><td>1.67</td><td>0.009</td><td>0.008</td><td>0.46</td><td>0.02</td><td>0.43</td><td>< .01</td><td>2.22</td><td>0.34</td><td></td></tr>
+<tr><td colspan="12">Diffusible Hydrogen Collected per AWS A4.3</td></tr>
+<tr><td colspan="4">SG-C 100%CO2</td><td colspan="8">2.2 ml/100g of weld metal for 1/16 in diameter 72% relative humidity</td></tr>
+<tr><td  colspan="4">SG-C 100%CO2</td><td colspan="8">4.0 ml/100g of weld metal for 3/32 in diameter 70% relative humidity</td></tr>
 
-  <div>
-    <table>
-    <tr><th>Prepared By</th><th style="width: 70%;"></th><th> Approved By</th></tr>
-    </table>
-  </div>
-  <br><br><br>
-  </div>
+</table>-->
+      
+    </div>
   </template>
   <script>
+  (function() {
+    'use strict';
 
     Polymer({
-      is: "test-certificate",
-    
+      is: 'test-certificate',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'demo1-card',
+          notify: true
+        }
+      }
     });
-
+  })();
   </script>
-
 </dom-module>

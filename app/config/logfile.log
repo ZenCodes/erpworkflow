@@ -254,4 +254,4 @@ Quality parameter display: no itemsdb connection:Error: Connection lost: The ser
 Quality parameter read: Items found
 Quality parameter display: no items
 Quality parameter read: Items found
-Quality parameter display: no items
+Quality parameter display: no itemsdb connection:Error: Connection lost: The server closed the connection.
