@@ -34,10 +34,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .bbox{
     position: relative;
     width: 900px;
-    height: 1400px;
+    height: 1100px;
     border: 2px solid black;
     top:90px;
-    left: 20px
+    left: 50px
 
       }
       tr{
@@ -46,15 +46,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       table{
         border-collapse: collapse;
       }
+      .card{
+        @apply(--layout-horizontal);
+      }
     </style>
     <div class="bbox">
-  <h2><img src="" height="100px" weight="100px"></img><center>Certificate of Conformance to Requirements for Welding Electrode</center></h2>
+    <div class="card">
+    <div><img src="" height="100px" weight="100px"></img></div>
+    <div style="margin-left: 20px;"><h2><center>Certificate of Conformance to Requirements for Welding Electrode</center></h2></div>
+    </div>
   <br><br>
       <table id="tb1">
-      <tr><th colspan="6">Product Type:</th><th>{{productid}}</th><tr>
-      <tr><th colspan="6">Batch No:</th><th>{{productid}}</th><tr>
+      <tr><th colspan="6">Product ID:</th><th>{{itemid}}</th><tr>
+      <tr><th colspan="6">Batch No:</th><th>{{batchno}}</th><tr>
       <tr><th colspan="6">Classification:</th><th>E120T5-K4C H4</th></tr> 
-      <tr><th colspan="6">Specifications</th><th>AWS A5.29; ASME SFA5.29</th></tr> 
+      <tr><th colspan="6">Specifications</th><th>{{itemname}}</th></tr> 
       <tr><th colspan="6">Diameter Tested:</th><th>1/16, 3/32</th></tr> 
       <tr><th colspan="6">Date Tested:</th><th>8/17/2015</th></tr> 
       <tr><th colspan="6">Date Generated:</th><th>8/20/2015</th></tr>

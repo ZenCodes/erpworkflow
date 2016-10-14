@@ -376,6 +376,9 @@
     },
     fetchtcchemicinfoResponse:function(e){
       tcchemicarr=e.detail.response;
+      document.querySelector('test-certificate').itemid=tcchemicarr[0].Item_ID;
+      document.querySelector('test-certificate').itemname=tcchemicarr[0].Item_Name;
+      document.querySelector('test-certificate').batchno=tcchemicarr[0].Batch_No;
       if(tcchemicarr.length>0)
       {
         this.Fnfetchtcmechinfo(this.batchno,this.containerid);
@@ -391,7 +394,8 @@
       this.$.fetchtcmechinfoajax.generateRequest();
     },
     fetchtcmechinfoResponse:function(e){
-      tcmecharr=e.detail.response;
+      tcmecharr=e.detail.respons
+      e;
       if(tcmecharr.length>0)
       {
         this.fetchtcchemic();
@@ -470,7 +474,7 @@
 
       document.querySelector('test-certificate').chemicValue=chemicvalue;
       document.querySelector('test-certificate').mechanicValue=mechvalue;
-      alert(JSON.stringify(chemicvalue));
+      // alert(JSON.stringify(chemicvalue));
       // alert(JSON.stringify(mechvalue));
     }
   });
