@@ -395,8 +395,7 @@
       this.$.fetchtcmechinfoajax.generateRequest();
     },
     fetchtcmechinfoResponse:function(e){
-      tcmecharr=e.detail.respons
-      e;
+      tcmecharr=e.detail.response;
       if(tcmecharr.length>0)
       {
         this.fetchtcchemic();
