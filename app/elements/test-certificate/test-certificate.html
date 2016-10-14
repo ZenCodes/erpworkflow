@@ -69,8 +69,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         conformance with the requirements of EN 10204, type 2.2 certification
         </td>
         </tr>
-        <tr></tr>
-        <tr>THE STEEL USED IN THIS LOT OF MATERIAL WAS MELTED AND MANUFACTURED IN THE U.S.A.</tr>
+        <tr height="40px"></tr>
+        <tr><td>THE STEEL USED IN THIS LOT OF MATERIAL WAS MELTED AND MANUFACTURED IN THE U.S.A.</td></tr>
       </table>
 <br><br>
       <h3><center>Mechanical Properties</center></h3>
@@ -79,12 +79,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <table border="1" style="border-collapse: collapse;width: 100%">
     <tr height="40px">
     <template is="dom-repeat" items="{{mechanicTitle}}" as="item">
-    <th>{{item.Property_Name}}</th>
+    <th style="text-align: center;">{{item.Property_Name}}</th>
     </template>
     </tr>
      <tr height="40px">
     <template is="dom-repeat" items="{{mechanicValue}}" as="item">
-    <th>{{item}}</th>
+    <td style="text-align: center;">{{item}}</td>
     </template>
     </tr>
     </table>
@@ -95,12 +95,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <table border="1" style="border-collapse: collapse;width: 100%;">
     <tr height="40px">
     <template is="dom-repeat" items="{{chemicTitle}}" as="item">
-    <th>{{item.Property_Name}}</th>
+    <th style="text-align: center;">{{item.Property_Name}}</th>
     </template>
     </tr>
      <tr height="40px">
     <template is="dom-repeat" items="{{chemicValue}}" as="item">
-    <th>{{item}}</th>
+    <td style="text-align: center;">{{item}}</td>
     </template>
     </tr>
     </table>
