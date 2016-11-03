@@ -70,8 +70,8 @@ var heattobatcharr=[];
       // document.querySelector('physicqualifyitem-card').batchno=e.detail.response.returnval;
     },
     FnSaveItem: function () {
-      document.querySelector("#cont" + this.inwardno).validate();      
-      document.querySelector("#qty" + this.inwardno).validate();
+      // document.querySelector("#cont" + this.inwardno).validate();      
+      // document.querySelector("#qty" + this.inwardno).validate();
       if ((this.ponumber == null || this.ponumber == "") && (localStorage.getItem("curr_sess_POchangeflag") != 1)) {
         alert("PO number should be filled out!");
       }

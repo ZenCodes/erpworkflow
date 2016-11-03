@@ -20,7 +20,7 @@
         border-style: none;
         padding-bottom: -10%;
         background-color: #ffffff;
-        color: darkgrey; 
+        color: black; 
         font-family: Calibri;  
         padding-right: 1%;
         border: 0.5px solid #dedede;     
@@ -30,13 +30,15 @@
       }
       .address{
         @apply(--layout-vertical);
-        margin-left: 2%;
+        margin-left: 30%;
         line-height: 6px;
+        text-align: center;
       }
       .title{
         text-align: center;
       }
       .dateheader{
+        margin-left: 20%;
         text-align: right;
       }
       .toheader{
@@ -60,7 +62,7 @@
       }
       tr{
         font-family: Calibri;
-        color: darkgrey;
+        color: black;
       }
 
       </style>
@@ -76,16 +78,19 @@
           <p class="comp">{{cmpemail}}</p>
           <p class="comp">{{cmpphone}}</p>            
         </div>
-      </div>
 
-      <div class='title'><h2 id='head'>Purchase Order</h2></div>
-
-      <template is="dom-repeat" items="{{poarray}}" as="po">
+        <template is="dom-repeat" items="{{poarray}}" as="po">
         <div class="dateheader">
           <p>{{po.PO_Date}}</p>
           <p>PO #  {{po.PO_Number}}</p>
         </div>
-      </template>
+        </template>
+
+      </div>
+
+      <div class='title'><h2 id='head'>Purchase Order</h2></div>
+
+      
 
       <template is="dom-repeat" items="{{poarray}}" as="po">
       <div class="toheader">
