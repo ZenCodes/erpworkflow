@@ -30,8 +30,10 @@
       }
       .address{
         @apply(--layout-vertical);
-        margin-left: 30%;
-        line-height: 6px;
+        margin-left: 24%;
+        line-height: 5px;
+        margin-top: 2%;
+        /*margin-top: -2%;*/
         text-align: center;
       }
       .title{
@@ -40,12 +42,16 @@
       .dateheader{
         margin-left: 20%;
         text-align: right;
+        line-height: 5px;
+        margin-top: 2%;
       }
       .toheader{
         margin-left: 2%;
+        margin-top: 8%;
       }
       .itemdetail{
         margin-left: 2%;
+        margin-top: 10%;
       }
       #itemtable{
         width: 101%;
@@ -56,6 +62,7 @@
       .total{
         margin-left: 63%;
         width: 40%;
+        margin-top: 5%;
       }
       #head,th{
         font-family: verdana;
@@ -64,6 +71,14 @@
         font-family: Calibri;
         color: black;
       }
+      .todetail{
+        line-height: 5px;
+      }
+      .comp{
+        
+      }
+
+
 
       </style>
       <div class='card' id='card'>
@@ -72,11 +87,11 @@
       <div class="companylogo">
         <div style="margin-left: 2%;"><img src='../../images/logo.jpg' width="80px" height="100px" /></div>
         <div class="address">        
-          <b><p class="comp" id='head'>{{cmpname}}</p></b>
-          <p class="comp">{{cmpaddr1}}</p>
-          <p class="comp">{{cmpaddr2}}</p>         
-          <p class="comp">{{cmpemail}}</p>
-          <p class="comp">{{cmpphone}}</p>            
+          <b><p class="comp" id='head' style="margin-top: 5%;">{{cmpname}}</p></b>
+          <p class="comp" style="margin-top: -0.5%;">{{cmpaddr1}} , {{cmpaddr2}}</p>
+          <!-- <p class="comp"></p>          -->
+          <p class="comp" style="margin-top: -0.5%;">{{cmpemail}}</p>
+          <p class="comp" style="margin-top: -0.5%;">{{cmpphone}}</p>            
         </div>
 
         <template is="dom-repeat" items="{{poarray}}" as="po">
@@ -88,7 +103,7 @@
 
       </div>
 
-      <div class='title'><h2 id='head'>Purchase Order</h2></div>
+      <div class='title'><h3 id='head'>Purchase Order</h3></div>
 
       
 
@@ -107,21 +122,21 @@
       <template is="dom-repeat" items="{{poitemarray}}" as="poitem">
       <div class="itemdetail">
         <table border="1" id='itemtable'>
-          <tr style="line-height: 25px;"><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
+          <tr style="line-height: 25px; font-size: 13px;"><th>Item Description</th><th>Qty</th><th>UOM</th><th>Rate</th><th>Amount</th></tr>
           <tr style="line-height: 35px;text-align: center;"><td>{{poitem.Product_ID}}</td><td>{{poitem.Quantity}} {{poitem.Quantity_Measure}}</td>
-          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td style="text-align: right;">{{poitem.total}}</td></tr>          
+          <td>{{poitem.unit}} {{poitem.Unit_Measure}}</td><td>{{poitem.price}}</td><td style="text-align: right;padding-right:3%;margin-right: -5%;">{{poitem.total}}</td></tr>          
         </table>
       </div>
       
 
       <div class="total">
         <table >
-          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">Total </td><td style="text-align: right;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.total}}</td></tr>
-          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">Excise Duty (12.5%) </td><td style="text-align: right;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.exduty}}</td></tr>
-          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">VAT (5%) </td><td style="text-align: right;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.vat}}</td></tr>
-          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">CST (2%) </td><td style="text-align: right;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.cst}}</td></tr>
+          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">Total </td><td style="text-align: right;padding-right: 8%;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.total}}</td></tr>
+          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">Excise Duty (12.5%) </td><td style="text-align: right;padding-right: 8%;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.exduty}}</td></tr>
+          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">VAT (5%) </td><td style="text-align: right;padding-right: 8%;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.vat}}</td></tr>
+          <tr style="line-height: 30px;text-align: left;"><td style="line-height: 30px;text-align: left;">CST (2%) </td><td style="text-align: right;padding-right: 8%;"><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.cst}}</td></tr>
           <tr style="text-align: left;"><td style="text-align: left;" colspan="2">-----------------------------------------------------</td></tr>
-          <tr style="line-height: 30px;"><td style='text-align: left;'>Grand Total </td><td style='text-align: right;'><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.grandtot}}</td></tr>
+          <tr style="line-height: 30px;"><td style='text-align: left;'>Grand Total </td><td style='text-align: right;padding-right: 8%;'><img src="../../images/rupee.png" width="8px" height="8px"/> {{poitem.grandtot}}</td></tr>
         </table>
         </div>
       </template>
