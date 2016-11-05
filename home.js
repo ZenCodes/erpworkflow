@@ -2231,6 +2231,7 @@ app.post('/searchbatchcontainer-service',urlencodedParser, function (req, res) {
 app.post('/fetchtcchemicinfo-service',urlencodedParser, function (req, res) {
   var batchno=req.query.batchno;
   var containerid=req.query.containerid;
+  console.log(batchno+" "+containerid);
   var Fnfetchtcchemicinfocall = require("./app/scripts/dboperations.js");
   Fnfetchtcchemicinfocall.Fnfetchtcchemicinfo("fetchtcchemicinfo-service",batchno,containerid,function(returnval){
     res.status(200).json(returnval);

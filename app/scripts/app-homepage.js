@@ -5,7 +5,7 @@ Polymer({
   is: "app-homepage",
   ready: function() {
     this.userlabel="Signout"; 
-    // alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag"));
+    alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag"));
     this.loggedusername="Hello! "+sessionStorage.getItem("curr_sess_loggeduser");   
 
     this.$.intentview.style.visibility='hidden';
@@ -89,12 +89,12 @@ Polymer({
     /*Condtion to navigate to the grn flow page according to the role(role flags of the managers),who logged in*/
     if(sessionStorage.getItem("curr_sess_roleflag")!="0"&&sessionStorage.getItem("curr_sess_roleflag")!="5"&&sessionStorage.getItem("curr_sess_roleflag")!="6"&&sessionStorage.getItem("curr_sess_roleflag")!="7"&&sessionStorage.getItem("curr_sess_roleflag")!="8"&&sessionStorage.getItem("curr_sess_roleflag")!="9"&&sessionStorage.getItem("curr_sess_roleflag")!="10"&&sessionStorage.getItem("curr_sess_roleflag")!="11")
     {
-      if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
+      if(localStorage.getItem("curr_sess_wardflag")=="2"){
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
       }
-      else if(localStorage.getItem("curr_sess_wardflag")=="3"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="1"){
+      else if(localStorage.getItem("curr_sess_wardflag")=="3"){
       this.$.flow.style.visibility='hidden';
       this.$.intentflow.style.visibility='visible';
       document.querySelector('app-homepage').setPage('intenthome-page');
@@ -131,7 +131,7 @@ Polymer({
     }
     // Condition which shows the intent category pages according to the type either intent based view or item based intent view
     if(sessionStorage.getItem("curr_sess_roleflag")=="7"||sessionStorage.getItem("curr_sess_roleflag")=="8"||sessionStorage.getItem("curr_sess_roleflag")=="9"){
-      if(localStorage.getItem("curr_sess_wardflag")=="2"&&sessionStorage.getItem("curr_sess_intentrefreshflag")=="0"){
+      if(localStorage.getItem("curr_sess_wardflag")=="2"){
       document.querySelector('app-homepage').setPage('intenthome-page');
       document.querySelector('intenthome-page').setPage('Add Intent');
       }

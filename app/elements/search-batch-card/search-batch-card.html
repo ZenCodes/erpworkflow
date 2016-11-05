@@ -71,6 +71,7 @@
       },
       FnSelectBatch:function(e){
         batchno=e.target.selectedItem.textContent.trim();
+        sessionStorage.setItem("curr_sess_batchno",batchno);
         this.searchbatchcontainerService();
         // this.$.grnservice.Fnfetchtcinfo(batchno);
         // document.querySelector('app-homepage').setPage('test-certificate');
@@ -88,8 +89,11 @@
       },
       FnSelectContainer:function(e){
         containerid=e.target.selectedItem.textContent.trim();
-        this.$.grnservice.Fnfetchtcchemicinfo(batchno,containerid);
-        document.querySelector('app-homepage').setPage('test-certificate');
+        sessionStorage.setItem("curr_sess_containerid",containerid);
+        // .Fnfetchtcchemicinfo(batchno,containerid);
+        if(containerid!="")
+        window.open('../elements/tchome.html', '_blank');
+        // document.querySelector('app-homepage').setPage('test-certificate');
         // document.querySelector('test-certificate').click();
       }
 
