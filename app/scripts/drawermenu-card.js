@@ -23,7 +23,7 @@ Polymer({is:"drawermenu-card",
         localStorage.setItem("curr_sess_wardflag","4");        
         window.location.href="../elements/indexhome.html";        
       }
-      if(e.target.id=="View Intent"){
+      if(e.target.id=="External Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         document.querySelector('viewintent-page').FnRefreshService();
@@ -41,7 +41,7 @@ Polymer({is:"drawermenu-card",
         sessionStorage.setItem("curr_sess_intentrefreshflag","0");
         window.location.href="../elements/indexhome.html";
       }
-      if(e.target.id=="View Intent"){
+      if(e.target.id=="External Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
        window.location.href="../elements/indexhome.html";
@@ -81,7 +81,7 @@ Polymer({is:"drawermenu-card",
         sessionStorage.setItem("curr_sess_intentrefreshflag","0");
         window.location.href="../elements/indexhome.html";
       }
-      if(e.target.id=="View Intent"){        
+      if(e.target.id=="External Intent"){        
         localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         window.location.href="../elements/indexhome.html";
@@ -120,7 +120,7 @@ Polymer({is:"drawermenu-card",
         sessionStorage.setItem("curr_sess_intentrefreshflag","0");
         window.location.href="../elements/indexhome.html";
       }
-      if(e.target.id=="View Intent"){
+      if(e.target.id=="External Intent"){
         localStorage.setItem("curr_sess_wardflag","3");
         sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         window.location.href="../elements/indexhome.html";
@@ -141,12 +141,12 @@ Polymer({is:"drawermenu-card",
      //Role flag 2 is for the role who may do GRN Flow navigation Intent item adding
     else if(sessionStorage.getItem("curr_sess_roleflag")=="5"){
 
-      if(e.target.id=="View Intent"){
+      if(e.target.id=="External Intent"){
        localStorage.setItem("curr_sess_wardflag","3");
        sessionStorage.setItem("curr_sess_intentrefreshflag","1");
         document.querySelector('viewintent-page').FnRefreshService();
         document.querySelector('app-homepage').setPage('intenthome-page');
-        document.querySelector('intenthome-page').setPage('View Intent');
+        document.querySelector('intenthome-page').setPage('External Intent');
         document.querySelector('app-homepage').setVisible("false");
         document.querySelector('viewtype-card').FnHideBtns();
         document.querySelector('app-homepage').setFlowVisibility('false');       

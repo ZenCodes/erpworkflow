@@ -5,7 +5,7 @@ Polymer({
   is: "app-homepage",
   ready: function() {
     this.userlabel="Signout"; 
-    alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag"));
+    // alert(sessionStorage.getItem("curr_sess_roleflag")+" "+localStorage.getItem("curr_sess_wardflag"));
     this.loggedusername="Hello! "+sessionStorage.getItem("curr_sess_loggeduser");   
 
     this.$.intentview.style.visibility='hidden';
@@ -98,7 +98,7 @@ Polymer({
       this.$.flow.style.visibility='hidden';
       this.$.intentflow.style.visibility='visible';
       document.querySelector('app-homepage').setPage('intenthome-page');
-      document.querySelector('intenthome-page').setPage('View Intent');
+      document.querySelector('intenthome-page').setPage('External Intent');
       }
       else if(localStorage.getItem("curr_sess_wardflag")=="15"){
       this.$.flow.style.visibility='hidden';
@@ -139,7 +139,7 @@ Polymer({
       {
       this.$.intentflow.style.visibility='visible';
       document.querySelector('app-homepage').setPage('intenthome-page');
-      document.querySelector('intenthome-page').setPage('View Intent');
+      document.querySelector('intenthome-page').setPage('External Intent');
       }
       this.$.flow.style.visibility='hidden';
       this.$.list.style.visibility='hidden';
@@ -188,7 +188,7 @@ Polymer({
       this.$.intentview.style.visibility='visible';
       this.$.flow.style.visibility='hidden';
       document.querySelector('app-homepage').setPage('intenthome-page');
-      document.querySelector('intenthome-page').setPage('View Intent');
+      document.querySelector('intenthome-page').setPage('External Intent');
       }
       if(localStorage.getItem("curr_sess_wardflag")=="4") {
       this.$.flow.style.visibility='hidden';

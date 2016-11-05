@@ -89,7 +89,7 @@
        ,{"title":["Add Intent"]}
     ]},
     {"Page":[
-      {"page":["View Intent","viewintent-page"]},
+      {"page":["External Intent","viewintent-page"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Quantity"},{"tab":"Container"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Item Location"},{"tab":"Intent Register No"}]}]}
       ,{"title":["Item Based Intent View"]}
     ]},
@@ -158,12 +158,12 @@
         {"Page":[
       {"page":["Intent View","intentview-card"]},
       {"Label":[{"tabs":[{"tab":"Intent Register No"},{"tab":"Intent Date"}]}]}
-      ,{"title":["View Intent"]}
+      ,{"title":["External Intent"]}
     ]},
     {"Page":[
       {"page":["intentviewitemexpand-card","intentviewitemexpand-card"]},
       {"Label":[{"tabs":[{"tab":"Item Description"},{"tab":"Specification"},{"tab":"Cont/Qty"},{"tab":"Status"},{"tab":"Due Date"},{"tab":"Supplier"}]}]}
-    ,{"title":["View Intent"]}
+    ,{"title":["External Intent"]}
     ]},
     {"Page":[
       {"page":["Add Customer","addcustomer-card"]},

@@ -13,7 +13,7 @@
         "newstatus":"OldStores",
         "updatestatus":"Quality",
         "containerstatus":"",
-        "menu" : ["GRN Flow","Add Intent","View Intent","Internal Intent"]
+        "menu" : ["GRN Flow","Add Intent","External Intent","Internal Intent"]
       },
       {
         "rolename": "Production manager",
@@ -22,7 +22,7 @@
         "newstatus":"OldProduction",
         "updatestatus":"Quality",
         "containerstatus":"OldStores",
-        "menu" : ["GRN Flow","Add Intent","View Intent","Internal Intent"]
+        "menu" : ["GRN Flow","Add Intent","External Intent","Internal Intent"]
       },
       {
         "rolename": "Quality manager",
@@ -40,12 +40,12 @@
         "newstatus":"OldPurchase",
         "updatestatus":"Confirm",
         "containerstatus":"OldQuality",
-        "menu" : ["GRN Flow","View Intent","Add Supplier"]
+        "menu" : ["GRN Flow","External Intent","Add Supplier"]
       },
       {
         "rolename": "Administration manager",
         "RoleFlag": "5",
-        "menu" : ["View Intent"]
+        "menu" : ["External Intent"]
       },
       {
         "rolename": "Administration admin",
@@ -55,17 +55,17 @@
       {
         "rolename": "Maintenance manager",
         "RoleFlag": "7",
-        "menu" : ["Add Intent","View Intent"]
+        "menu" : ["Add Intent","External Intent"]
       },
       {
         "rolename": "Office admin",
         "RoleFlag": "8",
-        "menu" : ["Add Intent","View Intent"]
+        "menu" : ["Add Intent","External Intent"]
       },
       {
         "rolename": "Ceo ceo",
         "RoleFlag": "9",
-        "menu" : ["Add Intent","View Intent","Approve Supplier","Approve Customer","Approve User"]
+        "menu" : ["Add Intent","External Intent","Approve Supplier","Approve Customer","Approve User"]
       },
       {
         "rolename": "Sales manager",
