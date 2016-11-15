@@ -53,10 +53,13 @@
       batcharr.push(obj);
     if(flag==false){
       for(var i=0;i<batcharr.length;i++){
-        if(batcharr[i].intentregno==intentregno)
+        if(batcharr[i].intentregno==intentregno){
+          // alert('yes');
           batcharr.splice(i,1);
+        }
       }
     }
+    // alert(JSON.stringify(batcharr));
     },
     // Function which calls service to create the PO for the item in intent view
     FnProduce:function(){
@@ -64,6 +67,7 @@
       // this.$.grnservice.updateproductionstatusService(this.batchno,this.lotno,this.continerid,this.intentregno);
       // alert(JSON.stringify(batcharr));
       this.$.grnservice.updateproductionstatusService(batcharr);
+      batcharr=[];
     }
     });
   })();

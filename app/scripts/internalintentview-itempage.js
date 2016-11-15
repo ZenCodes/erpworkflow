@@ -32,7 +32,7 @@
 
       if(document.querySelector('#check'+this.intentregno).checked==true)
       document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno,true);
-      else
+      if(document.querySelector('#check'+this.intentregno).checked==false)
       document.querySelector('inproduction-button-card').FnSetBatchInfo(this.batchno,this.lotno,this.containerid,this.intentregno,false);
     },
     //Function which invokes when click on expand icon button
@@ -57,24 +57,24 @@
       if(id=="true")
       {
         document.querySelector('app-homepage').FnSetInProductionVisibility('true');
-        id= document.querySelector("#"+this.intentregno);        
+        id= document.querySelector("#lot"+this.lotno);        
         id.toggle();
       }
       else
       {
-        if(id!=document.querySelector("#"+this.intentregno))
+        if(id!=document.querySelector("#lot"+this.lotno))
         {
           id.opened=false;
         }
         document.querySelector('app-homepage').FnSetInProductionVisibility('false');
-        id= document.querySelector("#"+this.intentregno);
+        id= document.querySelector("#lot"+this.lotno);
         id.toggle();
       }
       if(clrid=="true")
       {
         for(var i= 0;i<all.length;i++){
           document.querySelector('app-homepage').FnSetInProductionVisibility('true');
-          if(all[i].id==document.querySelector("#card"+this.intentregno).id){
+          if(all[i].id==document.querySelector("#card"+this.lotno).id){
             if(i!=0) {
               all[i].style.marginTop=((i*(x))-i-(i))+"%";
             }
@@ -83,24 +83,24 @@
           else
             all[i].style.visibility='hidden';
         }
-        clrid= document.querySelector("#card"+this.intentregno);
+        clrid= document.querySelector("#card"+this.lotno);
 
       }
       else
       {
-        if(clrid!=document.querySelector("#card"+this.intentregno))
+        if(clrid!=document.querySelector("#card"+this.lotno))
         {
           //document.querySelector('my-app').setVisible("true");
           document.querySelector('app-homepage').FnSetInProductionVisibility('true');
           for(var i=0;i<all.length;i++){
-            if(all[i].id==document.querySelector("#card"+this.intentregno).id){
+            if(all[i].id==document.querySelector("#card"+this.lotno).id){
               all[i].style.visibility='visible';
             }
             else
               all[i].style.visibility='hidden';
           }
 
-          clrid= document.querySelector("#card"+this.intentregno);
+          clrid= document.querySelector("#card"+this.lotno);
         }
         else
         {

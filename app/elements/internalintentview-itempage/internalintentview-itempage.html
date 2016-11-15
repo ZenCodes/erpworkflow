@@ -67,7 +67,7 @@
   <template>
     <!--Expand Itemcard-->
 
-    <div class="internalviewexpandcard" id="card{{intentregno}}" on-click="FnExpandItemCard">   
+    <div class="internalviewexpandcard" id="card{{lotno}}" on-click="FnExpandItemCard">   
      <paper-checkbox id="check{{intentregno}}" on-change="FnSelectCard" hidden$="{{hidecheck}}"></paper-checkbox>  
      <paper-button id="itemdes"  name="itemdes" value="{{itemdes}}" noink>{{itemdes}}</paper-button> 
      <paper-button id="batchno"  name="batchno" value="{{batchno}}" noink>{{batchno}}</paper-button>   
@@ -78,7 +78,7 @@
      <paper-button id="intentregno"  name="intentregno" value="{{intentregno}}" noink>{{intentregno}}</paper-button>
     </div>
     <!-- Expand item collapse card -->
-    <iron-collapse id="{{intentregno}}">
+    <iron-collapse id="lot{{lotno}}">
       <div class="collapse">      
         <internalintentview-expandpage id="ps" containerid="{{containerid}}" itemid="{{itemno}}" itemdes="{{itemdes}}" intentregno="{{intentregno}}" lotno="{{lotno}}" batchno="{{batchno}}"></internalintentview-expandpage>
       </div>
