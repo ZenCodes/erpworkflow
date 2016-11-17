@@ -7,6 +7,8 @@
 
 <link rel="import" href="../mechanical-property-itemcard/mechanical-property-itemcard.html">
 <link rel="import" href="../chemical-property-itemcard/chemical-property-itemcard.html">
+<link rel="import" href="../mechanic-property-displaycard/mechanic-property-displaycard.html">
+<link rel="import" href="../chemic-property-displaycard/chemic-property-displaycard.html">
 <dom-module id="internalintentview-expandpage">
   <template>
     <style>
@@ -65,29 +67,9 @@
     <button class="chemic" on-click="FnExpandChemic">Chemical Test</button>
     <iron-collapse id="collapse1">
       <div class="content">
-        <!--<div class="outcard">
-        <div hidden>
-        <paper-input value="{{intentregno}}"></paper-input><paper-input value="{{containerid}}"></paper-input>
-        <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
-        <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
-        </div>
-        <div class="speccard" hidden$="{{speccardhide}}">
-        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
-          <paper-tab>Parameter Name</paper-tab>
-          <paper-tab>Actual Value</paper-tab>      
-          <paper-tab>Remarks</paper-tab>
-        </paper-tabs>
-        <template is="dom-repeat" items="{{chemicalArray}}" as="item">
-        <chemical-property-itemcard hidediv="{{hidediv}}" containerid="{{containerid}}" intentregno="{{intentregno}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></chemical-property-itemcard>
-        </template>
-        </div>
-        <div class="btncard" hidden$="{{hidebtns}}">
-        <paper-button id="submittest" on-click="FnSubmitChemictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
-        <paper-button id="test" on-click="FnAddChemictest"  hidden$="{{hidetest}}">Add Test</paper-button>
-        </div>
-        </div>-->
          <div>
           <chemical-property-card id="chemicproperty" chemicalArray="{{chemicalArray}}" itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}" containerid="{{containerid}}"></chemical-property-card>
+          <chemic-property-displaycard carray="{{carray}}"></chemic-property-displaycard>
         </div>
       </div>
     </iron-collapse>
@@ -95,29 +77,9 @@
     <button class="mechanic" on-click="FnExpandMechanic">Mechanical Test</button>
     <iron-collapse id="collapse2">
       <div class="content">
-        <!--<div class="outcard">
-        <div hidden>
-        <paper-input value="{{intentregno}}"></paper-input><paper-input value="{{containerid}}"></paper-input>
-        <paper-input value="{{itemid}}"></paper-input><paper-input value="{{itemdes}}"></paper-input>
-        <paper-input value="{{lotno}}"></paper-input><paper-input value="{{batchno}}"></paper-input>
-        </div>
-        <div class="speccard" hidden$="{{speccardhide}}">
-        <paper-tabs selected="0" no-ink no-bar no-slide id="ptab">
-          <paper-tab>Parameter Name</paper-tab>
-          <paper-tab>Actual Value</paper-tab>      
-          <paper-tab>Remarks</paper-tab>
-        </paper-tabs>
-        <template is="dom-repeat" items="{{mechanicalArray}}" as="item">
-        <mechanical-property-itemcard hidediv="{{hidediv}}" containerid="{{containerid}}" intentregno="{{intentregno}}" itemid="{{itemid}}" itemdes="{{itemdes}}" batchno="{{batchno}}" lotno="{{lotno}}" propertyname="{{item.Property_Name}}"></mechanical-property-itemcard>
-        </template>
-        </div>
-        <div class="btncard" hidden$="{{hidebtns}}">
-        <paper-button id="submittest" on-click="FnSubmitMechanictest"  hidden$="{{hidesubmit}}" readonly="{{submitread}}">Submit Test</paper-button>
-        <paper-button id="test" on-click="FnAddMechanictest"  hidden$="{{hidetest}}">Add Test</paper-button>
-        </div>
-        </div>-->
         <div>
           <mechanical-property-card id="mechanicproperty" mechanicalArray="{{mechanicalArray}}" itemid="{{itemid}}" itemdes="{{itemdes}}" lotno="{{lotno}}" batchno="{{batchno}}" intentregno="{{intentregno}}" containerid="{{containerid}}"></mechanical-property-card>
+          <mechanic-property-displaycard marray="{{marray}}"></mechanic-property-displaycard>
         </div>
       </div>
     </iron-collapse>
@@ -143,6 +105,27 @@
       content-type="application/json"
       on-response="mechanicalpropertyreadResponse">
     </iron-ajax>
+    <!-- Component which make request to read the chemical parameters value for the item -->
+    <iron-ajax
+      method="post"
+      id="chemicalpropertydisplayreadajax"
+      url="{{chemicalpropertydisplayreadurl}}"
+      params="{{chemicalpropertydisplayreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="chemicalpropertydisplayreadResponse">
+    </iron-ajax>
+
+    <!-- Component which make request to read the mechanical parameters value for the item -->
+    <iron-ajax
+      method="post"
+      id="mechanicalpropertydisplayreadajax"
+      url="{{mechanicalpropertydisplayreadurl}}"
+      params="{{mechanicalpropertydisplayreadparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="mechanicalpropertydisplayreadResponse">
+    </iron-ajax>
     <!-- Component to call the service -->
     <grn-service id="grnservice"></grn-service>
 
@@ -164,11 +147,12 @@
         // alert(JSON.stringify((this.itemArray).length));
       },
       FnExpandChemic:function(){
+        this.FnchemicalpropertydisplayreadService();
         this.$.chemicproperty.FnchemicalpropertyreadService();
-        this.$.collapse1.toggle();
-        
+        this.$.collapse1.toggle();       
       },
       FnExpandMechanic:function(){
+        this.FnmechanicalpropertydisplayreadService();
         this.$.mechanicproperty.FnmechanicalpropertyreadService();
         this.$.collapse2.toggle();
       },
@@ -204,7 +188,7 @@
       },
       FnSubmitChemictest:function(){
         // alert(JSON.stringify(chemicarr));
-        alert((chemicarr).length+" "+(this.chemicalArray).length);
+        // alert((chemicarr).length+" "+(this.chemicalArray).length);
          if((chemicarr).length==(this.chemicalArray).length)
         {
           alert('Test submit!');
@@ -240,10 +224,113 @@
       FnToggleChemic:function(){
         this.$.collapse1.opened=true;
       },
-      FnToggleMechanic:function(){
+       FnToggleMechanic:function(){
         // alert('toggle'+this.$.collapse2);
         this.$.collapse2.opened=true;
+      },
+      FnchemicalpropertydisplayreadService:function(){
+        var obj={"batchno":""};
+        obj.batchno=this.batchno;
+        obj.itemid=this.itemid;
+        obj.lotno=this.lotno;
+        obj.intentregno=this.intentregno;
+        obj.containerid=this.containerid;
+        this.chemicalpropertydisplayreadparam=obj;
+        this.chemicalpropertydisplayreadurl=sessionStorage.getItem("curr_sess_url")+"chemicalpropertydisplayread-service";
+        this.$.chemicalpropertydisplayreadajax.generateRequest();
+      },
+      chemicalpropertydisplayreadResponse:function(e){        
+        var arr=e.detail.response;
+         if(arr!="no rows") {
+          var temparr = [];
+          var finalarr = [];
+          var flag = "true";
+          var testdate="";
+          for (var i = 0; i < arr.length; i++) {
+            if (flag == "true") {
+              temparr.push(arr[i]);
+              flag = arr[i].Test_ID;
+              testdate = arr[i].Test_Date;
+            }
+            else {
+              if (flag == arr[i].Test_ID) {
+                temparr.push(arr[i]);
+                flag = arr[i].Test_ID;
+                testdate = arr[i].Test_Date;
+              }
+              else {
+                finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
+                temparr = [];
+                temparr.push(arr[i]);
+                flag = arr[i].Test_ID;
+                testdate = arr[i].Test_Date;
+              }
+            }
+          }
+          finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
+          // alert(JSON.stringify(finalarr));
+          if (finalarr.length > 0) {
+            this.carray = finalarr;
+          //   document.querySelector('physicqualifyitem-card').Fnhidequality("false");
+          }
+          // else{
+          //   document.querySelector('physicqualifyitem-card').Fnhidequality("true");
+          // }
+        }
+        // alert(JSON.stringify(this.carray));
+      },
+      FnmechanicalpropertydisplayreadService:function(){
+        var obj={"batchno":""};
+        obj.batchno=this.batchno;
+        obj.itemid=this.itemid;
+        obj.lotno=this.lotno;
+        obj.intentregno=this.intentregno;
+        obj.containerid=this.containerid;
+        this.mechanicalpropertydisplayreadparam=obj;
+        this.mechanicalpropertydisplayreadurl=sessionStorage.getItem("curr_sess_url")+"mechanicalpropertydisplayread-service";
+        this.$.mechanicalpropertydisplayreadajax.generateRequest();
+      },
+      mechanicalpropertydisplayreadResponse:function(e){        
+        var arr=e.detail.response;
+         if(arr!="no rows") {
+          var temparr = [];
+          var finalarr = [];
+          var flag = "true";
+          var testdate="";
+          for (var i = 0; i < arr.length; i++) {
+            if (flag == "true") {
+              temparr.push(arr[i]);
+              flag = arr[i].Test_ID;
+              testdate = arr[i].Test_Date;
+            }
+            else {
+              if (flag == arr[i].Test_ID) {
+                temparr.push(arr[i]);
+                flag = arr[i].Test_ID;
+                testdate = arr[i].Test_Date;
+              }
+              else {
+                finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
+                temparr = [];
+                temparr.push(arr[i]);
+                flag = arr[i].Test_ID;
+                testdate = arr[i].Test_Date;
+              }
+            }
+          }
+          finalarr.push({"testno": flag,"testdate" :testdate, "temparr": temparr});
+          // alert(JSON.stringify(finalarr));
+          if (finalarr.length > 0) {
+            this.marray = finalarr;
+          //   document.querySelector('physicqualifyitem-card').Fnhidequality("false");
+          }
+          // else{
+          //   document.querySelector('physicqualifyitem-card').Fnhidequality("true");
+          // }
+        }
+        // alert(JSON.stringify(this.carray));
       }
+
     });
   })();
   </script>

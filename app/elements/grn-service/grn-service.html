@@ -218,6 +218,17 @@
       on-response="mechanicalpropertyreadResponse">
     </iron-ajax>
 
+     <!-- Component which make request to read the mechanical parameters for the item -->
+    <iron-ajax
+      method="post"
+      id="propertysequenceupdateajax"
+      url="{{propertysequenceupdateurl}}"
+      params="{{propertysequenceupdateparam}}"
+      handle-as="json"
+      content-type="application/json"
+      on-response="propertysequenceupdateResponse">
+    </iron-ajax>
+
   </template>
   <!-- JS file import -->
   <script src="../../scripts/grn-service.js"></script>

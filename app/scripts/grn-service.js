@@ -13,6 +13,8 @@
   var mechvalue=[];
   var chemicvalue=[];
   var batchcount=0;
+  var count1=0;
+  var count2=0;
   Polymer({
     is: "grn-service",
     ready:function()
@@ -315,6 +317,7 @@
       document.querySelector('internalintentview-page').itemArray=arr;
     },
     FncallinsertchemicalService:function(chemicarr){
+      count1=chemicarr.length;
       // arrlength=chemicarr.length;
       for(var i=0;i<chemicarr.length;i++){
         var obj={"intentregno":"","itemid":"","itemname":"","batchno":"","lotno":"","containerid":"","propertyname":"","actualvalue":"","remarks":"","testdate":""};
@@ -336,10 +339,18 @@
       }
     },
     insertchemicaltestResponse:function(e){
-      alert(e.detail.response);
+      // alert(e.detail.response);
+      if(e.detail.response=="succ")
+        count2++;
+      if(count1==count2){
+        alert('Test submitted!!');
+        count1=0;
+        count2=0;
+        this.propertysequenceupdateService();
+      }
     },
     FncallinsertmechanicalService:function(mechanicarr){
-      
+      count1=mechanicarr.length;
       for(var i=0;i<mechanicarr.length;i++){
         var obj={"intentregno":"","itemid":"","itemname":"","batchno":"","lotno":"","containerid":"","propertyname":"","actualvalue":"","remarks":"","testdate":""};
       obj.intentregno=mechanicarr[i].intentregno;
@@ -361,7 +372,22 @@
       
     },
     insertmechanicaltestResponse:function(e){
-      alert(e.detail.response);
+      // alert(e.detail.response);
+      if(e.detail.response=="succ")
+        count2++;
+      if(count1==count2){
+        alert('Test submitted!!');
+        count1=0;
+        count2=0;
+        this.propertysequenceupdateService();
+      }
+    },
+    propertysequenceupdateService:function(){
+      this.propertysequenceupdateurl=sessionStorage.getItem("curr_sess_url")+"propertysequenceupdate-service";
+      this.$.propertysequenceupdateajax.generateRequest();
+    },
+    propertysequenceupdateResponse:function(e){
+      // alert(e.detail.response);
     },
     Fnfetchtcchemicinfo:function(batchno,containerid){
       var obj={"batchno":"","containerid":""};

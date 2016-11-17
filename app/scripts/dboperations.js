@@ -4431,6 +4431,8 @@ exports.Fninsertchemicaltest=function(pagename,response,callback) {
 
   console.log(query1);
 
+  connection.query("SELECT * FROM MD_Quality_Test_ID", [response],function(err, rows) {
+    response.Test_ID=rows[0].Property_Test_ID;
   connection.query(query1, [response],function(err, rows) {
     if(!err)
     {      
@@ -4441,6 +4443,7 @@ exports.Fninsertchemicaltest=function(pagename,response,callback) {
       return callback("fail");
     }
   });
+});
   
 }
 
@@ -4458,7 +4461,8 @@ exports.Fninsertmechanicaltest=function(pagename,response,callback) {
   var query1="INSERT INTO OD_Mechanical_Test SET ?";
 
   console.log(query1);
-
+connection.query("SELECT * FROM MD_Quality_Test_ID", [response],function(err, rows) {
+  response.Test_ID=rows[0].Property_Test_ID;
   connection.query(query1, [response],function(err, rows) {
     if(!err)
     {      
@@ -4468,6 +4472,30 @@ exports.Fninsertmechanicaltest=function(pagename,response,callback) {
       console.log(err);
       return callback("fail");
     }
+  });
+});
+}
+
+
+exports.Fnpropertysequenceupdate=function(pagename,callback) {
+
+  connection.query('SELECT Property_Test_ID FROM MD_Quality_Test_ID',function (err, rows) {
+    if(!err) {
+      var response={Property_Test_ID:parseInt(rows[0].Property_Test_ID)+1};
+      connection.query('UPDATE MD_Quality_Test_ID SET ?',[response],function (err, rows) {
+        if (!err) {
+          logfile.write('\nQuality parameter test id update: success');
+          return callback("succ");
+        }
+        else{
+          console.log(err);
+          logfile.write('\nQuality parameter test id update: fail');
+          return callback("fail");
+        }
+      });
+    }
+    else
+    console.log(err);
   });
 }
 
@@ -4604,6 +4632,61 @@ exports.Fnupdateproductionstatus=function(pagename,loggedrole,batchno,lotno,cont
     else{
       console.log(err);
       return callback("not updated");
+    }
+  });
+
+}
+
+
+exports.Fnmechanicalpropertydisplayread=function(pagename,itemid,batchno,lotno,containerid,intentregno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  var query1="SELECT * FROM OD_Mechanical_Test WHERE Item_ID='"+itemid+"' and Batch_No='"+batchno+"' and Lot_No='"+lotno+"' and Container_ID='"+containerid+"' and Intent_Register_No='"+intentregno+"'";
+ 
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("no rows");
+    }
+  });
+
+}
+
+exports.Fnchemicalpropertydisplayread=function(pagename,itemid,batchno,lotno,containerid,intentregno,callback) {
+  var Config_tables=[];
+  var Config_columnvalues=[];
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].name==pagename){
+      Config_tables=obj[i].value;
+      Config_columnvalues=obj[i].columnvalues;
+    }
+  }  
+  
+  var query1="SELECT * FROM OD_Chemical_Test WHERE Item_ID='"+itemid+"' and Batch_No='"+batchno+"' and Lot_No='"+lotno+"' and Container_ID='"+containerid+"' and Intent_Register_No='"+intentregno+"'";
+ 
+  console.log(query1);
+
+  connection.query(query1,function(err, rows) {
+    if(!err)
+    {      
+      return callback(rows); 
+    }
+    else{
+      console.log(err);
+      return callback("no rows");
     }
   });
 

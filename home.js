@@ -2259,6 +2259,42 @@ app.post('/updateproductionstatus-service',urlencodedParser, function (req, res)
   });  
 });
 
+
+
+app.post('/chemicalpropertydisplayread-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  var lotno=req.query.lotno;
+  var containerid=req.query.containerid;
+  var intentregno=req.query.intentregno;
+  var itemid=req.query.itemid;
+  var Fnchemicalpropertydisplayreadcall = require("./app/scripts/dboperations.js");
+  Fnchemicalpropertydisplayreadcall.Fnchemicalpropertydisplayread("chemicalpropertydisplayread-service",itemid,batchno,lotno,containerid,intentregno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+
+app.post('/mechanicalpropertydisplayread-service',urlencodedParser, function (req, res) {
+  var batchno=req.query.batchno;
+  var lotno=req.query.lotno;
+  var containerid=req.query.containerid;
+  var intentregno=req.query.intentregno;
+  var itemid=req.query.itemid;
+  var Fnmechanicalpropertydisplayreadcall = require("./app/scripts/dboperations.js");
+  Fnmechanicalpropertydisplayreadcall.Fnmechanicalpropertydisplayread("mechanicalpropertydisplayread-service",itemid,batchno,lotno,containerid,intentregno,function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
+
+app.post('/propertysequenceupdate-service',urlencodedParser, function (req, res) {
+
+  var Fnpropertysequenceupdatecall = require("./app/scripts/dboperations.js");
+  Fnpropertysequenceupdatecall.Fnpropertysequenceupdate("propertysequenceupdate-service",function(returnval){
+    res.status(200).json(returnval);
+  });  
+});
+
 //Node server running port number
 app.listen(4000);
 
